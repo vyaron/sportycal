@@ -1,0 +1,452 @@
+.p5{padding:5px;}
+.pt15{ padding-top:15px;}
+
+.fl{float:left;}
+.cb{clear:both;}
+.ml5{ margin-left:5px;}
+
+#content{ min-height:400px;}
+
+/* Header
+***************/
+/* Back Row*/
+#backRow{background:url(/images/mobile/header_bg.png) repeat-x left top; height:40px; width:100%;}
+#headerIcon{ float:right; width:40px; height:40px; background-position:center center; background-repeat:no-repeat;}
+
+/*apple btn left */
+.appleStyleL, .appleStyleC, .appleStyleR, .appleStyleRL, .appleStyleRR{ background-position:left top; float:left; height:31px;}
+.appleStyleL, .appleStyleR, .appleStyleRL, .appleStyleRR{ background-repeat:no-repeat;}
+
+.appleStyleC{ background-repeat:repeat-x; background-image:url(/images/mobile/appleBtnL_C.png); cursor:pointer; padding:0 5px;}
+.appleStyleRL, .appleStyleL{width:13px;}
+.appleStyleRR, .appleStyleR{width:6px;}
+.appleStyleL{ background-image:url(/images/mobile/appleBtnL_L.png);}
+.appleStyleR{ background-image:url(/images/mobile/appleBtnL_R.png);}
+.appleStyleRL{ background-image:url(/images/mobile/appleBtnR_L.png);}
+.appleStyleRR{ background-image:url(/images/mobile/appleBtnR_R.png);}
+
+
+.appleStyleC span{ color:#fff; text-shadow:1px -1px #3f5068; font-weight:bold; font-size:12pt; line-height:31px;}
+
+#nextBtn, #backBtn{ padding:3px 5px; display:block; text-decoration: none;}
+#backBtn{float:left;}
+#nextBtn{float:right;}
+
+/* main nav */
+#mainNav{ background:url(/images/mobile/mainNavBg.png) repeat-x left top; height:48px; width:100%;}
+
+#mainNav a{ display:block; float:left; width:25%; height:48px; color:#fff; text-decoration:none; line-height:48px; text-align:center; font-size:1.2em; font-weight:bold; text-shadow:1px -1px #000;}
+.selectedTab{background:url(/images/mobile/mainNavBg.png) repeat-x left bottom;}
+.mainNavSep{ border-right:1px solid #fff;}
+
+
+/* Footer
+***************/
+#quickNav{ margin:0; padding:0; text-align:center;}
+#quickNav li{ display:inline;}
+#copyRights{ margin:0; text-align:center;}
+
+#pageFooter{ padding-top:40px;}
+
+
+/* Content
+**************/
+#mainTitle, #downloadEntireLeague{ border-bottom: 1px solid #8F8F8F; font-size: 1.4em; margin: 0; padding: 3px; background-color:#C4B59A; color:#000;}
+
+/* navBtn*/
+/*
+.ctgInfo, .ctgIcon, .calInfo, .calIcon, .downloadIcon{ float:left;}
+.ctgInfo, .calInfo{ padding-left:5px;}
+.ctgArrowRight, .calArrowRight, .calArrowDownload{ float:right; width:40px; height:40px; background-repeat:no-repeat; background-position:center center;}
+.ctgArrowRight, .calArrowRight{ background-image: url(/images/mobile/navItemArrow.png);}
+.calArrowDownload{background-image: url(/images/mobile/navItemArrowDownload.png);}
+
+
+.ctg, .downCal{background:#fff url(/images/mobile/navItemBg.png) repeat-x left center;}
+.navBtn{ display:block; border-bottom:1px solid #8f8f8f; border-top:1px solid #8f8f8f; text-decoration:none; padding:5px 0;}
+.navBtn h2, .navBtn h3{margin:0; color:#333;}
+.navBtn h2{font-size:1.2em; }
+.navBtn h3{font-size:1em; }
+
+.downCal h2{ line-height:40px; font-size:1.4em;}
+*/
+/*ctgs icons*/
+/*
+.ctgIcon, .calIcon, .downloadIcon{ width:40px; height:40px; background-position:center center; background-repeat:no-repeat;}
+
+.calIcon{background-image:url(/images/mobile/cals.png);}
+.ctgIcon{background-image:url(/images/mobile/ctgs_40x40.png);}
+.downloadIcon{background-image:url(/images/mobile/downloadIcons_40x40.png);}
+
+.downloadIcon_mobile{ background-position:0 0;}
+
+.calIcon_one{ background-position:0 0;}
+.calIcon_all{ background-position:0 -40px;}
+
+.ctgIcon_17{background-position:0 0;}
+.ctgIcon_7{background-position:-40px 0;}
+.ctgIcon_2{background-position:-80px 0;}
+.ctgIcon_4{background-position:-120px 0;}
+.ctgIcon_21{background-position:-160px 0;}
+.ctgIcon_6{background-position:0 -40px;}
+.ctgIcon_14{background-position:-40px -40px;}
+.ctgIcon_2102{background-position:-80px -40px;}
+.ctgIcon_1{background-position:-120px -40px;}
+.ctgIcon_8{background-position:-160px -40px;}
+.ctgIcon_9{background-position:0 -80px;}
+.ctgIcon_15{background-position:-40px -80px;}
+.ctgIcon_20{background-position:-80px -80px;}
+.ctgIcon_10{background-position:-120px -80px;}
+.ctgIcon_18{background-position:-160px -80px;}
+.ctgIcon_16{background-position:0 -120px;}
+.ctgIcon_2101{background-position:-40px -120px;}
+.ctgIcon_3{background-position:-80px -120px;}
+.ctgIcon_12{background-position:-120px -120px;}
+.ctgIcon_13{background-position:-160px -120px;}
+.ctgIcon_11{background-position:0 -160px;}
+.ctgIcon_5{background-position:-40px -160px;}
+.ctgIcon_19{background-position:-80px -160px;}
+*/
+
+
+.eventRow{ padding:5px 5px; margin:0; border-bottom:1px solid #8f8f8f; font-size:1.2em;}
+
+/* itmeRow*/
+.itemRowLinkWrapper{text-decoration:none;}
+.itemRow{display:block; border-bottom:1px solid #8f8f8f; border-top:1px solid #8f8f8f; padding:5px;}
+
+.itemRowBg1{background:#fff url(/images/mobile/navItemBg.png) repeat-x left bottom;}
+
+.itemRowBg2{
+	background: #ffffff; /* Old browsers */
+	background: -moz-linear-gradient(top,  #ffffff 0%, #e5e5e5 100%); /* FF3.6+ */
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#ffffff), color-stop(100%,#e5e5e5)); /* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(top,  #ffffff 0%,#e5e5e5 100%); /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(top,  #ffffff 0%,#e5e5e5 100%); /* Opera 11.10+ */
+	background: -ms-linear-gradient(top,  #ffffff 0%,#e5e5e5 100%); /* IE10+ */
+	background: linear-gradient(top,  #ffffff 0%,#e5e5e5 100%); /* W3C */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#e5e5e5',GradientType=0 ); /* IE6-9 */
+}
+
+.itemRowBg3{
+background: #ffffff; /* Old browsers */
+background: -moz-linear-gradient(top,  #ffffff 0%, #c6c6c6 100%); /* FF3.6+ */
+background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#ffffff), color-stop(100%,#c6c6c6)); /* Chrome,Safari4+ */
+background: -webkit-linear-gradient(top,  #ffffff 0%,#c6c6c6 100%); /* Chrome10+,Safari5.1+ */
+background: -o-linear-gradient(top,  #ffffff 0%,#c6c6c6 100%); /* Opera 11.10+ */
+background: -ms-linear-gradient(top,  #ffffff 0%,#c6c6c6 100%); /* IE10+ */
+background: linear-gradient(top,  #ffffff 0%,#c6c6c6 100%); /* W3C */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#c6c6c6',GradientType=0 ); /* IE6-9 */
+}
+
+
+.itemH2, .itemH3, .itemH4{margin:0; color:#333; word-break:normal;}
+.itemH4{ line-height:40px; height:40px; font-size:1.2em;}
+.itemH2{font-size:1.2em; }
+.itemH3, .itemA{font-size:1em; }
+
+.itemIcon{padding-left:45px; background-position:left center; background-repeat:no-repeat;}
+.itemArrowRight, .itemArrowDown{padding-right:45px; background-position:right center; background-repeat:no-repeat;}
+
+/* icons */
+.calIconGlobal{ background-image:url(/images/mobile/downloadType/downloadIcon_global.png);}
+.calIconMobile{ background-image:url(/images/mobile/downloadType/downloadIcon_mobile.png);}
+.calIconOutlook{ background-image:url(/images/mobile/downloadType/downloadIcon_outlooke.png);}
+.calIconGmail{ background-image:url(/images/mobile/downloadType/downloadIcon_gmail.png);}
+.calIconPDF{ background-image:url(/images/mobile/downloadType/downloadIcon_PDF.png);}
+
+.calIconAll{ background-image:url(/images/mobile/calIconAll.png);}
+.calIconOne{ background-image:url(/images/mobile/calIconOne.png);}
+
+.itemArrowRight{ background-image:url(/images/mobile/navItemArrow.png);}
+.itemArrowDown{ background-image:url(/images/mobile/navItemArrowDownload.png);}
+
+.ctgIcon_17{ background-image:url(/images/mobile/ctg/ctgIcon_1.png);}
+.ctgIcon_7{background-image:url(/images/mobile/ctg/ctgIcon_2.png);}
+.ctgIcon_2{background-image:url(/images/mobile/ctg/ctgIcon_3.png);}
+.ctgIcon_4{background-image:url(/images/mobile/ctg/ctgIcon_4.png);}
+.ctgIcon_21{background-image:url(/images/mobile/ctg/ctgIcon_5.png);}
+.ctgIcon_6{background-image:url(/images/mobile/ctg/ctgIcon_6.png);}
+.ctgIcon_14{background-image:url(/images/mobile/ctg/ctgIcon_7.png);}
+.ctgIcon_2102{background-image:url(/images/mobile/ctg/ctgIcon_8.png);}
+.ctgIcon_1{background-image:url(/images/mobile/ctg/ctgIcon_9.png);}
+.ctgIcon_8{background-image:url(/images/mobile/ctg/ctgIcon_10.png);}
+.ctgIcon_9{background-image:url(/images/mobile/ctg/ctgIcon_11.png);}
+.ctgIcon_15{background-image:url(/images/mobile/ctg/ctgIcon_12.png);}
+.ctgIcon_20{background-image:url(/images/mobile/ctg/ctgIcon_13.png);}
+.ctgIcon_10{background-image:url(/images/mobile/ctg/ctgIcon_14.png);}
+.ctgIcon_18{background-image:url(/images/mobile/ctg/ctgIcon_15.png);}
+.ctgIcon_16{background-image:url(/images/mobile/ctg/ctgIcon_16.png);}
+.ctgIcon_2101{background-image:url(/images/mobile/ctg/ctgIcon_17.png);}
+.ctgIcon_3{background-image:url(/images/mobile/ctg/ctgIcon_18.png);}
+.ctgIcon_12{background-image:url(/images/mobile/ctg/ctgIcon_19.png);}
+.ctgIcon_13{background-image:url(/images/mobile/ctg/ctgIcon_20.png);}
+.ctgIcon_11{background-image:url(/images/mobile/ctg/ctgIcon_21.png);}
+.ctgIcon_5{background-image:url(/images/mobile/ctg/ctgIcon_22.png);}
+.ctgIcon_19{background-image:url(/images/mobile/ctg/ctgIcon_23.png);}
+.ctgIcon_2500{background-image:url(/images/mobile/ctg/ctgIcon_24.png);}
+
+.ctgIcon_775{background-image:url(/images/mobile/ctg/ctgIcon_775.png);}
+.ctgIcon_2280{background-image:url(/images/mobile/ctg/ctgIcon_2280.png);}
+
+/* search */
+#searchForm{ padding:5px;}
+#searchForm input, #searchForm label{ display:block;}
+#searchForm input, #searchForm label, #searchForm select{ font-size:1.2em;}
+
+#txtSearch, #yearS, #yearE, #dayS, #mouthS, #dayE, #mouthE{ border:1px solid #666; border-radius:10px;}
+
+#txtSearch{ width:220px; margin-bottom:10px;}
+#btnSearch{ width:100px; height:30px; margin:0 auto;}
+
+#selectStartDate, #selectEndDate{ margin-bottom:10px;}
+
+#yearS, #yearE{ width:90px; text-align:center;}
+#dayS, #mouthS, #dayE, #mouthE{ width:60px; text-align:center;}
+
+#removeDatesBtn, #selectDatesBtn{ font-size:1.2em; padding:3px 0; cursor:pointer; text-decoration:underline;}
+
+#searchDesc{ padding:0 5px;}
+
+/*login*/
+#fbLogin{ display:block;  margin:10px auto; width:80px;}
+
+/*Android*/
+#androidPopupBG{ position:fixed; top:0; left:0; width:100%; height:100%; background-color:#000; z-index:1; opacity:0.4; filter:alpha(opacity=40);}
+#androidPopup{ position:fixed; left:50%; top:50%; margin-left:-50px; z-index:2;}
+
+.mobilePopupT, .mobilePopupB, .mobilePopupC{ background-position:left top; width:120px; }
+.mobilePopupT, .mobilePopupB{ background-repeat:no-repeat; height:15px;}
+.mobilePopupC{ background-repeat:repeat-y;  background-image:url(/images/mobile/popup/popup120pxC.png);}
+.mobilePopupCPadding{ padding:0 10px;}
+
+.mobilePopupT{ background-image:url(/images/mobile/popup/popup120pxT.png);}
+.mobilePopupB{background-image:url(/images/mobile/popup/popup120pxB.png);}
+
+#androidPopupClose{ margin-top:10px; padding-bottom:10px; text-align:center; display:block;}
+
+.androidDownloadMsg{color: red; font-size: 1.2em; margin: 0; padding: 3px;}
+
+/*eventStat bubble*/
+
+.infoBubble{width:16px; height:16px; background-position:0 0; background-repeat:no-repeat; cursor:pointer; display:inline-block; margin-left:5px;}
+.eventStatIcon{background-image:url(/images/icons/stats.png);}
+.eventTextIcon{background-image:url(/images/icons/info.png);}
+.eventHtmlIcon{background-image:url(/images/icons/html.png);}
+
+#infoBubble{ left:0; top:0; position:absolute; z-index:12; background-color:#fff; width:100%; height:auto; }
+#infoBubbleBgMobile{background-color:#fff; position: fixed; width: 100%; height: 100%; z-index: 13; }
+#infoBubblePadding{ padding:10px; position: absolute; z-index: 14; top: 0; left: 0;}
+#infoBubbleClose{text-align:center; display:block;}
+#infoBubbleContent p{font-size:1.2em;}
+#infoBubbleContent h5{font-size:1.4em;}
+#infoBubbleContent .import{font-weight:bold;}
+#infoBubbleContent h5{text-decoration:underline;}
+#infoBubbleContent p{padding-bottom:5px; padding-top:2px;}
+
+/* Banner */
+.blueGradiantBg{
+	background: #7abcff; /* Old browsers */
+	background: -moz-linear-gradient(top,  #7abcff 0%, #60abf8 44%, #4096ee 100%); /* FF3.6+ */
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#7abcff), color-stop(44%,#60abf8), color-stop(100%,#4096ee)); /* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(top,  #7abcff 0%,#60abf8 44%,#4096ee 100%); /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(top,  #7abcff 0%,#60abf8 44%,#4096ee 100%); /* Opera 11.10+ */
+	background: -ms-linear-gradient(top,  #7abcff 0%,#60abf8 44%,#4096ee 100%); /* IE10+ */
+	background: linear-gradient(top,  #7abcff 0%,#60abf8 44%,#4096ee 100%); /* W3C */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#7abcff', endColorstr='#4096ee',GradientType=0 ); /* IE6-9 */
+	
+	color:#fff !important;
+	text-shadow: black 0.1em 0.1em 0.2em;
+	font-size:1.3em;
+	font-weight:bold;
+}
+
+
+.darkGrayGradiantBg {
+	background: rgb(69,72,77); /* Old browsers */
+	background: -moz-linear-gradient(top,  rgba(69,72,77,1) 0%, rgba(0,0,0,1) 100%); /* FF3.6+ */
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(69,72,77,1)), color-stop(100%,rgba(0,0,0,1))); /* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(top,  rgba(69,72,77,1) 0%,rgba(0,0,0,1) 100%); /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(top,  rgba(69,72,77,1) 0%,rgba(0,0,0,1) 100%); /* Opera 11.10+ */
+	background: -ms-linear-gradient(top,  rgba(69,72,77,1) 0%,rgba(0,0,0,1) 100%); /* IE10+ */
+	background: linear-gradient(top,  rgba(69,72,77,1) 0%,rgba(0,0,0,1) 100%); /* W3C */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#45484d', endColorstr='#000000',GradientType=0 ); /* IE6-9 */
+
+	
+	color:#fff !important;
+	text-shadow: black 0.1em 0.1em 0.2em;
+	font-size:1.3em;
+	font-weight:bold;
+}
+
+.banner, .banner span{display:block;}
+.banner{
+	text-align:center;
+	text-decoration:none !important;
+}
+.banner span{padding:15px 5px; padding-left:40px;}
+#getFriendsBirthdayCalendar span{background:url(/images/mobile/friendsBirthdayIcon.png) no-repeat 5px center;}
+#getAndroidApp span{background:url(/images/icons/androidApp.png) no-repeat 5px center;}
+
+/*Friends Birthday*/
+.step{ 
+	border:1px solid #ccc;
+	/*
+	-moz-box-shadow:1px 1px 5px 6px #ccc;
+  	-webkit-box-shadow: 1px 1px 5px 6px #ccc;
+  	box-shadow: 1px 1px 5px 6px #ccc;
+  	*/
+	-moz-border-radius: 15px;
+	border-radius: 15px;
+	margin:10px;
+	text-align:left;
+}
+
+#desc{
+	padding: 10px;
+	border:4px solid #fff;
+	-moz-border-radius: 1em;
+	border-radius: 1em;
+	-moz-box-shadow:1px 1px 5px 6px #ccc;
+  	-webkit-box-shadow: 1px 1px 5px 6px #ccc;
+  	box-shadow: 1px 1px 5px 6px #ccc;
+	margin:5px 15px;
+}
+
+.stepContent{ padding:10px 0;}
+.stepContent h3{ font-size:1.2em; margin:0; padding-bottom:6px;}
+.stepContent ul{ font-size:1.15em; margin:0; list-style:none; padding:0;}
+.stepContent ul li{ padding:3px 0;}
+
+
+.stepBtn, #acfbAddBtn{
+	font-size:1.2em;
+	padding:10px;
+
+	color:#3d483e !important;
+	
+	background: #a9db80; /* Old browsers */
+	background: -moz-linear-gradient(top,  #a9db80 0%, #96c56f 100%); /* FF3.6+ */
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#a9db80), color-stop(100%,#96c56f)); /* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(top,  #a9db80 0%,#96c56f 100%); /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(top,  #a9db80 0%,#96c56f 100%); /* Opera 11.10+ */
+	background: -ms-linear-gradient(top,  #a9db80 0%,#96c56f 100%); /* IE10+ */
+	background: linear-gradient(top,  #a9db80 0%,#96c56f 100%); /* W3C */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#a9db80', endColorstr='#96c56f',GradientType=0 ); /* IE6-9 */
+
+	border:1px solid #ccc;
+	-moz-border-radius: 1em;
+	border-radius: 1em;
+	text-shadow: 0 1px 1px #f6f6f6;
+	font-weight:bold;
+	cursor:pointer;
+	display:block;
+	margin:0 5px;
+	margin-bottom:10px;
+	text-decoration:none !important;
+	text-align:center;
+	
+	-webkit-box-shadow: 0 8px 6px -6px black;
+	-moz-box-shadow: 0 8px 6px -6px black;
+	box-shadow: 0 8px 6px -6px black;
+	outline:none;
+}
+.stepBtn:ACTIVE{
+	border:1px solid #666;
+}
+
+#acfbAddBtn{
+	background: #7abcff; /* Old browsers */
+	background: -moz-linear-gradient(top,  #7abcff 0%, #60abf8 44%, #4096ee 100%); /* FF3.6+ */
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#7abcff), color-stop(44%,#60abf8), color-stop(100%,#4096ee)); /* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(top,  #7abcff 0%,#60abf8 44%,#4096ee 100%); /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(top,  #7abcff 0%,#60abf8 44%,#4096ee 100%); /* Opera 11.10+ */
+	background: -ms-linear-gradient(top,  #7abcff 0%,#60abf8 44%,#4096ee 100%); /* IE10+ */
+	background: linear-gradient(top,  #7abcff 0%,#60abf8 44%,#4096ee 100%); /* W3C */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#7abcff', endColorstr='#4096ee',GradientType=0 ); /* IE6-9 */
+	
+	margin-top:10px;
+}
+
+
+/* friends birthday */
+#noFbFriends{color:#F00; font-size:1.1em; padding:5px;}
+
+.fbFriendLoading{ background:url(/images/icons/fbLoading.gif) no-repeat center center;}
+.fbFriendLoading .fbFriendWrapper, .fbFriendLoading .fbFriendFilters, .fbFriendLoading .fbFriendSelP{ display:none;}
+.fbFriendLoading{height:150px;}
+
+.fbFriend, .cfFriend{
+	background: #ffffff; /* Old browsers */
+	background: -moz-linear-gradient(top,  #ffffff 0%, #e5e5e5 100%); /* FF3.6+ */
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#ffffff), color-stop(100%,#e5e5e5)); /* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(top,  #ffffff 0%,#e5e5e5 100%); /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(top,  #ffffff 0%,#e5e5e5 100%); /* Opera 11.10+ */
+	background: -ms-linear-gradient(top,  #ffffff 0%,#e5e5e5 100%); /* IE10+ */
+	background: linear-gradient(top,  #ffffff 0%,#e5e5e5 100%); /* W3C */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#e5e5e5',GradientType=0 ); /* IE6-9 */
+
+	border-top:1px solid #ccc;
+}
+
+.fbFriend{cursor: pointer;}
+.cfFriend{padding:5px;}
+
+.fbFriend:ACTIVE, .cfFriend:ACTIVE{
+	background: #e5e5e5; /* Old browsers */
+	background: -moz-linear-gradient(top,  #e5e5e5 0%, #ffffff 100%); /* FF3.6+ */
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#e5e5e5), color-stop(100%,#ffffff)); /* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(top,  #e5e5e5 0%,#ffffff 100%); /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(top,  #e5e5e5 0%,#ffffff 100%); /* Opera 11.10+ */
+	background: -ms-linear-gradient(top,  #e5e5e5 0%,#ffffff 100%); /* IE10+ */
+	background: linear-gradient(top,  #e5e5e5 0%,#ffffff 100%); /* W3C */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e5e5e5', endColorstr='#ffffff',GradientType=0 ); /* IE6-9 */
+}
+
+.fbFriendCheckbox,.fbFriendImg,.fbFriendContent, .cfFriendClose, .cfFriendInfo{float: left;}
+
+.fbFriendImg{width:50px; height:50px; background-repeat:no-repeat; background-position:0 0; margin: 5px;}
+
+.fbFriendCheckbox{margin-left: 5px; margin-top: 25px;}
+.fbFriendContent{margin-top: 5px;}
+.fbFriendName, .fbFriendDate, .cfFriendName, .cfFriendDate{ margin: 0;}
+.fbFriendName, .cfFriendName, .friendInCalName{font-size: 1.2em; line-height: 25px; color:#3B5998;}
+.fbFriendDate, .cfFriendDate, .friendInCalDate{font-size: 1.1em; line-height: 25px; color:#808080;}
+
+.friendInCal{border-bottom:1px solid #ccc; padding:0 5px;}
+
+.cfFriendClose{
+	background-image: url(/images/mobile/cfFriendClose.png);
+    background-position: center center;
+    background-repeat: no-repeat;
+    cursor: pointer;
+    height: 18px;
+    margin-left: 5px;
+	margin-right:5px;
+	margin-top:5px;
+    width: 18px;
+	padding:10px;
+}
+
+.fbFriendSearch, #cfName{
+	width:90%;
+	margin: 0 4%;
+	border: 1px solid #ccc;
+	padding: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+	font-size: 1.2em;
+}
+.fbFriendCheckAllWrapper, .fbFriendSelP{padding:10px 5px;}
+
+#acfbL{margin-left:5px;}
+#acfbL label, #acfbR label{display:block; font-size:1.2em; font-weight:bold; padding-bottom:7px; padding-top:5px;}
+#acfbR label{ margin-left:5px;}
+#cfFriendsWrapper{ padding-bottom::10px; border-bottom:1px solid #ccc;}
+
+#downloadPageBtn{margin-top:15px;}
+
+/* Reminder */
+#reminderWrapper{padding:5px;}
+#addReminderLabel{font-size:1.2em;}
+#reminder{display:block; font-size:1.2em; padding:3px; margin-top:5px;}

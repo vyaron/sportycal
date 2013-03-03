@@ -1,0 +1,28 @@
+@CHARSET "utf-8";
+
+/*Custom friends*/
+#addCustromFriendBirthday{ padding:10px 0;}
+#addCustromFriendBirthday label{ display:block; font-size:12px; font-weight:bold; padding-bottom:3px; padding-top:5px;}
+#acfbL{ float:left;}
+#acfbR{ float:right; }
+
+#cfFriendsWrapper{width:200px; height:150px; overflow-x:hidden; overflow-y:auto; border:1px solid #ccc;}
+
+.cfFriend{border-bottom:1px solid #E9E9E9; padding:5px;}
+
+.cfFriendClose, .cfFriendInfo{ float:left;}
+.cfFriendInfo{padding-left:8px;}
+.cfFriendClose{ width:8px; height:8px; cursor:pointer; margin-top:10px; background-image:url(/images/friendsBirthday/cfFriendClose.png); background-repeat:no-repeat; background-position:left top;}
+.cfFriendClose:hover{ background-position:left bottom;}
+
+.cfFriendName{ color: #3B5998; font-size:11px; font-weight:bold;}
+.cfFriendDate{ color:#808080; font-size:11px; font-weight:normal;}
+
+/* addBtn*/
+#acfbAddBtn{ margin-top:10px;}
+
+/*inputs*/
+#cfName{padding: 3px; width: 200px;}
+#addCustromFriendBirthday input, #addCustromFriendBirthday select{border: 1px solid #CCCCCC;}
+
+

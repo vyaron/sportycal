@@ -1,0 +1,37 @@
+﻿@charset "utf-8";
+/* CSS Document */
+
+.hostTh {
+	background-color: #F48A00;
+	color: #FFFFFF;
+	font-family: verdana;
+	font-size: 12px;
+	height: 24px;
+	line-height: 24px;
+	padding: 0 5px;
+}
+.hostExternal {
+	width:400px;
+	margin:auto;
+}
+
+.spFR {float:right}
+.spFL {float:left}
+.spClear{clear:both}
+.spHidden{display:none}
+
+.calendarius {background-color:#d0dff4; background-position:left center; background-repeat:no-repeat; background-image:url(../img/sp.png); height:16px;width:16px;cursor:pointer}
+.spLoading {background-color:transparent; background-image:url(../img/spLoading.gif); height:16px;width:16px;cursor:pointer}
+
+#spPopup {width:400px;margin:auto;padding:8px;border:1px gray solid;text-align:center;font-size:12px;color:#333333;margin-top:10px;}
+
+.spClose{background-image:url(../img/close1.gif); height:15px;width:15px;cursor:pointer;float:right}
+.spPopupTitle {font-weight:bold;}
+
+
+.spIcalLinks {width:260px;margin:auto;margin-top:10px;}
+.spIcalLinkBox {background-position:center top;background-repeat:no-repeat; min-width:62px;cursor:pointer;float:left;margin-right:20px;padding-top:48px;}
+.spIcalLink {font-size:10px;text-decoration:none; color:#333333;}
+#spCalLink_any {background-image:url(../img/ical/ical.gif);}
+#spCalLink_google {background-image:url(../img/ical/icalGoogle.gif);}
+

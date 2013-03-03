@@ -1,0 +1,225 @@
+ 
+
+
+/* Wigdet General
+**************/
+#scWidget{position:relative; font-size:12px; font-family: Arial, Helvetica, sans-serif; }
+
+#scWidget .cb{ clear:both;}
+#scWidget .bold{ font-weight:bold;}
+
+#scWidget h3, #scWidget p{ margin:3px 0px 6px 0px;}
+#scWidget h3{ font-size:14px;}
+#scWidget p{ font-size:12px;}
+
+.lodgingIcon { background-image: url(../images/reftype/4.png);}
+.diningIcon { background-image: url(../images/reftype/3.png);}
+.activityIcon { background-image: url(../images/reftype/2.png);}
+.flightIcon { background-image: url(../images/reftype/1.png);}
+.customIcon { background-image: url(../images/reftype/0.png);}
+
+
+/* Rounded Corners
+******************/
+#scwWrapperTL{background:url(../images/scwWrapperTL.png) no-repeat; width:13px; height:13px; float:left;}
+#scwWrapperTC{background:url(../images/scwWrapperTC.png) repeat-x; height:13px; float:left;}
+#scwWrapperTR{background:url(../images/scwWrapperTR.png) no-repeat; width:13px; height:13px; float:left;}
+#scwWrapperBL{background:url(../images/scwWrapperBL.png) no-repeat; width:13px; height:33px; float:left;}
+#scwWrapperBC{background:url(../images/scwWrapperBC.png) repeat-x; height:33px; float:left;}
+#scwWrapperBR{background:url(../images/scwWrapperBR.png) no-repeat; width:13px; height:33px; float:left;}
+#scwWrapperLC{ background:url(../images/scwWrapperLC.png) left repeat-y; width:13px; float:left;}
+#scwWrapperRC{ background:url(../images/scwWrapperRC.png) right repeat-y; width:13px; float:left;}
+#scwWrapperCC{ overflow:hidden; float:left;}
+
+#scwLogo{ width:74px; height:30px; float:right;  background: url(../images/scwLogo.gif) no-repeat center right;}
+
+/* Popup
+************/
+#scwPopup{ position:absolute; z-index:100;}
+#scwPopupBg{ background:#000; opacity:0.5; filter:alpha(opacity=50); width:100%; height:100%; position:absolute;}
+#scwPopupHtmlWrapper{ background:#fff; border:3px solid #000; margin:auto auto; position:absolute; z-index:101; overflow:auto; overflow-x:hidden;}
+#scwPopupHtml{ padding:4px;}
+
+#scwPopupPdfLoading{ background:url(../images/scwLoading.gif) no-repeat center center; height:50px;}
+#scwPopupPdfResponse{height:50px; line-height:50px; text-align:center; font-weight:bold;}
+
+/*
+***********/
+#scwContentTitle{ line-height:20px; text-align:center; font-weight:bold; font-size:16px; line-height:20px;margin-bottom:8px}
+#scwBottomMenuArrows { width:42px; float:right; margin-top:22px; margin-right:8px;}
+#scwBottomMenuLeftArrow{ background: url(../images/scwArrows.png) left top no-repeat; width:20px; height:10px; float:right; cursor:pointer; margin-right:1px;}
+#scwBottomMenuRightArrow{ background: url(../images/scwArrows.png) right top no-repeat; width:20px; height:10px; float:right; cursor:pointer;}
+#scwBottomMenuLeftArrow:hover{ background: url(../images/scwArrows.png) left bottom no-repeat;}
+#scwBottomMenuRightArrow:hover{ background: url(../images/scwArrows.png) right bottom no-repeat;}
+
+#scwPopupBts{}
+.popUpBtn{ padding:3px 6px; margin-right:5px; color:#FFF; font-size:12px; font-weight:bold; background:#426799; text-align:center; cursor:pointer; float:left;}
+
+
+/* Open Item
+*************/
+.scwContentDayItemOpenAddress, .scwContentDayItemOpenPrice, .scwContentDayItemOpenPhone, .scwContentDayItemOpenFax, .scwContentDayItemOpenEmail, .scwContentDayItemOpenMoreInfo, .scwContentDayItemOpenWebsite{padding-left:20px;}
+
+.scwContentDayItemOpenAddress{background: url(../images/icons/16hometown.png) left top no-repeat;}
+.scwContentDayItemOpenPrice{background: url(../images/icons/money.png) left top no-repeat;}
+.scwContentDayItemOpenPhone{background: url(../images/icons/phone.png) left top no-repeat;}
+.scwContentDayItemOpenFax{background: url(../images/icons/fax.gif) left top no-repeat;}
+.scwContentDayItemOpenEmail{background: url(../images/icons/mail.gif) left top no-repeat;}
+.scwContentDayItemOpenMoreInfo{background: url(../images/icons/16link.png) left top no-repeat;}
+
+.scwContentDayItemOpen .lodgingIcon, .scwContentDayItemOpen .diningIcon, .scwContentDayItemOpen .activityIcon, .scwContentDayItemOpen .flightIcon, .scwContentDayItemOpen .customIcon{ padding-left:22px; background-repeat:no-repeat; background-position:left top; }
+
+/* Bottom Menu 
+***************/
+.scwUp, .scwDown{height:9px; width:230px; position:absolute; z-index:99; cursor:pointer;}
+.scwUp { background:url(../images/item/scw_UpDoun.png) bottom no-repeat; }
+.scwDown { background:url(../images/item/scw_UpDoun.png) top no-repeat; }
+
+#scwBottomMenuActions{ float:left; margin-left: 5px; margin-top: 8px; }
+#scwBottomMenuPDF, #scwBottomMenuSave, #scwBottomMenuCal{ float:left; width:22px; height:22px; padding-right:6px; cursor:pointer;}
+#scwBottomMenuPDF{background:url(../images/scwPDF.png) no-repeat left;}
+#scwBottomMenuSave{background:url(../images/scwSave.png) no-repeat left;}
+#scwBottomMenuCal{background:url(../images/scwCalendar.png) no-repeat left;}
+
+/* Config page
+*****************/
+#scwConfig{ overflow:auto; overflow-x:hidden;}
+#scwConfigConWrapper{ margin:0 auto;}
+
+#scwConfig label{ font-size:10px;}
+
+#scwStartDate,#scwEndDate, #scwDest{ height:25px; line-height:25px; border:1px solid #a7a6a6; background: url(../images/scConfigInputBg.png) top repeat-x #fff;}
+#scwDest{ width:200px;}
+
+#scwDates{ margin-top:10px;}
+#scwStartDateWrapper, #scwEndDateWrapper{ width:95px; float:left;}
+#scwEndDateWrapper{ padding-left:10px;}
+#scwStartDate, #scwEndDate{ width:75px; float:left; text-align:center;}
+
+.scwCalendar{background: url(../images/scwCalendar.png) no-repeat center; width:16px; height:25px;; float:left; cursor:pointer;}
+
+#scwPlanitWrapper{ margin-top:20px; text-align:center;}
+#scwPlanitFilltersToggle{ font-size:12px;}
+#scwPlanitFillters{ text-align:left;}
+#scwPlanitBtn{background: url(../images/scwPlanItBtnBG.png) no-repeat; width:102px; height:21px; margin:3px auto; line-height:21px; color:#FFF; font-size:14px; font-weight:bold; text-align:left; text-indent:40px; cursor:pointer;}
+
+/* Item top menu
+****************/
+.scwContentDayTopMenu { height:19px;}
+.scwContentDayTopMenuMapWrapper, .scwContentDayTopMenuDate, .scwContentDayTopMenuTemp{ line-height:19px;}
+.scwContentDayTopMenuMapWrapper { float: left; width:30px; font-size:10px; padding-left:5px; } 
+.scwContentDayTopMenuDate{ float:left; width:117px; font-size:14px; color:#333; text-align:center; font-weight:bold; text-indent:32px;}
+.scwContentDayTopMenuTemp{ float:right;}
+.scwContentDayTopMenuTempNum, .scwContentDayTopMenuTempIcon { float:right;}
+.scwContentDayTopMenuTempNum{ width:32px; text-align:right;}
+.scwContentDayTopMenuTempIcon{ width:16px; height:16px; margin-left:5px;}
+#scWidget .hot{ background: url(../images/scwTemperature.jpg) 0 0 ; }
+#scWidget .snow{ background: url(../images/scwTemperature.jpg) 16px 0; }
+#scWidget .rain{ background: url(../images/scwTemperature.jpg) 32px 0; }
+#scWidget .cloud{ background: url(../images/scwTemperature.jpg) 48px 0; }
+
+/* Item 
+********/
+/*.scw_ItemCenterDisabled{background: url(../images/item/scwItemCenterDisabled.png) repeat-y center; height:47px; position:absolute; color:#C00; font-size:18px; font-weight:bold; line-height:47px; text-align:center;}*/
+.scw_ItemCenterDisabled{height:47px; background-image:url('../images/item/scwItemCenter.png'); background-repeat:repeat-x; font-size:16px; line-height:62px; text-align:center;}
+
+.lodging, .lodging .scw_ItemLeft, .lodging .scw_ItemRight, .lodging .scw_ItemCenter{background-position: 0px 0px;}
+.activity, .activity .scw_ItemLeft, .activity .scw_ItemRight, .activity .scw_ItemCenter{background-position: 0px -47px;}
+.dining, .dining .scw_ItemLeft, .dining .scw_ItemRight, .dining .scw_ItemCenter{background-position: 0px -94px;}
+
+.scw_ItemLeft{width:6px; height:47px; background-image:url(../images/item/scwItemLeft.png); background-repeat:no-repeat; float:left; height:47px;}
+.scw_ItemRight{  width:33px; height:47px; background:no-repeat url('../images/item/scwItemRight.png'); float:left;}
+.scw_ItemCenter{ height:47px; background:repeat-x url('../images/item/scwItemCenter.png'); float:left;}
+
+
+
+/* Content */
+.scWidgetContentTitle{ height:18px; line-height:18px; font-weight:bold; cursor:pointer; float:left; overflow:hidden;} 
+.scWidgetContentRefType{ float:left; height:16px; width:20px; background-repeat:no-repeat; background-position:right;}
+.scWidgetContentImg{ width:30px; height:20px; float:left; padding-top:4px; overflow:hidden;}
+.scWidgetContentTime { padding-left:19px; height:28px; float:left; line-height:28px; background: url(../images/item/scw_ItemTime.png) no-repeat left center; margin-left:6px; color:#403f3f;}
+.scWidgetContentReserve{ padding-right:3px; float:right;  text-align:center; font-size:10px;}
+.scWidgetContentReserveBtn{ background:url(../images/item/scw_ItemReserveBG.png) no-repeat; width:45px; height:14px; color:#000;  font-weight:bold; cursor:pointer;}
+
+/* Right */
+.scwItemRightMode{background:no-repeat center url('../images/item/scw_ItemEdit.png'); cursor:pointer; width:33px; height:18px;}
+.scwItemRightRequest{background:no-repeat center url('../images/item/scw_ItemRequest.png'); cursor:pointer; width:33px; height:30px}
+
+
+/* Up Down Scroller 
+#scWidgetUp, #scWidgetDown{width:230px; height:9px; position:relative; z-index:99; cursor:pointer;}
+#scWidgetUp{background:no-repeat url('../images/item/scw_UpDoun.png') bottom;}
+#scWidgetDown{background:no-repeat url('../images/item/scw_UpDoun.png') top;}
+
+.scw_ItemInfo{ height:94px; background:#fff;}*/
+/*****************************************/
+
+
+.scwContentDayItemOpen img{ padding: 0 6px 3px 0px;}
+
+.scwStarEmpty{background: repeat-x top left url('../images/openItem/smallStar.gif'); height:10px; width:50px;}
+.scwStarFull{background: repeat-x bottom left url('../images/openItem/smallStar.gif'); height:10px; width:0px;}
+#scwContent{position:relative; overflow:hidden;}
+
+#scwContentDaysList{ position: absolute; }
+.scwContentDayItems, .scwContentDayItemsWrapper{ position:absolute;}
+
+.scwigdetItem{ height:47px;}
+
+
+/*   YARON */
+a {
+	text-decoration: none;
+	color: black;
+}
+a:hover {
+	text-decoration: none;
+	color: maroon;	
+}
+
+a img {
+	outline: none;
+	border: 0px;
+}
+
+.scwItemImg {
+	
+}
+
+.scwItem {
+	margin-bottom:40px;
+	border-bottom:2px solid #cccccc;
+}
+
+
+.scwItemName {
+	font-weight: bold;
+}
+
+.boxEventDetails {
+	padding: 5px;
+	padding-top: 15px;
+	font-size:10px; 
+}
+
+.imgEventDetails:hover {
+	cursor:pointer;
+}
+
+.imgCloseEventDetails {
+	float:right;
+}
+
+#scwLoadingInner {
+	width:200px;
+	margin: auto;
+	font-weight: bold;
+	font-size:14px;
+	text-align: center;
+	padding-top: 50px;
+}
+
+#scwItemsContainer {
+	overflow: scroll;
+	overflow-x: hidden;
+}

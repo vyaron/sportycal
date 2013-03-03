@@ -1,0 +1,20 @@
+# You can find more information about this file on the symfony website:
+# http://www.symfony-project.org/reference/1_4/en/13-View
+
+default:
+  http_metas:
+    content-type: text/html
+
+  metas:
+    #title:        sportYcal - All sport calendars you need
+    #description:  sportYcal gathers many sport events from all around the world and lets you download your chosen events right into your calendar
+    #keywords:     sportYcal,sport, sport calendars, sportcal
+    language:     en
+    robots:       index, follow
+
+  stylesheets:    [main.css]
+
+  javascripts:    []
+
+  has_layout:     true
+  layout:         layout

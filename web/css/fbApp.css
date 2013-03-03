@@ -1,0 +1,34 @@
+@CHARSET "utf8";
+h1{font-size: 16px;}
+
+#ctgMainArea{width:500px;}
+.tdCategory{height:0;}
+.tdSpacer{width:0;}
+
+#divContent{width: auto;}
+.calsWrapper{width:auto; margin:0;}
+.tblCals{/*width: 495px; float:left;*/ width: 550px;}
+
+.tdCalInfo{padding-right: 20px !important;}
+
+.ctgDesc{width:543px;}
+
+.ctgNav, .ctgNav a{	font-size:18px;	color:black;}
+.navSep{background:url(/images/fbApp/navSep.png) no-repeat right center; display:inline; padding-right:10px;}
+
+#eventsListWrapper{height: 200px;}
+/*
+.calBox{width:500px;}
+.calDownLink{width: 100px; height: 90px;}
+.calDownLinkIcon{width: 70px; height:75px; background-repeat: no-repeat; background-position: center bottom;}
+.calDownLinkLabel{font-size: 12px;}
+
+#events{width:400px;}
+.tdEventName{width: 200px;}
+
+#calLink_google .calDownLinkIcon{ background-image:url(/images/fbApp/google.png);}
+#calLink_outlook .calDownLinkIcon{ background-image:url(/images/fbApp/outlook.png);}
+#calLink_mobile .calDownLinkIcon{ background-image:url(/images/fbApp/mobile.png);}
+#calLink_link .calDownLinkIcon{ background-image:url(/images/fbApp/link.png);}
+
+*/

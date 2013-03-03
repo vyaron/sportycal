@@ -1,0 +1,18 @@
+@CHARSET "utf-8";
+
+.scDownloadWidgetWrapper{font-family:Verdana, Geneva, sans-serif;}
+.scdbTitle{font-size:14px;}
+
+.scdwHelpLabel, .scdwHelpClose, .scdwHelpContent, .scdwHelpContent p, .scdwShowEventsBtn, .scdwHideEventsBtn, .scdwEvent{font-size:10px;}
+.scdwEventDate{font-size:8px;}
+.scdwCalName{font-size:12px;}
+
+.scDownloadWidget, .scdwHelpContentWrapper{ background-image:url(../images/partner/888/bg_blue.png) !important;}
+.scdbTitle, .scdwHelpLabel{text-shadow: none;}
+
+.scdwCalName, .scdwHideEventsBtn, .scdwShowEventsBtn{color: #007cf7 !important;}
+.scDownloadWidgetWrapper, .scDownloadWidgetWrapper a{color: #171717;}
+.scdwEventsListWrapper, .scdwEventDate{color: #fff;}
+.scdwEvent{border-bottom: 1px solid #4c4c4c;}
+
+.scdwEventsListWrapper{ max-height:155px;}

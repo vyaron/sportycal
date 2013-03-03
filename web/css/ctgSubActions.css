@@ -1,0 +1,10 @@
+@charset "utf-8";
+/* CSS Document */
+
+.tdCtgSub_deleted{color:#aaa !important;}
+.ctgSubActions{position:absolute; z-index:2;}
+.ctgSubActionEdit, .ctgSubActionDelete, .ctgSubActionRevive, .ctgSubActionAdd{ width:16px; height:16px; background-position:0 0; background-repeat:no-repeat; cursor:pointer; display:block; float:left; margin-right:5px;}
+.ctgSubActionEdit{ background-image:url(/images/icons/edit_16x16.png);}
+.ctgSubActionDelete{ background-image:url(/images/icons/delete_16x16.png);}
+.ctgSubActionRevive{ background-image:url(/images/icons/revive_16x16.png);}
+.ctgSubActionAdd{ background-image:url(/images/icons/add_16x16.png);}

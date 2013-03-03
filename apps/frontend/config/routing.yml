@@ -1,0 +1,70 @@
+# You can find more information about this file on the symfony website:
+# http://www.symfony-project.org/reference/1_4/en/10-Routing
+
+shortURL1:
+  url:	/l/:h/e/:id
+  param:   { module: l, action: r}
+
+shortURL:
+  url:	/l/:h
+  param:   { module: l, action: r}
+
+shortcut1:
+  url:     /FIFPro
+  param:   { module: main, action: fifpro}
+  
+  
+cal_get:
+  url:     /cal/get/:id/:name
+  class:   sfDoctrineRoute
+  options: { model: Cal, type: object }
+  param:   { module: cal, action: get }
+  requirements:
+    id: \d+
+    sf_method: [get]
+
+cal_ref:
+  url:     /cal/:id/ref/:ref
+  class:   sfDoctrineRoute
+  options: { model: Cal, type: object }
+  param:   { module: cal, action: show }
+  requirements:
+    id: \d+
+    sf_method: [get]
+
+cal_refa:
+  url:     /cal/:id/hash/:hash/ref/:ref
+  class:   sfDoctrineRoute
+  options: { model: Cal, type: object }
+  param:   { module: cal, action: show }
+  requirements:
+    id: \d+
+    sf_method: [get]
+
+cal:
+  class:   sfDoctrineRouteCollection
+  options: { model: Cal }
+
+
+category:
+  class:   sfDoctrineRouteCollection
+  options: { model: Category }
+  
+category_name:
+  url: /category/:id/:name
+  param:   { module: category, action: show}
+ 
+
+# default rules
+homepage:
+  url:   /
+  param: { module: main, action: index }
+
+# generic rules
+# please, remove them by adding more specific rules
+default_index:
+  url:   /:module
+  param: { action: index }
+
+default:
+  url:   /:module/:action/*

@@ -1,0 +1,90 @@
+﻿#backgroundPopup{
+	display:none;
+	position:fixed;
+	_position:absolute; /* hack for internet explorer 6*/
+	height:100%;
+	width:100%;
+	top:0;
+	left:0;
+	background:#000000;
+	border:1px solid #cecece;
+	z-index:1;
+}
+#popupContact{
+	display:none;
+	position:fixed;
+	_position:absolute; /* hack for internet explorer 6*/
+	height:170px;
+	width:400px;
+	background:#FFFFFF;
+	border:2px solid #cecece;
+	z-index:2;
+	padding:12px;
+	font-size:15px;
+}
+#popupContact h1{
+	text-align:center;
+	color:#807E58;
+	font-size:22px;
+	font-weight:700;
+	border-bottom:1px dotted #D3D3D3;
+	padding-bottom:2px;
+	margin-bottom:20px;
+}
+#popupContactClose{
+	font-size:14px;
+	line-height:14px;
+	right:6px;
+	top:4px;
+	position:absolute;
+	color:#807E58;
+	font-weight:700;
+	display:block;
+}
+.specialOption{
+	text-align:center;
+	margin-top:50px;
+	background:url(../images/button/bg1.jpg) repeat-x;	
+	height:30px;
+	width:300px;
+	padding-top:10px;
+	border-left:1px solid #C1BB57;
+	border-right:1px solid #C1BB57;
+	border-bottom:1px solid #C1BB57;
+
+}
+.specialOptionHover{
+	cursor:pointer;
+	text-align:center;
+	margin-top:50px;
+	background:url(../images/button/bg1.jpg) repeat-x;	
+	height:30px;
+	width:300px;
+	padding-top:10px;
+	border-left:1px solid  #C1BB57;
+	border-right:1px solid black;
+	border-bottom:1px solid black;
+
+}
+
+.specialOption a{
+	font-size:16px;
+}
+
+.specialOptionHover a{
+	font-size:16px;
+	text-decoration:none;
+}
+
+/*
+#openPopup {
+	font-size:16px;
+}
+
+
+#openPopup:hover {
+	color:navy;
+	font-weight:bold;
+	cursor:pointer;
+	text-decoration:none;
+}*/

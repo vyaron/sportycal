@@ -1,0 +1,41 @@
+@CHARSET "windows-1255";
+
+#proSteps{ width:2020px; position:absolute; left:0; top:0;}
+
+#proStepsWrapper, .proStep{ width:670px;}
+
+.proStep{ float:left; }
+
+#stepCirclesWrapper{ width:63px; margin:0 auto;}
+.stepCircle{ width:15px; height:15px; background:url(/images/promotion/stepsCircle.png) no-repeat left top; float:left; margin:3px;}
+.stepCircleSel{ background-position:left bottom;}
+
+#proStepsWrapper{ margin:0 auto; overflow:hidden; position:relative; height:370px;}
+
+#proMsg{ background:url(/images/promotion/msg.png) no-repeat left top; width:651px; height:350px; position:relative;}
+#proLoginBtn{ background:url(/images/promotion/takeTheIpod.png) no-repeat left top; width:225px; height:78px; position:absolute; left:130px; top:280px; cursor:pointer;}
+
+/* box*/
+.proStepT, .proStepC, .proStepB{ background-position:left top; width:670px;}
+.proStepT, .proStepB{ background-repeat:no-repeat;}
+
+.proStepT{ height:83px; background-image:url(/images/promotion/proStepBoxT.png);}
+.proStepB{ height:56px; background-image:url(/images/promotion/proStepBoxB.png);}
+.proStepC{ background-repeat:repeat-y; background-image:url(/images/promotion/proStepBoxC.png); color:#333;}
+
+.proStepC p{ font-size:14px; padding-bottom:10px;}
+.proStepC a{color:#3277dd; text-decoration:underline; font-size:14px;}
+
+.proStepCPadding{ padding:0 40px; padding-top:10px;}
+
+/*share width friends*/
+#shareWidthFriendsTitle, #thankYouTitle{ height:70px; margin:0 auto; background-position:left bottom; background-repeat:no-repeat;}
+#shareWidthFriendsTitle{background-image:url(/images/promotion/shareWIdthFriends.png); width:233px;}
+#thankYouTitle{background-image:url(/images/promotion/thankYou.png); width:142px;}
+
+#facebookPostEl, #facebookPostBtn{ display:block; font-family: 'Lucida Grande',Tahoma,Verdana,Arial,sans-serif;font-size: 11px;}
+#facebookPostElWrapper{border: 1px solid #BDC7D8; padding:5px; margin-bottom:10px;}
+#facebookPostEl{ height: 70px; width: 100%; font-size:13px; resize: none; border:none;}
+#facebookPostBtn{background-color: #617AAC; border: 1px solid #29447E; color: #FFFFFF; padding:5px; cursor:pointer; margin:0 auto;}
+
+#proTerms{left: 197px; position: absolute; top: 350px;}

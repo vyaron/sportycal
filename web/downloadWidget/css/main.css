@@ -1,0 +1,127 @@
+.scDownloadWidgetWrapper .cb{ clear:both;}
+.scDownloadWidgetWrapper .hidden{ display:none;}
+.scDownloadWidgetWrapper .b{ font-weight:bold;}
+.scDownloadWidgetWrapper .c{ text-align:center}
+.scDownloadWidgetWrapper .gray{ color:#cccccc}
+
+.scDownloadWidgetWrapper p{margin: 0;}
+
+.scDownloadWidgetWrapper a{ color:#333; text-decoration:none;}
+.scDownloadWidgetWrapper a:hover{ text-decoration:underline;}
+
+.scDownloadWidgetWrapper{width:215px; font-family:Arial, Helvetica, sans-serif; text-align:left; color:#333; position:relative;}
+
+.scDownloadWidgetPadding{padding:4px;}
+
+.scDownloadWidget, .scdwHelpContentWrapper{ background-repeat:no-repeat; width:207px; height:92px;}
+
+.scDownloadWidget{ background-position:left top;}
+.scdwHelpContentWrapper{ background-position:left bottom;}
+
+.scdwBg_default .scDownloadWidget, .scdwBg_default .scdwHelpContentWrapper{ background-image:url(../images/bg.png);}
+.scdwBg_green .scDownloadWidget, .scdwBg_green .scdwHelpContentWrapper{ background-image:url(../images/bg_green.png);}
+.scdwBg_lightblue .scDownloadWidget, .scdwBg_lightblue .scdwHelpContentWrapper{ background-image:url(../images/bg_lightBlue.png);}
+.scdwBg_magenta .scDownloadWidget, .scdwBg_magenta .scdwHelpContentWrapper{ background-image:url(../images/bg_magenta.png);}
+.scdwBg_orange .scDownloadWidget, .scdwBg_orange .scdwHelpContentWrapper{ background-image:url(../images/bg_orange.png);}
+.scdwBg_purple .scDownloadWidget, .scdwBg_purple .scdwHelpContentWrapper{ background-image:url(../images/bg_purple.png);}
+.scdwBg_red .scDownloadWidget, .scdwBg_red .scdwHelpContentWrapper{ background-image:url(../images/bg_red.png);}
+.scdwBg_yellow .scDownloadWidget, .scdwBg_yellow .scdwHelpContentWrapper{ background-image:url(../images/bg_yellow.png);}
+
+.scdwHelpContentWrapper{ }
+.scdwHelpTop{ height:21px; width:100%;}
+.scdwHelpContent{ overflow-x:hidden; overflow-y:auto; width:190px; height:61px; margin-left:10px; margin-right:10px; margin-top:5px; font-size:12px;}
+.scdwHelpContent p{ padding-bottom:10px;}
+
+.scdwShowHelp .scDownloadWidget, .scdwHelpContentWrapper{ display:none;}
+.scdwShowHelp .scdwHelpContentWrapper, .scDownloadWidget{ display:block;}
+
+.scdwHelpLabel{ float:left; width:35px; height:15px; margin-left:10px; margin-right:10px; margin-top:4px; font-size: 12px; font-weight: bold; color: #fff; text-shadow:2px 2px 2px #333333}
+.scdwHelpClose{ float:right; display:block; color:#fff !important; font-size:11px; text-decoration:underline; margin-right:10px; margin-left:10px; margin-top:3px; cursor:pointer;}
+
+.scdbTopWrapper{ height:38px; width:100%;}
+
+.scdbIconWrapper{ width:50px; height:54px; float:left; font-size:10px; margin-left:1px; text-align:center; font-weight:bold; cursor:pointer; display:block; text-decoration:none; color:#333;}
+.scdbIconWrapper:hover{ text-decoration:underline;}
+
+.scdbIcon{ width:50px; height:35px; background-position:center center; background-repeat:no-repeat;}
+.scdbIcon_google{ background-image:url(../images/icons/google.png);}
+.scdbIcon_outlook{ background-image:url(../images/icons/outlook.png);}
+.scdbIcon_mobile{ background-image:url(../images/icons/mobile.png);}
+.scdbIcon_link{ background-image:url(../images/icons/link.png);}
+
+.scdbTitleWrapper{ padding-top:10px; padding-left:10px; padding-right:10px;}
+.scdbTitle{ width:165px; height:16px; float:left; font-size: 16px; color: #fff; font-weight: bold; text-shadow:2px 2px 2px #333333}
+.scdbHelp{ width:16px; height:16px; float:right; background:url(../images/help.png) no-repeat center center; cursor:pointer; display:block;}
+
+.scdbTitle{ display:none;}
+.scdbLink{ width:155px; border:1px solid #333; font-size:14px; float:left;}
+
+.show_scdbTitleWrapper .scdbTitle{ display:block;}
+.show_scdbTitleWrapper .scdbLink{ display:none;}
+
+/* event list */
+.scdwEventsWrapper {width:207px;} 
+.scdwShowEventsBtn, .scdwHideEventsBtn{ font-size:12px; padding:3px 6px; display:block; color:#338FD2 !important; text-decoration:underline !important;}
+
+.scdwEventsListWrapper{ max-height:100px; overflow:auto;}
+.scdwEventsList{ padding:5px 0;}
+.scdwEvent{ font-size:12px; padding-bottom:5px; border-bottom:1px solid #999;}
+.scdwEventDate{ font-size:10px; color: gray; white-space: nowrap;}
+
+.scdwShowEventsBtn, .hideEvents .scdwEventsList{ display:none;}
+.hideEvents .scdwShowEventsBtn, .scdwEventsList{ display:block;}
+
+.scdwCalName{font-size:14px; font-weight:bold; padding:3px 6px; color:#338fd2;}
+
+/*Mobile pop*/
+.scdwPopup{position:absolute; z-index:2; left:0; top:0;}
+.scdwPopupBG{ background-color:#fff; opacity:0.6; filter:alpha(opacity=60); width:100%; height:100%;}
+.scdwPopupContentWrapper{ 
+	font-size:10px;
+	position:absolute; 
+	z-index:3; 
+	left:9px; 
+	top:9px; 
+	border:1px solid #333; 
+	background-color:#fff;
+	/*
+	overflow-x:hidden;
+	overflow-y:auto;
+	*/
+	-webkit-border-radius: 10px; 
+	-moz-border-radius: 10px; 
+	border-radius: 10px; 
+	-moz-box-shadow: 3px 3px 3px rgba(68,68,68,0.6);
+	-webkit-box-shadow: 3px 3px 3px rgba(68,68,68,0.6);
+	box-shadow: 3px 3px 3px rgba(68,68,68,0.6);
+	
+	/*filter: progid:DXImageTransform.Microsoft.Blur(PixelRadius=3,MakeShadow=true,ShadowOpacity=0.30);
+	-ms-filter: "progid:DXImageTransform.Microsoft.Blur(PixelRadius=3,MakeShadow=true,ShadowOpacity=0.30)";*/
+}
+.scdwPopupContentPadding{padding:10px;}
+.scdwPopupContent{overflow-x:hidden;}
+.scdwPopupContent p{ padding-bottom:5px;}
+.scdwPopupClose{ text-align:center; display:block; padding:3px;}
+
+
+/*RTL*/
+.scdbRTL .scdwHelpContent, .scdbRTL .scdwEvent, .scdbRTL .scdwShowEventsBtn, .scdbRTL .scdwHideEventsBtn, .scdbRTL .scdwCalName, .scdbRTL .scdwPopupContent, .scdbRTL .scdbTitle, .scdbRTL .scdwHelpLabel{ direction:rtl;}
+.scdbRTL .scdwShowEventsBtn, .scdbRTL .scdwHideEventsBtn, .scdbRTL .scdwHelpContent, .scdbRTL .scdwCalName, .scdbRTL .scdwPopupContent, .scdbRTL .scdbTitle, .scdbRTL .scdwHelpLabel{ text-align:right;}
+.scdbRTL .scdbIconWrapper, .scdbRTL .scdbTitle, .scdbRTL .scdwHelpLabel, .scdbRTL .scdbLink, .scdbRTL .scdbTitle, .scdbRTL .scdwHelpLabel{ float:right;}
+.scdbRTL .scdbHelp, .scdbRTL .scdwHelpClose{ float:left;}
+
+
+/* change size based on languge */
+.scLang_sr .scdbTitle, .scLang_sv .scdbTitle{font-size: 13px !important;}
+.scLang_ru .scdbTitle, .scLang_es_EM .scdbTitle, .scLang_fr .scdbTitle{font-size: 12px !important;}
+.scLang_bg .scdbTitle{font-size: 11px !important;}
+.scLang_cs .scdbTitle, .scLang_hu .scdbTitle, .scLang_it .scdbTitle, .scLang_ptbr .scdbTitle{font-size: 10px !important;}
+.scLang_de .scdbTitle, .scLang_el .scdbTitle, .scLang_nl .scdbTitle{font-size: 9px !important;}
+
+.scLang_fr .scdbIconLabel{font-size: 9px;}
+.scLang_cs [caltype=mobile] .scdbIconLabel, .scLang_el [caltype=any] .scdbIconLabel{font-size: 7px;}
+
+.scLang_el [caltype=any] .scdbIconLabel{padding-top: 3px;}
+
+
+

@@ -1,0 +1,44 @@
+@CHARSET "windows-1255";
+
+/* steps*/
+#proSteps{ position:absolute; left:0; top:0;}
+
+#proStepsWrapper, .proStep{ width:800px;}
+
+.proStep{ float:left; }
+
+#stepCirclesWrapper{ width:63px; margin:0 auto;}
+.stepCircle{ width:15px; height:15px; background:url(/images/promotion/stepsCircle.png) no-repeat left top; float:left; margin:3px;}
+.stepCircleSel{ background-position:left bottom;}
+
+#proStepsWrapper{ margin:0 auto; overflow:hidden; position:relative; height:600px;}
+
+#proMsg{ background:url(/images/friendsBirthday/bg.png) no-repeat left top; width:710px; height:360px; position:relative; margin:0 auto;}
+#proLoginBtn{ background:url(/images/friendsBirthday/takeTheCalBtn.png) no-repeat left top; width:273px; height:78px; position:absolute; left:100px; top:265px; cursor:pointer;}
+
+.stepBackBtn{ float:left; width:30px; height:32px; cursor:pointer; background:url(/images/friendsBirthday/backBtn.png); margin-top:35px;}
+
+/*share width friends*/
+#selectYourFriendsTitle, #customFriendsTitle, #addToYourCalendarTitle{ height:70px; margin:0 auto; background-position:left bottom; background-repeat:no-repeat;}
+#selectYourFriendsTitle{background-image:url(/images/friendsBirthday/SelectYourFriends.png); width:456px;}
+#customFriendsTitle{background-image:url(/images/friendsBirthday/addMoreDateLabel.png); width:220px;}
+#addToYourCalendarTitle{background-image:url(/images/friendsBirthday/downloadLabel.png); width:450px;}
+
+#facebookPostEl, #facebookPostBtn{ display:block; font-family: 'Lucida Grande',Tahoma,Verdana,Arial,sans-serif;font-size: 11px;}
+#facebookPostElWrapper{border: 1px solid #BDC7D8; padding:5px; margin-bottom:10px;}
+#facebookPostEl{ height: 70px; width: 100%; font-size:13px; resize: none; border:none;}
+#facebookPostBtn{background-color: #617AAC; border: 1px solid #29447E; color: #FFFFFF; padding:5px; cursor:pointer; margin:0 auto;}
+
+
+#selectYourFriendsInfo, #gFBFreinds_birthdayCal{ float:left;}
+#selectYourFriendsInfo{ width:250px; padding-left:20px; text-align:left;}
+
+#nextBtn{background:url(/images/friendsBirthday/nextBtn.png) left top no-repeat; width:119px; height:66px; cursor:pointer; margin:0 auto;}
+
+/*download calendar*/
+#calImgHelp{ margin-top:45px;}
+
+#downloadPageBtn{background:url(/images/friendsBirthday/makeTheCalBtn.png) left top no-repeat; width:273px; height:78px; cursor:pointer; margin:0 auto;}
+
+
+#noFbFriends{ padding-top:10px;}

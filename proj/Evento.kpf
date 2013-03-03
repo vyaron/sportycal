@@ -1,0 +1,396 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Komodo Project File - DO NOT EDIT -->
+<project id="7d852f16-43eb-4999-81fe-f62e4bc1b023" name="Evento.kpf" kpf_version="4">
+<folder idref="7d852f16-43eb-4999-81fe-f62e4bc1b023" id="e36e5f12-173e-4d05-a7b6-d69c2cc35792" name="App-Templates">
+</folder>
+<folder idref="7d852f16-43eb-4999-81fe-f62e4bc1b023" id="a0eb6dc4-3133-4eec-8ce5-6fb62238c7aa" name="Model">
+</folder>
+<folder idref="7d852f16-43eb-4999-81fe-f62e4bc1b023" id="8d760a97-2969-4f8c-a821-f0e6d20e415b" name="DB">
+</folder>
+<folder idref="7d852f16-43eb-4999-81fe-f62e4bc1b023" id="24d15ec7-8138-4da7-acf1-88edb207e1eb" name="MyModel">
+</folder>
+<folder idref="7d852f16-43eb-4999-81fe-f62e4bc1b023" id="ceb47ce3-6deb-47e1-8f80-c046056bee0c" name="user">
+</folder>
+<folder idref="7d852f16-43eb-4999-81fe-f62e4bc1b023" id="0cadb288-da22-4c29-8f19-70c6a57a162f" name="main">
+</folder>
+<folder idref="7d852f16-43eb-4999-81fe-f62e4bc1b023" id="c0f293d2-0677-4430-b57d-82a461c234b7" name="category">
+</folder>
+<folder idref="7d852f16-43eb-4999-81fe-f62e4bc1b023" id="1842a917-77c7-4f86-ae5d-25e403687355" name="cal">
+</folder>
+<folder idref="7d852f16-43eb-4999-81fe-f62e4bc1b023" id="1b705871-b707-40df-a659-6b130f4286cf" name="Forms">
+</folder>
+<folder idref="7d852f16-43eb-4999-81fe-f62e4bc1b023" id="843c14b3-daed-493f-a7f2-3882842a0e09" name="event">
+</folder>
+<folder idref="7d852f16-43eb-4999-81fe-f62e4bc1b023" id="c28fcdb1-b635-4805-a71c-e3002c1397d6" name="test">
+</folder>
+<folder idref="7d852f16-43eb-4999-81fe-f62e4bc1b023" id="c9a70fd0-4f51-4ec5-b213-92fa8e22598a" name="CONFIG">
+</folder>
+<folder idref="7d852f16-43eb-4999-81fe-f62e4bc1b023" id="f328bd0f-5322-470b-8964-f919aa1e72f8" name="admin">
+</folder>
+<file url="file:///C:/dev/evento/apps/frontend/modules/cal/templates/showSuccess.php" idref="1842a917-77c7-4f86-ae5d-25e403687355" id="500bf6a9-5bd1-49d4-9b04-596ebcb8af69" name="showSuccess.php">
+</file>
+<file url="file:///C:/dev/evento/apps/frontend/modules/cal/templates/_form.php" idref="1842a917-77c7-4f86-ae5d-25e403687355" id="6386a74c-86d0-4d6e-98a3-3be00092f75e" name="_form.php">
+</file>
+<file url="file:///C:/dev/evento/apps/frontend/modules/cal/templates/editSuccess.php" idref="1842a917-77c7-4f86-ae5d-25e403687355" id="dd2c1095-f235-4514-95c3-80aeca96b7a8" name="editSuccess.php">
+</file>
+<file url="file:///C:/dev/evento/apps/frontend/modules/cal/templates/indexSuccess.php" idref="1842a917-77c7-4f86-ae5d-25e403687355" id="0d2f469d-cb98-4438-913b-adf7150a5879" name="indexSuccess.php">
+</file>
+<file url="file:///C:/dev/evento/apps/frontend/modules/cal/templates/newSuccess.php" idref="1842a917-77c7-4f86-ae5d-25e403687355" id="1d25b17b-c9de-497e-abf1-2d35bb05cfd5" name="newSuccess.php">
+</file>
+<file url="file:///C:/dev/evento/apps/frontend/modules/cal/actions/actions.class.php" idref="1842a917-77c7-4f86-ae5d-25e403687355" id="34fd73cb-42ca-4b4d-9144-03534da92831" name="actions.class.php">
+</file>
+<file url="file:///C:/dev/evento/apps/frontend/modules/cal/templates/getSuccess.php" idref="1842a917-77c7-4f86-ae5d-25e403687355" id="3aa2666b-c0b5-4080-9ca6-4b1d62170ab5" name="getSuccess.php">
+</file>
+<file url="file:///C:/dev/evento/apps/frontend/modules/cal/templates/hardcopySuccess.php" idref="1842a917-77c7-4f86-ae5d-25e403687355" id="5b2c59ff-f79e-4f81-9e20-74c2a4e4aece" name="hardcopySuccess.php">
+</file>
+<file url="file:///C:/dev/evento/apps/frontend/modules/cal/templates/getCSVSuccess.php" idref="1842a917-77c7-4f86-ae5d-25e403687355" id="fa29a9c9-c6c7-421a-b20f-c395c49c54b9" name="getCSVSuccess.php">
+</file>
+<file url="file:///C:/dev/evento/lib/form/doctrine/CalForm.class.php" idref="1b705871-b707-40df-a659-6b130f4286cf" id="ad9d244d-6951-4ffb-a4e9-633211109229" name="CalForm.class.php">
+</file>
+<file url="file:///C:/dev/evento/lib/form/doctrine/CategoryForm.class.php" idref="1b705871-b707-40df-a659-6b130f4286cf" id="cd4e9b3b-b50d-441c-81a8-88fbf2b5d9b8" name="CategoryForm.class.php">
+</file>
+<file url="file:///C:/dev/evento/lib/form/doctrine/ContactForm.class.php" idref="1b705871-b707-40df-a659-6b130f4286cf" id="60de9abd-ff19-4fac-b1d4-eac1478287b1" name="ContactForm.class.php">
+</file>
+<file url="file:///C:/dev/evento/lib/form/doctrine/EventForm.class.php" idref="1b705871-b707-40df-a659-6b130f4286cf" id="0474a11d-762a-4803-9a90-baabbb5cfba4" name="EventForm.class.php">
+</file>
+<file url="file:///C:/dev/evento/lib/form/doctrine/UserForm.class.php" idref="1b705871-b707-40df-a659-6b130f4286cf" id="f74f33a8-4429-4da6-b877-8c73772eacb2" name="UserForm.class.php">
+</file>
+<folder idref="1b705871-b707-40df-a659-6b130f4286cf" id="5a94d832-bd22-44fb-bc67-d380f1803a02" name="Base">
+</folder>
+<folder idref="c28fcdb1-b635-4805-a71c-e3002c1397d6" id="f191268b-7035-4663-a7bd-f124f0447248" name="unit">
+</folder>
+<file url="file:///C:/dev/evento/apps/frontend/modules/main/actions/actions.class.php" idref="0cadb288-da22-4c29-8f19-70c6a57a162f" id="0061df07-5219-4c8d-98c4-945615c85503" name="actions.class.php">
+</file>
+<file url="file:///C:/dev/evento/apps/frontend/modules/main/templates/indexSuccess.php" idref="0cadb288-da22-4c29-8f19-70c6a57a162f" id="3a63b08e-3917-488c-9eac-4ea56b78cc77" name="indexSuccess.php">
+</file>
+<file url="file:///C:/dev/evento/apps/frontend/modules/main/templates/contactSuccess.php" idref="0cadb288-da22-4c29-8f19-70c6a57a162f" id="992de804-3522-49e1-9c45-382bd8611ea1" name="contactSuccess.php">
+</file>
+<file url="file:///C:/dev/evento/apps/frontend/modules/main/templates/aboutSuccess.php" idref="0cadb288-da22-4c29-8f19-70c6a57a162f" id="2945b0b5-d118-45b4-8f20-65b09257bea6" name="aboutSuccess.php">
+</file>
+<file url="file:///C:/dev/evento/apps/frontend/modules/main/templates/searchSuccess.php" idref="0cadb288-da22-4c29-8f19-70c6a57a162f" id="64fddaa4-5d07-48d4-a750-d9b640a93eeb" name="searchSuccess.php">
+</file>
+<file url="file:///C:/dev/evento/apps/frontend/modules/main/templates/termsSuccess.php" idref="0cadb288-da22-4c29-8f19-70c6a57a162f" id="af2b3bf6-8438-4eef-bace-df16c0e73885" name="termsSuccess.php">
+</file>
+<file url="file:///C:/dev/evento/apps/frontend/modules/admin/templates/importCalsSuccess.php" idref="f328bd0f-5322-470b-8964-f919aa1e72f8" id="4d5196ce-120a-4b22-a8a8-3f438c80c41b" name="importCalsSuccess.php">
+</file>
+<file url="file:///C:/dev/evento/apps/frontend/modules/admin/actions/actions.class.php" idref="f328bd0f-5322-470b-8964-f919aa1e72f8" id="4f47d53c-10a6-4762-a0d1-e87c291fcf13" name="actions.class.php">
+</file>
+<file url="file:///C:/dev/evento/apps/frontend/modules/admin/templates/countCalsSuccess.php" idref="f328bd0f-5322-470b-8964-f919aa1e72f8" id="309705ea-916d-48b3-b956-fe525d4f9ffd" name="countCalsSuccess.php">
+</file>
+<file url="file:///C:/dev/evento/apps/frontend/modules/admin/templates/displayUserCalsSuccess.php" idref="f328bd0f-5322-470b-8964-f919aa1e72f8" id="3604648e-7933-40e4-8084-dcf68d839e46" name="displayUserCalsSuccess.php">
+</file>
+<file url="file:///C:/dev/evento/apps/frontend/modules/admin/templates/displaySearchSuccess.php" idref="f328bd0f-5322-470b-8964-f919aa1e72f8" id="14617215-6d17-4ddc-99cd-51048b868752" name="displaySearchSuccess.php">
+</file>
+<file url="file:///C:/dev/evento/apps/frontend/modules/admin/templates/userCalsCSVSuccess.php" idref="f328bd0f-5322-470b-8964-f919aa1e72f8" id="2a06145b-b90d-48df-bcbc-bfa9afbc392d" name="userCalsCSVSuccess.php">
+</file>
+<file url="file:///C:/dev/evento/apps/frontend/modules/admin/templates/indexSuccess.php" idref="f328bd0f-5322-470b-8964-f919aa1e72f8" id="59a8cccb-35f1-43ee-b294-cff6decadb43" name="indexSuccess.php">
+</file>
+<file url="file:///C:/dev/evento/apps/frontend/modules/admin/templates/userSearchCSVSuccess.php" idref="f328bd0f-5322-470b-8964-f919aa1e72f8" id="b65ed421-f96f-4b0d-b2d2-c6845d3e9488" name="userSearchCSVSuccess.php">
+</file>
+<file url="file:///C:/dev/evento/apps/frontend/modules/admin/templates/displayCalReqsSuccess.php" idref="f328bd0f-5322-470b-8964-f919aa1e72f8" id="ebe3c809-becc-4808-9ab0-dd6d6c7cf3b2" name="displayCalReqsSuccess.php">
+</file>
+<file url="file:///C:/dev/evento/apps/frontend/modules/admin/templates/calReqsCSVSuccess.php" idref="f328bd0f-5322-470b-8964-f919aa1e72f8" id="391d60ff-6afd-4033-820b-f907123aa545" name="calReqsCSVSuccess.php">
+</file>
+<file url="file:///C:/dev/evento/apps/frontend/modules/admin/templates/displayLinkUsageSuccess.php" idref="f328bd0f-5322-470b-8964-f919aa1e72f8" id="012f4da5-40ba-4a88-97d2-cf8ffeafc70d" name="displayLinkUsageSuccess.php">
+</file>
+<file url="file:///C:/dev/evento/apps/frontend/modules/admin/templates/linkUsageCSVSuccess.php" idref="f328bd0f-5322-470b-8964-f919aa1e72f8" id="c55230e0-ee2e-4b89-abc3-fee45c076b54" name="linkUsageCSVSuccess.php">
+</file>
+<file url="file:///C:/dev/evento/apps/frontend/modules/admin/templates/_ctgAdminLinks.php" idref="f328bd0f-5322-470b-8964-f919aa1e72f8" id="066d533d-bb3b-4b72-bef7-f94d88f366c5" name="_ctgAdminLinks.php">
+</file>
+<file url="file:///C:/dev/evento/lib/model/doctrine/Country.class.php" idref="a0eb6dc4-3133-4eec-8ce5-6fb62238c7aa" id="a801b7a1-df24-43d5-ab81-27588a2c3aa1" name="Country.class.php">
+</file>
+<file url="file:///C:/dev/evento/lib/model/doctrine/CountryTable.class.php" idref="a0eb6dc4-3133-4eec-8ce5-6fb62238c7aa" id="8338fa07-cc16-457b-b087-89c9f0b9f057" name="CountryTable.class.php">
+</file>
+<file url="file:///C:/dev/evento/lib/model/doctrine/Event.class.php" idref="a0eb6dc4-3133-4eec-8ce5-6fb62238c7aa" id="2a908198-cab1-45db-99a9-1e135f1261a1" name="Event.class.php">
+</file>
+<file url="file:///C:/dev/evento/lib/model/doctrine/EventTable.class.php" idref="a0eb6dc4-3133-4eec-8ce5-6fb62238c7aa" id="154fca2d-5c18-4c6b-8c74-ba60a9f0f7f5" name="EventTable.class.php">
+</file>
+<file url="file:///C:/dev/evento/lib/model/doctrine/Invitation.class.php" idref="a0eb6dc4-3133-4eec-8ce5-6fb62238c7aa" id="927fb1bd-52db-4743-a35d-7b32e6256e3b" name="Invitation.class.php">
+</file>
+<file url="file:///C:/dev/evento/lib/model/doctrine/InvitationTable.class.php" idref="a0eb6dc4-3133-4eec-8ce5-6fb62238c7aa" id="21642f6b-8e1c-4789-9a04-24c19a05600a" name="InvitationTable.class.php">
+</file>
+<file url="file:///C:/dev/evento/lib/model/doctrine/State.class.php" idref="a0eb6dc4-3133-4eec-8ce5-6fb62238c7aa" id="bbb04d14-0515-4b6b-8e62-7b47050b0a4b" name="State.class.php">
+</file>
+<file url="file:///C:/dev/evento/lib/model/doctrine/StateTable.class.php" idref="a0eb6dc4-3133-4eec-8ce5-6fb62238c7aa" id="1425e105-cf6d-41de-9947-f76bde256f5d" name="StateTable.class.php">
+</file>
+<file url="file:///C:/dev/evento/lib/model/doctrine/User.class.php" idref="a0eb6dc4-3133-4eec-8ce5-6fb62238c7aa" id="07024b00-7309-46a3-83c8-0e917aa4806c" name="User.class.php">
+</file>
+<file url="file:///C:/dev/evento/lib/model/doctrine/UserCal.class.php" idref="a0eb6dc4-3133-4eec-8ce5-6fb62238c7aa" id="24d488ad-9e47-41ee-82e9-8be65ffec4e3" name="UserCal.class.php">
+</file>
+<file url="file:///C:/dev/evento/lib/model/doctrine/UserCalTable.class.php" idref="a0eb6dc4-3133-4eec-8ce5-6fb62238c7aa" id="bdb64d78-3271-4e84-a22c-329999911a2f" name="UserCalTable.class.php">
+</file>
+<file url="file:///C:/dev/evento/lib/model/doctrine/UserTable.class.php" idref="a0eb6dc4-3133-4eec-8ce5-6fb62238c7aa" id="b0ab628a-dde2-4e2f-af45-eca5d0a85e74" name="UserTable.class.php">
+</file>
+<file url="file:///C:/dev/evento/lib/model/doctrine/Cal.class.php" idref="a0eb6dc4-3133-4eec-8ce5-6fb62238c7aa" id="a1378b24-6e3e-4000-836a-51f2926ce765" name="Cal.class.php">
+</file>
+<file url="file:///C:/dev/evento/lib/model/doctrine/CalTable.class.php" idref="a0eb6dc4-3133-4eec-8ce5-6fb62238c7aa" id="47243ef7-ebcd-47a9-af05-d18ea0c56df3" name="CalTable.class.php">
+</file>
+<file url="file:///C:/dev/evento/lib/model/doctrine/Category.class.php" idref="a0eb6dc4-3133-4eec-8ce5-6fb62238c7aa" id="2ec02195-0dbe-48cc-be15-34dff989a295" name="Category.class.php">
+</file>
+<file url="file:///C:/dev/evento/lib/model/doctrine/CategoryTable.class.php" idref="a0eb6dc4-3133-4eec-8ce5-6fb62238c7aa" id="614e0ed8-04ac-4baa-ad98-a34e9e283b82" name="CategoryTable.class.php">
+</file>
+<file url="file:///C:/dev/evento/lib/model/doctrine/City.class.php" idref="a0eb6dc4-3133-4eec-8ce5-6fb62238c7aa" id="688016a2-9c30-400b-856d-b62df20df157" name="City.class.php">
+</file>
+<file url="file:///C:/dev/evento/lib/model/doctrine/CityTable.class.php" idref="a0eb6dc4-3133-4eec-8ce5-6fb62238c7aa" id="571e2e35-e713-4fce-b47f-dba2c1fb04fe" name="CityTable.class.php">
+</file>
+<file url="file:///C:/dev/evento/lib/model/doctrine/Contact.class.php" idref="a0eb6dc4-3133-4eec-8ce5-6fb62238c7aa" id="f48c09c1-440a-4338-93f1-aeed9b38e34f" name="Contact.class.php">
+</file>
+<file url="file:///C:/dev/evento/lib/model/doctrine/ContactTable.class.php" idref="a0eb6dc4-3133-4eec-8ce5-6fb62238c7aa" id="8a701afe-d1ed-4c0b-adca-a3261cadd383" name="ContactTable.class.php">
+</file>
+<folder idref="a0eb6dc4-3133-4eec-8ce5-6fb62238c7aa" id="4371afd4-c2eb-4c74-92ba-b204794939dd" name="Base">
+</folder>
+<file url="file:///C:/dev/evento/lib/model/doctrine/UserSearch.class.php" idref="a0eb6dc4-3133-4eec-8ce5-6fb62238c7aa" id="75781d8c-52a6-45d3-97a2-a4e53a38c2a6" name="UserSearch.class.php">
+</file>
+<file url="file:///C:/dev/evento/lib/model/doctrine/UserSearchTable.class.php" idref="a0eb6dc4-3133-4eec-8ce5-6fb62238c7aa" id="27a101c4-5a7b-4bb9-a3d0-495805036092" name="UserSearchTable.class.php">
+</file>
+<file url="file:///C:/dev/evento/lib/model/doctrine/CalRequest.class.php" idref="a0eb6dc4-3133-4eec-8ce5-6fb62238c7aa" id="11c79416-0496-4066-9f57-71e99e2fd7e8" name="CalRequest.class.php">
+</file>
+<file url="file:///C:/dev/evento/lib/model/doctrine/CalRequestTable.class.php" idref="a0eb6dc4-3133-4eec-8ce5-6fb62238c7aa" id="dc8b0189-5778-44ed-96ad-030a01eecb2b" name="CalRequestTable.class.php">
+</file>
+<file url="file:///C:/dev/evento/lib/model/doctrine/CategoryLinkTable.class.php" idref="a0eb6dc4-3133-4eec-8ce5-6fb62238c7aa" id="dad22299-5c7e-4866-aded-315660f3c130" name="CategoryLinkTable.class.php">
+</file>
+<file url="file:///C:/dev/evento/lib/model/doctrine/CategoryLink.class.php" idref="a0eb6dc4-3133-4eec-8ce5-6fb62238c7aa" id="20ae7cad-b555-4060-bfc8-610a4b313247" name="CategoryLink.class.php">
+</file>
+<file url="file:///C:/dev/evento/lib/model/doctrine/CategoryLinkUsage.class.php" idref="a0eb6dc4-3133-4eec-8ce5-6fb62238c7aa" id="5f2affc1-64d5-41b0-8c56-aca73be08db8" name="CategoryLinkUsage.class.php">
+</file>
+<file url="file:///C:/dev/evento/lib/model/doctrine/CategoryLinkUsageTable.class.php" idref="a0eb6dc4-3133-4eec-8ce5-6fb62238c7aa" id="cb27f91e-7c03-4095-90fb-6dfdcdc2177b" name="CategoryLinkUsageTable.class.php">
+</file>
+<file url="file:///C:/dev/evento/lib/model/GeneralUtils.php" idref="24d15ec7-8138-4da7-acf1-88edb207e1eb" id="dca31917-7f8e-47f2-9bc5-66e10ec94b1e" name="GeneralUtils.php">
+</file>
+<file url="file:///C:/dev/evento/lib/model/FacebookUtils.php" idref="24d15ec7-8138-4da7-acf1-88edb207e1eb" id="af8b48ef-b4fc-46a5-9345-afe198005451" name="FacebookUtils.php">
+</file>
+<file url="file:///C:/dev/evento/lib/model/UserUtils.php" idref="24d15ec7-8138-4da7-acf1-88edb207e1eb" id="bcd72fc2-8058-4923-8fb9-d7655d92a445" name="UserUtils.php">
+</file>
+<file url="file:///C:/dev/evento/lib/model/fpdf/SportycalPDF.php" idref="24d15ec7-8138-4da7-acf1-88edb207e1eb" id="fbdca7f2-c996-4cdf-a529-1bf0e66b66cb" name="SportycalPDF.php">
+</file>
+<file url="file:///C:/dev/evento/apps/frontend/modules/event/actions/actions.class.php" idref="843c14b3-daed-493f-a7f2-3882842a0e09" id="0912c433-d958-4ad2-99ff-cd00e0b193d7" name="actions.class.php">
+</file>
+<file url="file:///C:/dev/evento/apps/frontend/modules/event/templates/editSuccess.php" idref="843c14b3-daed-493f-a7f2-3882842a0e09" id="02296b83-9bbf-4c4c-b6d1-a42065074ee6" name="editSuccess.php">
+</file>
+<file url="file:///C:/dev/evento/apps/frontend/modules/event/templates/indexSuccess.php" idref="843c14b3-daed-493f-a7f2-3882842a0e09" id="f9e48a14-f080-47ae-beb2-a041d5ff9a93" name="indexSuccess.php">
+</file>
+<file url="file:///C:/dev/evento/apps/frontend/modules/event/templates/newSuccess.php" idref="843c14b3-daed-493f-a7f2-3882842a0e09" id="8b7cc36e-23b5-43e1-964e-909bec48e2ab" name="newSuccess.php">
+</file>
+<file url="file:///C:/dev/evento/apps/frontend/modules/event/templates/showSuccess.php" idref="843c14b3-daed-493f-a7f2-3882842a0e09" id="6a58a978-7440-421e-ab9f-969c681b0d34" name="showSuccess.php">
+</file>
+<file url="file:///C:/dev/evento/apps/frontend/modules/event/templates/_form.php" idref="843c14b3-daed-493f-a7f2-3882842a0e09" id="2e846330-6887-42df-9225-1e7d427994ac" name="_form.php">
+</file>
+<file url="file:///C:/dev/evento/apps/frontend/config/view.yml" idref="c9a70fd0-4f51-4ec5-b213-92fa8e22598a" id="777ff938-9c5d-46f3-b20f-47d65396e5f8" name="view.yml">
+</file>
+<file url="file:///C:/dev/evento/apps/frontend/config/routing.yml" idref="c9a70fd0-4f51-4ec5-b213-92fa8e22598a" id="e32e7eac-9a86-41cb-acd4-b34b7076f53d" name="routing.yml">
+</file>
+<file url="file:///C:/dev/evento/apps/frontend/config/settings.yml" idref="c9a70fd0-4f51-4ec5-b213-92fa8e22598a" id="85bc8a9f-856c-4f8c-a43a-371f19a7f3ec" name="settings.yml">
+</file>
+<file url="file:///C:/dev/evento/apps/frontend/config/app.yml" idref="c9a70fd0-4f51-4ec5-b213-92fa8e22598a" id="b04d311d-b667-41b2-bd85-689c0328ec48" name="app.yml">
+</file>
+<file url="file:///C:/dev/evento/lib/model/doctrine/base/BaseEvent.class.php" idref="4371afd4-c2eb-4c74-92ba-b204794939dd" id="5a588c31-c643-42bc-a496-452a3e39b2a8" name="BaseEvent.class.php">
+</file>
+<file url="file:///C:/dev/evento/lib/model/doctrine/base/BaseInvitation.class.php" idref="4371afd4-c2eb-4c74-92ba-b204794939dd" id="fad9d686-8a87-4492-b7fe-59d8ee5be146" name="BaseInvitation.class.php">
+</file>
+<file url="file:///C:/dev/evento/lib/model/doctrine/base/BaseState.class.php" idref="4371afd4-c2eb-4c74-92ba-b204794939dd" id="9c69ddc9-b8e5-4b1f-83bd-94da38afb71b" name="BaseState.class.php">
+</file>
+<file url="file:///C:/dev/evento/lib/model/doctrine/base/BaseUser.class.php" idref="4371afd4-c2eb-4c74-92ba-b204794939dd" id="77496a63-41ae-4a69-987b-fd8002416f63" name="BaseUser.class.php">
+</file>
+<file url="file:///C:/dev/evento/lib/model/doctrine/base/BaseUserCal.class.php" idref="4371afd4-c2eb-4c74-92ba-b204794939dd" id="332917b7-3e81-47aa-8882-2e6a1465af2d" name="BaseUserCal.class.php">
+</file>
+<file url="file:///C:/dev/evento/lib/model/doctrine/base/BaseCal.class.php" idref="4371afd4-c2eb-4c74-92ba-b204794939dd" id="12686fac-c1a4-4966-ba65-7146697f6c75" name="BaseCal.class.php">
+</file>
+<file url="file:///C:/dev/evento/lib/model/doctrine/base/BaseCategory.class.php" idref="4371afd4-c2eb-4c74-92ba-b204794939dd" id="e3aee98d-3be5-4287-bddf-fb665b2f4006" name="BaseCategory.class.php">
+</file>
+<file url="file:///C:/dev/evento/lib/model/doctrine/base/BaseCity.class.php" idref="4371afd4-c2eb-4c74-92ba-b204794939dd" id="114f4f09-10e8-4e36-a3a0-1e228cac595e" name="BaseCity.class.php">
+</file>
+<file url="file:///C:/dev/evento/lib/model/doctrine/base/BaseContact.class.php" idref="4371afd4-c2eb-4c74-92ba-b204794939dd" id="06bc3b9f-6975-4b38-b5c3-55d28c87483f" name="BaseContact.class.php">
+</file>
+<file url="file:///C:/dev/evento/lib/model/doctrine/base/BaseCountry.class.php" idref="4371afd4-c2eb-4c74-92ba-b204794939dd" id="bea4d35c-a92a-4d67-876d-50a0fa47bb78" name="BaseCountry.class.php">
+</file>
+<file url="file:///C:/dev/evento/lib/model/doctrine/base/BaseUserSearch.class.php" idref="4371afd4-c2eb-4c74-92ba-b204794939dd" id="eee2477b-b597-4301-a7ea-11dc3328a3f7" name="BaseUserSearch.class.php">
+</file>
+<file url="file:///C:/dev/evento/apps/frontend/templates/layout.php" idref="e36e5f12-173e-4d05-a7b6-d69c2cc35792" id="94b3f28f-dc15-43b6-a626-2200afe8924d" name="layout.php">
+</file>
+<file url="file:///C:/dev/evento/apps/frontend/templates/_navBar.php" idref="e36e5f12-173e-4d05-a7b6-d69c2cc35792" id="6f201814-3bd9-4308-9f56-9d6afcda8a8c" name="_navBar.php">
+</file>
+<file url="file:///C:/dev/evento/apps/frontend/templates/_categories.php" idref="e36e5f12-173e-4d05-a7b6-d69c2cc35792" id="c67a6cef-54fc-464b-a96d-bee037ae6c76" name="_categories.php">
+</file>
+<file url="file:///C:/dev/evento/apps/frontend/templates/_cals.php" idref="e36e5f12-173e-4d05-a7b6-d69c2cc35792" id="75288a9f-d0e0-43bf-bc49-aebf728a431d" name="_cals.php">
+</file>
+<file url="file:///C:/dev/evento/apps/frontend/templates/_categoriesSub.php" idref="e36e5f12-173e-4d05-a7b6-d69c2cc35792" id="c19a0caf-8940-49a2-bfe8-43fab651986c" name="_categoriesSub.php">
+</file>
+<file url="file:///C:/dev/evento/apps/frontend/templates/_search.php" idref="e36e5f12-173e-4d05-a7b6-d69c2cc35792" id="aeb61726-313b-415b-ac7b-861b5a002ff3" name="_search.php">
+</file>
+<file url="file:///C:/dev/evento/apps/frontend/templates/_searchSmall.php" idref="e36e5f12-173e-4d05-a7b6-d69c2cc35792" id="fe5a82dd-45bd-4f9e-8517-c59bbce71cc1" name="_searchSmall.php">
+</file>
+<file url="file:///C:/dev/evento/apps/frontend/modules/category/actions/actions.class.php" idref="c0f293d2-0677-4430-b57d-82a461c234b7" id="e1a03ce4-1b02-4484-9d53-be33a08af5dd" name="actions.class.php">
+</file>
+<file url="file:///C:/dev/evento/apps/frontend/modules/category/templates/editSuccess.php" idref="c0f293d2-0677-4430-b57d-82a461c234b7" id="d370cc6f-56b6-4230-9ebe-d8260e5dd99d" name="editSuccess.php">
+</file>
+<file url="file:///C:/dev/evento/apps/frontend/modules/category/templates/indexSuccess.php" idref="c0f293d2-0677-4430-b57d-82a461c234b7" id="85f0c1e8-7185-4ace-8cb5-5ba1f7dc5442" name="indexSuccess.php">
+</file>
+<file url="file:///C:/dev/evento/apps/frontend/modules/category/templates/newSuccess.php" idref="c0f293d2-0677-4430-b57d-82a461c234b7" id="ba08346d-6c61-40a2-919a-101a33afba21" name="newSuccess.php">
+</file>
+<file url="file:///C:/dev/evento/apps/frontend/modules/category/templates/showSuccess.php" idref="c0f293d2-0677-4430-b57d-82a461c234b7" id="30349a42-3bc6-4684-bae5-733c265c939e" name="showSuccess.php">
+</file>
+<file url="file:///C:/dev/evento/apps/frontend/modules/category/templates/_form.php" idref="c0f293d2-0677-4430-b57d-82a461c234b7" id="99f99f99-ee92-4576-be43-2ede25eb2489" name="_form.php">
+</file>
+<file url="file:///C:/dev/evento/test/unit/CalTest.php" idref="f191268b-7035-4663-a7bd-f124f0447248" id="7c1cd368-b4a6-49af-86ed-f2956654f675" name="CalTest.php">
+</file>
+<file url="file:///C:/dev/evento/apps/frontend/modules/user/actions/actions.class.php" idref="ceb47ce3-6deb-47e1-8f80-c046056bee0c" id="f4873d56-c8bf-4a24-b66c-7ebccd848aa8" name="actions.class.php">
+</file>
+<file url="file:///C:/dev/evento/apps/frontend/modules/user/templates/newSuccess.php" idref="ceb47ce3-6deb-47e1-8f80-c046056bee0c" id="b17f415c-e67d-49e3-a506-ba2f8dd01c61" name="newSuccess.php">
+</file>
+<file url="file:///C:/dev/evento/apps/frontend/modules/user/templates/showSuccess.php" idref="ceb47ce3-6deb-47e1-8f80-c046056bee0c" id="50d8b9a1-945a-42b1-bd5f-ed27fd96df6e" name="showSuccess.php">
+</file>
+<file url="file:///C:/dev/evento/apps/frontend/modules/user/templates/_form.php" idref="ceb47ce3-6deb-47e1-8f80-c046056bee0c" id="5f7fb994-2d68-45b3-acb7-7b261b41dff2" name="_form.php">
+</file>
+<file url="file:///C:/dev/evento/apps/frontend/modules/user/templates/editSuccess.php" idref="ceb47ce3-6deb-47e1-8f80-c046056bee0c" id="3c4792bc-7a31-441f-b1ca-01e3bc1786ad" name="editSuccess.php">
+</file>
+<file url="file:///C:/dev/evento/apps/frontend/modules/user/templates/indexSuccess.php" idref="ceb47ce3-6deb-47e1-8f80-c046056bee0c" id="b5afd1e5-8d12-47a1-8797-bc7d38df4c58" name="indexSuccess.php">
+</file>
+<file url="file:///C:/dev/evento/lib/form/doctrine/base/BaseCategoryForm.class.php" idref="5a94d832-bd22-44fb-bc67-d380f1803a02" id="643a253a-7d15-459f-b524-3e165ffdf6de" name="BaseCategoryForm.class.php">
+</file>
+<file url="file:///C:/dev/evento/lib/form/doctrine/base/BaseContactForm.class.php" idref="5a94d832-bd22-44fb-bc67-d380f1803a02" id="3f39ec43-d1e4-4fc9-b30a-13d075a2b01b" name="BaseContactForm.class.php">
+</file>
+<file url="file:///C:/dev/evento/lib/form/doctrine/base/BaseEventForm.class.php" idref="5a94d832-bd22-44fb-bc67-d380f1803a02" id="d9998721-89dc-40f3-8f82-f0521e0e0f90" name="BaseEventForm.class.php">
+</file>
+<file url="file:///C:/dev/evento/lib/form/doctrine/base/BaseUserForm.class.php" idref="5a94d832-bd22-44fb-bc67-d380f1803a02" id="86089af9-2c22-418a-8898-d9488a3c8480" name="BaseUserForm.class.php">
+</file>
+<file url="file:///C:/dev/evento/lib/form/doctrine/base/BaseCalForm.class.php" idref="5a94d832-bd22-44fb-bc67-d380f1803a02" id="75e136f0-b156-4eb6-ac4c-130e16bf3d50" name="BaseCalForm.class.php">
+</file>
+<preference-set idref="7d852f16-43eb-4999-81fe-f62e4bc1b023">
+  <boolean id="import_live">1</boolean>
+</preference-set>
+<preference-set idref="fbdca7f2-c996-4cdf-a529-1bf0e66b66cb">
+  <string id="lastInvocation">default</string>
+<preference-set id="Invocations">
+<preference-set id="default">
+  <string id="cwd"></string>
+  <string id="postparams"></string>
+  <string id="language">PHP</string>
+  <string id="getparams"></string>
+  <string id="phpInterpreterType">php-cli</string>
+  <boolean id="show-dialog">1</boolean>
+  <boolean id="use-console">0</boolean>
+  <string id="mpostparams"></string>
+  <string id="filename">C:\dev\evento\lib\model\fpdf\SportycalPDF.php</string>
+  <string id="request-method">GET</string>
+  <string id="params"></string>
+  <string id="executable-params"></string>
+  <string id="posttype">application/x-www-form-urlencoded</string>
+  <string id="documentRoot"></string>
+  <string id="cookieparams"></string>
+  <boolean id="enableImplicitFlush">1</boolean>
+  <string id="userEnvironment"></string>
+  <boolean id="sim-cgi">0</boolean>
+  <boolean id="disableOutputBuffering">1</boolean>
+  <string id="userCGIEnvironment"></string>
+</preference-set>
+</preference-set>
+</preference-set>
+<preference-set idref="64fddaa4-5d07-48d4-a750-d9b640a93eeb">
+  <string id="lastInvocation">default</string>
+<preference-set id="Invocations">
+<preference-set id="default">
+  <boolean id="disableOutputBuffering">1</boolean>
+  <string id="postparams"></string>
+  <string id="userEnvironment"></string>
+  <string id="language">PHP</string>
+  <string id="getparams"></string>
+  <string id="phpInterpreterType">php-cli</string>
+  <boolean id="use-console">0</boolean>
+  <string id="mpostparams"></string>
+  <string id="filename">C:\dev\evento\apps\frontend\modules\main\templates\searchSuccess.php</string>
+  <string id="request-method">GET</string>
+  <string id="params"></string>
+  <string id="executable-params"></string>
+  <string id="posttype">application/x-www-form-urlencoded</string>
+  <string id="documentRoot"></string>
+  <string id="cookieparams"></string>
+  <boolean id="enableImplicitFlush">1</boolean>
+  <boolean id="show-dialog">1</boolean>
+  <boolean id="sim-cgi">0</boolean>
+  <string id="cwd"></string>
+  <string id="userCGIEnvironment"></string>
+</preference-set>
+</preference-set>
+</preference-set>
+<preference-set idref="6386a74c-86d0-4d6e-98a3-3be00092f75e">
+  <string id="lastInvocation">default</string>
+<preference-set id="Invocations">
+<preference-set id="default">
+  <boolean id="disableOutputBuffering">1</boolean>
+  <string id="postparams"></string>
+  <string id="userEnvironment"></string>
+  <string id="language">PHP</string>
+  <string id="getparams"></string>
+  <string id="phpInterpreterType">php-cli</string>
+  <boolean id="use-console">0</boolean>
+  <string id="mpostparams"></string>
+  <string id="filename">C:\dev\evento\apps\frontend\modules\cal\templates\_form.php</string>
+  <string id="request-method">GET</string>
+  <string id="params"></string>
+  <string id="executable-params"></string>
+  <string id="posttype">application/x-www-form-urlencoded</string>
+  <string id="documentRoot"></string>
+  <string id="cookieparams"></string>
+  <boolean id="enableImplicitFlush">1</boolean>
+  <boolean id="show-dialog">1</boolean>
+  <boolean id="sim-cgi">0</boolean>
+  <string id="cwd"></string>
+  <string id="userCGIEnvironment"></string>
+</preference-set>
+</preference-set>
+</preference-set>
+<preference-set idref="500bf6a9-5bd1-49d4-9b04-596ebcb8af69">
+  <string id="lastInvocation">default</string>
+<preference-set id="Invocations">
+<preference-set id="default">
+  <string id="cwd"></string>
+  <string id="postparams"></string>
+  <string id="language">PHP</string>
+  <string id="getparams"></string>
+  <string id="phpInterpreterType">php-cli</string>
+  <boolean id="show-dialog">1</boolean>
+  <boolean id="use-console">0</boolean>
+  <string id="mpostparams"></string>
+  <string id="filename">C:\dev\evento\apps\frontend\modules\cal\templates\showSuccess.php</string>
+  <string id="request-method">GET</string>
+  <string id="params"></string>
+  <string id="executable-params"></string>
+  <string id="posttype">application/x-www-form-urlencoded</string>
+  <string id="documentRoot"></string>
+  <string id="cookieparams"></string>
+  <boolean id="enableImplicitFlush">1</boolean>
+  <string id="userEnvironment"></string>
+  <boolean id="sim-cgi">0</boolean>
+  <boolean id="disableOutputBuffering">1</boolean>
+  <string id="userCGIEnvironment"></string>
+</preference-set>
+</preference-set>
+</preference-set>
+<preference-set idref="94b3f28f-dc15-43b6-a626-2200afe8924d">
+  <string id="lastInvocation">default</string>
+<preference-set id="Invocations">
+<preference-set id="default">
+  <string id="cwd"></string>
+  <string id="postparams"></string>
+  <string id="language">PHP</string>
+  <string id="getparams"></string>
+  <string id="phpInterpreterType">php-cli</string>
+  <boolean id="show-dialog">1</boolean>
+  <boolean id="use-console">0</boolean>
+  <string id="mpostparams"></string>
+  <string id="filename">C:\dev\evento\apps\frontend\templates\layout.php</string>
+  <string id="request-method">GET</string>
+  <string id="params"></string>
+  <string id="executable-params"></string>
+  <string id="posttype">application/x-www-form-urlencoded</string>
+  <string id="documentRoot"></string>
+  <string id="cookieparams"></string>
+  <boolean id="enableImplicitFlush">1</boolean>
+  <string id="userEnvironment"></string>
+  <boolean id="sim-cgi">0</boolean>
+  <boolean id="disableOutputBuffering">1</boolean>
+  <string id="userCGIEnvironment"></string>
+</preference-set>
+</preference-set>
+</preference-set>
+</project>

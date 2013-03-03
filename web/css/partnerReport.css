@@ -1,0 +1,43 @@
+@CHARSET "utf-8";
+
+.generalInfo{font-size: 16px; padding-bottom: 10px;}
+
+.partnerReport, .partnerReportTable{margin: 0 auto; width:200px; 
+	border: 1px solid #000000;
+    border-radius: 10px 10px 10px 10px;
+    box-shadow: 0 0 10px 5px #ACACAC;
+    margin: 0 auto;
+    margin-bottom: 50px;
+}
+
+.partnerReportPadding{padding: 10px;}
+
+.partnerReport h5{font-size: 14px; text-align: left; padding-bottom: 7px; font-size: 14px;}
+.partnerReport select{border: 1px solid #999; margin-bottom: 10px;}
+.partnerReport input{
+cursor:pointer;
+background-color: #333;
+border: 1px solid #666;
+box-shadow: 0 0 5px 1px #ACACAC;
+border-radius: 5px 5px 5px 5px;
+padding: 3px 5px;
+
+background: #eeeeee; /* Old browsers */
+background: -moz-linear-gradient(top,  #eeeeee 0%, #cccccc 100%); /* FF3.6+ */
+background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#eeeeee), color-stop(100%,#cccccc)); /* Chrome,Safari4+ */
+background: -webkit-linear-gradient(top,  #eeeeee 0%,#cccccc 100%); /* Chrome10+,Safari5.1+ */
+background: -o-linear-gradient(top,  #eeeeee 0%,#cccccc 100%); /* Opera 11.10+ */
+background: -ms-linear-gradient(top,  #eeeeee 0%,#cccccc 100%); /* IE10+ */
+background: linear-gradient(to bottom,  #eeeeee 0%,#cccccc 100%); /* W3C */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#eeeeee', endColorstr='#cccccc',GradientType=0 ); /* IE6-9 */
+}
+
+.partnerReport label, .partnerReport select, .partnerReport input{display: block;}
+
+.partnerReportTable td, .partnerReportTable th{padding: 5px 10px; text-align: left;}
+.partnerReportTable th{font-size: 12px;}
+.partnerReportTableTitle{font-size: 16px !important; text-decoration: underline; text-align: center !important;}
+
+.backToPartnerReportLink{margin-bottom: 20px;}
+
+.googleChart{width: 900px; height: 500px; margin: 0 auto;}

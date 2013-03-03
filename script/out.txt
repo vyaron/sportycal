@@ -1,0 +1,53 @@
+-- ------------------------------------ Start Working --------------------------------------
+
+
+insert into `category`(`id`,`name`,`parent_id`, `rate`, `approved_at`, `partner_id`, `is_public`) values (3002,'888Poker.es',2600, 10, '2012-05-27 1:08', 10, false);
+
+
+-- Importing : /tmp/import/888/888Poker.es/888Poker.es.csv 
+INSERT INTO `cal`
+    (id, category_id, name, location, created_at, updated_at, `partner_id`, `is_public`) VALUES 
+    (4012, 3002, '888Poker.es', '', '2012-05-27 1:08', '2012-05-27 1:08', 10, false);
+
+INSERT INTO `event`(`id`,`cal_id`,`name`,`description`, `location`, `tz`, `starts_at`,`ends_at`,`created_at`, `updated_at`) VALUES
+	    			(5563581,4012,'$3,000 Jugamos en Espanol','Este exclusivo torneo GRATIS es sólo para los jugadores españoles, ¡ven a jugar!','Lobby de 888Poker.es','GMT','2012-05-26 17:05','2012-05-26 19:05', '2012-05-27 1:08', '2012-05-27 1:08');
+INSERT INTO `event`(`id`,`cal_id`,`name`,`description`, `location`, `tz`, `starts_at`,`ends_at`,`created_at`, `updated_at`) VALUES
+	    			(5563582,4012,'$3,000 Jugamos en Espanol','Este exclusivo torneo GRATIS es sólo para los jugadores españoles, ¡ven a jugar!','Lobby de 888Poker.es','GMT','2012-05-31 17:05','2012-05-31 19:05', '2012-05-27 1:08', '2012-05-27 1:08');
+INSERT INTO `event`(`id`,`cal_id`,`name`,`description`, `location`, `tz`, `starts_at`,`ends_at`,`created_at`, `updated_at`) VALUES
+	    			(5563583,4012,'¡Aquí tienes tu regalo gratis en efectivo!','El nuevo 888poker español te manda un regalo en efectivo GRATIS. ; Mira ya tu email para reclamarlo y no olvides iniciar sesión a tiempo para llevarte todo el dinero que puedas.','Lobby de 888Poker.es','GMT','2012-06-03 10:00','2012-06-03 11:00', '2012-05-27 1:08', '2012-05-27 1:08');
+INSERT INTO `event`(`id`,`cal_id`,`name`,`description`, `location`, `tz`, `starts_at`,`ends_at`,`created_at`, `updated_at`) VALUES
+	    			(5563584,4012,'10.000€ GRATIS Diario  ','torneo diario GRATIS de 10.000 € ; ¡Regístrate con tu entrada para el torneo y juega!','Lobby de 888Poker.es','GMT','2012-06-04 17:05','2012-06-04 19:05', '2012-05-27 1:08', '2012-05-27 1:08');
+INSERT INTO `event`(`id`,`cal_id`,`name`,`description`, `location`, `tz`, `starts_at`,`ends_at`,`created_at`, `updated_at`) VALUES
+	    			(5563585,4012,'10.000€ GRATIS Diario  ','torneo diario GRATIS de 10.000 € ; ¡Regístrate con tu entrada para el torneo y juega!','Lobby de 888Poker.es','GMT','2012-06-05 17:05','2012-06-05 19:05', '2012-05-27 1:08', '2012-05-27 1:08');
+INSERT INTO `event`(`id`,`cal_id`,`name`,`description`, `location`, `tz`, `starts_at`,`ends_at`,`created_at`, `updated_at`) VALUES
+	    			(5563586,4012,'10.000€ GRATIS Diario  ','torneo diario GRATIS de 10.000 € ; ¡Regístrate con tu entrada para el torneo y juega!','Lobby de 888Poker.es','GMT','2012-06-06 17:05','2012-06-06 19:05', '2012-05-27 1:08', '2012-05-27 1:08');
+INSERT INTO `event`(`id`,`cal_id`,`name`,`description`, `location`, `tz`, `starts_at`,`ends_at`,`created_at`, `updated_at`) VALUES
+	    			(5563587,4012,'10.000€ GRATIS Diario  ','torneo diario GRATIS de 10.000 € ; ¡Regístrate con tu entrada para el torneo y juega!','Lobby de 888Poker.es','GMT','2012-06-07 17:05','2012-06-07 19:05', '2012-05-27 1:08', '2012-05-27 1:08');
+INSERT INTO `event`(`id`,`cal_id`,`name`,`description`, `location`, `tz`, `starts_at`,`ends_at`,`created_at`, `updated_at`) VALUES
+	    			(5563588,4012,'10.000€ GRATIS Diario  ','torneo diario GRATIS de 10.000 € ; ¡Regístrate con tu entrada para el torneo y juega!','Lobby de 888Poker.es','GMT','2012-06-08 17:05','2012-06-08 19:05', '2012-05-27 1:08', '2012-05-27 1:08');
+INSERT INTO `event`(`id`,`cal_id`,`name`,`description`, `location`, `tz`, `starts_at`,`ends_at`,`created_at`, `updated_at`) VALUES
+	    			(5563589,4012,'10.000€ GRATIS Diario  ','torneo diario GRATIS de 10.000 € ; ¡Regístrate con tu entrada para el torneo y juega!','Lobby de 888Poker.es','GMT','2012-06-09 17:05','2012-06-09 19:05', '2012-05-27 1:08', '2012-05-27 1:08');
+INSERT INTO `event`(`id`,`cal_id`,`name`,`description`, `location`, `tz`, `starts_at`,`ends_at`,`created_at`, `updated_at`) VALUES
+	    			(5563590,4012,'10.000€ GRATIS Diario  ','torneo diario GRATIS de 10.000 € ; ¡Regístrate con tu entrada para el torneo y juega!','Lobby de 888Poker.es','GMT','2012-06-10 17:05','2012-06-10 19:05', '2012-05-27 1:08', '2012-05-27 1:08');
+INSERT INTO `event`(`id`,`cal_id`,`name`,`description`, `location`, `tz`, `starts_at`,`ends_at`,`created_at`, `updated_at`) VALUES
+	    			(5563591,4012,'10.000€ GRATIS Diario  ','torneo diario GRATIS de 10.000 € ; ¡Regístrate con tu entrada para el torneo y juega!','Lobby de 888Poker.es','GMT','2012-06-11 17:05','2012-06-11 19:05', '2012-05-27 1:08', '2012-05-27 1:08');
+INSERT INTO `event`(`id`,`cal_id`,`name`,`description`, `location`, `tz`, `starts_at`,`ends_at`,`created_at`, `updated_at`) VALUES
+	    			(5563592,4012,'10.000€ GRATIS Diario  ','torneo diario GRATIS de 10.000 € ; ¡Regístrate con tu entrada para el torneo y juega!','Lobby de 888Poker.es','GMT','2012-06-12 17:05','2012-06-12 19:05', '2012-05-27 1:08', '2012-05-27 1:08');
+INSERT INTO `event`(`id`,`cal_id`,`name`,`description`, `location`, `tz`, `starts_at`,`ends_at`,`created_at`, `updated_at`) VALUES
+	    			(5563593,4012,'10.000€ GRATIS Diario  ','torneo diario GRATIS de 10.000 € ; ¡Regístrate con tu entrada para el torneo y juega!','Lobby de 888Poker.es','GMT','2012-06-13 17:05','2012-06-13 19:05', '2012-05-27 1:08', '2012-05-27 1:08');
+INSERT INTO `event`(`id`,`cal_id`,`name`,`description`, `location`, `tz`, `starts_at`,`ends_at`,`created_at`, `updated_at`) VALUES
+	    			(5563594,4012,'10.000€ GRATIS Diario  ','torneo diario GRATIS de 10.000 € ; ¡Regístrate con tu entrada para el torneo y juega!','Lobby de 888Poker.es','GMT','2012-06-14 17:05','2012-06-14 19:05', '2012-05-27 1:08', '2012-05-27 1:08');
+INSERT INTO `event`(`id`,`cal_id`,`name`,`description`, `location`, `tz`, `starts_at`,`ends_at`,`created_at`, `updated_at`) VALUES
+	    			(5563595,4012,'10.000€ GRATIS Diario  ','torneo diario GRATIS de 10.000 € ; ¡Regístrate con tu entrada para el torneo y juega!','Lobby de 888Poker.es','GMT','2012-06-15 17:05','2012-06-15 19:05', '2012-05-27 1:08', '2012-05-27 1:08');
+INSERT INTO `event`(`id`,`cal_id`,`name`,`description`, `location`, `tz`, `starts_at`,`ends_at`,`created_at`, `updated_at`) VALUES
+	    			(5563596,4012,'10.000€ GRATIS Diario  ','torneo diario GRATIS de 10.000 € ; ¡Regístrate con tu entrada para el torneo y juega!','Lobby de 888Poker.es','GMT','2012-06-16 17:05','2012-06-16 19:05', '2012-05-27 1:08', '2012-05-27 1:08');
+INSERT INTO `event`(`id`,`cal_id`,`name`,`description`, `location`, `tz`, `starts_at`,`ends_at`,`created_at`, `updated_at`) VALUES
+	    			(5563597,4012,'10.000€ GRATIS Diario  ','torneo diario GRATIS de 10.000 € ; ¡Regístrate con tu entrada para el torneo y juega!','Lobby de 888Poker.es','GMT','2012-06-17 17:05','2012-06-17 19:05', '2012-05-27 1:08', '2012-05-27 1:08');
+INSERT INTO `event`(`id`,`cal_id`,`name`,`description`, `location`, `tz`, `starts_at`,`ends_at`,`created_at`, `updated_at`) VALUES
+	    			(5563598,4012,'ÚLTIMA OPORTUNIDAD: Reclama ya tu regalo gratis en efectivo  ','¡Hay 1 última oportunidad de llevarte un regalo GRATIS en efectivo en el nuevo 888poker.es! ; Consulta tu email, ¡no va a durar mucho!','Lobby de 888Poker.es','GMT','2012-06-24 10:00','2012-06-24 11:00', '2012-05-27 1:08', '2012-05-27 1:08');
+
+
+
+
+
+-- DONE

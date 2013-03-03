@@ -1,0 +1,166 @@
+@CHARSET "utf-8";
+
+*{padding: 0; margin: 0; font-family:Arial, Helvetica, sans-serif; font-size: 13px;}
+
+.hide{display:none;}
+.fr{float: right;}
+.fl{float: left;}
+.cb{clear: both;}
+
+.pt5{padding-top: 5px;}
+.pt15{padding-top: 15px;}
+.pt10{padding-top: 10px;}
+.pt20{padding-top: 20px;}
+.pt25{padding-top: 25px;}
+
+.pb8{padding-bottom: 8px;}
+
+.fs14{font-size: 14px;}
+.fs15{font-size: 15px;}
+.fs18{font-size: 18px;}
+.fs24{font-size: 24px;}
+
+.b {font-weight: bold;}
+
+.tar{text-align: right;}
+
+.white{color: #fff;}
+.gray{color: #9b9b9b;}
+.red{color:#ec1a3a;}
+
+body{background: url(/images/toto/bg.png) repeat-x; overflow-x: hidden; overflow-y: auto;}
+
+#contnet{min-height: 820px;}
+
+.winnerLogo, .winnerLogo2{display: block; width: 319px; height: 52px; background-repeat: no-repeat; background-position: center top; margin: 0 auto;}
+.winnerLogo{background-image: url(/images/toto/winnerLogo.png);}
+.winnerLogo2{background-image: url(/images/toto/winnerLogo2.png);}
+
+#totoWrapper h2, #totoWrapper h3{font-weight: normal; text-align: center;}
+#totoWrapper h2{font-size: 24px; padding-bottom: 18px;}
+#totoWrapper h3{font-size: 18px;}
+
+#totoWrapper{width: 100%; background: url(/images/toto/bgSide.png) no-repeat right 0; min-height: 234px;}
+#totoContent{width: 500px; margin: 0 auto; direction: rtl; padding-top: 25px;}
+
+/*Toto cal*/
+.totoCalTop, .totoCalHeader, .totoCalContent, .totoCalBottom, .totoCalHeaderBottom{width: 499px; background-position: 0 0; display: block;}
+.totoCalTop, .totoCalBottom{background-repeat: no-repeat;}
+.totoCalTop{height: 66px; background-image: url(/images/toto/totoCalTop.png);}
+.totoCalBottom{height: 48px; background-image: url(/images/toto/totoCalBottom.png);}
+
+.totoCalHeader, .totoCalContent{background-repeat: repeat-y;}
+.totoCalHeader{/*min-height: 105px;*/ background-image: url(/images/toto/totoCalHeader.png);}
+.totoCalHeaderBottom{height: 3px; background-image: url(/images/toto/totoCalHeaderBottom.png);}
+.totoCalContent{background-image: url(/images/toto/totoCalContent.png);}
+.totoCalBottom{min-height:50px; background-image: url(/images/toto/totoCalBottom.png);}
+
+.totoCalContentPadding{padding:15px 30px; padding-bottom: 0;}
+
+/* general */
+.totoButton{background-color: red; border: 1px solid #ba051a; border-radius:5px; height: 30px; width: 120px; line-height: 30px; color: #fff; margin: 0 auto; cursor: pointer;}
+
+.calRow{cursor: pointer; margin-bottom: 10px;}
+.calRowL, .calRowC, .calRowR{background-position: 0 0; display: block; height: 54px; float: left;}
+.calRowL, .calRowR{background-repeat: no-repeat; width: 7px;}
+
+.calRowL{background-image: url(/images/toto/calL.png);}
+.calRowR{background-image: url(/images/toto/calR.png);}
+.calRowC{background-image: url(/images/toto/calC.png); background-repeat: repeat-x; width: 425px;}
+
+.calIcon{width: 50px; height: 57px; background:url(/images/toto/calIcon.png) no-repeat 0 0; float: right; margin-left: 22px; margin-top: 4px;}
+.calName{float: right; color: #e30613; font-size: 14px; line-height: 44px;}
+
+.calRowSel .calName, .calRow:hover .calName{color: #5047ff; text-decoration: underline;}
+.calRowSel .calIcon, .calRow:hover .calIcon{background-position: left bottom;}
+
+/* Next Event Timer */
+.nextEvent, .eventTimer, .eventTimerDesc{float: left;}
+.eventTimer{font-size: 17px; font-weight: bold; width: 105px; margin-top: 8px;}
+.timerSep, .eventTimer .digit{height: 28px; line-height: 28px; display:block; float:left; margin-right: 3px;}
+.eventTimer .digit{width: 21px; text-align:center; background: url(/images/toto/digit.png) no-repeat 0 0;}
+
+.eventTimerDesc{width: 57px; margin-top: 6px; font-size: 12px;}
+
+.totoCalSep{display: block; height: 13px; background-color: #e40613; margin-top: 15px; margin-bottom: 30px;}
+
+.ula li{list-style: none;  padding-bottom:18px; padding-right: 12px; background: url(/images/toto/bullet.png) no-repeat right 9px; font-size: 18px; text-align: right;}
+.ulb li{list-style: none; font-size: 12px; text-align: right; padding-right: 8px; background: url(/images/toto/bullet2.png) no-repeat right 6px;}
+.ulb li a{text-decoration: underline;}
+
+/*.calDown{display: block; border: 1px solid black; margin: 3px; float: left; cursor: pointer; width: 100px; height: 120px;}*/
+.calDown{cursor: pointer; width: 103px; height:118px; background-position: 0 0; background-repeat: no-repeat; display: block; float: left; margin:0 21px; color: #fff;}
+.calDown:hover{background-position: left bottom;}
+
+#calDownAny{background-image: url(/images/toto/calAny.png);}
+#calDownMobile{background-image: url(/images/toto/calMobile.png);}
+#calDownOutlook{background-image: url(/images/toto/calOutlook.png);}
+#calDownGoogle{background-image: url(/images/toto/calGoogle.png);}
+
+#calDownFB{background-image: url(/images/toto/calFB.png); margin: 0 auto; float: none;}
+
+.calDown span{text-align: center; font-size: 12px; font-weight: bold; padding-top: 17px; display: block;}
+
+/* red btn */
+.btnL, .btnC, .btnR{height: 28px; float: left; display: block; cursor: pointer; background-position: 0 0;}
+.btnL, .btnR{background-repeat: no-repeat;}
+
+.conBtn:hover .btnL, .conBtn:hover .btnC, .conBtn:hover .btnR{background-position: left bottom;}
+
+.btnC{background-repeat: repeat-x; background-image: url(/images/toto/btnC.png); width: 139px; color: #fff; font-size: 15px; font-weight: bold; text-align: center; line-height: 28px;}
+.btnR{background-image: url(/images/toto/btnR.png); width: 6px;}
+.btnL{background-image: url(/images/toto/btnL.png); width: 5px;}
+
+/*setps*/
+#contBtn1{padding-top: 7px; float: left;}
+#contBtn1 .btnC span, #calDownOnMobile .btnC span{text-align: right; display: block; height: 28px; line-height: 28px; font-size: 14px; margin: 0 auto;}
+#contBtn1 .btnC span{background: url(/images/toto/leftArrow.png) 0 8px no-repeat; width: 102px;}
+#calDownOnMobile .btnC span{background: url(/images/toto/downArrow.png) 0 6px no-repeat; width: 140px;}
+#calDownOnMobile .btnC{width: 160px;}
+
+#contBtn{margin: 0 auto; width: 150px;}
+#sports, #factory, #teams{width: 148px; height: 25px; line-height: 25px; border: 1px solid #b0a6a7; margin:5px;}
+option{padding-right: 3px;}
+
+#helpIcon{width: 22px; height: 22px; float: left; background: url(/images/toto/helpIcon.png) no-repeat 0 0; display: block; margin-right: 5px; cursor: pointer;}
+#reminder{height: 22px; line-height: 22px; border: 1px solid #afafaf; width: 70px; margin-right: 5px;}
+#reminderWrapper{float: left !important;}
+
+#backBtn{cursor: pointer;}
+
+#shareBtn{width: 150px; margin: 0 auto; margin-top: 25px;}
+
+/*Popup*/
+#calDownPopupBG{ width:100%; height:100%; position:fixed; left:0; top:0; z-index:1; opacity:0.7; filter:alpha(opacity=70); background-color:#000;}
+#calDownPopupTable{ position:fixed; z-index:2; left:50%; top:50%; margin-left:-250px; margin-top:-150px; width:500px; border-collapse:collapse;}
+
+.calDownPopupTL, .calDownPopupTC, .calDownPopupTR, .calDownPopupCL, .calDownPopupCR, .calDownPopupBL, .calDownPopupBC, .calDownPopupBR{ background-position:left top;}
+.calDownPopupTL, .calDownPopupTR, .calDownPopupBL, .calDownPopupBR{ background-repeat:no-repeat;}
+.calDownPopupCL, .calDownPopupCR{ background-repeat:repeat-y;}
+.calDownPopupTC, .calDownPopupBC{ background-repeat:repeat-x;}
+
+.calDownPopupTL, .calDownPopupTR, .calDownPopupBL, .calDownPopupBR, .calDownPopupCR, .calDownPopupCL{ width:18px;}
+.calDownPopupTL, .calDownPopupTR, .calDownPopupBL, .calDownPopupBR, .calDownPopupTC, .calDownPopupBC{ height:18px;}
+
+.calDownPopupCC{ text-align:left; vertical-align:top; background-color:#fff;}
+.calDownPopupTL{ background-image:url(/images/cal/popup/TL.png);}
+.calDownPopupTC{ background-image:url(/images/cal/popup/TC.png);}
+.calDownPopupTR{ background-image:url(/images/cal/popup/TR.png);}
+.calDownPopupCL{ background-image:url(/images/cal/popup/CL.png);}
+.calDownPopupCR{ background-image:url(/images/cal/popup/CR.png);}
+.calDownPopupBL{ background-image:url(/images/cal/popup/BL.png);}
+.calDownPopupBR{ background-image:url(/images/cal/popup/BR.png);}
+.calDownPopupBC{ background-image:url(/images/cal/popup/BC.png);}
+
+#calDownPopupClose{ text-align:center; display:block; cursor:pointer;}
+
+/*mobile popup*/
+#divMobile p{ font-size:12px; padding-bottom:10px; line-height:21px;}
+#divMobile a{ color:#06F;}
+
+/* On Mobile */
+#calDownOnMobile{
+margin: 0 auto;
+width: 175px;
+display: block;
+}

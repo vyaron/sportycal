@@ -1,0 +1,48 @@
+@charset "utf-8";
+/* CSS Document */
+
+
+/* download link */
+#calDownWrapper{ padding-top:40px;}
+
+#calDownLinkWrapper{ padding-top:10px;}
+.calDownLink{ display:block; cursor:pointer; background:url(/images/cal/calDown/greenArrowDown.png) no-repeat 10px center; width:160px; height:110px; float:left;}
+.calDownLinkIcon{ margin-left:30px; width:120px; height:90px; background-position:center centre;}
+.calDownLinkLabel{ font-size:14px; text-align:center; text-decoration:underline;}
+
+#calLink_google .calDownLinkIcon{ background-image:url(/images/cal/calDown/google.png);}
+#calLink_outlook .calDownLinkIcon{ background-image:url(/images/cal/calDown/outlook.png);}
+#calLink_mobile .calDownLinkIcon{ background-image:url(/images/cal/calDown/mobile.png);}
+#calLink_link .calDownLinkIcon{ background-image:url(/images/cal/calDown/link.png);}
+
+/*Popup*/
+#calDownPopupBG{ width:100%; height:100%; position:fixed; left:0; top:0; z-index:1; opacity:0.7; filter:alpha(opacity=70); background-color:#000;}
+#calDownPopupTable{ position:fixed; z-index:2; left:50%; top:50%; margin-left:-250px; margin-top:-150px; width:500px; border-collapse:collapse;}
+
+.calDownPopupTL, .calDownPopupTC, .calDownPopupTR, .calDownPopupCL, .calDownPopupCR, .calDownPopupBL, .calDownPopupBC, .calDownPopupBR{ background-position:left top;}
+.calDownPopupTL, .calDownPopupTR, .calDownPopupBL, .calDownPopupBR{ background-repeat:no-repeat;}
+.calDownPopupCL, .calDownPopupCR{ background-repeat:repeat-y;}
+.calDownPopupTC, .calDownPopupBC{ background-repeat:repeat-x;}
+
+.calDownPopupTL, .calDownPopupTR, .calDownPopupBL, .calDownPopupBR, .calDownPopupCR, .calDownPopupCL{ width:18px;}
+.calDownPopupTL, .calDownPopupTR, .calDownPopupBL, .calDownPopupBR, .calDownPopupTC, .calDownPopupBC{ height:18px;}
+
+.calDownPopupCC{ text-align:left; vertical-align:top; background-color:#fff;}
+.calDownPopupTL{ background-image:url(/images/cal/popup/TL.png);}
+.calDownPopupTC{ background-image:url(/images/cal/popup/TC.png);}
+.calDownPopupTR{ background-image:url(/images/cal/popup/TR.png);}
+.calDownPopupCL{ background-image:url(/images/cal/popup/CL.png);}
+.calDownPopupCR{ background-image:url(/images/cal/popup/CR.png);}
+.calDownPopupBL{ background-image:url(/images/cal/popup/BL.png);}
+.calDownPopupBR{ background-image:url(/images/cal/popup/BR.png);}
+.calDownPopupBC{ background-image:url(/images/cal/popup/BC.png);}
+
+#calDownPopupClose{ text-align:center; display:block; cursor:pointer;}
+
+/*mobile popup*/
+#divMobile p{ font-size:12px; padding-bottom:10px; line-height:21px;}
+#divMobile a{ color:#06F;}
+
+/* Reminder */
+#reminderWrapper{ float:left; padding-left:15px;}
+#addReminderLabel{font-size:12px; font-weight:bold; padding-right:5px;}

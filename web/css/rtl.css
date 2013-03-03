@@ -1,0 +1,100 @@
+body{direction:rtl;}
+
+#headerLeft, #logo{float: right;}
+#topNav{float: left;}
+
+#sbLeftSmall, #sbMiddleSmall, #sbRightSmall{float: right;}
+#sbLeftSmall{background-image:url('../images/layout/searchSmall/rightSearch.png');}
+#sbRightSmall{background-image:url('../images/layout/searchSmall/leftSearch.png');}
+
+
+#fbLogin{ float:right;}
+#topNav ul{text-align: left;}
+#topNav li { border-left: 1px solid black; border-right:none;}
+
+#txtSearch, #txtSearchSmall{border-left:1px solid #000; border-right:none;}
+#sbOptions{ text-align:right; left:auto; right:10px;}
+
+#divCtgNav{ text-align:right;}
+.navSep{ padding-right:0; padding-left:20px; background:url(/images/layout/navSepRtl.gif) left center no-repeat;}
+
+.tdCtgSub{text-align:right;}
+
+.trCal {text-align: right;}
+.tdCalLeft{background-image: url("../images/layout/rightCal.gif"); width: 24px; /*padding:0 0 0 10px; border-right:none; border-left:1px solid #000;*/}
+.tdCalRight{background-image: url("../images/layout/leftCal.gif"); width: 19px;}
+.divCalLeft{padding:0 0 0 10px; border-right:none; border-left:1px solid #000;}
+.tdCalInfo{ padding-left:0; padding-right:4px;}
+.spnCalName, .imgCal{ float:right;}
+.spnCalName{padding-left: 0; margin-right:8px;}
+
+.imgHelp{ float:left;}
+
+.calBox{ text-align:right;}
+.calBoxTR{background-image: url("/images/cal/box/TL.png");}
+.calBoxTL{background-image: url("/images/cal/box/TR.png");}
+.calBoxCR{background-image: url("/images/cal/box/CL.png"); background-position:left top;}
+.calBoxCL{background-image: url("/images/cal/box/CR.png"); background-position:right top;}
+.calBoxBR{background-image: url("/images/cal/box/BL.png");}
+.calBoxBL{background-image: url("/images/cal/box/BR.png");}
+
+.calDownLink{ float:right;}
+
+.helpInner, .calDownPopupCC{ text-align:right;}
+
+.calDownPopupTR{background-image: url("/images/cal/popup/TL.png");}
+.calDownPopupTL{background-image: url("/images/cal/popup/TR.png");}
+.calDownPopupCR{background-image: url("/images/cal/popup/CL.png");}
+.calDownPopupCL{background-image: url("/images/cal/popup/CR.png");}
+.calDownPopupBR{background-image: url("/images/cal/popup/BL.png");}
+.calDownPopupBL{background-image: url("/images/cal/popup/BR.png");}
+
+.tdBoxTopRight{background-image: url("../images/layout/box/top-left.png");}
+.tdBoxTopLeft{background-image: url("../images/layout/box/top-right.png");}
+.tdBoxLeft{background-image: url("../images/layout/box/right.png");}
+.tdBoxRight{background-image: url("../images/layout/box/left.png");}
+.tdBoxBottomLeft{background-image: url("../images/layout/box/bottom-right.png");}
+.tdBoxBottomRight{background-image: url("../images/layout/box/bottom-left.png");}
+
+.rbstTable, .rbstTable td{text-align: right;}
+.rbstTL{ background-image:url(/images/layout/solidBox/TR.png);}
+.rbstTR{ background-image:url(/images/layout/solidBox/TL.png);}
+.rbstCL{ background-image:url(/images/layout/solidBox/CR.png);}
+.rbstCR{ background-image:url(/images/layout/solidBox/CL.png);}
+.rbstBL{ background-image:url(/images/layout/solidBox/BR.png);}
+.rbstBR{ background-image:url(/images/layout/solidBox/BL.png);}
+
+.ctgLogo{float:right;}
+.boxThankYouTitle{text-align:right;}
+
+#feedbackFormWrapper{ text-align:right;}
+#feedbackTitle{ text-align:right;}
+#ratingP{float:right;}
+.smileIcon{float:left;}
+
+#changeLang{ padding-left:5px; padding-right:28px;}
+#changeLangFlag{left:auto; right:7px;}
+
+#calDownTitle{float: right;}
+#reminderWrapper{float: right; padding-left: auto; padding-right: 15px;}
+
+/*search*/
+#searchForm{float: left; width: 200px;}
+#searchBox{float: left;}
+
+.imgSearchGuy{right:auto; left:120px;}
+.tdBox{text-align:right;}
+
+.tdEventName div {float:right}
+
+#sbMoreOptions{margin-left: auto; margin-right: -125px;}
+
+/* change lang */
+#changeLangWrapper{float: left;}
+
+/*event preview*/
+.mobilePopupContent{left:auto; right:42px;}
+
+/*download widget*/
+#downloadWidget .rbstCC label{padding-right:0; padding-left: 10px;}
+#doItBtn{float: left;}

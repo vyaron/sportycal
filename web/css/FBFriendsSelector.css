@@ -1,0 +1,30 @@
+.fbFriendLoading{ background:url(/images/icons/fbLoading.gif) no-repeat center center;}
+
+.fbFriendLoading .fbFriendWrapper, .fbFriendLoading .fbFriendFilters, .fbFriendLoading .fbFriendSelP{ display:none;}
+
+.fbFriendWrapper{ border:1px solid #333333; text-align:left !important; font-family: "lucida grande",tahoma,verdana,arial,sans-serif; overflow:auto;}
+
+/* filter */
+.fbFriendFilters{ padding:3px 0;}
+.fbFriendSearch{ display:block; float:left; font-size:12px;}
+.fbFriendSearch{ width:210px; border:1px solid #ccc; padding:3px;}
+.fbFriendSearchDef{ color:#999;}
+
+.fbFriendCheckAllWrapper{ float:left; padding-top:4px; padding-left:10px;}
+
+
+/* Friend */
+.fbFriend{padding:3px 6px; /*border-top:1px solid #E9E9E9;*/ background-color:#fff; width:220px; float:left; /*cursor:pointer;*/}
+/*.fbFriend:hover{ background-color:#fee5d6;}
+.fbFriendSel{ background-color:#FEDAC5;}*/
+
+.fbFriendContent, .fbFriendImg, .fbFriendCheckbox{ float:left;}
+.fbFriendCheckbox{ display:block; margin-top:18px; margin-right:5px;}
+.fbFriendImg{ width:50px; height:50px; background-position:left top; background-repeat:no-repeat;}
+.fbFriendContent{ padding-top:10px; padding-left:10px;}
+
+.fbFriendName{ color: #3B5998; font-size:11px; font-weight:bold;}
+.fbFriendDate{ color:#808080; font-size:11px; font-weight:normal;}
+
+/* misc */
+.fbFriendSelP{font-size:12px; font-style:italic; text-align:left; padding-top:3px;}
