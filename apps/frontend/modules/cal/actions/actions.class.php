@@ -213,6 +213,11 @@ class calActions extends sfActions
     //Utils::pp(json_encode($mobilePopupItems));
     $this->mobilePopupItems = json_encode($mobilePopupItems);
     $this->htmlPreviews = json_encode($htmlPreviews);
+    
+    $isMasterOf = UserUtils::userISMasterOf($this->category);
+    if ($isMasterOf) {
+    	$this->ctgLinks = $this->category->getLinks();
+    }
   }
 
 

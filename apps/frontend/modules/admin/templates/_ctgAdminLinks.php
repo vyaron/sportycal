@@ -12,10 +12,10 @@
 		<?php endif ?>
     	<a href="<?php echo url_for('cal/new?ctgId='.$category->getId()) ?>">Create new Calendar</a>
     )
-    <?php if (false) :?>
+
 	    &nbsp;|&nbsp;
 	    <a href="javascript:toggleIt('ctgLinks', true)">Show Links [<?php echo count($ctgLinks)?>]</a>)
-    <?php endif ?>
+
         
     <div id="ctgLinks" style="display:none;">
         <table cellspacing="15px">

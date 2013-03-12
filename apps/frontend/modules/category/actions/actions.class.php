@@ -65,7 +65,7 @@ class categoryActions extends sfActions
 
     
     // for now, we dont use the ctg links
-    if (false && $isMasterOf) {
+    if ($isMasterOf) {
       //$this->ctgLinks = CategoryLinkTable::getByCategoryIds(array($ctgId));
 		$this->ctgLinks = $this->category->getLinks();      
     }

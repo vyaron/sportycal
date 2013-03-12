@@ -25,7 +25,7 @@ class Cal extends BaseCal
 			$desc = $partner->getDesriptionForCal($this->getId());
 		} else {
 			$desc = $this->getDescription();
-			//$desc .= $this->getLinksAsHtml($userCal);
+			$desc .= $this->getLinksAsHtml($userCal);
 		}
 	
 		if (!$partner) {
