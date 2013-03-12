@@ -10,10 +10,6 @@
 	}
 ?>
 
-<?php if (count($events) && !UserUtils::getUserTZ()):?>
-	<script type="text/javascript" src="/js/getUserTZ.js"></script>
-<?php endif;?>
-
 <div style="text-align:left;clear:both">
     
     

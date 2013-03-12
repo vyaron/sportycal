@@ -38,6 +38,10 @@
 		<link href="/css/mobile/mobile.css" rel="stylesheet" type="text/css" media="all" />
 		
 		<script type="text/javascript" src="/js/mootools-core.js"></script>
+		
+		<?php if (! UserUtils::getUserTZ()): //Get User Timezone by JS?>
+		<script type="text/javascript" src="/js/getUserTZ.js"></script>
+		<?php endif;?>
 	</head>
 	<body>
 	    <?php

@@ -12,10 +12,6 @@
 	if (empty($ctgLinks)) $ctgLinks = array();
 ?>
 
-<?php if (! UserUtils::getUserTZ()):?>
-	<script type="text/javascript" src="/js/getUserTZ.js"></script>
-<?php endif;?>
-
 <div id="divCtgNav">
     <span class="ctgNav"><?php echo $category->getCategoryPathAsNavigation(!$cal->isBirthdayCal(), ESC_RAW) ?></span>
     <?php echo image_tag($category->getImagePathSub(), '" class="imgCtgSub" alt="'.$cal->getNameFixed($category).'"')?>

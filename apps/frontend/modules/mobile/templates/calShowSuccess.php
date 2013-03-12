@@ -11,10 +11,6 @@
   sprintf('%s,%s', $cal->getKeywords(), $category->getCategoryPathAsKeywords()))
 ?>
 
-<?php if (! UserUtils::getUserTZ()):?>
-	<script type="text/javascript" src="/js/getUserTZ.js"></script>
-<?php endif;?>
-
 <!-- header -->
 <?php
 	if (!isset($backRow)) $backRow = null;

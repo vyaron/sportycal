@@ -15,9 +15,6 @@
 		$resCount = 0;
 	}
 ?>
-<?php if (count($events) && !UserUtils::getUserTZ()):?>
-	<script type="text/javascript" src="/js/getUserTZ.js"></script>
-<?php endif;?>
 
 <?php include_partial('mobile/search',array('txtSearch' => $txtSearch, 'fromDate' => $fromDate, 'toDate' => $toDate)) ?>
 

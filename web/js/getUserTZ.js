@@ -18,7 +18,7 @@ window.addEvent('domready', function(){
 		url : '/main/saveTZ',
 		onSuccess : function(res){
 			var res = JSON.decode(res);
-			if (res.status){
+			if (res.status && ((window.location.pathname.indexOf('/cal/') >= 0) || (window.location.pathname.indexOf('/search') >= 0))){
 				location.reload(true);
 			}
 		}
