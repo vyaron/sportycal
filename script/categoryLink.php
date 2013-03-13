@@ -9,7 +9,6 @@ sfContext::createInstance($configuration);
 define('WEB_ROOT', dirname(__FILE__));
 
 
-
 function add($filename){
 	//Utils::pa($filename);
 	$xml = simplexml_load_file($filename);
@@ -25,6 +24,10 @@ function add($filename){
 				
 				if (empty($txt) || empty($url)) continue;
 				foreach ($ctgs as $ctg) {
+					//Delete old ctgLinks
+					$oldCtgLink = CategoryLinkTable::getBy($ctg->getId(), $url);
+					$oldCtgLink->delete();
+					
 					$ctgLink = new CategoryLink();
 					$ctgLink->setCategory($ctg);
 					$ctgLink->setTxt($txt);
@@ -32,6 +35,7 @@ function add($filename){
 					$ctgLink->setTargetUrl($targetUrl);
 					$ctgLink->setType("website");
 					$ctgLink->save();
+					
 				}
 			}
 		}

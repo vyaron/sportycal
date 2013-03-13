@@ -20,7 +20,15 @@ class CategoryLinkTable extends Doctrine_Table
         return $ctgs;
     }
 
+	public static function getBy($ctgId, $url){
+		$ctgs = Doctrine::getTable('CategoryLink')
+		->createQuery('cl')
+		->where('cl.category_id = ?', $ctgId)
+		->andWhere('cl.url = ?', $url)
+		->execute();
 
+		return $ctgs;
+	}
     
 
 
