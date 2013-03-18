@@ -28,7 +28,7 @@ class Cal extends BaseCal
 			$desc .= $this->getLinksAsHtml($userCal);
 		}
 	
-		if (!$partner) {
+		if (false && !$partner) {
 			// Currentrly - this is for tickets:
 			$globalPartnerDesc = PartnerDesc::getDescForCal($this, $calType);
 			$desc .= $globalPartnerDesc;
@@ -212,7 +212,7 @@ class Cal extends BaseCal
     public function getLinksAsHtml($userCal) {
        	$ctg = $this->getCategory();
     	$links = $ctg->getLinks();
-        $result = '';
+        $result = "\n";
         
         // user cal may be null (backward competabiliy..) so we use also the calId
         $userCalId = 0;
@@ -221,8 +221,8 @@ class Cal extends BaseCal
         }
         
         foreach ($links as $link) {
-            $result .= "{$link->getTxt()} - " .
-            	$link->getUrlToGive($this->getId(), $userCalId) . "\n";
+            $result .= "{$link->getTxt()} - \n" .
+            	$link->getUrlToGive($this->getId(), $userCalId) . "\n\n";
         }
         return $result;        
     }

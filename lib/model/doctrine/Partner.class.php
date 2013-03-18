@@ -89,11 +89,7 @@ class Partner extends BasePartner
 				}
 			}
 		} else {
-			if ($this->isPokerstars()) {
-				
-			} else if ($this->is888()) {
-				
-			} else if ($this->isRingtonepartner()){
+			if ($this->isRingtonepartner()){
 				$desc .= "Provided to you by http://www.cellsportal.com \n";
 			} else {
 				$desc .= "Provided to you by " . $this->getName() . "\n";

@@ -13,33 +13,40 @@
 class Event extends BaseEvent
 {
 
+	private static $gettingDescForAggregatedCal = null;
+	private static $calDesc;
+	
 	public function getDescriptionForCal($cal, $userCal, $partner, $calType, $intelLabel, $intelValue, $ctg = null) {
 		$isMasterOf = false;
 		if ($ctg) $isMasterOf = UserUtils::userISMasterOf($ctg);
 
 		
-		// TODO: performance - This code should be optimized
-		if ($cal->isAggregated()) $cal = $this->getCal();
+		// Boost Performance (dont do for each event):
+		if (!self::$gettingDescForAggregatedCal ||  $cal->isAggregated()) {
+			self::$gettingDescForAggregatedCal = $cal = $this->getCal();
+		}
 		
 		// This is for the event-preview, as it does not go through the cal/get action 
-		if (!$partner && $cal && $cal->getPartnerId()) {
+		if (!$partner && $cal->getPartnerId()) {
 			$partner =  $cal->getPartner();
 			UserUtils::setPartner($partner);
 		}
 
 		// Support an event-level image (used for birthday-cal img for now) 
-		$eventImgPath 	= $this->getImagePath();
-		$eventImgLinkTo = $this->getEventImgLinkTo();
+		//$eventImgPath 	= $this->getImagePath();
+		//$eventImgLinkTo = $this->getEventImgLinkTo();
 		
 		$desc = "";
 
-    //add TV channels
+    	/*
+    	// add TV channels
 		if ($cal->isUnderCategoryId(775)){
 			$country = UserUtils::getCountryByIp();
 			$tvChannels = TVBrodcasting::getEventDesc($country, Cal::isHtmlSupported($calType));
 			$desc .= $tvChannels;
 		}
-
+		*/
+		
 		
 		if ($partner){
 			$desc .= @$partner->getDescTopPart(Cal::isHtmlSupported($calType), $this, $cal, ESC_RAW);
@@ -57,7 +64,6 @@ class Event extends BaseEvent
 				$eventDesc = str_replace(HebrewUtils::TOTO_SEND_TOFES, HebrewUtils::TOTO_SEND_TOFES_HTML, $eventDesc);
 			}
 			*/
-			
 			$eventDesc = Utils::nl2brReplace($eventDesc);
 			
 		} else {
@@ -70,21 +76,10 @@ class Event extends BaseEvent
 		$eventDesc = addcslashes($eventDesc, "\n\r");
 		$desc .= $eventDesc;
 
-		//Facebook Share
-		if (!$partner && !$cal->isBirthdayCal()) {
-			$fbShareUrl = GeneralUtils::DOMAIN . '/l/facebook/e/' . $this->getId();
-			$fbShareTxt = 'Share on Facebook';
-			if (Cal::isHtmlSupported($calType)) {
-				$desc .= '<br/><br/><a href="' . $fbShareUrl . '" target="_blank">' . $fbShareTxt . '</a>';
-			} else {
-				$desc .= "\n\n" . $fbShareTxt . ': ' . $fbShareUrl;
-			}
-		}
+		if (!isset(self::$calDesc)) self::$calDesc = @$cal->getDescriptionForCal($userCal, $partner, $calType, ESC_RAW);
+		if (self::$calDesc) $desc .= "\n" . self::$calDesc;
 		
 		
-		$calDesc = @$cal->getDescriptionForCal($userCal, $partner, $calType, ESC_RAW);
-		if ($calDesc) $desc .= "\n" . $calDesc;
-
 		if (Cal::isHtmlSupported($calType)) {
 			
 			// Use event image if exists
@@ -118,9 +113,20 @@ class Event extends BaseEvent
 			}
 		}
 
+		//Facebook Share
+		if (!$partner && !$cal->isBirthdayCal()) {
+			$fbShareUrl = GeneralUtils::DOMAIN . '/l/facebook/e/' . $this->getId();
+			$fbShareTxt = 'Share on Facebook';
+			if (Cal::isHtmlSupported($calType)) {
+				$desc .= '<br/><br/><a href="' . $fbShareUrl . '" target="_blank">' . $fbShareTxt . '</a>';
+			} else {
+				$desc .= "\n\n" . $fbShareTxt . ': ' . $fbShareUrl;
+			}
+		}
 		
 
-		if (!$partner) {
+		// NO BIRTHDAY CAL FOR NOW (18/3)
+		if (false && !$partner) {
 			// Add Birthday Cal promo to event description
 			$imgLinkTo = "http://sportycal.com/l/birthday";
 			if (Cal::isHtmlSupported($calType)) {
