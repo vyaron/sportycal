@@ -5,17 +5,20 @@
 
 <?php if (true || $user && $user->isMaster()):?>
 <!-- Banners -->
-<a id="getFriendsBirthdayCalendar" class="banner blueGradiantBg" href="<?php echo url_for('/main/friendsBirthday/src/mobile')?>"><span>Get Friends Birthday Calendar</span></a>	    
+	    
 <?php endif;?>
 
 
+
 <?php
+/*
 	$addClass = 'itemRowBg3';
 	$h2 = 'London 2012';
 	$href = '/category/2280/london-2012-calendars';
 	$iconClass = 'ctgIcon_2280';
 	$infoIconClass = 'itemArrowRight';
 	include_partial('mobile/itemRow', array('addClass' => $addClass, 'href' => $href, 'h2' => $h2, 'h3' => '&nbsp;', 'iconClass' => $iconClass, 'infoIconClass' => $infoIconClass));
+	*/
 ?>
 
 
@@ -30,4 +33,4 @@
 	</div>
 </div>
 <?php endif ?>
-
+<a id="getFriendsBirthdayCalendar" class="banner blueGradiantBg" href="<?php echo url_for('/main/friendsBirthday/src/mobile')?>"><span>Get Friends Birthday Calendar</span></a>
