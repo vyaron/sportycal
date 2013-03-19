@@ -16,6 +16,7 @@ class CategoryLinkTable extends Doctrine_Table
         $ctgs = Doctrine::getTable('CategoryLink')
                     ->createQuery('cl')
                     ->whereIn($w, $ctgIds)
+                    ->orderBy('id desc')
                     ->execute();
         return $ctgs;
     }
@@ -25,6 +26,7 @@ class CategoryLinkTable extends Doctrine_Table
 		->createQuery('cl')
 		->where('cl.category_id = ?', $ctgId)
 		->andWhere('cl.url = ?', $url)
+		->orderBy('id desc')
 		->execute();
 
 		return $ctgs;
