@@ -602,6 +602,78 @@ class calActions extends sfActions
   	echo json_encode($res);
   	return sfView::NONE;
   }
+
+  // Used to provide a simple link to external sites to subscribe to a calendar 
+  //http://sportYcal.local/frontend_dev.php/cal/sub/id/134/ct/google/l/cId:9191/ref/winner-5712/sportycal.ics
+  //http://sportYcal.local/frontend_dev.php/cal/sub/id/134/ct/outlook/l/cId:9191/ref/winner-5712/sportycal.ics
+  //http://sportYcal.local/frontend_dev.php/cal/sub/id/134/ct/any/l/cId:9191/ref/winner-5712/sportycal.ics
+  
+  public function executeSub(sfWebRequest $request)   {
+  	  
+  	$partner 		= SportyCalAPI::getValidPartner($request);
+
+  	$calId      	= $request->getParameter('id');
+  	$ctgId      	= $request->getParameter('ctgId');
+  	$calType       	= $request->getParameter('ct');
+  	
+  	$intelLabel     = $request->getParameter('l');
+  	$intelValue     = $request->getParameter('v');
+  
+  	// currently no need for reminder:
+  	$reminder = null;
+  	
+  	$this->forward404Unless($calId || $ctgId);
+  
+  
+  	$url = null;
+  	
+  	if ($calId) {
+  		$cal = Doctrine::getTable('Cal')->find($calId);
+  		$this->forward404Unless($cal);
+  		$url = $cal->getIcalUrl($calType);
+  	} elseif ($ctgId) {
+  		$ctg = Doctrine::getTable('Category')->find($ctgId);
+  		$this->forward404Unless($ctg);
+  		$cal = Cal::getAggregatedCal($ctg, array(), false);
+  		// Dirty trick to make this Cal an aggregated cal
+  		//$cal->addThoseEvents(array());
+  		$url = $cal->getIcalUrl($calType);
+   	}
+  
+  	
+  	$ip 			= Utils::getClientIP();
+  	$dateNow    	= date("Y-m-d g:i");
+  	 
+  	
+  	// Save this UserCal
+  	$userCal = new UserCal();
+  	
+  	if ($calId) 			$userCal->setCalId($calId);
+  	if ($ctgId) 			$userCal->setCategoryId($ctgId);
+  	if ($partner)			$userCal->setPartnerId($partner->getId());
+  	if ($intelLabel)		$userCal->setLabel($intelLabel);
+  	if ($reminder) 			$userCal->setReminder($reminder);
+  	
+  	$userCal->setUserId(UserUtils::getLoggedInId());
+  	$userCal->setCalType($calType);
+  	$userCal->setTakenAt($dateNow);
+  	$userCal->setUpdatedAt($dateNow);
+  	$userCal->setIpAddress($ip);
+  	$userCal->save();
+  	$userCalId = $userCal->getId();
+  	
+  	$url = str_replace("USERCAL", $userCalId, $url);
+  	
+  	if ($calType == Cal::TYPE_ANY) {
+		echo "Use this Url:  $url ";
+  		return sfView::NONE;  		
+  	} else {
+  		$this->redirect($url);
+  	}
+  	
+  }
+
+
 }
 
  
