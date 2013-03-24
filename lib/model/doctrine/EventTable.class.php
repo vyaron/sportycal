@@ -38,7 +38,9 @@ class EventTable extends Doctrine_Table
     
     public static function getBy($txtSearch=null, $underCtgIds = null, $fromDate=null, $toDate=null, $nameLike=null, $limit=null, $locId=null, $includeAway=false, $calId=null){    	
     	$q = Doctrine::getTable('Event')->createQuery('e');
+    	//$q->select('e, es');
     	$q->innerJoin("e.Cal cal");
+    	$q->leftJoin("e.EventStat es");
     	$q->innerJoin("cal.Category c");
 
     	if ($locId)   	 {
@@ -77,21 +79,26 @@ class EventTable extends Doctrine_Table
     	else $q->orderBy('e.starts_at desc, e.name');
     	
     	if ($limit) $q->limit($limit);
+    	else $q->limit(600);
     	
     	//if (!$locId) die($q->getSqlQuery());      
+    	
     	/*
-    	if (!$fromDate){
+    	if (true || !$fromDate){
 	    	echo $q->getSqlQuery(), "<br/>";
 			print_r($q->getParams());
 			die();
-    	}
-		*/
+    	}*/
+		
     	
     	$objs = $q->execute();
     	
+    	
+    	
     	// The location is not enough to remove duplicates, as sometimes there is an address there and not Home/Away
+    	//$objs = $objs->getData();
     	$objs = self::removeDuplicates($objs);
-
+    	
 		return $objs;
     }
     private static function removeDuplicates($sortedEvents){
