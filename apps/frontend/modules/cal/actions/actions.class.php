@@ -113,6 +113,11 @@ class calActions extends sfActions
     
   }
 
+  /*
+  public function executeTest(sfWebRequest $request) {
+  	$this->events = EventTable::getBy(null, array(211), date('Y-m-d 00:00:00'), null, null, null, null, true);
+  }*/
+  
   public function executeShow(sfWebRequest $request)
   {
   	$this->fromFbApp = UserUtils::getFromFbApp();

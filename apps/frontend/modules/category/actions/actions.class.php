@@ -95,7 +95,7 @@ class categoryActions extends sfActions
     	&& ($this->subCtgsCount != 1 || $isMasterOf) 
     	&& ($ctgId == 2100 || $this->category->getParentId())) {
 
- 		$aggCal = Cal::getAggregatedCal($this->category, $this->cals, true);
+ 		$aggCal = Cal::getAggregatedCal($this->category, $this->cals, false);
 		
  		//$haveFutureEvents = $aggCal->haveFutureEvents();
  		//if ($isMasterOf || $haveFutureEvents){
