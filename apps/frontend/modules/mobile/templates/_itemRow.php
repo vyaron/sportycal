@@ -17,7 +17,7 @@ if (!isset($calLink)) 		$calLink = "calLink_mobile";
 ?>
 
 <?php if ($calDown && Utils::clientIsAndroid()):?>
-	<p class="androidDownloadMsg">Google might ask you if to use the mobile version. If so - Click CANCEL</p>
+	<p class="androidDownloadMsg">Google might ask you if to use the DESKTOP version. If so - Click OK</p>
 <?php endif;?>
 
 <?php if ($href):?>
