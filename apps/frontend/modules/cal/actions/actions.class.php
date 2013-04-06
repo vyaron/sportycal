@@ -608,6 +608,12 @@ class calActions extends sfActions
   //http://sportYcal.local/frontend_dev.php/cal/sub/id/134/ct/outlook/l/cId:9191/ref/winner-5712/sportycal.ics
   //http://sportYcal.local/frontend_dev.php/cal/sub/id/134/ct/any/l/cId:9191/ref/winner-5712/sportycal.ics
   
+  // http://sportYcal.com/cal/sub/id/134/ct/google/l/cId:9191/ref/FTBpro/cal.ics
+  // http://sportYcal.com/cal/sub/id/134/ct/outlook/l/cId:9191/ref/FTBpro/cal.ics
+  // http://sportYcal.com/cal/sub/id/134/ct/any/l/cId:9191/ref/FTBpro/cal.ics
+  
+  
+  
   public function executeSub(sfWebRequest $request)   {
   	  
   	$partner 		= SportyCalAPI::getValidPartner($request);

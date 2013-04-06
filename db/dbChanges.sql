@@ -1,3 +1,24 @@
+-- ---------------------------- CAMPUS TLV ----------------------------------
+
+INSERT into `partner` values (null, 'CampusTLV', 'CampusTLV', null);
+
+insert into user
+  (email, pass, full_name, created_at, updated_at, type, gender)
+values
+  ('michal@campustelaviv.com', 'CampusTLV', 'Michal', '2013-04-05', '2013-04-05', 'PARTNER', 'F');
+INSERT into `partner_user` values (null, 1982, 705);
+
+
+insert into category
+  (id, name, image_path, approved_at, parent_id, partner_id, is_public)
+values
+  (2003, 'Campus TLV', '/images/partner/campusTLV.jpg', '2013-04-05', null, 1982, false);
+
+  -- ------------------------- END CAMPUS TLV ----------------------------------
+
+
+INSERT into `partner` values (null, 'FTBpro', 'FTBpro', null);
+
 INSERT INTO `evento`.`short_url` (`partner_id`, `url`, `hash`, `comment`) VALUES (10, 'http://www.888poker.com/poker-promotions/super-xl.htm', '888SuperXL', 'SuperXL Nov 2012');
 
 -- remove cal, events - winner football
