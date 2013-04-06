@@ -34,7 +34,7 @@
     <h2>Location: <?php echo $cal->getLocation(); ?> </h2>
 <?php endif?>
 
-<?php if ($cal->getDescription()) : ?> 
+<?php if (false && $cal->getDescription()) : ?> 
     <h2><?php echo $cal->getDescription(); ?> </h2>
 <?php endif?>
 
