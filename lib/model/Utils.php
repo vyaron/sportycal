@@ -989,7 +989,7 @@ class Utils {
   }
   
 	public static function nl2brReplace($string) {
-		$string = str_replace(array("\r\n", "\r", "\n"), "<br />", $string);
+		$string = str_replace(array("\r\n", "\r", "\n", '\r\n', '\r','\n'), "<br />", $string);
 		return $string;  
 	}
 }
