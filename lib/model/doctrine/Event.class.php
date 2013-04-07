@@ -73,7 +73,7 @@ class Event extends BaseEvent
 		
 		// These are new-lines entered in the UI
 		//$eventDesc = str_replace("\n", "\\n", $eventDesc);
-		$eventDesc = addcslashes($eventDesc, "\n\r");
+		$eventDesc = addcslashes($eventDesc, "\n");
 		$desc .= $eventDesc;
 
 		if (!isset(self::$calDesc)) self::$calDesc = @$cal->getDescriptionForCal($userCal, $partner, $calType, ESC_RAW);
