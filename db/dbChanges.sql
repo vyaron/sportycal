@@ -1,3 +1,4 @@
+UPDATE `evento`.`cal` SET `name` = 'Campus Tel Aviv' WHERE `cal`.`id` =8699;
 -- ---------------------------- CAMPUS TLV ----------------------------------
 
 INSERT into `partner` values (null, 'CampusTLV', 'CampusTLV', null);
