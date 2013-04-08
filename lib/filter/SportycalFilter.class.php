@@ -31,6 +31,9 @@ class SportycalFilter extends sfFilter {
     	$this->handleLanguage();
     	
   		sfContext::getInstance()->getConfiguration()->loadHelpers(array('I18N', 'Date'));
+
+  		$hasLayout = (sfConfig::get('has_layout', null) == 'off') ? false : true;
+  		if (strpos($_SERVER['HTTP_HOST'], 'promotecal.com') && $hasLayout) $this->getContext()->getActionStack()->getFirstEntry()->getActionInstance()->setLayout('neverMiss');
   		
         //execute the next filter in the chain
         $filterChain->execute();

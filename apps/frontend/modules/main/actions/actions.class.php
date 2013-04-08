@@ -25,6 +25,14 @@ class mainActions extends sfActions
     $this->redirect('main/index');
   }
   */
+ 
+ public function redirectByHost($host){
+ 	if (strpos($host, 'promotecal.com')){
+ 		if (UserUtils::getLoggedIn()) $this->redirect('/category/2003/campus-tlv-calendars');
+ 		else $this->redirect('/partner/login');
+ 	}
+ }
+ 
 	/**
   * Executes index action
   *
@@ -32,6 +40,7 @@ class mainActions extends sfActions
   */
   public function executeIndex(sfWebRequest $request)
   {
+  	$this->redirectByHost($request->getHost());
   	
 	$this->fromFbApp = UserUtils::getFromFbApp();
   	if ($this->fromFbApp) $this->setLayout("fbapp");
