@@ -1,7 +1,5 @@
 getIcs:
   enabled:    true
-show:
-  enabled:    true
 
 all:
   with_layout: false
