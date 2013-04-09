@@ -8,7 +8,7 @@ class conditionalCacheFilter extends sfFilter
 		//{
 		$viewCacheManager = $context->getViewCacheManager();
 		foreach ($this->getParameter('pages') as $page){
-			if ($viewCacheManager) $viewCacheManager->addCache($page['module'], $page['action'], array('lifeTime' => 36000));
+			if ($viewCacheManager) $viewCacheManager->addCache($page['module'], $page['action'], array('lifeTime' => 3600));
 		}
 		//}
 
