@@ -13,11 +13,11 @@ security:  ~
 sportycalFilter:
   class: SportycalFilter
 
-conditionalCache:
-  class: conditionalCacheFilter
-  param:
-    pages:
-      - { module: cal, action: getIcs }
+#conditionalCache:
+#  class: conditionalCacheFilter
+#  param:
+#    pages:
+#      - { module: cal, action: getIcs }
 
 cache:     ~
 execution: ~

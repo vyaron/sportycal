@@ -1,0 +1,8 @@
+getIcs:
+  enabled:    true
+show:
+  enabled:    true
+
+all:
+  with_layout: false
+  lifetime:    3600
