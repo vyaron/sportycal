@@ -6,8 +6,9 @@ class conditionalCacheFilter extends sfFilter
 		$context = $this->getContext();
 		//if (!$context->getUser()->isAuthenticated())
 		//{
+		$viewCacheManager = $context->getViewCacheManager();
 		foreach ($this->getParameter('pages') as $page){
-			$context->getViewCacheManager()->addCache($page['module'], $page['action'], array('lifeTime' => 36000));
+			if ($viewCacheManager) $viewCacheManager->addCache($page['module'], $page['action'], array('lifeTime' => 36000));
 		}
 		//}
 

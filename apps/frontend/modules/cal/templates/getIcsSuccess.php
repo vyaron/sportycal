@@ -1,7 +1,7 @@
 <?php
 //////header('Content-Disposition: attachment; filename="sportYcal_'.substr(str_replace(' ', '_', $cal->getName()),0,20).'.ics"');
-header('Content-type: text/calendar');
-header('Content-Disposition: attachment; filename="sportYcal_'.str_replace(' ', '_', $cal->getName()).'.ics"');
+//header('Content-type: text/calendar');
+//header('Content-Disposition: attachment; filename="sportYcal_'.str_replace(' ', '_', $cal->getName()).'.ics"');
 ?>
 <?php 
 $count = 1;
