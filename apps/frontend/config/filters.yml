@@ -1,13 +1,23 @@
 # You can find more information about this file on the symfony website:
 # http://www.symfony-project.org/reference/1_4/en/12-Filters
 
+rendering:
+  class: renderingFilter
+
 rendering: ~
+
 security:  ~
 
 # insert your own filters here
 
 sportycalFilter:
   class: SportycalFilter
+
+conditionalCache:
+  class: conditionalCacheFilter
+  param:
+    pages:
+      - { module: cal, action: getIcs }
 
 cache:     ~
 execution: ~

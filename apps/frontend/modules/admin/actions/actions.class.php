@@ -653,11 +653,15 @@ class adminActions extends sfActions
 		$this->sportWiser->updateEventStat();
 	}
 	
+	/**
+	 * 
+	 * @param sfWebRequest $request
+	 */
 	public function executeImportCal(sfWebRequest $request)  {
 		//TODO: remove hardcoded user
 		//Only for michal@campustelaviv.com
 		$user = UserUtils::getLoggedIn();
-		if ($user->getId() != 705) $this->redirect("main/index");
+		if (!$user || $user->getId() != 705) $this->redirect("main/index");
 		
 		$this->partnerRestrictAccess();
 		$icalUrl 	= $request->getParameter('url');
@@ -667,6 +671,8 @@ class adminActions extends sfActions
 		$ctgId = 2003;
 		
 		$ical = new Ical($icalUrl);
+
+		
 		$cal = CalTable::getCals($ctgId, null, array($ical->cal['VCALENDAR']['X-WR-CALNAME']))->getFirst();
 		if (!$cal) {
 			$cal = new Cal();
@@ -682,9 +688,9 @@ class adminActions extends sfActions
 		$cal->setDescription($ical->cal['VCALENDAR']['X-WR-CALDESC']);
 		$cal->save();
 		
-		echo '<pre>';
-		echo 'Update/Create cal ' . $cal->getName() . "\n";
-		echo '-----------------------------------------------------------------------'. "\n";
+		//echo '<pre>';
+		//echo 'Update/Create cal ' . $cal->getName() . "\n";
+		//echo '-----------------------------------------------------------------------'. "\n";
 		foreach ($ical->cal['VEVENT'] as $icalEvent){
 			$event = new Event();
 			$event->setCalId($cal->getId());
@@ -696,10 +702,11 @@ class adminActions extends sfActions
 			$event->setEndsAt(date('Y-m-d H:i', Ical::ical_date_to_unix_timestamp($icalEvent['DTEND'])));
 			$event->save();
 			
-			echo 'Update/Create event ' . $event->getName() . "\n";
+			//echo 'Update/Create event ' . $event->getName() . "\n";
 		}
-		echo '</pre>';
-		return sfView::NONE;  
+		//echo '</pre>';
+		
+		$this->redirect("/cal/" . $cal->getId());
 	}
 }
 

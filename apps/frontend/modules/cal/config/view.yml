@@ -1,5 +1,7 @@
 getSuccess:
   has_layout: false
+getIcsSuccess:
+  has_layout: false
 getCSVSuccess:
   has_layout: false
  

@@ -67,7 +67,9 @@ class UserUtils {
         return false;
     }
     
- 
+ 	/**
+ 	 * @return User
+ 	 */
     public static function getLoggedIn() {
         return self::getFromSession(self::KEY_USER);
     }

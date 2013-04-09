@@ -219,6 +219,7 @@ class calActions extends sfActions
     $this->mobilePopupItems = json_encode($mobilePopupItems);
     $this->htmlPreviews = json_encode($htmlPreviews);
     
+    
     $isMasterOf = UserUtils::userISMasterOf($this->category);
     if ($isMasterOf) {
     	$this->ctgLinks = $this->category->getLinks();
@@ -305,31 +306,49 @@ class calActions extends sfActions
 
   }
 
-  public function executeGet(sfWebRequest $request)
-  {
+  public function executeGetIcs(sfWebRequest $request){
+  	$calId      	= $request->getParameter('id');
+  	$ctgId      	= $request->getParameter('ctgId');
+  	$calType       	= $request->getParameter('ct');
   	
-    $calId      	= $request->getParameter('id');
-    //$calType    	= $request->getParameter('calType');
+  	//http://sportYcal.local/frontend_dev.php/cal/get/id/134/ct/google/l/cId:9191sportycal.ics
+  	$intelLabel       	= $request->getParameter('l');
+  	$intelValue       	= $request->getParameter('v');
+  	
+  	//http://sportycal.local/frontend_dev.php/cal/get?bc=2&ct=google
+  	$birthdayCalUserId	= $request->getParameter('bc');
+  	
+  	$this->forward404Unless($calId || $ctgId || $birthdayCalUserId);
+  	
+  	$partner = SportyCalAPI::getValidPartner($request);
+  	if ($partner) UserUtils::setPartner($partner);
+  	
+  	if ($calId) {
+  		$this->cal = Doctrine::getTable('Cal')->find($calId);
+  		$this->forward404Unless($this->cal);
+  	} elseif ($ctgId) {
+  		$ctg = Doctrine::getTable('Category')->find($ctgId);
+  		$this->forward404Unless($ctg);
+  		$aggregatedCal = $ctg->getAggregatedCal();
+  		$this->cal = $aggregatedCal;
+  	} elseif ($birthdayCalUserId) {
+  		$birthdayCalUser = Doctrine::getTable('User')->find($birthdayCalUserId);
+  		//Utils::pp($birthdayCalUser);
+  		$this->cal = Cal::getBirthdayCal($birthdayCalUser);
+  	} else {
+  		return sfView::NONE;
+  	}
+
+  	$this->userCal = null;
+  	$this->partner = $partner;
+  	$this->calType = $calType;
+  	$this->intelLabel = $intelLabel;
+  	$this->intelValue = $intelValue;
+  }
+  
+  public function executeGet(sfWebRequest $request){
     $hash       	= $request->getParameter('hash');
 
-    $partner 		= SportyCalAPI::getValidPartner($request);
-    
-    $ctgId      	= $request->getParameter('ctgId');
-    $calType       	= $request->getParameter('ct');
-    
-    //http://sportYcal.local/frontend_dev.php/cal/get/id/134/ct/google/l/cId:9191sportycal.ics
-    $intelLabel       	= $request->getParameter('l');
-    $intelValue       	= $request->getParameter('v');
-    
-    //http://sportycal.local/frontend_dev.php/cal/get?bc=2&ct=google
-    $birthdayCalUserId	= $request->getParameter('bc');
-    
-    $this->forward404Unless($calId || $ctgId || $birthdayCalUserId);
-
-    $dateNow    = date("Y-m-d g:i");
-    
-    if ($partner) UserUtils::setPartner($partner);
-    
     // Backward competability with the XXX we used to sent
     $userCalId      = null;
     $this->userCal  = null;
@@ -346,6 +365,7 @@ class calActions extends sfActions
     // $this->forward404Unless($this->userCal);
     
     // Backword compatibility - but userCal is preffered
+    $dateNow    = date("Y-m-d g:i");
     if ($this->userCal)   {
     	$calType = $this->userCal->getCalType();
     	$this->userCal->setUpdatedAt($dateNow);
@@ -354,44 +374,18 @@ class calActions extends sfActions
     	$userCalId = $this->userCal->getId();
     }
     
-    
-	if ($calId) {    
-	    $this->cal = Doctrine::getTable('Cal')->find($calId);
-	    $this->forward404Unless($this->cal);
-	} elseif ($ctgId) {
-	    $ctg = Doctrine::getTable('Category')->find($ctgId);
-	    $this->forward404Unless($ctg);
-	    $aggregatedCal = $ctg->getAggregatedCal();
-		$this->cal = $aggregatedCal;
-	} elseif ($birthdayCalUserId) {
-		$birthdayCalUser = Doctrine::getTable('User')->find($birthdayCalUserId);
-		//Utils::pp($birthdayCalUser);
-		$this->cal = Cal::getBirthdayCal($birthdayCalUser);
-	} else {
-  		return sfView::NONE;		
-	}   
-	
+    //TODO: ASK YARON
 	if (!$partner && $this->userCal && $this->userCal->getPartnerId()) {
 		$partner =  $this->userCal->getPartner();
 	}
 	
-    $this->partner = $partner;
-
     // stop saving this data for now, as we dont do anything with it and its alot
     CalRequestTable::newReq($calId, $calType, $userCalId, $partner, $ctgId, $hash);
-    //Utils::pp($this->cal);
     
-    
-    $this->calType = $calType;
-    $this->intelLabel = $intelLabel;
-    $this->intelValue = $intelValue;
-    
-	//if ($cal->getId()==null && $category->getId()==2100) {
-	//	echo "zz";
-	//	Utils::pp($this->category);	
-	//}    
-    
-    
+    //Split action for cache purpose
+    $urlParams = substr($request->getUri(), strlen($request->getUriPrefix()));
+    $urlParams = preg_replace('/\/hash\/(.+?)\//', '/', $urlParams);
+    $this->redirect(str_replace('/get/', '/getIcs/', $urlParams));
   }
 
 
@@ -678,8 +672,6 @@ class calActions extends sfActions
   	}
   	
   }
-
-
 }
 
  
