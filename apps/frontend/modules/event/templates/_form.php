@@ -47,6 +47,28 @@
   			<th><label>Ends at</label></th>
   			<td><input id="endDate" class="eDatePick" type="text" name="event[ends_at]" /><img class="eDatePickTrigger" src="<?php echo url_for('/images/icons/16date.png')?>"/></td>
 		</tr>
+		<tr>
+  			<th><label>Country Code</label></th>
+  			<td>
+  				<select id="countryCode" name="event[countryCode]">
+  					<option value="">Empty</option>
+  					<?php foreach (LocationTable::getCountryOptions() as $location):?>
+  					<option value="<?php echo $location->getCountry()?>"<?php echo ($countryCode == $location->getCountry()) ? ' selected="selected"' : ''?>><?php echo $location->getCountry()?></option>
+  					<?php endforeach;?>
+  				</select>
+  			</td>
+		</tr>
+		<tr>
+  			<th><label>Language Code</label></th>
+  			<td>
+  				<select id="languageCode" name="event[languageCode]">
+  					<option value="">Empty</option>
+  					<?php foreach (Languages::getLanguagesOptions() as $code => $name):?>
+  					<option value="<?php echo $code?>"<?php echo ($languageCode == $code) ? ' selected="selected"' : ''?>><?php echo ($code . ' - ' . $name)?></option>
+  					<?php endforeach;?>
+  				</select>
+  			</td>
+		</tr>
     </tbody>
   </table>
 </form>

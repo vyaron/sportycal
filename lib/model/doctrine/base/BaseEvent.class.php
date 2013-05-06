@@ -14,6 +14,7 @@ Doctrine_Manager::getInstance()->bindComponent('Event', 'doctrine');
  * @property string $image_path
  * @property string $location
  * @property string $tz
+ * @property string $tags
  * @property timestamp $starts_at
  * @property timestamp $ends_at
  * @property timestamp $created_at
@@ -33,6 +34,7 @@ Doctrine_Manager::getInstance()->bindComponent('Event', 'doctrine');
  * @method string              getImagePath()   Returns the current record's "image_path" value
  * @method string              getLocation()    Returns the current record's "location" value
  * @method string              getTz()          Returns the current record's "tz" value
+ * @method string              getTags()        Returns the current record's "tags" value
  * @method timestamp           getStartsAt()    Returns the current record's "starts_at" value
  * @method timestamp           getEndsAt()      Returns the current record's "ends_at" value
  * @method timestamp           getCreatedAt()   Returns the current record's "created_at" value
@@ -51,6 +53,7 @@ Doctrine_Manager::getInstance()->bindComponent('Event', 'doctrine');
  * @method Event               setImagePath()   Sets the current record's "image_path" value
  * @method Event               setLocation()    Sets the current record's "location" value
  * @method Event               setTz()          Sets the current record's "tz" value
+ * @method Event               setTags()        Sets the current record's "tags" value
  * @method Event               setStartsAt()    Sets the current record's "starts_at" value
  * @method Event               setEndsAt()      Sets the current record's "ends_at" value
  * @method Event               setCreatedAt()   Sets the current record's "created_at" value
@@ -134,6 +137,15 @@ abstract class BaseEvent extends sfDoctrineRecord
              'notnull' => false,
              'autoincrement' => false,
              'length' => 80,
+             ));
+        $this->hasColumn('tags', 'string', null, array(
+             'type' => 'string',
+             'fixed' => 0,
+             'unsigned' => false,
+             'primary' => false,
+             'notnull' => false,
+             'autoincrement' => false,
+             'length' => '',
              ));
         $this->hasColumn('starts_at', 'timestamp', 25, array(
              'type' => 'timestamp',

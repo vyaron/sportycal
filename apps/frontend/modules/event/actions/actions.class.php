@@ -40,7 +40,7 @@ class eventActions extends sfActions
 */
 
   public function executeNew(sfWebRequest $request)
-  {
+  {	
     $calId = $request->getParameter('calId');
     $cal = Doctrine::getTable('Cal')->find(array($calId));
     $this->forward404Unless($cal);
@@ -52,7 +52,7 @@ class eventActions extends sfActions
     $event = new Event();
     $event->setCalId($calId);
     $this->form = new EventForm($event);
-    
+
     
   }
 
@@ -63,12 +63,18 @@ class eventActions extends sfActions
     $event = new Event();
   	$this->form = new EventForm($event);
     $params = $request->getParameter($this->form->getName());
-    
+
   	$this->forward404Unless($cal = Doctrine::getTable('Cal')->find(array($params['cal_id'])), sprintf('Object cal does not exist (%s).', $params['cal_id']));
     $category = $cal->getCategory();
   	$this->restrictAccessAllowPartners($category);
     
   	$event->setCalId($params['cal_id']);
+  	
+  	//Set tags JSON
+  	$tags = array();
+  	if (!empty($params['countryCode'])) $tags['countryCode'] = $params['countryCode'];
+  	if (!empty($params['languageCode'])) $tags['languageCode'] = $params['languageCode'];
+  	if (!empty($tags)) $event->setTags(json_encode($tags));
 	
   	$this->processForm($request, $this->form);
 
@@ -84,11 +90,19 @@ class eventActions extends sfActions
     //dates
     $this->startsAt = date('d-m-Y H:i', strtotime($event->getStartsAt()));
     $this->endsAt = date('d-m-Y H:i', strtotime($event->getEndsAt()));
-
+    
+    //Get tags JSON
+    $tags = $event->getTags();
+    if (!is_null($tags)) {
+    	$tags = json_decode($tags);
+    	if (!empty($tags->countryCode)) $this->countryCode = $tags->countryCode;
+    	if (!empty($tags->languageCode)) $this->languageCode = $tags->languageCode;
+    }
   }
 
   public function executeUpdate(sfWebRequest $request)
   {
+  	
     $this->forward404Unless($request->isMethod(sfRequest::POST) || $request->isMethod(sfRequest::PUT));
     $this->forward404Unless($event = Doctrine::getTable('Event')->find(array($request->getParameter('id'))), sprintf('Object event does not exist (%s).', $request->getParameter('id')));
 	$this->restrictAccessAllowPartnersForEvent($event);
@@ -98,7 +112,7 @@ class eventActions extends sfActions
 
     $this->startsAt = date('d-m-Y H:i', strtotime($event->getStartsAt()));
     $this->endsAt = date('d-m-Y H:i', strtotime($event->getEndsAt()));
-
+    
     $this->setTemplate('edit');
   }
 
@@ -119,8 +133,8 @@ class eventActions extends sfActions
   
   protected function processForm(sfWebRequest $request, sfForm $form)
   {
-  	 
-  	$form->bind($request->getParameter($form->getName()), $request->getFiles($form->getName()));
+  	$params = $request->getParameter($form->getName());
+  	$form->bind($params, $request->getFiles($form->getName()));
   	if ($form->isValid())
   	{
   		$event = $form->save();
@@ -131,6 +145,13 @@ class eventActions extends sfActions
   		
 		$event->setStartsAt($startsAt);
 		$event->setEndsAt($endsAt);
+		
+
+		//Set tags JSON
+		$tags = array();
+		if (!empty($params['countryCode'])) $tags['countryCode'] = $params['countryCode'];
+		if (!empty($params['languageCode'])) $tags['languageCode'] = $params['languageCode'];
+		if (!empty($tags)) $event->setTags(json_encode($tags));
 		
 		$event->save();
 		
