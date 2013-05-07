@@ -110,12 +110,26 @@ class Cal extends BaseCal
         return $srcName;
     }
 
-    public function getEventsForIcal($userCal=null, $calType=null) {
+    public function getEventsForIcal($userCal=null, $calType=null, $tags=null) {
     	$events 		= $this->getEvents();
-    	//$events 		= array();
     	$extraEvents 	= Event::getExtraEvents($this, $userCal, $calType);
+    	$meregedEventes = array_merge($events, $extraEvents);
     	
-    	return array_merge($events, $extraEvents);
+    	$filtedEvents = array();
+    	if (!is_null($tags)){
+    		foreach ($meregedEventes as $i => $event){
+    			$eventTags = $event->getTags();
+    			if (!is_null($eventTags)) $eventTags = json_decode($eventTags);
+    			if (is_null($eventTags) 
+    					|| (!in_array($eventTags->countryCode, $tags->countryCodes)) 
+    					|| (!in_array($eventTags->languageCode, $tags->langs))) continue;
+    			else $filtedEvents[] = $event;
+    		}
+    	} else {
+    		$filtedEvents = $meregedEventes;
+    	}
+    	
+    	return $filtedEvents;
     }
     
     private $cachedEvents;

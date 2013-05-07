@@ -4,6 +4,7 @@ class Languages{
 		'he-IL' => 'Hebrew',
 		'en-US' => 'American english',
 		'en-UK' => 'British English',
+		'ar-JO' => 'Jordan Arabic',
 	);
 	
 	public static function getLanguagesOptions(){

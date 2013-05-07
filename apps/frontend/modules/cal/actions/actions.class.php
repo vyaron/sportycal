@@ -310,7 +310,11 @@ class calActions extends sfActions
   	$calId      	= $request->getParameter('id');
   	$ctgId      	= $request->getParameter('ctgId');
   	$calType       	= $request->getParameter('ct');
-  	
+  	$label       	= $request->getParameter('label');
+
+  	$tags = null;
+  	if (!is_null($label)) $tags = json_decode($label);
+
   	//http://sportYcal.local/frontend_dev.php/cal/get/id/134/ct/google/l/cId:9191sportycal.ics
   	$intelLabel       	= $request->getParameter('l');
   	$intelValue       	= $request->getParameter('v');
@@ -344,6 +348,9 @@ class calActions extends sfActions
   	$this->calType = $calType;
   	$this->intelLabel = $intelLabel;
   	$this->intelValue = $intelValue;
+  	$this->tags = $tags;
+  	
+  	$this->events = $this->cal->getEventsForIcal($this->userCal, $this->calType, $this->tags);
   }
   
   public function executeGet(sfWebRequest $request){

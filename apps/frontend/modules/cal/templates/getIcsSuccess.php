@@ -5,7 +5,7 @@
 ?>
 <?php 
 $count = 1;
-$events = $cal->getEventsForIcal($userCal, $calType);
+//$events = $cal->getEventsForIcal($userCal, $calType, $tags);
 ?>
 BEGIN:VCALENDAR
 VERSION:2.0
