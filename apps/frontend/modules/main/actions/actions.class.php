@@ -637,6 +637,11 @@ class mainActions extends sfActions
   	
   }
   
+  public function executeNeverMissWidget(sfWebRequest $request){
+  	$calId = $request->getParameter('calId');
+  	$this->calId = $calId ? $calId : 1;
+  }
+  
   public function executeCalDownloadWidget(sfWebRequest $request){
   	$this->languages = array('en_US', 'he_IL');
   	
