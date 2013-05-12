@@ -675,4 +675,9 @@ class Cal extends BaseCal
     	
     	return $res;
     }
+    
+    public function isAbandoned(){
+    	//TODO: check user_id = null... / Session check
+    	return ($this->getCategoryId() == Category::CTG_NEVER_MISS && !$this->getIsPublic()) ? true : false;
+    }
 }

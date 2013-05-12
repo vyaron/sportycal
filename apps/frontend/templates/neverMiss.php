@@ -30,8 +30,6 @@
 	$culture = $userSession->getCulture();
 	if ($culture === 'he_IL' || $culture === 'he') $RTL = true;
 	else $RTL = false;
-	
-	
 ?>
 
 
@@ -56,129 +54,87 @@
     <meta name="description" content="<?php echo $des ?>" />
     
     <link rel="shortcut icon" href="/favicon.ico" />
-	<?php sfContext::getInstance()->getResponse()->addStylesheet('videobox/videobox.css'); ?>
-	<?php sfContext::getInstance()->getResponse()->addStylesheet('datepicker/datepicker.css'); ?>	
 	
-	<?php if ($RTL):?>
-	<?php sfContext::getInstance()->getResponse()->addStylesheet('rtl.css'); ?>	
-	<?php endif;?>
-	
-	<?php sfContext::getInstance()->getResponse()->addJavascript('basics.js', 'first'); ?>
-
-    <?php include_stylesheets() ?>
-	
-	
-
-
-    <!--[if (lte IE 7)]>
-    <style>
-    .centererOuter{
-        left:auto;
-	float: none;
-	position: static;
-        
-    }
-    .centererInner{
-        left:auto;
-	float: none;
-	position: static;
-    }
-    </style>
-    <![endif]-->
-
-    <style>
-    .dontShow{
-        display:none;        
-    }
-    </style>
-    	<script type="text/javascript" src="/js/mootools-core.js"></script>
-    	<script type="text/javascript" src="/js/mootools-more-1.4.0.1.js"></script>
-    	<!-- script type="text/javascript" src="/js/videobox/extended.js"></script-->
+	<link href="/bundle/bootstrap/css/bootstrap.css" rel="stylesheet">
+    <style type="text/css">
+		body {
+			padding-top: 60px;
+			padding-bottom: 40px;
+		}
+		
+		#footer {
+			margin-top: 50px;
+		}
+</style>
+    <link href="/bundle/bootstrap/css/bootstrap-responsive.css" rel="stylesheet">
+    <?php //include_stylesheets() ?> 
     <script type="text/javascript">
-    	var gRedirectAfterFbLogin = true;
-    </script>    
-    
-    <?php if (! UserUtils::getUserTZ()): //Get User Timezone by JS?>
-	<script type="text/javascript" src="/js/getUserTZ.js"></script>
-	<?php endif;?>
+		var IS_USER_LOGED_IN = <?php echo ($user) ? 'true' : 'false';?>
+    </script>
   </head>
   <body>
-	<h1>Never Miss</h1>
-    <?php
-    mb_internal_encoding('UTF-8');
-    $user = UserUtils::getLoggedIn();
+    <?php mb_internal_encoding('UTF-8'); $user = UserUtils::getLoggedIn();?>
     
-    ?>
-    <div id="header">
-        <div id="topNav">
-        	<div>
-	            <ul>
-	                <li class="topNavItem" style="border:0;">
-	                    <?php if (!$user) : ?>
-	                    	<a href="<?php echo url_for('partner/login') ?>"><?php echo __('Login');?></a>
-	                    <?php else: ?>
-	                        <?php echo $user->getFullName()?>
-                    </li>
-                    <li class="topNavItem" style="border:0px;">
-	                	<a href="<?php echo url_for('main/logout') ?>" onclick="doLogout();return false;"><?php echo __('Logout');?></a>
-	                    <?php endif; ?>
-	                </li>
-	            </ul>
-	            <div class="cb"></div>
-			</div>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container">
+          <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="brand" href="#">Never Miss</a>
+          <div class="nav-collapse collapse">
+            <ul class="nav">
+              <li class="active"><a href="/">Home</a></li>
+              <?php if ($user):?>
+              <li><a href="<?php echo url_for('main/logout') ?>"><?php echo __('Logout');?></a></li>
+              <?php else:?>
+              <li><a href="<?php echo url_for('partner/login');?>"><?php echo __('Login');?></a></li>
+              <?php endif;?>
+            </ul>
+          </div><!--/.nav-collapse -->
         </div>
-		<div class="cb"></div>
+      </div>
     </div>
-    
-    <div id="content">
-        <div id="divContent">
-            <?php echo $sf_content ?>
-        </div>
 
-	<div class="cb"></div>
-    <div id="footer">
-        <span style="color:gray">sportYcal &copy; 2010</span>
-        &nbsp;&nbsp;|&nbsp;&nbsp;
-        <a href="<?php echo url_for('partner/login') ?>"><?php echo __('Login');?></a>&nbsp;&nbsp;|&nbsp;&nbsp;
-        
-        <?php if ($user && $user->isPartner()) :?>
-        &nbsp;&nbsp;|&nbsp;&nbsp;
-        <a href="<?php echo url_for('admin/partnerReport') ?>"><?php echo __('Partners Reports');?></a> &nbsp;&nbsp;|&nbsp;&nbsp;
-        <?php endif;?>
-        
-        <?php if ($user && $user->isMaster()) :?>
-        &nbsp;&nbsp;|&nbsp;&nbsp;
-        <a href="<?php echo url_for('admin/partnersReports') ?>"><?php echo __('Partners Reports');?></a>&nbsp;&nbsp;|&nbsp;&nbsp;
-        <?php endif;?>
-        
-        <a href="<?php echo url_for('main/terms') ?>"><?php echo __('Terms & Conditions');?></a>
-        
-        <?php if ($isAboutPage) :?>
-	        <br/><br/>
-	        <span style="color:gray"><?php echo __('Design by Hovav Sadan: hovavnowalla@gmail.com');?></span>
-		<?php endif ?>
-        <?php if ($user && $user->isMaster()) :?>
+    <div class="container">
+		<?php echo $sf_content ?>
 		
-        <div class="adminLinks">
-            <br/><br/><br/>
-            <a href="<?php echo url_for('admin/index') ?>"><?php echo __('Master Page');?></a>&nbsp;&nbsp;|&nbsp;&nbsp;
-        </div>
-        
-        <?php endif;?>
-        
-        
+		<div id="footer">
+	        <span style="color:gray">sportYcal &copy; 2010</span>
+	        &nbsp;&nbsp;|&nbsp;&nbsp;
+	        <a href="<?php echo url_for('partner/login') ?>"><?php echo __('Login');?></a>&nbsp;&nbsp;|&nbsp;&nbsp;
+	        
+	        <?php if ($user && $user->isPartner()) :?>
+	        &nbsp;&nbsp;|&nbsp;&nbsp;
+	        <a href="<?php echo url_for('admin/partnerReport') ?>"><?php echo __('Partners Reports');?></a> &nbsp;&nbsp;|&nbsp;&nbsp;
+	        <?php endif;?>
+	        
+	        <?php if ($user && $user->isMaster()) :?>
+	        &nbsp;&nbsp;|&nbsp;&nbsp;
+	        <a href="<?php echo url_for('admin/partnersReports') ?>"><?php echo __('Partners Reports');?></a>&nbsp;&nbsp;|&nbsp;&nbsp;
+	        <?php endif;?>
+	        
+	        <a href="<?php echo url_for('main/terms') ?>"><?php echo __('Terms & Conditions');?></a>
+	        
+	        <?php if ($isAboutPage) :?>
+		        <br/><br/>
+		        <span style="color:gray"><?php echo __('Design by Hovav Sadan: hovavnowalla@gmail.com');?></span>
+			<?php endif ?>
+	        <?php if ($user && $user->isMaster()) :?>
+			
+	        <div class="adminLinks">
+	            <br/><br/><br/>
+	            <a href="<?php echo url_for('admin/index') ?>"><?php echo __('Master Page');?></a>&nbsp;&nbsp;|&nbsp;&nbsp;
+	        </div>
+	        
+	        <?php endif;?>
+	    </div>
     </div>
-
-
-    </div>
-
 	
-	<?php if (!$isContactPage):?>
-		<?php include_partial('global/feedback', array('user' => $user)); ?>
-	<?php endif;?>
-	
-	<?php include_javascripts() ?>
-
+	<?php //include_javascripts() ?>
+	<!-- 
     <script type="text/javascript">
 		//Google Analytics
 		var _gaq = _gaq || [];
@@ -190,20 +146,7 @@
 			ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
 			var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
 		})();
-		
-		window.addEvent('domready', function() {
-			var changeLang = $('changeLang');
-			if (changeLang){
-				changeLang.addEvent('change', function(){
-					var req = new Request({
-						url : '/main/dummy',
-						onComplete : function(){
-							window.location.reload();
-						}
-					}).post('lang=' + changeLang.get('value'));
-				});
-			}
-		});
 	</script>
+	 -->
   </body>
 </html>

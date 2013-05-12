@@ -98,7 +98,7 @@ class EventTable extends Doctrine_Table
     	// The location is not enough to remove duplicates, as sometimes there is an address there and not Home/Away
     	//$objs = $objs->getData();
     	$objs = self::removeDuplicates($objs);
-    	
+    	//Utils::pp($objs);
 		return $objs;
     }
     private static function removeDuplicates($sortedEvents){
@@ -107,7 +107,10 @@ class EventTable extends Doctrine_Table
     	$prevEvent = new Event();
     	foreach ($sortedEvents as $event) {
     		$startDateDiff = date_diff(date_create($event->getStartsAt()), date_create($prevEvent->getStartsAt()));
-    		if ($event->getName() == $prevEvent->getName() &&
+
+    		$nameA = trim($event->getName());
+    		$nameB = trim($prevEvent->getName());
+    		if ($nameA == $nameB &&
     			($startDateDiff->y + $startDateDiff->m + $startDateDiff->d + $startDateDiff->h + $startDateDiff->i) == 0) {
 				// Duplicate    				
     		} else {

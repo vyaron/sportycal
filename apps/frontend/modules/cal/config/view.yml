@@ -1,3 +1,7 @@
+neverMissEventsSuccess:
+  has_layout: false
+  http_metas:
+    content-type: text/xml
 getSuccess:
   has_layout: false
 getIcsSuccess:

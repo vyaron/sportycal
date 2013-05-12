@@ -26,10 +26,15 @@ class mainActions extends sfActions
   }
   */
  
+ public function executeNeverMissIndex(sfWebRequest $request){
+ 	
+ }
+ 
  public function redirectByHost($host){
- 	if (strpos($host, 'promotecal.com')){
- 		if (UserUtils::getLoggedIn()) $this->redirect('/category/2003/campus-tlv-calendars');
- 		else $this->redirect('/partner/login');
+ 	if (strpos($host, 'promotecal.') !== false){
+ 		$this->redirect('/main/neverMissIndex');
+ 		//if (UserUtils::getLoggedIn()) $this->redirect('/category/2003/campus-tlv-calendars');
+ 		//else $this->redirect('/partner/login');
  	}
  }
  

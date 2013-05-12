@@ -13,13 +13,13 @@ if (isset($_GET['calId'])){
 </head>
 <style>
 body{margin: 0px; padding: 0;}
-#never-miss-btn{background: url('/imgs/btn.jpg') no-repeat 0 0; display: block; text-decoration: none;}
+#never-miss-btn{background: url('/neverMissWidget/imgs/btn.jpg') no-repeat 0 0; display: block; text-decoration: none;}
 </style>
 <body>
 <a id="never-miss-btn" href="widget_bubble.php?calId=<?php echo $calId;?>">&nbsp;</a>
 
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-<script>window.jQuery || document.write('<script src="js/vendor/jquery-1.9.1.min.js"><\/script>');</script>
+<script>window.jQuery || document.write('<script src="/neverMissWidget/js/vendor/jquery-1.9.1.min.js"><\/script>');</script>
 <script type="text/javascript">
 //var gWindow = null;
 jQuery(document).ready(function(){

@@ -25,6 +25,8 @@ class UserUtils {
 	
 	const KEY_COUNTRY_BY_IP			= 'countryByIp';
 	
+	const KEY_ORPHAN_CAL_ID			= 'orphanCalId';
+	
 	private static $cachedPartner = null;
 	
    public static function logUserIn($user)  {
@@ -42,7 +44,21 @@ class UserUtils {
     
     
   }
-
+	
+  public static function setOrphanCalId($calId){
+  	$userSession = sfContext::getInstance()->getUser();
+  	 
+  	if ($calId){
+  		$userSession[self::KEY_ORPHAN_CAL_ID] = $calId;
+  	} else {
+  		unset($userSession[self::KEY_ORPHAN_CAL_ID]);
+  	}
+  }
+  
+  public static function getOrphanCalId(){
+  	return self::getFromSession(self::KEY_ORPHAN_CAL_ID);
+  }
+  
   public static function logUserOut()  {
     $userSession = sfContext::getInstance()->getUser();
     unset($userSession[self::KEY_USER]);
