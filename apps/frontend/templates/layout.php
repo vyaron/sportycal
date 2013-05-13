@@ -65,7 +65,8 @@
 	<?php endif;?>
 	
 	<?php sfContext::getInstance()->getResponse()->addJavascript('basics.js', 'first'); ?>
-
+	
+	<link href="/css/main.css" rel="stylesheet"/>
     <?php include_stylesheets() ?>
 	
 	

@@ -1,7 +1,5 @@
-<script src="/bundle/dhtmlxScheduler/codebase/dhtmlxscheduler.js" type="text/javascript" charset="utf-8"></script>
-<style>
-	#cal-form{margin-top: 50px;}
-</style>
+<?php use_stylesheet('/bundle/dhtmlxScheduler/codebase/dhtmlxscheduler.css');?>
+<?php use_stylesheet('/css/neverMiss/calEdit.css');?>
 <h2>Edit Your Calendar</h2>
 
 <div id="scheduler_here" class="dhx_cal_container" style='width:100%; height:100%; min-height:500px; line-height:normal;'>
@@ -20,7 +18,7 @@
 		</div>
 </div>
 
-<form id="cal-form" method="POST" action="/cal/neverMissEdit">
+<form id="cal-form" method="POST">
 	<input id="cal-id" type="hidden" name="id" value="<?php echo $cal->getId();?>">
 	<fieldset>
 		<legend>Calendar Information:</legend>
@@ -49,6 +47,5 @@
 	</fieldset>
 </form>
 
-<script type="text/javascript" src="/bundle/jquery/js/jquery-1.9.1.min.js"></script>
-<link rel="stylesheet" href="/bundle/dhtmlxScheduler/codebase/dhtmlxscheduler.css" type="text/css" media="screen">
-<script type="text/javascript" src="/js/neverMiss/calEdit.js"></script>
+<?php use_javascript('/bundle/dhtmlxScheduler/codebase/dhtmlxscheduler.js')?>
+<?php use_javascript('/js/neverMiss/calEdit.js')?>

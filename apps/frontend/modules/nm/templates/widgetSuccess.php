@@ -1,6 +1,4 @@
-<style>
-#copyJsCode{resize: none;}
-</style>
+<?php use_stylesheet('/css/neverMiss/widget.css');?>
 <form method="GET" action="/cal/neverMissEdit">
 	<fieldset>
 		<legend>Never Miss widget wizard:</legend>
@@ -110,31 +108,3 @@
 		</div>
 	</fieldset>
 </form>
-
-<script type="text/javascript" src="/bundle/jquery/js/jquery-1.9.1.min.js"></script>
-<script type="text/javascript">
-/*
-jQuery(document).ready(function(){
-	jQuery('#copyJsCode').focus(function(e){
-		e.preventDefault();
-		copyJsCode.select();
-	});
-
-	jQuery('#iAgree').click(function(e){
-		if (!IS_USER_LOGED_IN) {
-			e.preventDefault();
-			e.stopPropagation();
-			alert('Login!!!');
-		} else {
-			var jsCodeWrapper = jQuery('#jsCodeWrapper');
-
-			if (jQuery(this).is(':checked')){
-				jsCodeWrapper.show();
-			} else {
-				jsCodeWrapper.hide();
-			}
-		}	
-	});
-});
-*/
-</script>

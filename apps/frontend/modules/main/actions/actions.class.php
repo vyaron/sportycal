@@ -26,15 +26,9 @@ class mainActions extends sfActions
   }
   */
  
- public function executeNeverMissIndex(sfWebRequest $request){
- 	
- }
- 
  public function redirectByHost($host){
  	if (strpos($host, 'promotecal.') !== false){
- 		$this->redirect('/main/neverMissIndex');
- 		//if (UserUtils::getLoggedIn()) $this->redirect('/category/2003/campus-tlv-calendars');
- 		//else $this->redirect('/partner/login');
+ 		$this->redirect('/nm/index');
  	}
  }
  
@@ -640,11 +634,6 @@ class mainActions extends sfActions
   public function executeDownCalTerms(sfWebRequest $request){
   	
   	
-  }
-  
-  public function executeNeverMissWidget(sfWebRequest $request){
-  	$calId = $request->getParameter('calId');
-  	$this->calId = $calId ? $calId : 1;
   }
   
   public function executeCalDownloadWidget(sfWebRequest $request){

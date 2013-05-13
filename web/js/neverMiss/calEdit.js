@@ -1,11 +1,3 @@
-function loadCalendar1() {
-	scheduler.config.multi_day = true;
-
-	scheduler.config.xml_date = "%Y-%m-%d %H:%i";
-	scheduler.init('scheduler_here', new Date(2010, 0, 10), "week");
-	scheduler.load("/bundle/dhtmlxScheduler/samples/01_initialization_loading/data/events.xml");
-}
-
 function loadCalendar(){
 	scheduler.config.xml_date = "%Y-%m-%d %H:%i";
 	scheduler.config.prevent_cache = true;
@@ -15,19 +7,34 @@ function loadCalendar(){
 	scheduler.config.details_on_create = true;
 	scheduler.config.details_on_dblclick = true;
 	scheduler.config.prevent_cache = true;
-	
-	scheduler.config.full_day = true;
-	
-	scheduler.config.lightbox.sections = [
-	    {name:"name", height:30, map_to:"text", type:"textarea" , focus:true},
-		{name:"description", height:130, map_to:"details", type:"textarea"},
-		{name:"location", height:43, type:"textarea", map_to:"location" },
-		{name:"time", height:72, type:"time", map_to:"auto"}
-	];
+
+	scheduler.config.lightbox.sections = [ {
+		name : "name",
+		height : 30,
+		map_to : "text",
+		type : "textarea",
+		focus : true
+	}, {
+		name : "description",
+		height : 130,
+		map_to : "details",
+		type : "textarea",
+		focus : true
+	}, {
+		name : "location",
+		height : 43,
+		type : "textarea",
+		map_to : "location"
+	}, {
+		name : "time",
+		height : 72,
+		type : "time",
+		map_to : "auto"
+	} ];
 
 	scheduler.init('scheduler_here', new Date(), "week");
-	scheduler.load("/cal/neverMissEvents/?id=" + gCalId, "json");
-	var dp = new dataProcessor("/cal/neverMissEvents/?id=" + gCalId);
+	scheduler.load("/nm/calEvents/?id=" + gCalId, "json");
+	var dp = new dataProcessor("/nm/calEvents/?id=" + gCalId);
 	
 	/*
 	scheduler.init('scheduler_here', new Date(2009, 10, 1), "day");
