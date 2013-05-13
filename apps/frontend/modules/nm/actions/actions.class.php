@@ -113,5 +113,68 @@ class nmActions extends sfActions{
 	public function executeWidget(sfWebRequest $request){
 		$calId = $request->getParameter('calId');
 		$this->calId = $calId ? $calId : 1;
+		
+		$this->form = new NmRegisterForm();
+		if ($request->isMethod('post')){
+			$this->forward404Unless($orphanCal = Doctrine::getTable('Cal')->find(array(UserUtils::getOrphanCalId())), sprintf('Object cal does not exist (%s).', UserUtils::getOrphanCalId()));
+			
+			$this->form->bind($request->getParameter('register'));
+			if ($this->form->isValid()){
+				
+				$now = date('Y-m-d H:i:s');
+				$rootName = $this->form->getValue('company_name') ? $this->form->getValue('company_name') : $this->form->getValue('full_name');
+				
+				//Create user
+				$user = new User();
+				$user->setFullName($this->form->getValue('full_name'));
+				$user->setEmail($this->form->getValue('email'));
+				$user->setPass($this->form->getValue('password'));
+				$user->setType(User::TYPE_PARTNER);
+				$user->setCreatedAt($now);
+				$user->setLastLoginDate($now);
+				$user->save();
+				
+				//Create Partner
+				$partner = new Partner();
+				$partner->setName($rootName);
+				$partner->setHash($user->getId()); //TODO: replace with nice hash
+				//TODO: add timezone
+				$partner->Save();
+				
+				//Create PartnerUser
+				$partnerUser = new PartnerUser();
+				$partnerUser->setPartnerId($partner->getId());
+				$partnerUser->setUserId($user->getId());
+				$partnerUser->save();
+				
+				//Create Category
+				$category = new Category();
+				$category->setName($rootName);
+				$category->setIsPublic(false);
+				$category->setPartnerId($partner->getId());
+				$category->setByUserId($user->getId());
+				$category->save();
+				
+				//Create PartnerDesc
+				$partnerDesc = new PartnerDesc();
+				$partnerDesc->setPartnerId($partner->getId());
+				$partnerDesc->setWebsite($this->form->getValue('website'));
+				$partnerDesc->setCategoryId($category->getId());
+				$partnerDesc->setCalId($orphanCal->getId());
+				$partnerDesc->save();
+				
+				//Set orphan cal parent
+				$orphanCal->setByUserId($user->getId());
+				$orphanCal->setIsPublic(true);
+				$orphanCal->save();
+				
+				//clear from session
+				UserUtils::setOrphanCalId(null);
+				
+				UserUtils::logUserIn($user);
+			}
+		}
+		
+		$this->user = UserUtils::getLoggedIn();
 	}
 }

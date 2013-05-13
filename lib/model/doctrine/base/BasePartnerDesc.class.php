@@ -12,6 +12,7 @@ Doctrine_Manager::getInstance()->bindComponent('PartnerDesc', 'doctrine');
  * @property string $description
  * @property integer $category_id
  * @property integer $cal_id
+ * @property string $website
  * @property timestamp $updated_at
  * @property Cal $Cal
  * @property Category $Category
@@ -22,6 +23,7 @@ Doctrine_Manager::getInstance()->bindComponent('PartnerDesc', 'doctrine');
  * @method string      getDescription() Returns the current record's "description" value
  * @method integer     getCategoryId()  Returns the current record's "category_id" value
  * @method integer     getCalId()       Returns the current record's "cal_id" value
+ * @method string      getWebsite()     Returns the current record's "website" value
  * @method timestamp   getUpdatedAt()   Returns the current record's "updated_at" value
  * @method Cal         getCal()         Returns the current record's "Cal" value
  * @method Category    getCategory()    Returns the current record's "Category" value
@@ -31,6 +33,7 @@ Doctrine_Manager::getInstance()->bindComponent('PartnerDesc', 'doctrine');
  * @method PartnerDesc setDescription() Sets the current record's "description" value
  * @method PartnerDesc setCategoryId()  Sets the current record's "category_id" value
  * @method PartnerDesc setCalId()       Sets the current record's "cal_id" value
+ * @method PartnerDesc setWebsite()     Sets the current record's "website" value
  * @method PartnerDesc setUpdatedAt()   Sets the current record's "updated_at" value
  * @method PartnerDesc setCal()         Sets the current record's "Cal" value
  * @method PartnerDesc setCategory()    Sets the current record's "Category" value
@@ -89,6 +92,15 @@ abstract class BasePartnerDesc extends sfDoctrineRecord
              'notnull' => false,
              'autoincrement' => false,
              'length' => 8,
+             ));
+        $this->hasColumn('website', 'string', 512, array(
+             'type' => 'string',
+             'fixed' => 0,
+             'unsigned' => false,
+             'primary' => false,
+             'notnull' => false,
+             'autoincrement' => false,
+             'length' => 512,
              ));
         $this->hasColumn('updated_at', 'timestamp', 25, array(
              'type' => 'timestamp',

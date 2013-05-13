@@ -1,5 +1,5 @@
 <?php
-class RegisterForm extends BaseForm {
+class NmRegisterForm extends BaseForm {
 	public function configure(){
 		$this->setWidgets(array(
 				'full_name'   => new sfWidgetFormInputText(),
@@ -12,15 +12,19 @@ class RegisterForm extends BaseForm {
 		));
 
 		$this->setValidators(array(
-				'full_name'   => new sfValidatorString(array('required' => true, 'min_length' => 3)),
-				'email'   => new sfValidatorEmail(array('required' => true)),
+				'full_name'   => new sfValidatorString(array('required' => true, 'min_length' => 3, 'trim' => true)),
+				'email'   => new sfValidatorEmail(array('required' => true, 'max_length' => 256)),
 				'password' => new sfValidatorString(array('required' => true, 'min_length' => 4)),
-				'confirm_password' => new sfValidatorSchemaCompare('password', sfValidatorSchemaCompare::EQUAL, 'confirm_password'),
-				'company_name' => new sfValidatorString(array('required' => true, 'min_length' => 3)),
+				'confirm_password' => new sfValidatorString(array('required' => true)),
+				'company_name' => new sfValidatorString(array('required' => true, 'min_length' => 3, 'trim' => true)),
 				'website' => new sfValidatorUrl(array('required' => false)),
 				'agree' => new sfValidatorBoolean(array('required' => true)),
 		));
-
+		
+		$this->validatorSchema->setPostValidator(new sfValidatorAnd(array(
+				new sfValidatorSchemaCompare('password', sfValidatorSchemaCompare::EQUAL, 'confirm_password'),
+		)));
+		
 		$this->widgetSchema->setNameFormat('register[%s]');
 	}
 }

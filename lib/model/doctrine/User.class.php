@@ -12,18 +12,22 @@
  */
 class User extends BaseUser
 {
+	const TYPE_SIMPLE = 'SIMPLE';
+	const TYPE_PARTNER = 'PARTNER';
+	const TYPE_MASTER = 'MASTER';
+	
     public function isMaster() {
         $type = $this->getType();
-        return ($type == "MASTER");
+        return ($type == self::TYPE_MASTER);
     }
     public function isSimple() {
         $type = $this->getType();
-        return ($type == "SIMPLE");
+        return ($type == self::TYPE_SIMPLE);
     }
     
     public function isPartner() {
         $type = $this->getType();
-        return ($type == "PARTNER");
+        return ($type == self::TYPE_PARTNER);
     }
     
 }

@@ -1178,6 +1178,10 @@ IpToGeo:
   connection: doctrine
   tableName: ip_to_geo
   columns:
+    id:
+      type: integer(8)
+      autoincrement: true
+      primary: true
     ip_from:
       type: integer(4)
       fixed: false
@@ -1429,6 +1433,13 @@ PartnerDesc:
       type: integer(8)
       fixed: false
       unsigned: true
+      primary: false
+      notnull: false
+      autoincrement: false
+    website:
+      type: string(512)
+      fixed: false
+      unsigned: false
       primary: false
       notnull: false
       autoincrement: false

@@ -1,3 +1,4 @@
+ALTER TABLE `partner_desc` ADD `website` VARCHAR( 512 ) NULL DEFAULT NULL AFTER `cal_id` 
 ALTER TABLE `event` ADD `tags` TEXT NULL AFTER `tz` 
 
 -- ---------------------------- CAMPUS TLV ----------------------------------

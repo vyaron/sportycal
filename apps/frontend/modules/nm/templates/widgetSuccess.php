@@ -1,4 +1,19 @@
 <?php use_stylesheet('/css/neverMiss/widget.css');?>
+
+
+<?php if ($form->hasErrors()): ?>
+<div class="alert alert-error">
+	<button type="button" class="close" data-dismiss="alert">&times;</button>
+	<h4>Error!</h4>
+	
+	<ul>
+	<?php foreach ($form->getErrorSchema() as $name => $error): ?>
+		<li><?php echo $name;?> - <?php echo $error;?></li>
+	<?php endforeach;?>
+	</ul>
+</div>
+<?php endif;?>
+
 <form method="GET" action="/cal/neverMissEdit">
 	<fieldset>
 		<legend>Never Miss widget wizard:</legend>
@@ -39,58 +54,40 @@
 	</fieldset>
 </form>
 
-<form <?php echo url_for('cal/neverMissRegister') ?> method="POST">
+<?php if ($user):?>
+<div>
+	<label for="copyJsCode"><?php echo __('Copy this code to your site (iframe)');?>:</label>
+	<textarea id="copyJsCode" spellcheck="false" class="span6">&lt;div class=&quot;nm-follow&quot; data-cal-id=&quot;<?php echo $calId;?>&quot; style=&quot;float:left&quot;&gt;&lt;/div&gt; &lt;script&gt;(function(d, s, id) {var js, fjs = d.getElementsByTagName(s)[0];if (d.getElementById(id)) return;js = d.createElement(s); js.id = id;js.src = &quot;//sportycal.local/neverMissWidget/js/all.js&quot;;fjs.parentNode.insertBefore(js, fjs);}(document, 'script', 'never-miss-jssdk'));&lt;/script&gt;</textarea>
+</div>
+<?php else:?>
+<form method="POST">
+	<?php echo $form['_csrf_token']->render();?>
 	<fieldset>
 		<legend>Register:</legend>
 		<div class="row">
-			<div class="span2">
-				<label for="register[full_name]">Full Name:</label>
-			</div>
-			<div class="span4">
-				<input id="register[full_name]" class="span4" name="register[full_name]" type="text" placeholder="Enter your full name"/>
-			</div>
+			<div class="span2"><?php echo $form['full_name']->renderLabel();?></div>
+			<div class="span4"><?php echo $form['full_name']->render(array('class' => 'span4', 'placeholder' => 'Enter your full name'));?></div>
 		</div>
 		<div class="row">
-			<div class="span2">
-				<label for="register[email]">Email:</label>
-			</div>
-			<div class="span4">
-				<input id="register[email]" class="span4" name="register[email]" type="text" placeholder="Enter your email"/>
-			</div>
+			<div class="span2"><?php echo $form['email']->renderLabel();?></div>
+			<div class="span4"><?php echo $form['email']->render(array('class' => 'span4', 'placeholder' => 'example@site.com'));?></div>
 		</div>
 		<div class="row">
-			<div class="span2">
-				<label for="register[password]">Password:</label>
-			</div>
-			<div class="span4">
-				<input id="register[password]" class="span4" name="register[password]" type="password" placeholder="Enter password"/>
-			</div>
+			<div class="span2"><?php echo $form['password']->renderLabel();?></div>
+			<div class="span4"><?php echo $form['password']->render(array('class' => 'span4', 'placeholder' => 'Enter password'));?></div>
 		</div>
 		<div class="row">
-			<div class="span2">
-				<label for="register[password_confirm]">Confirm Password:</label>
-			</div>
-			<div class="span4">
-				<input id="register[password_confirm]" class="span4" name="register[password_confirm]" type="password" placeholder="Re-enter password"/>
-			</div>
+			<div class="span2"><?php echo $form['confirm_password']->renderLabel();?></div>
+			<div class="span4"><?php echo $form['confirm_password']->render(array('class' => 'span4', 'placeholder' => 'ReEnter password'));?></div>
 		</div>
 		<div class="row">
-			<div class="span2">
-				<label for="register[company_name]">Company name:</label>
-			</div>
-			<div class="span4">
-				<input id="register[company_name]" class="span4" name="register[company_name]" type="text" placeholder="Enter company name"/>
-			</div>
+			<div class="span2"><?php echo $form['company_name']->renderLabel();?></div>
+			<div class="span4"><?php echo $form['company_name']->render(array('class' => 'span4', 'placeholder' => 'Enter companey name'));?></div>
 		</div>
 		<div class="row">
-			<div class="span2">
-				<label for="register[website]">Website:</label>
-			</div>
-			<div class="span4">
-				<input id="register[website]" class="span4" name="register[website]" type="text" placeholder="Enter webiste"/>
-			</div>
+			<div class="span2"><?php echo $form['website']->renderLabel();?></div>
+			<div class="span4"><?php echo $form['website']->render(array('class' => 'span4', 'placeholder' => 'http://www.site.com'));?></div>
 		</div>
-		
 		<div class="row">
 			<div class="span6">
 				<label class="inline">
@@ -100,7 +97,6 @@
 				</label>
 			</div>
 		</div>
-		
 		<div class="row">
 			<div class="span6">
 				<input type="submit" value="register" class="btn btn-success pull-right"/>
@@ -108,3 +104,6 @@
 		</div>
 	</fieldset>
 </form>
+<?php endif;?>
+
+<?php use_javascript('/bundle/bootstrap/js/bootstrap.min.js')?>
