@@ -787,6 +787,13 @@ Event:
       unsigned: true
       primary: true
       autoincrement: true
+    pid:
+      type: integer(8)
+      fixed: false
+      unsigned: true
+      primary: false
+      notnull: false
+      autoincrement: false
     cal_id:
       type: integer(8)
       fixed: false
@@ -836,6 +843,20 @@ Event:
       primary: false
       notnull: false
       autoincrement: false
+    rec_type:
+      type: string(128)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: false
+      autoincrement: false
+    length:
+      type: integer(8)
+      fixed: false
+      unsigned: true
+      primary: false
+      notnull: false
+      autoincrement: false
     starts_at:
       type: timestamp(25)
       fixed: false
@@ -876,6 +897,10 @@ Event:
       notnull: false
       autoincrement: false
   relations:
+    Event:
+      local: id
+      foreign: pid
+      type: many
     Address:
       local: address_id
       foreign: id

@@ -17,10 +17,13 @@ class nmActions extends sfActions{
 	}
 	
 	public function executeCalEdit(sfWebRequest $request){
-		$this->forward404Unless($cal = Doctrine::getTable('Cal')->find(array($request->getParameter('id'))), sprintf('Object cal does not exist (%s).', $request->getParameter('id')));
+		$user = UserUtils::getLoggedIn();
+		$cal = Doctrine::getTable('Cal')->find(array($request->getParameter('id')));
+		$this->forward404Unless($cal && $cal->isOwner($user), sprintf('Object cal does not exist (%s).', $request->getParameter('id')));
 		$this->cal = $cal;
-		 
-		if ($request->isMethod(sfRequest::POST) && $this->cal->isAbandoned()){
+		
+		$user = UserUtils::getLoggedIn();
+		if ($request->isMethod(sfRequest::POST)){
 			$name = $request->getParameter('name');
 			if (empty($name)) $name = date('Y-m-d H:i:s');
 			$this->cal->setName($name);
@@ -32,12 +35,13 @@ class nmActions extends sfActions{
 	}
 	
 	public function executeCalEvents(sfWebRequest $request){
-		$this->forward404Unless($cal = Doctrine::getTable('Cal')->find(array($request->getParameter('id'))), sprintf('Object cal does not exist (%s).', $request->getParameter('id')));
-		 
+		$user = UserUtils::getLoggedIn();
+		$cal = Doctrine::getTable('Cal')->find(array($request->getParameter('id')));
+		$this->forward404Unless($cal && $cal->isOwner($user), sprintf('Object cal does not exist (%s).', $request->getParameter('id')));
+		
 		$isEditing = $request->getParameter('editing') ? true : false;
 		if ($isEditing){
 			//Create XML
-			//TODO: replace with json
 			$xml = new SimpleXMLElement('<xml/>');
 			$xmlData = $xml->addChild('data');
 	
@@ -53,37 +57,47 @@ class nmActions extends sfActions{
 				$location = $request->getParameter($id . '_location');
 				$startDate = $request->getParameter($id . '_start_date');
 				$endDate = $request->getParameter($id . '_end_date');
-					
-				if ($status == 'inserted'){
-					$event = new Event();
-					$event->setCalId($cal->getId());
-					$event->setCreatedAt($dateStr);
-				} else if ($status == 'updated'){
+				
+				//Recurring events
+				$recType = $request->getParameter($id . '_rec_type');
+				$pid = $request->getParameter($id . '_event_pid');
+				$length = $request->getParameter($id . '_event_length');
+				
+				if ($status == 'deleted'){
 					$event = Doctrine::getTable('Event')->find($id);
+					
+					if ($event->getCalId() != $cal->getId()) continue;
+					
+					$event->delete();
+				} else {
+					if ($status == 'inserted'){
+						$event = new Event();
+						$event->setCalId($cal->getId());
+						$event->setCreatedAt($dateStr);
+					} else if ($status == 'updated'){
+						$event = Doctrine::getTable('Event')->find($id);
+						if ($event->getCalId() != $cal->getId()) continue;
+					}
+					
+					$event->setName($name);
+					$event->setDescription($description);
+					$event->setLocation($location);
+					$event->setStartsAt($startDate);
+					$event->setEndsAt($endDate);
+					$event->setUpdatedAt($dateStr);
+					
+					
+					//recurring events
+					if ($recType) $event->setRecType($recType);
+					if ($length) $event->setLength($length);
+					if ($pid) $event->setPid($pid);
+					
+					$event->save();
 				}
-					
-				$event->setName($name);
-				$event->setDescription($description);
-				$event->setLocation($location);
-				$event->setStartsAt($startDate);
-				$event->setEndsAt($endDate);
-					
-				$event->setUpdatedAt($dateStr);
-					
-				$event->save();
-					
+
 				$xmlAction->addAttribute('type', $status);
 				$xmlAction->addAttribute('sid', $id);
 				$xmlAction->addAttribute('tid', $event->getId());
-					
-				/*
-				 $activity = new stdClass();
-				$activity->type = $status;
-				$activity->sid = $id;
-				$activity->tid = $event->getId();
-					
-				$res['data'][] = $activity;
-				*/
 			}
 	
 			$this->xml = $xml;
@@ -101,7 +115,14 @@ class nmActions extends sfActions{
 				$flatEvent->text = $event->getName();
 				$flatEvent->details = $event->getDescription();
 				$flatEvent->location = $event->getLocation();
-	
+				
+				if ($event->getRecType()) 	$flatEvent->rec_type = $event->getRecType();
+				if ($event->getLength()) 	$flatEvent->event_length = $event->getLength();
+				if ($event->getPid()) 		$flatEvent->event_pid = $event->getPid();
+				
+				if ($flatEvent->end_date == '0000-00-00 00:00:00') $flatEvent->end_date = '9999-01-01 00:00:00';
+
+				
 				$res['data'][] = $flatEvent;
 			}
 	

@@ -1,2 +1,4 @@
 @CHARSET "utf-8";
 #cal-form{margin-top: 50px;}
+.dhx_cal_light select{width: auto; height: auto; line-height: normal;}
+.dhx_cal_light label{display:inline;}

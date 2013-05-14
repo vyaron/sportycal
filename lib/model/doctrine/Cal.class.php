@@ -676,8 +676,10 @@ class Cal extends BaseCal
     	return $res;
     }
     
-    public function isAbandoned(){
-    	//TODO: check user_id = null... / Session check
-    	return ($this->getCategoryId() == Category::CTG_NEVER_MISS && !$this->getIsPublic()) ? true : false;
+    public function isOwner($user){
+    	$calUserId = $this->getByUserId();
+    	
+    	return  (($calUserId == null && UserUtils::getOrphanCalId() == $this->getId())
+    		|| ($user && ($user->isMaster() || ($calUserId == $user->getId())))) ? true : false;
     }
 }
