@@ -61,6 +61,19 @@ use_stylesheet('/css/neverMiss/calEdit.css');
 			</div>
 		</div>
 		
+		<div class="row">
+			<div class="span2">
+				<label for="description">Timezone:</label>
+			</div>
+			<div class="span6">
+				<select class="span6" name="tz" disabled="disabled">
+					<?php foreach (GeneralUtils::getTZList() as $tz):?>
+					<option value="<?php echo $tz->value?>"<?php echo (UserUtils::getUserTZ() == $tz->value) ? ' selected="selected"' : ''?>><?php echo $tz->name?></option>
+					<?php endforeach;?>
+				</select>
+			</div>
+		</div>
+		
 		<div class="form-actions clearfix">
 			<input type="submit" class="btn btn-success pull-right" value="Continue"/>
 		</div>
