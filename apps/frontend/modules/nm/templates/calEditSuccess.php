@@ -20,6 +20,24 @@ use_stylesheet('/css/neverMiss/calEdit.css');
 	<div class="dhx_cal_data"></div>
 </div>
 
+<a id="clear-events" href="#clear-events-modal" role="button" data-toggle="modal"><i class="icon-trash"></i> Clear all Events</a>
+ 
+<!-- Modal -->
+<div id="clear-events-modal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal-header">
+		<button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
+		<h3 id="myModalLabel">Clear Events</h3>
+	</div>
+	<div class="modal-body">
+		<p>Are you sure you want to delete all events from calendar?</p>
+	</div>
+	<div class="modal-footer">
+		<button class="btn" data-dismiss="modal" aria-hidden="true">No</button>
+		<a class="btn btn-primary" href="<?php echo url_for('nm/calEventsClear/?id=' . $cal->getId()) ?>">Yes</a>
+	</div>
+</div>
+
+
 <form id="cal-form" method="POST">
 	<input id="cal-id" type="hidden" name="id" value="<?php echo $cal->getId();?>">
 	<fieldset>
@@ -50,6 +68,7 @@ use_stylesheet('/css/neverMiss/calEdit.css');
 </form>
 
 <?php 
+use_javascript('/bundle/bootstrap/js/bootstrap.min.js');
 use_javascript('/bundle/dhtmlxScheduler/codebase/dhtmlxscheduler.js');
 use_javascript('/bundle/dhtmlxScheduler/codebase/ext/dhtmlxscheduler_dhx_terrace.js');
 use_javascript('/bundle/dhtmlxScheduler/codebase/ext/dhtmlxscheduler_quick_info.js');

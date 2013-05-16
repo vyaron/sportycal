@@ -3,7 +3,8 @@ ALTER TABLE `event` ADD `length` BIGINT UNSIGNED NULL AFTER `rec_pattern`;
 ALTER TABLE `partner_desc` ADD `website` VARCHAR( 512 ) NULL DEFAULT NULL AFTER `cal_id`;
  
 ALTER TABLE `event` ADD `pid` BIGINT(20) UNSIGNED NULL DEFAULT NULL AFTER `id` ,ADD INDEX ( `pid` );
-ALTER TABLE `event` ADD FOREIGN KEY ( `pid` ) REFERENCES `evento`.`event` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT;
+ALTER TABLE `event` DROP FOREIGN KEY `event_ibfk_1` ,
+ADD FOREIGN KEY ( `pid` ) REFERENCES `evento`.`event` (`id`) ON DELETE SET NULL ON UPDATE SET NULL ;
 
 ALTER TABLE `event` ADD `tags` TEXT NULL AFTER `tz`; 
 

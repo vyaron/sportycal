@@ -14,6 +14,8 @@ function loadCalendar(){
 	
 	scheduler.config.full_day = true;
 	
+	scheduler.config.server_utc = true; //convert server side dates from utc to local timezone, and backward during data sending to server;
+
 	scheduler.attachEvent("onTemplatesReady", function(){
 		var lightbox_form = scheduler.getLightbox(); // this will generate lightbox form
 		var inputs = lightbox_form.getElementsByTagName('input');
@@ -54,8 +56,7 @@ function loadCalendar(){
 		name : "description",
 		height : 130,
 		map_to : "details",
-		type : "textarea",
-		focus : true
+		type : "textarea"
 	}, {
 		name : "location",
 		height : 43,

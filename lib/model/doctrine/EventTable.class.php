@@ -221,7 +221,7 @@ class EventTable extends Doctrine_Table
     			->delete('Event e')
     			->where('e.cal_id = ?', $calId);
 
-		//echo $q->getSqlQuery();
+
 		$affectedRows = $q->execute();
     }
 
@@ -255,7 +255,7 @@ class EventTable extends Doctrine_Table
 
     	// If there are events in the Future - dont present past events
     	$events = $q->execute();
-    	
+
     	//Work only for regular cal
     	if ($countOnly){
     		$event = $events->getFirst();
@@ -271,17 +271,24 @@ class EventTable extends Doctrine_Table
     	$eventsCount = count($events);
 		$yesterday = strtotime("yesterday");
 		
-		//Utils::pa($events);
-		//Utils::pa($eventsCount);
 		
-    	if ($eventsCount) {
+		$hasRecEvent = false;
+		foreach ($events as $event){
+			if ($event->getRecType()) {
+				$hasRecEvent = true;
+				break;
+			}
+		}
+		
+		//Utils::pa($eventsCount);
+    	if ($eventsCount && !$hasRecEvent) {
     		$lastEventTime = strtotime($events[$eventsCount-1]->getStartsAt());
     		// There are future events, remove all past events
     		if ($lastEventTime > $yesterday) {
 				$futureEvents = array();
 				foreach ($events as $event) {
 					if (strtotime($event->getStartsAt()) < $yesterday) continue;
-					$futureEvents[] = $event;					
+					$futureEvents[] = $event;				
 				}
 				$events = $futureEvents;    			
     		}

@@ -3,13 +3,29 @@ class nmActions extends sfActions{
 	public function executeIndex(sfWebRequest $request){
 
 	}
-
+	
+	public function executeCalEventsClear(sfWebRequest $request){
+		$user = UserUtils::getLoggedIn();
+		$cal = Doctrine::getTable('Cal')->find(array($request->getParameter('id')));
+		$this->forward404Unless($cal && $cal->isOwner($user), sprintf('Object cal does not exist (%s).', $request->getParameter('id')));
+		
+		Doctrine::getTable('Event')->deleteBy($cal->getId());
+		$this->redirect('/nm/calEdit?id=' . $cal->getId());
+	}
+	
 	public function executeCalCreate(sfWebRequest $request){
-		$cal = new Cal();
-		$cal->setIsPublic(false);
-		$cal->setCategoryId(Category::CTG_NEVER_MISS);
-		$cal->setCategoryIdsPath(Category::CTG_NEVER_MISS);
-		$cal->save();
+		$currCalId = UserUtils::getOrphanCalId();
+		if ($currCalId) {
+			$user = UserUtils::getLoggedIn();
+			$cal = Doctrine::getTable('Cal')->find($currCalId);
+			$this->forward404Unless($cal && $cal->isOwner($user), sprintf('Object cal does not exist (%s).', $request->getParameter('id')));
+		} else {
+			$cal = new Cal();
+			$cal->setIsPublic(false);
+			$cal->setCategoryId(Category::CTG_NEVER_MISS);
+			$cal->setCategoryIdsPath(Category::CTG_NEVER_MISS);
+			$cal->save();
+		}
 		 
 		UserUtils::setOrphanCalId($cal->getId());
 		 
@@ -32,6 +48,26 @@ class nmActions extends sfActions{
 	
 			$this->redirect('/nm/widget?calId=' . $cal->getId());
 		}
+	}
+	
+	/**
+	 * 
+	 * @param sfWebRequest $request
+	 */
+	public function executeGetIcs(sfWebRequest $request){
+		
+		$cal = Doctrine::getTable('Cal')->find(array($request->getParameter('id')));
+		$export = new ICalExporter();
+		$events = array();
+
+		if ($cal && $cal->getIsPublic()){
+			$export->setTitle(GeneralUtils::icalEscape($cal->getName()));
+			$events = $this->getFlatCalEvents($cal);
+		}
+		
+
+		$this->ics = $export->toICal($events);
+		$this->setLayout(false);
 	}
 	
 	public function executeCalEvents(sfWebRequest $request){
@@ -87,48 +123,59 @@ class nmActions extends sfActions{
 					$event->setUpdatedAt($dateStr);
 					
 					
+					
 					//recurring events
 					if ($recType) $event->setRecType($recType);
 					if ($length) $event->setLength($length);
 					if ($pid) $event->setPid($pid);
-					
+
 					$event->save();
+					
 				}
 
 				$xmlAction->addAttribute('type', $status);
 				$xmlAction->addAttribute('sid', $id);
 				$xmlAction->addAttribute('tid', $event->getId());
 			}
-	
+			
 			$this->xml = $xml;
 			$this->setLayout(false);
 		} else {
 			$events = $cal->getEvents();
 	
 			$res = array('data' => array());
-			foreach ($events as $event){
-				$flatEvent = new stdClass();
-	
-				$flatEvent->id = $event->getId();
-				$flatEvent->start_date = $event->getStartsAt();
-				$flatEvent->end_date = $event->getEndsAt();
-				$flatEvent->text = $event->getName();
-				$flatEvent->details = $event->getDescription();
-				$flatEvent->location = $event->getLocation();
-				
-				if ($event->getRecType()) 	$flatEvent->rec_type = $event->getRecType();
-				if ($event->getLength()) 	$flatEvent->event_length = $event->getLength();
-				if ($event->getPid()) 		$flatEvent->event_pid = $event->getPid();
-				
-				if ($flatEvent->end_date == '0000-00-00 00:00:00') $flatEvent->end_date = '9999-01-01 00:00:00';
-
-				
-				$res['data'][] = $flatEvent;
-			}
+			$res['data'] = $this->getFlatCalEvents($cal);
 	
 			echo json_encode($res);
 			return sfView::NONE;
 		}
+	}
+	
+	private function getFlatCalEvents($cal){
+		$events = array();
+		
+		$calEvents = $cal->getEvents();
+
+		foreach ($calEvents as $event){
+			$flatEvent = array();
+		
+			$flatEvent['id'] = $event->getId();
+			$flatEvent['event_id'] = $flatEvent['id'];
+			$flatEvent['start_date'] = $event->getStartsAt();
+			$flatEvent['end_date'] = $event->getEndsAt();
+			$flatEvent['text'] = $event->getName() ? $event->getName() : '';
+			$flatEvent['details'] = $event->getDescription() ? $event->getDescription() : '';
+			$flatEvent['location'] = $event->getLocation() ? $event->getLocation() : '';
+			$flatEvent['rec_type'] = $event->getRecType() ? $event->getRecType() : '';
+			$flatEvent['event_length'] = $event->getLength() ? $event->getLength() : '';
+			$flatEvent['event_pid'] = $event->getPid() ? $event->getPid() : 0;
+
+			if ($flatEvent['end_date'] == '0000-00-00 00:00:00') $flatEvent['end_date'] = '9999-01-01 00:00:00';
+		
+			$events[] = $flatEvent;
+		}
+		
+		return $events;
 	}
 	
 	public function executeWidget(sfWebRequest $request){
