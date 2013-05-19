@@ -1,18 +1,6 @@
 <?php use_stylesheet('/css/neverMiss/widget.css');?>
 
-
-<?php if ($form->hasErrors()): ?>
-<div class="alert alert-error">
-	<button type="button" class="close" data-dismiss="alert">&times;</button>
-	<h4>Error!</h4>
-	
-	<ul>
-	<?php foreach ($form->getErrorSchema() as $name => $error): ?>
-		<li><?php echo $name;?> - <?php echo $error;?></li>
-	<?php endforeach;?>
-	</ul>
-</div>
-<?php endif;?>
+<?php include_partial('formError', array('form' => $form)) ?>
 
 <form method="GET" action="/cal/neverMissEdit">
 	<fieldset>
@@ -22,17 +10,6 @@
 				<label for="name">Calendar ID:</label>
 				<input class="span6" type="text" name="name" placeholder="Enter Calendar ID" value="<?php echo $calId;?>"/>
 				<span class="help-block">This name apear in subscipe application (Outlook, Google Calendar..)</span>
-				
-				
-				<!-- 
-				<div id="jsCodeWrapper" class="pb10" style="display:none;">
-					<label for="copyJsCode"><?php echo __('Copy this code to your site (iframe)');?>:</label>
-					<textarea id="copyJsCode" rows="3" cols="3" spellcheck="false" class="span6">&lt;div class=&quot;nm-follow&quot; data-cal-id=&quot;<?php echo $calId;?>&quot; style=&quot;float:left&quot;&gt;&lt;/div&gt; &lt;script&gt;(function(d, s, id) {var js, fjs = d.getElementsByTagName(s)[0];if (d.getElementById(id)) return;js = d.createElement(s); js.id = id;js.src = &quot;//sportycal.local/neverMissWidget/js/all.js&quot;;fjs.parentNode.insertBefore(js, fjs);}(document, 'script', 'never-miss-jssdk'));&lt;/script&gt;</textarea>
-				</div>
-				
-				
-				<label id="dwTermsWrapper"><input id="iAgree" type="checkbox" /> <?php echo __('I agree');?>&nbsp;&nbsp;&nbsp;&nbsp;<a target="_blank" href="/main/downCalTerms"><?php echo __('Terms & Conditions');?></a></label>
-				 -->
 			</div>
 			<div class="span6">
 				<div class="nm-follow" data-cal-id="<?php echo $calId;?>" style="float:left"></div>

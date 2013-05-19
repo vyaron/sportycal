@@ -51,6 +51,7 @@ class GeneralUtils {
     	$val = str_replace(array("\n",'/',';'),array('\n',' ','\;'),$val);
         return $val;
     }
+    
     // This is not touching the '/' character
     public static function icalEscape2($val) {
             return str_replace(array("\n",';'),array('\n','\;'),$val);
@@ -115,6 +116,19 @@ class GeneralUtils {
 	);
 	
 	
+    public static function getTZValue($str) {
+    	$val = null;
+    	
+    	foreach (self::$timezones as $value => $name){
+    		if ($str == $name) {
+    			$val = $value;
+    			break;
+    		}
+    	}
+    	
+    	return $val;
+    }
+    
 	//$str - '-H:i' ex -04:00
 	public static function getTZFromStr($str) {
 		$timeZoneStr = null;
@@ -158,13 +172,22 @@ class GeneralUtils {
 		return $utcStr;
 	}
 	
-	public static function getTZList(){
+	public static function getTZList($keyToName=false){
 		$tzList = array();
 		foreach (self::$timezones as $TZmin => $TZname){
-			$tz = new stdClass();
-			$tz->value = $TZmin;
-			$tz->name = self::getUTCStrFromJSTZ($tz->value) . ' ' . $TZname;
-			$tzList[] = $tz;
+			$name = self::getUTCStrFromJSTZ($TZmin) . ' ' . $TZname;
+			
+			if ($keyToName){
+				$tz = array();
+				$tzList[$TZmin] = $name;
+			} else {
+				$tz = new stdClass();
+				$tz->value = $TZmin;
+				$tz->name = $name;
+				$tzList[] = $tz;
+			}
+			
+			
 		}
 		
 		return $tzList;

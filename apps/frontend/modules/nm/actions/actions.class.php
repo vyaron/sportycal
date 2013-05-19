@@ -38,15 +38,38 @@ class nmActions extends sfActions{
 		$this->forward404Unless($cal && $cal->isOwner($user), sprintf('Object cal does not exist (%s).', $request->getParameter('id')));
 		$this->cal = $cal;
 		
-		$user = UserUtils::getLoggedIn();
+		$event = Doctrine_Query::create()
+  			->from('Event e')
+			->where('e.cal_id = ?', $cal->getId())
+			->fetchOne();
+		
+		if ($event) 							$tz = GeneralUtils::getTZValue($event->getTz());
+		else if (UserUtils::getUserTzValue()) 	$tz = UserUtils::getUserTzValue();
+		else 									$tz = 0;
+		
+		$this->tzFullName = $event ? (GeneralUtils::getUTCStrFromJSTZ($tz) . ' - ' . GeneralUtils::$timezones[$tz]) : null;
+		
+		$this->form = new NmCalForm();
+		$this->form->setDefault('name', $cal->getName());
+		$this->form->setDefault('description', $cal->getDescription());
+		$this->form->setDefault('tz', $tz);
+		
 		if ($request->isMethod(sfRequest::POST)){
-			$name = $request->getParameter('name');
-			if (empty($name)) $name = date('Y-m-d H:i:s');
-			$this->cal->setName($name);
-			$this->cal->setDescription($request->getParameter('description'));
-			$this->cal->save();
-	
-			$this->redirect('/nm/widget?calId=' . $cal->getId());
+			$this->form->bind($request->getParameter('cal'));
+			if ($this->form->isValid()){
+				$this->cal->setName($this->form->getValue('name'));
+				$this->cal->setDescription($this->form->getValue('description'));
+				$this->cal->save();
+				
+				$tzName = GeneralUtils::getTZFromJSTZ($this->form->getValue('tz'));
+				$q = Doctrine_Query::create()
+			        ->update('Event e')
+			        ->set('e.tz', '?', $tzName)
+			        ->where('cal_id = ?', $this->cal->getId())
+					->execute();
+				
+				$this->redirect('/nm/widget?calId=' . $cal->getId());
+			}
 		}
 	}
 	
@@ -82,7 +105,8 @@ class nmActions extends sfActions{
 			$xmlData = $xml->addChild('data');
 	
 			$ids = explode(',', $request->getParameter('ids'));
-	
+			
+			$tz = UserUtils::getUserTZ() ? UserUtils::getUserTZ() : null;
 			$dateStr = date('Y-m-d H:i:s');
 			foreach ($ids as $id){
 				$xmlAction = $xmlData->addChild('action');
@@ -121,7 +145,7 @@ class nmActions extends sfActions{
 					$event->setStartsAt($startDate);
 					$event->setEndsAt($endDate);
 					$event->setUpdatedAt($dateStr);
-					
+					$event->setTz($tz);
 					
 					
 					//recurring events

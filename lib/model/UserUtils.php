@@ -9,8 +9,11 @@ class UserUtils {
 
 	const KEY_USER          		= "user";
 	const KEY_SECURITY      		= "security";
+	
     const KEY_TZ            		= "tz";
+    const KEY_TZ_VALUE            	= "tz_value";
     const KEY_FULL_NAME_TZ			= "fullNameTz";
+    
     const KEY_PARTNER_ID          	= "partnerId";
     const KEY_PARTNER_ID_MASTER   	= "partnerIdMaster";
     const KEY_FROM_FB_APP   		= "fromFbApp";
@@ -118,6 +121,7 @@ class UserUtils {
         }
         return $isValid;
     }
+    
     public static function setUserTZ($tz)  {
         $userSession = sfContext::getInstance()->getUser();
         $userSession[self::KEY_TZ] = $tz;
@@ -125,6 +129,15 @@ class UserUtils {
 
     public static function getUserTZ() {
         return self::getFromSession(self::KEY_TZ);
+    }
+    
+    public static function setUserTzValue($tz)  {
+    	$userSession = sfContext::getInstance()->getUser();
+    	$userSession[self::KEY_TZ_VALUE] = $tz;
+    }
+    
+    public static function getUserTzValue() {
+    	return self::getFromSession(self::KEY_TZ_VALUE);
     }
     
  	public static function setUserFullNameTZ($tz)  {

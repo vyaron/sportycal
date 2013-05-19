@@ -27,7 +27,8 @@
 			margin-top: 50px;
 		}
 	</style>
-    <link href="/bundle/bootstrap/css/bootstrap-responsive.css" rel="stylesheet">
+    <link href="/bundle/bootstrap/css/bootstrap-responsive.css" rel="stylesheet"/>
+    <link href="/css/neverMiss/main.css" rel="stylesheet"/>
     <?php include_stylesheets() ?>
   </head>
   <body>

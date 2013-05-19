@@ -401,6 +401,7 @@ class mainActions extends sfActions
     $res = new stdClass();
     if ($tzStr && $tzStr != UserUtils::getUserTZ()){
     	UserUtils::setUserTZ($tzStr);
+    	UserUtils::setUserTzValue($tz);
     	UserUtils::setUserFullNameTZ(GeneralUtils::getUTCStrFromJSTZ($tz) . ' ' . $tzStr);
     	
     	$res->status = true;

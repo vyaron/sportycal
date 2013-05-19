@@ -4,7 +4,13 @@ use_stylesheet('/bundle/dhtmlxScheduler/codebase/dhtmlxscheduler_dhx_terrace.css
 use_stylesheet('/css/neverMiss/calEdit.css');
 ?>
 
+<?php include_partial('formError', array('form' => $form)) ?>
+
 <h2>Edit Your Calendar</h2>
+
+<?php if ($tzFullName):?>
+<h5>Timezone: <?php echo $tzFullName;?></h5>
+<?php endif;?>
 
 <div id="scheduler_here" class="dhx_cal_container" style="width: 100%; height: 100%; min-height:500px; line-height:normal;">
 	<div class="dhx_cal_navline">
@@ -39,41 +45,24 @@ use_stylesheet('/css/neverMiss/calEdit.css');
 
 
 <form id="cal-form" method="POST">
+	<?php echo $form['_csrf_token']->render();?>
 	<input id="cal-id" type="hidden" name="id" value="<?php echo $cal->getId();?>">
 	<fieldset>
 		<legend>Calendar Information:</legend>
-		<div class="row">
-			<div class="span2">
-				<label for="name">Name:</label>
-			</div>
-			<div class="span6">
-				<input class="span6" type="text" name="name" placeholder="Enter Calendar Name" value="<?php echo $cal->getName();?>"/>
-				<span class="help-block">This name apear in subscipe application (Outlook, Google Calendar..)</span>
-			</div>
-		</div>
 		
 		<div class="row">
-			<div class="span2">
-				<label for="description">Description:</label>
-			</div>
-			<div class="span6">
-				<textarea class="span6" type="text" name="description" placeholder="Enter Calendar Description"><?php echo $cal->getDescription();?></textarea>
-			</div>
+			<div class="span2"><?php echo $form['name']->renderLabel();?></div>
+			<div class="span4"><?php echo $form['name']->render(array('class' => 'span4', 'placeholder' => 'Enter calendar name'));?></div>
 		</div>
-		
 		<div class="row">
-			<div class="span2">
-				<label for="description">Timezone:</label>
-			</div>
-			<div class="span6">
-				<select class="span6" name="tz" disabled="disabled">
-					<?php foreach (GeneralUtils::getTZList() as $tz):?>
-					<option value="<?php echo $tz->value?>"<?php echo (UserUtils::getUserTZ() == $tz->value) ? ' selected="selected"' : ''?>><?php echo $tz->name?></option>
-					<?php endforeach;?>
-				</select>
-			</div>
+			<div class="span2"><?php echo $form['description']->renderLabel();?></div>
+			<div class="span4"><?php echo $form['description']->render(array('class' => 'span4', 'placeholder' => 'Enter description'));?></div>
 		</div>
-		
+		<div class="row">
+			<div class="span2"><?php echo $form['tz']->renderLabel();?></div>
+			<div class="span4"><?php echo $form['tz']->render(array('class' => 'span4'));?></div>
+		</div>
+
 		<div class="form-actions clearfix">
 			<input type="submit" class="btn btn-success pull-right" value="Continue"/>
 		</div>
