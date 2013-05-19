@@ -156,13 +156,13 @@ class ICalExporter {
 		$str = "BEGIN:VCALENDAR\n";
 		$str .= "VERSION:2.0\n";
 		$str .= "PRODID:-//sportYcal//NONSGML v2.2//EN\n";
-		$sre .= "CALSCALE:GREGORIAN\n";
-		$sre .= "X-WR-TIMEZONE;VALUE=TEXT:US/Pacific\n";
-		$sre .= "METHOD:PUBLISH\n";
+		$str .= "CALSCALE:GREGORIAN\n";
+		$str .= "X-WR-TIMEZONE;VALUE=TEXT:US/Pacific\n";
+		$str .= "METHOD:PUBLISH\n";
 
 		$title = $this->getTitle();
 		if ($title) $str .= "X-WR-CALNAME:".$title."\n";
-		
+
 		for($i=0;$i<sizeof($h);$i++) {
 			$pid = (isset($h[$i]['event_pid'])) ? $h[$i]['event_pid'] : null;
 			$recType = (isset($h[$i]['rec_type'])) ? $h[$i]['rec_type'] : null;
@@ -176,6 +176,15 @@ class ICalExporter {
 				$str .= "SUMMARY:".$h[$i]['text']."\n";
 				$str .= "DESCRIPTION:".$h[$i]['details']."\n";
 				$str .= "LOCATION:".$h[$i]['location']."\n";
+				
+				if (isset($h[$i]['reminder'])){
+					$str .= "BEGIN:VALARM\n";
+					$str .= "TRIGGER:-PT" . ($h[$i]['reminder'] * 60) . "M\n";
+					$str .= "ACTION:DISPLAY\n";
+					$str .= "DESCRIPTION: Are you ready for the game?\n";
+					$str .= "END:VALARM\n";
+				}
+				
 				$str .= "END:VEVENT\n";
 			} elseif($recType != "" and $pid == 0) {
 				$str .= "BEGIN:VEVENT\n";
@@ -188,6 +197,15 @@ class ICalExporter {
 				$str .= "SUMMARY:".$h[$i]['text']."\n";
 				$str .= "DESCRIPTION:".$h[$i]['details']."\n";
 				$str .= "LOCATION:".$h[$i]['location']."\n";
+				
+				if (isset($h[$i]['reminder'])){
+					$str .= "BEGIN:VALARM\n";
+					$str .= "TRIGGER:-PT" . ($h[$i]['reminder'] * 60) . "M\n";
+					$str .= "ACTION:DISPLAY\n";
+					$str .= "DESCRIPTION: " . $h[$i]['remider_msg'] . "\n";
+					$str .= "END:VALARM\n";
+				}
+				
 				$str .= "END:VEVENT\n";
 			} elseif($recType == "" and $pid == 0) {
 				$str .= "BEGIN:VEVENT\n";
@@ -197,14 +215,21 @@ class ICalExporter {
 				$str .= "SUMMARY:".$h[$i]['text']."\n";
 				$str .= "DESCRIPTION:".$h[$i]['details']."\n";
 				$str .= "LOCATION:".$h[$i]['location']."\n";
+				
+				if (isset($h[$i]['reminder'])){
+					$str .= "BEGIN:VALARM\n";
+					$str .= "TRIGGER:-PT" . ($h[$i]['reminder'] * 60) . "M\n";
+					$str .= "ACTION:DISPLAY\n";
+					$str .= "DESCRIPTION: Are you ready for the game?\n";
+					$str .= "END:VALARM\n";
+				}
+				
 				$str .= "END:VEVENT\n";
 			}
-			
-			//TODO:BEGIN:VALARM
-			
-			
 		}
-		$str .= "END:VCALENDAR";	
+		
+		$str .= "END:VCALENDAR";
+		
 		return $str;
 	}
 }

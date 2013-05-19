@@ -310,28 +310,29 @@ class calActions extends sfActions
     return sfView::NONE;
 
   }
-
+  
   public function executeGetIcs(sfWebRequest $request){
   	$calId      	= $request->getParameter('id');
   	$ctgId      	= $request->getParameter('ctgId');
   	$calType       	= $request->getParameter('ct');
   	$label       	= $request->getParameter('label');
+  	$remider       	= $request->getParameter('remider');
 
   	$tags = null;
   	if (!is_null($label)) $tags = json_decode($label);
-
+  
   	//http://sportYcal.local/frontend_dev.php/cal/get/id/134/ct/google/l/cId:9191sportycal.ics
   	$intelLabel       	= $request->getParameter('l');
   	$intelValue       	= $request->getParameter('v');
-  	
+  	 
   	//http://sportycal.local/frontend_dev.php/cal/get?bc=2&ct=google
   	$birthdayCalUserId	= $request->getParameter('bc');
-  	
+  	 
   	$this->forward404Unless($calId || $ctgId || $birthdayCalUserId);
-  	
+  	 
   	$partner = SportyCalAPI::getValidPartner($request);
   	if ($partner) UserUtils::setPartner($partner);
-  	
+  	 
   	if ($calId) {
   		$this->cal = Doctrine::getTable('Cal')->find($calId);
   		$this->forward404Unless($this->cal);
@@ -347,15 +348,13 @@ class calActions extends sfActions
   	} else {
   		return sfView::NONE;
   	}
-
-  	$this->userCal = null;
-  	$this->partner = $partner;
-  	$this->calType = $calType;
-  	$this->intelLabel = $intelLabel;
-  	$this->intelValue = $intelValue;
-  	$this->tags = $tags;
+  	 
+  	$events = $this->cal->getEventsForIcal($calType, $partner, $tags, $intelLabel, $intelValue, $remider);
+  	$export = new ICalExporter();
+  	$export->setTitle(GeneralUtils::icalEscape($this->cal->getName()));
   	
-  	$this->events = $this->cal->getEventsForIcal($this->userCal, $this->calType, $this->tags);
+  	$this->ics = $export->toICal($events);
+  	$this->setLayout(false);
   }
   
   public function executeGet(sfWebRequest $request){
@@ -396,7 +395,12 @@ class calActions extends sfActions
     
     //Split action for cache purpose
     $urlParams = substr($request->getUri(), strlen($request->getUriPrefix()));
-    $urlParams = preg_replace('/\/hash\/(.+?)\//', '/', $urlParams);
+    
+    //http://sportycal.local/cal/get/id/1044/hash/26368/ct/any/sportycal.ics
+    $hashParam = '/';
+    if ($this->userCal && $this->userCal->getReminder() > 0) $hashParam = '/remider/' . $this->userCal->getReminder() . '/';
+    $urlParams = preg_replace('/\/hash\/(.+?)\//', $hashParam, $urlParams);
+
     $this->redirect(str_replace('/get/', '/getIcs/', $urlParams));
   }
 

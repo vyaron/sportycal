@@ -68,29 +68,12 @@ class nmActions extends sfActions{
 			        ->where('cal_id = ?', $this->cal->getId())
 					->execute();
 				
+				//TODO: get root ctg AND website (old users come from sportycal)
+				if ($user && !$this->cal->isOwner($user)) $this->cal->setAdoptive($user);
+				
 				$this->redirect('/nm/widget?calId=' . $cal->getId());
 			}
 		}
-	}
-	
-	/**
-	 * 
-	 * @param sfWebRequest $request
-	 */
-	public function executeGetIcs(sfWebRequest $request){
-		
-		$cal = Doctrine::getTable('Cal')->find(array($request->getParameter('id')));
-		$export = new ICalExporter();
-		$events = array();
-
-		if ($cal && $cal->getIsPublic()){
-			$export->setTitle(GeneralUtils::icalEscape($cal->getName()));
-			$events = $this->getFlatCalEvents($cal);
-		}
-		
-
-		$this->ics = $export->toICal($events);
-		$this->setLayout(false);
 	}
 	
 	public function executeCalEvents(sfWebRequest $request){
@@ -165,41 +148,12 @@ class nmActions extends sfActions{
 			$this->xml = $xml;
 			$this->setLayout(false);
 		} else {
-			$events = $cal->getEvents();
-	
 			$res = array('data' => array());
-			$res['data'] = $this->getFlatCalEvents($cal);
+			$res['data'] = $cal->getEventsForScheduler();
 	
 			echo json_encode($res);
 			return sfView::NONE;
 		}
-	}
-	
-	private function getFlatCalEvents($cal){
-		$events = array();
-		
-		$calEvents = $cal->getEvents();
-
-		foreach ($calEvents as $event){
-			$flatEvent = array();
-		
-			$flatEvent['id'] = $event->getId();
-			$flatEvent['event_id'] = $flatEvent['id'];
-			$flatEvent['start_date'] = $event->getStartsAt();
-			$flatEvent['end_date'] = $event->getEndsAt();
-			$flatEvent['text'] = $event->getName() ? $event->getName() : '';
-			$flatEvent['details'] = $event->getDescription() ? $event->getDescription() : '';
-			$flatEvent['location'] = $event->getLocation() ? $event->getLocation() : '';
-			$flatEvent['rec_type'] = $event->getRecType() ? $event->getRecType() : '';
-			$flatEvent['event_length'] = $event->getLength() ? $event->getLength() : '';
-			$flatEvent['event_pid'] = $event->getPid() ? $event->getPid() : 0;
-
-			if ($flatEvent['end_date'] == '0000-00-00 00:00:00') $flatEvent['end_date'] = '9999-01-01 00:00:00';
-		
-			$events[] = $flatEvent;
-		}
-		
-		return $events;
 	}
 	
 	public function executeWidget(sfWebRequest $request){
@@ -215,6 +169,8 @@ class nmActions extends sfActions{
 				
 				$now = date('Y-m-d H:i:s');
 				$rootName = $this->form->getValue('company_name') ? $this->form->getValue('company_name') : $this->form->getValue('full_name');
+				$website = $this->form->getValue('website');
+				
 				
 				//Create user
 				$user = new User();
@@ -226,44 +182,9 @@ class nmActions extends sfActions{
 				$user->setLastLoginDate($now);
 				$user->save();
 				
-				//Create Partner
-				$partner = new Partner();
-				$partner->setName($rootName);
-				$partner->setHash($user->getId()); //TODO: replace with nice hash
-				//TODO: add timezone
-				$partner->Save();
-				
-				//Create PartnerUser
-				$partnerUser = new PartnerUser();
-				$partnerUser->setPartnerId($partner->getId());
-				$partnerUser->setUserId($user->getId());
-				$partnerUser->save();
-				
-				//Create Category
-				$category = new Category();
-				$category->setName($rootName);
-				$category->setIsPublic(false);
-				$category->setPartnerId($partner->getId());
-				$category->setByUserId($user->getId());
-				$category->save();
-				
-				//Create PartnerDesc
-				$partnerDesc = new PartnerDesc();
-				$partnerDesc->setPartnerId($partner->getId());
-				$partnerDesc->setWebsite($this->form->getValue('website'));
-				$partnerDesc->setCategoryId($category->getId());
-				$partnerDesc->setCalId($orphanCal->getId());
-				$partnerDesc->save();
-				
-				//Set orphan cal parent
-				$orphanCal->setByUserId($user->getId());
-				$orphanCal->setIsPublic(true);
-				$orphanCal->save();
-				
-				//clear from session
-				UserUtils::setOrphanCalId(null);
-				
 				UserUtils::logUserIn($user);
+				
+				$orphanCal->setAdoptive($user, $rootName, $website);
 			}
 		}
 		

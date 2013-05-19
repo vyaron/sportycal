@@ -110,10 +110,12 @@ class Cal extends BaseCal
         return $srcName;
     }
 
-    public function getEventsForIcal($userCal=null, $calType=null, $tags=null) {
-    	$events 		= $this->getEvents();
+    public function getEventsForIcal($calType, $partner=null, $tags=null, $intelLabel=null, $intelValue=null, $remider=null, $remiderMsg = 'Are you ready for the game?') {
+    	$userCal = null;
+    	
+    	$calEvents 		= $this->getEvents();
     	$extraEvents 	= Event::getExtraEvents($this, $userCal, $calType);
-    	$meregedEventes = array_merge($events, $extraEvents);
+    	$meregedEventes = array_merge($calEvents, $extraEvents);
     	
     	$filtedEvents = array();
     	if (!is_null($tags)){
@@ -129,7 +131,37 @@ class Cal extends BaseCal
     		$filtedEvents = $meregedEventes;
     	}
     	
-    	return $filtedEvents;
+    	$events = array();
+    	foreach ($filtedEvents as $event){
+    		$flatEvent = array();
+    	
+    		$flatEvent['id'] = $event->getIdForIcal();
+    		$flatEvent['event_id'] = $flatEvent['id'];
+    		$flatEvent['start_date'] = $event->getStartsAtForCal();
+    		$flatEvent['end_date'] = $event->getEndsAtForCal();
+    		$flatEvent['text'] = $event->getName() ? GeneralUtils::icalEscape($event->getName()) : '';
+    		
+    		$details = $event->getDescriptionForCal($this, $userCal, $partner, $calType, $intelLabel, $intelValue, null);
+    		$flatEvent['details'] = $details ? GeneralUtils::icalEscape2($details) : '';
+    		
+    		$flatEvent['location'] = $event->getLocation() ? GeneralUtils::icalEscape($event->getLocation()) : '';
+    		
+    		$flatEvent['rec_type'] = $event->getRecType() ? $event->getRecType() : '';
+    		$flatEvent['event_length'] = $event->getLength() ? $event->getLength() : '';
+    		$flatEvent['event_pid'] = $event->getPid() ? $event->getPid() : 0;
+    	
+    		if ($event->hasHour() && $remider){
+    			$flatEvent['reminder'] = $remider;
+    			$flatEvent['reminder_msg'] = $remiderMsg;
+    		}
+
+    		if ($this->isBirthdayCal()) $flatEvent['rec_type'] = 'year_1___#no';
+    		if ($this->isBirthdayCal() || ($flatEvent['end_date'] == '0000-00-00 00:00:00')) $flatEvent['end_date'] = '9999-01-01 00:00:00';
+    	
+    		$events[] = $flatEvent;
+    	}
+
+    	return $events;
     }
     
     private $cachedEvents;
@@ -681,5 +713,87 @@ class Cal extends BaseCal
     	
     	return  (($calUserId == null && UserUtils::getOrphanCalId() == $this->getId())
     		|| ($user && ($user->isMaster() || ($calUserId == $user->getId())))) ? true : false;
+    }
+    
+    public function getEventsForScheduler(){
+    	$events = array();
+    	
+    	$calEvents = $this->getEvents();
+    	foreach ($calEvents as $event){
+    		$flatEvent = array();
+    		 
+    		$flatEvent['id'] = $event->getId();
+    		$flatEvent['event_id'] = $flatEvent['id'];
+    		$flatEvent['start_date'] = $event->getStartsAt();
+    		$flatEvent['end_date'] = $event->getEndsAt();
+    		$flatEvent['text'] = $event->getName() ? $event->getName() : '';
+    		$flatEvent['details'] = $event->getDescription() ? $event->getDescription() : '';
+    		$flatEvent['location'] = $event->getLocation() ? $event->getLocation() : '';
+    		$flatEvent['rec_type'] = $event->getRecType() ? $event->getRecType() : '';
+    		$flatEvent['event_length'] = $event->getLength() ? $event->getLength() : '';
+    		$flatEvent['event_pid'] = $event->getPid() ? $event->getPid() : 0;
+    		 
+    		if ($flatEvent['end_date'] == '0000-00-00 00:00:00') $flatEvent['end_date'] = '9999-01-01 00:00:00';
+    		 
+    		$events[] = $flatEvent;
+    	}
+    	 
+    	return $events;
+    }
+    
+    public function setAdoptive(User $user, $rootName="ROOT", $website=null){
+    	if (!$this->getByUserId()){
+    		$partner = $user->getPartner();
+    		
+    		if (!$partner){
+    			//Create Partner
+    			$partner = new Partner();
+    			$partner->setName($rootName);
+    			$partner->setHash($user->getId()); //TODO: replace with nice hash
+    		
+    			//TODO: add timezone ?
+    			$partner->Save();
+    		
+    			//Create PartnerUser
+    			$partnerUser = new PartnerUser();
+    			$partnerUser->setPartnerId($partner->getId());
+    			$partnerUser->setUserId($user->getId());
+    			$partnerUser->save();
+    		
+    			if ($user->isSimple()){
+    				$user->setType(User::TYPE_PARTNER);
+    				$user->save();
+    			}
+    		}
+    		 
+    		$category = $partner->getRootCategory();
+    		if (!$category){
+    			//Create Category
+    			$category = new Category();
+    			$category->setName($rootName);
+    			$category->setIsPublic(false);
+    			$category->setPartnerId($partner->getId());
+    			$category->setByUserId($user->getId());
+    			$category->save();
+    		
+    			//Create PartnerDesc
+    			$partnerDesc = new PartnerDesc();
+    			$partnerDesc->setPartnerId($partner->getId());
+    			$partnerDesc->setWebsite($website);
+    			$partnerDesc->setCategoryId($category->getId());
+    			$partnerDesc->setCalId($this->getId());
+    			$partnerDesc->save();
+    		}
+    		 
+    		//Set orphan cal parent
+    		$this->setByUserId($user->getId());
+    		$this->setIsPublic(true);
+    		$this->setCategoryId($category->getId());
+    		$this->setPartnerId($partner->getId());
+    		$this->save();
+    		
+    		//clear from session
+    		UserUtils::setOrphanCalId(null);
+    	}
     }
 }

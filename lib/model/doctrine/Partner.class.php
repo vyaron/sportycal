@@ -160,4 +160,16 @@ class Partner extends BasePartner
 		else 														return false;
 		
 	}
+	
+	public function getRootCategory(){
+		$category = null;
+		 
+		$category = Doctrine_Query::create()
+		->from('Category c')
+		->innerJoin('c.PartnerDesc pd')
+		->where('pd.partner_id = ?', $this->getId())
+		->fetchOne();
+		
+		return $category;
+	}
 }

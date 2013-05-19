@@ -41,7 +41,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="brand" href="#">Never Miss</a>
+          <a class="brand" href="/">Never Miss</a>
           <div class="nav-collapse collapse">
             <ul class="nav">
               <li class="active"><a href="/">Home</a></li>
@@ -60,30 +60,14 @@
 		<?php echo $sf_content ?>
 		
 		<div id="footer">
-	        <span style="color:gray">sportYcal &copy; 2010</span>
-	        &nbsp;&nbsp;|&nbsp;&nbsp;
-	        <a href="<?php echo url_for('partner/login') ?>"><?php echo __('Login');?></a>&nbsp;&nbsp;|&nbsp;&nbsp;
-	        
-	        <?php if ($user && $user->isPartner()) :?>
-	        &nbsp;&nbsp;|&nbsp;&nbsp;
-	        <a href="<?php echo url_for('admin/partnerReport') ?>"><?php echo __('Partners Reports');?></a> &nbsp;&nbsp;|&nbsp;&nbsp;
-	        <?php endif;?>
-	        
-	        <?php if ($user && $user->isMaster()) :?>
-	        &nbsp;&nbsp;|&nbsp;&nbsp;
-	        <a href="<?php echo url_for('admin/partnersReports') ?>"><?php echo __('Partners Reports');?></a>&nbsp;&nbsp;|&nbsp;&nbsp;
-	        <?php endif;?>
+	        <span style="color:gray">sportYcal &copy; 2010</span>&nbsp;&nbsp;|&nbsp;&nbsp;
+	        <?php if ($user):?>
+			<a href="<?php echo url_for('main/logout') ?>"><?php echo __('Logout');?></a>&nbsp;&nbsp;|&nbsp;&nbsp;
+			<?php else:?>
+			<a href="<?php echo url_for('partner/login') ?>"><?php echo __('Login');?></a>&nbsp;&nbsp;|&nbsp;&nbsp;
+			<?php endif;?>
 	        
 	        <a href="<?php echo url_for('main/terms') ?>"><?php echo __('Terms & Conditions');?></a>
-	        
-	        <?php if ($user && $user->isMaster()) :?>
-			
-	        <div class="adminLinks">
-	            <br/><br/><br/>
-	            <a href="<?php echo url_for('admin/index') ?>"><?php echo __('Master Page');?></a>&nbsp;&nbsp;|&nbsp;&nbsp;
-	        </div>
-	        
-	        <?php endif;?>
 	    </div>
     </div>
 	

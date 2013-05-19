@@ -30,4 +30,15 @@ class User extends BaseUser
         return ($type == self::TYPE_PARTNER);
     }
     
+    public function getPartner(){
+    	$partner = null;
+    	
+    	if ($this->isPartner()) $partner = Doctrine_Query::create()
+  			->from('Partner p')
+  			->innerJoin('p.PartnerUser pu')
+			->where('pu.user_id = ?', $this->getId())
+			->fetchOne();
+    		
+    	return $partner;
+    }
 }
