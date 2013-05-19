@@ -83,7 +83,7 @@
 	</div>
 	<div class="span6">
 		<legend>Preview:</legend>
-		<div class="nm-follow" data-cal-id="<?php echo $calId;?>" style="float:left"></div>
+		<div class="nm-follow" data-cal-id="<?php echo $calId;?>" style="float:left; position: relative;"></div>
 		<script>(function(d, s, id) {
 		  var js, fjs = d.getElementsByTagName(s)[0];
 		  if (d.getElementById(id)) return;

@@ -14,7 +14,7 @@ function loadCalendar(){
 	
 	scheduler.config.full_day = true;
 	
-	scheduler.config.server_utc = true; //convert server side dates from utc to local timezone, and backward during data sending to server;
+	//scheduler.config.server_utc = true; //convert server side dates from utc to local timezone, and backward during data sending to server;
 
 	scheduler.attachEvent("onTemplatesReady", function(){
 		var lightbox_form = scheduler.getLightbox(); // this will generate lightbox form

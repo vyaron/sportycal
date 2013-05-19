@@ -28,9 +28,9 @@ body{background-color: transparent;}
 <body>
 <div id="widget-bubble" class="speech-bubble1">
 	<div class="clearfix">
-		<a class="cal-link google" href="#" data-href="http://sportYcal.com/cal/sub/id/<?php echo $calId?>/ct/google/ref/widget/cal.ics" data-desc="Download to Google calendar">&nbsp;</a>
-		<a class="cal-link outlook" href="#" data-href="http://sportYcal.com/cal/sub/id/<?php echo $calId?>/ct/outlook/ref/widget/cal.ics" data-desc="Download to Outlook calendar">&nbsp;</a>
-		<a class="cal-link ical" href="#" data-href="http://sportYcal.com/cal/sub/id/<?php echo $calId?>/ct/any/ref/widget/cal.ics" data-desc="Copy iCal link">&nbsp;</a>
+		<a class="cal-link google" href="#" data-href="/cal/sub/id/<?php echo $calId?>/ct/google/ref/widget/cal.ics" data-desc="Download to Google calendar">&nbsp;</a>
+		<a class="cal-link outlook" href="#" data-href="/cal/sub/id/<?php echo $calId?>/ct/outlook/ref/widget/cal.ics" data-desc="Download to Outlook calendar">&nbsp;</a>
+		<a class="cal-link ical" href="#" data-href="/cal/sub/id/<?php echo $calId?>/ct/any/ref/widget/cal.ics" data-desc="Copy iCal link">&nbsp;</a>
 	</div>
 	
 	<div id="desc-wrapper" style="display:none;">

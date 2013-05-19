@@ -1,12 +1,12 @@
 getSuccess:
   has_layout: false
-getIcsSuccess:
+getIcsSuccess1:
   has_layout: false
 getIcsSuccess:
   has_layout: false
   http_metas:
     content-type: text/calendar
     Content-Disposition: attachment; filename=cal.ics
-getCSVSuccess1:
+getCSVSuccess:
   has_layout: false
  

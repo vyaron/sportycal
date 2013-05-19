@@ -106,10 +106,10 @@
 			var t = d.getTime() + i;
 			
 			var id = NEVER_MISS + '_' + t;
-			var id_bubble = NEVER_MISS + '_b_' + t;
+			var id_bubble = 'b_' + id;
 			
-			var iframes = '<iframe id="' + id +'" src="' + NEVER_MISS_WIDGET_URL + '?' + params + '" frameborder="0" border="0" style="border: medium none; overflow: hidden; height: 22px; width: 47px;" scrolling="no" title="Never Miss"></iframe>';
-			//iframes += '<iframe id="' + id_bubble +'" src="' + NEVER_MISS_WIDGET_BUBBLE_URL + '?' + params + '" frameborder="0" border="0" style="border: medium none; overflow: hidden; height: 200px; width: 200px; position:absolute; left:0; top:30px; z-index:999; display:none;" scrolling="no" title="Never Miss"></iframe>';
+			var iframes = '<iframe id="' + id +'" src="' + NEVER_MISS_WIDGET_URL + '?' + params + '&popupId=' + id_bubble + '" frameborder="0" border="0" style="border: medium none; overflow: hidden; height: 22px; width: 47px;" scrolling="no" title="Never Miss"></iframe>';
+			iframes += '<iframe id="' + id_bubble +'" src="' + NEVER_MISS_WIDGET_BUBBLE_URL + '?' + params + '&isPopup=true' + '" frameborder="0" border="0" style="border: medium none; overflow: hidden; height: 200px; width: 275px; position:absolute; left:0; top:30px; z-index:999; display:none;" scrolling="no" title="Never Miss"></iframe>';
 			el.innerHTML = iframes;
 			
 			/*
@@ -123,4 +123,13 @@
 
 	var els = getElementsByClassName('nm-follow');
 	injectIframe(els);
+	
+	//TODO: add Event one time only!
+	var eventMethod = window.addEventListener ? "addEventListener" : "attachEvent";
+	var eventer = window[eventMethod];
+	var messageEvent = eventMethod == "attachEvent" ? "onmessage" : "message";
+	// Listen to message from child window
+	eventer(messageEvent,function(e) {
+		toggleBubble(e.data);
+	},false);
 })();
