@@ -1,6 +1,9 @@
-<?php 
+<?php
+$isBubble = false;
 if (isset($_GET['calId'])){
 	$calId = $_GET['calId'];
+	
+	if (isset($_GET['isBubble'])) $isBubble = true;
 } else {
 	echo 'ERROR';
 	die();
@@ -12,21 +15,58 @@ if (isset($_GET['calId'])){
 <link rel="stylesheet" href="css/main.css"/>
 <style type="text/css">
 body{background-color: transparent;}
-	.cal-link{display: block; float: left; margin-right: 5px; width: 28px; height: 28px; border: 1px solid transparent; text-decoration: none; background-repeat: no-repeat; background-position: 0 0;}
-	.cal-link:hover, .cal-link.selected{border-color: gray;}
+	.cal-link{display: block; float: left; margin-right: 5px; width: 30px; height: 30px; border: 2px dashed transparent; text-decoration: none; background-repeat: no-repeat; background-position: center center; outline: none;}
+	.cal-link:hover, .cal-link.selected{border-color: #ccc;}
 	.cal-link.google{background-image: url('imgs/google.png');}
 	.cal-link.outlook{background-image: url('imgs/outlook.png');}
 	.cal-link.ical{background-image: url('imgs/ical.png');}
 	
-	#widget-bubble{width: 250px; padding: 10px; margin: 10px auto; border: 1px solid #ddd; -moz-border-radius: 7px;
-    -webkit-border-radius: 7px;
-    border-radius: 7px;}
+	/*New Window*/
+	.window-open{margin: 10px;}
+	
+	/*Bubble*/
+	.speech-bubble {
+	    position:relative;
+	    width: 150px;
+	    padding: 10px;
+	    /*margin: 3em;*/
+	    margin-top:25px;
+	    background-color:#FFF;
+	    color: #666;
+	    font: normal 12px "Segoe UI", Arial, Sans-serif;
+	    -moz-border-radius: 10px;
+	    -webkit-border-radius: 10px;
+	    border-radius: 10px;
+	    border: 10px solid #ccc;
+	}
+	
+	.speech-bubble:before,
+	.speech-bubble:after {
+	    content: "\0020";
+	    display:block;
+	    position:absolute;
+	    top:-20px;
+	    left:3px;
+	    z-index:2;
+	    width: 0;
+	    height: 0;
+	    overflow:hidden;
+	    border: solid 20px transparent;
+	    border-top: 0;
+	    border-bottom-color:#FFF;
+	}
+	.speech-bubble:before {
+	    top:-30px;
+	    z-index:1;
+	    border-bottom-color:#ccc;
+	}
+    
 </style>
 <title>Widget bubble</title>
 </head>
 
 <body>
-<div id="widget-bubble" class="speech-bubble1">
+<div id="widget-bubble" class="<?php echo ($isBubble) ? 'speech-bubble' : 'window-open'?>">
 	<div class="clearfix">
 		<a class="cal-link google" href="#" data-href="/cal/sub/id/<?php echo $calId?>/ct/google/ref/widget/cal.ics" data-desc="Download to Google calendar">&nbsp;</a>
 		<a class="cal-link outlook" href="#" data-href="/cal/sub/id/<?php echo $calId?>/ct/outlook/ref/widget/cal.ics" data-desc="Download to Outlook calendar">&nbsp;</a>

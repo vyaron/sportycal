@@ -86,9 +86,6 @@
 		iframeEl = document.getElementById(id);
 		if (iframeEl) {
 			iframeEl.style.display = (iframeEl.style.display == 'block') ? 'none' : 'block';
-			iframeEl.contentWindow.document.getElementById('continue-btn').onclick = function(){
-				iframeEl.style.display = 'none';
-			};
 		}
 	}
 
@@ -108,16 +105,9 @@
 			var id = NEVER_MISS + '_' + t;
 			var id_bubble = 'b_' + id;
 			
-			var iframes = '<iframe id="' + id +'" src="' + NEVER_MISS_WIDGET_URL + '?' + params + '&popupId=' + id_bubble + '" frameborder="0" border="0" style="border: medium none; overflow: hidden; height: 22px; width: 47px;" scrolling="no" title="Never Miss"></iframe>';
-			iframes += '<iframe id="' + id_bubble +'" src="' + NEVER_MISS_WIDGET_BUBBLE_URL + '?' + params + '&isPopup=true' + '" frameborder="0" border="0" style="border: medium none; overflow: hidden; height: 200px; width: 275px; position:absolute; left:0; top:30px; z-index:999; display:none;" scrolling="no" title="Never Miss"></iframe>';
+			var iframes = '<div style="position: relative;"><iframe id="' + id +'" src="' + NEVER_MISS_WIDGET_URL + '?' + params + '&popupId=' + id_bubble + '" frameborder="0" border="0" style="border: medium none; overflow: hidden; height: 22px; width: 47px;" scrolling="no" title="Never Miss"></iframe>';
+			iframes += '<iframe id="' + id_bubble +'" src="' + NEVER_MISS_WIDGET_BUBBLE_URL + '?' + params + '&isBubble=true' + '" frameborder="0" border="0" style="border: medium none; overflow: hidden; height: 200px; width: 275px; position:absolute; left:0; top:20px; z-index:999; display:none;" scrolling="no" title="Never Miss"></iframe></div>';
 			el.innerHTML = iframes;
-			
-			/*
-			iframeEl = document.getElementById(id);
-			if (iframeEl) iframeEl.onload = function(){
-				iframeEl.contentWindow.document.getElementById('never-miss-btn').onclick = function(){toggleBubble(id_bubble);};
-			};
-			*/
 		}
 	}
 
