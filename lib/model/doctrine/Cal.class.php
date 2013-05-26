@@ -121,11 +121,55 @@ class Cal extends BaseCal
     	if (!is_null($tags)){
     		foreach ($meregedEventes as $i => $event){
     			$eventTags = $event->getTags();
+    			
+    			if (!is_null($eventTags)) $eventTags = json_decode($eventTags);
+    			if (!is_null($eventTags)) {
+    				if (property_exists($tags, 'countryCodes') && is_array($tags->countryCodes)){
+
+    					if (property_exists($eventTags, 'countryCode') && is_array($eventTags->countryCode)){
+    						$exist = false;
+    						
+    						foreach ($eventTags->countryCode as $countryCode){
+    							if (in_array($countryCode, $tags->countryCodes)) {
+    								$exist = true;
+    								break;
+    							}
+    						}
+    							
+    						if (!$exist) continue;
+    					}
+    				}
+    				
+    				if (property_exists($tags, 'languageCodes') && is_array($tags->languageCodes)){
+    					if (property_exists($eventTags, 'languageCode') && is_array($eventTags->languageCode)){
+    						$exist = false;
+    						
+    						foreach ($eventTags->languageCode as $languageCode){
+    							if (in_array($languageCode, $tags->languageCodes)) {
+    								$exist = true;
+    								break;
+    							}
+    						}
+    					
+    						if (!$exist) continue;
+    					}
+    				}
+    			}
+    			
+    			$filtedEvents[] = $event;
+    			
+    			/*
+    			if (is_null($eventTags) 
+    					|| (!in_array($eventTags->countryCode, $tags->countryCodes)) 
+    					|| (!in_array($eventTags->languageCode, $tags->langs))) continue;
+    			else $filtedEvents[] = $event;
+    			
     			if (!is_null($eventTags)) $eventTags = json_decode($eventTags);
     			if (is_null($eventTags) 
     					|| (!in_array($eventTags->countryCode, $tags->countryCodes)) 
     					|| (!in_array($eventTags->languageCode, $tags->langs))) continue;
     			else $filtedEvents[] = $event;
+    			*/
     		}
     	} else {
     		$filtedEvents = $meregedEventes;

@@ -72,8 +72,8 @@ class eventActions extends sfActions
   	
   	//Set tags JSON
   	$tags = array();
-  	if (!empty($params['countryCode'])) $tags['countryCode'] = $params['countryCode'];
-  	if (!empty($params['languageCode'])) $tags['languageCode'] = $params['languageCode'];
+  	if (!empty($params['countryCode'])) $tags['countryCode'] = explode(',', $params['countryCode']);
+  	if (!empty($params['languageCode'])) $tags['languageCode'] = explode(',', $params['languageCode']);
   	if (!empty($tags)) $event->setTags(json_encode($tags));
 	
   	$this->processForm($request, $this->form);
@@ -95,8 +95,14 @@ class eventActions extends sfActions
     $tags = $event->getTags();
     if (!is_null($tags)) {
     	$tags = json_decode($tags);
-    	if (!empty($tags->countryCode)) $this->countryCode = $tags->countryCode;
-    	if (!empty($tags->languageCode)) $this->languageCode = $tags->languageCode;
+    	if (!empty($tags->countryCode)) {
+    		$this->countryCode = $tags->countryCode;
+    		if (is_array($this->countryCode)) $this->countryCode = implode(',', $this->countryCode);
+    	}
+    	if (!empty($tags->languageCode)) {
+    		$this->languageCode = $tags->languageCode;
+    		if (is_array($this->languageCode)) $this->languageCode = implode(',', $this->languageCode);
+    	}
     }
   }
 
@@ -149,8 +155,8 @@ class eventActions extends sfActions
 
 		//Set tags JSON
 		$tags = array();
-		if (!empty($params['countryCode'])) $tags['countryCode'] = $params['countryCode'];
-		if (!empty($params['languageCode'])) $tags['languageCode'] = $params['languageCode'];
+		if (!empty($params['countryCode'])) $tags['countryCode'] = explode(',', $params['countryCode']);
+		if (!empty($params['languageCode'])) $tags['languageCode'] = explode(',', $params['languageCode']);
 		if (!empty($tags)) $event->setTags(json_encode($tags));
 		
 		$event->save();

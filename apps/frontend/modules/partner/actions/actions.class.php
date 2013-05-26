@@ -107,23 +107,28 @@ class partnerActions extends sfActions
         	
 			// Create the login session
 			UserUtils::logUserIn($user);
-			// Redirect to main page
-			$this->redirect('@homepage');
+			
+			$refererUrl = UserUtils::getRefererUrl();
+			
+			if ($refererUrl) {
+				$this->redirect($refererUrl);
+				serUtils::setRefererUrl(null);
+			} else $this->redirect('@homepage');
         }
     
     }
   }
   
   
-  public function executeLogin(sfWebRequest $request)
-  {
+  public function executeLogin(sfWebRequest $request){
+  	$url = $this->getRequest()->getReferer();
+  	if (!strpos($url, '/partner/login')) UserUtils::setRefererUrl($url);
+  	
 	$this->form = new LoginForm();
   	
   	if ($request->isMethod('post')) {
 		$this->processLoginForm($request, $this->form);
   	}
-  	
-  	
   }
   
 

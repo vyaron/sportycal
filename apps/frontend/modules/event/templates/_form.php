@@ -12,6 +12,8 @@
     
     #event_starts_at_month, #event_starts_at_day, #event_starts_at_year, #event_starts_at_hour, #event_starts_at_minute, #event_ends_at_month, #event_ends_at_day, #event_ends_at_year, #event_ends_at_hour, #event_ends_at_minute{ display: none;}
     
+    #countryCodeList, #languageCodeList{display: block; list-style: none;}
+    #countryCodeList li, #languageCodeList li{ display: block; float: left; margin: 5px; background-color: #eee; padding: 3px;}
 </style>
 <?php use_stylesheets_for_form($form) ?>
 <?php use_javascripts_for_form($form) ?>
@@ -47,27 +49,42 @@
   			<th><label>Ends at</label></th>
   			<td><input id="endDate" class="eDatePick" type="text" name="event[ends_at]" /><img class="eDatePickTrigger" src="<?php echo url_for('/images/icons/16date.png')?>"/></td>
 		</tr>
+		
 		<tr>
   			<th><label>Country Code</label></th>
   			<td>
-  				<select id="countryCode" name="event[countryCode]">
-  					<option value="">Empty</option>
+  				<input id="countryCode" type="hidden" name="event[countryCode]" value="<?php echo $countryCode?>"/>
+  				<select id="countryCodeDropDown">
+  					<option value="">Add Country</option>
   					<?php foreach (LocationTable::getCountryOptions() as $location):?>
-  					<option value="<?php echo $location->getCountry()?>"<?php echo ($countryCode == $location->getCountry()) ? ' selected="selected"' : ''?>><?php echo $location->getCountry()?></option>
+  					<option value="<?php echo $location->getCountry()?>"><?php echo $location->getCountry()?></option>
   					<?php endforeach;?>
   				</select>
   			</td>
 		</tr>
 		<tr>
+			<td></td>
+			<td>
+				<ul id="countryCodeList"></ul>
+			</td>
+		</tr>
+		<tr>
   			<th><label>Language Code</label></th>
   			<td>
-  				<select id="languageCode" name="event[languageCode]">
-  					<option value="">Empty</option>
+  				<input id="languageCode" type="hidden" name="event[languageCode]" value="<?php echo $languageCode?>"/>
+  				<select id="languageCodeDropDown">
+  					<option value="">Add Language</option>
   					<?php foreach (Languages::getLanguagesOptions() as $code => $name):?>
-  					<option value="<?php echo $code?>"<?php echo ($languageCode == $code) ? ' selected="selected"' : ''?>><?php echo ($code . ' - ' . $name)?></option>
+  					<option value="<?php echo $code?>"><?php echo ($code . ' - ' . $name)?></option>
   					<?php endforeach;?>
   				</select>
   			</td>
+		</tr>
+		<tr>
+			<td></td>
+			<td>
+				<ul id="languageCodeList"></ul>
+			</td>
 		</tr>
     </tbody>
   </table>
@@ -232,7 +249,74 @@ function setDates(startStr, endStr){
 	}
 }
 
+function updateTagsInput(name){
+	var el = $(name);
+	if (el){
+		var newValue = '';
+
+		var liEls = $$('#' + name + 'List li');
+		if (liEls.length){
+			liEls.each(function(li){
+				newValue += li.getAttribute('data-value') + ',';
+			});
+
+			newValue = newValue.substr(0, newValue.length - 1);
+		}
+
+		el.set('value', newValue);
+	}
+}
+
+function setTagListItem(name, val){
+	var liEl = new Element('li', {
+		'data-value' : val,
+		'text' : val + '  '
+	});
+	
+	var removeEl = new Element('a', {
+		'text' : '[X]',
+		'href' : '#'
+	});
+
+	removeEl.inject(liEl);
+	liEl.inject($(name + 'List'));
+
+	removeEl.addEvent('click', function(e){
+		e.stop();
+		liEl.destroy();
+		updateTagsInput(name);
+	});
+}
+
+function setTagListItems(name){
+	var el = $(name);
+	if (el){
+		var valStr = el.get('value');
+		if (valStr){
+			var vals = valStr.split(',');
+			for ( var i = 0; i < vals.length; i++) {
+				setTagListItem(name, vals[i]);
+			}
+		}
+	}
+}
+
+function setTagDropDownEvent(name){
+	setTagListItems(name);
+	
+	$(name + 'DropDown').addEvent('change', function(e){
+		var val = this.get('value');
+		if (val) setTagListItem(name, val);
+
+		this.set('value', '');
+		updateTagsInput(name);
+	});
+}
+
 window.addEvent('domready', function(){
+	setTagDropDownEvent('countryCode');
+	setTagDropDownEvent('languageCode');
+
 	var eventShowTime = $('eventShowTime');
 	eventShowTime.addEvent('change', setDatePickers);
 	

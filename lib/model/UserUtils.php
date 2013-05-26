@@ -30,6 +30,8 @@ class UserUtils {
 	
 	const KEY_ORPHAN_CAL_ID			= 'orphanCalId';
 	
+	const KEY_REFERER_URL			= 'refererUrl';
+	
 	private static $cachedPartner = null;
 	
    public static function logUserIn($user)  {
@@ -60,6 +62,20 @@ class UserUtils {
   
   public static function getOrphanCalId(){
   	return self::getFromSession(self::KEY_ORPHAN_CAL_ID);
+  }
+  
+  public static function setRefererUrl($url){
+  	$userSession = sfContext::getInstance()->getUser();
+  
+  	if ($url){
+  		$userSession[self::KEY_REFERER_URL] = $url;
+  	} else {
+  		unset($userSession[self::KEY_REFERER_URL]);
+  	}
+  }
+  
+  public static function getRefererUrl(){
+  	return self::getFromSession(self::KEY_REFERER_URL);
   }
   
   public static function logUserOut()  {
