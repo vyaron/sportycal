@@ -121,8 +121,8 @@ class LocationTable extends Doctrine_Table
     
     public static function getCountryOptions(){
     	return Doctrine::getTable('Location')->createQuery('l')
-    	->select('l.id, l.country')
-    	->where('l.country !=""')
+    	->select('l.id, l.country, l.name')
+    	->where('l.type_id =3')
     	->groupBy('l.country')
     	->orderBy('l.country')->execute();
     }

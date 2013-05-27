@@ -31,9 +31,16 @@
       </tr>
     </tfoot>
     <tbody>
-      <?php echo $form ?>
+      	<?php //echo $form ?>
+      	<?php echo $form['_csrf_token']->render();?>
+      	<?php echo $form['id']->render();?>
+      	<?php echo $form['cal_id']->render();?>
+      	<?php echo $form['name']->renderRow();?>
+      	<?php echo $form['location']->renderRow();?>
+      	<?php echo $form['description']->renderRow();?>
+      	<?php echo $form['tz']->renderRow(array(), 'Timezones');?>
       	<tr>
-  			<th><label for="eventShowTime"><?php echo __('Time / No time?')?>&nbsp;&nbsp;</label></th>
+  			<th><label for="eventShowTime"><?php echo __('Specific Hour')?>&nbsp;&nbsp;</label></th>
   			<td><input id="eventShowTime" type="checkbox" checked="checked"/></td>
 		</tr>
       	<tr>
@@ -46,13 +53,13 @@
 		</tr>
 		
 		<tr>
-  			<th><label>Country Code</label></th>
+  			<th><label>Country Codes</label></th>
   			<td>
   				<input id="countryCodes" type="hidden" name="event[countryCodes]" value="<?php echo $countryCodes?>"/>
   				<select id="countryCodesDropDown">
   					<option value="">Add country filter</option>
   					<?php foreach (LocationTable::getCountryOptions() as $location):?>
-  					<option value="<?php echo $location->getCountry()?>"><?php echo $location->getCountry()?></option>
+  					<option value="<?php echo $location->getCountry()?>"><?php echo $location->getCountry() . ' - ' . $location->getName()?></option>
   					<?php endforeach;?>
   				</select>
   			</td>
@@ -64,7 +71,7 @@
 			</td>
 		</tr>
 		<tr>
-  			<th><label>Language Code</label></th>
+  			<th><label>Language Codes</label></th>
   			<td>
   				<input id="languageCodes" type="hidden" name="event[languageCodes]" value="<?php echo $languageCodes?>"/>
   				<select id="languageCodesDropDown">
