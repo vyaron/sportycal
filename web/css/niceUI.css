@@ -1,0 +1,306 @@
+.niceUI table{width: 100%;}
+.niceUI table th label{font-weight: bold;}
+
+.boxForm.niceUI th{width: 130px;} 
+
+.niceUI label,
+.niceUI input,
+.niceUI button,
+.niceUI select,
+.niceUI textarea {
+  font-size: 14px;
+  font-weight: normal;
+  line-height: 20px;
+}
+
+.niceUI input,
+.niceUI button,
+.niceUI select,
+.niceUI textarea {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+.niceUI label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+.niceUI select,
+.niceUI textarea,
+.niceUI input[type="text"],
+.niceUI input[type="password"],
+.niceUI input[type="datetime"],
+.niceUI input[type="datetime-local"],
+.niceUI input[type="date"],
+.niceUI input[type="month"],
+.niceUI input[type="time"],
+.niceUI input[type="week"],
+.niceUI input[type="number"],
+.niceUI input[type="email"],
+.niceUI input[type="url"],
+.niceUI input[type="search"],
+.niceUI input[type="tel"],
+.niceUI input[type="color"],
+.niceUI .uneditable-input {
+  display: inline-block;
+  height: 20px;
+  padding: 4px 6px;
+  margin-bottom: 10px;
+  font-size: 14px;
+  line-height: 20px;
+  color: #555555;
+  vertical-align: middle;
+  -webkit-border-radius: 4px;
+     -moz-border-radius: 4px;
+          border-radius: 4px;
+}
+
+.niceUI input,
+.niceUI textarea,
+.niceUI .uneditable-input {
+  width: 206px;
+}
+
+.niceUI textarea {
+  height: auto;
+}
+
+.niceUI textarea,
+.niceUI input[type="text"],
+.niceUI input[type="password"],
+.niceUI input[type="datetime"],
+.niceUI input[type="datetime-local"],
+.niceUI input[type="date"],
+.niceUI input[type="month"],
+.niceUI input[type="time"],
+.niceUI input[type="week"],
+.niceUI input[type="number"],
+.niceUI input[type="email"],
+.niceUI input[type="url"],
+.niceUI input[type="search"],
+.niceUI input[type="tel"],
+.niceUI input[type="color"],
+.niceUI .uneditable-input {
+  background-color: #ffffff;
+  border: 1px solid #cccccc;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+     -moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+          box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+  -webkit-transition: border linear 0.2s, box-shadow linear 0.2s;
+     -moz-transition: border linear 0.2s, box-shadow linear 0.2s;
+       -o-transition: border linear 0.2s, box-shadow linear 0.2s;
+          transition: border linear 0.2s, box-shadow linear 0.2s;
+}
+
+.niceUI textarea:focus,
+.niceUI input[type="text"]:focus,
+.niceUI input[type="password"]:focus,
+.niceUI input[type="datetime"]:focus,
+.niceUI input[type="datetime-local"]:focus,
+.niceUI input[type="date"]:focus,
+.niceUI input[type="month"]:focus,
+.niceUI input[type="time"]:focus,
+.niceUI input[type="week"]:focus,
+.niceUI input[type="number"]:focus,
+.niceUI input[type="email"]:focus,
+.niceUI input[type="url"]:focus,
+.niceUI input[type="search"]:focus,
+.niceUI input[type="tel"]:focus,
+.niceUI input[type="color"]:focus,
+.niceUI .uneditable-input:focus {
+  border-color: rgba(82, 168, 236, 0.8);
+  outline: 0;
+  outline: thin dotted \9;
+  /* IE6-9 */
+
+  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(82, 168, 236, 0.6);
+     -moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(82, 168, 236, 0.6);
+          box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(82, 168, 236, 0.6);
+}
+
+.niceUI input[type="radio"],
+.niceUI input[type="checkbox"] {
+  margin: 4px 0 0;
+  margin-top: 1px \9;
+  *margin-top: 0;
+  line-height: normal;
+}
+
+.niceUI input[type="file"],
+.niceUI input[type="image"],
+.niceUI input[type="submit"],
+.niceUI input[type="reset"],
+.niceUI input[type="button"],
+.niceUI input[type="radio"],
+.niceUI input[type="checkbox"] {
+  width: auto;
+}
+
+.niceUI select,
+.niceUI input[type="file"] {
+  height: 30px;
+  /* In IE7, the height of the select element cannot be changed by height, only font-size */
+
+  *margin-top: 4px;
+  /* For IE7, add top margin to align select with labels */
+
+  line-height: 30px;
+}
+
+.niceUI select {
+  width: 220px;
+  background-color: #ffffff;
+  border: 1px solid #cccccc;
+}
+
+.niceUI select[multiple],
+.niceUI select[size] {
+  height: auto;
+}
+
+.niceUI select:focus,
+.niceUI input[type="file"]:focus,
+.niceUI input[type="radio"]:focus,
+.niceUI input[type="checkbox"]:focus {
+  outline: thin dotted #333;
+  outline: 5px auto -webkit-focus-ring-color;
+  outline-offset: -2px;
+}
+
+/*Button*/
+.niceUI .btn {
+  display: inline-block;
+  *display: inline;
+  padding: 4px 12px;
+  margin-bottom: 0;
+  *margin-left: .3em;
+  font-size: 14px;
+  line-height: 20px;
+  color: #333333;
+  text-align: center;
+  text-shadow: 0 1px 1px rgba(255, 255, 255, 0.75);
+  vertical-align: middle;
+  cursor: pointer;
+  background-color: #f5f5f5;
+  *background-color: #e6e6e6;
+  background-image: -moz-linear-gradient(top, #ffffff, #e6e6e6);
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#ffffff), to(#e6e6e6));
+  background-image: -webkit-linear-gradient(top, #ffffff, #e6e6e6);
+  background-image: -o-linear-gradient(top, #ffffff, #e6e6e6);
+  background-image: linear-gradient(to bottom, #ffffff, #e6e6e6);
+  background-repeat: repeat-x;
+  border: 1px solid #cccccc;
+  *border: 0;
+  border-color: #e6e6e6 #e6e6e6 #bfbfbf;
+  border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
+  border-bottom-color: #b3b3b3;
+  -webkit-border-radius: 4px;
+     -moz-border-radius: 4px;
+          border-radius: 4px;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffffff', endColorstr='#ffe6e6e6', GradientType=0);
+  filter: progid:DXImageTransform.Microsoft.gradient(enabled=false);
+  *zoom: 1;
+  -webkit-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05);
+     -moz-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05);
+          box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+.niceUI .btn:hover,
+.niceUI .btn:focus,
+.niceUI .btn:active,
+.niceUI .btn.active,
+.niceUI .btn.disabled,
+.niceUI .btn[disabled] {
+  color: #333333;
+  background-color: #e6e6e6;
+  *background-color: #d9d9d9;
+}
+
+.niceUI .btn:active,
+.niceUI .btn.active {
+  background-color: #cccccc \9;
+}
+
+.niceUI .btn:first-child {
+  *margin-left: 0;
+}
+
+.niceUI .btn:hover,
+.niceUI .btn:focus {
+  color: #333333;
+  text-decoration: none;
+  background-position: 0 -15px;
+  -webkit-transition: background-position 0.1s linear;
+     -moz-transition: background-position 0.1s linear;
+       -o-transition: background-position 0.1s linear;
+          transition: background-position 0.1s linear;
+}
+
+.niceUI .btn:focus {
+  outline: thin dotted #333;
+  outline: 5px auto -webkit-focus-ring-color;
+  outline-offset: -2px;
+}
+
+.niceUI .btn.active,
+.niceUI .btn:active {
+  background-image: none;
+  outline: 0;
+  -webkit-box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.15), 0 1px 2px rgba(0, 0, 0, 0.05);
+     -moz-box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.15), 0 1px 2px rgba(0, 0, 0, 0.05);
+          box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.15), 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+.niceUI .btn.disabled,
+.niceUI .btn[disabled] {
+  cursor: default;
+  background-image: none;
+  opacity: 0.65;
+  filter: alpha(opacity=65);
+  -webkit-box-shadow: none;
+     -moz-box-shadow: none;
+          box-shadow: none;
+}
+
+.niceUI .btn-success.active{color: rgba(255, 255, 255, 0.75);}
+
+.niceUI .btn-success {
+  color: #ffffff;
+  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+  background-color: #5bb75b;
+  *background-color: #51a351;
+  background-image: -moz-linear-gradient(top, #62c462, #51a351);
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#62c462), to(#51a351));
+  background-image: -webkit-linear-gradient(top, #62c462, #51a351);
+  background-image: -o-linear-gradient(top, #62c462, #51a351);
+  background-image: linear-gradient(to bottom, #62c462, #51a351);
+  background-repeat: repeat-x;
+  border-color: #51a351 #51a351 #387038;
+  border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff62c462', endColorstr='#ff51a351', GradientType=0);
+  filter: progid:DXImageTransform.Microsoft.gradient(enabled=false);
+}
+
+.niceUI .btn-success:hover,
+.niceUI .btn-success:focus,
+.niceUI .btn-success:active,
+.niceUI .btn-success.active,
+.niceUI .btn-success.disabled,
+.niceUI .btn-success[disabled] {
+  color: #ffffff;
+  background-color: #51a351;
+  *background-color: #499249;
+}
+
+.niceUI .btn-success:active,
+.niceUI .btn-success.active {
+  background-color: #408140 \9;
+}
+
+.niceUI .btn-small {
+  padding: 2px 10px;
+  font-size: 11.9px;
+  -webkit-border-radius: 3px;
+     -moz-border-radius: 3px;
+          border-radius: 3px;
+}

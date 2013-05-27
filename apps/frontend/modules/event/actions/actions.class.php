@@ -52,7 +52,7 @@ class eventActions extends sfActions
     $event = new Event();
     $event->setCalId($calId);
     $this->form = new EventForm($event);
-
+	
     
   }
 
@@ -69,12 +69,6 @@ class eventActions extends sfActions
   	$this->restrictAccessAllowPartners($category);
     
   	$event->setCalId($params['cal_id']);
-  	
-  	//Set tags JSON
-  	$tags = array();
-  	if (!empty($params['countryCode'])) $tags['countryCode'] = explode(',', $params['countryCode']);
-  	if (!empty($params['languageCode'])) $tags['languageCode'] = explode(',', $params['languageCode']);
-  	if (!empty($tags)) $event->setTags(json_encode($tags));
 	
   	$this->processForm($request, $this->form);
 
@@ -92,6 +86,7 @@ class eventActions extends sfActions
     $this->endsAt = date('d-m-Y H:i', strtotime($event->getEndsAt()));
     
     //Get tags JSON
+    $this->tags = array();
     $tags = $event->getTags();
     if (!is_null($tags)) {
     	$tags = json_decode($tags);
@@ -103,6 +98,8 @@ class eventActions extends sfActions
     		$this->languageCode = $tags->languageCode;
     		if (is_array($this->languageCode)) $this->languageCode = implode(',', $this->languageCode);
     	}
+    	
+    	$this->tags = (array) $tags;
     }
   }
 
@@ -152,13 +149,36 @@ class eventActions extends sfActions
 		$event->setStartsAt($startsAt);
 		$event->setEndsAt($endsAt);
 		
-
 		//Set tags JSON
 		$tags = array();
 		if (!empty($params['countryCode'])) $tags['countryCode'] = explode(',', $params['countryCode']);
 		if (!empty($params['languageCode'])) $tags['languageCode'] = explode(',', $params['languageCode']);
-		if (!empty($tags)) $event->setTags(json_encode($tags));
+		 
+		//Get Custom fields
+		if (!empty($params['custom']) && is_array($params['custom'])){
+			foreach ($params['custom'] as $i => $custom){
+				$key = trim($custom['name']);
+				$values = trim($custom['values']);
+					
+				if (!empty($key) && !empty($values)){
+					$values = explode(',', $values);
+					$valuesTrim = array();
+					foreach ($values as $value){
+						$value = trim($value);
+							
+						if (empty($value)) continue;
+							
+						$valuesTrim[] = $value;
+					}
 		
+					$tags[$key] = $valuesTrim;
+				}
+			}
+		}
+		
+		if (!empty($tags)) $event->setTags(json_encode($tags));
+		else $event->setTags(null);
+
 		$event->save();
 		
   		//$this->redirect('event/edit?id='.$event->getId());

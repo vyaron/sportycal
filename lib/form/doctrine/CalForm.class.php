@@ -43,10 +43,10 @@ class CalForm extends BaseCalForm
 */
     $this->setWidgets(array(
       'id'                => new sfWidgetFormInputHidden(),
-      'name'              => new sfWidgetFormInputText(array(), array('style' => 'width: 350px;')),
-      'description'       => new sfWidgetFormTextarea(array(), array('rows' => 10, 'style'=>'width: 350px;')),
-      'location'          => new sfWidgetFormInputText(array(), array('style' => 'width: 350px;')),
-      'rate'              => new sfWidgetFormInputText(array(), array('style' => 'width: 30px;')),
+      'name'              => new sfWidgetFormInputText(array()),
+      'description'       => new sfWidgetFormTextarea(array(), array('rows' => 10)),
+      'location'          => new sfWidgetFormInputText(array()),
+      'rate'              => new sfWidgetFormInputText(array()),
       'category_id'       => new sfWidgetFormInputHidden()
     ));
 

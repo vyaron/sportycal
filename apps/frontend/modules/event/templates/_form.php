@@ -1,24 +1,19 @@
+<?php use_stylesheet('/css/niceUI.css');?>
 <style>
 
-    #event_name {
-        width:500px;
-    }
-    #event_location {
-        width:500px;
-    }
-    #event_description {
-        width:500px;
-    }
+    #event_name, #event_location, #event_description{width:440px;}
     
     #event_starts_at_month, #event_starts_at_day, #event_starts_at_year, #event_starts_at_hour, #event_starts_at_minute, #event_ends_at_month, #event_ends_at_day, #event_ends_at_year, #event_ends_at_hour, #event_ends_at_minute{ display: none;}
     
-    #countryCodeList, #languageCodeList{display: block; list-style: none;}
-    #countryCodeList li, #languageCodeList li{ display: block; float: left; margin: 5px; background-color: #eee; padding: 3px;}
+    #countryCodeDropDown, #countryCodeDropDown{margin-bottom: none;}
+    
+    #countryCodeList, #languageCodeList{display: block; list-style: none; margin-bottom: 15px;}
+    #countryCodeList li, #languageCodeList li{ display: block; float: left; margin: 2px 5px; background-color: #eee; padding: 3px;}
 </style>
 <?php use_stylesheets_for_form($form) ?>
 <?php use_javascripts_for_form($form) ?>
 
-<div class="boxForm rounded10">
+<div class="boxForm rounded10 niceUI">
 <form id="eventForm" action="<?php echo url_for('event/'.($form->getObject()->isNew() ? 'create' : 'update').(!$form->getObject()->isNew() ? '?id='.$form->getObject()->getId() : '')) ?>" method="post" <?php $form->isMultipart() and print 'enctype="multipart/form-data" ' ?>>
 <?php if (!$form->getObject()->isNew()): ?>
 <input type="hidden" name="sf_method" value="put" />
@@ -29,7 +24,7 @@
         <td colspan="2">
           <center>
           	<br/>
-          	<input type="submit" value="Save" /> &nbsp;&nbsp;
+          	<input type="submit" value="Save" class="btn btn-success" /> &nbsp;&nbsp;
           	<a href="<?php echo url_for('cal/show?id='.$form->getObject()->getCalId()) ?>">Cancel</a>
           </center>
         </td>
@@ -55,7 +50,7 @@
   			<td>
   				<input id="countryCode" type="hidden" name="event[countryCode]" value="<?php echo $countryCode?>"/>
   				<select id="countryCodeDropDown">
-  					<option value="">Add Country</option>
+  					<option value="">Add country filter</option>
   					<?php foreach (LocationTable::getCountryOptions() as $location):?>
   					<option value="<?php echo $location->getCountry()?>"><?php echo $location->getCountry()?></option>
   					<?php endforeach;?>
@@ -65,7 +60,7 @@
 		<tr>
 			<td></td>
 			<td>
-				<ul id="countryCodeList"></ul>
+				<ul id="countryCodeList" class="clearfix"></ul>
 			</td>
 		</tr>
 		<tr>
@@ -73,7 +68,7 @@
   			<td>
   				<input id="languageCode" type="hidden" name="event[languageCode]" value="<?php echo $languageCode?>"/>
   				<select id="languageCodeDropDown">
-  					<option value="">Add Language</option>
+  					<option value="">Add language filter</option>
   					<?php foreach (Languages::getLanguagesOptions() as $code => $name):?>
   					<option value="<?php echo $code?>"><?php echo ($code . ' - ' . $name)?></option>
   					<?php endforeach;?>
@@ -83,13 +78,35 @@
 		<tr>
 			<td></td>
 			<td>
-				<ul id="languageCodeList"></ul>
+				<ul id="languageCodeList" class="clearfix"></ul>
 			</td>
+		</tr>
+		<?php $i=1; foreach ($tags as $key => $values): if ($key == 'languageCode' || $key == 'countryCode') continue;?>
+			 <tr id="dummy_custom_field">
+				<th><label>Custom <?php echo $i;?></label></th>
+				<td>
+					<input name="event[custom][<?php echo $i;?>][name]" type="text" value="<?php echo $key;?>" /><br />
+					<textarea name="event[custom][<?php echo $i;?>][values]" rows="3" cols="30"><?php echo implode(',', $values->getRawValue());?></textarea>
+				</td>
+			</tr>
+		<?php $i++; endforeach;?>
+		<tr id="addCustomFieldBtnWrapper">
+  			<td colspan="2"><a id="addCustomFieldBtn" class="btn btn-small" href="#">[+]&nbsp;&nbsp;Add Custom field</a></td>
 		</tr>
     </tbody>
   </table>
 </form>
 </div>
+
+<table style="display: none;">
+	<tr id="dummy_custom_field">
+		<th><label>Custom {CUSTOM_FIELD_NUM}</label></th>
+		<td>
+			<input name="event[custom][{CUSTOM_FIELD_NUM}][name]" type="text" placeholder="Enter key: CID" /><br />
+			<textarea name="event[custom][{CUSTOM_FIELD_NUM}][values]" rows="3" cols="30" placeholder="Enter values with comma separator: 123,444,5556"></textarea>
+		</td>
+	</tr>
+</table>
 
 <?php sfContext::getInstance()->getResponse()->addJavascript('datepicker/datepicker.js'); ?>
 <script type="text/javascript">
@@ -313,10 +330,38 @@ function setTagDropDownEvent(name){
 	});
 }
 
+function setCustomFieldBtnEvent(){
+	var addCustomFieldBtn = $('addCustomFieldBtn');
+	if (addCustomFieldBtn){
+		addCustomFieldBtn.addEvent('click', function(e){
+			e.stop();
+
+			var dummyEl = $('dummy_custom_field');
+			var beforeEl = $('addCustomFieldBtnWrapper');
+			
+			if (dummyEl && beforeEl){
+				var htmlStr = dummyEl.get('html').trim();
+				var customFieldsCount = $$('#eventForm .customFields').length;
+
+				htmlStr = htmlStr.replace(/{CUSTOM_FIELD_NUM}/g, (customFieldsCount + 1));
+
+				var trEl = new Element('tr', {
+					'class' : 'customFields',
+					'html' : htmlStr
+				});
+
+				trEl.inject(beforeEl, 'before');
+			}
+		});
+	}
+}
+
 window.addEvent('domready', function(){
 	setTagDropDownEvent('countryCode');
 	setTagDropDownEvent('languageCode');
-
+	
+	setCustomFieldBtnEvent();
+	
 	var eventShowTime = $('eventShowTime');
 	eventShowTime.addEvent('change', setDatePickers);
 	

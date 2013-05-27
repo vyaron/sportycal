@@ -124,6 +124,7 @@ class Cal extends BaseCal
     			
     			if (!is_null($eventTags)) $eventTags = json_decode($eventTags);
     			if (!is_null($eventTags)) {
+    				//TODO: replace 3 blocks with 1 foreach - support custom filter by user
     				if (property_exists($tags, 'countryCodes') && is_array($tags->countryCodes)){
 
     					if (property_exists($eventTags, 'countryCode') && is_array($eventTags->countryCode)){
@@ -154,22 +155,24 @@ class Cal extends BaseCal
     						if (!$exist) continue;
     					}
     				}
+    				
+    				if (property_exists($tags, 'CIDS') && is_array($tags->CIDS)){
+    					if (property_exists($eventTags, 'CIDS') && is_array($eventTags->CIDS)){
+    						$exist = false;
+    				
+    						foreach ($eventTags->CIDS as $CIDS){
+    							if (in_array($CIDS, $tags->CIDS)) {
+    								$exist = true;
+    								break;
+    							}
+    						}
+    							
+    						if (!$exist) continue;
+    					}
+    				}
     			}
     			
     			$filtedEvents[] = $event;
-    			
-    			/*
-    			if (is_null($eventTags) 
-    					|| (!in_array($eventTags->countryCode, $tags->countryCodes)) 
-    					|| (!in_array($eventTags->languageCode, $tags->langs))) continue;
-    			else $filtedEvents[] = $event;
-    			
-    			if (!is_null($eventTags)) $eventTags = json_decode($eventTags);
-    			if (is_null($eventTags) 
-    					|| (!in_array($eventTags->countryCode, $tags->countryCodes)) 
-    					|| (!in_array($eventTags->languageCode, $tags->langs))) continue;
-    			else $filtedEvents[] = $event;
-    			*/
     		}
     	} else {
     		$filtedEvents = $meregedEventes;
