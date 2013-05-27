@@ -1,10 +1,21 @@
 <?php
 class Languages{
 	private static $list = array(
-		'he-IL' => 'Hebrew',
-		'en-US' => 'American english',
-		'en-UK' => 'British English',
-		'ar-JO' => 'Jordan Arabic',
+		'en'	=>	'English',
+		'bg'	=>	'Bulgarian',
+		'cs' 	=> 'Czech',
+		'da' 	=> 'Danish',
+		'el' 	=> 'Greek',
+		'es'	=> 'Spanish',
+		'fr'	=>	'French',
+		'he'	=>	'Hebrew',
+		'hu'	=>	'Hungarian',
+		'it'	=>	'Italian',
+		'nl' 	=> 'Dutch',
+		'pt' 	=> 'Portuguese',
+		'ro' 	=> 'Romanian',
+		'sr'	=> 'Serbian',
+		'sv'	=>	'Swedish'
 	);
 	
 	public static function getLanguagesOptions(){
