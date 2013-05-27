@@ -19,6 +19,7 @@ class EventForm extends BaseEventForm
     $this->widgetSchema['location'] = new sfWidgetFormInputText();    
 */
   	
+  	
     $this->setWidgets(array(
       'id'          => new sfWidgetFormInputHidden(),
       'cal_id'      => new sfWidgetFormInputHidden(),
@@ -26,8 +27,9 @@ class EventForm extends BaseEventForm
       'location'    => new sfWidgetFormInputText(),
       'description' => new sfWidgetFormTextarea(array(), array('rows' => 15)),
 	  'tz'    		=> new sfWidgetFormInputText(),
-      //'starts_at'   => new sfWidgetFormDateTime(),
-      //'ends_at'     => new sfWidgetFormDateTime(),
+      //'tz' => new sfWidgetFormSelect(array('choices' => GeneralUtils::getTZList(true))),
+      'starts_at'   => new sfWidgetFormInputText(),
+      'ends_at'     => new sfWidgetFormInputText(),
     ));
 
     // for sportYcal Master, show the TZ (for partners it is set by its default) 
@@ -42,17 +44,15 @@ class EventForm extends BaseEventForm
       'description' => new sfValidatorString(array('max_length' => 500, 'required' => false)),
       'location'    => new sfValidatorString(array('max_length' => 500, 'required' => false)),
 	  'tz'          => new sfTimezoneValidator(array('required' => false)),
-      'starts_at'   => new sfValidatorDateTime(array('required' => false)),
-      'ends_at'     => new sfValidatorDateTime(array('required' => false)),
-      'countryCodes'     => new sfValidatorString(array('required' => false)),
-      'languageCodes'     => new sfValidatorString(array('required' => false)),
+      //'tz' => new sfValidatorChoice(array('choices' => array_keys(GeneralUtils::getTZList(true)))),
+      'starts_at'   => new sfValidatorString(array('required' => true)),
+      'ends_at'     => new sfValidatorString(array('required' => true)),
+      'countryCodes'  => new sfValidatorString(array('required' => false)),
+      'languageCodes' => new sfValidatorString(array('required' => false)),
       'custom'     => new sfValidatorString(array('required' => false)),
     ));
 
     $this->widgetSchema->setNameFormat('event[%s]');
-  	
-  	
-
   }
 
   public function updateObject($values = null) {

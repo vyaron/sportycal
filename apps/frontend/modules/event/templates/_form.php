@@ -45,11 +45,27 @@
 		</tr>
       	<tr>
   			<th><label>Starts at</label></th>
-  			<td><input id="startDate" class="eDatePick" type="text" name="event[starts_at]"/><img class="eDatePickTrigger" src="<?php echo url_for('/images/icons/16date.png')?>"/></td>
+  			<td>
+  				<?php echo $form['starts_at']->render(array('id' => 'startDate', 'class' => 'eDatePick')); ?>
+  				
+  				<img class="eDatePickTrigger" src="<?php echo url_for('/images/icons/16date.png')?>"/>
+  				
+  				<?php if ($form['starts_at']->hasError()): ?>
+			    <br /><?php echo $form['starts_at']->renderError() ?>
+			    <?php endif; ?>
+  			</td>
 		</tr>
 		<tr>
   			<th><label>Ends at</label></th>
-  			<td><input id="endDate" class="eDatePick" type="text" name="event[ends_at]" /><img class="eDatePickTrigger" src="<?php echo url_for('/images/icons/16date.png')?>"/></td>
+  			<td>
+  				<?php echo $form['ends_at']->render(array('id' => 'endDate', 'class' => 'eDatePick')); ?>
+
+  				<img class="eDatePickTrigger" src="<?php echo url_for('/images/icons/16date.png')?>"/>
+  				
+  				<?php if ($form['ends_at']->hasError()): ?>
+			    <br /><?php echo $form['ends_at']->renderError() ?>
+			    <?php endif; ?>
+  			</td>
 		</tr>
 		
 		<tr>
@@ -228,7 +244,7 @@ function setDatePickers(){
 function setDates(startStr, endStr){
 	var startDate = $('startDate');
 	var endDate = $('endDate');
-	
+
 	if (!(startStr && endStr)){
 		startStr = startDate.getParent().getElement('.eDatePick:not(#startDate)').get('value');
 		endStr = endDate.getParent().getElement('.eDatePick:not(#endDate)').get('value');
