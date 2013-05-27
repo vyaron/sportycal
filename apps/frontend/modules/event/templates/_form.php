@@ -5,10 +5,10 @@
     
     #event_starts_at_month, #event_starts_at_day, #event_starts_at_year, #event_starts_at_hour, #event_starts_at_minute, #event_ends_at_month, #event_ends_at_day, #event_ends_at_year, #event_ends_at_hour, #event_ends_at_minute{ display: none;}
     
-    #countryCodeDropDown, #countryCodeDropDown{margin-bottom: none;}
+    #countryCodesDropDown, #countryCodesDropDown{margin-bottom: none;}
     
-    #countryCodeList, #languageCodeList{display: block; list-style: none; margin-bottom: 15px;}
-    #countryCodeList li, #languageCodeList li{ display: block; float: left; margin: 2px 5px; background-color: #eee; padding: 3px;}
+    #countryCodesList, #languageCodesList{display: block; list-style: none; margin-bottom: 15px;}
+    #countryCodesList li, #languageCodesList li{ display: block; float: left; margin: 2px 5px; background-color: #eee; padding: 3px;}
 </style>
 <?php use_stylesheets_for_form($form) ?>
 <?php use_javascripts_for_form($form) ?>
@@ -48,8 +48,8 @@
 		<tr>
   			<th><label>Country Code</label></th>
   			<td>
-  				<input id="countryCode" type="hidden" name="event[countryCode]" value="<?php echo $countryCode?>"/>
-  				<select id="countryCodeDropDown">
+  				<input id="countryCodes" type="hidden" name="event[countryCodes]" value="<?php echo $countryCodes?>"/>
+  				<select id="countryCodesDropDown">
   					<option value="">Add country filter</option>
   					<?php foreach (LocationTable::getCountryOptions() as $location):?>
   					<option value="<?php echo $location->getCountry()?>"><?php echo $location->getCountry()?></option>
@@ -60,14 +60,14 @@
 		<tr>
 			<td></td>
 			<td>
-				<ul id="countryCodeList" class="clearfix"></ul>
+				<ul id="countryCodesList" class="clearfix"></ul>
 			</td>
 		</tr>
 		<tr>
   			<th><label>Language Code</label></th>
   			<td>
-  				<input id="languageCode" type="hidden" name="event[languageCode]" value="<?php echo $languageCode?>"/>
-  				<select id="languageCodeDropDown">
+  				<input id="languageCodes" type="hidden" name="event[languageCodes]" value="<?php echo $languageCodes?>"/>
+  				<select id="languageCodesDropDown">
   					<option value="">Add language filter</option>
   					<?php foreach (Languages::getLanguagesOptions() as $code => $name):?>
   					<option value="<?php echo $code?>"><?php echo ($code . ' - ' . $name)?></option>
@@ -78,10 +78,10 @@
 		<tr>
 			<td></td>
 			<td>
-				<ul id="languageCodeList" class="clearfix"></ul>
+				<ul id="languageCodesList" class="clearfix"></ul>
 			</td>
 		</tr>
-		<?php $i=1; foreach ($tags as $key => $values): if ($key == 'languageCode' || $key == 'countryCode') continue;?>
+		<?php $i=1; foreach ($tags as $key => $values): if ($key == 'languageCodes' || $key == 'countryCodes') continue;?>
 			 <tr id="dummy_custom_field">
 				<th><label>Custom <?php echo $i;?></label></th>
 				<td>
@@ -357,8 +357,8 @@ function setCustomFieldBtnEvent(){
 }
 
 window.addEvent('domready', function(){
-	setTagDropDownEvent('countryCode');
-	setTagDropDownEvent('languageCode');
+	setTagDropDownEvent('countryCodes');
+	setTagDropDownEvent('languageCodes');
 	
 	setCustomFieldBtnEvent();
 	

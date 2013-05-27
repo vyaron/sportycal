@@ -14,6 +14,9 @@ function loadCalendar(){
 	
 	scheduler.config.full_day = true;
 	
+	scheduler.config.buttons_right=["dhx_save_btn","dhx_cancel_btn"];
+	scheduler.config.buttons_left=["dhx_delete_btn"];
+	
 	//scheduler.config.server_utc = true; //convert server side dates from utc to local timezone, and backward during data sending to server;
 
 	scheduler.attachEvent("onTemplatesReady", function(){

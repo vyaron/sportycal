@@ -17,7 +17,13 @@ class NmRegisterForm extends BaseForm {
 				'password' => new sfValidatorString(array('required' => true, 'min_length' => 4)),
 				'confirm_password' => new sfValidatorString(array('required' => true)),
 				'company_name' => new sfValidatorString(array('required' => true, 'min_length' => 3, 'trim' => true)),
-				'website' => new sfValidatorUrl(array('required' => false)),
+				'website' => new sfValidatorString(array('required' => false)),
+				/*
+				'website' => new sfValidatorAnd(array(
+			        new sfValidatorString(array('required' => false, 'min_length' => 5)),
+			        new sfValidatorRegex(array('required' => false, 'pattern' => '/([a-z0-9-]+\.)+[a-z]{2,6}/')),
+			     )),
+			     */
 				'agree' => new sfValidatorBoolean(array('required' => true)),
 		));
 		

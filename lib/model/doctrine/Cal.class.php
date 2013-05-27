@@ -117,62 +117,36 @@ class Cal extends BaseCal
     	$extraEvents 	= Event::getExtraEvents($this, $userCal, $calType);
     	$meregedEventes = array_merge($calEvents, $extraEvents);
     	
+    	//Get event by label filter: {"countryCodes":["IL"],"languageCodes":["he-IL"],"CIDS":["123"]}
     	$filtedEvents = array();
     	if (!is_null($tags)){
     		foreach ($meregedEventes as $i => $event){
-    			$eventTags = $event->getTags();
+    			$exist = true; //flag - event tag value exist in label
     			
-    			if (!is_null($eventTags)) $eventTags = json_decode($eventTags);
+    			//Get Event tags
+    			$eventTags = $event->getTags();
+    			if (!is_null($eventTags)) $eventTags = json_decode($eventTags, true);
+    			
+    			//Check event tags
     			if (!is_null($eventTags)) {
-    				//TODO: replace 3 blocks with 1 foreach - support custom filter by user
-    				if (property_exists($tags, 'countryCodes') && is_array($tags->countryCodes)){
-
-    					if (property_exists($eventTags, 'countryCode') && is_array($eventTags->countryCode)){
+    				foreach ($tags as $key => $values){
+    					//If tag key from label filter exists in event tags AND the value is missing. The event can be sifted
+    					if (key_exists($key, $eventTags)){
     						$exist = false;
-    						
-    						foreach ($eventTags->countryCode as $countryCode){
-    							if (in_array($countryCode, $tags->countryCodes)) {
-    								$exist = true;
-    								break;
-    							}
-    						}
-    							
-    						if (!$exist) continue;
-    					}
-    				}
-    				
-    				if (property_exists($tags, 'languageCodes') && is_array($tags->languageCodes)){
-    					if (property_exists($eventTags, 'languageCode') && is_array($eventTags->languageCode)){
-    						$exist = false;
-    						
-    						foreach ($eventTags->languageCode as $languageCode){
-    							if (in_array($languageCode, $tags->languageCodes)) {
-    								$exist = true;
-    								break;
-    							}
-    						}
     					
-    						if (!$exist) continue;
-    					}
-    				}
-    				
-    				if (property_exists($tags, 'CIDS') && is_array($tags->CIDS)){
-    					if (property_exists($eventTags, 'CIDS') && is_array($eventTags->CIDS)){
-    						$exist = false;
-    				
-    						foreach ($eventTags->CIDS as $CIDS){
-    							if (in_array($CIDS, $tags->CIDS)) {
+    						foreach ($eventTags[$key] as $value){
+    							if (in_array($value, $values)) {
     								$exist = true;
     								break;
     							}
     						}
     							
-    						if (!$exist) continue;
+    						if (!$exist) break;
     					}
     				}
     			}
     			
-    			$filtedEvents[] = $event;
+    			if ($exist) $filtedEvents[] = $event;
     		}
     	} else {
     		$filtedEvents = $meregedEventes;

@@ -90,13 +90,13 @@ class eventActions extends sfActions
     $tags = $event->getTags();
     if (!is_null($tags)) {
     	$tags = json_decode($tags);
-    	if (!empty($tags->countryCode)) {
-    		$this->countryCode = $tags->countryCode;
-    		if (is_array($this->countryCode)) $this->countryCode = implode(',', $this->countryCode);
+    	if (!empty($tags->countryCodes)) {
+    		$this->countryCodes = $tags->countryCodes;
+    		if (is_array($this->countryCodes)) $this->countryCodes = implode(',', $this->countryCodes);
     	}
-    	if (!empty($tags->languageCode)) {
-    		$this->languageCode = $tags->languageCode;
-    		if (is_array($this->languageCode)) $this->languageCode = implode(',', $this->languageCode);
+    	if (!empty($tags->languageCodes)) {
+    		$this->languageCodes = $tags->languageCodes;
+    		if (is_array($this->languageCodes)) $this->languageCodes = implode(',', $this->languageCodes);
     	}
     	
     	$this->tags = (array) $tags;
@@ -151,8 +151,8 @@ class eventActions extends sfActions
 		
 		//Set tags JSON
 		$tags = array();
-		if (!empty($params['countryCode'])) $tags['countryCode'] = explode(',', $params['countryCode']);
-		if (!empty($params['languageCode'])) $tags['languageCode'] = explode(',', $params['languageCode']);
+		if (!empty($params['countryCodes'])) $tags['countryCodes'] = explode(',', $params['countryCodes']);
+		if (!empty($params['languageCodes'])) $tags['languageCodes'] = explode(',', $params['languageCodes']);
 		 
 		//Get Custom fields
 		if (!empty($params['custom']) && is_array($params['custom'])){

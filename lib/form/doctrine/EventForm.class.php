@@ -44,8 +44,8 @@ class EventForm extends BaseEventForm
 	  'tz'          => new sfTimezoneValidator(array('required' => false)),
       'starts_at'   => new sfValidatorDateTime(array('required' => false)),
       'ends_at'     => new sfValidatorDateTime(array('required' => false)),
-      'countryCode'     => new sfValidatorString(array('required' => false)),
-      'languageCode'     => new sfValidatorString(array('required' => false)),
+      'countryCodes'     => new sfValidatorString(array('required' => false)),
+      'languageCodes'     => new sfValidatorString(array('required' => false)),
       'custom'     => new sfValidatorString(array('required' => false)),
     ));
 

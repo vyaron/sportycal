@@ -319,7 +319,7 @@ class calActions extends sfActions
   	$remider       	= $request->getParameter('remider');
 
   	$tags = null;
-  	if (!is_null($label)) $tags = json_decode($label);
+  	if (!is_null($label)) $tags = json_decode($label, true);
   
   	//http://sportYcal.local/frontend_dev.php/cal/get/id/134/ct/google/l/cId:9191sportycal.ics
   	$intelLabel       	= $request->getParameter('l');
