@@ -87,6 +87,9 @@ class eventActions extends sfActions
     
     //Get tags JSON
     $this->tags = array();
+    $this->countryCodes = null;
+    $this->languageCodes = null;
+    
     $tags = $event->getTags();
     if (!is_null($tags)) {
     	$tags = json_decode($tags);
