@@ -71,9 +71,30 @@
 	    </div>
     </div>
 	
+	<div id="fb-root"></div>
 	<script type="text/javascript" src="/bundle/jquery/js/jquery-1.9.1.min.js"></script>
 	<?php include_javascripts()?>
     <script type="text/javascript">
+	  	//Facebook
+	    window.fbAsyncInit = function() {
+		    FB.init({
+		      appId      : '<?php echo FACEBOOK_APP_ID ?>', // App ID
+		      channelURL : 'inevermiss.local/channel.php', // Channel File
+		      status     : true, // check login status
+		      cookie     : true, // enable cookies to allow the server to access the session
+		      oauth      : true, // enable OAuth 2.0
+		      xfbml      : true  // parse XFBML
+		    });
+	    };
+	
+	 	// Load the SDK Asynchronously
+		(function(d){
+	 		var js, id = 'facebook-jssdk'; if (d.getElementById(id)) {return;}
+	 		js = d.createElement('script'); js.id = id; js.async = true;
+	 		js.src = "//connect.facebook.net/en_US/all.js";
+	 		d.getElementsByTagName('head')[0].appendChild(js);
+		}(document));
+    
 		//Google Analytics
 		var _gaq = _gaq || [];
 		_gaq.push(['_setAccount', 'UA-18494392-1']);

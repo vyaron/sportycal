@@ -1,1 +1,24 @@
 .alert ul{margin: 10px 20px;}
+
+/*facebook login*/
+.fb-login {
+    width: auto;
+    background: url("/images/facebook/fIconBg.png") repeat-x scroll right top transparent;
+    border: 1px solid #415B91;
+    color: #FFFFFF;
+    cursor: pointer;
+    font-family: 'Lucida Grande',Tahoma,Verdana,Arial,sans-serif;
+    font-size: 12px;
+    font-weight: bold;
+    line-height: 20px;
+    text-align: center;
+    display: inline-block;
+}
+
+.fb-login span {
+    background: url(/images/facebook/fIcon.png) no-repeat scroll left top transparent;
+    height: 20px;
+    outline: medium none;
+    padding: 0 5px 0 30px;
+    display: inline-block;
+}

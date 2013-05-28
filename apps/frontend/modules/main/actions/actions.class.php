@@ -27,7 +27,7 @@ class mainActions extends sfActions
   */
  
  public function redirectByHost($host){
- 	if (SportycalFilter::hostIsNeverMiss()){
+ 	if (NeverMissUtils::hostIsNeverMiss()){
  		$this->redirect('/nm/index');
  	}
  }
@@ -81,7 +81,6 @@ class mainActions extends sfActions
     //$fbCookie = FacebookUtils::getCookie(FACEBOOK_APP_ID, FACEBOOK_SECRET);
 	
     $fbUser = FacebookUtils::getUser();
-   
 	
     if ($fbUser) {
         $user = $this->handleFBUser($fbUser);

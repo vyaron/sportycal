@@ -38,7 +38,21 @@
 		<form method="POST">
 			<?php echo $form['_csrf_token']->render();?>
 			<fieldset>
-				<legend>Register:</legend>
+				<legend class="clearfix">
+					<span class="pull-left">Register:</span>
+					
+					<span id="register-login-wrapper" class="pull-right">
+						<a class="fb-login" href="#"><span>Log In</span></a>&nbsp;|&nbsp;
+						<a href="<?php echo url_for('partner/login');?>">Login</a>
+					</span>
+				</legend>
+				<div class="row">
+					<div class="span6">
+						
+					</div>
+				</div>
+				
+				
 				<div class="row">
 					<div class="span2"><?php echo $form['full_name']->renderLabel();?></div>
 					<div class="span4"><?php echo $form['full_name']->render(array('class' => 'span4', 'placeholder' => 'Enter your full name'));?></div>
