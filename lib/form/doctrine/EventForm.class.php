@@ -10,6 +10,15 @@
  */
 class EventForm extends BaseEventForm
 {
+	const EMPTY_DATETIME = '0000-00-00 00:00:00';
+	
+	public function updateDefaultsFromObject(){
+		parent::updateDefaultsFromObject();
+		
+		if ($this->getDefault('starts_at') == self::EMPTY_DATETIME) $this->setDefault('starts_at', '');
+		if ($this->getDefault('ends_at') == self::EMPTY_DATETIME) $this->setDefault('ends_at', '');
+	}
+	
   public function configure()  {
 /*
     unset($this['created_at'], $this['updated_at'], $this['image_path']);

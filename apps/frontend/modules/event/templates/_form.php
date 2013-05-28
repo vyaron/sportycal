@@ -222,10 +222,11 @@ function getFormat(){
 function setDatePickers(){
 	var showEventTime = showTime();
 	var dateFormat = getFormat();
-
+	
 	if (gDatePicker){
 		gDatePicker.options.timePicker = showEventTime;
 		gDatePicker.options.format = dateFormat;
+		gDatePicker.options.allowEmpty = true;
 	} else {
 		//create Date picker
 		gDatePicker = new DatePicker('.eDatePick', {
@@ -387,12 +388,12 @@ window.addEvent('domready', function(){
 	
 	var eventShowTime = $('eventShowTime');
 	eventShowTime.addEvent('change', setDatePickers);
-	
+
 	setDatePickers();
 
 	//Edit mode - got string time from server
-	setDates(gCurrStartDate, gCurrEndDate);
-
+	if (gCurrStartDate && gCurrEndDate) setDates(gCurrStartDate, gCurrEndDate);
+	
 	//Ido : datePicker used 'change' event on this elements
 	var startDate = $('startDate');
 	if (startDate){
@@ -409,7 +410,7 @@ window.addEvent('domready', function(){
 	//Send time as string
 	var eventForm = $('eventForm');
 	if (eventForm){
-		eventForm.addEvent('submit', function(){
+		eventForm.addEvent('submit', function(e){
 			var showEventTime = true;
 			var eventShowTime = $('eventShowTime');
 			if (eventShowTime){
@@ -425,6 +426,7 @@ window.addEvent('domready', function(){
 			var endDate = $('endDate');
 			if (startDate && endDate){
 				var startDateVal = startDate.get('value');
+				
 				if (startDateVal){
 					startDateVal = startDateVal.toInt() * 1000;
 					var sDateStr = gDatePicker.format(new Date(startDateVal), dateFormat);
