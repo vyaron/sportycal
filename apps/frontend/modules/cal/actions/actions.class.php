@@ -315,11 +315,13 @@ class calActions extends sfActions
   	$calId      	= $request->getParameter('id');
   	$ctgId      	= $request->getParameter('ctgId');
   	$calType       	= $request->getParameter('ct');
-  	$label       	= $request->getParameter('label');
+  	//$label       	= $request->getParameter('label');
   	$remider       	= $request->getParameter('remider');
-
-  	$tags = null;
-  	if (!is_null($label)) $tags = json_decode($label, true);
+  	
+  	$tags = SportyCalAPI::getTags($request);
+  	//Utils::pp($tags);
+  	//$tags = null;
+  	//if (!is_null($label)) $tags = json_decode($label, true);
   
   	//http://sportYcal.local/frontend_dev.php/cal/get/id/134/ct/google/l/cId:9191sportycal.ics
   	$intelLabel       	= $request->getParameter('l');

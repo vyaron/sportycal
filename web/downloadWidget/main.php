@@ -30,7 +30,7 @@ if (isset($_GET['ref'])){
 
 $label = null;
 if (isset($_GET['label'])){
-	$label = rawurlencode($_GET['label']);
+	$label = $_GET['label'];
 }
 
 if (!$calId && !$ctgId || ($calId && $ctgId)){

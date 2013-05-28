@@ -43,14 +43,14 @@ if (isset($_GET['ref'])){
 
 $label = null;
 if (isset($_GET['label'])){
-	$label = rawurlencode($_GET['label']);
+	$label = $_GET['label'];
 }
 
 $icons = array(
-	array('calType' => 'google', 'class' => 'scdbIcon_google', 'label' => $lang->trans('Google'), 'href' =>'http://www.google.com/calendar/render?cid=http%3A%2F%2Fwww.sportYcal.com%2Fcal%2Fget%2F' . (($calId) ? 'id%2F' . $calId : 'ctgId%2F' . $ctgId) . '%2Fhash%2FUSERCAL' . (($ref) ? '%2Fct%2Fgoogle%2Fref%2F' . $ref  : '' )),
-	array('calType' => 'outlook', 'class' => 'scdbIcon_outlook', 'label' => $lang->trans('Outlook'), 'href' => 'webcal://www.sportYcal.com/cal/get/' . (($calId) ? 'id/' . $calId : 'ctgId/' . $ctgId) . '/hash/USERCAL/ct/outlook/' . (($ref) ? 'ref/' . $ref  . '/' : '' ) . 'sportycal.ics'),
-	array('calType' => 'mobile', 'class' => 'scdbIcon_mobile', 'label' => $lang->trans('Mobile'), 'href' => 'webcal://www.sportYcal.com/cal/get/' . (($calId) ? 'id/' . $calId : 'ctgId/' . $ctgId) . '/hash/USERCAL/ct/mobile/' . (($ref) ? 'ref/' . $ref . '/' : '' ) . 'sportycal.ics'),
-	array('calType' => 'any', 'class' => 'scdbIcon_link', 'label' => $lang->trans('Link'), 'href' => 'webcal://www.sportYcal.com/cal/get/' . (($calId) ? 'id/' . $calId : 'ctgId/' . $ctgId) . '/hash/USERCAL/ct/any/' . (($ref) ? 'ref/' . $ref . '/' : '' ) . 'sportycal.ics')
+	array('calType' => 'google', 'class' => 'scdbIcon_google', 'label' => $lang->trans('Google'), 'href' =>'http://www.google.com/calendar/render?cid=http%3A%2F%2Fwww.sportYcal.com%2Fcal%2Fget%2F' . (($calId) ? 'id%2F' . $calId : 'ctgId%2F' . $ctgId) . '%2Fhash%2FUSERCAL' . (($ref) ? '%2Fct%2Fgoogle%2Fref%2F' . $ref  : '' ) . ($label ? '%2Flabel%2F' . $label : '')),
+	array('calType' => 'outlook', 'class' => 'scdbIcon_outlook', 'label' => $lang->trans('Outlook'), 'href' => 'webcal://www.sportYcal.com/cal/get/' . (($calId) ? 'id/' . $calId : 'ctgId/' . $ctgId) . '/hash/USERCAL/ct/outlook/' . (($ref) ? 'ref/' . $ref  . '/' : '' ) . ($label ? '/label/' . $label . '/' : '') . 'sportycal.ics'),
+	array('calType' => 'mobile', 'class' => 'scdbIcon_mobile', 'label' => $lang->trans('Mobile'), 'href' => 'webcal://www.sportYcal.com/cal/get/' . (($calId) ? 'id/' . $calId : 'ctgId/' . $ctgId) . '/hash/USERCAL/ct/mobile/' . (($ref) ? 'ref/' . $ref . '/' : '' ) . ($label ? '/label/' . $label . '/' : '') . 'sportycal.ics'),
+	array('calType' => 'any', 'class' => 'scdbIcon_link', 'label' => $lang->trans('Link'), 'href' => 'webcal://www.sportYcal.com/cal/get/' . (($calId) ? 'id/' . $calId : 'ctgId/' . $ctgId) . '/hash/USERCAL/ct/any/' . (($ref) ? 'ref/' . $ref . '/' : '' ) . ($label ? '/label/' . $label . '/' : '') . 'sportycal.ics')
 );
 
 $calUrl = ROOT_URL . 'cal/find?addEvents=1&';

@@ -12,7 +12,10 @@ class SportyCalAPI {
 		$tags = null;
 		
 		$label = $request->getParameter('label');
-		if (!is_null($label)) $tags = json_decode($label, true);
+		if (!is_null($label)) {
+			$label = base64_decode($label);
+			$tags = json_decode($label, true);
+		}
 
 		return $tags;
 	}

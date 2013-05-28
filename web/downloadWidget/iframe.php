@@ -14,7 +14,7 @@ $jsSrc .= 'elId=' . $elId;
 if (isset($_GET['calId'])) $jsSrc .= '&calId=' . $_GET['calId'];
 if (isset($_GET['ctgId'])) $jsSrc .= '&ctgId=' . $_GET['ctgId'];
 if (isset($_GET['ref'])) $jsSrc .= '&ref=' . $_GET['ref'];
-if (isset($_GET['label'])) $jsSrc .= '&label=' . rawurlencode($_GET['label']);
+if (isset($_GET['label'])) $jsSrc .= '&label=' . $_GET['label'];
 if (isset($_GET['language'])) $jsSrc .= '&language=' . $_GET['language'];
 if (isset($_GET['style'])) $jsSrc .= '&style=' . $_GET['style'];
 
