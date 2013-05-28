@@ -319,7 +319,14 @@ function setCustomFieldBtnEvent(){
 	}
 }
 
+function scrollToFirstError(){
+	var els = $$('.error_list');
+	if (els.length) new Fx.Scroll(window).toElement(els[0]);
+}
+
 window.addEvent('domready', function(){
+	scrollToFirstError();
+	
 	setTagDropDownEvent('countryCodes');
 	setTagDropDownEvent('languageCodes');
 	
