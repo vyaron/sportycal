@@ -12,7 +12,7 @@
  */
 class Category extends BaseCategory
 {
-	const CTG_NEVER_MISS = 3000;
+	const CTG_NEVER_MISS = 7777;
 	const CTG_BIRTHDAY = 2200;
 	
     private $rootCategory = null;

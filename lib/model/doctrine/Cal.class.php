@@ -762,6 +762,10 @@ class Cal extends BaseCal
     			$category->setIsPublic(false);
     			$category->setPartnerId($partner->getId());
     			$category->setByUserId($user->getId());
+    			$category->setParentId(Category::CTG_NEVER_MISS);
+    			$category->save();
+    			
+    			$category->setCategoryIdsPath(Category::CTG_NEVER_MISS . ',' . $category->getId());
     			$category->save();
     		
     			//Create PartnerDesc

@@ -1,3 +1,6 @@
+INSERT INTO `evento`.`category` (`id` ,`name` ,`image_path` ,`by_user_id` ,`approved_at` ,`parent_id` ,`rate` ,`cals_count` ,`category_ids_path` ,`deleted_at` ,`address_id` ,`partner_id` ,`is_public`)
+VALUES ('7777', 'Never Miss', NULL , '2', NOW( ) , NULL , NULL , NULL , NULL , NOW( ) , NULL , NULL , '0');
+
 ALTER TABLE `event` ADD `rec_type` VARCHAR( 128 ) NULL DEFAULT NULL AFTER `tags`;
 ALTER TABLE `event` ADD `length` BIGINT UNSIGNED NULL AFTER `rec_pattern`;
 ALTER TABLE `partner_desc` ADD `website` VARCHAR( 512 ) NULL DEFAULT NULL AFTER `cal_id`;

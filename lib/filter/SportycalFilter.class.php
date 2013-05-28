@@ -7,7 +7,10 @@
  */
 
 class SportycalFilter extends sfFilter {
- 
+ 	public static function hostIsNeverMiss(){
+ 		return (strpos(strtolower($_SERVER['HTTP_HOST']), 'inevermiss.') !== false);
+ 	}
+ 	
     public function execute($filterChain){
     	UserUtils::setFromFbApp($this->getReqParam('fb'));
     	UserUtils::setFromAndroidApp($this->getReqParam('an'));
@@ -34,7 +37,7 @@ class SportycalFilter extends sfFilter {
 
   		$hasLayout = (sfConfig::get('has_layout', null) == 'off') ? false : true;
 
-  		if ((strpos($_SERVER['HTTP_HOST'], 'promotecal.') !== false) && $hasLayout) $this->getContext()->getActionStack()->getFirstEntry()->getActionInstance()->setLayout('neverMiss');
+  		if (self::hostIsNeverMiss() && $hasLayout) $this->getContext()->getActionStack()->getFirstEntry()->getActionInstance()->setLayout('neverMiss');
   		
         //execute the next filter in the chain
         $filterChain->execute();

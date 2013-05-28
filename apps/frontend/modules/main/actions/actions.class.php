@@ -27,7 +27,7 @@ class mainActions extends sfActions
   */
  
  public function redirectByHost($host){
- 	if (strpos($host, 'promotecal.') !== false){
+ 	if (SportycalFilter::hostIsNeverMiss()){
  		$this->redirect('/nm/index');
  	}
  }
