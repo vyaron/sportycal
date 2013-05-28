@@ -8,6 +8,15 @@ class SportyCalAPI {
 	
 	const CALL_BACK_FUNCION	 = 'scCallBack';
 	
+	public static function getTags(sfWebRequest $request){
+		$tags = null;
+		
+		$label = $request->getParameter('label');
+		if (!is_null($label)) $tags = json_decode($label, true);
+
+		return $tags;
+	}
+	
     public static function getStartTime(sfWebRequest $request) {
   		$starts 		= $request->getParameter('starts');
 	  	$timeStarts = strtotime($starts);

@@ -301,5 +301,43 @@ class EventTable extends Doctrine_Table
 		return $events;
     }
     
-
+    //Get event by label filter: {"countryCodes":["IL"],"languageCodes":["he-IL"],"CIDS":["123"]}
+	public static function filterByTags($events, $tags=null){
+		$filtedEvents = array();
+		
+		if (!is_null($tags)){
+			foreach ($events as $i => $event){
+				$exist = true; //flag - event tag value exist in label
+				 
+				//Get Event tags
+				$eventTags = $event->getTags();
+				if (!is_null($eventTags)) $eventTags = json_decode($eventTags, true);
+				 
+				//Check event tags
+				if (!is_null($eventTags)) {
+					foreach ($tags as $key => $values){
+						//If tag key from label filter exists in event tags AND the value is missing. The event can be sifted
+						if (key_exists($key, $eventTags)){
+							$exist = false;
+								
+							foreach ($eventTags[$key] as $value){
+								if (in_array($value, $values)) {
+									$exist = true;
+									break;
+								}
+							}
+								
+							if (!$exist) break;
+						}
+					}
+				}
+				 
+				if ($exist) $filtedEvents[] = $event;
+			}
+		} else {
+			$filtedEvents = $events;
+		}
+		
+		return $filtedEvents;
+	}
 }

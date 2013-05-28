@@ -30,7 +30,7 @@ if (isset($_GET['ref'])){
 
 $label = null;
 if (isset($_GET['label'])){
-	$label = $_GET['label'];
+	$label = rawurlencode($_GET['label']);
 }
 
 if (!$calId && !$ctgId || ($calId && $ctgId)){
@@ -51,7 +51,7 @@ if (isset($_GET['style'])){
 	else $style = null;
 }
 
-$htmlTemplateUrl = DOWNLOAD_WIDGET_URL .'getHTML.php?' . (($calId) ? 'calId=' .$calId : 'ctgId=' .$ctgId);
+$htmlTemplateUrl = DOWNLOAD_WIDGET_URL .'getHTML.php?' . (($calId) ? 'calId=' .$calId : 'ctgId=' .$ctgId) . ($label ? '&label=' . $label : '');
 
 if ($ref){
 	$htmlTemplateUrl .= '&ref=' .$ref;

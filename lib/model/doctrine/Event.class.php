@@ -12,7 +12,8 @@
  */
 class Event extends BaseEvent
 {
-
+	const TYPE_PROMO_BIRTHDAY = "birthdayPromo";
+	
 	private static $gettingDescForAggregatedCal = null;
 	private static $calDesc;
 	
@@ -352,7 +353,7 @@ class Event extends BaseEvent
     }	
 
 
-    const TYPE_PROMO_BIRTHDAY = "birthdayPromo";
+    /*
     public static function getExtraEvents($cal, $userCal, $calType) {
 		$extraEvents = array();
 		
@@ -453,7 +454,8 @@ class Event extends BaseEvent
 		return $extraEvents;
 		
 	}
-	
+	*/
+    
 	private $type = null;
 	private function setEventType($type) {
 		$this->type = $type;

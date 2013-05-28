@@ -31,12 +31,12 @@
 									<input id="typeSearch" type="text"" autocomplete="off" class="lightBorder" placeholder="<?php echo __('Start typing');?>..."/>
 								</td>
 							</tr>
-							<?php if (false) :?>
+
 							<tr>
 								<td><label for="label"><?php echo __('Label');?>:</label></td>
 								<td><input id="label" type="text" name="label" class="lightBorder" value="<?php echo $label ?>"/></td>
 							</tr>
-							<?php endif ?>
+
 							<tr>
 								<td><label for="color"><?php echo __('Style');?>:</label></td>
 								<td>

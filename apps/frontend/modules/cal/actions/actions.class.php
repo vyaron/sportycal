@@ -350,6 +350,7 @@ class calActions extends sfActions
   	}
   	 
   	$events = $this->cal->getEventsForIcal($calType, $partner, $tags, $intelLabel, $intelValue, $remider);
+
   	$export = new ICalExporter();
   	$export->setTitle(GeneralUtils::icalEscape($this->cal->getName()));
   	
@@ -472,7 +473,8 @@ class calActions extends sfActions
   public function executeFind(sfWebRequest $request)  {
   	$calId 		= SportyCalAPI::getCalId($request);
   	$ctgId 		= SportyCalAPI::getCtgId($request);
-  	
+  	$tags 		= SportyCalAPI::getTags($request);
+
   	$partner 	= SportyCalAPI::getValidPartner($request);
   	$starts		= SportyCalAPI::getStartTime($request);
   	$ends		= SportyCalAPI::getEndTime($request, $starts);
@@ -505,7 +507,10 @@ class calActions extends sfActions
 // 			$events = EventTable::getBy(null, $ctgId, $starts, $ends, null, null, null, $includeAway, $calId);
 // 		}
 
-		$events = $cal->getEvents();
+		$events = EventTable::filterByTags($cal->getEvents(), $tags);
+		
+		//Utils::pp($tags);
+		//Utils::pp($events);
 		
 		$cal = $cal->toArray();
 		

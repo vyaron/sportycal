@@ -41,6 +41,10 @@ if (isset($_GET['ref'])){
 	$ref = $_GET['ref'];
 }
 
+$label = null;
+if (isset($_GET['label'])){
+	$label = rawurlencode($_GET['label']);
+}
 
 $icons = array(
 	array('calType' => 'google', 'class' => 'scdbIcon_google', 'label' => $lang->trans('Google'), 'href' =>'http://www.google.com/calendar/render?cid=http%3A%2F%2Fwww.sportYcal.com%2Fcal%2Fget%2F' . (($calId) ? 'id%2F' . $calId : 'ctgId%2F' . $ctgId) . '%2Fhash%2FUSERCAL' . (($ref) ? '%2Fct%2Fgoogle%2Fref%2F' . $ref  : '' )),
@@ -52,8 +56,10 @@ $icons = array(
 $calUrl = ROOT_URL . 'cal/find?addEvents=1&';
 if ($calId) $calUrl .= 'calId=' . (int)$calId;
 if ($ctgId) $calUrl .= 'ctgId=' . (int)$ctgId;
-
 if ($ref) $calUrl .= '&ref=' . $ref;
+if ($label) $calUrl .= '&label=' . $label;
+
+//echo $calUrl; die();
 $cal = file_get_contents($calUrl);
 
 if ($cal) $cal = json_decode($cal);

@@ -691,7 +691,7 @@ class mainActions extends sfActions
 	if ($this->calId) $params .= 'calId=' 	. $this->calId;
 	if ($this->ctgId) $params .= 'ctgId=' 	. $this->ctgId;
 	if ($this->ref) 	$params .= '&ref=' 	. $this->ref;
-	if ($this->label) $params .= '&label=' . $this->label;
+	if ($this->label) $params .= '&label=' . rawurlencode($this->label);
 	if ($this->language) 	$params .= '&language=' . $this->language;
 	if ($this->style) 	$params .= '&style=' . $this->style;
 	

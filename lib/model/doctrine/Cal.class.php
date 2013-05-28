@@ -17,6 +17,7 @@ class Cal extends BaseCal
 	const TYPE_MOBILE 	= 'mobile';
 	const TYPE_ANY 		= 'any';
 	const TYPE_HARDCOPY = 'hardcopy';
+	const REMINDER_DEFAULT_MSG = 'Are you ready for the game?';
 	
 	public function getDescriptionForCal($userCal, $partner, $calType) {
 	
@@ -110,48 +111,14 @@ class Cal extends BaseCal
         return $srcName;
     }
 
-    public function getEventsForIcal($calType, $partner=null, $tags=null, $intelLabel=null, $intelValue=null, $remider=null, $remiderMsg = 'Are you ready for the game?') {
-    	$userCal = null;
+    public function getEventsForIcal($calType = self::TYPE_ANY, $partner=null, $tags=null, $intelLabel=null, $intelValue=null, $remider=null, $remiderMsg = self::REMINDER_DEFAULT_MSG) {
+    	//$userCal = null;
+    	//$calEvents 		= $this->getEvents();
+    	//$extraEvents 	= Event::getExtraEvents($this, $userCal, $calType);
+    	//$meregedEventes = array_merge($calEvents, $extraEvents);
     	
-    	$calEvents 		= $this->getEvents();
-    	$extraEvents 	= Event::getExtraEvents($this, $userCal, $calType);
-    	$meregedEventes = array_merge($calEvents, $extraEvents);
-    	
-    	//Get event by label filter: {"countryCodes":["IL"],"languageCodes":["he-IL"],"CIDS":["123"]}
-    	$filtedEvents = array();
-    	if (!is_null($tags)){
-    		foreach ($meregedEventes as $i => $event){
-    			$exist = true; //flag - event tag value exist in label
-    			
-    			//Get Event tags
-    			$eventTags = $event->getTags();
-    			if (!is_null($eventTags)) $eventTags = json_decode($eventTags, true);
-    			
-    			//Check event tags
-    			if (!is_null($eventTags)) {
-    				foreach ($tags as $key => $values){
-    					//If tag key from label filter exists in event tags AND the value is missing. The event can be sifted
-    					if (key_exists($key, $eventTags)){
-    						$exist = false;
-    					
-    						foreach ($eventTags[$key] as $value){
-    							if (in_array($value, $values)) {
-    								$exist = true;
-    								break;
-    							}
-    						}
-    							
-    						if (!$exist) break;
-    					}
-    				}
-    			}
-    			
-    			if ($exist) $filtedEvents[] = $event;
-    		}
-    	} else {
-    		$filtedEvents = $meregedEventes;
-    	}
-    	
+    	$filtedEvents = EventTable::filterByTags($this->getEvents(), $tags);
+
     	$events = array();
     	foreach ($filtedEvents as $event){
     		$flatEvent = array();
@@ -162,7 +129,7 @@ class Cal extends BaseCal
     		$flatEvent['end_date'] = $event->getEndsAtForCal();
     		$flatEvent['text'] = $event->getName() ? GeneralUtils::icalEscape($event->getName()) : '';
     		
-    		$details = $event->getDescriptionForCal($this, $userCal, $partner, $calType, $intelLabel, $intelValue, null);
+    		$details = $event->getDescriptionForCal($this, null, $partner, $calType, $intelLabel, $intelValue, null);
     		$flatEvent['details'] = $details ? GeneralUtils::icalEscape2($details) : '';
     		
     		$flatEvent['location'] = $event->getLocation() ? GeneralUtils::icalEscape($event->getLocation()) : '';
