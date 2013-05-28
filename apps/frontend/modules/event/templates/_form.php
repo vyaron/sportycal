@@ -31,7 +31,6 @@
       </tr>
     </tfoot>
     <tbody>
-      	<?php //echo $form ?>
       	<?php echo $form['_csrf_token']->render();?>
       	<?php echo $form['id']->render();?>
       	<?php echo $form['cal_id']->render();?>
@@ -46,25 +45,25 @@
       	<tr>
   			<th><label>Starts at</label></th>
   			<td>
-  				<?php echo $form['starts_at']->render(array('id' => 'startDate', 'class' => 'eDatePick')); ?>
-  				
-  				<img class="eDatePickTrigger" src="<?php echo url_for('/images/icons/16date.png')?>"/>
-  				
   				<?php if ($form['starts_at']->hasError()): ?>
 			    <br /><?php echo $form['starts_at']->renderError() ?>
 			    <?php endif; ?>
+			    
+  				<?php echo $form['starts_at']->render(array('id' => 'startDate', 'class' => 'eDatePick')); ?>
+  				
+  				<img class="eDatePickTrigger" src="<?php echo url_for('/images/icons/16date.png')?>"/>
   			</td>
 		</tr>
 		<tr>
   			<th><label>Ends at</label></th>
   			<td>
-  				<?php echo $form['ends_at']->render(array('id' => 'endDate', 'class' => 'eDatePick')); ?>
-
-  				<img class="eDatePickTrigger" src="<?php echo url_for('/images/icons/16date.png')?>"/>
-  				
   				<?php if ($form['ends_at']->hasError()): ?>
 			    <br /><?php echo $form['ends_at']->renderError() ?>
 			    <?php endif; ?>
+			    
+  				<?php echo $form['ends_at']->render(array('id' => 'endDate', 'class' => 'eDatePick')); ?>
+
+  				<img class="eDatePickTrigger" src="<?php echo url_for('/images/icons/16date.png')?>"/>
   			</td>
 		</tr>
 		
@@ -138,66 +137,6 @@ var gDatePicker = null;
 var gCurrStartDate = '<?php echo (!empty($startsAt)) ? $startsAt : ''?>';
 var gCurrEndDate = '<?php echo (!empty($endsAt)) ? $endsAt : ''?>';
 
-/*
-function setEndDate(dateVal){
-	var showEventTime = true;
-	var eventShowTime = $('eventShowTime');
-	if (eventShowTime){
-		showEventTime = eventShowTime.get('checked');
-	}
-
-	var dateFormat = 'd-m-Y H:i';
-	if (!showEventTime) {
-		dateFormat = 'd-m-Y';
-	}
-
-	
-	var endDate = $('endDate');
-	
-	gCurrEndDate = dateVal; // + (60 * 60);
-	endDate.set('value', gCurrEndDate);
-	
-	var endDateDatePicker = endDate.getParent().getElement('.eDatePick:not(#endDate)');
-	if (endDateDatePicker){
-		var eDate = new Date(gCurrEndDate * 1000);
-		
-		var endDateDatePickerVal = gDatePicker.format(eDate, dateFormat);
-		endDateDatePicker.set('value', endDateDatePickerVal);
-	}
-}
-
-function updateDates(){
-	var startDate = $('startDate');
-	var endDate = $('endDate');
-	
-	if (startDate && endDate){
-		var startDateVal = startDate.get('value');
-		if (startDateVal){
-			startDateVal = startDateVal.toInt();
-			if (gCurrStartDate != startDateVal && startDateVal>0){
-				setEndDate(startDateVal);
-				
-				gCurrStartDate = startDateVal;
-			}
-		}
-		
-		var endDateVal = endDate.get('value');
-		if (endDateVal){
-			endDateVal = endDateVal.toInt();
-			
-			if (gCurrEndDate != endDateVal && gCurrEndDate>0){
-				if (endDateVal < gCurrStartDate){
-					alert('Incorrect End Date');
-					setEndDate(gCurrStartDate);
-				} else {
-					gCurrEndDate = endDateVal;
-				}
-			}
-		}
-		
-	}
-}
-*/
 function showTime(){
 	var showEventTime = true;
 	var eventShowTime = $('eventShowTime');

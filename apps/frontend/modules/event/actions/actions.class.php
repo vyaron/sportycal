@@ -145,6 +145,8 @@ class eventActions extends sfActions
   	{
   		$event = $form->save();
   		
+  		$event->setTz(GeneralUtils::getTZFromJSTZ($event->getTz()));
+  		
   		//Remove seconds
   		$startsAt = date('Y-m-d H:i:00', strtotime($event->getStartsAt()));
   		$endsAt = date('Y-m-d H:i:00', strtotime($event->getEndsAt()));

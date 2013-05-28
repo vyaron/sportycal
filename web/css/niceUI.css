@@ -3,6 +3,8 @@
 
 .boxForm.niceUI th{width: 130px;} 
 
+.boxForm.niceUI .error_list{list-style: none; color: red;}
+
 .niceUI label,
 .niceUI input,
 .niceUI button,

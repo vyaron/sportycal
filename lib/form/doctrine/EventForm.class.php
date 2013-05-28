@@ -17,6 +17,9 @@ class EventForm extends BaseEventForm
 		
 		if ($this->getDefault('starts_at') == self::EMPTY_DATETIME) $this->setDefault('starts_at', '');
 		if ($this->getDefault('ends_at') == self::EMPTY_DATETIME) $this->setDefault('ends_at', '');
+		
+		$tzValue = $this->getDefault('tz');
+		if ($tzValue) $tzValue = GeneralUtils::getTZValue($tzValue);
 	}
 	
   public function configure()  {
@@ -35,8 +38,8 @@ class EventForm extends BaseEventForm
       'name'        => new sfWidgetFormInputText(),
       'location'    => new sfWidgetFormInputText(),
       'description' => new sfWidgetFormTextarea(array(), array('rows' => 15)),
-	  'tz'    		=> new sfWidgetFormInputText(),
-      //'tz' => new sfWidgetFormSelect(array('choices' => GeneralUtils::getTZList(true))),
+	  //'tz'    		=> new sfWidgetFormInputText(),
+      'tz' 			=> new sfWidgetFormSelect(array('choices' => GeneralUtils::getTZList(true), 'default' => 0)),
       'starts_at'   => new sfWidgetFormInputText(),
       'ends_at'     => new sfWidgetFormInputText(),
     ));
@@ -52,8 +55,8 @@ class EventForm extends BaseEventForm
       'name'        => new sfValidatorString(array('max_length' => 255, 'required' => true)),
       'description' => new sfValidatorString(array('max_length' => 500, 'required' => false)),
       'location'    => new sfValidatorString(array('max_length' => 500, 'required' => false)),
-	  'tz'          => new sfTimezoneValidator(array('required' => false)),
-      //'tz' => new sfValidatorChoice(array('choices' => array_keys(GeneralUtils::getTZList(true)))),
+	  //'tz'          => new sfTimezoneValidator(array('required' => false)),
+      'tz' 			=> new sfValidatorChoice(array('choices' => array_keys(GeneralUtils::getTZList(true)))),
       'starts_at'   => new sfValidatorString(array('required' => true)),
       'ends_at'     => new sfValidatorString(array('required' => true)),
       'countryCodes'  => new sfValidatorString(array('required' => false)),
