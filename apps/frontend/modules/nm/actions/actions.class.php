@@ -21,17 +21,9 @@ class nmActions extends sfActions{
 		$this->forward404Unless($cal && $cal->isOwner($user), sprintf('Object cal does not exist (%s).', $request->getParameter('id')));
 		
 		//$cal->delete();
-		$dateNow = date("Y-m-d g:i");
+		$dateNow = date("Y-m-d g:i:s");
 		$cal->setDeletedAt($dateNow);
 		$cal->save();
-		
-		/*
-		$refererUrl = UserUtils::getRefererUrl();	
-		if ($refererUrl) {
-			$this->redirect($refererUrl);
-			serUtils::setRefererUrl(null);
-		} else $this->redirect('nm/calList');
-		*/
 		
 		$this->redirect('nm/calList');
 	}
@@ -42,6 +34,11 @@ class nmActions extends sfActions{
 		$this->forward404Unless($cal && $cal->isOwner($user), sprintf('Object cal does not exist (%s).', $request->getParameter('id')));
 		
 		Doctrine::getTable('Event')->deleteBy($cal->getId());
+		
+		$dateNow = date("Y-m-d g:i:s");
+		$cal->setUpdatedAt($dateNow);
+		$cal->save();
+		
 		$this->redirect('/nm/calEdit?id=' . $cal->getId());
 	}
 	
@@ -115,6 +112,10 @@ class nmActions extends sfActions{
 		
 		$isEditing = $request->getParameter('editing') ? true : false;
 		if ($isEditing){
+			$dateNow = date("Y-m-d g:i");
+			$cal->setUpdatedAt($dateNow);
+			$cal->save();
+			
 			//Create XML
 			$xml = new SimpleXMLElement('<xml/>');
 			$xmlData = $xml->addChild('data');
@@ -191,6 +192,7 @@ class nmActions extends sfActions{
 	public function executeWidget(sfWebRequest $request){
 		$user = UserUtils::getLoggedIn();
 		$this->calId = $request->getParameter('calId');
+		
 		$this->forward404Unless($cal = Doctrine::getTable('Cal')->find(array($this->calId)), sprintf('Object cal does not exist (%s).', $this->calId));
 
 		$this->form = new NmRegisterForm();
@@ -221,8 +223,7 @@ class nmActions extends sfActions{
 				}
 			}
 		}
-		
-		$this->calId = $calId;
+
 		$this->user = UserUtils::getLoggedIn();
 	}
 }

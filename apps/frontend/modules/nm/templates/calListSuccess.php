@@ -8,7 +8,7 @@
 		<div class="span4"><?php echo $cal->getName();?></div>
 		<div class="span4">
 			<a class="btn btn-mini" href="<?php echo url_for('nm/calEdit?id=' . $cal->getId());?>"><i class="icon-pencil"></i> Edit</a>
-			<a class="btn btn-mini delete-cal" href="<?php echo url_for('nm/calDelete?id=' . $cal->getId());?>"><i class="icon-trash"></i> Delete</a>
+			<a class="btn btn-mini delete-cal" href="<?php echo url_for('nm/calDelete?id=' . $cal->getId());?>" data-name="<?php echo $cal->getName();?>"><i class="icon-trash"></i> Delete</a>
 		</div>
 	</div>	
 	<?php endforeach;?>
@@ -22,12 +22,15 @@
 		<h3 id="myModalLabel">Delete Calendar</h3>
 	</div>
 	<div class="modal-body">
-		<p>Are you sure you want to delete the calendar?</p>
+		<p>Are you sure you want to delete "<span id="delete-cal-name"></span>" ?</p>
 	</div>
 	<div class="modal-footer">
 		<button class="btn" data-dismiss="modal" aria-hidden="true">No</button>
-		<a class="btn btn-primary" href="#">Yes</a>
+		<a id="delete-btn" class="btn btn-primary" href="#">Yes</a>
 	</div>
 </div>
 
-<?php use_javascript('/js/neverMiss/calList.js');?>
+<?php 
+use_javascript('/bundle/bootstrap/js/bootstrap.min.js');
+use_javascript('/js/neverMiss/calList.js');
+?>

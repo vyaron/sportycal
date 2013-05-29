@@ -52,6 +52,8 @@ class User extends BaseUser
     	
     	if (!$this->isMaster()) $cals->andWhere('c.deleted_at IS NULL');
     	
+    	$cals->orderBy('c.updated_at DESC');
+    	
     	return $cals->execute();
     }
 }
