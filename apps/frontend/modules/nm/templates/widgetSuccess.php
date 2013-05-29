@@ -33,7 +33,7 @@
 				
 				<div class="row mt10">
 					<div class="span6 clearfix">
-						<a class="btn btn-small pull-left" href="<?php echo url_for('nm/calEdit?id=' . $calId);?>" title="Edit your calendar"><i class="icon-arrow-left"></i> Back</a>
+						<a class="btn btn-small pull-left" href="<?php echo url_for('nm/calEdit/id/' . $calId);?>" title="Edit your calendar"><i class="icon-arrow-left"></i> Back</a>
 						<input type="submit" class="btn btn-success pull-right" value="<?php echo __('Apply');?>"/>
 					</div>
 				</div>
@@ -94,7 +94,7 @@
 				</div>
 				<div class="row mt10">
 					<div class="span6">
-						<a class="btn btn-small pull-left" href="<?php echo url_for('nm/calEdit?id=' . $calId);?>" title="Edit your calendar"><i class="icon-arrow-left"></i> Back</a>
+						<a class="btn btn-small pull-left" href="<?php echo url_for('nm/calEdit/id/' . $calId);?>" title="Edit your calendar"><i class="icon-arrow-left"></i> Back</a>
 						<input type="submit" value="register" class="btn btn-success pull-right"/>
 					</div>
 				</div>

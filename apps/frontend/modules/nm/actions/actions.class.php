@@ -39,7 +39,7 @@ class nmActions extends sfActions{
 		$cal->setUpdatedAt($dateNow);
 		$cal->save();
 		
-		$this->redirect('/nm/calEdit?id=' . $cal->getId());
+		$this->redirect('/nm/calEdit/id/' . $cal->getId());
 	}
 	
 	public function executeCalCreate(sfWebRequest $request){
@@ -58,7 +58,7 @@ class nmActions extends sfActions{
 		 
 		UserUtils::setOrphanCalId($cal->getId());
 		 
-		$this->redirect('/nm/calEdit?id=' . $cal->getId());
+		$this->redirect('/nm/calEdit/id/' . $cal->getId());
 	}
 	
 	public function executeCalEdit(sfWebRequest $request){
@@ -100,7 +100,7 @@ class nmActions extends sfActions{
 				//TODO: get root ctg AND website (old users come from sportycal)
 				if ($user && !$this->cal->isOwner($user)) $this->cal->setAdoptive($user);
 				
-				$this->redirect('/nm/widget?calId=' . $cal->getId());
+				$this->redirect('/nm/widget/calId/' . $cal->getId());
 			}
 		}
 	}

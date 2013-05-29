@@ -7,8 +7,8 @@
 	<div class="row-fluid">
 		<div class="span4"><?php echo $cal->getName();?></div>
 		<div class="span4">
-			<a class="btn btn-mini" href="<?php echo url_for('nm/calEdit?id=' . $cal->getId());?>"><i class="icon-pencil"></i> Edit</a>
-			<a class="btn btn-mini delete-cal" href="<?php echo url_for('nm/calDelete?id=' . $cal->getId());?>" data-name="<?php echo $cal->getName();?>"><i class="icon-trash"></i> Delete</a>
+			<a class="btn btn-mini" href="<?php echo url_for('nm/calEdit/id/' . $cal->getId());?>"><i class="icon-pencil"></i> Edit</a>
+			<a class="btn btn-mini delete-cal" href="<?php echo url_for('nm/calDelete/id/' . $cal->getId());?>" data-name="<?php echo $cal->getName();?>"><i class="icon-trash"></i> Delete</a>
 		</div>
 	</div>	
 	<?php endforeach;?>
