@@ -124,7 +124,7 @@
 	<tr id="dummy_custom_field">
 		<th><label>Custom {CUSTOM_FIELD_NUM}</label></th>
 		<td>
-			<input name="event[custom][{CUSTOM_FIELD_NUM}][name]" type="text" placeholder="Enter key: CID" /><br />
+			<input name="event[custom][{CUSTOM_FIELD_NUM}][name]" type="text" placeholder="Enter key: CIDS" /><br />
 			<textarea name="event[custom][{CUSTOM_FIELD_NUM}][values]" rows="3" cols="30" placeholder="Enter values with comma separator: 123,444,5556"></textarea>
 		</td>
 	</tr>
