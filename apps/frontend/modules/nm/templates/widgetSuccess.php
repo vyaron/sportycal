@@ -26,12 +26,18 @@
   					<?php endforeach;?>
 				</select>
 				
-				<div class="row clearfix">
-					<input type="submit" class="btn pull-right" value="<?php echo __('Apply');?>"/>
-				</div>
+				
 				
 				<label for="copy-js-code"><?php echo __('Copy this code to your site (iframe)');?>:</label>
 				<textarea id="copy-js-code" spellcheck="false" class="span6">&lt;div class=&quot;nm-follow&quot; data-cal-id=&quot;<?php echo $calId;?>&quot; &gt;&lt;/div&gt; &lt;script&gt;(function(d, s, id) {var js, fjs = d.getElementsByTagName(s)[0];if (d.getElementById(id)) return;js = d.createElement(s); js.id = id;js.src = &quot;//sportycal.local/neverMissWidget/js/all.js&quot;;fjs.parentNode.insertBefore(js, fjs);}(document, 'script', 'never-miss-jssdk'));&lt;/script&gt;</textarea>
+				
+				<div class="row mt10">
+					<div class="span6 clearfix">
+						<a class="btn btn-small pull-left" href="<?php echo url_for('nm/calEdit?id=' . $calId);?>" title="Edit your calendar"><i class="icon-arrow-left"></i> Back</a>
+						<input type="submit" class="btn btn-success pull-right" value="<?php echo __('Apply');?>"/>
+					</div>
+				</div>
+				
 			</fieldset>
 		</form>
 		<?php else:?>
@@ -86,8 +92,9 @@
 						</label>
 					</div>
 				</div>
-				<div class="row">
+				<div class="row mt10">
 					<div class="span6">
+						<a class="btn btn-small pull-left" href="<?php echo url_for('nm/calEdit?id=' . $calId);?>" title="Edit your calendar"><i class="icon-arrow-left"></i> Back</a>
 						<input type="submit" value="register" class="btn btn-success pull-right"/>
 					</div>
 				</div>

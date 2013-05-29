@@ -4,6 +4,38 @@ class nmActions extends sfActions{
 
 	}
 	
+	public function executeCalList(sfWebRequest $request){
+		$user = UserUtils::getLoggedIn();
+		if (!$user) $this->redirect('partner/login');
+		
+		$cals = array();
+		
+		$cals = $user->getCals();
+		
+		$this->cals = $cals;
+	}
+	
+	public function executeCalDelete(sfWebRequest $request){
+		$user = UserUtils::getLoggedIn();
+		$cal = Doctrine::getTable('Cal')->find(array($request->getParameter('id')));
+		$this->forward404Unless($cal && $cal->isOwner($user), sprintf('Object cal does not exist (%s).', $request->getParameter('id')));
+		
+		//$cal->delete();
+		$dateNow = date("Y-m-d g:i");
+		$cal->setDeletedAt($dateNow);
+		$cal->save();
+		
+		/*
+		$refererUrl = UserUtils::getRefererUrl();	
+		if ($refererUrl) {
+			$this->redirect($refererUrl);
+			serUtils::setRefererUrl(null);
+		} else $this->redirect('nm/calList');
+		*/
+		
+		$this->redirect('nm/calList');
+	}
+	
 	public function executeCalEventsClear(sfWebRequest $request){
 		$user = UserUtils::getLoggedIn();
 		$cal = Doctrine::getTable('Cal')->find(array($request->getParameter('id')));
@@ -157,37 +189,40 @@ class nmActions extends sfActions{
 	}
 	
 	public function executeWidget(sfWebRequest $request){
-		$calId = $request->getParameter('calId');
-		$this->calId = $calId ? $calId : 1;
-		
+		$user = UserUtils::getLoggedIn();
+		$this->calId = $request->getParameter('calId');
+		$this->forward404Unless($cal = Doctrine::getTable('Cal')->find(array($this->calId)), sprintf('Object cal does not exist (%s).', $this->calId));
+
 		$this->form = new NmRegisterForm();
-		if ($request->isMethod('post')){
-			$this->forward404Unless($orphanCal = Doctrine::getTable('Cal')->find(array(UserUtils::getOrphanCalId())), sprintf('Object cal does not exist (%s).', UserUtils::getOrphanCalId()));
+		
+		if ($user){
+			$cal->setAdoptive($user);
+		} else {
+			if ($request->isMethod('post')){
+				$this->form->bind($request->getParameter('register'));
+				if ($this->form->isValid()){
+					$now = date('Y-m-d H:i:s');
+					$rootName = $this->form->getValue('company_name') ? $this->form->getValue('company_name') : $this->form->getValue('full_name');
+					$website = $this->form->getValue('website');
 			
-			$this->form->bind($request->getParameter('register'));
-			if ($this->form->isValid()){
-				
-				$now = date('Y-m-d H:i:s');
-				$rootName = $this->form->getValue('company_name') ? $this->form->getValue('company_name') : $this->form->getValue('full_name');
-				$website = $this->form->getValue('website');
-				
-				
-				//Create user
-				$user = new User();
-				$user->setFullName($this->form->getValue('full_name'));
-				$user->setEmail($this->form->getValue('email'));
-				$user->setPass($this->form->getValue('password'));
-				$user->setType(User::TYPE_PARTNER);
-				$user->setCreatedAt($now);
-				$user->setLastLoginDate($now);
-				$user->save();
-				
-				UserUtils::logUserIn($user);
-				
-				$orphanCal->setAdoptive($user, $rootName, $website);
+					//Create user
+					$user = new User();
+					$user->setFullName($this->form->getValue('full_name'));
+					$user->setEmail($this->form->getValue('email'));
+					$user->setPass($this->form->getValue('password'));
+					$user->setType(User::TYPE_PARTNER);
+					$user->setCreatedAt($now);
+					$user->setLastLoginDate($now);
+					$user->save();
+			
+					UserUtils::logUserIn($user);
+			
+					$cal->setAdoptive($user, $rootName, $website);
+				}
 			}
 		}
 		
+		$this->calId = $calId;
 		$this->user = UserUtils::getLoggedIn();
 	}
 }

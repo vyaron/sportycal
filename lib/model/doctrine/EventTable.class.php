@@ -313,8 +313,11 @@ class EventTable extends Doctrine_Table
 				$eventTags = $event->getTags();
 				if (!is_null($eventTags)) $eventTags = json_decode($eventTags, true);
 				 
+				if (is_null($eventTags)) $eventTags = array();
+				if (!in_array('CIDS', $eventTags)) $eventTags['CIDS'] = array();
+				
 				//Check event tags
-				if (!is_null($eventTags)) {
+				//if (!is_null($eventTags)) {
 					foreach ($tags as $key => $values){
 						//If tag key from label filter exists in event tags AND the value is missing. The event can be sifted
 						if (key_exists($key, $eventTags)){
@@ -330,7 +333,7 @@ class EventTable extends Doctrine_Table
 							if (!$exist) break;
 						}
 					}
-				}
+				//}
 				 
 				if ($exist) $filtedEvents[] = $event;
 			}
