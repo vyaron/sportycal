@@ -20,6 +20,9 @@ class EventForm extends BaseEventForm
 		
 		$tzValue = $this->getDefault('tz');
 		if ($tzValue) $tzValue = GeneralUtils::getTZValue($tzValue);
+		else if (UserUtils::getUserTzValue()) $tzValue = UserUtils::getUserTzValue();
+		
+		$this->setDefault('tz', $tzValue);
 	}
 	
   public function configure()  {
