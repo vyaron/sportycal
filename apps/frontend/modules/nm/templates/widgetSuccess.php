@@ -41,7 +41,7 @@
 			</fieldset>
 		</form>
 		<?php else:?>
-		<form method="POST">
+		<form id="register-form" method="POST">
 			<?php echo $form['_csrf_token']->render();?>
 			<fieldset>
 				<legend class="clearfix">
@@ -61,15 +61,15 @@
 				
 				<div class="row">
 					<div class="span2"><?php echo $form['full_name']->renderLabel();?></div>
-					<div class="span4"><?php echo $form['full_name']->render(array('class' => 'span4', 'placeholder' => 'Enter your full name'));?></div>
+					<div class="span4"><?php echo $form['full_name']->render(array('class' => 'span4', 'placeholder' => 'Enter your full name', 'required'=>'required', 'minlength'=>'3'));?></div>
 				</div>
 				<div class="row">
 					<div class="span2"><?php echo $form['email']->renderLabel();?></div>
-					<div class="span4"><?php echo $form['email']->render(array('class' => 'span4', 'placeholder' => 'example@site.com'));?></div>
+					<div class="span4"><?php echo $form['email']->render(array('class' => 'span4', 'placeholder' => 'example@site.com', 'required'=>'required', 'type'=>'email'));?></div>
 				</div>
 				<div class="row">
 					<div class="span2"><?php echo $form['password']->renderLabel();?></div>
-					<div class="span4"><?php echo $form['password']->render(array('class' => 'span4', 'placeholder' => 'Enter password'));?></div>
+					<div class="span4"><?php echo $form['password']->render(array('class' => 'span4', 'placeholder' => 'Enter password', 'required'=>'required', 'minlength'=>'7'));?></div>
 				</div>
 				<div class="row">
 					<div class="span2"><?php echo $form['confirm_password']->renderLabel();?></div>
@@ -115,5 +115,8 @@
 	</div>
 </div>
 
-<?php use_javascript('/bundle/bootstrap/js/bootstrap.min.js')?>
-<?php use_javascript('/js/neverMiss/widget.js')?>
+<?php 
+use_javascript('/bundle/bootstrap/js/bootstrap.min.js');
+use_javascript('/bundle/jquery-plugin-validation/js/jquery.validate.min.js');
+use_javascript('/js/neverMiss/widget.js');
+?>

@@ -2,6 +2,8 @@
 
 .alert ul{margin: 10px 20px;}
 
+label.error{color: red;}
+
 /*facebook login*/
 .fb-login {
     width: auto;

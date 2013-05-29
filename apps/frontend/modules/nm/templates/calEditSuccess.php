@@ -51,7 +51,7 @@ use_stylesheet('/css/neverMiss/calEdit.css');
 		
 		<div class="row">
 			<div class="span2"><?php echo $form['name']->renderLabel();?></div>
-			<div class="span4"><?php echo $form['name']->render(array('class' => 'span4', 'placeholder' => 'Enter calendar name'));?></div>
+			<div class="span4"><?php echo $form['name']->render(array('class' => 'span4', 'placeholder' => 'Enter calendar name', 'required'=>'required', 'minlength'=>'3'));?></div>
 		</div>
 		<div class="row">
 			<div class="span2"><?php echo $form['description']->renderLabel();?></div>
@@ -75,5 +75,6 @@ use_javascript('/bundle/dhtmlxScheduler/codebase/ext/dhtmlxscheduler_dhx_terrace
 use_javascript('/bundle/dhtmlxScheduler/codebase/ext/dhtmlxscheduler_quick_info.js');
 use_javascript('/bundle/dhtmlxScheduler/codebase/ext/dhtmlxscheduler_recurring.js');
 use_javascript('/bundle/dhtmlxScheduler/codebase/ext/dhtmlxscheduler_minical.js');
+use_javascript('/bundle/jquery-plugin-validation/js/jquery.validate.min.js');
 use_javascript('/js/neverMiss/calEdit.js');
 ?>

@@ -88,21 +88,6 @@ var gCalId = null;
 jQuery(document).ready(function(){
 	gCalId = jQuery('#cal-id').val();
 	loadCalendar();
-	/*
-	jQuery('#cal-form').submit(function(e){
-		e.preventDefault();
-		
-		var formEl = jQuery(this);
-		
-		jQuery.ajax({
-			url : formEl.attr('action'),
-			type : formEl.attr('method'),
-			dataType : 'json',
-			data : formEl.serialize()
-		}).done(function(){
-			alert('yeyy');
-		});
-	});
-	*/
 	
+	jQuery('#cal-form').validate();
 });

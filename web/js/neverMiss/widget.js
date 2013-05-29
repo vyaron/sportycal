@@ -14,6 +14,13 @@ function setFbLoginEvents(){
 jQuery(document).ready(function(){
 	setFbLoginEvents();
 	
+	jQuery('#register-form').validate({rules: {
+		'register[password]': "required",
+		'register[confirm_password]': {
+			equalTo: "#register_password"
+		}
+	}});
+	
 	jQuery('#copy-js-code').focus(function(){
 		jQuery(this).select();
 	});
