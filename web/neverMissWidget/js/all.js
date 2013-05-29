@@ -3,7 +3,8 @@
 	//var setTimeout = window.setTimeout, setInterval = window.setInterval;
 	
 	var NEVER_MISS = 'neverMiss';
-	var NEVER_MISS_WEBSITE = 'http://promotecal.local/neverMissWidget';
+	//var NEVER_MISS_WEBSITE = 'http://promotecal.local/neverMissWidget';
+	var NEVER_MISS_WEBSITE = '/neverMissWidget';
 	var NEVER_MISS_WIDGET_URL = NEVER_MISS_WEBSITE + '/widget.php';
 	var NEVER_MISS_WIDGET_BUBBLE_URL = NEVER_MISS_WEBSITE + '/widget_bubble.php';
 
