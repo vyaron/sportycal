@@ -80,7 +80,7 @@
 	    window.fbAsyncInit = function() {
 		    FB.init({
 		      appId      : '<?php echo sfConfig::get('app_facebook_appId');?>', // App ID
-		      channelURL : 'inevermiss.local/channel.php', // Channel File
+		      channelURL : '<?php echo sfConfig::get('app_domain_short')?>/channel.php', // Channel File
 		      status     : true, // check login status
 		      cookie     : true, // enable cookies to allow the server to access the session
 		      oauth      : true, // enable OAuth 2.0
