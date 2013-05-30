@@ -27,7 +27,7 @@ class mainActions extends sfActions
   */
  
  public function redirectByHost($host){
- 	if (NeverMissUtils::hostIsNeverMiss()){
+ 	if (sfConfig::get('app_domain_isNeverMiss')){
  		$this->redirect('/nm/index');
  	}
  }

@@ -47,10 +47,10 @@ function PrintHeader($title, $imgPath)
 
     $this->setY(20);
     //Logo
-    $this->Image(WEB_ROOT . '/images/pdf/logo.gif',10,8, 50);
+    $this->Image(sfConfig::get('sf_web_dir') . '/images/pdf/logo.gif',10,8, 50);
 
     //Right image
-    $this->Image(WEB_ROOT . $imgPath ,190,8, 10);
+    $this->Image(sfConfig::get('sf_web_dir') . $imgPath ,190,8, 10);
 
     $this->Ln(10);
 
@@ -76,14 +76,14 @@ function PrintHeader($title, $imgPath)
     $x = 20;
     $xDiff=25;
     //$this->SetX(80);
-    $this->Image(WEB_ROOT . '/images/pdf/i1.gif', $x, $y, 16 );
+    $this->Image(sfConfig::get('sf_web_dir') . '/images/pdf/i1.gif', $x, $y, 16 );
     $x += $xDiff;    
-    $this->Image(WEB_ROOT . '/images/pdf/i2.gif', $x , $y, 16);
+    $this->Image(sfConfig::get('sf_web_dir') . '/images/pdf/i2.gif', $x , $y, 16);
     $x += $xDiff;        
-    $this->Image(WEB_ROOT . '/images/pdf/i3.gif', $x, $y, 16);
+    $this->Image(sfConfig::get('sf_web_dir') . '/images/pdf/i3.gif', $x, $y, 16);
 
     $x += $xDiff;        
-    $this->Image(WEB_ROOT . '/images/pdf/i4.gif', $x, $y, 16);
+    $this->Image(sfConfig::get('sf_web_dir') . '/images/pdf/i4.gif', $x, $y, 16);
 
     //Position at 1.5 cm from bottom
     //$this->SetY(-15);

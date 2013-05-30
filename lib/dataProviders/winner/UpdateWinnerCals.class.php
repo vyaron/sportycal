@@ -1,5 +1,4 @@
 <?php
-
 class UpdateWinnerCals extends UpdatePartnerCals {
 	const PARTNER_ID = 1979;
 	const PARTNER_CTG_ID = 2100;
@@ -25,8 +24,7 @@ class UpdateWinnerCals extends UpdatePartnerCals {
 	private $log = array('calName2EventsCount' => array(), 'importedGames' => array());
 	
 	private function getSportCode2ctg(){
-		$xmlStr = file_get_contents(SPORTYCAL_ROOT . self::WINNER_CTGS_URL);
-		//$xmlStr = file_get_contents(WEB_ROOT . '/../' . self::WINNER_CTGS_URL);
+		$xmlStr = file_get_contents(sfConfig::get('sf_root_dir') . self::WINNER_CTGS_URL);
 		//$xmlStr = file_get_contents('/var/sportycal/lib/dataProviders/winner/sports.xml');
 		$xml = new SimpleXMLElement($xmlStr);
 		
@@ -286,7 +284,7 @@ class UpdateWinnerCals extends UpdatePartnerCals {
 		$sportCode2ctg = $this->getSportCode2ctg();
 
 		$xmlStr = file_get_contents(self::WINNER_EVENTS_URL);
-		//$xmlStr = file_get_contents(WEB_ROOT . '/../work/winner/XML/all-events/winner.xml');
+		//$xmlStr = file_get_contents(sfConfig::get('sf_root_dir') . '/work/winner/XML/all-events/winner.xml');
 		
 		$xml = new SimpleXMLElement($xmlStr);
 		//Utils::pp($xmlStr);

@@ -33,7 +33,7 @@ class SportycalFilter extends sfFilter {
 
   		$hasLayout = (sfConfig::get('has_layout', null) == 'off') ? false : true;
 
-  		if (NeverMissUtils::hostIsNeverMiss() && $hasLayout) $this->getContext()->getActionStack()->getFirstEntry()->getActionInstance()->setLayout('neverMiss');
+  		if (sfConfig::get('app_domain_isNeverMiss') && $hasLayout) $this->getContext()->getActionStack()->getFirstEntry()->getActionInstance()->setLayout('neverMiss');
   		
         //execute the next filter in the chain
         $filterChain->execute();

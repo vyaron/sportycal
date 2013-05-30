@@ -204,7 +204,7 @@
 		<?php endif ?>
 
         
-        <?php if (IS_MOBILE):?>
+        <?php if (sfConfig::get('app_domain_isMobile')):?>
          &nbsp;&nbsp;|&nbsp;&nbsp;
         <a href="/?fullSite=0"><?php echo __('Mobile Site');?></a>
 		<?php endif;?>

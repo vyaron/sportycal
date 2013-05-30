@@ -17,7 +17,7 @@ class ESPNSpider extends AbstractSpider {
 	
 	public function save(){
 		$teamNameClean = str_replace(" ", "-", $this->teamName);
-		$fname = SPIDERS_OUTPUT_PATH ."espn/{$this->ctgName}/$teamNameClean.csv";
+		$fname = sfConfig::get('app_spider_outputDir') ."espn/{$this->ctgName}/$teamNameClean.csv";
 				
 		$fh = fopen($fname, 'w') or die("can't open file: $fname");
 		

@@ -108,7 +108,7 @@ class categoryActions extends sfActions
     //Mobile
     Utils::useMobileViewIfNeeded($this, "ctgShow");
 	
-    if (IS_MOBILE){
+    if (sfConfig::get('app_domain_isMobile')){
     	//Get back btn params
 	    $parentCtg = $this->category->getParentCategory();
 		$this->backRow = Utils::prepareBackButton($this->category, $parentCtg);	

@@ -38,7 +38,7 @@ class FoxSpider extends AbstractSpider {
 	
 	public function getFileName(){
 		$teamNameClean = str_replace(" ", "-", $this->league);
-		$fname = SPIDERS_OUTPUT_PATH ."foxsoccer/$teamNameClean.csv";
+		$fname = sfConfig::get('app_spider_outputDir') ."foxsoccer/$teamNameClean.csv";
 		
 		return $fname;
 	}

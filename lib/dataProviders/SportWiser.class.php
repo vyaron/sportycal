@@ -122,8 +122,8 @@ class SportWiser{
 	
 	private function hasError($content, $url){
 		$error = false;
-
-		//$LOG_FILE = SPIDERS_OUTPUT_PATH . '/sportwiser/eventStat.log';
+		
+		//$LOG_FILE = sfConfig::get('app_spider_outputDir') . '/sportwiser/eventStat.log';
 		
 		
 		$content = json_decode($content, true);

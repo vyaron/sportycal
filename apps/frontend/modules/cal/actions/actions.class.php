@@ -182,7 +182,7 @@ class calActions extends sfActions
     // mobile
     Utils::useMobileViewIfNeeded($this, "calShow");
     
-  	if (IS_MOBILE){
+  	if (sfConfig::get('app_domain_isMobile')){
     	//Get back btn params
 	    
 	    //case 1 calender 

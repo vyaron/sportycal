@@ -21,7 +21,7 @@ class EspnscrumSpider extends AbstractSpider {
 			$pattern="/([[:alnum:]_\.-]*)/";
 			$fname = str_replace(str_split(preg_replace($pattern,$replace,$name)),$replace,$name);
 			//$fname = trim($name);
-			$fname = SPIDERS_OUTPUT_PATH ."espnscrum/$fname.csv";
+			$fname = sfConfig::get('app_spider_outputDir') ."espnscrum/$fname.csv";
 			$fh = fopen($fname, 'a+') or die("can't open file $fname");
 			
 			foreach ($outLines as $outLine){

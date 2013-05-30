@@ -101,8 +101,8 @@ class Captcha
    }
    
    public static function getImageFilePath($imageFileName, $root=true) {
-   	if ($root) $path = ROOT_CAPTCHA_IMAGES_FOLDER . $imageFileName.".gif";
-   	else $path = CAPTCHA_IMAGES_FOLDER . $imageFileName.".gif";
+   	if ($root) $path = sfConfig::get('app_captha_rootDir') . $imageFileName.".gif";
+   	else $path = sfConfig::get('app_captha_dir') . $imageFileName.".gif";
    	
    	return $path;
    }

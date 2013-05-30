@@ -21,7 +21,7 @@ class EspnOlympicsSpider extends AbstractSpider {
 			//$pattern="/([[:alnum:]_\.-]*)/";
 			//$fname = str_replace(str_split(preg_replace($pattern,$replace,$name)),$replace,$name);
 			$fname = $name;
-			$fname = SPIDERS_OUTPUT_PATH ."espnolympics/$fname.csv";
+			$fname = sfConfig::get('app_spider_outputDir') ."espnolympics/$fname.csv";
 			$fh = fopen($fname, 'a+') or die("can't open file $fname");
 			
 			foreach ($outLines as $outLine){

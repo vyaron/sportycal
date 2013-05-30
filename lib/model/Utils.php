@@ -843,7 +843,7 @@ class Utils {
 
 	
 	public static function redirectToMobileVersionIfNeeded($controller) {
-		if (!IS_MOBILE && self::clientIsMobile()) {
+		if (!sfConfig::get('app_domain_isMobile') && self::clientIsMobile()) {
 			$file = $_SERVER["REQUEST_URI"];
 			//Utils::pp($file);
 			//Utils::pp("http://m.sportycal.local" . $file);
@@ -892,7 +892,7 @@ class Utils {
 	public static function useMobileViewIfNeeded($controller, $viewName) {
 		$fullSite = $controller->getUser()->getAttribute('fullSite');
 
-		if (IS_MOBILE && !$fullSite) {
+		if (sfConfig::get('app_domain_isMobile') && !$fullSite) {
 	    	$controller->setLayout("mobile");
 	    	$controller->setTemplate($viewName, "mobile");
 		}

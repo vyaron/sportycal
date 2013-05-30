@@ -13,10 +13,10 @@ class SoccernetSpider extends AbstractSpider {
 	}
 	                                                                                 
 	public function save(){
-		//$fName = SPORTYCAL_ROOT ."test/soccernet/{$this->league}.csv";
-		//$fName = SPORTYCAL_ROOT ."test/soccernet/try.csv";
-		//$fName = SPIDERS_OUTPUT_PATH ."soccernet/try.csv";
-		$fname = SPIDERS_OUTPUT_PATH ."soccernet/{$this->league}.csv";
+		//$fName = sfConfig::get('app_spider_outputDir') ."soccernet/{$this->league}.csv";
+		//$fName = sfConfig::get('app_spider_outputDir') ."soccernet/try.csv";
+		//$fName = sfConfig::get('app_spider_outputDir') ."soccernet/try.csv";
+		$fname = sfConfig::get('app_spider_outputDir') ."soccernet/{$this->league}.csv";
 		
 	    $fh = fopen($fname, 'a+') or die("can't open file: $fname");
 		

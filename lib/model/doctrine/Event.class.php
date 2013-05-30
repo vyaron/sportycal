@@ -366,7 +366,7 @@ class Event extends BaseEvent
 			if (isset($matches[1])){
 				$cid = $matches[1];
 				
-				$filePath = SPORTYCAL_ROOT . 'work/888/supercal_cid_list.csv';
+				$filePath = sfConfig::get('sf_root_dir') . 'work/888/supercal_cid_list.csv';
 				if (file_exists($filePath)){
 					$f = fopen($filePath, "r");
 				
