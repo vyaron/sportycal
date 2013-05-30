@@ -11,7 +11,7 @@
 <div id="feedbackPopup" class="hidden">
 	<div id="feedbackPopupBG"></div>
 	<div id="feedbackPopupContent">
-		<?php include_partial('main/contact', array('user' => $user, 'closeBtn' => true, 'toki'=>$toki)); ?>
+		<?php include_partial('main/contact', array('user' => $user, 'closeBtn' => true, 'toki'=>$toki, 'getAjaxCapcha' => true)); ?>
 	</div>
 </div>
 
@@ -24,6 +24,14 @@ window.addEvent('domready', function(){
 
 			var feedbackPopup = $('feedbackPopup');
 			if (feedbackPopup){
+				<?php if (!$user):?>
+				new Request.JSON({
+					url : '/main/getCaptchaImgPath',
+					mehod : 'POST',
+					onComplete : feedbackUpdateCaptchaImg
+				}).send();
+
+				<?php endif;?>
 				feedbackPopup.removeClass('hidden');
 			}
 		});

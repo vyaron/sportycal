@@ -12,7 +12,7 @@
 <div style="">
 	<div class="centererOuter" style="">
 		<div class="centererInner" style="z-index:5;background:transparent">
-			<?php include_partial('main/contact', array('user' => $user, 'toki' => $toki)); ?>
+			<?php include_partial('main/contact', array('user' => $user, 'toki' => $toki, 'getAjaxCapcha' => false)); ?>
 		</div>
 	</div>
 	

@@ -257,6 +257,17 @@ class mainActions extends sfActions
 	echo json_encode($res);
     return sfView::NONE;
   }  
+  
+  public function executeGetCaptchaImgPath(sfWebRequest $request) {
+  	$res = new stdClass();
+  	
+  	$res->status = true;
+  	$res->captchaImgPath = UserUtils::getCaptchaImgPath();
+  	
+  	echo json_encode($res);
+  	
+  	return sfView::NONE;
+  }
 
 
   public function executeAbout(sfWebRequest $request) {

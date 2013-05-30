@@ -43,7 +43,7 @@
 	                    
 						<div class="mt10">
 							<p><?php echo __("Please type the letters") ?>:</p>
-							<img id="captchaImg" src="<?php echo UserUtils::getCaptchaImgPath();?>"/><br/>
+							<img id="captchaImg" src="<?php echo ($getAjaxCapcha ? '/images/layout/loading-big.gif' : UserUtils::getCaptchaImgPath());?>"/><br/>
 							<input id="captcha" name="captcha" type="text"/>
 						</div>
 					<?php endif?>
@@ -73,9 +73,19 @@
 </table>
 
 <script type="text/javascript">
+	function feedbackUpdateCaptchaImg(res){
+		if (res && res.captchaImgPath){
+			var captchaImg = $('captchaImg');
+			if (captchaImg) captchaImg.set('src', res.captchaImgPath);
+
+			var captcha = $('captcha');
+			if (captcha) captcha.set('value', '');
+		}
+	}
+
 	window.addEvent('domready', function(){
 		var feedbackSubmit = $('feedbackSubmit');
-
+		
 		if (feedbackSubmit){
 			var form = feedbackSubmit.getParent('form');
 			form.set('send', {
@@ -93,15 +103,7 @@
 							feedbackFormWrapper.addClass('hidden');
 						}
 					} else {
-						var captchaImg = $('captchaImg');
-						if (captchaImg){
-							captchaImg.set('src', res.captchaImgPath);
-						}
-
-						var captcha = $('captcha');
-						if (captcha){
-							captcha.set('value', '');
-						}
+						feedbackUpdateCaptchaImg(res);
 
 						var feedbackFormErrorMsg = $('feedbackFormErrorMsg');
 						feedbackFormErrorMsg.removeClass('hidden');
