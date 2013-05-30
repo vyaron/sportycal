@@ -192,10 +192,10 @@ class nmActions extends sfActions{
 	private function getWidgetCode($cal, $language=null){
 		$code = '';
 		
-		$scriptUrl = 'sportycal.local/w/neverMiss/all.js';
+		$scriptUrl = sfConfig::get('app_domain_short') . '/w/neverMiss/all.js';
 		
 		if ($cal){
-			$code = '<div class="nm-follow" data-cal-id="' . $cal->getId() . '"' . ($language ? (' data-language="' . $language . '"') : '') . ' style="float:left; position: relative;"></div>' . "\n";
+			$code = '<div class="nm-follow" data-cal-id="' . $cal->getId() . '"' . ($language ? (' data-language="' . $language . '"') : '') . ' style="position: relative;"></div>' . "\n";
 			$code .= '<script>(function(d, s, id) {var js, fjs = d.getElementsByTagName(s)[0];if (d.getElementById(id)) return;js = d.createElement(s); js.id = id;js.src = "//' . $scriptUrl . '";fjs.parentNode.insertBefore(js, fjs);}(document, \'script\', \'never-miss-jssdk\'));</script>';
 
 		}

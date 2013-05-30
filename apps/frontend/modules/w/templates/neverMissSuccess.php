@@ -3,7 +3,7 @@
 	//var setTimeout = window.setTimeout, setInterval = window.setInterval;
 	
 	var NEVER_MISS = 'neverMiss';
-	var NEVER_MISS_WEBSITE = '<?php sfConfig::get('app_domain_full');?>/w/';
+	var NEVER_MISS_WEBSITE = '<?php echo sfConfig::get('app_domain_full');?>/w/';
 	var NEVER_MISS_WIDGET_URL = NEVER_MISS_WEBSITE + 'neverMissBtn';
 	var NEVER_MISS_WIDGET_BUBBLE_URL = NEVER_MISS_WEBSITE + 'neverMissPopup';
 

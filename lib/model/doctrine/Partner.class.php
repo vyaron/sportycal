@@ -27,19 +27,19 @@ class Partner extends BasePartner
 	
 	public function getSampleUrl() {
 		$pHash = $this->getHash();
-		return GeneralUtils::DOMAIN . 
+		return sfConfig::get('app_domain_full') . 
 			   "/cal/get/id/1155/ref/$pHash/sportycal.ics";
 	}
 
 	public function getImgPath() {
-		$url = GeneralUtils::DOMAIN."/images/partner/{$this->getId()}.jpg";
+		$url = sfConfig::get('app_domain_full')."/images/partner/{$this->getId()}.jpg";
 		return $url;
 	}	
 
 	public function getUrlToShare() {
 
 		// TODO: add ref param 
-		$urlToShare = GeneralUtils::DOMAIN;
+		$urlToShare = sfConfig::get('app_domain_full');
 		
 		// TODO: make it the TOTO page
 		if ($this->getId() == 1979) {

@@ -15,7 +15,7 @@ class CategoryLink extends BaseCategoryLink
 	
 	public function toJSON($calId, $partnerId) {
 
-		$url = GeneralUtils::DOMAIN . "/cal/forwardTo/cal/$calId/link/{$this->getId()}/ref/$partnerId";		
+		$url = sfConfig::get('app_domain_full') . "/cal/forwardTo/cal/$calId/link/{$this->getId()}/ref/$partnerId";		
 		
 		$strJson = '{';
 		$strJson .= '"name": "'.$this->getTxt().'"';		
@@ -42,7 +42,7 @@ class CategoryLink extends BaseCategoryLink
 	}
 	
 	public function getUrlToGive($calId, $userCalId=null) {
-		$url = GeneralUtils::DOMAIN . "/cal/forwardTo/cal/{$calId}/";
+		$url = sfConfig::get('app_domain_full') . "/cal/forwardTo/cal/{$calId}/";
 		if ($userCalId) {
 			$url .= "ucal/{$userCalId}/"; 	
 		}

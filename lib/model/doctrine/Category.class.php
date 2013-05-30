@@ -243,7 +243,7 @@ class Category extends BaseCategory
     
     
 	public function toJSON() {
-		$imgUrl				= GeneralUtils::DOMAIN . "/" . $this->getImagePathSub('1');		
+		$imgUrl				= sfConfig::get('app_domain_full') . "/" . $this->getImagePathSub('1');		
 		$strJson = '{';
 		$strJson .= ' "id": '.$this->getId();
 		$strJson .= ',"name": "'.$this->getName().'"';		
@@ -345,7 +345,7 @@ class Category extends BaseCategory
 		
 		if (!$min){
 			$res->rate = $this->getRate();
-			$res->img_url = GeneralUtils::DOMAIN . $this->getImagePath();
+			$res->img_url = sfConfig::get('app_domain_full') . $this->getImagePath();
 		}
 		
 		return $res;

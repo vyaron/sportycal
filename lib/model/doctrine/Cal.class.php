@@ -46,7 +46,7 @@ class Cal extends BaseCal
 			$desc .= "\n\nCalendar provided by: $url";
 	
 			if (Cal::isHtmlSupported($calType)) {
-				$desc .= "\n<a href='http://www.sportycal.com'><img src='".GeneralUtils::DOMAIN."/images/layout/logo.gif' alt='sportYcal.com' title='Find more on sportYcal.com' /></a>";
+				$desc .= "\n<a href='http://www.sportycal.com'><img src='".sfConfig::get('app_domain_full')."/images/layout/logo.gif' alt='sportYcal.com' title='Find more on sportYcal.com' /></a>";
 			}
 		} else if ($partner && !$partner->isWhiteLabel()){
 			if (Cal::isHtmlSupported($calType)) {
@@ -433,13 +433,13 @@ class Cal extends BaseCal
 			$url = "/cal/hardcopy/" . $calSpecification;
 		} else if ($calType == Cal::TYPE_GOOGLE || ($calType == Cal::TYPE_MOBILE && Utils::clientIsAndroid())) {
 			$url = "http://www.google.com/calendar/render?cid=" .
-			        urlencode(GeneralUtils::DOMAIN . '/cal/get/'.$calSpecification."/hash/USERCAL/ct/$intelCalType".$partnerPart);
+			        urlencode(sfConfig::get('app_domain_full') . '/cal/get/'.$calSpecification."/hash/USERCAL/ct/$intelCalType".$partnerPart);
 			
 		} else if($calType == Cal::TYPE_ANY){
-			$url = "http://".GeneralUtils::DOMAIN_SHORT . 
+			$url = "http://".sfConfig::get('app_domain_short') . 
 				   "/cal/get/".$calSpecification. "/hash/USERCAL/ct/$intelCalType$partnerPart/sportycal.ics";
 		} else {
-			$url = "webcal://".GeneralUtils::DOMAIN_SHORT . 
+			$url = "webcal://".sfConfig::get('app_domain_short') . 
 				   "/cal/get/".$calSpecification. "/hash/USERCAL/ct/$intelCalType$partnerPart/sportycal.ics";
 			
 		}		

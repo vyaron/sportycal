@@ -5,7 +5,7 @@ $boxHeight = 300;
 
 <?php
 
-	$urlToShare = GeneralUtils::DOMAIN.$_SERVER['REQUEST_URI'];//"http://www.sportYcal.com";
+	$urlToShare = sfConfig::get('app_domain_full').$_SERVER['REQUEST_URI'];//"http://www.sportYcal.com";
 	$loggedinId = UserUtils::getLoggedInId();
 	if ($loggedinId) $urlToShare .= '?iu=' . "$loggedinId";
 

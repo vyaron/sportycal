@@ -14,7 +14,7 @@ class ShortUrl extends BaseShortUrl
 {
 
 	public function getShortcut() {
-		return GeneralUtils::DOMAIN . '/l/'. $this->getHash();	
+		return sfConfig::get('app_domain_full') . '/l/'. $this->getHash();	
 	}
 	
 	

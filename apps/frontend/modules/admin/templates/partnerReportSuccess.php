@@ -40,7 +40,7 @@ $user = UserUtils::getLoggedIn();
 		<?php foreach ($shortUrls as $shortUrl):?>
 		<tr>
 			<td><a href="<?php echo $shortUrl->getUrl();?>" target="_blank"><?php echo $shortUrl->getUrl();?></a></td>
-			<td><a href="<?php echo GeneralUtils::DOMAIN . '/l/' . $shortUrl->getHash();?>" target="_blank"><?php echo GeneralUtils::DOMAIN . '/l/' . $shortUrl->getHash();?></a></td>
+			<td><a href="<?php echo sfConfig::get('app_domain_full') . '/l/' . $shortUrl->getHash();?>" target="_blank"><?php echo sfConfig::get('app_domain_full') . '/l/' . $shortUrl->getHash();?></a></td>
 			<td><?php echo $shortUrl->getComment();?></td>
 			<td><?php echo $shortUrl->getUsedAt();?></td>
 			<td><?php echo $shortUrl->getCountUsed();?></td>

@@ -110,13 +110,13 @@ class Event extends BaseEvent
 					$labelPart .= 'type:promoBirthday';
 				}
 				
-				$desc .= "\n\n<img width='1' height='1' src='".GeneralUtils::DOMAIN."/s/intel?e={$this->getId()}&s=event&a=open$partnerPart$labelPart$valuePart$uclPart$userIdPart' />";
+				$desc .= "\n\n<img width='1' height='1' src='".sfConfig::get('app_domain_full')."/s/intel?e={$this->getId()}&s=event&a=open$partnerPart$labelPart$valuePart$uclPart$userIdPart' />";
 			}
 		}
 
 		//Facebook Share
 		if (!$partner && !$cal->isBirthdayCal()) {
-			$fbShareUrl = GeneralUtils::DOMAIN . '/l/facebook/e/' . $this->getId();
+			$fbShareUrl = sfConfig::get('app_domain_full') . '/l/facebook/e/' . $this->getId();
 			$fbShareTxt = 'Share on Facebook';
 			if (Cal::isHtmlSupported($calType)) {
 				$desc .= '<br/><br/><a href="' . $fbShareUrl . '" target="_blank">' . $fbShareTxt . '</a>';
@@ -259,14 +259,14 @@ class Event extends BaseEvent
 	public function toJSON($partnerId) {
 		
 		$cal 				= $this->getCal();
-		$calUrl				= GeneralUtils::DOMAIN . "/cal/" . $cal->getId() . "/ref/" . $partnerId;
+		$calUrl				= sfConfig::get('app_domain_full') . "/cal/" . $cal->getId() . "/ref/" . $partnerId;
 		$calNumEvents 		= $cal->getNumEvents();
 		$calCategory 		= $cal->getCategory();
 		$rootCategory 		= $calCategory->getRootCategory();
 		$ctgPath 			= $calCategory->getCategoryPathAsText();
 		$ctgImgPath			= $rootCategory->getImagePathSub('1');
 		$strLinks			= $cal->getLinksAsJson($partnerId);
-		//$imgUrl				= GeneralUtils::DOMAIN . "/" . $rootCategory->getImagePathSub(); 
+		//$imgUrl				= sfConfig::get('app_domain_full') . "/" . $rootCategory->getImagePathSub(); 
 		
 		
 		$strJson = '{';
@@ -546,9 +546,9 @@ class Event extends BaseEvent
     	$ctg = $cal->getCategory();
 
     	$url = 'https://www.facebook.com/dialog/feed?app_id=' . FACEBOOK_APP_ID . '&';
-    	$url .= 'picture=' . urlencode(GeneralUtils::DOMAIN . '/' .$ctg->getImagePathSub()) . '&';
+    	$url .= 'picture=' . urlencode(sfConfig::get('app_domain_full') . '/' .$ctg->getImagePathSub()) . '&';
     	$url .= 'name=' . urlencode($this->getName()) . '&';
-    	$url .= 'link=' . urlencode(GeneralUtils::DOMAIN . '/' . $cal->getUrl()) . '&';
+    	$url .= 'link=' . urlencode(sfConfig::get('app_domain_full') . '/' . $cal->getUrl()) . '&';
     	$url .= 'caption=' . urlencode($ctg->getCategoryPathAsText()) . '&';
     	$url .= 'description=' . urlencode('Download your favorite team & tournament schedule to your own calendar (google, outlook, mobile...)') . '&';
     	
@@ -558,7 +558,7 @@ class Event extends BaseEvent
 		$url .= 'properties=' . urlencode(json_encode($properties)) . '&';
 		$url .= 'actions=' . urlencode('[{"name" : "Buy Tickets", "link" : "http://www.sportYcal.com/l/tickets"}]') . '&';
     	
-    	$url .= 'redirect_uri=' . urlencode(GeneralUtils::DOMAIN . '/?src=fbpr');
+    	$url .= 'redirect_uri=' . urlencode(sfConfig::get('app_domain_full') . '/?src=fbpr');
     	
     	return $url;
     }

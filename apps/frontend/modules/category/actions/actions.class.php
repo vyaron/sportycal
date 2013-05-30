@@ -327,7 +327,7 @@ class categoryActions extends sfActions
   			
   			$rootCtgImgUrl = '';
   			if (!$min){
-  				$rootCtgImgUrl = GeneralUtils::DOMAIN . $category->getRootCategory()->getImagePath();
+  				$rootCtgImgUrl = sfConfig::get('app_domain_full') . $category->getRootCategory()->getImagePath();
   				$res->category->img_url = $rootCtgImgUrl;
   			}
   			

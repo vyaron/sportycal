@@ -347,10 +347,10 @@ class adminActions extends sfActions
 		if (!$league || !$month || !$year || $year < date('Y') || $month > 12) {
 			echo("Example Usage:");
 			//echo("<br/>");
-			//echo("Get SQL: <b>".GeneralUtils::DOMAIN."/admin/fSpider?league=premierleague&month=2&year=2011" . "</b>" );
+			//echo("Get SQL: <b>".sfConfig::get('app_domain_full')."/admin/fSpider?league=premierleague&month=2&year=2011" . "</b>" );
 			echo("<br/>");
-			//echo("Get CSV: <b>".GeneralUtils::DOMAIN."/admin/fSpider?league=premierleague&month=2&year=2011&format=CSV" . "</b>" );
-			echo("Get CSV: <b>".GeneralUtils::DOMAIN."/admin/fSpider?league=premierleague&month=" . date('n') . "&year=" . date('Y') . "&untilNextYear=1" . "</b>" );
+			//echo("Get CSV: <b>".sfConfig::get('app_domain_full')."/admin/fSpider?league=premierleague&month=2&year=2011&format=CSV" . "</b>" );
+			echo("Get CSV: <b>".sfConfig::get('app_domain_full')."/admin/fSpider?league=premierleague&month=" . date('n') . "&year=" . date('Y') . "&untilNextYear=1" . "</b>" );
 			die();
 		}
 

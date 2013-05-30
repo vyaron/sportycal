@@ -694,7 +694,7 @@ class mainActions extends sfActions
   		$this->showWidget = false;
   	}
 
-  	define('DOWNLOAD_WIDGET_URL', GeneralUtils::DOMAIN . '/downloadWidget/');
+  	define('DOWNLOAD_WIDGET_URL', sfConfig::get('app_domain_full') . '/downloadWidget/');
 	//define('DOWNLOAD_WIDGET_URL', 'http://www.sportycal.com/downloadWidget/');
 
   	$params = '';

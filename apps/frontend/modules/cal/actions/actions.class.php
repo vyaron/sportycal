@@ -566,7 +566,7 @@ class calActions extends sfActions
   	if ($cal){
   		$rootCtgImgUrl = '';
   		$category = $cal->getRootCategory();
-  		if ($category) $rootCtgImgUrl = GeneralUtils::DOMAIN . $category->getImagePath();
+  		if ($category) $rootCtgImgUrl = sfConfig::get('app_domain_full') . $category->getImagePath();
   		
   		$min = false;
   		$minWithLinks = false;

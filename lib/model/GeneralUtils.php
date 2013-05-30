@@ -2,14 +2,6 @@
 
 
 class GeneralUtils {
-	//TODO: Use sfConfig!
-	
-    const DOMAIN = "http://www.sportYcal.com";
-    //const DOMAIN = "http://sportYcal.local/frontend_dev.php";
-    const DOMAIN_SHORT = "www.sportYcal.com";
-    //const DOMAIN_SHORT = "sportYcal.local/frontend_dev.php";
-    
-
     public static $MONTHS = array('Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec');
     
     public static function formatDateRange($start, $end) {
