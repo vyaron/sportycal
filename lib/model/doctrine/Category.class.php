@@ -26,10 +26,13 @@ class Category extends BaseCategory
     }
     
     function getRootCategory() {
-        
+    	$id = $this->getId();
+    	$rootCtgId = $this->getRootCategoryId();
+    	
+    	if ($id == $rootCtgId) return $this;
+    	
     	// basic cache
         if ($this->rootCategory) return $this->rootCategory;
-        $rootCtgId = $this->getRootCategoryId();
         $this->rootCategory = Doctrine::getTable('Category')->find($rootCtgId);
         
         /*
