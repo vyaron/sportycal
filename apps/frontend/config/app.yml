@@ -2,4 +2,19 @@
 # http://www.symfony-project.org/reference/1_4/en/11-App
 
 # default values
-#all:
+dev:
+  domain:
+    short: sportycal.local
+    full:  http://sportycal.local/
+  fullDomain: http://sportycal.local/
+  facebook:
+    appId: 313400138677127
+    secret: 62094be3d3db0caf976e93cc44ef7cad
+    
+all:
+  domain:
+    short: sportycal.com
+    full:  http://www.sportycal.com/
+  facebook:
+    appId: 144339832273543
+    secret: 2b3826caa86512d10958465a54de5afb

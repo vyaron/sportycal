@@ -13,8 +13,8 @@ class FacebookUtils {
 	private static function getFbObject() {
 
 		$config = array();
-		$config['appId'] = FACEBOOK_APP_ID;
-		$config['secret'] = FACEBOOK_SECRET;
+		$config['appId'] = sfConfig::get('app_facebook_appId');
+		$config['secret'] = sfConfig::get('app_facebook_secret');
 		//$config['cookie'] = true; // optional
 		$config['fileUpload'] = true; // optional
 		

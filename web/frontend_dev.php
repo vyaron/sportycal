@@ -1,19 +1,4 @@
-<?php
-require_once(dirname(__FILE__).'/../lib/model/NeverMissUtils.php');
-//TODO: find nice solution
-if (NeverMissUtils::hostIsNeverMiss()){
-	define('FACEBOOK_APP_ID', '144855559036945');
-	define('FACEBOOK_SECRET', 'c6254950824ec32f2a1e3c14b5c286d2');
-} else {
-	// PROD
-	//define('FACEBOOK_APP_ID', '141286632559083');
-	//define('FACEBOOK_SECRET', '60e3898c83cd60da881e89f6bf25fb11');
-	
-	// DEV
-	define('FACEBOOK_APP_ID', '313400138677127');
-	define('FACEBOOK_SECRET', '62094be3d3db0caf976e93cc44ef7cad');
-}	
-	
+<?php	
 define('WEB_ROOT', dirname(__FILE__));
 define('SPORTYCAL_ROOT', WEB_ROOT . '/../');
 define('SPIDERS_OUTPUT_PATH', WEB_ROOT . '/../test/');

@@ -1,25 +1,14 @@
-<?php
-$isBubble = false;
-if (isset($_GET['calId'])){
-	$calId = $_GET['calId'];
-	
-	if (isset($_GET['isBubble'])) $isBubble = true;
-} else {
-	echo 'ERROR';
-	die();
-}
-?>
 <!DOCTYPE HTML>
 <html>
 <head>
-<link rel="stylesheet" href="css/main.css"/>
+<link rel="stylesheet" href="/widgets/neverMiss/css/main.css"/>
 <style type="text/css">
 body{background-color: transparent;}
 	.cal-link{display: block; float: left; margin-right: 5px; width: 30px; height: 30px; border: 2px dashed transparent; text-decoration: none; background-repeat: no-repeat; background-position: center center; outline: none;}
 	.cal-link:hover, .cal-link.selected{border-color: #ccc;}
-	.cal-link.google{background-image: url('imgs/google.png');}
-	.cal-link.outlook{background-image: url('imgs/outlook.png');}
-	.cal-link.ical{background-image: url('imgs/ical.png');}
+	.cal-link.google{background-image: url('/widgets/neverMiss/imgs/google.png');}
+	.cal-link.outlook{background-image: url('/widgets/neverMiss/imgs/outlook.png');}
+	.cal-link.ical{background-image: url('/widgets/neverMiss/imgs/ical.png');}
 	
 	/*New Window*/
 	.window-open{margin: 10px;}
@@ -68,19 +57,19 @@ body{background-color: transparent;}
 <body>
 <div id="widget-bubble" class="<?php echo ($isBubble) ? 'speech-bubble' : 'window-open'?>">
 	<div class="clearfix">
-		<a class="cal-link google" href="#" data-href="/cal/sub/id/<?php echo $calId?>/ct/google/ref/widget/cal.ics" data-desc="Download to Google calendar">&nbsp;</a>
-		<a class="cal-link outlook" href="#" data-href="/cal/sub/id/<?php echo $calId?>/ct/outlook/ref/widget/cal.ics" data-desc="Download to Outlook calendar">&nbsp;</a>
-		<a class="cal-link ical" href="#" data-href="/cal/sub/id/<?php echo $calId?>/ct/any/ref/widget/cal.ics" data-desc="Copy iCal link">&nbsp;</a>
+		<a class="cal-link google" href="#" data-href="/cal/sub/id/<?php echo $calId?>/ct/google/ref/widget/cal.ics" data-desc="<?php echo __('Download to Google calendar');?>">&nbsp;</a>
+		<a class="cal-link outlook" href="#" data-href="/cal/sub/id/<?php echo $calId?>/ct/outlook/ref/widget/cal.ics" data-desc="<?php echo __('Download to Outlook calendar');?>">&nbsp;</a>
+		<a class="cal-link ical" href="#" data-href="/cal/sub/id/<?php echo $calId?>/ct/any/ref/widget/cal.ics" data-desc="<?php echo __('Copy iCal link');?>">&nbsp;</a>
 	</div>
 	
 	<div id="desc-wrapper" style="display:none;">
 		<p id="link-desc"></p>
-		<a id="continue-btn" class="btn btn-success" href="#" target="_blank">Continue</a>
+		<a id="continue-btn" class="btn btn-success" href="#" target="_blank"><?php echo __('Continue');?></a>
 	</div>
 </div>
 
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-<script>window.jQuery || document.write('<script src="js/vendor/jquery-1.9.1.min.js"><\/script>');</script>
+<script>window.jQuery || document.write('<script src="/widgets/neverMiss/js/vendor/jquery-1.9.1.min.js"><\/script>');</script>
 <script type="text/javascript">
 var gSelected = null;
 jQuery(document).ready(function(){

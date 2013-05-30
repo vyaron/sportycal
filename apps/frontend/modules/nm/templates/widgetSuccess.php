@@ -6,30 +6,19 @@
 <div class="row">
 	<div class="span6">
 		<?php if ($user):?>
-		<form method="GET" action="/cal/neverMissEdit">
+		<form method="GET">
 			<fieldset>
 				<legend>Custom widget:</legend>
 				
-				<label for="name">Calendar ID:</label>
-				<input class="span6" type="text" name="name" placeholder="Enter Calendar ID" value="<?php echo $calId;?>" disabled="disabled"/>
-				
-				<label for="style">Style:</label>
-				<select class="span6" name="style" disabled="disabled">
-					<option value="1">Light</option>
-					<option value="2">Dark</option>
-				</select>
-				
-				<label for="style">Lang:</label>
-				<select class="span6" name="style" disabled="disabled">
-  					<?php foreach (LocationTable::getCountryOptions() as $location):?>
-  					<option value="<?php echo $location->getCountry()?>"><?php echo $location->getCountry()?></option>
+				<label for="style">Language:</label>
+				<select class="span6" name="language">
+  					<?php foreach ($languagesOptions as $value => $name):?>
+  					<option value="<?php echo $value;?>"<?php echo ($value == $language) ? ' selected="selected"' : ''?>><?php echo $name;?></option>
   					<?php endforeach;?>
 				</select>
 				
-				
-				
 				<label for="copy-js-code"><?php echo __('Copy this code to your site (iframe)');?>:</label>
-				<textarea id="copy-js-code" spellcheck="false" class="span6">&lt;div class=&quot;nm-follow&quot; data-cal-id=&quot;<?php echo $calId;?>&quot; &gt;&lt;/div&gt; &lt;script&gt;(function(d, s, id) {var js, fjs = d.getElementsByTagName(s)[0];if (d.getElementById(id)) return;js = d.createElement(s); js.id = id;js.src = &quot;//sportycal.local/neverMissWidget/js/all.js&quot;;fjs.parentNode.insertBefore(js, fjs);}(document, 'script', 'never-miss-jssdk'));&lt;/script&gt;</textarea>
+				<textarea id="copy-js-code" spellcheck="false" class="span6"><?php echo $code;?></textarea>
 				
 				<div class="row mt10">
 					<div class="span6 clearfix">
@@ -104,14 +93,7 @@
 	</div>
 	<div class="span6">
 		<legend>Preview:</legend>
-		<div class="nm-follow" data-cal-id="<?php echo $calId;?>" style="float:left; position: relative;"></div>
-		<script>(function(d, s, id) {
-		  var js, fjs = d.getElementsByTagName(s)[0];
-		  if (d.getElementById(id)) return;
-		  js = d.createElement(s); js.id = id;
-		  js.src = "//sportycal.local/neverMissWidget/js/all.js";
-		  fjs.parentNode.insertBefore(js, fjs);
-		}(document, 'script', 'never-miss-jssdk'));</script>
+		<?php echo sfOutputEscaperGetterDecorator::unescape($code);?>
 	</div>
 </div>
 

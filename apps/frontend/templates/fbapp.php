@@ -70,7 +70,7 @@
 		//Facebook
 	    window.fbAsyncInit = function() {
 			FB.init({
-				appId      : '<?php echo FACEBOOK_APP_ID ?>', // App ID
+				appId      : '<?php echo sfConfig::get('app_facebook_appId');?>', // App ID
 				status     : true, // check login status
 				cookie     : true, // enable cookies to allow the server to access the session
 				oauth      : true, // enable OAuth 2.0

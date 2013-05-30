@@ -2,7 +2,8 @@
 
 
 class GeneralUtils {
-
+	//TODO: Use sfConfig!
+	
     const DOMAIN = "http://www.sportYcal.com";
     //const DOMAIN = "http://sportYcal.local/frontend_dev.php";
     const DOMAIN_SHORT = "www.sportYcal.com";
