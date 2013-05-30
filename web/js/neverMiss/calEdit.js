@@ -90,4 +90,9 @@ jQuery(document).ready(function(){
 	loadCalendar();
 	
 	jQuery('#cal-form').validate();
+	
+	jQuery('.continue-btn').click(function(e){
+		e.preventDefault();
+		jQuery('#cal-form').submit();
+	});
 });

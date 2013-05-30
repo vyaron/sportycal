@@ -12,6 +12,8 @@ use_stylesheet('/css/neverMiss/calEdit.css');
 <h5>Timezone: <?php echo $tzFullName;?></h5>
 <?php endif;?>
 
+<a class="continue-btn btn btn-success pull-right" href="#">Continue</a>
+
 <div id="scheduler_here" class="dhx_cal_container" style="width: 100%; height: 100%; min-height:500px; line-height:normal;">
 	<div class="dhx_cal_navline">
 		<div class="dhx_cal_prev_button">&nbsp;</div>
