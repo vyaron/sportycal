@@ -144,7 +144,13 @@ class eventActions extends sfActions
   	
   	$this->countryCodes = $params['countryCodes'];
   	$this->languageCodes = $params['languageCodes'];
-  	$this->tags = key_exists('custom', $params) ? $params['custom'] : array();
+  	
+  	$this->tags = array();
+  	if (key_exists('custom', $params) && is_array($params['custom'])){
+  		foreach ($params['custom'] as $custom){
+  			$this->tags[$custom['name']] = explode(',',  $custom['values']);
+  		}
+  	}
   	
   	$form->bind($params, $request->getFiles($form->getName()));
   	if ($form->isValid()){
