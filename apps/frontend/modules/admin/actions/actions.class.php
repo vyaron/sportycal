@@ -699,10 +699,12 @@ class adminActions extends sfActions
 			$event->setName($icalEvent['SUMMARY']);
 			$event->setDescription($icalEvent['DESCRIPTION']);
 			$event->setLocation($icalEvent['LOCATION']);
-			$event->setTz($tz);
+			//$event->setTz($tz);
 			$event->setStartsAt(date('Y-m-d H:i', Ical::ical_date_to_unix_timestamp($icalEvent['DTSTART'])));
 			$event->setEndsAt(date('Y-m-d H:i', Ical::ical_date_to_unix_timestamp($icalEvent['DTEND'])));
 			$event->save();
+			
+			//Utils::pp($icalEvent['DTSTART']);
 			
 			//echo 'Update/Create event ' . $event->getName() . "\n";
 		}
