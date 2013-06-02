@@ -208,19 +208,20 @@ class nmActions extends sfActions{
 		
 		$this->calId = $request->getParameter('calId');
 		$this->language = $request->getParameter('language');
-		$this->code = '';
 		$this->languagesOptions = array(
 			'' => 'English',
 			'he' => 'Hebrew'		
 		);
 		
 		$this->forward404Unless($cal = Doctrine::getTable('Cal')->find(array($this->calId)), sprintf('Object cal does not exist (%s).', $this->calId));
-
+		
+		$this->code = $this->getWidgetCode($cal, $this->language);
+		
 		$this->form = new NmRegisterForm();
 		
 		if ($user){
 			$cal->setAdoptive($user);
-			$this->code = $this->getWidgetCode($cal, $this->language);
+			//$this->code = $this->getWidgetCode($cal, $this->language);
 		} else {
 			if ($request->isMethod('post')){
 				$this->form->bind($request->getParameter('register'));
