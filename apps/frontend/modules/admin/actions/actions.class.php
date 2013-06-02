@@ -168,10 +168,7 @@ class adminActions extends sfActions
   	
   	return $reportByTypes->execute();
   }
-/*
-  public function executeImportCals(sfWebRequest $request) {
-  }
-*/
+
 
   private function countCals(){
   	set_time_limit (180);
@@ -691,13 +688,18 @@ class adminActions extends sfActions
 		//echo '<pre>';
 		//echo 'Update/Create cal ' . $cal->getName() . "\n";
 		//echo '-----------------------------------------------------------------------'. "\n";
+		
+		$tz = $ical->cal['VCALENDAR']['X-WR-TIMEZONE'];
+		
+		if ($tz == 'Asia/Jerusalem') $tz = 'Europe/Athens';
+
 		foreach ($ical->cal['VEVENT'] as $icalEvent){
 			$event = new Event();
 			$event->setCalId($cal->getId());
 			$event->setName($icalEvent['SUMMARY']);
 			$event->setDescription($icalEvent['DESCRIPTION']);
 			$event->setLocation($icalEvent['LOCATION']);
-			$event->setTz($ical->cal['VCALENDAR']['X-WR-TIMEZONE']);
+			$event->setTz($tz);
 			$event->setStartsAt(date('Y-m-d H:i', Ical::ical_date_to_unix_timestamp($icalEvent['DTSTART'])));
 			$event->setEndsAt(date('Y-m-d H:i', Ical::ical_date_to_unix_timestamp($icalEvent['DTEND'])));
 			$event->save();
