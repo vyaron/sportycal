@@ -18,7 +18,7 @@ all:
     full:  http://www.sportycal.com
   captha:
     dir: /images/captchas/
-    rootDir: %SF_ROOT_DIR%/images/captchas/
+    rootDir: %SF_WEB_DIR%/images/captchas/
   spider:
    outputDir: %SF_ROOT_DIR%/test/
   facebook:
