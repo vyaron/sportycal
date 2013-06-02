@@ -11,8 +11,9 @@
 class eventActions extends sfActions
 {
 	private function restrictAccessAllowPartners($category) {
-	 	if (!UserUtils::userISMasterOf($category)) 
-	  		$this->redirect("main/index");
+	 	if (!UserUtils::userISMasterOf($category)) $this->redirect("main/index");
+	 	
+	 	$this->user = UserUtils::getLoggedIn();
 	}
 	
 	
@@ -140,12 +141,19 @@ class eventActions extends sfActions
   protected function processForm(sfWebRequest $request, sfForm $form)
   {
   	$params = $request->getParameter($form->getName());
+  	
+  	$this->countryCodes = $params['countryCodes'];
+  	$this->languageCodes = $params['languageCodes'];
+  	$this->tags = key_exists('custom', $params) ? $params['custom'] : array();
+  	
   	$form->bind($params, $request->getFiles($form->getName()));
-  	if ($form->isValid())
-  	{
+  	if ($form->isValid()){
   		$event = $form->save();
   		
-  		$event->setTz(GeneralUtils::getTZFromJSTZ($event->getTz()));
+  		if (key_exists('tz_custom', $params) && !empty($params['tz_custom'])) $tz = $params['tz_custom'];
+  		else $tz = GeneralUtils::getTZFromJSTZ($event->getTz());
+  		
+  		$event->setTz($tz);
   		
   		//Remove seconds
   		$startsAt = date('Y-m-d H:i:00', strtotime($event->getStartsAt()));

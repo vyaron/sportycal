@@ -37,6 +37,11 @@
       	<?php echo $form['name']->renderRow();?>
       	<?php echo $form['location']->renderRow();?>
       	<?php echo $form['description']->renderRow();?>
+      	
+      	<?php if ($user->isMaster()):?>
+      	<?php echo $form['tz_custom']->renderRow(array(), 'Timezone custom');?>
+      	<?php endif;?>
+      	
       	<?php echo $form['tz']->renderRow(array(), 'Timezones');?>
       	<tr>
   			<th><label for="eventShowTime"><?php echo __('Specific Hour')?>&nbsp;&nbsp;</label></th>
