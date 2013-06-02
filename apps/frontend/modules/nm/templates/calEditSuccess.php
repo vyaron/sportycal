@@ -1,6 +1,7 @@
 <?php 
 use_stylesheet('/bundle/dhtmlxScheduler/codebase/dhtmlxscheduler.css');
 use_stylesheet('/bundle/dhtmlxScheduler/codebase/dhtmlxscheduler_dhx_terrace.css');
+use_stylesheet('/bundle/jquery-file-upload/css/jquery.fileupload-ui.css');
 use_stylesheet('/css/neverMiss/calEdit.css');
 ?>
 
@@ -12,13 +13,17 @@ use_stylesheet('/css/neverMiss/calEdit.css');
 <h5>Timezone: <?php echo $tzFullName;?></h5>
 <?php endif;?>
 
-<a class="continue-btn btn btn-success pull-right" href="#">Continue</a>
+<div class="form-actions">
+	<a class="continue-btn btn btn-success pull-right" href="#">Continue</a>
+</div>
+
 
 <div id="scheduler_here" class="dhx_cal_container" style="width: 100%; height: 100%; min-height:500px; line-height:normal;">
 	<div class="dhx_cal_navline">
 		<div class="dhx_cal_prev_button">&nbsp;</div>
 		<div class="dhx_cal_next_button">&nbsp;</div>
 		<div class="dhx_cal_today_button"></div>
+		<!-- <div class="cal_import_button">Import</div> -->
 		<div class="dhx_cal_date"></div>
 		<div class="dhx_cal_tab" name="day_tab" style="right: 204px;"></div>
 		<div class="dhx_cal_tab" name="week_tab" style="right: 140px;"></div>
@@ -44,6 +49,25 @@ use_stylesheet('/css/neverMiss/calEdit.css');
 	</div>
 </div>
 
+<div id="cal-import-modal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal-header">
+		<button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
+		<h3 id="myModalLabel">Import calendar</h3>
+	</div>
+	<div class="modal-body">
+		<p>Add a calendar that you want to import:</p>
+		<span class="btn btn-success fileinput-button">
+			<i class="icon-plus icon-white"></i>
+			<span>Select Calendar *.ics</span>
+			<input id="ical-fileupload" type="file" name="file" data-url="<?php echo url_for('nm/importCal/?id=' . $cal->getId())?>" accept="text/calendar"/>
+		</span>
+
+	</div>
+	<div class="modal-footer">
+		<button class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button>
+	</div>
+</div>
+
 
 <form id="cal-form" method="POST">
 	<?php echo $form['_csrf_token']->render();?>
@@ -60,7 +84,7 @@ use_stylesheet('/css/neverMiss/calEdit.css');
 			<div class="span4"><?php echo $form['description']->render(array('class' => 'span4', 'placeholder' => 'Enter description'));?></div>
 		</div>
 		<div class="row">
-			<div class="span2"><?php echo $form['tz']->renderLabel();?></div>
+			<div class="span2">Timezones</div>
 			<div class="span4"><?php echo $form['tz']->render(array('class' => 'span4'));?></div>
 		</div>
 
@@ -71,12 +95,17 @@ use_stylesheet('/css/neverMiss/calEdit.css');
 </form>
 
 <?php 
+use_javascript('/bundle/jquery/js/jquery-ui-1.10.3.custom.min.js');
 use_javascript('/bundle/bootstrap/js/bootstrap.min.js');
 use_javascript('/bundle/dhtmlxScheduler/codebase/dhtmlxscheduler.js');
+
 use_javascript('/bundle/dhtmlxScheduler/codebase/ext/dhtmlxscheduler_dhx_terrace.js');
 use_javascript('/bundle/dhtmlxScheduler/codebase/ext/dhtmlxscheduler_quick_info.js');
 use_javascript('/bundle/dhtmlxScheduler/codebase/ext/dhtmlxscheduler_recurring.js');
 use_javascript('/bundle/dhtmlxScheduler/codebase/ext/dhtmlxscheduler_minical.js');
+
 use_javascript('/bundle/jquery-plugin-validation/js/jquery.validate.min.js');
+use_javascript('/bundle/jquery-file-upload/js/jquery.iframe-transport.js');
+use_javascript('/bundle/jquery-file-upload/js/jquery.fileupload.js');
 use_javascript('/js/neverMiss/calEdit.js');
 ?>

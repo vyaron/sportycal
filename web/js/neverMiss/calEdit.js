@@ -18,7 +18,9 @@ function loadCalendar(){
 	scheduler.config.buttons_left=["dhx_delete_btn"];
 	
 	//scheduler.config.server_utc = true; //convert server side dates from utc to local timezone, and backward during data sending to server;
-
+	
+	/*
+	// Recurring events
 	scheduler.attachEvent("onTemplatesReady", function(){
 		var lightbox_form = scheduler.getLightbox(); // this will generate lightbox form
 		var inputs = lightbox_form.getElementsByTagName('input');
@@ -48,6 +50,7 @@ function loadCalendar(){
 		};
 		date_of_end.onclick = show_minical;
 	});
+	*/
 	
 	scheduler.config.lightbox.sections = [ {
 		name : "name",
@@ -65,29 +68,50 @@ function loadCalendar(){
 		height : 43,
 		type : "textarea",
 		map_to : "location"
-	}, {
+	}, /*{
 		name : "recurring",
 		type : "recurring",
 		map_to : "rec_type",
 		button : "recurring"
-	}, {
+	},*/ {
 		name : "time",
 		height : 72,
 		type : "time",
 		map_to : "auto"
 	}];
 	
-	scheduler.init('scheduler_here', new Date(), "week");
+	scheduler.init('scheduler_here', new Date(), "month");
 	scheduler.load("/nm/calEvents/?id=" + gCalId, 'json');
 	var dp = new dataProcessor("/nm/calEvents/?id=" + gCalId);
 	
 	dp.init(scheduler);
 }
 
+function setCalImportEvents(){
+	jQuery('.cal_import_button').click(function(e){
+		e.preventDefault();
+		jQuery('#cal-import-modal').modal();
+	});
+	
+	jQuery('#ical-fileupload').fileupload({
+        //dataType: 'json',
+        add: function (e, data) {
+           data.context = $('<p/>').text('Uploading...').appendTo(document.body);
+            data.submit();
+        },
+        done: function (e, data) {
+            data.context.text('Upload finished.');
+        }
+    });
+}
+
+
 var gCalId = null;
 jQuery(document).ready(function(){
 	gCalId = jQuery('#cal-id').val();
 	loadCalendar();
+	
+	setCalImportEvents();
 	
 	jQuery('#cal-form').validate();
 	

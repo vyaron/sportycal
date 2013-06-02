@@ -4,6 +4,29 @@ class nmActions extends sfActions{
 
 	}
 	
+	public function executeImportCal(sfWebRequest $request){
+		$user = UserUtils::getLoggedIn();
+		$cal = Doctrine::getTable('Cal')->find(array($request->getParameter('id')));
+		$this->forward404Unless($cal && $cal->isOwner($user), sprintf('Object cal does not exist (%s).', $request->getParameter('id')));
+		
+		
+		$content = file_get_contents('E:/temp/cal(19).ics');
+		$export = new ICalExporter();
+		$events = $export->toHash($content);
+		Utils::pp($events);
+		if ($request->isMethod('post')){
+			$file = $request->getFiles('file');
+			
+			if (key_exists('tmp_name', $file)){
+				//$content = file_get_contents($file['tmp_name']);
+				//$export = new ICalExporter();
+				//$events = $export->toHash($content);
+			}
+		}
+		
+		return sfView::NONE;
+	}
+	
 	public function executeCalList(sfWebRequest $request){
 		$user = UserUtils::getLoggedIn();
 		if (!$user) $this->redirect('partner/login');

@@ -1,4 +1,6 @@
 <?php
+//TODO: Ido add private,public,static.. ugly code
+
 //class for export sheduler events in icalendar format
 class ICalExporter {
 	private $title; // calendar view title
@@ -231,6 +233,272 @@ class ICalExporter {
 		$str .= "END:VCALENDAR";
 		
 		return $str;
+	}
+	
+	
+	//give date in ical format and return date in MySQL format
+	function getMySQLDate($str) {
+		preg_match('/[0-9]{8}[T][0-9]{6}/',trim($str),$date);
+		if(isset($date[0])) {
+			if($date[0] != "") {
+				$y = substr($date[0], 0, 4);
+				$mn = substr($date[0], 4, 2);
+				$d = substr($date[0], 6, 2);
+				$h = substr($date[0], 9, 2);
+				$m = substr($date[0], 11, 2);
+				$s = substr($date[0], 13, 2);
+				return $y."-".$mn."-".$d." ".$h.":".$m.":".$s;
+			}
+		}
+		elseif(strlen(trim($str)) == 8) {
+			$y = substr($str, 0, 4);
+			$mn = substr($str, 4, 2);
+			$d = substr($str, 6, 2);
+			return $y."-".$mn."-".$d." 00:00:00";
+		}
+	}
+	
+	//get parse a string into an array
+	function getParseString($str) {
+		$arr_n = array();
+		$arr = explode("BEGIN:VEVENT",$str);
+		for($x=1;$x<sizeof($arr);$x++) {
+			$arr2 = explode("\n",$arr[$x]);
+			for($y=1;$y<sizeof($arr2);$y++) {
+				$mas = explode(":",$arr2[$y]);
+				$mas_ = explode(";",$mas[0]);
+				if(isset($mas_[0])){
+					$mas[0] = $mas_[0];
+				}
+				switch(trim($mas[0])) {
+					case "DTSTART":
+						$arr_n[$x]['start_date'] = $this->getMySQLDate($mas[1]);
+						break;
+	
+					case "DTEND":
+						$arr_n[$x]['end_date'] = $this->getMySQLDate($mas[1]);
+						break;
+	
+					case "RRULE":
+						$rrule = explode(";", $mas[1]);
+						for($z=0;$z<sizeof($rrule);$z++) {
+							$rrule_n = explode("=", $rrule[$z]);
+							switch($rrule_n[0]) {
+								case "FREQ":
+									$arr_n[$x]['type'] = $this->getConvertType($rrule_n[1], true);
+									break;
+										
+								case "INTERVAL":
+									$arr_n[$x]['count'] = $rrule_n[1];
+									break;
+										
+								case "COUNT":
+									$arr_n[$x]['extra'] = $rrule_n[1];
+									break;
+	
+								case "BYDAY":
+									$bayday = explode(",",$rrule_n[1]);
+									if(sizeof($bayday) == 1) {
+										if(strlen(trim($bayday[0])) == 3) {
+											$arr_n[$x]['day'] = substr($bayday[0], 0, 1);
+											$arr_n[$x]['counts'] = $this->getConvertDay(substr($bayday[0], 1, 2), true);
+										}
+										else {
+											$arr_n[$x]['days'] = $this->getConvertDay($bayday[0], true);
+										}
+									}
+									else {
+										$arr_n[$x]['days'] = "";
+										for($nx=0;$nx<sizeof($bayday);$nx++) {
+											$arr_n[$x]['days'] .= $this->getConvertDay($bayday[$nx], true);
+											if($nx != sizeof($bayday)-1) {
+												$arr_n[$x]['days'] .= ",";
+											}
+										}
+									}
+									break;
+										
+								case "UNTIL":
+									$arr_n[$x]['until'] = $this->getMySQLDate($rrule_n[1]);
+									break;
+							}
+						}
+						break;
+	
+					case "EXDATE":
+						$exdate = explode(",",trim($mas[1]));
+						if(sizeof($exdate) == 1) {
+							$arr_n[$x]['exdate'] = $this->getMySQLDate($exdate[0]);
+						}
+						else {
+							for($nx=0;$nx<sizeof($exdate);$nx++) {
+								$arr_n[$x]['exdate'][$nx] = $this->getMySQLDate($exdate[$nx]);
+							}
+						}
+						break;
+							
+					case "RECURRENCE-ID":
+						$arr_n[$x]['rec_id'] = $this->getMySQLDate($mas[1]);
+						break;
+	
+					case "UID":
+						//$arr_n[$x]['event_id'] = $x;
+						$arr_n[$x]['event_id'] = trim($mas[1]);
+						break;
+	
+					case "SUMMARY":
+						$arr_n[$x]['text'] = trim($mas[1]);
+						break;
+				}
+			}
+			if(isset($arr_n[$x]['rec_id'])){
+				$arr_n[$x]['event_pid'] = $arr_n[$x]['event_id'];
+			}
+			if(isset($arr_n[$x]['exdate'])){
+				$arr_n[$x]['event_pid'] = $arr_n[$x]['event_id'];
+			}
+		}
+		return $arr_n;
+	}
+	
+	function getNativeStartDate($arr_p) {
+		if(isset($arr_p['day']) or isset($arr_p['days'])) {
+			$odate = strtotime($arr_p['start_date']);
+			switch($arr_p['type']) {
+				case "week":
+					$week_day = (date("N",$odate)-1)*60*60*24;
+					$week_start = date("Y-m-d H:i:s", $odate - $week_day);
+					$start_date = $week_start;
+					break;
+	
+				case "month":
+				case "year":
+					$start_date = date("Y-m", $odate)."-01 ".date("H:i:s", $odate);
+					break;
+			}
+		}
+		else {
+			$start_date = $arr_p['start_date'];
+		}
+		return $start_date;
+	}
+	
+	function getSortArrayById($arr) {
+		$id = 1;
+		for($x=1;$x<=sizeof($arr);$x++){
+			for($y=1;$y<=sizeof($arr);$y++){
+				if($arr[$x]['event_id'] == $arr[$y]['event_pid'] and $arr[$x]['event_pid'] == "0" and $arr[$y]['event_pid'] != "0"){
+					if($arr[$y]['rec_type'] == "" or $arr[$y]['rec_type'] == "none") {
+						$arr[$y]['event_pid'] = $id;
+					}
+				}
+			}
+			$arr[$x]['event_id'] = $id;
+			$id++;
+		}
+		return $arr;
+	}
+	
+	//return hashs
+	function toHash($str) {
+		//Try to get from URL
+		if(strpos($str, "BEGIN:VCALENDAR") === false) $str = file_get_contents($str);
+
+		$arr_p = $this->getParseString($str);
+
+		$arr_n = array();
+		$id = 1;
+		for($i=1;$i<=sizeof($arr_p);$i++) {
+			if(isset($arr_p[$i]['rec_id'])){
+				$arr_n[$i]['event_id'] = $arr_p[$i]['event_id'];
+				$arr_n[$i]['start_date'] = $arr_p[$i]['start_date'];
+				$arr_n[$i]['end_date'] = $arr_p[$i]['end_date'];
+				$arr_n[$i]['text'] = $arr_p[$i]['text'];
+				$arr_n[$i]['rec_type'] = "";
+				$arr_n[$i]['event_pid'] = $arr_p[$i]['event_pid'];
+				$arr_n[$i]['event_length'] = strtotime($arr_p[$i]['rec_id']);
+			}
+			else {
+				if(isset($arr_p[$i]['exdate'])){
+					if(sizeof($arr_p[$i]['exdate'])> 1) {
+						for($ni=0;$ni<sizeof($arr_p[$i]['exdate']);$ni++) {
+							$arr_n[sizeof($arr_p)+$id]['event_id'] = $arr_p[$i]['event_id'];
+							$arr_n[sizeof($arr_p)+$id]['start_date'] = $arr_p[$i]['exdate'][$ni];
+							$arr_n[sizeof($arr_p)+$id]['end_date'] = date("Y-m-d H:i:s", strtotime($arr_p[$i]['exdate'][$ni])
+									+(strtotime($arr_p[$i]['end_date']) - strtotime($arr_p[$i]['start_date'])));
+							$arr_n[sizeof($arr_p)+$id]['text'] = "";
+							$arr_n[sizeof($arr_p)+$id]['rec_type'] = "none";
+							$arr_n[sizeof($arr_p)+$id]['event_pid'] = $arr_p[$i]['event_pid'];
+							$arr_n[sizeof($arr_p)+$id]['event_length'] = strtotime($arr_p[$i]['exdate'][$ni]);
+							$id++;
+						}
+					}
+					else {
+						$arr_n[sizeof($arr_p)+$id]['event_id'] = $arr_p[$i]['event_id'];
+						$arr_n[sizeof($arr_p)+$id]['start_date'] = $arr_p[$i]['exdate'];
+						$arr_n[sizeof($arr_p)+$id]['end_date'] = date("Y-m-d H:i:s", strtotime($arr_p[$i]['exdate'])
+								+(strtotime($arr_p[$i]['end_date']) - strtotime($arr_p[$i]['start_date'])));
+						$arr_n[sizeof($arr_p)+$id]['text'] = "";
+						$arr_n[sizeof($arr_p)+$id]['rec_type'] = "none";
+						$arr_n[sizeof($arr_p)+$id]['event_pid'] = $arr_p[$i]['event_pid'];
+						$arr_n[sizeof($arr_p)+$id]['event_length'] = strtotime($arr_p[$i]['exdate']);
+						$id++;
+					}
+				}
+				//id
+				$arr_n[$i]['event_id'] = $arr_p[$i]['event_id'];
+	
+				//start_date
+				$arr_n[$i]['start_date'] = $this->getNativeStartDate($arr_p[$i]);
+	
+				//rec_type
+				isset($arr_p[$i]['type'])? $type = $arr_p[$i]['type'] : $type = "";
+				isset($arr_p[$i]['count'])? $count = $arr_p[$i]['count'] : $count = "";
+				isset($arr_p[$i]['counts'])? $counts = $arr_p[$i]['counts'] : $counts = "";
+				isset($arr_p[$i]['day'])? $day = $arr_p[$i]['day'] : $day = "";
+				isset($arr_p[$i]['days'])? $days = $arr_p[$i]['days'] : $days = "";
+				isset($arr_p[$i]['extra'])? $extra = $arr_p[$i]['extra'] : $extra = "no";
+				if($type != "" and $count == "") {
+					$count = 1;
+				}
+				if($type != "") {
+					$arr_n[$i]['rec_type'] = $type."_".$count."_".$counts."_".$day."_".$days."#".$extra;
+				}
+				else {
+					$arr_n[$i]['rec_type'] = "";
+				}
+	
+				//end_date
+				if(isset($arr_p[$i]['until'])){
+					$arr_n[$i]['end_date'] = $arr_p[$i]['until'];
+				}
+				else {
+					if($arr_n[$i]['rec_type'] == "") {
+						if(isset($arr_p[$i]['end_date'])) {
+							$arr_n[$i]['end_date'] = $arr_p[$i]['end_date'];
+						}
+						else {
+							$arr_n[$i]['end_date'] =  date("Y-m-d H:i:s",strtotime($arr_n[$i]['start_date'])+24*60*60);
+							$arr_p[$i]['end_date'] = $arr_n[$i]['end_date'];
+						}
+					}
+					else {
+						$arr_n[$i]['end_date'] = "9999-02-01 00:00:00";
+					}
+				}
+				//text
+				$arr_n[$i]['text'] = $arr_p[$i]['text'];
+	
+	
+				//event_pid
+				$arr_n[$i]['event_pid'] = "0";
+	
+				//event_length
+				$arr_n[$i]['event_length'] = strtotime($arr_p[$i]['end_date']) - strtotime($arr_p[$i]['start_date']);
+			}
+		}
+		
+		return $this->getSortArrayById($arr_n);
 	}
 }
 

@@ -2,7 +2,7 @@
 
 <?php include_partial('formError', array('form' => $form)) ?>
 
-<h2>Widget wizard</h2>
+<!-- <h2>Widget</h2> -->
 <div class="row">
 	<div class="span6">
 		<?php if ($user):?>
@@ -34,7 +34,7 @@
 			<?php echo $form['_csrf_token']->render();?>
 			<fieldset>
 				<legend class="clearfix">
-					<span class="pull-left">Register:</span>
+					<span class="pull-left">Register to save:</span>
 					
 					<span id="register-login-wrapper" class="pull-right">
 						<a class="fb-login" href="#"><span>Log In</span></a>&nbsp;|&nbsp;

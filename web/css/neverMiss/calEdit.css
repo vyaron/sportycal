@@ -1,5 +1,26 @@
 @CHARSET "utf-8";
 #cal-form{margin-top: 50px;}
+
 .dhx_cal_light select{width: auto; height: auto; line-height: normal;}
 .dhx_cal_light label{display:inline;}
+
+.cal_import_button{
+	background: none repeat scroll 0 0 transparent;
+	border: 1px solid #CECECE;
+	border-radius: 5px 5px 5px 5px;
+	color: #747473;
+	font-family: arial;
+	font-size: 12px;
+	font-weight: bold;
+	left: auto;
+	right: 220px;
+	height: 30px;
+	line-height: 30px;
+	cursor: pointer;
+	text-align: center;
+	text-decoration: none;
+	width: 80px;
+}
+
 #clear-events{margin-top: 25px; display: inline-block;}
+
