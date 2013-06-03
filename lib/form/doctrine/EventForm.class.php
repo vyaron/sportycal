@@ -15,10 +15,16 @@ class EventForm extends BaseEventForm
 	public function updateDefaultsFromObject(){
 		parent::updateDefaultsFromObject();
 		
+		$partner = UserUtils::getPartnerIfPartnerMaster();
+		
 		if ($this->getDefault('starts_at') == self::EMPTY_DATETIME) $this->setDefault('starts_at', '');
 		if ($this->getDefault('ends_at') == self::EMPTY_DATETIME) $this->setDefault('ends_at', '');
 		
+		//on Edit
 		$tzValue = $this->getDefault('tz');
+		
+		//Default partener TZ
+		if ($partner && !$tzValue) $tzValue = $partner->getTz();
 		
 		if ($tzValue && GeneralUtils::getTZValue($tzValue) === null) $this->setDefault('tz_custom', $tzValue);
 		
@@ -51,9 +57,11 @@ class EventForm extends BaseEventForm
     ));
 
     // for sportYcal Master, show the TZ (for partners it is set by its default) 
+    /*
     if (UserUtils::getPartnerIdMaster()) {
     	 unset($this['tz']);
     }
+    */
     
     $this->setValidators(array(
       'id'          => new sfValidatorInteger(array('required' => false)),
@@ -72,7 +80,8 @@ class EventForm extends BaseEventForm
 
     $this->widgetSchema->setNameFormat('event[%s]');
   }
-
+	
+  /*
   public function updateObject($values = null) {
   	$event = parent::updateObject($values);
   	//if ($event->isNew()) {
@@ -84,6 +93,6 @@ class EventForm extends BaseEventForm
   	//}  	
   	return $event;
   }
-  
+  */
 
 }
