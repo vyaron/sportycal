@@ -1,3 +1,8 @@
+function reloadCalendar(){
+	scheduler.clearAll();
+	scheduler.load("/nm/calEvents/?id=" + gCalId, 'json');
+}
+
 function loadCalendar(){
 	scheduler.config.touch = "force";
 	scheduler.config.xml_date = "%Y-%m-%d %H:%i";
@@ -90,19 +95,45 @@ function loadCalendar(){
 function setCalImportEvents(){
 	jQuery('.cal_import_button').click(function(e){
 		e.preventDefault();
+		
+		jQuery('#ical-fileupload-label').show();
+    	jQuery('#ical-fileupload-loading-label').hide();
 		jQuery('#cal-import-modal').modal();
 	});
 	
+	var ajaxUploadFile = null;
 	jQuery('#ical-fileupload').fileupload({
         //dataType: 'json',
         add: function (e, data) {
-           data.context = $('<p/>').text('Uploading...').appendTo(document.body);
-            data.submit();
+        	ajaxUploadFile = data.submit();
         },
+        
+        start: function(){
+        	jQuery('#ical-fileupload-label').hide();
+        	jQuery('#ical-fileupload-loading-label').show();
+        },
+        
         done: function (e, data) {
-            data.context.text('Upload finished.');
+        	jQuery('#cal-import-modal').modal('hide');
+
+        	var res = jQuery.parseJSON(data.result);
+        	
+        	if (res.success){
+        		setGlobalSuccess(res.msg);
+        		reloadCalendar();
+        	} else {
+        		setGlobalError(res.msg);
+        	}
         }
     });
+	
+	//cancel btns
+	jQuery('#cal-import-modal [aria-hidden="true"]').click(function(){
+		if (ajaxUploadFile) {
+			ajaxUploadFile.abort();
+			ajaxUploadFile = null;
+		}
+	});
 }
 
 

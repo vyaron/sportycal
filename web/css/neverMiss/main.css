@@ -26,3 +26,7 @@ label.error{color: red;}
     padding: 0 5px 0 30px;
     display: inline-block;
 }
+
+/*More Icons*/
+.icon-loading{background-image: url("/images/neverMiss/icons/ajax-loader-black.gif"); background-repeat: no-repeat; background-position: 0 center; width: 16px;}
+.icon-loading.icon-white{background-image: url("/images/neverMiss/icons/ajax-loader-white.gif");}

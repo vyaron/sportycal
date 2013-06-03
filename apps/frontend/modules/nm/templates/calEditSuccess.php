@@ -23,7 +23,7 @@ use_stylesheet('/css/neverMiss/calEdit.css');
 		<div class="dhx_cal_prev_button">&nbsp;</div>
 		<div class="dhx_cal_next_button">&nbsp;</div>
 		<div class="dhx_cal_today_button"></div>
-		<!-- <div class="cal_import_button">Import</div> -->
+		<div class="cal_import_button">Import</div>
 		<div class="dhx_cal_date"></div>
 		<div class="dhx_cal_tab" name="day_tab" style="right: 204px;"></div>
 		<div class="dhx_cal_tab" name="week_tab" style="right: 140px;"></div>
@@ -57,8 +57,8 @@ use_stylesheet('/css/neverMiss/calEdit.css');
 	<div class="modal-body">
 		<p>Add a calendar that you want to import:</p>
 		<span class="btn btn-success fileinput-button">
-			<i class="icon-plus icon-white"></i>
-			<span>Select Calendar *.ics</span>
+			<span id="ical-fileupload-loading-label" style="display:none;"><i class="icon-loading icon-white"></i> Uploading...</span>
+			<span id="ical-fileupload-label" ><i class="icon-plus icon-white"></i> Select Calendar *.ics</span>
 			<input id="ical-fileupload" type="file" name="file" data-url="<?php echo url_for('nm/importCal/?id=' . $cal->getId())?>" accept="text/calendar"/>
 		</span>
 

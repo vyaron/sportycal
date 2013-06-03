@@ -146,7 +146,7 @@ class ICalExporter {
 	function getTime($date) {
 		$mas = explode('-',$date);
 		if($mas[0] == 9999) { 
-			return "99990201T000000Z";
+			return "99990101T000000Z";
 		}
 		else {
 			return date("Ymd\THis\Z",strtotime($date));
@@ -271,6 +271,12 @@ class ICalExporter {
 					$mas[0] = $mas_[0];
 				}
 				switch(trim($mas[0])) {
+					case "LOCATION":
+						$arr_n[$x]['location'] = $mas[1];
+						break;
+					case "DESCRIPTION":
+						$arr_n[$x]['description'] = $mas[1];
+						break;
 					case "DTSTART":
 						$arr_n[$x]['start_date'] = $this->getMySQLDate($mas[1]);
 						break;
@@ -384,6 +390,7 @@ class ICalExporter {
 	}
 	
 	function getSortArrayById($arr) {
+		
 		$id = 1;
 		for($x=1;$x<=sizeof($arr);$x++){
 			for($y=1;$y<=sizeof($arr);$y++){
@@ -396,11 +403,19 @@ class ICalExporter {
 			$arr[$x]['event_id'] = $id;
 			$id++;
 		}
+		
+		//IDO
+		foreach ($arr as $id => $event){
+			if (!key_exists('start_date', $event)) unset($arr[$id]);
+		}
+		
 		return $arr;
 	}
 	
 	//return hashs
-	function toHash($str) {
+	function toHash($str, $maxYears = 5) {
+		$minStartDate = strtotime('-' . $maxYears . ' year');
+		
 		//Try to get from URL
 		if(strpos($str, "BEGIN:VCALENDAR") === false) $str = file_get_contents($str);
 
@@ -409,6 +424,9 @@ class ICalExporter {
 		$arr_n = array();
 		$id = 1;
 		for($i=1;$i<=sizeof($arr_p);$i++) {
+			$startDate = strtotime($arr_p[$i]['start_date']);
+			if ($minStartDate > $startDate) continue;
+			
 			if(isset($arr_p[$i]['rec_id'])){
 				$arr_n[$i]['event_id'] = $arr_p[$i]['event_id'];
 				$arr_n[$i]['start_date'] = $arr_p[$i]['start_date'];
@@ -417,6 +435,9 @@ class ICalExporter {
 				$arr_n[$i]['rec_type'] = "";
 				$arr_n[$i]['event_pid'] = $arr_p[$i]['event_pid'];
 				$arr_n[$i]['event_length'] = strtotime($arr_p[$i]['rec_id']);
+				
+				if (key_exists('location', $arr_p[$i])) $arr_n[$i]['location'] = $arr_p[$i]['location'];
+				if (key_exists('description', $arr_p[$i])) $arr_n[$i]['description'] = $arr_p[$i]['description'];
 			}
 			else {
 				if(isset($arr_p[$i]['exdate'])){
@@ -483,7 +504,7 @@ class ICalExporter {
 						}
 					}
 					else {
-						$arr_n[$i]['end_date'] = "9999-02-01 00:00:00";
+						$arr_n[$i]['end_date'] = "9999-01-01 00:00:00";
 					}
 				}
 				//text
@@ -495,6 +516,9 @@ class ICalExporter {
 	
 				//event_length
 				$arr_n[$i]['event_length'] = strtotime($arr_p[$i]['end_date']) - strtotime($arr_p[$i]['start_date']);
+				
+				if (key_exists('location', $arr_p[$i])) $arr_n[$i]['location'] = $arr_p[$i]['location'];
+				if (key_exists('description', $arr_p[$i])) $arr_n[$i]['description'] = $arr_p[$i]['description'];
 			}
 		}
 		

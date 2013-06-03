@@ -4,26 +4,83 @@ class nmActions extends sfActions{
 
 	}
 	
+	//TODO: check defarent Timezones cals
 	public function executeImportCal(sfWebRequest $request){
 		$user = UserUtils::getLoggedIn();
 		$cal = Doctrine::getTable('Cal')->find(array($request->getParameter('id')));
 		$this->forward404Unless($cal && $cal->isOwner($user), sprintf('Object cal does not exist (%s).', $request->getParameter('id')));
 		
 		
-		$content = file_get_contents('E:/temp/cal(19).ics');
-		$export = new ICalExporter();
-		$events = $export->toHash($content);
-		Utils::pp($events);
+		$tz = UserUtils::getUserTZ() ? UserUtils::getUserTZ() : null;
+		
+		//$content = file_get_contents('E:/temp/idoLempert_1.ics');
+		//$export = new ICalExporter();
+		//$eventsHash = $export->toHash($content);
+		//Utils::pp($eventsHash);
+		
+		$res = array('success' => false, 'msg' => 'File not supported!');
 		if ($request->isMethod('post')){
 			$file = $request->getFiles('file');
 			
-			if (key_exists('tmp_name', $file)){
-				//$content = file_get_contents($file['tmp_name']);
-				//$export = new ICalExporter();
-				//$events = $export->toHash($content);
+			if (key_exists('tmp_name', $file) && $file['type'] == 'text/calendar'){
+				$content = file_get_contents($file['tmp_name']);
+				$export = new ICalExporter();
+				$eventsHash = $export->toHash($content);
+				
+				$childEventsHash = array();
+				
+				$collectionEvent = new Doctrine_Collection('Event');
+				foreach ($eventsHash as $eventHash){
+					$startDate = $eventHash['start_date'];
+					$endDate = $eventHash['end_date'];
+					$description = (key_exists('description', $eventHash) && !empty($eventHash['description'])) ? $eventHash['description'] : null;
+					$location = (key_exists('location', $eventHash) && !empty($eventHash['location'])) ? $eventHash['location'] : null;
+					$recType = (key_exists('rec_type', $eventHash) && !empty($eventHash['rec_type'])) ? $eventHash['rec_type'] : null;
+					$length = (key_exists('event_length', $eventHash) && !empty($eventHash['event_length'])) ? $eventHash['event_length'] : null;
+					
+					if ($tz){
+						$startDate = GeneralUtils::getDateTimeInSpecificTZ($startDate, 'GMT', $tz)->format('Y-m-d H:i');
+						$endDate = GeneralUtils::getDateTimeInSpecificTZ($endDate, 'GMT', $tz)->format('Y-m-d H:i');
+					}
+					
+					$event = new Event();
+					$event->setCalId($cal->getId());
+					$event->setCreatedAt($startDate);
+					$event->setName($eventHash['text']);
+					$event->setDescription($description);
+					$event->setLocation($location);
+					$event->setTz($tz);
+					$event->setStartsAt($startDate);
+					$event->setEndsAt($endDate);
+					$event->setUpdatedAt($startDate);
+					$event->setRecType($recType);
+					$event->setLength($length);
+
+					if ($eventHash['event_pid'] === 0) $collectionEvent->add($event, $eventHash['id']);
+					else $childEvents[$eventHash['event_id']] = $event;
+				}
+
+				$collectionEvent->save();
+				
+				$collectionChildEvent = new Doctrine_Collection('Event');
+				foreach ($childEvents as $eventHashId => $childEvent){
+					$eventHash = $eventsHash[$eventHashId];
+					$parentEvent = $collectionEvent->get($eventHash['event_pid']);
+					
+					if (!$parentEvent) continue;
+					
+					$childEvent->setPid($parentEvent->getId());
+						
+					$collectionChildEvent->add($childEvent, $eventHashId);
+				}
+				$collectionChildEvent->save();
+				
+				$res['success'] = true;
+				$res['msg'] = ($collectionEvent->count() + $collectionChildEvent->count()) . ' Events imported';
 			}
 		}
 		
+		echo json_encode($res);
 		return sfView::NONE;
 	}
 	

@@ -186,14 +186,14 @@ class GeneralUtils {
 		return $tzList;
 	}
 
-    public static function  getDateTimeInSpecificTZ($strDate, $originalTZ, $targetTZ, $eventIdForAlert, $calIdForAlert) {
+    public static function  getDateTimeInSpecificTZ($strDate, $originalTZ, $targetTZ, $eventIdForAlert=null, $calIdForAlert=null) {
         try {
         	$dateTime   = new DateTime("$strDate $originalTZ");
         } catch (Exception $e) {
         	//Wrong timezone on DB || Old PHP ver
         	
         	//Send David mail about
-        	@mail( "davido.cohen@sportycal.com",  'Timezone not supported' , "Wrong TZ: $originalTZ (cal: http://sportycal.com/cal/$calIdForAlert ; event-id: $eventIdForAlert)", "From: vyaron@gmail.com" );
+        	if ($eventIdForAlert && $calIdForAlert) @mail( "davido.cohen@sportycal.com",  'Timezone not supported' , "Wrong TZ: $originalTZ (cal: http://sportycal.com/cal/$calIdForAlert ; event-id: $eventIdForAlert)", "From: vyaron@gmail.com" );
         	
         	$dateTime   = new DateTime("$strDate");
         	return $dateTime;

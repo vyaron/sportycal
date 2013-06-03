@@ -58,6 +58,9 @@
     </div>
 
     <div class="container">
+		<div id="alerts"></div>
+
+        
 		<?php echo $sf_content ?>
 		
 		<div id="footer">
@@ -72,8 +75,25 @@
 	    </div>
     </div>
 	
+	<div style="display:none;">
+		<div id="DUMMY_GLOBAL_ERROR">
+			<div class="alert alert-block alert-error">
+				<button type="button" class="close" data-dismiss="alert">&times;</button>
+				{CONTENT}
+			</div>
+		</div>
+		<div id="DUMMY_GLOBAL_SUCCESS">
+			<div class="alert alert-block alert-success">
+				<button type="button" class="close" data-dismiss="alert">&times;</button>
+				{CONTENT}
+			</div>
+		</div>
+	</div>
+	
+	
 	<div id="fb-root"></div>
 	<script type="text/javascript" src="/bundle/jquery/js/jquery-1.9.1.min.js"></script>
+	<script type="text/javascript" src="/js/neverMiss/basic.js"></script>
 	<?php include_javascripts()?>
     <script type="text/javascript">
 	  	//Facebook
