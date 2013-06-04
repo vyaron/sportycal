@@ -11,6 +11,14 @@ dev:
     secret: 62094be3d3db0caf976e93cc44ef7cad
     
 all:
+  mailinglist:
+    fromName: iNeverMiss.biz Support
+    fromEmail: support@inevermiss.biz
+    replyToName: iNeverMiss.biz Sales
+    replyToEmail: sales@inevermiss.biz
+  gmail:
+    username: test4inevermiss@gmail.com
+    password: 123454321Aa
   domain:
     isNeverMiss: false
     isMobile: false

@@ -251,6 +251,10 @@ Cal:
       local: id
       foreign: cal_id
       type: many
+    Mailinglist:
+      local: id
+      foreign: cal_id
+      type: many
     PartnerDesc:
       local: id
       foreign: cal_id
@@ -465,6 +469,10 @@ Category:
       foreign: category_id
       type: many
     Intel:
+      local: id
+      foreign: category_id
+      type: many
+    Mailinglist:
       local: id
       foreign: category_id
       type: many
@@ -1353,6 +1361,127 @@ Location:
       local: id
       foreign: location_id
       type: many
+Mailinglist:
+  connection: doctrine
+  tableName: mailinglist
+  columns:
+    id:
+      type: integer(8)
+      fixed: false
+      unsigned: true
+      primary: true
+      autoincrement: true
+    partner_id:
+      type: integer(8)
+      fixed: false
+      unsigned: true
+      primary: false
+      notnull: true
+      autoincrement: false
+    cal_id:
+      type: integer(8)
+      fixed: false
+      unsigned: true
+      primary: false
+      notnull: false
+      autoincrement: false
+    category_id:
+      type: integer(8)
+      fixed: false
+      unsigned: true
+      primary: false
+      notnull: false
+      autoincrement: false
+    full_name:
+      type: string(128)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: true
+      autoincrement: false
+    email:
+      type: string(256)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: true
+      autoincrement: false
+    tz:
+      type: string(80)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: true
+      autoincrement: false
+    created_at:
+      type: timestamp(25)
+      fixed: false
+      unsigned: false
+      primary: false
+      default: '0000-00-00 00:00:00'
+      notnull: true
+      autoincrement: false
+    deleted_at:
+      type: timestamp(25)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: false
+      autoincrement: false
+  relations:
+    Partner:
+      local: partner_id
+      foreign: id
+      type: one
+    Cal:
+      local: cal_id
+      foreign: id
+      type: one
+    Category:
+      local: category_id
+      foreign: id
+      type: one
+    MailinglistTask:
+      local: id
+      foreign: mailinglist_id
+      type: many
+MailinglistTask:
+  connection: doctrine
+  tableName: mailinglist_task
+  columns:
+    id:
+      type: integer(8)
+      fixed: false
+      unsigned: true
+      primary: true
+      autoincrement: true
+    mailinglist_id:
+      type: integer(8)
+      fixed: false
+      unsigned: true
+      primary: false
+      notnull: false
+      autoincrement: false
+    created_at:
+      type: timestamp(25)
+      fixed: false
+      unsigned: false
+      primary: false
+      default: '0000-00-00 00:00:00'
+      notnull: true
+      autoincrement: false
+    send_at:
+      type: timestamp(25)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: false
+      autoincrement: false
+  relations:
+    Mailinglist:
+      local: mailinglist_id
+      foreign: id
+      type: one
 Partner:
   connection: doctrine
   tableName: partner
@@ -1404,6 +1533,10 @@ Partner:
       foreign: partner_id
       type: many
     Intel:
+      local: id
+      foreign: partner_id
+      type: many
+    Mailinglist:
       local: id
       foreign: partner_id
       type: many

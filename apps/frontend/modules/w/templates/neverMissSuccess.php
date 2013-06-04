@@ -102,7 +102,7 @@
 			var id_bubble = 'b_' + id;
 			
 			var iframes = '<div style="position: relative;"><iframe id="' + id +'" src="' + NEVER_MISS_WIDGET_URL + '/calId/' + calId + '/popupId/' + id_bubble + (language ? ('/language/' + language) : '') + '" frameborder="0" border="0" style="border: medium none; overflow: hidden; height: 22px; width: 47px;" scrolling="no" title="Never Miss"></iframe>';
-			iframes += '<iframe id="' + id_bubble +'" src="' + NEVER_MISS_WIDGET_BUBBLE_URL + '/calId/' + calId + '/isBubble/true' + (language ? ('/language/' + language) : '') + '" frameborder="0" border="0" style="border: medium none; overflow: hidden; height: 200px; width: 275px; position:absolute; left:0; top:20px; z-index:999; display:none;" scrolling="no" title="Never Miss"></iframe></div>';
+			iframes += '<iframe id="' + id_bubble +'" src="' + NEVER_MISS_WIDGET_BUBBLE_URL + '/calId/' + calId + '/isBubble/true' + (language ? ('/language/' + language) : '') + '" frameborder="0" border="0" style="border: medium none; overflow: hidden; height: 270px; width: 230px; position:absolute; left:0; top:20px; z-index:999; display:none;" scrolling="no" title="Never Miss"></iframe></div>';
 			el.innerHTML = iframes;
 		}
 	}

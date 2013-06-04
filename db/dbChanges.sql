@@ -1,3 +1,40 @@
+
+CREATE TABLE IF NOT EXISTS `mailinglist` (
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  `partner_id` bigint(20) unsigned DEFAULT NULL,
+  `cal_id` bigint(20) unsigned DEFAULT NULL,
+  `category_id` bigint(20) unsigned DEFAULT NULL,
+  `full_name` varchar(128) NOT NULL,
+  `email` varchar(256) NOT NULL,
+  `tz` varchar(80) NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `deleted_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  
+  -- UNIQUE KEY `ido` (`cal_id`,`category_id`,`email`), -- #1071 - Specified key was too long; max key length is 767 bytes
+  KEY `partner_id` (`partner_id`),
+  KEY `cal_id` (`cal_id`),
+  KEY `category_id` (`category_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+ALTER TABLE `mailinglist`
+  ADD CONSTRAINT `mailinglist_ibfk_2` FOREIGN KEY (`cal_id`) REFERENCES `cal` (`id`),
+  ADD CONSTRAINT `mailinglist_ibfk_3` FOREIGN KEY (`category_id`) REFERENCES `category` (`id`);
+  
+CREATE TABLE IF NOT EXISTS `mailinglist_task` (
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  `mailinglist_id` bigint(20) unsigned DEFAULT NULL,
+  `created_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `send_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `mailinglist_id` (`mailinglist_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+   
+ALTER TABLE `mailinglist_task`
+  ADD CONSTRAINT `mailinglist_task_ibfk_1` FOREIGN KEY (`mailinglist_id`) REFERENCES `mailinglist` (`id`);
+
+----------------------------DONE ON PROD-------------------------------------------------------
+
 INSERT INTO `evento`.`category` (`id` ,`name` ,`image_path` ,`by_user_id` ,`approved_at` ,`parent_id` ,`rate` ,`cals_count` ,`category_ids_path` ,`deleted_at` ,`address_id` ,`partner_id` ,`is_public`)
 VALUES ('7777', 'Never Miss', NULL , '2', NOW( ) , NULL , NULL , NULL , '7777' , NULL , NULL , NULL , '0');
 

@@ -413,8 +413,8 @@ class ICalExporter {
 	}
 	
 	//return hashs
-	function toHash($str, $maxYears = 5) {
-		$minStartDate = strtotime('-' . $maxYears . ' year');
+	function toHash($str, $maxBackDays = 5) {
+		$minStartDate = strtotime('-' . $maxBackDays . ' day');
 		
 		//Try to get from URL
 		if(strpos($str, "BEGIN:VCALENDAR") === false) $str = file_get_contents($str);

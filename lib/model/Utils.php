@@ -2,6 +2,8 @@
 
 
 class Utils {
+	const NEW_LINE = "\n";
+	
 	const DEVICE_TYPE_IPOD = "ipod";
 	const DEVICE_TYPE_IPAD = "ipad";
 	const DEVICE_TYPE_IPHONE = "iphone";
