@@ -71,4 +71,24 @@ class UserCalTable extends Doctrine_Table
         return $q->execute();
     }
     
+  	public static function getSubscribes($userId = null){
+  		$q = Doctrine::getTable('UserCal')->createQuery('uc')
+  			->innerJoin('uc.Cal c')
+  			//->innerJoin('c.Event e')
+	  		->where('uc.type = ?', Cal::TYPE_MAILINGLIST)
+  			->groupBy('uc.user_id, uc.cal_id');
+  		
+  		if ($userId) $q->andWhere('uc.user_id = ?', $userId);
+  		
+  		$q->execute();
+  	}
+    
+    public static function deleteMailinglist($userId){
+    	$q = Doctrine_Query::create()
+	    	->delete('UserCal uc')
+	    	->where('uc.user_id = ?', $userId)
+	    	->andWhere('uc.cal_type = ?', Cal::TYPE_MAILINGLIST);
+    	
+    	return $q->execute();
+    }
 }

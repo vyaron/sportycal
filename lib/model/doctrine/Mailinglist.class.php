@@ -13,27 +13,26 @@ sfContext::getInstance()->getConfiguration()->loadHelpers('Partial');
  */
 class Mailinglist extends BaseMailinglist{
 	private $events = null;
-	
 	public function getIntelUrl(){
 		$url = sfConfig::get('app_domain_full');
 
 		$url .= '/s/intel/s/mailinglist/a/open/l/email/v/1';
-		$url .= '/p/' . $this->getPartnerId();
-		
-		if ($this->getCalId()) $url .= '/cl/' . $this->getCalId();
-		else if ($this->getCtgId()) $url .= '/ctg/' . $this->getCtgId();
+		$url .= '/uid/' . $this->getUserId();
 
 		return $url;
 	}
 	
 	public function getHash(){
-		$hash = array('id' => $this->getId());
+		$hash = array('userId' => $this->getUser()->getId());
 		return base64_encode(json_encode($hash));
 	}
 	
 	private function getflatEvents($events){
-		$minStartTime = time();
-		$maxStartTime = strtotime('+1 week');
+		$minStartTime = strtotime(date('Y-m-d'));
+		$maxStartTime = strtotime(date('Y-m-d', strtotime('+6 day')));
+		
+		$minStartTimeDt = new DateTime(date('Y-m-d H:i:s', $minStartTime));
+		$maxStartTimeDt = new DateTime(date('Y-m-d H:i:s', $maxStartTime));
 		
 		//$minStartTime = strtotime('2013-06-09');
 		//$maxStartTime = strtotime('2013-07-05');
@@ -46,46 +45,89 @@ class Mailinglist extends BaseMailinglist{
 			
 			$startsAt 	= $event->getStartsAt();
 			$endsAt 	= $event->getEndsAt();
+			$recType	= $event->getRecType();
 			
 			//TODO: support Recurring events! http://docs.dhtmlx.com/doku.php?id=dhtmlxscheduler:recurring_events
-			/*
-			$recType = $event->getRecType();
-			if ($recType){
-				$parts = explode('#', $recType);
 			
-				$pattern = explode('_', $parts);
-				$extra = (isset($recType[1])) ? $recType[1] : null;
-				
-				$type = $pattern[0];
-				
-				switch ($type){
-					case 'day':
-						
-						break;
-					case 'week':
-						
-						break;
-					case 'month':
-						
-						break;
-					case 'year':
-						
-						break;
-				}
-			}
-			*/
-			
-			$startsAtDt = GeneralUtils::getDateTimeInSpecificTZ($startsAt, $event->getTz(), $this->getTz());
-			$endsAtDt 	= GeneralUtils::getDateTimeInSpecificTZ($endsAt, $event->getTz(), $this->getTz());
+			$startsAtDt = GeneralUtils::getDateTimeInSpecificTZ($startsAt, $event->getTz(), $this->getUser()->getTz());
+			$endsAtDt 	= GeneralUtils::getDateTimeInSpecificTZ($endsAt, $event->getTz(), $this->getUser()->getTz());
 			
 			$eventHash['starts_at'] = $startsAtDt->format('Y-m-d H:i:s');
 			$eventHash['ends_at'] 	= $endsAtDt->format('Y-m-d H:i:s');
 			
 			$startTime = strtotime($eventHash['starts_at']);
+			$endTime = strtotime($eventHash['ends_at']);
 			
-			//if ($recType) Utils::pp($eventHash);
-			if ($startTime >= $minStartTime && $startTime <= $maxStartTime) $eventsHash[] = $eventHash;
+			if ($recType){
+				
+			} else if ($startsAtDt->format('Y-m-d') != $endsAtDt->format('Y-m-d')){
+				//Multi day event
+				$days = 0;
+				
+				$isInBetween = false;
+				$isStartInMiddle = false;
+				$isEndInMiddle = false;
+				$isWrap = false;
+				
+				//Utils::pp($startTime .'-'. $minStartTime .'-'. $endTime .'-'. $maxStartTime);
+				
+				if ($isWrap = ($startTime < $minStartTime && $endTime > $maxStartTime)){
+					$days = 7;
+				} else if ($isInBetween = ($startTime > $minStartTime && $endTime < $maxStartTime)){
+					$dDiff = $startsAtDt->diff($endsAtDt);
+					$days = $dDiff->days;
+				} else if ($isStartInMiddle = $startTime > $minStartTime) {
+					$dDiff = $startsAtDt->diff($maxStartTimeDt);
+					//$dDiff->format('%R'); // use for point out relation: smaller/greater
+					$days = $dDiff->days;
+				} else if ($isEndInMiddle = $endTime < $maxStartTime){
+					$dDiff = $minStartTimeDt->diff($endsAtDt);
+					$days = $dDiff->days;
+				}
+				
+				//Utils::pp('isInBetween:' . $isInBetween . "|" . 'isStartInMiddle:' . $isStartInMiddle . "|" . 'isEndInMiddle:' . $isEndInMiddle . '|' . 'isWrap:' . $isWrap);
+				
+				for ($i=0; $i < $days; $i++){
+					//Clone event
+					$eventHash = array_merge(array(), $eventHash);
+					
+					if ($i == 0){
+						if ($isEndInMiddle || $isWrap) {
+							$startsAtDt->modify($minStartTimeDt->format('Y-m-d'));
+							$eventHash['starts_at'] = $startsAtDt->format('Y-m-d 00:00:00');
+						} else if ($isStartInMiddle) $eventHash['starts_at'] = $startsAtDt->format('Y-m-d 00:00:00');
+					} else {
+						$eventHash['starts_at'] = $startsAtDt->modify('+1 day')->format('Y-m-d 00:00:00');
+					}
+					
+					//if ($isWrap) Utils::pp($eventHash['starts_at']);
+					
+					if ($i == ($days - 1) && ($isEndInMiddle || $isInBetween)) $eventHash['ends_at'] = $startsAtDt->format('Y-m-d') . ' ' . $endsAtDt->format('H:i:s');
+					else $eventHash['ends_at'] = $startsAtDt->format('Y-m-d 00:00:00');
+					
+					//Utils::pa($eventHash['starts_at']);
+					$eventsHash[] = $eventHash;
+				}
+				
+			} else if ($startTime >= $minStartTime && $startTime <= $maxStartTime) $eventsHash[] = $eventHash;
 		}
+		
+		//Set time for display
+		foreach ($eventsHash as &$eventHash){
+			$sTime = date('H:i:s', strtotime($eventHash['starts_at']));
+			$eTime = date('H:i:s', strtotime($eventHash['ends_at']));
+			
+			if ($sTime == $eTime && $sTime == '00:00:00') {
+				$eventHash['time'] = '';
+				$eventHash['isAllDay'] = true;
+			} else {
+				$eventHash['time'] = $sTime . ' - ' . $eTime;
+				$eventHash['isAllDay'] = false;
+			}
+			
+		}
+		
+		//Utils::pp($eventsHash);
 		
 		usort($eventsHash, 'Mailinglist::sortStartsAt');
 		
@@ -94,20 +136,28 @@ class Mailinglist extends BaseMailinglist{
 	
 	public function getEvents(){
 		if (!$this->events){
-			$cal = $this->getCal();
 			
-			//get events between -1 day to +8 days (9 days) - for timezone claculation.
-			$startDate = date('Y-m-d H:i:s', strtotime('-1 day'));
-			$endsAt = date('Y-m-d H:i:s', strtotime('+8 day'));
-			
+			//get events between -1 day to +7 days (9 days) - for timezone claculation.
+			$startDate = date('Y-m-d', strtotime('-1 day'));
+			$endsAt = date('Y-m-d', strtotime('+1 week'));
+
 			//Utils::pp($startDate . ' - ' . $endsAt);
 			
-			$q = Doctrine::getTable('Event')->createQuery('e')
-			->where('e.cal_id = :calId', array(':calId' => $cal->getId()))
-			->andWhere('(e.starts_at >= :startDate AND e.starts_at <= :endsAt)', array(':startDate' => $startDate, ':endsAt' => $endsAt));
-			//->andWhere('(e.starts_at >= :startDate AND e.starts_at <= :endsAt) OR (e.rec_type IS NOT NULL)', array(':startDate' => $startDate, ':endsAt' => $endsAt));
+			$datesSql  = "((e.starts_at >= '$startDate' AND e.starts_at <= '$endsAt') ";
+			$datesSql .= "OR (e.ends_at >= '$startDate' AND e.ends_at <= '$endsAt') ";
+			$datesSql .= "OR (e.rec_type IS NOT NULL))";
 			
-			$this->events = $this->getflatEvents($q->execute());
+			$q = Doctrine::getTable('Event')->createQuery('e')
+				->innerJoin('e.Cal c')
+				->innerJoin('c.UserCal uc')
+				->where('uc.user_id = ?', $this->getUserId())
+				->andWhere($datesSql)
+				->groupBy('e.id, c.id');
+			
+			$events = $q->execute();
+			//Utils::pp($events);
+			
+			$this->events = $this->getflatEvents($events);
 		}
 		
 		return $this->events;
@@ -120,9 +170,7 @@ class Mailinglist extends BaseMailinglist{
 	public function getTextMail(){
 		$textMail = '';
 		
-		$cal = $this->getCal();
-		
-		$textMail .= $cal->getName() . ' Calendar' . Utils::NEW_LINE . Utils::NEW_LINE;
+		$textMail .= 'Here are some interesting things going on in this week:' . Utils::NEW_LINE . Utils::NEW_LINE;
 		
 		$date = null;
 		foreach ($this->getEvents() as $event){
@@ -136,7 +184,7 @@ class Mailinglist extends BaseMailinglist{
 			$textMail .= $dateParts[1] . ' - ' . $event['name'] . Utils::NEW_LINE;
 		}
 		
-		$textMail .= Utils::NEW_LINE . 'If you\'d like to unsubscribe and stop receiving ' . $cal->getName() . ' Calendar emails Unsubscribe:' .Utils::NEW_LINE;
+		$textMail .= Utils::NEW_LINE . 'If you\'d like to unsubscribe and stop receiving events email Unsubscribe:' .Utils::NEW_LINE;
 		$textMail .= sfConfig::get('app_domain_full') . '/mailinglist/unsubscribe/h/' . $this->getHash();
 		
 		return $textMail;
@@ -164,22 +212,25 @@ class Mailinglist extends BaseMailinglist{
 		$mail->SetFrom(sfConfig::get('app_mailinglist_fromEmail'), sfConfig::get('app_mailinglist_fromName'));
 		$mail->AddReplyTo(sfConfig::get('app_mailinglist_replyToEmail'), sfConfig::get('app_mailinglist_replyToName'));
 
-		$mail->AddAddress($this->getEmail(), $this->getFullName());
+		$mail->AddAddress($this->getUser()->getEmail(), $this->getUser()->getFullName());
 		
 
-		$mail->Subject = $this->getFullName() . ', check out what\'s coming up this week';
+		$mail->Subject = $this->getUser()->getFullName() . ', check out what\'s coming up this week';
+		
 		
 		$mail->MsgHTML($this->getHtmlMail());
-		
-		//TODO: create text template
-		$mail->AltBody = 'This is a plain-text message body';
+		$mail->AltBody = $this->getTextMail();
 		
 		//$mail->AddAttachment('D:\WS\PHP\sportycal\lib\model\PHPMailer\examples\images\phpmailer_mini.gif');
-		
-		return $mail->Send();
+		if ($mail->Send()){
+			$mailinglist->setSendAt(date('Y-m-d g:i:s'));
+			$mailinglist->save();
+			
+			sleep(rand(1, 3));
+		}
 	}
 	
 	public static function sortStartsAt($a, $b){
-		return strtotime($a['starts_at']) - strtotime($b['starts_at']);
+		return (strtotime($a['starts_at']) - strtotime($b['starts_at'])) + (strtotime($a['ends_at']) - strtotime($b['ends_at']));
 	}
 }

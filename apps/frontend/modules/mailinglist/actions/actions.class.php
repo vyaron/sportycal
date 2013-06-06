@@ -1,10 +1,11 @@
 <?php
 class mailinglistActions extends sfActions{
 	public function executeTest(sfWebRequest $request){
-		$mailingList = Doctrine::getTable('MailingList')->find(4);
-		
+		//$mailingList = Doctrine::getTable('MailingList')->find(3);
+		//$events = $mailingList->getEvents();
+		//Utils::pp($events);
 		//echo $mailingList->getHtmlMail();
-		
+		//echo $mailingList->getHtmlMail();
 		//$mailingList->send();
 		
 		return sfView::NONE;
@@ -14,62 +15,32 @@ class mailinglistActions extends sfActions{
 		$hash = base64_decode($request->getParameter('h'));
 		$hash = json_decode($hash, true);
 		
-		if (key_exists('id', $hash)) $mailingList = Doctrine::getTable('MailingList')->find($hash['id']);
-		else $this->forward404Unless(false);
+		if (key_exists('userId', $hash)) $user = MailinglistTable::Unsubscribe($hash['userId']);
 		
-		$dateNow = date("Y-m-d g:i:s");
-		$mailingList->setDeletedAt($dateNow);
-		$mailingList->save();
-		
-		$this->mailingList = $mailingList;
+		$this->forward404Unless($user);
+
+		$this->user = $user;
 	}
 	
 	public function executeSubscribe(sfWebRequest $request){
 		$fullName 	= $request->getParameter('full_name');
 		$email 		= $request->getParameter('email');
 		$calId 		= $request->getParameter('calId');
-		$ctgId 		= $request->getParameter('ctgId');
 		$tz 		= $request->getParameter('tz');
 		
 		$tzStr 		= GeneralUtils::getTZFromJSTZ($tz);
+		$ip			= Utils::getClientIP();
 
 		$cal = null;
-		$category = null;
-		
 		if ($calId) $cal = Doctrine::getTable('Cal')->find($calId);
-		//if ($ctgId) $category = Doctrine::getTable('Category')->find($ctgId);
 		
 		//TODO: add validations
 		$res = array('success' => false, 'msg' => 'Wrong parameters!');
-		if ($fullName && $email && $cal && $cal->getPartnerId() && $request->isMethod(sfRequest::POST)){
-			//try to get existing mailinglist
-			$mailinglist = MailinglistTable::getBy($email, $calId, $ctgId);
+		if ($fullName && $email && $cal && $cal->getPartnerId() /*&& $request->isMethod(sfRequest::POST)*/){
+			MailinglistTable::subscribe($cal->getId(), $tzStr, $email, $fullName, $cal->getPartnerId(), $ip);
 
-			if (!$mailinglist){
-				$dateNow = date("Y-m-d g:i:s");
-				
-				$mailinglist = new Mailinglist();
-				
-				$mailinglist->setPartnerId($cal->getPartnerId());
-				$mailinglist->setFullName($fullName);
-				$mailinglist->setEmail($email);
-				$mailinglist->setCreatedAt($dateNow);
-				
-				if ($cal) 		$mailinglist->setCal($cal);
-				//if ($category) 	$mailinglist->setCal($category);
-				if ($tzStr) 	$mailinglist->setTz($tzStr);
-					
-				$mailinglist->save();
-			}
-			
-			if ($mailinglist) {
-				//Send email
-				$mailinglist->send();
-				
-				$res['success'] = true;
-				$res['msg'] = $email . ' subscribe success';
-			}
-			
+			$res['success'] = true;
+			$res['msg'] = $email . ' subscribe success';
 		}
 		
 		echo json_encode($res);

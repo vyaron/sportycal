@@ -29,7 +29,6 @@ Doctrine_Manager::getInstance()->bindComponent('Category', 'doctrine');
  * @property Doctrine_Collection $CalRequest
  * @property Doctrine_Collection $CategoryLink
  * @property Doctrine_Collection $Intel
- * @property Doctrine_Collection $Mailinglist
  * @property Doctrine_Collection $PartnerDesc
  * @property Doctrine_Collection $ShortUrl
  * @property Doctrine_Collection $UserCal
@@ -56,7 +55,6 @@ Doctrine_Manager::getInstance()->bindComponent('Category', 'doctrine');
  * @method Doctrine_Collection getCalRequest()        Returns the current record's "CalRequest" collection
  * @method Doctrine_Collection getCategoryLink()      Returns the current record's "CategoryLink" collection
  * @method Doctrine_Collection getIntel()             Returns the current record's "Intel" collection
- * @method Doctrine_Collection getMailinglist()       Returns the current record's "Mailinglist" collection
  * @method Doctrine_Collection getPartnerDesc()       Returns the current record's "PartnerDesc" collection
  * @method Doctrine_Collection getShortUrl()          Returns the current record's "ShortUrl" collection
  * @method Doctrine_Collection getUserCal()           Returns the current record's "UserCal" collection
@@ -82,7 +80,6 @@ Doctrine_Manager::getInstance()->bindComponent('Category', 'doctrine');
  * @method Category            setCalRequest()        Sets the current record's "CalRequest" collection
  * @method Category            setCategoryLink()      Sets the current record's "CategoryLink" collection
  * @method Category            setIntel()             Sets the current record's "Intel" collection
- * @method Category            setMailinglist()       Sets the current record's "Mailinglist" collection
  * @method Category            setPartnerDesc()       Sets the current record's "PartnerDesc" collection
  * @method Category            setShortUrl()          Sets the current record's "ShortUrl" collection
  * @method Category            setUserCal()           Sets the current record's "UserCal" collection
@@ -252,10 +249,6 @@ abstract class BaseCategory extends sfDoctrineRecord
              'foreign' => 'category_id'));
 
         $this->hasMany('Intel', array(
-             'local' => 'id',
-             'foreign' => 'category_id'));
-
-        $this->hasMany('Mailinglist', array(
              'local' => 'id',
              'foreign' => 'category_id'));
 

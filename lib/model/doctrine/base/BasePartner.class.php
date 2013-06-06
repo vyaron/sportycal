@@ -16,7 +16,6 @@ Doctrine_Manager::getInstance()->bindComponent('Partner', 'doctrine');
  * @property Doctrine_Collection $CalRequest
  * @property Doctrine_Collection $Category
  * @property Doctrine_Collection $Intel
- * @property Doctrine_Collection $Mailinglist
  * @property Doctrine_Collection $PartnerDesc
  * @property Doctrine_Collection $PartnerUser
  * @property Doctrine_Collection $ShortUrl
@@ -31,7 +30,6 @@ Doctrine_Manager::getInstance()->bindComponent('Partner', 'doctrine');
  * @method Doctrine_Collection getCalRequest()  Returns the current record's "CalRequest" collection
  * @method Doctrine_Collection getCategory()    Returns the current record's "Category" collection
  * @method Doctrine_Collection getIntel()       Returns the current record's "Intel" collection
- * @method Doctrine_Collection getMailinglist() Returns the current record's "Mailinglist" collection
  * @method Doctrine_Collection getPartnerDesc() Returns the current record's "PartnerDesc" collection
  * @method Doctrine_Collection getPartnerUser() Returns the current record's "PartnerUser" collection
  * @method Doctrine_Collection getShortUrl()    Returns the current record's "ShortUrl" collection
@@ -45,7 +43,6 @@ Doctrine_Manager::getInstance()->bindComponent('Partner', 'doctrine');
  * @method Partner             setCalRequest()  Sets the current record's "CalRequest" collection
  * @method Partner             setCategory()    Sets the current record's "Category" collection
  * @method Partner             setIntel()       Sets the current record's "Intel" collection
- * @method Partner             setMailinglist() Sets the current record's "Mailinglist" collection
  * @method Partner             setPartnerDesc() Sets the current record's "PartnerDesc" collection
  * @method Partner             setPartnerUser() Sets the current record's "PartnerUser" collection
  * @method Partner             setShortUrl()    Sets the current record's "ShortUrl" collection
@@ -120,10 +117,6 @@ abstract class BasePartner extends sfDoctrineRecord
              'foreign' => 'partner_id'));
 
         $this->hasMany('Intel', array(
-             'local' => 'id',
-             'foreign' => 'partner_id'));
-
-        $this->hasMany('Mailinglist', array(
              'local' => 'id',
              'foreign' => 'partner_id'));
 

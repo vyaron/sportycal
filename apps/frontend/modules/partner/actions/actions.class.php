@@ -101,7 +101,7 @@ class partnerActions extends sfActions
     	
     	$userValues = $form->getValues();
       
-  		$user = Doctrine::getTable('User')->getByEmail($userValues["email"]);
+  		$user = UserTable::getByEmail($userValues["email"]);
   		// TODO: encryption
         if ($user && $user->getPass() === $userValues["password"]) {
         	

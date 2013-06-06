@@ -26,9 +26,8 @@ class UserTable extends Doctrine_Table
         }
         return $user;
     }
-    // YARON: thiose methods are not called - the AUto-genereated ones are...
-    
-    public function getByEmail($email) {
+
+    public static function getByEmail($email) {
         $q = Doctrine_Query::create()
             ->select('')
             ->from('User u')
@@ -72,4 +71,15 @@ class UserTable extends Doctrine_Table
     	} 
     	
     }   
+    
+    public static function getSubscribes($page=0, $limit=100){
+    	$offset = $page * $limit;
+    	 
+    	$q = Doctrine::getTable('User')->createQuery('u')
+	    	->offset($offset)
+	    	->limit($limit)
+	    	->where('u.is_subscribe = true');
+    	 
+    	return $q->execute();
+    }
 }

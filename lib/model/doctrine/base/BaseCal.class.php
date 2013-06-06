@@ -30,7 +30,6 @@ Doctrine_Manager::getInstance()->bindComponent('Cal', 'doctrine');
  * @property Doctrine_Collection $Event
  * @property Doctrine_Collection $Intel
  * @property Doctrine_Collection $Invitation
- * @property Doctrine_Collection $Mailinglist
  * @property Doctrine_Collection $PartnerDesc
  * @property Doctrine_Collection $ShortUrl
  * @property Doctrine_Collection $UserCal
@@ -58,7 +57,6 @@ Doctrine_Manager::getInstance()->bindComponent('Cal', 'doctrine');
  * @method Doctrine_Collection getEvent()             Returns the current record's "Event" collection
  * @method Doctrine_Collection getIntel()             Returns the current record's "Intel" collection
  * @method Doctrine_Collection getInvitation()        Returns the current record's "Invitation" collection
- * @method Doctrine_Collection getMailinglist()       Returns the current record's "Mailinglist" collection
  * @method Doctrine_Collection getPartnerDesc()       Returns the current record's "PartnerDesc" collection
  * @method Doctrine_Collection getShortUrl()          Returns the current record's "ShortUrl" collection
  * @method Doctrine_Collection getUserCal()           Returns the current record's "UserCal" collection
@@ -85,7 +83,6 @@ Doctrine_Manager::getInstance()->bindComponent('Cal', 'doctrine');
  * @method Cal                 setEvent()             Sets the current record's "Event" collection
  * @method Cal                 setIntel()             Sets the current record's "Intel" collection
  * @method Cal                 setInvitation()        Sets the current record's "Invitation" collection
- * @method Cal                 setMailinglist()       Sets the current record's "Mailinglist" collection
  * @method Cal                 setPartnerDesc()       Sets the current record's "PartnerDesc" collection
  * @method Cal                 setShortUrl()          Sets the current record's "ShortUrl" collection
  * @method Cal                 setUserCal()           Sets the current record's "UserCal" collection
@@ -277,10 +274,6 @@ abstract class BaseCal extends sfDoctrineRecord
              'foreign' => 'cal_id'));
 
         $this->hasMany('Invitation', array(
-             'local' => 'id',
-             'foreign' => 'cal_id'));
-
-        $this->hasMany('Mailinglist', array(
              'local' => 'id',
              'foreign' => 'cal_id'));
 

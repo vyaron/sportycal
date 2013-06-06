@@ -27,6 +27,8 @@ Doctrine_Manager::getInstance()->bindComponent('User', 'doctrine');
  * @property enum $gender
  * @property date $last_login_date
  * @property string $fb_code
+ * @property string $tz
+ * @property integer $is_subscribe
  * @property Country $Country
  * @property State $State
  * @property Doctrine_Collection $User
@@ -36,6 +38,7 @@ Doctrine_Manager::getInstance()->bindComponent('User', 'doctrine');
  * @property Doctrine_Collection $Contact
  * @property Doctrine_Collection $Intel
  * @property Doctrine_Collection $Invitation
+ * @property Doctrine_Collection $Mailinglist
  * @property Doctrine_Collection $PartnerUser
  * @property Doctrine_Collection $ShortUrl
  * @property Doctrine_Collection $UserBirthday
@@ -64,6 +67,8 @@ Doctrine_Manager::getInstance()->bindComponent('User', 'doctrine');
  * @method enum                getGender()          Returns the current record's "gender" value
  * @method date                getLastLoginDate()   Returns the current record's "last_login_date" value
  * @method string              getFbCode()          Returns the current record's "fb_code" value
+ * @method string              getTz()              Returns the current record's "tz" value
+ * @method integer             getIsSubscribe()     Returns the current record's "is_subscribe" value
  * @method Country             getCountry()         Returns the current record's "Country" value
  * @method State               getState()           Returns the current record's "State" value
  * @method Doctrine_Collection getUser()            Returns the current record's "User" collection
@@ -73,6 +78,7 @@ Doctrine_Manager::getInstance()->bindComponent('User', 'doctrine');
  * @method Doctrine_Collection getContact()         Returns the current record's "Contact" collection
  * @method Doctrine_Collection getIntel()           Returns the current record's "Intel" collection
  * @method Doctrine_Collection getInvitation()      Returns the current record's "Invitation" collection
+ * @method Doctrine_Collection getMailinglist()     Returns the current record's "Mailinglist" collection
  * @method Doctrine_Collection getPartnerUser()     Returns the current record's "PartnerUser" collection
  * @method Doctrine_Collection getShortUrl()        Returns the current record's "ShortUrl" collection
  * @method Doctrine_Collection getUserBirthday()    Returns the current record's "UserBirthday" collection
@@ -100,6 +106,8 @@ Doctrine_Manager::getInstance()->bindComponent('User', 'doctrine');
  * @method User                setGender()          Sets the current record's "gender" value
  * @method User                setLastLoginDate()   Sets the current record's "last_login_date" value
  * @method User                setFbCode()          Sets the current record's "fb_code" value
+ * @method User                setTz()              Sets the current record's "tz" value
+ * @method User                setIsSubscribe()     Sets the current record's "is_subscribe" value
  * @method User                setCountry()         Sets the current record's "Country" value
  * @method User                setState()           Sets the current record's "State" value
  * @method User                setUser()            Sets the current record's "User" collection
@@ -109,6 +117,7 @@ Doctrine_Manager::getInstance()->bindComponent('User', 'doctrine');
  * @method User                setContact()         Sets the current record's "Contact" collection
  * @method User                setIntel()           Sets the current record's "Intel" collection
  * @method User                setInvitation()      Sets the current record's "Invitation" collection
+ * @method User                setMailinglist()     Sets the current record's "Mailinglist" collection
  * @method User                setPartnerUser()     Sets the current record's "PartnerUser" collection
  * @method User                setShortUrl()        Sets the current record's "ShortUrl" collection
  * @method User                setUserBirthday()    Sets the current record's "UserBirthday" collection
@@ -273,7 +282,7 @@ abstract class BaseUser extends sfDoctrineRecord
              'autoincrement' => false,
              'length' => 8,
              ));
-        $this->hasColumn('type', 'enum', 7, array(
+        $this->hasColumn('type', 'enum', 11, array(
              'type' => 'enum',
              'fixed' => 0,
              'unsigned' => false,
@@ -282,12 +291,13 @@ abstract class BaseUser extends sfDoctrineRecord
               0 => 'SIMPLE',
               1 => 'MASTER',
               2 => 'PARTNER',
+              3 => 'MAILINGLIST',
              ),
              'primary' => false,
              'default' => 'SIMPLE',
              'notnull' => false,
              'autoincrement' => false,
-             'length' => 7,
+             'length' => 11,
              ));
         $this->hasColumn('gender', 'enum', 1, array(
              'type' => 'enum',
@@ -320,6 +330,25 @@ abstract class BaseUser extends sfDoctrineRecord
              'notnull' => false,
              'autoincrement' => false,
              'length' => 255,
+             ));
+        $this->hasColumn('tz', 'string', 80, array(
+             'type' => 'string',
+             'fixed' => 0,
+             'unsigned' => false,
+             'primary' => false,
+             'notnull' => false,
+             'autoincrement' => false,
+             'length' => 80,
+             ));
+        $this->hasColumn('is_subscribe', 'integer', 1, array(
+             'type' => 'integer',
+             'fixed' => 0,
+             'unsigned' => false,
+             'primary' => false,
+             'default' => '0',
+             'notnull' => true,
+             'autoincrement' => false,
+             'length' => 1,
              ));
     }
 
@@ -361,6 +390,10 @@ abstract class BaseUser extends sfDoctrineRecord
         $this->hasMany('Invitation', array(
              'local' => 'id',
              'foreign' => 'by_user_id'));
+
+        $this->hasMany('Mailinglist', array(
+             'local' => 'id',
+             'foreign' => 'user_id'));
 
         $this->hasMany('PartnerUser', array(
              'local' => 'id',

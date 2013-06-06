@@ -12,11 +12,12 @@
  */
 class Cal extends BaseCal
 {
-	const TYPE_GOOGLE 	= 'google';
-	const TYPE_OUTLOOK 	= 'outlook';
-	const TYPE_MOBILE 	= 'mobile';
-	const TYPE_ANY 		= 'any';
-	const TYPE_HARDCOPY = 'hardcopy';
+	const TYPE_GOOGLE 		= 'google';
+	const TYPE_OUTLOOK 		= 'outlook';
+	const TYPE_MOBILE 		= 'mobile';
+	const TYPE_ANY 			= 'any';
+	const TYPE_MAILINGLIST 	= 'mailinglist';
+	const TYPE_HARDCOPY 	= 'hardcopy';
 	const REMINDER_DEFAULT_MSG = 'Are you ready for the game?';
 	
 	public function getDescriptionForCal($userCal, $partner, $calType) {
