@@ -75,7 +75,7 @@
 				<div class="row">
 					<div class="span6">
 						<label class="inline">
-							<input type="checkbox" name="register[agree]"/>&nbsp;
+							<input type="checkbox" name="register[agree]" required="required"/>&nbsp;
 							<span><?php echo __('I agree');?></span>&nbsp;
 							<a target="_blank" href="/main/downCalTerms"><?php echo __('Terms & Conditions');?></a>
 						</label>
@@ -84,7 +84,7 @@
 				<div class="row mt10">
 					<div class="span6">
 						<a class="btn btn-small pull-left" href="<?php echo url_for('nm/calEdit/?id=' . $calId);?>" title="Edit your calendar"><i class="icon-arrow-left"></i> Back</a>
-						<input type="submit" value="register" class="btn btn-success pull-right"/>
+						<input type="submit" value="Register" class="btn btn-success pull-right"/>
 					</div>
 				</div>
 			</fieldset>
