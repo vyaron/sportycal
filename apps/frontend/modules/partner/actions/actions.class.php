@@ -109,7 +109,6 @@ class partnerActions extends sfActions
 			UserUtils::logUserIn($user);
 			
 			$refererUrl = UserUtils::getRefererUrl();
-			
 			if ($refererUrl) {
 				$this->redirect($refererUrl);
 				serUtils::setRefererUrl(null);
@@ -121,8 +120,10 @@ class partnerActions extends sfActions
   
   
   public function executeLogin(sfWebRequest $request){
-  	$url = $this->getRequest()->getReferer();
-  	if (!strpos($url, '/partner/login')) UserUtils::setRefererUrl($url);
+  	if (sfConfig::get('app_domain_isNeverMiss')){
+	  	$url = $this->getRequest()->getReferer();
+	  	if (!strpos($url, '/partner/login')) UserUtils::setRefererUrl($url);
+  	}
   	
 	$this->form = new LoginForm();
   	
