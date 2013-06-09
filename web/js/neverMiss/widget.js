@@ -15,10 +15,8 @@ function setFbLoginEvents(){
 jQuery(document).ready(function(){
 	setFbLoginEvents();
 	
-	jQuery('#widget-form').submit(function(e){
-		e.preventDefault();
-		
-		var lang = jQuery('#language').val();
+	jQuery('#language').change(function(){
+		var lang = jQuery(this).val();
 
 		var copyJsCode = jQuery('#copy-js-code');
 		var newVal = copyJsCode.val().replace(/(data-language=")(\w+)/, '$1' + lang);
