@@ -10,6 +10,7 @@ class CalRequestTable extends Doctrine_Table
     }
     
     public static function newReq($calId, $calType, $userCalId, $partner = null, $ctgId=null, $hash=null) {
+    	
     	//Don't save CalRequest without UserCal
     	if (!$userCalId) return;
     	
@@ -40,6 +41,7 @@ class CalRequestTable extends Doctrine_Table
 		
         $calReq->setCreatedAt($mysqldate);
         $calReq->save();
+
     }
     public static function getBy(){
         

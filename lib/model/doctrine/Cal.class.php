@@ -20,6 +20,8 @@ class Cal extends BaseCal
 	const TYPE_HARDCOPY 	= 'hardcopy';
 	const REMINDER_DEFAULT_MSG = 'Are you ready for the game?';
 	
+	const GOOGLE_IMPORT_URL = 'http://www.google.com/calendar/render?cid=';
+	
 	public function getDescriptionForCal($userCal, $partner, $calType) {
 	
 		//Utils::pp($partner);
@@ -433,7 +435,7 @@ class Cal extends BaseCal
 		if ($calType == Cal::TYPE_HARDCOPY) {
 			$url = "/cal/hardcopy/" . $calSpecification;
 		} else if ($calType == Cal::TYPE_GOOGLE || ($calType == Cal::TYPE_MOBILE && Utils::clientIsAndroid())) {
-			$url = "http://www.google.com/calendar/render?cid=" .
+			$url = self::GOOGLE_IMPORT_URL .
 			        urlencode(sfConfig::get('app_domain_full') . '/cal/get/'.$calSpecification."/hash/USERCAL/ct/$intelCalType".$partnerPart);
 			
 		} else if($calType == Cal::TYPE_ANY){

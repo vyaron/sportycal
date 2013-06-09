@@ -43,5 +43,17 @@ class UserCal extends BaseUserCal
 
     }
  
-
+	public function getIcalUrl($fileName = 'calendar'){
+		//TODO: support BC
+		
+		$id = $this->getId();
+		$fileName = Utils::slugify($fileName);
+		
+		$url = sfConfig::get('app_domain_full') . "/cal/get/h/$id/$fileName.ics";
+		
+		if ($this->getCalType() == Cal::TYPE_GOOGLE || ($this->getCalType() == Cal::TYPE_MOBILE && Utils::clientIsAndroid())) $url = Cal::GOOGLE_IMPORT_URL .  urlencode($url);
+		else if ($this->getCalType() == Cal::TYPE_OUTLOOK) $url = str_replace('http:://', 'webcal://', $url);
+		
+		return $url;
+	}
 }
