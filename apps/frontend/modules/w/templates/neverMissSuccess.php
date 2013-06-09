@@ -81,17 +81,44 @@
 		}
 		return getElementsByClassName(className, tag, elm);
 	};
-
+	
+	
 	function toggleBubble(id){
-		iframeEl = document.getElementById(id);
+		var iframeEl = document.getElementById(id);
+		if (iframeEl) iframeEl.style.display == 'block' ? hideBubble(id, true) : showBubble(id);
+		
+	}
+	
+	function showBubble(id){
+		var iframeEl = document.getElementById(id);
 		if (iframeEl) {
-			iframeEl.style.display = (iframeEl.style.display == 'block') ? 'none' : 'block';
+			iframeEl.style.display = 'block';
+			
+			if (gHideInterval){
+				window.clearInterval(gHideInterval);
+				gHideInterval = null;
+			}
 		}
+	}
+	
+	var gHideInterval = null;
+	function hideBubble(id, fast){
+		var hideFunc = function (){
+			iframeEl = document.getElementById(id);
+			iframeEl.style.display = 'none';
+		};
+		
+		if (fast) hideFunc();
+		else gHideInterval = window.setInterval(hideFunc, 3000);
+
 	}
 
 	function injectIframe(els){
 		for ( var i = 0; i < els.length; i++) {
 			var el = els[i];
+			
+			el.innerHTML = '';
+			
 			var calId = el.getAttribute('data-cal-id');
 			var language = el.getAttribute('data-language');
 
@@ -102,13 +129,18 @@
 			var id_bubble = 'b_' + id;
 			
 			var iframes = '<div style="position: relative;"><iframe id="' + id +'" src="' + NEVER_MISS_WIDGET_URL + '/calId/' + calId + '/popupId/' + id_bubble + (language ? ('/language/' + language) : '') + '" frameborder="0" border="0" style="border: medium none; overflow: hidden; height: 22px; width: 47px;" scrolling="no" title="Never Miss"></iframe>';
-			iframes += '<iframe id="' + id_bubble +'" src="' + NEVER_MISS_WIDGET_BUBBLE_URL + '/calId/' + calId + '/isBubble/true' + (language ? ('/language/' + language) : '') + '" frameborder="0" border="0" style="border: medium none; overflow: hidden; height: 270px; width: 230px; position:absolute; left:0; top:20px; z-index:999; display:none;" scrolling="no" title="Never Miss"></iframe></div>';
+			iframes += '<iframe id="' + id_bubble +'" src="' + NEVER_MISS_WIDGET_BUBBLE_URL + '/calId/' + calId + '/isBubble/true' + '/popupId/' + id_bubble + (language ? ('/language/' + language) : '') + '" frameborder="0" border="0" style="border: medium none; overflow: hidden; height: 270px; width: 230px; position:absolute; left:0; top:20px; z-index:999; display:none;" scrolling="no" title="Never Miss"></iframe></div>';
 			el.innerHTML = iframes;
 		}
 	}
-
-	var els = getElementsByClassName('nm-follow');
-	injectIframe(els);
+	
+	function load(){
+		var els = getElementsByClassName('nm-follow');
+		injectIframe(els);
+	}
+	
+	load();
+	
 	
 	//TODO: add Event one time only!
 	var eventMethod = window.addEventListener ? "addEventListener" : "attachEvent";
@@ -116,6 +148,19 @@
 	var messageEvent = eventMethod == "attachEvent" ? "onmessage" : "message";
 	// Listen to message from child window
 	eventer(messageEvent,function(e) {
-		toggleBubble(e.data);
+		if (e.data.indexOf('neverMiss') >= 0){
+			var parts = e.data.split('@');
+			var id = parts[0];
+			var action = parts[1];
+			
+			if (action == 'open') showBubble(id);
+			else if (action == 'close') hideBubble(id);
+			else if (action == 'toggle') toggleBubble(id);
+		}
 	},false);
+	
+	
+	self.iNeverMiss = {
+		reload : load
+	};
 })();

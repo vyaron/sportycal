@@ -162,38 +162,41 @@ function prepareMailinglistForm(){
 	});
 }
 
+function showCalLink(e){
+	e.preventDefault();
+
+	if (gSelected) gSelected.removeClass('selected');
+	
+	var el = jQuery(this);
+	el.addClass('selected');
+	gSelected = el;
+
+	var emailDescWrapper = jQuery('#email-desc-wrapper');
+	var descWrapper = jQuery('#desc-wrapper');
+	
+	emailDescWrapper.hide();
+	descWrapper.hide();
+	
+	if (el.hasClass('email')){
+		jQuery('#mailinglist-form').show();
+		jQuery('#mailinglist-form-loading').hide();
+		jQuery('#mailinglist-form-success').hide();
+		jQuery('#mailinglist-form-error').hide();
+
+		jQuery('#mailinglist-full-name, #mailinglist-email').val('');
+
+		emailDescWrapper.show();
+	} else {
+		jQuery('#link-desc').text(el.attr('data-desc'));
+		jQuery('#continue-btn').attr('href', el.attr('data-href'));
+		
+		descWrapper.show();
+	}
+}
+
 function setCalLinksEvents(){
-	jQuery('.cal-link').click(function(e){
-		e.preventDefault();
-
-		if (gSelected) gSelected.removeClass('selected');
-		
-		var el = jQuery(this);
-		el.addClass('selected');
-		gSelected = el;
-
-		var emailDescWrapper = jQuery('#email-desc-wrapper');
-		var descWrapper = jQuery('#desc-wrapper');
-		
-		emailDescWrapper.hide();
-		descWrapper.hide();
-		
-		if (el.hasClass('email')){
-			jQuery('#mailinglist-form').show();
-			jQuery('#mailinglist-form-loading').hide();
-			jQuery('#mailinglist-form-success').hide();
-			jQuery('#mailinglist-form-error').hide();
-
-			jQuery('#mailinglist-full-name, #mailinglist-email').val('');
-
-			emailDescWrapper.show();
-		} else {
-			jQuery('#link-desc').text(el.attr('data-desc'));
-			jQuery('#continue-btn').attr('href', el.attr('data-href'));
-			
-			descWrapper.show();
-		}
-	});
+	jQuery('.cal-link').click(showCalLink);
+	jQuery('.cal-link').mouseenter(showCalLink);
 
 	jQuery('#continue-btn').click(function(){
 		window.setTimeout(function(){window.close();}, 1000);
@@ -212,6 +215,13 @@ function setTimezone(){
 }
 
 jQuery(document).ready(function(){
+	var popupId = '<?php echo $popupId;?>';
+	jQuery('#widget-bubble').hover(function(e){
+		if (parent.postMessage) parent.postMessage(popupId + '@open', "*");
+	}, function(){
+		if (parent.postMessage) parent.postMessage(popupId + '@close', "*");
+	});
+	
 	prepareMailinglistForm();
 	setCalLinksEvents();
 	setTimezone();

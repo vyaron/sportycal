@@ -21,6 +21,7 @@ class wActions extends sfActions{
 	
 	public function executeNeverMissPopup(sfWebRequest $request){
 		$this->calId = $request->getParameter('calId');
+		$this->popupId = $request->getParameter('popupId');
 		$this->isBubble = $request->getParameter('isBubble', false);
 		$this->language = $request->getParameter('language');
 		

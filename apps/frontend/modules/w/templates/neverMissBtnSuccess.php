@@ -15,11 +15,18 @@
 <script type="text/javascript">
 var gWindow = null;
 jQuery(document).ready(function(){
+	var popupId = '<?php echo $popupId;?>';
+	jQuery('#never-miss-btn').hover(function(e){
+		if (parent.postMessage) parent.postMessage(popupId + '@open', "*");
+	}, function(){
+		if (parent.postMessage) parent.postMessage(popupId + '@close', "*");
+	});
+	
 	jQuery('#never-miss-btn').click(function(e){
 		e.preventDefault();
 
 		if (parent.postMessage) {
-			parent.postMessage('<?php echo $popupId;?>', "*");
+			parent.postMessage(popupId + '@toggle', "*");
 		} else {
 			//Old Browser open in new window
 			if (gWindow) {

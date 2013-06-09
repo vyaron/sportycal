@@ -11,8 +11,22 @@ function setFbLoginEvents(){
 }
 
 
+
 jQuery(document).ready(function(){
 	setFbLoginEvents();
+	
+	jQuery('#widget-form').submit(function(e){
+		e.preventDefault();
+		
+		var lang = jQuery('#language').val();
+
+		var copyJsCode = jQuery('#copy-js-code');
+		var newVal = copyJsCode.val().replace(/(data-language=")(\w+)/, '$1' + lang);
+		copyJsCode.text(newVal);
+		
+		jQuery('.nm-follow').attr('data-language', lang);
+		if (iNeverMiss && iNeverMiss.reload) iNeverMiss.reload();
+	});
 	
 	jQuery('#register-form').validate({
 		errorPlacement: function(error, element) {
@@ -23,15 +37,6 @@ jQuery(document).ready(function(){
 		    }
 		},
 		rules: {
-			/*
-			'register[agree]': {
-				required : true,
-				errorPlacement : function(err, el){
-					console.log(err);
-					console.log(el);
-				}
-			},
-			*/
 			'register[password]': "required",
 			'register[confirm_password]': {
 				equalTo: "#register_password"

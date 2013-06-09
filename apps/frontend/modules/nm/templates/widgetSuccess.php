@@ -6,12 +6,12 @@
 <div class="row">
 	<div class="span6">
 		<?php if ($user):?>
-		<form method="GET">
+		<form id="widget-form" method="GET">
 			<fieldset>
 				<legend>Custom widget:</legend>
 				
-				<label for="style">Language:</label>
-				<select class="span6" name="language">
+				<label for="language">Language:</label>
+				<select id="language" class="span6" name="language">
   					<?php foreach ($languagesOptions as $value => $name):?>
   					<option value="<?php echo $value;?>"<?php echo ($value == $language) ? ' selected="selected"' : ''?>><?php echo $name;?></option>
   					<?php endforeach;?>
