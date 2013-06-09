@@ -84,7 +84,7 @@ use_stylesheet('/css/neverMiss/calEdit.css');
 			<div class="span4"><?php echo $form['description']->render(array('class' => 'span4', 'placeholder' => 'Enter description'));?></div>
 		</div>
 		<div class="row">
-			<div class="span2">Timezones</div>
+			<div class="span2">Time Zone</div>
 			<div class="span4"><?php echo $form['tz']->render(array('class' => 'span4'));?></div>
 		</div>
 
