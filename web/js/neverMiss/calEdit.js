@@ -4,7 +4,7 @@ function reloadCalendar(){
 }
 
 function loadCalendar(){
-	scheduler.config.touch = "force";
+	//scheduler.config.touch = "force";
 	scheduler.config.xml_date = "%Y-%m-%d %H:%i";
 	scheduler.config.prevent_cache = true;
 	//scheduler.config.first_hour = 4;
@@ -21,6 +21,8 @@ function loadCalendar(){
 	
 	scheduler.config.buttons_right=["dhx_save_btn","dhx_cancel_btn"];
 	scheduler.config.buttons_left=["dhx_delete_btn"];
+	
+	scheduler.config.time_step = 30;
 	
 	//scheduler.config.server_utc = true; //convert server side dates from utc to local timezone, and backward during data sending to server;
 	
@@ -57,8 +59,21 @@ function loadCalendar(){
 	});
 	*/
 	
-	scheduler.attachEvent("onEmptyClick", function (date, native_event_object){
-		this.addEventNow(date,null,native_event_object);
+	scheduler.attachEvent("onEmptyClick", function (date, e){
+		var src = e.target|| e.srcElement;
+		if (this.config.readonly) return;
+		var name = src.className.split(" ")[0];
+		
+		switch(name){
+			case "dhx_scale_holder":
+			case "dhx_scale_holder_now":
+			case "dhx_month_body":
+			case "dhx_wa_day_data":
+			case "dhx_marked_timespan":
+				//If lightbox not open allready (event drag)
+				if (!this._lightbox_id) this.addEventNow(date,null,e);
+				break;
+		}
 	});
 	
 	scheduler.config.lightbox.sections = [ {
