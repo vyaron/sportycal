@@ -57,6 +57,10 @@ function loadCalendar(){
 	});
 	*/
 	
+	scheduler.attachEvent("onEmptyClick", function (date, native_event_object){
+		this.addEventNow(date,null,native_event_object);
+	});
+	
 	scheduler.config.lightbox.sections = [ {
 		name : "name",
 		height : 30,
