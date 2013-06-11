@@ -1,29 +1,11 @@
+scheduler.locale.labels.to = 'To';
+
 scheduler.form_blocks.datetime = {
 	render:function(sns) {
-		sns.time_format = ['d/m/Y', 'H:ia'];
-
-		var time_format = sns.time_format;
 		var cfg = scheduler.config;
-
-		var html = "";
-
-		for (var p = 0; p < time_format.length; p++) {
-			var time_option = time_format[p];
-
-			// adding spaces between selects
-			if (p > 0) {
-				html += " ";
-			}
-
-			switch (time_option) {
-				case "d/m/Y":
-					html+='<input type="text" class="datepicker"/>';
-					break;
-				case "H:ia":
-					html+='<input type="text" class="timepicker"/>';
-					break;
-			}
-		}
+		
+		var start = '<input type="text" class="datepicker"/> <input type="text" class="timepicker"/>';
+		var end = '<input type="text" class="timepicker"/> <input type="text" class="datepicker"/>';
 		
 		var height = 30;
 		
@@ -35,7 +17,7 @@ scheduler.form_blocks.datetime = {
 		
 		
 		
-		return "<div style='height:" + height + "px;padding-top:0px;font-size:inherit;' class='dhx_section_datetime dhx_cal_ltext'>"+html+"<span style='font-weight:normal; font-size:10pt;'> &nbsp;&ndash;&nbsp; </span>"+html+fullDateHtml+"</div>";
+		return "<div style='height:" + height + "px;padding-top:0px;font-size:inherit;' class='dhx_section_datetime dhx_cal_ltext'>"+start+"<span style='font-weight:normal; font-size:10pt;'>&nbsp;" + this.locale.labels.to + "&nbsp;</span>"+end+fullDateHtml+"</div>";
 	},
 	
 	set_value:function(node,value,ev,config){
@@ -83,6 +65,8 @@ scheduler.form_blocks.datetime = {
 				
 				if (endTime < startTime && !differentDates) jQuery(timepickers[0]).timepicker('setTime', scheduler.date.add(endTime, (-2 * scheduler.config.time_step),"minute"));
 			});
+			
+			
 			
 			//Set full date checkbox event
 			fullDateCheckbox.change(function(e){
