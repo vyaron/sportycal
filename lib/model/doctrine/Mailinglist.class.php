@@ -46,6 +46,7 @@ class Mailinglist extends BaseMailinglist{
 			$startsAt 	= $event->getStartsAt();
 			$endsAt 	= $event->getEndsAt();
 			$recType	= $event->getRecType();
+			$length		= $event->getLength() ? $event->getLength() : 0;
 			
 			//TODO: support Recurring events! http://docs.dhtmlx.com/doku.php?id=dhtmlxscheduler:recurring_events
 			
@@ -59,8 +60,54 @@ class Mailinglist extends BaseMailinglist{
 			$endTime = strtotime($eventHash['ends_at']);
 			
 			if ($recType){
+				$recType = explode('_', $recType);
 				
-			} else if ($startsAtDt->format('Y-m-d') != $endsAtDt->format('Y-m-d')){
+				$type 			= (isset($recType[0])) ? $recType[0] : null;
+				$count 			= (isset($recType[1])) ? $recType[1] : null;
+				$day_and_count2 = (isset($recType[2])) ? $recType[2] : null;
+				$days 			= (isset($recType[3])) ? $recType[3] : null;
+				$extra 			= (isset($recType[4]) && strlen($recType[4])) ? substr($recType[4], 1) : null;
+				
+				if ($type == 'year'){
+					if ($extra == 'no'){
+						if (($minStartTimeDt->format('Y') - $startsAtDt->format('Y')) % $count === 0) continue;
+					} else if ($extra > 0){
+						if (($startsAtDt->format('Y') + ($extra -1)) > $minStartTimeDt->format('Y')) continue;
+					} else if (!is_null($extra)){
+						if ($endTime < $minStartTime) continue;
+					}
+
+					$startsAtDt->modify($minStartTimeDt->format('Y') . $startsAtDt->format('-m-d H:i:s'));
+					$endsAtDt->modify(date('Y-m-d H:i:s', strtotime($startsAtDt->format('Y-m-d H:i:s')) + $length));
+					
+					$eventHash['starts_at'] = $startsAtDt->format('Y-m-d H:i:s');
+					$eventHash['ends_at'] 	= $endsAtDt->format('Y-m-d H:i:s');
+					
+					$startTime = strtotime($eventHash['starts_at']);
+					$endTime = strtotime($eventHash['ends_at']);
+				} else if ($type == 'month'){
+					if ($extra == 'no'){
+						if (abs($minStartTimeDt->format('n') - $startsAtDt->format('n')) % $count === 0) continue;
+					} else if ($extra > 0){
+						if (($startsAtDt->format('Y') >= $minStartTimeDt->format('Y')) && (($startsAtDt->format('n') + ($extra -1)) > $minStartTimeDt->format('n'))) continue;
+					} else if (!is_null($extra)){
+						if ($endTime < $minStartTime) continue;
+					}
+
+					$startsAtDt->modify($minStartTimeDt->format('Y-m') . $startsAtDt->format('-d H:i:s'));
+					$endsAtDt->modify(date('Y-m-d H:i:s', strtotime($startsAtDt->format('Y-m-d H:i:s')) + $length));
+						
+					$eventHash['starts_at'] = $startsAtDt->format('Y-m-d H:i:s');
+					$eventHash['ends_at'] 	= $endsAtDt->format('Y-m-d H:i:s');
+					
+					$startTime = strtotime($eventHash['starts_at']);
+					$endTime = strtotime($eventHash['ends_at']);
+				} else {
+					continue;
+				}
+			} 
+			
+			if ($startsAtDt->format('Y-m-d') != $endsAtDt->format('Y-m-d')){
 				//Multi day event
 				$days = 0;
 				
@@ -112,6 +159,8 @@ class Mailinglist extends BaseMailinglist{
 			} else if ($startTime >= $minStartTime && $startTime <= $maxStartTime) $eventsHash[] = $eventHash;
 		}
 		
+		
+		
 		//Set time for display
 		foreach ($eventsHash as &$eventHash){
 			$sTime = date('H:i:s', strtotime($eventHash['starts_at']));
@@ -127,9 +176,9 @@ class Mailinglist extends BaseMailinglist{
 			
 		}
 		
-		//Utils::pp($eventsHash);
-		
 		usort($eventsHash, 'Mailinglist::sortStartsAt');
+		
+		//Utils::pp($eventsHash);
 		
 		return $eventsHash;
 	}
@@ -191,7 +240,8 @@ class Mailinglist extends BaseMailinglist{
 	}
 	
 	public function send(){
-		
+		$events = $this->getEvents();
+		if (empty($events)) return;
 		
 		$mail = new PHPMailer();
 		$mail->IsSMTP();
@@ -223,14 +273,15 @@ class Mailinglist extends BaseMailinglist{
 		
 		//$mail->AddAttachment('D:\WS\PHP\sportycal\lib\model\PHPMailer\examples\images\phpmailer_mini.gif');
 		if ($mail->Send()){
-			$mailinglist->setSendAt(date('Y-m-d g:i:s'));
-			$mailinglist->save();
+			$this->setSendAt(date('Y-m-d g:i:s'));
+			$this->save();
 			
 			sleep(rand(1, 3));
 		}
 	}
 	
 	public static function sortStartsAt($a, $b){
-		return (strtotime($a['starts_at']) - strtotime($b['starts_at'])) + (strtotime($a['ends_at']) - strtotime($b['ends_at']));
+		//return (strtotime($a['starts_at']) - strtotime($b['starts_at'])) + (strtotime($a['ends_at']) - strtotime($b['ends_at']));
+		return (strtotime($a['starts_at']) - strtotime($b['starts_at']));
 	}
 }

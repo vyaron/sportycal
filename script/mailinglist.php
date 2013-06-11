@@ -28,7 +28,7 @@ function setMailinglist(){
 
 function sendMails(){
 	do {
-		$mailinglists = MailinglistTaskTable::getAll();
+		$mailinglists = MailinglistTable::getAll();
 		
 		foreach ($mailinglists as $i => $mailinglist){
 			$mailinglist->send();

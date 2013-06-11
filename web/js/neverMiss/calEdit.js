@@ -29,8 +29,9 @@ function loadCalendar(){
 	
 	//scheduler.config.server_utc = true; //convert server side dates from utc to local timezone, and backward during data sending to server;
 	
-	/*
+	
 	// Recurring events
+	/*
 	scheduler.attachEvent("onTemplatesReady", function(){
 		var lightbox_form = scheduler.getLightbox(); // this will generate lightbox form
 		var inputs = lightbox_form.getElementsByTagName('input');
@@ -100,16 +101,11 @@ function loadCalendar(){
 		height : 43,
 		type : "textarea",
 		map_to : "location"
-	}, /*{
+	},/* {
 		name : "recurring",
 		type : "recurring",
 		map_to : "rec_type",
 		button : "recurring"
-	},{
-		name : "time",
-		height : 72,
-		type : "time",
-		map_to : "auto"
 	}*/];
 	
 	scheduler.init('scheduler_here', new Date(), "month");

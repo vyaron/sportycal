@@ -79,7 +79,7 @@ class MailinglistTable extends Doctrine_Table {
 		->innerJoin('ml.User u')
 		->limit($limit);
 	
-		if ($openTasks) $q->where('mlt.send_at IS NULL');
+		if ($openTasks) $q->where('ml.send_at IS NULL');
 	
 		return $q->execute();
 	}
