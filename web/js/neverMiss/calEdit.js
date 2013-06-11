@@ -4,8 +4,11 @@ function reloadCalendar(){
 }
 
 function loadCalendar(){
+	scheduler.locale.labels.full_day = 'All Day';
+	
 	//scheduler.config.touch = "force";
 	scheduler.config.xml_date = "%Y-%m-%d %H:%i";
+	
 	scheduler.config.prevent_cache = true;
 	//scheduler.config.first_hour = 4;
 	scheduler.locale.labels.section_location = "Location";
@@ -83,6 +86,11 @@ function loadCalendar(){
 		type : "textarea",
 		focus : true
 	}, {
+		name : "time",
+		height : 110,
+		type : "datetime",
+		map_to : "auto"
+	}, {
 		name : "description",
 		height : 130,
 		map_to : "details",
@@ -97,12 +105,12 @@ function loadCalendar(){
 		type : "recurring",
 		map_to : "rec_type",
 		button : "recurring"
-	},*/ {
+	},{
 		name : "time",
 		height : 72,
 		type : "time",
 		map_to : "auto"
-	}];
+	}*/];
 	
 	scheduler.init('scheduler_here', new Date(), "month");
 	scheduler.load("/nm/calEvents/?id=" + gCalId, 'json');

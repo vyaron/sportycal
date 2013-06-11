@@ -1,6 +1,14 @@
 <?php 
+
+//jquery-ui.min.css
+use_stylesheet('/bundle/jquery/themes/base/minified/jquery-ui.min.css');
+use_stylesheet('/bundle/jquery/themes/base/minified/jquery.ui.datepicker.min.css');
+use_stylesheet('/bundle/jquery-timepicker/css/jquery.timepicker.css');
+
 use_stylesheet('/bundle/dhtmlxScheduler/codebase/dhtmlxscheduler.css');
 use_stylesheet('/bundle/dhtmlxScheduler/codebase/dhtmlxscheduler_dhx_terrace.css');
+use_stylesheet('/bundle/dhtmlxScheduler/codebase/ext/dhtmlxscheduler_datetime.css');
+
 use_stylesheet('/bundle/jquery-file-upload/css/jquery.fileupload-ui.css');
 use_stylesheet('/css/neverMiss/calEdit.css');
 ?>
@@ -18,7 +26,7 @@ use_stylesheet('/css/neverMiss/calEdit.css');
 </div>
 
 
-<div id="scheduler_here" class="dhx_cal_container" style="width: 100%; height: 100%; min-height:500px; line-height:normal;">
+<div id="scheduler_here" class="dhx_cal_container" style="width: 100%; height:500px; line-height:normal;">
 	<div class="dhx_cal_navline">
 		<div class="dhx_cal_prev_button">&nbsp;</div>
 		<div class="dhx_cal_next_button">&nbsp;</div>
@@ -96,6 +104,8 @@ use_stylesheet('/css/neverMiss/calEdit.css');
 
 <?php 
 use_javascript('/bundle/jquery/js/jquery-ui-1.10.3.custom.min.js');
+use_javascript('/bundle/jquery-timepicker/js/jquery.timepicker.min.js');
+
 use_javascript('/bundle/bootstrap/js/bootstrap.min.js');
 use_javascript('/bundle/dhtmlxScheduler/codebase/dhtmlxscheduler.js');
 
@@ -103,6 +113,8 @@ use_javascript('/bundle/dhtmlxScheduler/codebase/ext/dhtmlxscheduler_dhx_terrace
 use_javascript('/bundle/dhtmlxScheduler/codebase/ext/dhtmlxscheduler_quick_info.js');
 use_javascript('/bundle/dhtmlxScheduler/codebase/ext/dhtmlxscheduler_recurring.js');
 use_javascript('/bundle/dhtmlxScheduler/codebase/ext/dhtmlxscheduler_minical.js');
+
+use_javascript('/bundle/dhtmlxScheduler/sources/ext/dhtmlxscheduler_datetime.js');
 
 use_javascript('/bundle/jquery-plugin-validation/js/jquery.validate.min.js');
 use_javascript('/bundle/jquery-file-upload/js/jquery.iframe-transport.js');

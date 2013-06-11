@@ -23,14 +23,14 @@
 }
 
 /*Fix left border issue*/
-.dhx_cal_data tr td:first-child .dhx_month_head, .dhx_cal_data tr td:first-child  .dhx_month_body{border-left: 1px solid #cecece;}
-.dhx_cal_data tr td:first-child{width: 100%;}
-.dhx_cal_data tr td:first-child .dhx_month_body{width: auto !important;}
 
-.dhx_scheduler_month .dhx_cal_header .dhx_scale_bar:first-child, .dhx_scheduler_week .dhx_scale_holder .dhx_scale_hour, .dhx_scheduler_day .dhx_scale_holder .dhx_scale_hour, .dhx_scheduler_day .dhx_cal_header .dhx_scale_bar, .dhx_scheduler_week .dhx_cal_header{background: 0 0 repeat-y url("/images/neverMiss/calLeftBorder.gif");}
-.dhx_scheduler_day .dhx_cal_header .dhx_scale_bar, .dhx_scheduler_week .dhx_cal_header{background-position: right 0;}
+.dhx_scheduler_month .dhx_month_head{width: auto !important;}
+.dhx_multi_day{width: 100% !important;}
+.dhx_cal_data tr td:first-child .dhx_month_head, .dhx_cal_data tr td:first-child  .dhx_month_body, .dhx_scheduler_month .dhx_cal_header .dhx_scale_bar:first-child, .dhx_scheduler_week .dhx_scale_holder .dhx_scale_hour, .dhx_scheduler_day .dhx_scale_holder .dhx_scale_hour, .dhx_scheduler_day .dhx_cal_header .dhx_scale_bar, .dhx_multi_day{background: 0 0 repeat-y url("/images/neverMiss/calLeftBorder.gif");}
+.dhx_scheduler_day .dhx_cal_header .dhx_scale_bar, .dhx_multi_day{background-position: right 0;}
 .dhx_scheduler_week .dhx_cal_header .dhx_scale_bar{background: transparent;}
-.dhx_cal_container.dhx_scheduler_week, .dhx_cal_container.dhx_scheduler_day{border-bottom: 1px solid #cecece;}
+.dhx_multi_day_icon_small{border-left: 1px solid #cecece; width: 49px !important;}
+.dhx_scheduler_week, .dhx_scheduler_day, .dhx_scheduler_month{border-bottom: 1px solid #cecece;}
 
 #clear-events{margin-top: 25px; display: inline-block;}
 

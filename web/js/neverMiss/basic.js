@@ -1,3 +1,7 @@
+function cl(mix){
+	if (console && console.log) console.log(mix);
+}
+
 function setGlobalError(content){
 	var elStr = jQuery('#DUMMY_GLOBAL_ERROR').html();
 	elStr = elStr.replace('{CONTENT}', content);

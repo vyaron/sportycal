@@ -66,7 +66,7 @@ body{background-color: transparent;}
 		<a class="cal-link google" href="#" data-href="/cal/sub/id/<?php echo $calId?>/ct/google/ref/widget/cal.ics" data-desc="<?php echo __('Download to Google calendar');?>">&nbsp;</a>
 		<a class="cal-link outlook" href="#" data-href="/cal/sub/id/<?php echo $calId?>/ct/outlook/ref/widget/cal.ics" data-desc="<?php echo __('Download to Outlook calendar');?>">&nbsp;</a>
 		<a class="cal-link ical" href="#" data-href="/cal/sub/id/<?php echo $calId?>/ct/any/ref/widget/cal.ics" data-desc="<?php echo __('Copy iCal link');?>">&nbsp;</a>
-		<a class="cal-link email" href="#">&nbsp;</a>
+		<!-- <a class="cal-link email" href="#">&nbsp;</a> -->
 	</div>
 	
 	<div id="email-desc-wrapper" style="display:none;">

@@ -156,6 +156,10 @@ class nmActions extends sfActions{
 		else if (UserUtils::getUserTzValue()) 	$tz = UserUtils::getUserTzValue();
 		else 									$tz = 0;
 		
+		//Update TZ on session
+		UserUtils::setUserTZ(GeneralUtils::$timezones[$tz]);
+		UserUtils::setUserTzValue($tz);
+		
 		$this->tzFullName = $event ? (GeneralUtils::getUTCStrFromJSTZ($tz) . ' - ' . GeneralUtils::$timezones[$tz]) : null;
 		
 		$this->form = new NmCalForm();
