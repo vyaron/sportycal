@@ -13,7 +13,7 @@ class nmActions extends sfActions{
 		
 		$tz = UserUtils::getUserTZ() ? UserUtils::getUserTZ() : null;
 		
-		//$content = file_get_contents('E:/temp/idoLempert_1.ics');
+		//$content = file_get_contents('E:/temp/cal.ics');
 		//$export = new ICalExporter();
 		//$eventsHash = $export->toHash($content);
 		//Utils::pp($eventsHash);
@@ -55,8 +55,8 @@ class nmActions extends sfActions{
 					$event->setUpdatedAt($startDate);
 					$event->setRecType($recType);
 					$event->setLength($length);
-
-					if ($eventHash['event_pid'] === 0) $collectionEvent->add($event, $eventHash['id']);
+					
+					if ($eventHash['event_pid'] == 0) $collectionEvent->add($event, $eventHash['id']);
 					else $childEvents[$eventHash['event_id']] = $event;
 				}
 

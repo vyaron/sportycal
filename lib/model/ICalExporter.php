@@ -159,7 +159,7 @@ class ICalExporter {
 		$str .= "VERSION:2.0\n";
 		$str .= "PRODID:-//sportYcal//NONSGML v2.2//EN\n";
 		$str .= "CALSCALE:GREGORIAN\n";
-		$str .= "X-WR-TIMEZONE;VALUE=TEXT:US/Pacific\n";
+		$str .= "X-WR-TIMEZONE;VALUE=TEXT:GMT\n";
 		$str .= "METHOD:PUBLISH\n";
 
 		$title = $this->getTitle();
@@ -265,7 +265,7 @@ class ICalExporter {
 		for($x=1;$x<sizeof($arr);$x++) {
 			$arr2 = explode("\n",$arr[$x]);
 			for($y=1;$y<sizeof($arr2);$y++) {
-				$mas = explode(":",$arr2[$y]);
+				$mas = explode(":",$arr2[$y], 2);
 				$mas_ = explode(";",$mas[0]);
 				if(isset($mas_[0])){
 					$mas[0] = $mas_[0];
@@ -425,7 +425,7 @@ class ICalExporter {
 		$id = 1;
 		for($i=1;$i<=sizeof($arr_p);$i++) {
 			$startDate = strtotime($arr_p[$i]['start_date']);
-			if ($minStartDate > $startDate) continue;
+			if (! $arr_p[$i]['type'] && ($minStartDate > $startDate)) continue;
 			
 			if(isset($arr_p[$i]['rec_id'])){
 				$arr_n[$i]['event_id'] = $arr_p[$i]['event_id'];

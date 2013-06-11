@@ -31,7 +31,7 @@ use_stylesheet('/css/neverMiss/calEdit.css');
 		<div class="dhx_cal_prev_button">&nbsp;</div>
 		<div class="dhx_cal_next_button">&nbsp;</div>
 		<div class="dhx_cal_today_button"></div>
-		<!-- <div class="cal_import_button">Import</div> -->
+		<div class="cal_import_button">Import</div>
 		<div class="dhx_cal_date"></div>
 		<div class="dhx_cal_tab" name="day_tab" style="right: 204px;"></div>
 		<div class="dhx_cal_tab" name="week_tab" style="right: 140px;"></div>
@@ -63,7 +63,7 @@ use_stylesheet('/css/neverMiss/calEdit.css');
 		<h3 id="myModalLabel">Import calendar</h3>
 	</div>
 	<div class="modal-body">
-		<p>Add a calendar that you want to import:</p>
+		<p>Choose the file that contains your events. iNeverMiss Calendar can import event information in iCal:</p>
 		<span class="btn btn-success fileinput-button">
 			<span id="ical-fileupload-loading-label" style="display:none;"><i class="icon-loading icon-white"></i> Uploading...</span>
 			<span id="ical-fileupload-label" ><i class="icon-plus icon-white"></i> Select Calendar *.ics</span>
