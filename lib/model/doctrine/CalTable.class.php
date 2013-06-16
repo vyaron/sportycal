@@ -50,6 +50,7 @@ class CalTable extends Doctrine_Table
     	
     	$calId2CalIndex = array();
     	foreach ($cals as $i => $cal){
+    		if (!$cal['id']) unset($cals[$i]);
     		$cal['cal_request_count'] = 0;
     		$calId2Index[$cal['id']] = $i;
     	}
