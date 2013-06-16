@@ -11,7 +11,7 @@ class LoginForm extends BaseForm
 
 	$this->setValidators(array(
       'email'   => new sfValidatorEmail(),
-      'password' => new sfValidatorString(array('min_length' => 4))
+      'password' => new sfValidatorString()
     ));
 
     $this->widgetSchema->setNameFormat('user[%s]');
