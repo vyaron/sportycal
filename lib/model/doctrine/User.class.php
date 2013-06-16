@@ -33,7 +33,7 @@ class User extends BaseUser
     public function getPartner(){
     	$partner = null;
     	
-    	if ($this->isPartner()) $partner = Doctrine_Query::create()
+    	if ($this->isPartner() || $this->isMaster()) $partner = Doctrine_Query::create()
   			->from('Partner p')
   			->innerJoin('p.PartnerUser pu')
 			->where('pu.user_id = ?', $this->getId())
