@@ -1,7 +1,7 @@
 <?php
 class nmActions extends sfActions{
 	public function executeIndex(sfWebRequest $request){
-
+		
 	}
 	
 	//TODO: check defarent Timezones cals
@@ -88,9 +88,7 @@ class nmActions extends sfActions{
 		$user = UserUtils::getLoggedIn();
 		if (!$user) $this->redirect('partner/login');
 		
-		$cals = array();
-		
-		$cals = $user->getCals();
+		$cals = CalTable::getCalList($user->getId());
 		
 		$this->cals = $cals;
 	}
@@ -123,6 +121,8 @@ class nmActions extends sfActions{
 	}
 	
 	public function executeCalCreate(sfWebRequest $request){
+		$dateNow = date("Y-m-d g:i");
+		
 		$currCalId = UserUtils::getOrphanCalId();
 		if ($currCalId) {
 			$user = UserUtils::getLoggedIn();
@@ -130,6 +130,8 @@ class nmActions extends sfActions{
 			$this->forward404Unless($cal && $cal->isOwner($user), sprintf('Object cal does not exist (%s).', $request->getParameter('id')));
 		} else {
 			$cal = new Cal();
+			$cal->setCreatedAt($dateNow);
+			$cal->setUpdatedAt($dateNow);
 			$cal->setIsPublic(false);
 			$cal->setCategoryId(Category::CTG_NEVER_MISS);
 			$cal->setCategoryIdsPath(Category::CTG_NEVER_MISS);

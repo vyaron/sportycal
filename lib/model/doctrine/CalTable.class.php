@@ -36,7 +36,40 @@ class CalTable extends Doctrine_Table
         $cals = $q->execute();
         return $cals;
     }
-
     
-    
+    public static function getCalList($userId){
+    	$q = Doctrine_Query::create()
+	    	->select('c.id, c.name, c.updated_at, COUNT(e.id) event_count')
+	    	->from('Cal c')
+	    	->leftJoin('c.Event e')
+	    	->where('c.by_user_id = ?', $userId)
+	    	->andWhere('c.deleted_at IS NULL')
+	    	->orderBy('c.updated_at DESC');
+    	
+    	$cals = $q->fetchArray();
+    	
+    	$calId2CalIndex = array();
+    	foreach ($cals as $i => $cal){
+    		$cal['cal_request_count'] = 0;
+    		$calId2Index[$cal['id']] = $i;
+    	}
+    	
+    	$calIds = array_keys($calId2Index);
+    	if (count($calIds)){
+    		$q = Doctrine_Query::create()
+	    		->select('c.id, COUNT(cr.id) cal_request_count')
+	    		->from('Cal c')
+	    		->leftJoin('c.CalRequest cr')
+	    		->whereIn('c.id', $calIds)
+	    		->andWhere('c.deleted_at IS NULL')
+	    		->groupBy('cr.cal_id');
+    		$calRequests = $q->fetchArray();
+    		
+    		foreach ($calRequests as $calRequest){
+    			$cals[$calId2Index[$calRequest['id']]]['cal_request_count'] = $calRequest['cal_request_count'];
+    		}
+    	}
+    	
+    	return $cals;
+    }
 }

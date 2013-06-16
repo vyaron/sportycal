@@ -3,15 +3,32 @@
 <?php if (!count($cals)): ?>
 <p>No calendars!</p>
 <?php else:?>
-	<?php foreach ($cals as $cal):?>
-	<div class="row-fluid">
-		<div class="span4"><?php echo $cal->getName();?></div>
-		<div class="span4">
-			<a class="btn btn-mini" href="<?php echo url_for('nm/calEdit/?id=' . $cal->getId());?>"><i class="icon-pencil"></i> Edit</a>
-			<a class="btn btn-mini delete-cal" href="<?php echo url_for('nm/calDelete/?id=' . $cal->getId());?>" data-name="<?php echo $cal->getName();?>"><i class="icon-trash"></i> Delete</a>
-		</div>
-	</div>	
-	<?php endforeach;?>
+	<table class="table table-striped">
+		<thead>
+			<tr>
+				<th>Date</th>
+				<th>Name</th>
+				<th>Events</th>
+				<th>subscribers</th>
+				<th>&nbsp;</th>
+			</tr>
+		</thead>
+		<tbody>
+		<?php foreach ($cals as $cal):?>
+			<tr>
+				<td><?php echo date('Y-m-d H:s', strtotime($cal['updated_at']));?></td>
+				<td><?php echo $cal['name'];?></td>
+				<td><?php echo $cal['event_count'];?></td>
+				<td><?php echo $cal['cal_request_count'];?></td>
+				<td>
+					<a class="btn btn-mini" href="<?php echo url_for('nm/widget/?calId=' . $cal['id']);?>">&lt;Embed/&gt;</a>
+					<a class="btn btn-mini" href="<?php echo url_for('nm/calEdit/?id=' . $cal['id']);?>"><i class="icon-pencil"></i> Edit</a>
+					<a class="btn btn-mini delete-cal" href="<?php echo url_for('nm/calDelete/?id=' . $cal['id']);?>" data-name="<?php echo $cal['name'];?>"><i class="icon-trash"></i> Delete</a>
+				</td>
+			</tr>
+		<?php endforeach;?>
+		</tbody>
+	</table>
 <?php endif;?>
 <a class="btn btn-success" href="<?php echo url_for('nm/calCreate')?>" title="Click here to create new calendar"><i class="icon-plus"></i> Create calendar</a>
 
