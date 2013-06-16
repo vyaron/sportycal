@@ -24,6 +24,7 @@ all:
     isMobile: false
     short: www.sportycal.com
     full:  http://www.sportycal.com
+    name: sportYcal
   captha:
     dir: /images/captchas/
     rootDir: %SF_WEB_DIR%/images/captchas/

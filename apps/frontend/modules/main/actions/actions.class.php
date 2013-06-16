@@ -76,7 +76,6 @@ class mainActions extends sfActions
 
   public function executeFbLogin(sfWebRequest $request)
   {
-  	
     $fbLoginSuccess = false;
     //$fbCookie = FacebookUtils::getCookie(FACEBOOK_APP_ID, FACEBOOK_SECRET);
 	
@@ -110,6 +109,15 @@ class mainActions extends sfActions
     
     $gotoPage = $request->getParameter('gt');
     if ($gotoPage) $this->redirect($gotoPage);
+    
+    //Redirect to referer
+    if (sfConfig::get('app_domain_isNeverMiss')){
+	    $refererUrl = UserUtils::getRefererUrl();
+	    if ($refererUrl) {
+	    	UserUtils::setRefererUrl(null);
+	    	$this->redirect($refererUrl);
+	    }
+    }
     
     //die("Done");
     $this->redirect('main/index');

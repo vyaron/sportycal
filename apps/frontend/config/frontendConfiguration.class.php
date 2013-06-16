@@ -14,6 +14,8 @@ class frontendConfiguration extends sfApplicationConfiguration
   	if ((strpos(strtolower($_SERVER['HTTP_HOST']), 'inevermiss.') !== false)) sfConfig::set('app_domain_isNeverMiss', true);
   	
   	if (sfConfig::get('app_domain_isNeverMiss')){
+  		sfConfig::set('app_domain_name', 'iNeverMiss');
+  		
   		if ($this->getEnvironment() == 'dev'){
   			sfConfig::set('app_domain_short', 'inevermiss.local');
   			sfConfig::set('app_domain_full', 'http://inevermiss.local');

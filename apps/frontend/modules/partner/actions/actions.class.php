@@ -110,8 +110,8 @@ class partnerActions extends sfActions
 			
 			$refererUrl = UserUtils::getRefererUrl();
 			if ($refererUrl) {
+				UserUtils::setRefererUrl(null);
 				$this->redirect($refererUrl);
-				serUtils::setRefererUrl(null);
 			} else $this->redirect('@homepage');
         }
     
@@ -130,6 +130,8 @@ class partnerActions extends sfActions
   	if ($request->isMethod('post')) {
 		$this->processLoginForm($request, $this->form);
   	}
+  	
+  	if (sfConfig::get('app_domain_isNeverMiss')) $this->setTemplate('login', 'nm');
   }
   
 
