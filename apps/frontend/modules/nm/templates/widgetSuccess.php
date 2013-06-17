@@ -91,8 +91,12 @@
 		<?php endif;?>
 	</div>
 	<div class="span6">
-		<legend>Preview:</legend>
+		<legend>Desktop Preview:</legend>
 		<?php echo sfOutputEscaperGetterDecorator::unescape($code);?>
+		<br/>
+		<br/>
+		<legend>Mobile Preview:</legend>
+		<div data-is-mobile="true" data-language="en" data-cal-id="8897" class="nm-follow"></div>
 	</div>
 </div>
 

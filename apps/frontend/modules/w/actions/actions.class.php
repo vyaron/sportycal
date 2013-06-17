@@ -10,6 +10,7 @@ class wActions extends sfActions{
 		$this->calId = $request->getParameter('calId');
 		$this->popupId = $request->getParameter('popupId');
 		$this->language = $request->getParameter('language');
+		$this->isMobile = $request->getParameter('isMobile', Utils::clientIsMobile());
 		
 		if (!($this->calId && $this->popupId)){
 			echo 'ERROR!!!';

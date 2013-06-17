@@ -5,9 +5,14 @@
 </head>
 <link rel="stylesheet" href="/widgets/neverMiss/css/main.css"/>
 <style>
-#never-miss-btn{background: url('/widgets/neverMiss/imgs/btn.jpg') no-repeat 0 0; display: block; height:20px; width:45px; text-decoration: none;}
+#never-miss-btn, #never-miss-mobile-btn{background: url('/widgets/neverMiss/imgs/btn.jpg') no-repeat 0 0; display: block; height:20px; width:45px; text-decoration: none;}
+#never-miss-mobile-btn{background: url('/widgets/neverMiss/imgs/mobile-btn.jpg') no-repeat 0 0;}
 </style>
 <body>
+<?php if ($isMobile):?>
+<a id="never-miss-mobile-btn" target="<?php echo Utils::clientIsAndroid() ? '_blank' : 'attachment';?>" href="/cal/sub/id/8897/ct/mobile/ref/widget/cal.ics">&nbsp;</a>
+<iframe name="attachment" style="width: 1px; height: 1px; border: 0;"></iframe>
+<?php else:?>
 <a id="never-miss-btn" href="<?php echo url_for('w/neverMissPopup/?calid=' . $calId . ($language ? ('&language=' . $language) : ''))?>">&nbsp;</a>
 
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
@@ -40,5 +45,6 @@ jQuery(document).ready(function(){
 	});
 });
 </script>
+<?php endif;?>
 </body>
 </html>
