@@ -12,7 +12,10 @@ class wActions extends sfActions{
 		$this->language = $request->getParameter('language');
 		$this->isMobile = $request->getParameter('isMobile', Utils::clientIsMobile());
 		
-		if (!($this->calId && $this->popupId)){
+		$cal = Doctrine::getTable('Cal')->find(array($this->calId));
+		$this->isReachedMaxSubscribers = $cal->isReachedMaxSubscribers();
+		
+		if (!($cal && $this->calId && $this->popupId)){
 			echo 'ERROR!!!';
 			return sfView::NONE;
 		}

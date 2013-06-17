@@ -1,3 +1,6 @@
+ALTER TABLE `partner` ADD `max_subscribers` INT UNSIGNED NULL DEFAULT '100';
+
+----------------------------DONE ON PROD-------------------------------------------------------
 ALTER TABLE `user` CHANGE `type` `type` ENUM( 'SIMPLE', 'MASTER', 'PARTNER', 'MAILINGLIST' ) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT 'SIMPLE';
 
 ALTER TABLE `user` 

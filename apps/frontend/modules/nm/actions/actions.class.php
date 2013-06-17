@@ -88,11 +88,16 @@ class nmActions extends sfActions{
 		$user = UserUtils::getLoggedIn();
 		if (!$user) $this->redirect('partner/login');
 		
+		$maxSubcribers = null;
+		$partner = $user->getPartner();
+		if ($partner) $maxSubcribers = $partner->getMaxSubscribers();
+		
 		$offset = $request->getParameter('p', 0);
 		
 		$calList = CalTable::getCalList($user->getId(), $offset);
 		
 		$this->calList = $calList;
+		$this->maxSubcribers = $maxSubcribers;
 	}
 	
 	public function executeCalDelete(sfWebRequest $request){

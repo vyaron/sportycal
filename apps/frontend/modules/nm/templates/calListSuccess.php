@@ -24,7 +24,7 @@
 			<td><?php echo $cal['name'];?></td>
 			<td><?php echo $cal['event_count'];?></td>
 			<td>
-				<span class="<?php echo ($cal['cal_request_count'] > 100) ? 'strong-subscribers' : '';?>"><?php echo $cal['cal_request_count'];?></span>
+				<span class="<?php echo ($maxSubcribers && $cal['cal_request_count'] >= $maxSubcribers) ? 'max-subscribers' : '';?>"><?php echo $cal['cal_request_count'];?></span>
 			</td>
 			<td>
 				<div class="cal-active">

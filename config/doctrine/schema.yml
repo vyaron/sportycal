@@ -1423,6 +1423,14 @@ Partner:
       primary: false
       notnull: false
       autoincrement: false
+    max_subscribers:
+      type: integer(4)
+      fixed: false
+      unsigned: true
+      primary: false
+      default: '100'
+      notnull: false
+      autoincrement: false
   relations:
     Alias:
       local: id

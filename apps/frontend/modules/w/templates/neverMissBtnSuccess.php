@@ -5,11 +5,15 @@
 </head>
 <link rel="stylesheet" href="/widgets/neverMiss/css/main.css"/>
 <style>
-#never-miss-btn, #never-miss-mobile-btn{background: url('/widgets/neverMiss/imgs/btn.jpg') no-repeat 0 0; display: block; height:20px; width:45px; text-decoration: none;}
+#never-miss-btn, #never-miss-mobile-btn, #never-miss-disabled-btn{background: url('/widgets/neverMiss/imgs/btn.jpg') no-repeat 0 0; display: block; height:20px; width:45px; text-decoration: none;}
 #never-miss-mobile-btn{background: url('/widgets/neverMiss/imgs/mobile-btn.jpg') no-repeat 0 0;}
+
+#never-miss-disabled-btn{cursor: not-allowed; opacity:0.3; filter:alpha(opacity=30);}
 </style>
 <body>
-<?php if ($isMobile):?>
+<?php if ($isReachedMaxSubscribers):?>
+<a id="never-miss-disabled-btn" title="<?php echo __('You have the maximum number Subscriptions');?>">&nbsp</a>
+<?php elseif ($isMobile):?>
 <a id="never-miss-mobile-btn" target="<?php echo Utils::clientIsAndroid() ? '_blank' : 'attachment';?>" href="/cal/sub/id/8897/ct/mobile/ref/widget/cal.ics">&nbsp;</a>
 <iframe name="attachment" style="width: 1px; height: 1px; border: 0;"></iframe>
 <?php else:?>
