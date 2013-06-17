@@ -1,0 +1,6 @@
+@CHARSET "utf-8";
+.strong-subscribers{font-weight: bold; background-color: yellow; padding: 3px 5px;}
+
+.cal-is-deleted{color: lightgray;}
+.cal-active, .cal-deleted{display: none;}
+.cal-is-deleted .cal-deleted, .cal-is-active .cal-active{display: block;}

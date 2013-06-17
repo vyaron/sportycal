@@ -120,7 +120,8 @@ class mainActions extends sfActions
     }
     
     //die("Done");
-    $this->redirect('main/index');
+    if (sfConfig::get('app_domain_isNeverMiss')) $this->redirect('/nm/calList');
+    else $this->redirect('main/index');
   }
 
 

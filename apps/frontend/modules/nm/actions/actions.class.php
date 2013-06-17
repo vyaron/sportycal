@@ -88,22 +88,48 @@ class nmActions extends sfActions{
 		$user = UserUtils::getLoggedIn();
 		if (!$user) $this->redirect('partner/login');
 		
-		$cals = CalTable::getCalList($user->getId());
+		$offset = $request->getParameter('p', 0);
 		
-		$this->cals = $cals;
+		$calList = CalTable::getCalList($user->getId(), $offset);
+		
+		$this->calList = $calList;
 	}
 	
 	public function executeCalDelete(sfWebRequest $request){
+		$res = array('success' => false, 'msg' => 'Calendar not deleted!');
+		
 		$user = UserUtils::getLoggedIn();
 		$cal = Doctrine::getTable('Cal')->find(array($request->getParameter('id')));
-		$this->forward404Unless($cal && $cal->isOwner($user), sprintf('Object cal does not exist (%s).', $request->getParameter('id')));
 		
-		//$cal->delete();
-		$dateNow = date("Y-m-d g:i:s");
-		$cal->setDeletedAt($dateNow);
-		$cal->save();
+		if ($cal && $cal->isOwner($user)){
+			$dateNow = date("Y-m-d g:i:s");
+			$cal->setDeletedAt($dateNow);
+			$cal->save();
+			
+			$res['success'] = true;
+			$res['msg'] = $cal->getName() . ' calendar deleted.';
+		}
 		
-		$this->redirect('nm/calList');
+		echo json_encode($res);
+		return sfView::NONE;
+	}
+	
+	public function executeCalRestore(sfWebRequest $request){
+		$res = array('success' => false, 'msg' => 'Calendar not restored!');
+		
+		$user = UserUtils::getLoggedIn();
+		$cal = Doctrine::getTable('Cal')->find(array($request->getParameter('id')));
+
+		if ($cal && $cal->isOwner($user)){
+			$cal->setDeletedAt(null);
+			$cal->save();
+			
+			$res['success'] = true;
+			$res['msg'] = $cal->getName() . ' calendar restored.';
+		}
+	
+		echo json_encode($res);
+		return sfView::NONE;
 	}
 	
 	public function executeCalEventsClear(sfWebRequest $request){

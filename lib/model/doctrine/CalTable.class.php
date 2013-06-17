@@ -37,17 +37,25 @@ class CalTable extends Doctrine_Table
         return $cals;
     }
     
-    public static function getCalList($userId){
+    public static function getCalList($userId, $offset=0, $limit = 10){
     	$q = Doctrine_Query::create()
-	    	->select('c.id, c.name, c.updated_at, COUNT(e.id) event_count')
 	    	->from('Cal c')
-	    	->leftJoin('c.Event e')
 	    	->where('c.by_user_id = ?', $userId)
-	    	->andWhere('c.deleted_at IS NULL')
-	    	->orderBy('c.updated_at DESC');
+	    	->orderBy('c.deleted_at ASC, c.updated_at DESC');
+    	
+    	$total = $q->select('COUNT(c.id) AS cal_count')->fetchArray();
+    	
+    	if (isset($total[0]) && isset($total[0]['cal_count'])) $total = $total[0]['cal_count'];
+    	else $total = 0;
+    	
+    	$q->select('c.id, c.name, c.updated_at, c.deleted_at, COUNT(e.id) event_count')
+    		->leftJoin('c.Event e')
+    		->groupBy('c.id')
+    		->offset($offset)
+    		->limit($limit);
     	
     	$cals = $q->fetchArray();
-    	
+
     	$calId2CalIndex = array();
     	foreach ($cals as $i => $cal){
     		if (!$cal['id']) unset($cals[$i]);
@@ -71,6 +79,13 @@ class CalTable extends Doctrine_Table
     		}
     	}
     	
-    	return $cals;
+    	$calList = array(
+    		'offset' => $offset,
+    		'limit' => $limit,
+    		'total' => $total,
+    		'data' => $cals		
+    	);
+
+    	return $calList;
     }
 }

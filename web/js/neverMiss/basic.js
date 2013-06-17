@@ -2,6 +2,13 @@ function cl(mix){
 	if (console && console.log) console.log(mix);
 }
 
+function setGlobalAlert(res){
+	if (res){
+		if (res.success) setGlobalSuccess(res.msg);
+		else setGlobalError(res.msg);
+	}
+}
+
 function setGlobalError(content){
 	var elStr = jQuery('#DUMMY_GLOBAL_ERROR').html();
 	elStr = elStr.replace('{CONTENT}', content);

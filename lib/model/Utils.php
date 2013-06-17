@@ -845,10 +845,8 @@ class Utils {
 
 	
 	public static function redirectToMobileVersionIfNeeded($controller) {
-		if (!sfConfig::get('app_domain_isMobile') && self::clientIsMobile()) {
+		if (!sfConfig::get('app_domain_isNeverMiss') && !sfConfig::get('app_domain_isMobile') && self::clientIsMobile()) {
 			$file = $_SERVER["REQUEST_URI"];
-			//Utils::pp($file);
-			//Utils::pp("http://m.sportycal.local" . $file);
 			$controller->redirect("http://m.sportycal.com" . $file);				
 		}
 	}

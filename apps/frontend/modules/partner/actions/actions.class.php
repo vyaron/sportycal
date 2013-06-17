@@ -112,7 +112,10 @@ class partnerActions extends sfActions
 			if ($refererUrl) {
 				UserUtils::setRefererUrl(null);
 				$this->redirect($refererUrl);
-			} else $this->redirect('@homepage');
+			} else {
+				if (sfConfig::get('app_domain_isNeverMiss')) $this->redirect('/nm/calList');
+				else $this->redirect('@homepage');
+			}
         }
     
     }
@@ -122,7 +125,7 @@ class partnerActions extends sfActions
   public function executeLogin(sfWebRequest $request){
   	if (sfConfig::get('app_domain_isNeverMiss')){
 	  	$url = $this->getRequest()->getReferer();
-	  	if (!strpos($url, '/partner/login')) UserUtils::setRefererUrl($url);
+	  	if (!strpos($url, '/partner/login') && !strpos($url, '/nm/index')) UserUtils::setRefererUrl($url);
   	}
   	
 	$this->form = new LoginForm();
