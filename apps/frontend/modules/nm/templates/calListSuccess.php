@@ -4,10 +4,11 @@
 <?php if (!$calList['total']): ?>
 <p>No calendars!</p>
 <?php else:?>
-<?php include_partial('pagination', array('list' => $calList)); ?>
+<?php include_partial('pagination', array('list' => $calList, 'url' => '/nm/calList/')); ?>
 <table class="table table-striped">
 	<thead>
 		<tr>
+			<th>#</th>
 			<th>Date</th>
 			<th>Name</th>
 			<th>Events</th>
@@ -16,8 +17,9 @@
 		</tr>
 	</thead>
 	<tbody>
-	<?php foreach ($calList['data'] as $cal):?>
+	<?php foreach ($calList['data'] as $i => $cal):?>
 		<tr id="cal_<?php echo $cal['id'];?>" class="<?php echo ($cal['deleted_at'] ? 'cal-is-deleted' : 'cal-is-active') ?>"/>
+			<td><?php echo ($i + 1);?></td>
 			<td><?php echo date('Y-m-d H:s', strtotime($cal['updated_at']));?></td>
 			<td><?php echo $cal['name'];?></td>
 			<td><?php echo $cal['event_count'];?></td>
@@ -39,7 +41,7 @@
 	</tbody>
 </table>
 
-<?php include_partial('pagination', array('list' => $calList)); ?>
+<?php include_partial('pagination', array('list' => $calList, 'url' => '/nm/calList/')); ?>
 <?php endif;?>
 
 

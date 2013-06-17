@@ -51,7 +51,7 @@ class CalTable extends Doctrine_Table
     	$q->select('c.id, c.name, c.updated_at, c.deleted_at, COUNT(e.id) event_count')
     		->leftJoin('c.Event e')
     		->groupBy('c.id')
-    		->offset($offset)
+    		->offset($offset * $limit)
     		->limit($limit);
     	
     	$cals = $q->fetchArray();
