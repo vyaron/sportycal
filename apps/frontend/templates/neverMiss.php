@@ -12,9 +12,13 @@
 <!doctype html>
 <html lang="en">
   <head>
-    <title>Never Miss Website</title>
+  	<meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <meta name="keywords" content="calendar, google calendar, outlook calendar, event, events, calendar wizard, calendar widget" />
     <meta name="description" content="Create follow calendar"/>
+    
+    <title><?php echo sfConfig::get('app_domain_name');?> Website</title>
+    
     <link rel="shortcut icon" href="/faviconNm.ico"/>
 	<link href="/bundle/bootstrap/css/bootstrap.css" rel="stylesheet"/>
     <style type="text/css">
