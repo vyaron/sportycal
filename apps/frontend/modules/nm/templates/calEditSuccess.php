@@ -106,7 +106,6 @@ use_stylesheet('/css/neverMiss/calEdit.css');
 use_javascript('/bundle/jquery/js/jquery-ui-1.10.3.custom.min.js');
 use_javascript('/bundle/jquery-timepicker/js/jquery.timepicker.min.js');
 
-use_javascript('/bundle/bootstrap/js/bootstrap.min.js');
 use_javascript('/bundle/dhtmlxScheduler/codebase/dhtmlxscheduler.js');
 
 use_javascript('/bundle/dhtmlxScheduler/codebase/ext/dhtmlxscheduler_dhx_terrace.js');

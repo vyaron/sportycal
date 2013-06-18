@@ -101,7 +101,6 @@
 </div>
 
 <?php 
-use_javascript('/bundle/bootstrap/js/bootstrap.min.js');
 use_javascript('/bundle/jquery-plugin-validation/js/jquery.validate.min.js');
 use_javascript('/js/neverMiss/widget.js');
 ?>

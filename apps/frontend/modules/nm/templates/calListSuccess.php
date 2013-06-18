@@ -61,7 +61,4 @@
 	</div>
 </div>
 
-<?php 
-use_javascript('/bundle/bootstrap/js/bootstrap.min.js');
-use_javascript('/js/neverMiss/calList.js');
-?>
+<?php use_javascript('/js/neverMiss/calList.js');?>
