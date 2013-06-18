@@ -1,7 +1,7 @@
 <?php
 class nmActions extends sfActions{
 	public function executeIndex(sfWebRequest $request){
-		
+		$this->getResponse()->setSlot('homepage', true);
 	}
 	
 	//TODO: check defarent Timezones cals
@@ -85,6 +85,8 @@ class nmActions extends sfActions{
 	}
 	
 	public function executeCalList(sfWebRequest $request){
+		$this->getResponse()->setSlot('calList', true);
+		
 		$user = UserUtils::getLoggedIn();
 		if (!$user) $this->redirect('partner/login');
 		

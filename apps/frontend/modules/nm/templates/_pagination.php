@@ -1,12 +1,12 @@
 <?php 
-//$list = array('total' => 100, 'limit' => 10, 'offset' => 8);
+//$list = array('total' => 100, 'limit' => 10, 'offset' => 9);
 
 $max = 4;
 
 $maxOffset = max(floor($list['total'] / $list['limit']) -1, 0);
 if ($list['total'] > $list['limit'] && ($list['total'] % $list['limit'] != 0)) $maxOffset++;
 
-$start = max(0, $list['offset'] -1);
+$start = max(0, $list['offset'] -2);
 $end = min($start + $max, $maxOffset + 2);
 
 //echo "Start: $start, End: $end, MaxOffset: $maxOffset" . '<br/>';

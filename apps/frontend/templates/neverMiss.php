@@ -44,12 +44,12 @@
           <a class="brand" href="/">Never Miss</a>
           <div class="nav-collapse collapse">
             <ul class="nav">
-              <li class="active"><a href="/">Home</a></li>
+              <li<?php echo has_slot('homepage') ? ' class="active"' : '';?>><a href="/">Home</a></li>
               <?php if ($user):?>
-              <li><a href="<?php echo url_for('nm/calList') ?>">Calendars</a></li>
+              <li<?php echo has_slot('calList') ? ' class="active"' : '';?>><a href="<?php echo url_for('nm/calList') ?>">Calendars</a></li>
               <li><a href="<?php echo url_for('main/logout') ?>"><?php echo __('Logout');?></a></li>
               <?php else:?>
-              <li><a href="<?php echo url_for('partner/login');?>"><?php echo __('Login');?></a></li>
+              <li<?php echo has_slot('login') ? ' class="active"' : '';?>><a href="<?php echo url_for('partner/login');?>"><?php echo __('Login');?></a></li>
               <?php endif;?>
             </ul>
           </div>

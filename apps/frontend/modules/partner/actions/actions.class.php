@@ -123,6 +123,8 @@ class partnerActions extends sfActions
   
   
   public function executeLogin(sfWebRequest $request){
+  	$this->getResponse()->setSlot('login', true);
+  	
   	if (sfConfig::get('app_domain_isNeverMiss')){
 	  	$url = $this->getRequest()->getReferer();
 	  	if (!strpos($url, '/partner/login') && !strpos($url, '/nm/index')) UserUtils::setRefererUrl($url);
