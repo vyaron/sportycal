@@ -14,7 +14,7 @@
 <?php if ($isReachedMaxSubscribers):?>
 <a id="never-miss-disabled-btn" title="<?php echo __('You have the maximum number Subscriptions');?>">&nbsp</a>
 <?php elseif ($isMobile):?>
-<a id="never-miss-mobile-btn" target="<?php echo Utils::clientIsAndroid() ? '_blank' : 'attachment';?>" href="/cal/sub/id/8897/ct/mobile/ref/widget/cal.ics">&nbsp;</a>
+<a id="never-miss-mobile-btn" target="<?php echo Utils::clientIsAndroid() ? '_blank' : 'attachment';?>" href="/cal/sub/id/<?php echo $calId;?>/ct/mobile/ref/widget/cal.ics">&nbsp;</a>
 <iframe name="attachment" style="width: 1px; height: 1px; border: 0;"></iframe>
 <?php else:?>
 <a id="never-miss-btn" href="<?php echo url_for('w/neverMissPopup/?calid=' . $calId . ($language ? ('&language=' . $language) : ''))?>">&nbsp;</a>
