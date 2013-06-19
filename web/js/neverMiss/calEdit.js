@@ -10,7 +10,7 @@ function loadCalendar(){
 	scheduler.config.xml_date = "%Y-%m-%d %H:%i";
 	
 	scheduler.config.prevent_cache = true;
-	//scheduler.config.first_hour = 4;
+	scheduler.config.first_hour = 10;
 	scheduler.locale.labels.section_location = "Location";
 	scheduler.locale.labels.section_name = "Event Name";
 	scheduler.config.details_on_create = true;
@@ -62,6 +62,15 @@ function loadCalendar(){
 		date_of_end.onclick = show_minical;
 	});
 	*/
+	
+	//Lightbox (event details) - hide delete on new event
+	scheduler.attachEvent("onLightbox", function (id){
+		var box = this.getLightbox();
+		var deleteBtn = jQuery(box).find('.dhx_delete_btn_set');
+		
+		if (this._new_event) deleteBtn.hide();
+		else deleteBtn.show();
+	});
 	
 	scheduler.attachEvent("onEmptyClick", function (date, e){
 		var src = e.target|| e.srcElement;
