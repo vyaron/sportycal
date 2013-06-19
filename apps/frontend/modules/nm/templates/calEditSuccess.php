@@ -7,7 +7,9 @@ use_stylesheet('/bundle/jquery-timepicker/css/jquery.timepicker.css');
 
 use_stylesheet('/bundle/dhtmlxScheduler/codebase/dhtmlxscheduler.css');
 use_stylesheet('/bundle/dhtmlxScheduler/codebase/dhtmlxscheduler_dhx_terrace.css');
+
 use_stylesheet('/bundle/dhtmlxScheduler/codebase/ext/dhtmlxscheduler_datetime.css');
+use_stylesheet('/bundle/dhtmlxScheduler/sources/ext/dhtmlxscheduler_inevermiss_quick_info.css');
 
 use_stylesheet('/bundle/jquery-file-upload/css/jquery.fileupload-ui.css');
 use_stylesheet('/css/neverMiss/calEdit.css');
@@ -109,10 +111,11 @@ use_javascript('/bundle/jquery-timepicker/js/jquery.timepicker.min.js');
 use_javascript('/bundle/dhtmlxScheduler/codebase/dhtmlxscheduler.js');
 
 use_javascript('/bundle/dhtmlxScheduler/codebase/ext/dhtmlxscheduler_dhx_terrace.js');
-use_javascript('/bundle/dhtmlxScheduler/codebase/ext/dhtmlxscheduler_quick_info.js');
+//use_javascript('/bundle/dhtmlxScheduler/codebase/ext/dhtmlxscheduler_quick_info.js');
 use_javascript('/bundle/dhtmlxScheduler/codebase/ext/dhtmlxscheduler_recurring.js');
 use_javascript('/bundle/dhtmlxScheduler/codebase/ext/dhtmlxscheduler_minical.js');
 
+use_javascript('/bundle/dhtmlxScheduler/sources/ext/dhtmlxscheduler_inevermiss_quick_info.js');
 use_javascript('/bundle/dhtmlxScheduler/sources/ext/dhtmlxscheduler_datetime.js');
 
 use_javascript('/bundle/jquery-plugin-validation/js/jquery.validate.min.js');

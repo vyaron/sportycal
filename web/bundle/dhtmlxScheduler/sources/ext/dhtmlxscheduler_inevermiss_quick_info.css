@@ -1,0 +1,5 @@
+@CHARSET "utf-8";
+.dhx_cal_quick_info .dhx_qi_big_icon.icon_details{float: right;}
+.dhx_cal_quick_info .dhx_cal_qi_location, .dhx_cal_quick_info .dhx_cal_qi_details{color: #fff; letter-spacing: 1px; padding: 5px 0 10px 5px; font-weight: bold;}
+.dhx_cal_quick_info .dhx_cal_qi_location .data, .dhx_cal_quick_info .dhx_cal_qi_details .data{font-size: 10pt; font-weight: normal;}
+.dhx_cal_event .dhx_body > span:hover{text-decoration: underline;}
