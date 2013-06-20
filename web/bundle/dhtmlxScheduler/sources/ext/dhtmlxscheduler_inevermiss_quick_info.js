@@ -1,7 +1,7 @@
 scheduler.locale.labels.icon_details = 'Edit event';
 scheduler.locale.labels.location = 'Location';
 
-scheduler.config.icons_select = ["icon_details", "icon_delete"];
+scheduler.config.icons_select = ["icon_save", "icon_details", "icon_delete"];
 scheduler.config.details_on_create = true;
 scheduler.xy.menu_width = 0;
 
@@ -115,7 +115,8 @@ scheduler._init_quick_info = function(){
 		qi.className = "dhx_cal_quick_info";
 	//title
 		var html = "<div class=\"dhx_cal_qi_title\" style=\"height:"+sizes.quick_info_title+"px\">"
-			+"<div class=\"dhx_cal_qi_tcontent\"></div><div class=\"dhx_cal_qi_tdate\"></div>"
+			+"<div class=\"dhx_cal_qi_tcontent\"><div class=\"data\"></div><input class=\"data_edit\" type=\"text\"/></div>"
+			+"<div class=\"dhx_cal_qi_tdate\"></div>"
 			+"</div>"
 			+"<div class=\"dhx_cal_qi_location\">" + scheduler.locale.labels.location + ": <div class=\"data\"></div></div>"
 			+"<div class=\"dhx_cal_qi_details\">" + scheduler.locale.labels.description + ": <div class=\"data\"></div></div>";
@@ -134,6 +135,15 @@ scheduler._init_quick_info = function(){
 		});
 		if (scheduler.config.quick_info_detached)
 			dhtmlxEvent(scheduler._els["dhx_cal_data"][0], "scroll", function(){  scheduler.hideQuickInfo(); });
+		
+		/*
+		jQuery(qi).find('.dhx_cal_qi_tcontent').click(function(e){
+			e.preventDefault;
+			
+			jQuery(this).addClass('editable');
+			jQuery(qi).find('.dhx_qi_big_icon.icon_save').show();
+		});
+		*/
 	}
 
 	return this._quick_info_box;
@@ -143,12 +153,29 @@ scheduler._qi_button_click = function(node){
 	var box = scheduler._quick_info_box;
 	if (!node || node == box) return;
 
+	var qi = this._quick_info_box;
+	
 	var mask = node.className;
-	if (mask.indexOf("_icon")!=-1){
+	if (mask == 'data'){
+		jQuery(node).parent().addClass('editable');
+		jQuery(qi).find('.dhx_qi_big_icon.icon_save').show();
+	} else if (mask.indexOf("_icon")!=-1){
 		var id = scheduler._quick_info_box_id;
-		scheduler._click.buttons[mask.split(" ")[1].replace("icon_","")](id);
-	} else
+		var btnName = mask.split(" ")[1].replace("icon_","");
+		if (btnName == 'save'){
+			cl(jQuery(qi));
+			var nweText = jQuery(qi).find('.dhx_cal_qi_tcontent .data_edit').val().trim();
+			if (nweText) {
+				scheduler.getEvent(id).text = nweText;
+				scheduler._edit_stop_event(scheduler.getEvent(id), true);
+			}
+			this.hideQuickInfo();
+		} else {
+			scheduler._click.buttons[btnName](id);
+		}
+	} else {
 		scheduler._qi_button_click(node.parentNode);
+	}
 };
 scheduler._get_event_counter_part = function(id){
 	var domEv = scheduler.getRenderedEvent(id);
@@ -174,20 +201,25 @@ scheduler._get_event_counter_part = function(id){
 scheduler._fill_quick_data  = function(id){
 	var ev = scheduler.getEvent(id);
 	var qi = scheduler._quick_info_box;
-
+	var jqi = jQuery(qi);
 	scheduler._quick_info_box_id = id;
-
-	//title content
-	var titleContent = qi.firstChild.firstChild;
-	titleContent.innerHTML = scheduler.templates.quick_info_title(ev.start_date, ev.end_date, ev);
 	
-	var titleDate = titleContent.nextSibling;
-	titleDate.innerHTML = scheduler.templates.quick_info_date(ev.start_date, ev.end_date, ev);
+	jqi.find('.dhx_cal_qi_tcontent').removeClass('editable');
+	jqi.find('.dhx_qi_big_icon.icon_save').hide();
 	
+	//title
+	var titleContent = jqi.find('.dhx_cal_qi_tcontent .data');
+	var titleContentEdit = jqi.find('.dhx_cal_qi_tcontent .data-edit');
+	var titleVal = scheduler.templates.quick_info_title(ev.start_date, ev.end_date, ev);
+	titleContent.text(titleVal);
+	titleContentEdit.val(titleVal);
+	
+	//dates
+	jqi.find('.dhx_cal_qi_tdate').text(scheduler.templates.quick_info_date(ev.start_date, ev.end_date, ev));
 	
 	//set description/location
 	jQuery(['location', 'details']).each(function(i, name){
-		var el = jQuery(qi).find('.dhx_cal_qi_' + name);
+		var el = jqi.find('.dhx_cal_qi_' + name);
 		el.hide();
 
 		if (ev[name]){
