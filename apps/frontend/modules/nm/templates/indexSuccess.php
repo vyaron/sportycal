@@ -13,4 +13,7 @@
 <div class="clear-fix">
 	<div class="pull-right">CALENDARS DOWNLOADED <span id="cal-down-counter"><?php echo number_format($calsDownloadedCount);?></span></div>
 </div>
-<?php  if (!UserUtils::getUserTZ()) use_javascript('/js/neverMiss/getUserTZ.js');?>
+<?php  
+if (!UserUtils::getUserTZ()) use_javascript('/js/neverMiss/getUserTZ.js');
+use_javascript('/js/neverMiss/index.js');
+?>
