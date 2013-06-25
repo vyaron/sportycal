@@ -13,7 +13,7 @@
 			<th>Name</th>
 			<th>Events</th>
 			<th>subscribers</th>
-			<th>&nbsp;</th>
+			<th class="hidden-phone">&nbsp;</th>
 		</tr>
 	</thead>
 	<tbody>
@@ -26,10 +26,10 @@
 			<td>
 				<span class="<?php echo ($maxSubcribers && $cal['cal_request_count'] >= $maxSubcribers) ? 'max-subscribers' : '';?>"><?php echo $cal['cal_request_count'];?></span>
 			</td>
-			<td>
+			<td class="hidden-phone">
 				<div class="cal-active">
 					<a class="btn btn-mini" href="<?php echo url_for('nm/widget/?calId=' . $cal['id']);?>">&lt;Embed/&gt;</a>
-					<a class="btn btn-mini hidden-phone" href="<?php echo url_for('nm/calEdit/?id=' . $cal['id']);?>"><i class="icon-pencil"></i> Edit</a>
+					<a class="btn btn-mini" href="<?php echo url_for('nm/calEdit/?id=' . $cal['id']);?>"><i class="icon-pencil"></i> Edit</a>
 					<a class="btn btn-mini delete-cal" data-cal-id="<?php echo $cal['id'];?>" href="<?php echo url_for('nm/calDelete');?>" data-name="<?php echo $cal['name'];?>"><i class="icon-trash"></i> Delete</a>
 				</div>
 				<div class="cal-deleted">

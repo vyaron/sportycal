@@ -23,7 +23,7 @@
 	<link href="/bundle/bootstrap/css/bootstrap.css" rel="stylesheet"/>
     <style type="text/css">
 		body {
-			padding-top: 60px;
+			padding-top: 80px;
 			padding-bottom: 40px;
 		}
 		
@@ -45,16 +45,16 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="brand" href="/">Never Miss</a>
+          <a id="logo" href="/" title="<?php echo sfConfig::get('app_domain_name');?> Website">&nbsp;</a>
           <div class="nav-collapse collapse">
-            <ul class="nav">
+            <ul id="main-nav" class="nav">
               <li<?php echo has_slot('homepage') ? ' class="active"' : '';?>><a href="/">Home</a></li>
               <?php if ($user):?>
               <li<?php echo has_slot('calList') ? ' class="active"' : '';?>><a href="<?php echo url_for('nm/calList') ?>">Calendars</a></li>
 			  <?php endif;?>
             </ul>
             
-            <ul class="nav user-nav">
+            <ul id="user-nav" class="nav">
             	<?php if ($user):?>
             	<li>
             		<?php if ($user->getFbCode()):?>
@@ -64,7 +64,7 @@
             	</li>
             	<li><a href="<?php echo url_for('main/logout') ?>"><?php echo __('Logout');?></a></li>
             	<?php else:?>
-            	<li<?php echo has_slot('login') ? ' class="active"' : '';?>><a href="<?php echo url_for('partner/login');?>"><?php echo __('Login');?></a></li>
+            	<li id="nav-login-btn" <?php echo has_slot('login') ? ' class="active"' : '';?>><a href="<?php echo url_for('partner/login');?>"><?php echo __('Login');?></a></li>
             	<?php endif;?>
             </ul>
           </div>

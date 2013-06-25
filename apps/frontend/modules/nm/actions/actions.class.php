@@ -3,6 +3,8 @@ class nmActions extends sfActions{
 	public function executeIndex(sfWebRequest $request){
 		$this->getResponse()->setSlot('homepage', true);
 		$this->calsDownloadedCount = CalRequestTable::getCount();
+		
+		if ($this->calsDownloadedCount > 100) $this->calsDownloadedCount -= 100;
 	}
 	
 	//TODO: check defarent Timezones cals
