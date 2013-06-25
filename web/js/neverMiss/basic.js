@@ -6,6 +6,10 @@ function setGlobalAlert(res){
 	if (res){
 		if (res.success) setGlobalSuccess(res.msg);
 		else setGlobalError(res.msg);
+		
+		jQuery('html, body').animate({
+	         scrollTop: 0 //jQuery("#alerts").offset().top
+	     }, 2000);
 	}
 }
 
@@ -14,6 +18,8 @@ function setGlobalError(content){
 	elStr = elStr.replace('{CONTENT}', content);
 	
 	jQuery('#alerts').html(elStr);
+	
+	jQuery('html, body').animate({scrollTop: 0}, 2000);
 }
 
 function setGlobalSuccess(content){
@@ -21,6 +27,7 @@ function setGlobalSuccess(content){
 	elStr = elStr.replace('{CONTENT}', content);
 	
 	jQuery('#alerts').html(elStr);
+	jQuery('html, body').animate({scrollTop: 0}, 2000);
 }
 
 function setFbLoginEvents(getLocation1){

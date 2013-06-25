@@ -1,1 +1,1 @@
-<?php echo $ics;?>
+<?php echo $sf_data->get('ics', ESC_RAW);?>
