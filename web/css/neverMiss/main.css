@@ -1,5 +1,23 @@
 .mt10{margin-top: 10px;}
 
+@media (min-width: 980px) {
+	.navbar .nav.user-nav{float: right;}
+}
+
+.navbar .nav.user-nav .user-pic{width: 32px; height: 32px;}
+.navbar .nav.user-nav .user-name{
+	color: #999999;
+    display: inline-block;
+    height: 20px;
+    line-height: 20px;
+    padding: 10px 15px;
+    text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+}
+
+@media (max-width: 980px) {
+	.navbar .nav.user-nav .user-pic{margin-left: 15px;}
+}
+
 .alert ul{margin: 10px 20px;}
 
 .error_list{margin: 0; padding: 0; list-style: none;}

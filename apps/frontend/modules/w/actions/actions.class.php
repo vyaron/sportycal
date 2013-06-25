@@ -27,6 +27,7 @@ class wActions extends sfActions{
 		$this->calId = $request->getParameter('calId');
 		$this->popupId = $request->getParameter('popupId');
 		$this->isBubble = $request->getParameter('isBubble', false);
+		$this->bubbleTop = $request->getParameter('bubbleTop') === 'true' ? true : false;
 		$this->language = $request->getParameter('language');
 		
 		if (!($this->calId)){

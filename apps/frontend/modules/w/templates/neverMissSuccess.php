@@ -6,7 +6,26 @@
 	var NEVER_MISS_WEBSITE = '<?php echo sfConfig::get('app_domain_full');?>/w/';
 	var NEVER_MISS_WIDGET_URL = NEVER_MISS_WEBSITE + 'neverMissBtn';
 	var NEVER_MISS_WIDGET_BUBBLE_URL = NEVER_MISS_WEBSITE + 'neverMissPopup';
-
+	
+	var BUBBLE_WIDTH = 230;
+	var BUBBLE_HEIGHT = 270;
+	
+	var getWindowSize = function(){
+		var w = window;
+		var d = document;
+		var e = d.documentElement;
+		var g = d.getElementsByTagName('body')[0];
+		var x = w.innerWidth || e.clientWidth || g.clientWidth;
+		var y = w.innerHeight|| e.clientHeight|| g.clientHeight;
+		
+		return {x : x, y: y};
+	};
+	
+	var isBubbleTop = function(el){
+		var wSize = getWindowSize();
+		return ((wSize.y - (el.offsetTop + BUBBLE_HEIGHT)) > 0) ? false : true;
+	};
+	
 	var getElementsByClassName = function (className, tag, elm){
 		if (document.getElementsByClassName) {
 			getElementsByClassName = function (className, tag, elm) {
@@ -117,6 +136,8 @@
 		for ( var i = 0; i < els.length; i++) {
 			var el = els[i];
 			
+			var isShowTop = isBubbleTop(el);
+
 			el.innerHTML = '';
 			
 			var calId = el.getAttribute('data-cal-id');
@@ -130,8 +151,8 @@
 			var id_bubble = 'b_' + id;
 			
 			var iframes = '<div style="position: relative;"><iframe id="' + id +'" src="' + NEVER_MISS_WIDGET_URL + '/calId/' + calId + '/popupId/' + id_bubble + (language ? ('/language/' + language) : '') + (isMobile ? ('/isMobile/' + isMobile) : '') + '" frameborder="0" border="0" style="border: medium none; overflow: hidden; height: 22px; width: 47px;" scrolling="no" title="Never Miss"></iframe>';
-			if (!isMobile) iframes += '<iframe id="' + id_bubble +'" src="' + NEVER_MISS_WIDGET_BUBBLE_URL + '/calId/' + calId + '/isBubble/true' + '/popupId/' + id_bubble + (language ? ('/language/' + language) : '') + '" frameborder="0" border="0" style="border: medium none; overflow: hidden; height: 270px; width: 230px; position:absolute; left:0; top:20px; z-index:999; display:none;" scrolling="no" title="Never Miss"></iframe></div>';
-			
+			if (!isMobile) iframes += '<iframe id="' + id_bubble +'" src="' + NEVER_MISS_WIDGET_BUBBLE_URL + '/calId/' + calId + '/isBubble/true/bubbleTop/'+ isShowTop + '/popupId/' + id_bubble + (language ? ('/language/' + language) : '') + '" frameborder="0" border="0" style="border: medium none; overflow: hidden; height: ' + BUBBLE_HEIGHT + 'px; width: '+ BUBBLE_WIDTH +'px; position:absolute; left:0; '+ ((isShowTop) ? 'bottom:30' : 'top:20') +'px; z-index:9999; display:none;" scrolling="no" title="Never Miss"></iframe></div>';
+
 			el.innerHTML = iframes;
 		}
 	}

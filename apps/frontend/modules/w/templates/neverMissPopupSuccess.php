@@ -4,6 +4,8 @@
 <link rel="stylesheet" href="/widgets/neverMiss/css/main.css"/>
 <style type="text/css">
 body{background-color: transparent;}
+	#widget-bubble.bubble-top{position: absolute; left: 0; bottom: 0;}
+	
 	.cal-link{display: block; float: left; margin-right: 5px; width: 30px; height: 30px; border: 2px dashed transparent; text-decoration: none; background-repeat: no-repeat; background-position: center center; outline: none;}
 	.cal-link:hover, .cal-link.selected{border-color: #ccc;}
 	.cal-link.google{background-image: url('/widgets/neverMiss/imgs/google.png');}
@@ -20,7 +22,7 @@ body{background-color: transparent;}
 	    width: 170px;
 	    padding: 10px;
 	    /*margin: 3em;*/
-	    margin-top:25px;
+	    
 	    background-color:#FFF;
 	    color: #666;
 	    font: normal 12px "Segoe UI", Arial, Sans-serif;
@@ -30,27 +32,48 @@ body{background-color: transparent;}
 	    border: 10px solid #ccc;
 	}
 	
+	.speech-bubble.bubble-top{margin-bottom: 25px;}
+	.speech-bubble.bubble-buttom{margin-top:25px;}
+
 	.speech-bubble:before,
 	.speech-bubble:after {
 	    content: "\0020";
 	    display:block;
 	    position:absolute;
-	    top:-20px;
 	    left:3px;
 	    z-index:2;
 	    width: 0;
 	    height: 0;
 	    overflow:hidden;
 	    border: solid 20px transparent;
+	}
+	
+	.speech-bubble.bubble-top:before, .speech-bubble.bubble-top:after{
+	    border-bottom: 0;
+	    border-top-color:#fff;
+	    bottom:-20px;
+	}
+	
+	.speech-bubble.bubble-buttom:before, .speech-bubble.bubble-buttom:after{
 	    border-top: 0;
 	    border-bottom-color:#FFF;
+	    top:-20px;
 	}
+	
 	.speech-bubble:before {
+	 	z-index:1;
+	}
+	
+	.speech-bubble.bubble-top:before{
+		bottom:-30px;
+	    border-top-color:#ccc;
+	}
+	
+	.speech-bubble.bubble-buttom:before{
 	    top:-30px;
-	    z-index:1;
 	    border-bottom-color:#ccc;
 	}
-    
+
     
     #mailinglist-form-loading, #mailinglist-form-success, #mailinglist-form-error{font-size: 14px; margin: 10px 0;}
     #mailinglist-form-loading{padding-left: 25px; background: url("/images/neverMiss/icons/ajax-loader-black.gif") no-repeat 0 center;}
@@ -61,7 +84,7 @@ body{background-color: transparent;}
 </head>
 
 <body>
-<div id="widget-bubble" class="<?php echo ($isBubble) ? 'speech-bubble' : 'window-open'?>">
+<div id="widget-bubble" class="<?php echo ($isBubble) ? 'speech-bubble' : 'window-open'?> <?php echo ($bubbleTop) ? 'bubble-top' : 'bubble-buttom';?>">
 	<div class="clearfix">
 		<a class="cal-link google" href="#" data-href="/cal/sub/id/<?php echo $calId?>/ct/google/ref/widget/cal.ics" data-desc="<?php echo __('Download to Google calendar');?>">&nbsp;</a>
 		<a class="cal-link outlook" href="#" data-href="/cal/sub/id/<?php echo $calId?>/ct/outlook/ref/widget/cal.ics" data-desc="<?php echo __('Download to Outlook calendar');?>">&nbsp;</a>

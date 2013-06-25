@@ -51,10 +51,21 @@
               <li<?php echo has_slot('homepage') ? ' class="active"' : '';?>><a href="/">Home</a></li>
               <?php if ($user):?>
               <li<?php echo has_slot('calList') ? ' class="active"' : '';?>><a href="<?php echo url_for('nm/calList') ?>">Calendars</a></li>
-              <li><a href="<?php echo url_for('main/logout') ?>"><?php echo __('Logout');?></a></li>
-              <?php else:?>
-              <li<?php echo has_slot('login') ? ' class="active"' : '';?>><a href="<?php echo url_for('partner/login');?>"><?php echo __('Login');?></a></li>
-              <?php endif;?>
+			  <?php endif;?>
+            </ul>
+            
+            <ul class="nav user-nav">
+            	<?php if ($user):?>
+            	<li>
+            		<?php if ($user->getFbCode()):?>
+	              	<img class="user-pic" src="//graph.facebook.com/<?php echo $user->getFbCode();?>/picture"/>
+	              	<?php endif;?>
+	              	<span class="user-name"><?php echo $user->getFullName();?></span>
+            	</li>
+            	<li><a href="<?php echo url_for('main/logout') ?>"><?php echo __('Logout');?></a></li>
+            	<?php else:?>
+            	<li<?php echo has_slot('login') ? ' class="active"' : '';?>><a href="<?php echo url_for('partner/login');?>"><?php echo __('Login');?></a></li>
+            	<?php endif;?>
             </ul>
           </div>
         </div>
