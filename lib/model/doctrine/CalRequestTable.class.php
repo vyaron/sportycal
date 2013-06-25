@@ -43,6 +43,7 @@ class CalRequestTable extends Doctrine_Table
         $calReq->save();
 
     }
+    
     public static function getBy(){
         
         return  Doctrine::getTable('CalRequest')
@@ -51,5 +52,16 @@ class CalRequestTable extends Doctrine_Table
                 ->execute();
     }
     
+    public static function getCount(){
+    	$count = 0;
+    	
+    	$calRequests = Doctrine::getTable('CalRequest')->createQuery('uc')
+    		->select('uc.id, COUNT(uc.id) AS count')
+    		->fetchArray();
+    	
+    	if ($calRequests && $calRequests[0] && $calRequests[0]['count']) $count = $calRequests[0]['count'];
+    	
+    	return $count;
+    }
     
 }
