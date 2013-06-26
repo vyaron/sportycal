@@ -1,3 +1,5 @@
+<div class="container">
+
 <div class="row">
 	<div style="width: 220px; margin: 0 auto;">
 		<form id="login-form" action="<?php echo url_for('partner/login') ?>" method="POST">
@@ -25,6 +27,8 @@
 			</fieldset>
 		</form>
 	</div>
+</div>
+
 </div>
 <?php
 use_javascript('/bundle/jquery-plugin-validation/js/jquery.validate.min.js'); 

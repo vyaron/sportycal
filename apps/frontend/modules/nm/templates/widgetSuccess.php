@@ -1,5 +1,7 @@
 <?php use_stylesheet('/css/neverMiss/widget.css');?>
 
+<div class="container">
+
 <?php include_partial('formError', array('form' => $form)) ?>
 
 <!-- <h2>Widget</h2> -->
@@ -101,6 +103,7 @@
 	</div>
 </div>
 
+</div>
 <?php 
 use_javascript('/bundle/jquery-plugin-validation/js/jquery.validate.min.js');
 use_javascript('/js/neverMiss/widget.js');

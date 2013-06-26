@@ -1,4 +1,7 @@
 <?php use_stylesheet('/css/neverMiss/calList.css');?>
+
+<div class="container">
+
 <h2>Calendars</h2>
 
 <?php if (!$calList['total']): ?>
@@ -61,4 +64,5 @@
 	</div>
 </div>
 
+</div>
 <?php use_javascript('/js/neverMiss/calList.js');?>

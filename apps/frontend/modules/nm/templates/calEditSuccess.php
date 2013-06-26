@@ -15,6 +15,8 @@ use_stylesheet('/bundle/jquery-file-upload/css/jquery.fileupload-ui.css');
 use_stylesheet('/css/neverMiss/calEdit.css');
 ?>
 
+<div class="container">
+
 <?php include_partial('formError', array('form' => $form)) ?>
 
 <h2>Edit Your Calendar</h2>
@@ -104,6 +106,7 @@ use_stylesheet('/css/neverMiss/calEdit.css');
 	</fieldset>
 </form>
 
+</div>
 <?php 
 use_javascript('/bundle/jquery/js/jquery-ui-1.10.3.custom.min.js');
 use_javascript('/bundle/jquery-timepicker/js/jquery.timepicker.min.js');
