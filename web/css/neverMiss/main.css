@@ -15,16 +15,17 @@
 }
 
 @media (min-width: 980px) {
+	.navbar-inverse .navbar-inner{border-color: #999;}
 	.navbar-inner .container{position: relative; }
 	#logo{background-image: url(/images/neverMiss/layout/logo.png); width: 180px; height: 65px;}
-	.nav-collapse.collapse{height: 65px !important;}
+	.nav-collapse.collapse{height: 65px !important; left:180px;}
 	
-	#main-nav, #user-nav{position: absolute;bottom: -1px; float: none;}
+	#main-nav, #user-nav{position: absolute; bottom: 0px; float: none;}
 	#main-nav{
 		left: 50%;
-		margin-left: -200px;
+		margin-left: -380px;
 	}
-	#user-nav{left:auto; right:0;}
+	#user-nav{left:auto; right:180px;}
 	
 	.navbar-inverse .nav{font-size: 12px;font-family: SignikaRegular;}
 	.navbar .nav > li > a{text-transform: uppercase;}
@@ -38,6 +39,12 @@
 	#logo{background-image: url(/images/neverMiss/layout/logoSmall.png);  width: 142px; height: 34px;}
 	#user-nav .user-pic{margin-left: 15px;}
 }
+
+.section{border-bottom: 1px solid #ffc229; padding-bottom: 45px;}
+.section.ligh-yellow{background-image: #f2f2f2;}
+
+.btn-yellow{background: #ffc229; border-color: #fff; color: #333; text-shadow-color: #fff;}
+.btn-yellow:hover{background: #ffbf20;}
 
 .alert ul{margin: 10px 20px;}
 

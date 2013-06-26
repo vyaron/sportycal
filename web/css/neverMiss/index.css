@@ -1,0 +1,18 @@
+@CHARSET "utf-8";
+
+@media (min-width: 980px) {
+	body{padding-top: 66px;}
+	#cal-down-counter-wrapper{position: absolute; right: 0; top: 0; padding: 0 10px;}
+	#banner h1{margin-top: 70px; font-size: 78px; line-height: 90px;}
+	#banner p{font-size: 25px; line-height: 35px;}
+}
+
+#banner{background: center center no-repeat url("/images/neverMiss/index/banner.jpg"); background-size: 100% auto; font-family: SignikaRegular;}
+#banner .container{position: relative;}
+
+#banner h1{font-family: Arial; font-weight: bold; color:#ffc229; text-transform: uppercase; text-align: center; text-shadow:1px 1px 2px #1a120c;}
+
+#banner p{color: #fff; font-family: arial; text-shadow:1px 1px 1px #1a120c;}
+
+#cal-down-counter-wrapper{ height: 30px; line-height: 30px; background-color: #1a1a1a; color: #ffc229; font-size: 11px; text-transform: uppercase;}
+#cal-down-counter{font-size: 26px; margin-left: 10px;}

@@ -74,10 +74,11 @@
 
     <div class="container">
 		<div id="alerts"></div>
-
+	</div>
         
-		<?php echo $sf_content ?>
-		
+	<?php echo $sf_content ?>
+	
+	<div class="container">	
 		<div id="footer">
 	        <span style="color:gray">sportYcal &copy; 2010</span>&nbsp;&nbsp;|&nbsp;&nbsp;
 	        <?php if ($user):?>
@@ -89,6 +90,7 @@
 	        <a href="<?php echo url_for('main/terms') ?>"><?php echo __('Terms & Conditions');?></a>
 	    </div>
     </div>
+    
 	
 	<div style="display:none;">
 		<div id="DUMMY_GLOBAL_ERROR">
