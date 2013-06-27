@@ -28,6 +28,7 @@
 }
 
 @media (max-width: 979px) {
+	.navbar-fixed-top{margin-bottom: 0;}
 	#start-now-btn{margin: 15px 0;}
 	#cal-down-counter-wrapper{margin-bottom: 15px;}
 }

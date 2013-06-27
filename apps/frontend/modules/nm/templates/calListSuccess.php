@@ -48,7 +48,7 @@
 <?php endif;?>
 
 
-<a class="btn btn-success" href="<?php echo url_for('nm/calCreate')?>" title="Click here to create new calendar"><i class="icon-plus"></i> Create calendar</a>
+<a class="btn btn-success hidden-phone" href="<?php echo url_for('nm/calCreate')?>" title="Click here to create new calendar"><i class="icon-plus"></i> Create calendar</a>
 
 <div id="delete-cal-modal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 	<div class="modal-header">
