@@ -1,5 +1,10 @@
 @CHARSET "utf-8";
 
+#banner{background-size: 100% 100% !important;}
+@media (max-width: 768px) {
+	#banner{background-size: auto 100% !important;}
+}
+/*
 @media (min-width: 1200px) {
 	#banner{background-size: 100% auto !important;}
 }
@@ -12,7 +17,7 @@
 @media (min-width: 768px) and (max-width: 979px) {
 	#banner{background-size: 100% auto !important;}
 }
-
+*/
 @media (min-width: 980px) {
 	body{padding-top: 66px;}
 	#cal-down-counter-wrapper{position: absolute; right: 0; top: 0;}

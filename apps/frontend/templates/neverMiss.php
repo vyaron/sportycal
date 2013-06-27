@@ -75,9 +75,9 @@
     <div class="container">
 		<div id="alerts"></div>
 	</div>
-        
-	<?php echo $sf_content ?>
     
+	<?php echo $sf_content ?>
+
     <footer id="footer">
     	<div class="container">
     		<span style="color:gray">sportYcal &copy; 2010</span>&nbsp;&nbsp;|&nbsp;&nbsp;

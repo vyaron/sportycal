@@ -22,7 +22,7 @@ use_stylesheet('/css/neverMiss/index.css');
 			</div>
 			<div class="span6">
 				<div id="player-wrapper">
-					<video id="player" class="mejs-inevermiss pull-right" poster="/bundle/mediaelement/media/echo-hereweare.jpg">
+					<video id="player" class="mejs-inevermiss pull-right">
 					    <!-- Pseudo HTML5 -->
 					   	<!-- <source type="video/mp4" src="/bundle/mediaelement/media/echo-hereweare.mp4"/> -->
 					    <source type="video/youtube" src="http://www.youtube.com/watch?v=h8MS6PPNke0"/>
