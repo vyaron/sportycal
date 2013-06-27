@@ -85,7 +85,7 @@
 		<div id="footer-place-hoolder">&nbsp;</div>
 	    <div id="footer">
 	    	<div class="container">
-	    		<span style="color:gray">sportYcal &copy; 2010</span>&nbsp;&nbsp;|&nbsp;&nbsp;
+	    		<span style="color:gray"><?php echo sfConfig::get('app_domain_name');?> &copy; <?php echo date('Y');?></span>&nbsp;&nbsp;|&nbsp;&nbsp;
 		        <?php if ($user):?>
 				<a href="<?php echo url_for('main/logout') ?>"><?php echo __('Logout');?></a>&nbsp;&nbsp;|&nbsp;&nbsp;
 				<?php else:?>
