@@ -69,8 +69,8 @@ use_stylesheet('/css/neverMiss/calEdit.css');
 	<div class="modal-body">
 		<p>Choose the file that contains your events. iNeverMiss Calendar can import event information in iCal:</p>
 		<span class="btn btn-success fileinput-button">
-			<span id="ical-fileupload-loading-label" style="display:none;"><i class="icon-loading icon-white"></i> Uploading...</span>
-			<span id="ical-fileupload-label" ><i class="icon-plus icon-white"></i> Select Calendar *.ics</span>
+			<span id="ical-fileupload-loading-label" style="display:none;"><i class="icon-loading icon-yellow"></i> Uploading...</span>
+			<span id="ical-fileupload-label" ><i class="icon-plus icon-yellow"></i> Select Calendar *.ics</span>
 			<input id="ical-fileupload" type="file" name="file" data-url="<?php echo url_for('nm/importCal/?id=' . $cal->getId())?>" accept="text/calendar"/>
 		</span>
 

@@ -25,7 +25,7 @@
 				<div class="row mt10">
 					<div class="span6 clearfix">
 						<a class="btn btn-small pull-left" href="<?php echo url_for('nm/calEdit/?id=' . $calId);?>" title="Edit your calendar"><i class="icon-arrow-left"></i> Back</a>
-						<a class="btn btn-success pull-right" href="<?php echo url_for('nm/calList');?>"><i class="icon-list icon-white"></i> Finish</a>
+						<a class="btn btn-success pull-right" href="<?php echo url_for('nm/calList');?>"><i class="icon-list icon-yellow"></i> Finish</a>
 					</div>
 				</div>
 				

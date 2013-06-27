@@ -21,85 +21,81 @@
     
     <link rel="shortcut icon" href="/faviconNm.ico"/>
 	<link href="/bundle/bootstrap/css/bootstrap.css" rel="stylesheet"/>
-    <style type="text/css">
-		body {
-			padding-top: 80px;
-			/*padding-bottom: 40px;*/
-		}
-		
-		#footer {
-			margin-top: 50px;
-		}
-	</style>
     <link href="/bundle/bootstrap/css/bootstrap-responsive.css" rel="stylesheet"/>
     <link href="/css/neverMiss/main.css" rel="stylesheet"/>
     <?php include_stylesheets() ?>
   </head>
   <body>
     <?php mb_internal_encoding('UTF-8');?>
-    <div class="navbar navbar-inverse navbar-fixed-top">
-      <div class="navbar-inner">
-        <div class="container">
-          <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <a id="logo" href="/" title="<?php echo sfConfig::get('app_domain_name');?> Website">&nbsp;</a>
-          <div class="nav-collapse collapse">
-            <ul id="main-nav" class="nav">
-              <li<?php echo has_slot('homepage') ? ' class="active"' : '';?>><a href="/">Home</a></li>
-              <?php if ($user):?>
-              <li<?php echo has_slot('calList') ? ' class="active"' : '';?>><a href="<?php echo url_for('nm/calList') ?>">Calendars</a></li>
-			  <?php endif;?>
-            </ul>
-            
-            <ul id="user-nav" class="nav pull-right">
-            	<?php if ($user):?>
-            	<li>
-            		<a class="dropdown-toggle" data-toggle="dropdown" href="#">
-            			<?php if ($user->getFbCode()):?>
-		              	<img class="user-pic" src="//graph.facebook.com/<?php echo $user->getFbCode();?>/picture"/>
-		              	<?php endif;?>
-            			<?php echo $user->getFullName();?> 
-            			<b class="caret"></b>
-            		</a>
-					<ul class="dropdown-menu">
-						<li><a href="<?php echo url_for('main/logout') ?>"><?php echo __('Logout');?></a></li>
-					</ul> 
-					<?php if (false):?>
-					
-	              	<span class="user-name"><?php echo $user->getFullName();?></span>
-	              	<?php endif;?>
-            	</li>
-            	
-            	<?php else:?>
-            	<li id="nav-login-btn" <?php echo has_slot('login') ? ' class="active"' : '';?>><a href="<?php echo url_for('partner/login');?>"><?php echo __('Login');?></a></li>
-            	<?php endif;?>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="container">
-		<div id="alerts"></div>
-	</div>
     
-	<?php echo $sf_content ?>
+    <div id="container">
 
-    <footer id="footer">
-    	<div class="container">
-    		<span style="color:gray">sportYcal &copy; 2010</span>&nbsp;&nbsp;|&nbsp;&nbsp;
-	        <?php if ($user):?>
-			<a href="<?php echo url_for('main/logout') ?>"><?php echo __('Logout');?></a>&nbsp;&nbsp;|&nbsp;&nbsp;
-			<?php else:?>
-			<a href="<?php echo url_for('partner/login') ?>"><?php echo __('Login');?></a>&nbsp;&nbsp;|&nbsp;&nbsp;
-			<?php endif;?>
-	        
-	        <a href="<?php echo url_for('main/terms') ?>"><?php echo __('Terms & Conditions');?></a>
-    	</div>
-    </footer>
+	    <div class="navbar navbar-inverse navbar-fixed-top">
+	      <div class="navbar-inner">
+	        <div class="container">
+	          <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+	            <span class="icon-bar"></span>
+	            <span class="icon-bar"></span>
+	            <span class="icon-bar"></span>
+	          </button>
+	          <a id="logo" href="/" title="<?php echo sfConfig::get('app_domain_name');?> Website">&nbsp;</a>
+	          <div class="nav-collapse collapse">
+	            <ul id="main-nav" class="nav">
+	              <li<?php echo has_slot('homepage') ? ' class="active"' : '';?>><a href="/">Home</a></li>
+	              <?php if ($user):?>
+	              <li<?php echo has_slot('calList') ? ' class="active"' : '';?>><a href="<?php echo url_for('nm/calList') ?>">Calendars</a></li>
+				  <?php endif;?>
+	            </ul>
+	            
+	            <ul id="user-nav" class="nav pull-right">
+	            	<?php if ($user):?>
+	            	<li>
+	            		<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+	            			<?php if ($user->getFbCode()):?>
+			              	<img class="user-pic" src="//graph.facebook.com/<?php echo $user->getFbCode();?>/picture"/>
+			              	<?php endif;?>
+	            			<?php echo $user->getFullName();?> 
+	            			<b class="caret"></b>
+	            		</a>
+						<ul class="dropdown-menu">
+							<li><a href="<?php echo url_for('main/logout') ?>"><?php echo __('Logout');?></a></li>
+						</ul> 
+						<?php if (false):?>
+						
+		              	<span class="user-name"><?php echo $user->getFullName();?></span>
+		              	<?php endif;?>
+	            	</li>
+	            	
+	            	<?php else:?>
+	            	<li id="nav-login-btn" <?php echo has_slot('login') ? ' class="active"' : '';?>><a href="<?php echo url_for('partner/login');?>"><?php echo __('Login');?></a></li>
+	            	<?php endif;?>
+	            </ul>
+	          </div>
+	        </div>
+	      </div>
+	    </div>
+	
+	    <div class="container">
+			<div id="alerts"></div>
+		</div>
+		
+	    
+		<?php echo $sf_content ?>
+	
+		<div id="footer-place-hoolder">&nbsp;</div>
+	    <div id="footer">
+	    	<div class="container">
+	    		<span style="color:gray">sportYcal &copy; 2010</span>&nbsp;&nbsp;|&nbsp;&nbsp;
+		        <?php if ($user):?>
+				<a href="<?php echo url_for('main/logout') ?>"><?php echo __('Logout');?></a>&nbsp;&nbsp;|&nbsp;&nbsp;
+				<?php else:?>
+				<a href="<?php echo url_for('partner/login') ?>"><?php echo __('Login');?></a>&nbsp;&nbsp;|&nbsp;&nbsp;
+				<?php endif;?>
+		        
+		        <a href="<?php echo url_for('main/terms') ?>"><?php echo __('Terms & Conditions');?></a>
+	    	</div>
+	    </div>
+    </div>
     
 	
 	<div style="display:none;">

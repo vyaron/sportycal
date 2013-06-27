@@ -5,12 +5,11 @@ use_stylesheet('/css/neverMiss/index.css');
 ?>
 <div id="banner" class="section">
 	<div class="container">
-		<h1>Welcome to Never Miss</h1>
+		<h1>Be a part of your customer's day</h1>
 		
 		<div class="row">
 			<div class="span6">
-				<p>Sleek, intuitive, and powerful calendar event creator for faster and easier calendar subscription.</p>
-				<p>Outlook, Google, iOS ...</p>
+				<p>Allow your users to follow your events (sales, promotions, games, shows, etc) using their everyday calendar. Your client will be getting a Just-in-Time reminder and will be able to plan their next visit to your service.</p>
 				
 				<a id="start-now-btn" class="btn btn-yellow btn-large hidden-phone" href="<?php echo url_for('nm/calCreate') ?>">START NOW. <strong>IT'S FREE!</strong></a>
 		
@@ -45,20 +44,21 @@ use_stylesheet('/css/neverMiss/index.css');
 		<div class="row">
 			<div class="span4">
 				<div class="box box-icon-a">
-					<h3>ONE CLICK</h3>
-					<p>is simply dummy text of the printing and typesetting industry. Lorem Ipsum has make a type specimen book.</p>
+					<h3>Simple</h3>
+					<p>Customers subscribe to your calendar in just ONE CLICK, using any calendar (Google, Outlook, etc), on any device (Mobile, PC, Mac).</p>
 				</div>
 			</div>
 			<div class="span4">
 				<div class="box box-icon-b">
-					<h3>TOOLS</h3>
-					<p>is simply dummy text of the printing and typesetting industry. Lorem Ipsum has make a type specimen book.</p>
+					<h3>Easy</h3>
+					<p>Adding the iNeverMiss subscription service is quick.  Just hit start now, add up-coming events, and then add the iNeverMiss button to your site.</p>
+					<p>iNeverMiss also supports most CMS's including: Wix and Wordpress</p>
 				</div>
 			</div>
 			<div class="span4">
 				<div class="box box-icon-c">
-					<h3>REALTIONSHIPS</h3>
-					<p>is simply dummy text of the printing and typesetting industry. Lorem Ipsum has make a type specimen book.</p>
+					<h3>Relationship</h3>
+					<p>Boost your brand and enhance customer relationships whether you are a retailer, loyalty club, sports club, fan club, event organizer, artist... make sure your followers never miss you.</p>
 				</div>
 			</div>
 		</div>

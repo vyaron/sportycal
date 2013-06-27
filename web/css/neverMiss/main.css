@@ -1,11 +1,36 @@
 @IMPORT url("/fonts/signika/stylesheet.css");
 
+html, body{height: 100%;}
+#container{position: relative; min-height: 100%;}
+#footer{position: absolute; left:0; bottom: 0; width: 100%;}
+
 body{font-size: 12px;}
 
 .cb{clear: both;}
 .mt10{margin-top: 10px;}
 .color-y{color: #ffc229;}
 
+.icon-yellow,
+.nav-pills > .active > a > [class^="icon-"],
+.nav-pills > .active > a > [class*=" icon-"],
+.nav-list > .active > a > [class^="icon-"],
+.nav-list > .active > a > [class*=" icon-"],
+.navbar-inverse .nav > .active > a > [class^="icon-"],
+.navbar-inverse .nav > .active > a > [class*=" icon-"],
+.dropdown-menu > li > a:hover > [class^="icon-"],
+.dropdown-menu > li > a:focus > [class^="icon-"],
+.dropdown-menu > li > a:hover > [class*=" icon-"],
+.dropdown-menu > li > a:focus > [class*=" icon-"],
+.dropdown-menu > .active > a > [class^="icon-"],
+.dropdown-menu > .active > a > [class*=" icon-"],
+.dropdown-submenu:hover > a > [class^="icon-"],
+.dropdown-submenu:focus > a > [class^="icon-"],
+.dropdown-submenu:hover > a > [class*=" icon-"],
+.dropdown-submenu:focus > a > [class*=" icon-"] {
+  background-image: url("/bundle/bootstrap/img/glyphicons-halflings-yellow.png");
+}
+
+#footer-place-hoolder{height: 50px;}
 #footer a, #footer{color: #4d4d4d;}
 #footer{background-color: #ffc229; text-align: center; display: block; width: 100%; padding:5px 0; margin-top: 15px;}
 #footer a{text-transform: uppercase;}
@@ -48,6 +73,8 @@ body{font-size: 12px;}
 }
 
 @media (min-width: 980px) {
+	body{padding-top: 80px;}
+	#top-nav-place-holder{height: 80px;}
 	.navbar-inverse .navbar-inner{border-color: #999;}
 	.navbar-inner .container{position: relative; }
 	#logo{background-image: url(/images/neverMiss/layout/logo.png); width: 180px; height: 65px;}
@@ -70,13 +97,19 @@ body{font-size: 12px;}
 }
 
 @media (max-width: 979px) {
+	#top-nav-place-holder{display: none;}
 	.container{padding-left: 15px; padding-right: 15px;}
 	#logo{background-image: url(/images/neverMiss/layout/logoSmall.png);  width: 142px; height: 34px; margin-left: 15px;}
 	#user-nav .user-pic{width: 20px; height: 20px; margin-right: 5px;}
 }
 
+/*sections*/
 .section{border-bottom: 1px solid #ffc229;}
-.section.ligh-yellow{background-image: #f2f2f2;}
+.section.light-yellow{background-image: #f2f2f2;}
+
+/* buttons*/
+.btn-success{background: #333; border-color: #ffc229; color: #ffc229; text-shadow-color: #fff; text-transform: uppercase;}
+.btn-success:hover, .btn-success:focus, .btn-success:active, .btn-success.active, .btn-success.disabled, .btn-success[disabled]{background: #222; color: #ffc229;}
 
 .btn-yellow{background: #ffc229; border-color: #fff; color: #333; text-shadow-color: #fff;}
 .btn-yellow:hover{background: #ffbf20;}
