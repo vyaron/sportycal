@@ -1,7 +1,14 @@
 @IMPORT url("/fonts/signika/stylesheet.css");
 
-.mt10{margin-top: 10px;}
+body{font-size: 12px;}
 
+.cb{clear: both;}
+.mt10{margin-top: 10px;}
+.color-y{color: #ffc229;}
+
+#footer a, #footer{color: #4d4d4d;}
+#footer{background-color: #ffc229; height: 25px; text-align: center; display: block; width: 100%; line-height: 25px; margin-top: 15px;}
+#footer a{text-transform: uppercase;}
 #logo{float: left; display: block; background-position: 0 center; background-repeat: no-repeat; cursor: pointer;}
 
 #user-nav .user-pic{width: 32px; height: 32px;}
@@ -40,11 +47,13 @@
 	#user-nav .user-pic{margin-left: 15px;}
 }
 
-.section{border-bottom: 1px solid #ffc229; padding-bottom: 45px;}
+.section{border-bottom: 1px solid #ffc229;}
 .section.ligh-yellow{background-image: #f2f2f2;}
 
 .btn-yellow{background: #ffc229; border-color: #fff; color: #333; text-shadow-color: #fff;}
 .btn-yellow:hover{background: #ffbf20;}
+.btn-yellow.disabled{background: gray;}
+
 
 .alert ul{margin: 10px 20px;}
 

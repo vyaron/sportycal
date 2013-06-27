@@ -24,7 +24,7 @@
     <style type="text/css">
 		body {
 			padding-top: 80px;
-			padding-bottom: 40px;
+			/*padding-bottom: 40px;*/
 		}
 		
 		#footer {
@@ -77,10 +77,10 @@
 	</div>
         
 	<?php echo $sf_content ?>
-	
-	<div class="container">	
-		<div id="footer">
-	        <span style="color:gray">sportYcal &copy; 2010</span>&nbsp;&nbsp;|&nbsp;&nbsp;
+    
+    <footer id="footer">
+    	<div class="container">
+    		<span style="color:gray">sportYcal &copy; 2010</span>&nbsp;&nbsp;|&nbsp;&nbsp;
 	        <?php if ($user):?>
 			<a href="<?php echo url_for('main/logout') ?>"><?php echo __('Logout');?></a>&nbsp;&nbsp;|&nbsp;&nbsp;
 			<?php else:?>
@@ -88,8 +88,8 @@
 			<?php endif;?>
 	        
 	        <a href="<?php echo url_for('main/terms') ?>"><?php echo __('Terms & Conditions');?></a>
-	    </div>
-    </div>
+    	</div>
+    </footer>
     
 	
 	<div style="display:none;">

@@ -1,18 +1,58 @@
 @CHARSET "utf-8";
 
-@media (min-width: 980px) {
-	body{padding-top: 66px;}
-	#cal-down-counter-wrapper{position: absolute; right: 0; top: 0; padding: 0 10px;}
-	#banner h1{margin-top: 70px; font-size: 78px; line-height: 90px;}
-	#banner p{font-size: 25px; line-height: 35px;}
+@media (min-width: 1200px) {
+	#banner{background-size: 100% auto !important;}
 }
 
-#banner{background: center center no-repeat url("/images/neverMiss/index/banner.jpg"); background-size: 100% auto; font-family: SignikaRegular;}
+
+@media (max-width: 1199px) {
+	#banner{background-size: auto 100% !important;}
+}
+
+@media (min-width: 768px) and (max-width: 979px) {
+	#banner{background-size: 100% auto !important;}
+}
+
+@media (min-width: 980px) {
+	body{padding-top: 66px;}
+	#cal-down-counter-wrapper{position: absolute; right: 0; top: 0;}
+	#banner h1{margin-top: 70px; font-size: 78px; line-height: 90px;}
+	#banner p{font-size: 25px; line-height: 35px;}
+	
+	#start-now-btn{margin: 45px 0;}
+}
+
+@media (max-width: 979px) {
+	#start-now-btn{margin: 15px 0;}
+	#cal-down-counter-wrapper{margin-bottom: 15px;}
+}
+
+@media (min-width: 768px) {
+	
+}
+
+@media (max-width: 767px) {
+	#banner{padding: 0 15px;}
+	.box{padding-left: 82px !important;}
+}
+	
+h3{color: #ffc229; text-transform: uppercase;}
+
+#banner{background: center center no-repeat url("/images/neverMiss/index/banner.jpg"); font-family: SignikaRegular;}
 #banner .container{position: relative;}
 
 #banner h1{font-family: Arial; font-weight: bold; color:#ffc229; text-transform: uppercase; text-align: center; text-shadow:1px 1px 2px #1a120c;}
 
 #banner p{color: #fff; font-family: arial; text-shadow:1px 1px 1px #1a120c;}
 
-#cal-down-counter-wrapper{ height: 30px; line-height: 30px; background-color: #1a1a1a; color: #ffc229; font-size: 11px; text-transform: uppercase;}
+#player-wrapper{box-shadow:2px 2px 2px #1a120c; margin-bottom: 15px;}
+
+#cal-down-counter-wrapper{ height: 30px; line-height: 30px; padding: 0 10px; background-color: #1a1a1a; color: #ffc229; font-size: 11px; text-transform: uppercase;}
 #cal-down-counter{font-size: 26px; margin-left: 10px;}
+
+.box{background-position: 0 center; background-repeat: no-repeat; margin: 45px 0;}
+.box-icon-a{background-image: url("/images/neverMiss/index/iconA.png"); padding-left: 55px;}
+.box-icon-b{background-image: url("/images/neverMiss/index/iconB.png"); padding-left: 82px;}
+.box-icon-c{background-image: url("/images/neverMiss/index/iconC.png"); padding-left: 73px;}
+
+#down-cal-link{font-size: 24px; color: #333; text-decoration: none; margin-top: 25px; margin-bottom: 125px; display: inline-block;}

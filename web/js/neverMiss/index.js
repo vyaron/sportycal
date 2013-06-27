@@ -6,10 +6,40 @@ function numberWithCommas(x) {
     return x;
 }
 
+function getPlayerSize(){
+	var playerEl = jQuery('#player-wrapper');
+	var playerWidth = playerEl.width();
+	var playerHeight = playerWidth * (9/16);
+
+	return {width : playerWidth, height : playerHeight};
+}
+
+var gPlayer = null;
 jQuery(document).ready(function(){
 	var calDownCounter = jQuery('#cal-down-counter');
 	window.setInterval(function(){
 		var val = parseInt(calDownCounter.text().replace(',', ''));
 		calDownCounter.text(numberWithCommas(val + Math.floor(Math.random() * 5)));
 	}, Math.floor((Math.random() + 0.3) * 2000));
+	
+	var playerSize =getPlayerSize();
+	var playeEl = jQuery('#player');
+	playeEl.attr({
+		width : playerSize.width,
+		height : playerSize.height
+	});
+	gPlayer = new MediaElementPlayer(playeEl, {features : ['playpause','progress','fullscreen']});
+	
+	jQuery(window).resize(function(){
+		if (gPlayer){
+			var playerSize = getPlayerSize();
+			
+			gPlayer.options.videoWidth = playerSize.width;
+			gPlayer.options.videoHeight = playerSize.height;
+			gPlayer.setPlayerSize(playerSize.width, playerSize.height);
+			gPlayer.media.setVideoSize(playerSize.width, playerSize.height);
+			gPlayer.setControlsSize();
+		}
+	});
+	
 });

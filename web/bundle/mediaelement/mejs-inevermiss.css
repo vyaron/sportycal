@@ -1,0 +1,35 @@
+.mejs-container.mejs-inevermiss {
+	border: 1px solid #ffc229;
+}
+
+.mejs-inevermiss .mejs-controls {
+	background: #ffc229;
+}
+
+.mejs-inevermiss .mejs-controls .mejs-button button{
+	background-image: url("/bundle/mediaelement/controls-inevermiss.png");
+}
+
+.mejs-inevermiss .mejs-controls .mejs-time-rail .mejs-time-total {
+	background: transparent;
+}
+.mejs-inevermiss .mejs-controls .mejs-time-rail .mejs-time-loaded {
+	background: #fff;
+}
+.mejs-inevermiss .mejs-controls .mejs-time-rail .mejs-time-current {
+	background: #666;
+}
+
+.mejs-inevermiss .mejs-overlay-button{
+	background-image: url("/bundle/mediaelement/bigplay_inevermiss.png");
+	background-repeat:no-repeat;
+	background-position: 0 0;
+	width: 68px;
+	height: 69px;
+	margin-top: -35px;
+	margin-left: -34px;
+}
+
+.mejs-inevermiss .mejs-overlay:hover .mejs-overlay-button{
+	background-position: 0 bottom;
+}
