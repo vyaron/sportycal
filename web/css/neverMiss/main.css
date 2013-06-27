@@ -1,6 +1,6 @@
 @IMPORT url("/fonts/signika/stylesheet.css");
 
-body{font-size: 12px; padding: 0;}
+body{font-size: 12px;}
 
 .cb{clear: both;}
 .mt10{margin-top: 10px;}
@@ -70,7 +70,6 @@ body{font-size: 12px; padding: 0;}
 }
 
 @media (max-width: 979px) {
-	.navbar-fixed-top{padding-left:15px; padding-right: 15px;}
 	.container{padding-left: 15px; padding-right: 15px;}
 	#logo{background-image: url(/images/neverMiss/layout/logoSmall.png);  width: 142px; height: 34px; margin-left: 15px;}
 	#user-nav .user-pic{width: 20px; height: 20px; margin-right: 5px;}
