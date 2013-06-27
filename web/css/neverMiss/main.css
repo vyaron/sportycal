@@ -11,7 +11,33 @@ body{font-size: 12px;}
 #footer a{text-transform: uppercase;}
 #logo{float: left; display: block; background-position: 0 center; background-repeat: no-repeat; cursor: pointer;}
 
-#user-nav .user-pic{width: 32px; height: 32px;}
+
+.caret, .nav .open .dropdown-toggle{color: #fff;}
+.nav .dropdown-toggle .caret, .nav .dropdown-toggle:hover .caret, .nav .open .dropdown-toggle .caret{border-top-color: #ffc229 !important; border-bottom-color: #ffc229 !important;}
+#user-nav .user-pic{border: 1px solid #ffc229;} 
+
+.dropdown-menu{
+	
+	background-color: #1a1a1a;
+	border-color:#ffc229;
+	 -webkit-border-radius: 0;
+	     -moz-border-radius: 0;
+	          border-radius: 0;
+	margin-top: 0;
+}
+
+.dropdown-menu > li > a{text-transform:uppercase; color: #999;}
+
+.navbar .nav > li > .dropdown-menu:after{border-bottom-color:#ffc229; }
+
+.dropdown-menu > li > a:hover,
+.dropdown-menu > li > a:focus,
+.dropdown-submenu:hover > a,
+.dropdown-submenu:focus > a{
+	background: transparent;
+	text-decoration: underline;
+}
+
 #user-nav .user-name{
 	color: #999999;
     display: inline-block;
@@ -33,6 +59,7 @@ body{font-size: 12px;}
 		margin-left: -380px;
 	}
 	#user-nav{left:auto; right:180px;}
+	#user-nav .user-pic{width: 32px; height: 32px; position: absolute; left: -28px; top: -8px;}
 	
 	.navbar-inverse .nav{font-size: 12px;font-family: SignikaRegular;}
 	.navbar .nav > li > a{text-transform: uppercase;}
@@ -43,8 +70,8 @@ body{font-size: 12px;}
 }
 
 @media (max-width: 980px) {
-	#logo{background-image: url(/images/neverMiss/layout/logoSmall.png);  width: 142px; height: 34px;}
-	#user-nav .user-pic{margin-left: 15px;}
+	#logo{background-image: url(/images/neverMiss/layout/logoSmall.png);  width: 142px; height: 34px; margin-left: 15px;}
+	#user-nav .user-pic{width: 20px; height: 20px; margin-right: 5px;}
 }
 
 .section{border-bottom: 1px solid #ffc229;}

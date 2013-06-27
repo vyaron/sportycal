@@ -54,15 +54,25 @@
 			  <?php endif;?>
             </ul>
             
-            <ul id="user-nav" class="nav">
+            <ul id="user-nav" class="nav pull-right">
             	<?php if ($user):?>
             	<li>
-            		<?php if ($user->getFbCode()):?>
-	              	<img class="user-pic" src="//graph.facebook.com/<?php echo $user->getFbCode();?>/picture"/>
-	              	<?php endif;?>
+            		<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+            			<?php if ($user->getFbCode()):?>
+		              	<img class="user-pic" src="//graph.facebook.com/<?php echo $user->getFbCode();?>/picture"/>
+		              	<?php endif;?>
+            			<?php echo $user->getFullName();?> 
+            			<b class="caret"></b>
+            		</a>
+					<ul class="dropdown-menu">
+						<li><a href="<?php echo url_for('main/logout') ?>"><?php echo __('Logout');?></a></li>
+					</ul> 
+					<?php if (false):?>
+					
 	              	<span class="user-name"><?php echo $user->getFullName();?></span>
+	              	<?php endif;?>
             	</li>
-            	<li><a href="<?php echo url_for('main/logout') ?>"><?php echo __('Logout');?></a></li>
+            	
             	<?php else:?>
             	<li id="nav-login-btn" <?php echo has_slot('login') ? ' class="active"' : '';?>><a href="<?php echo url_for('partner/login');?>"><?php echo __('Login');?></a></li>
             	<?php endif;?>
