@@ -10,6 +10,8 @@ body{font-size: 12px;}
 .mt10{margin-top: 10px;}
 .color-y{color: #ffc229;}
 
+.fs14{font-size:14px;};
+
 .icon-yellow,
 .nav-pills > .active > a > [class^="icon-"],
 .nav-pills > .active > a > [class*=" icon-"],

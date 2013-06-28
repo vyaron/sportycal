@@ -5,11 +5,11 @@ use_stylesheet('/css/neverMiss/index.css');
 ?>
 <div id="banner" class="section">
 	<div class="container">
-		<h1>Be a part of your customer's day</h1>
+		<h1>Become part of your customer's day</h1>
 		
 		<div class="row">
 			<div class="span6">
-				<p>Allow your users to follow your events (sales, promotions, games, shows, etc) using their everyday calendar. Your client will be getting a Just-in-Time reminder and will be able to plan their next visit to your service.</p>
+				<p>Allow your users to follow your events <br/>(sales, promotions, games, shows, etc)<br/> using their everyday calendar. </p>
 				
 				<a id="start-now-btn" class="btn btn-yellow btn-large hidden-phone" href="<?php echo url_for('nm/calCreate') ?>">START NOW. <strong>IT'S FREE!</strong></a>
 		
@@ -39,20 +39,20 @@ use_stylesheet('/css/neverMiss/index.css');
 </div>
 
 
-<div class="section light-yellow">
+<div class="section light-yellow fs14">
 	<div class="container">
 		<div class="row">
 			<div class="span4">
 				<div class="box box-icon-a">
 					<h3>Simple</h3>
 					<p>Customers subscribe to your calendar in just ONE CLICK, using any calendar (Google, Outlook, etc), on any device (Mobile, PC, Mac).</p>
+          <p>Your client will be getting a Just-in-Time reminder and will be able to plan their next visit to your service.</p>
 				</div>
 			</div>
 			<div class="span4">
 				<div class="box box-icon-b">
 					<h3>Easy</h3>
-					<p>Adding the iNeverMiss subscription service is quick.  Just hit start now, add up-coming events, and then add the iNeverMiss button to your site.</p>
-					<p>iNeverMiss also supports most CMS's including: Wix and Wordpress</p>
+					<p>Adding the iNeverMiss subscription service is quick.  Just hit start now, add up-coming events, and then add the iNeverMiss button to your site or CMS.</p>
 				</div>
 			</div>
 			<div class="span4">
@@ -65,10 +65,11 @@ use_stylesheet('/css/neverMiss/index.css');
 	</div>
 </div>
 
+<?php if (false) :?>
 <div class="container hidden-phone">
 	<a id="down-cal-link" href="<?php echo url_for('nm/calCreate') ?>"><strong><span class="color-y">DOWNLOAD</span> BEST CALENDARS</strong> FOR FREE!</a>
 </div>
- 
+<?php endif ?>
 <?php  
 use_javascript('/bundle/mediaelement/mediaelement-and-player.min.js');
 if (!UserUtils::getUserTZ()) use_javascript('/js/neverMiss/getUserTZ.js');
