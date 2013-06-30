@@ -58,7 +58,7 @@
 	            			<b class="caret"></b>
 	            		</a>
 						<ul class="dropdown-menu">
-							<li><a href="<?php echo url_for('main/logout') ?>"><?php echo __('Logout');?></a></li>
+							<li><a href="<?php echo url_for('main/logout') ?>"><?php echo __('Sign Out');?></a></li>
 						</ul> 
 						<?php if (false):?>
 						
@@ -67,7 +67,7 @@
 	            	</li>
 	            	
 	            	<?php else:?>
-	            	<li id="nav-login-btn" <?php echo has_slot('login') ? ' class="active"' : '';?>><a href="<?php echo url_for('partner/login');?>"><?php echo __('Log in');?></a></li>
+	            	<li id="nav-login-btn" <?php echo has_slot('login') ? ' class="active"' : '';?>><a href="<?php echo url_for('partner/login');?>"><?php echo __('Log In');?></a></li>
 	            	<?php endif;?>
 	            </ul>
 	          </div>
@@ -87,9 +87,9 @@
 	    	<div class="container">
 	    		<span style="color:gray"><?php echo sfConfig::get('app_domain_name');?> &copy; <?php echo date('Y');?></span>&nbsp;&nbsp;|&nbsp;&nbsp;
 		        <?php if ($user):?>
-				<a href="<?php echo url_for('main/logout') ?>"><?php echo __('Logout');?></a>&nbsp;&nbsp;|&nbsp;&nbsp;
+				<a href="<?php echo url_for('main/logout') ?>"><?php echo __('Sign Out');?></a>&nbsp;&nbsp;|&nbsp;&nbsp;
 				<?php else:?>
-				<a href="<?php echo url_for('partner/login') ?>"><?php echo __('Login');?></a>&nbsp;&nbsp;|&nbsp;&nbsp;
+				<a href="<?php echo url_for('partner/login') ?>"><?php echo __('Log In');?></a>&nbsp;&nbsp;|&nbsp;&nbsp;
 				<?php endif;?>
 		        
 		        <a href="<?php echo url_for('main/terms') ?>"><?php echo __('Terms & Conditions');?></a>
