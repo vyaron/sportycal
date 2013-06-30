@@ -115,7 +115,7 @@
 	
 	
 	<div id="fb-root"></div>
-	<script type="text/javascript" src="/bundle/jquery/js/jquery-1.9.1.min.js"></script>
+	<script type="text/javascript" src="/bundle/jquery/js/jquery-1.10.1.min.js"></script>
 	<script type="text/javascript" src="/js/neverMiss/basic.js"></script>
 	<script type="text/javascript" src="/bundle/bootstrap/js/bootstrap.min.js"></script>
 	<?php include_javascripts()?>
