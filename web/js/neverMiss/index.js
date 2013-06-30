@@ -14,6 +14,18 @@ function getPlayerSize(){
 	return {width : playerWidth, height : playerHeight};
 }
 
+function updatePlayerSize(){
+	if (gPlayer){
+		var playerSize = getPlayerSize();
+		
+		gPlayer.options.videoWidth = playerSize.width;
+		gPlayer.options.videoHeight = playerSize.height;
+		gPlayer.setPlayerSize(playerSize.width, playerSize.height);
+		gPlayer.media.setVideoSize(playerSize.width, playerSize.height);
+		gPlayer.setControlsSize();
+	}
+}
+
 var gPlayer = null;
 jQuery(document).ready(function(){
 	var calDownCounter = jQuery('#cal-down-counter');
@@ -30,16 +42,8 @@ jQuery(document).ready(function(){
 	});
 	gPlayer = new MediaElementPlayer(playeEl, {features : ['playpause','progress','fullscreen']});
 	
-	jQuery(window).resize(function(){
-		if (gPlayer){
-			var playerSize = getPlayerSize();
-			
-			gPlayer.options.videoWidth = playerSize.width;
-			gPlayer.options.videoHeight = playerSize.height;
-			gPlayer.setPlayerSize(playerSize.width, playerSize.height);
-			gPlayer.media.setVideoSize(playerSize.width, playerSize.height);
-			gPlayer.setControlsSize();
-		}
-	});
-	
+	//Set player resize event
+	var supportsOrientationChange = "onorientationchange" in window,
+    orientationEvent = supportsOrientationChange ? "orientationchange" : "resize";
+	window.addEventListener(orientationEvent, updatePlayerSize, false);
 });
