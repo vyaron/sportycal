@@ -43,7 +43,16 @@ jQuery(document).ready(function(){
 	gPlayer = new MediaElementPlayer(playeEl, {features : ['playpause','progress','fullscreen']});
 	
 	//Set player resize event
-	var supportsOrientationChange = "onorientationchange" in window,
-    orientationEvent = supportsOrientationChange ? "orientationchange" : "resize";
-	window.addEventListener(orientationEvent, updatePlayerSize, false);
+	var supportsOrientationChange = "onorientationchange" in window;
+    var orientationEvent = "resize";
+	var delayTime = 0;
+	
+	if (supportsOrientationChange){
+		orientationEvent = 'orientationchange';
+		delayTime = 1000;
+	}
+	
+	window.addEventListener(orientationEvent, function(){
+		window.setTimeout(updatePlayerSize, delayTime);
+	}, false);
 });
