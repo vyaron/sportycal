@@ -39,7 +39,7 @@ use_stylesheet('/css/neverMiss/index.css');
 </div>
 
 
-<div class="section light-yellow fs14">
+<div class="section light-gray fs14">
 	<div class="container">
 		<div class="row">
 			<div class="span4">

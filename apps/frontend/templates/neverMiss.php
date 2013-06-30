@@ -67,7 +67,7 @@
 	            	</li>
 	            	
 	            	<?php else:?>
-	            	<li id="nav-login-btn" <?php echo has_slot('login') ? ' class="active"' : '';?>><a href="<?php echo url_for('partner/login');?>"><?php echo __('Login');?></a></li>
+	            	<li id="nav-login-btn" <?php echo has_slot('login') ? ' class="active"' : '';?>><a href="<?php echo url_for('partner/login');?>"><?php echo __('Log in');?></a></li>
 	            	<?php endif;?>
 	            </ul>
 	          </div>
