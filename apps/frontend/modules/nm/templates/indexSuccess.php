@@ -21,10 +21,11 @@ use_stylesheet('/css/neverMiss/index.css');
 			</div>
 			<div class="span6">
 				<div id="player-wrapper">
-					<video id="player" class="mejs-inevermiss pull-right">
+					<video id="player" class="mejs-inevermiss pull-right" poster="/videos/nevermiss/iNeverMiss.jpg">
 					    <!-- Pseudo HTML5 -->
-					   	<!-- <source type="video/mp4" src="/bundle/mediaelement/media/echo-hereweare.mp4"/> -->
-					    <source type="video/youtube" src="http://www.youtube.com/watch?v=h8MS6PPNke0"/>
+					    <source type="video/webm" src="/videos/nevermiss/iNeverMiss.webm"/>
+					   	<source type="video/mp4" src="/bundle/mediaelement/media/echo-hereweare.mp4"/>
+					    <!-- <source type="video/youtube" src="http://www.youtube.com/watch?v=UQHZCQfMBB8"/> -->
 					</video>
 					<div class="cb"></div>
 				</div>
