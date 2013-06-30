@@ -40,36 +40,38 @@
 	          </button>
 	          <a id="logo" href="/" title="<?php echo sfConfig::get('app_domain_name');?> Website">&nbsp;</a>
 	          <div class="nav-collapse collapse">
-	            <ul id="main-nav" class="nav">
-	              <li<?php echo has_slot('homepage') ? ' class="active"' : '';?>><a href="/">Home</a></li>
-	              <?php if ($user):?>
-	              <li<?php echo has_slot('calList') ? ' class="active"' : '';?>><a href="<?php echo url_for('nm/calList') ?>">Calendars</a></li>
-				  <?php endif;?>
-	            </ul>
-	            
-	            <ul id="user-nav" class="nav pull-right">
-	            	<?php if ($user):?>
-	            	<li>
-	            		<a class="dropdown-toggle" data-toggle="dropdown" href="#">
-	            			<?php if ($user->getFbCode()):?>
-			              	<img class="user-pic" src="//graph.facebook.com/<?php echo $user->getFbCode();?>/picture"/>
+	          	<div id="top-nav-wrapper">
+		            <ul id="main-nav" class="nav">
+		              <li<?php echo has_slot('homepage') ? ' class="active"' : '';?>><a href="/">Home</a></li>
+		              <?php if ($user):?>
+		              <li<?php echo has_slot('calList') ? ' class="active"' : '';?>><a href="<?php echo url_for('nm/calList') ?>">Calendars</a></li>
+					  <?php endif;?>
+		            </ul>
+		            
+		            <ul id="user-nav" class="nav pull-right">
+		            	<?php if ($user):?>
+		            	<li>
+		            		<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+		            			<?php if ($user->getFbCode()):?>
+				              	<img class="user-pic" src="//graph.facebook.com/<?php echo $user->getFbCode();?>/picture"/>
+				              	<?php endif;?>
+		            			<?php echo $user->getFullName();?> 
+		            			<b class="caret"></b>
+		            		</a>
+							<ul class="dropdown-menu">
+								<li><a href="<?php echo url_for('main/logout') ?>"><?php echo __('Sign Out');?></a></li>
+							</ul> 
+							<?php if (false):?>
+							
+			              	<span class="user-name"><?php echo $user->getFullName();?></span>
 			              	<?php endif;?>
-	            			<?php echo $user->getFullName();?> 
-	            			<b class="caret"></b>
-	            		</a>
-						<ul class="dropdown-menu">
-							<li><a href="<?php echo url_for('main/logout') ?>"><?php echo __('Sign Out');?></a></li>
-						</ul> 
-						<?php if (false):?>
-						
-		              	<span class="user-name"><?php echo $user->getFullName();?></span>
-		              	<?php endif;?>
-	            	</li>
-	            	
-	            	<?php else:?>
-	            	<li id="nav-login-btn" <?php echo has_slot('login') ? ' class="active"' : '';?>><a href="<?php echo url_for('partner/login');?>"><?php echo __('Log In');?></a></li>
-	            	<?php endif;?>
-	            </ul>
+		            	</li>
+		            	
+		            	<?php else:?>
+		            	<li id="nav-login-btn" <?php echo has_slot('login') ? ' class="active"' : '';?>><a href="<?php echo url_for('partner/login');?>"><?php echo __('Log In');?></a></li>
+		            	<?php endif;?>
+		            </ul>
+	            </div>
 	          </div>
 	        </div>
 	      </div>

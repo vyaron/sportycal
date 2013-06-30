@@ -24,7 +24,7 @@ use_stylesheet('/css/neverMiss/index.css');
 					<video id="player" class="mejs-inevermiss pull-right" poster="/videos/nevermiss/iNeverMiss.jpg">
 					    <!-- Pseudo HTML5 -->
 					    <source type="video/webm" src="/videos/nevermiss/iNeverMiss.webm"/>
-					   	<source type="video/mp4" src="/bundle/mediaelement/media/echo-hereweare.mp4"/>
+					   	<source type="video/mp4" src="/videos/nevermiss/iNeverMiss.mp4"/>
 					    <!-- <source type="video/youtube" src="http://www.youtube.com/watch?v=UQHZCQfMBB8"/> -->
 					</video>
 					<div class="cb"></div>
@@ -32,7 +32,7 @@ use_stylesheet('/css/neverMiss/index.css');
 			</div>
 		</div>
 		
-		<div id="cal-down-counter-wrapper" class="clear-fix">
+		<div id="cal-down-counter-wrapper" class="clearfix">
 			<div class="pull-left">CALENDARS DOWNLOADED</div>
 			<div id="cal-down-counter" class="pull-left"><?php echo number_format($calsDownloadedCount);?></div>
 		</div>

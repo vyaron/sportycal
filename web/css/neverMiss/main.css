@@ -1,17 +1,18 @@
 @IMPORT url("/fonts/signika/stylesheet.css");
 
 html, body{height: 100%;}
-#container{position: relative; min-height: 100%;}
-#footer{position: absolute; left:0; bottom: 0; width: 100%;}
-
-body{font-size: 12px;}
+body{padding-top: 80px; font-size: 12px;}
 
 .cb{clear: both;}
 .mt10{margin-top: 10px;}
 .color-y{color: #ffc229;}
-
 .fs14{font-size:14px;};
 
+/*sections*/
+.section{border-bottom: 1px solid #ffc229;}
+.section.light-gray{background-color: #f2f2f2;}
+
+/*yellow icons*/
 .icon-yellow,
 .nav-pills > .active > a > [class^="icon-"],
 .nav-pills > .active > a > [class*=" icon-"],
@@ -32,19 +33,87 @@ body{font-size: 12px;}
   background-image: url("/bundle/bootstrap/img/glyphicons-halflings-yellow.png");
 }
 
-#footer-place-hoolder{height: 50px;}
+/*More Icons*/
+.icon-loading{background-image: url("/images/neverMiss/icons/ajax-loader-black.gif"); background-repeat: no-repeat; background-position: 0 center; width: 16px;}
+.icon-loading.icon-white{background-image: url("/images/neverMiss/icons/ajax-loader-white.gif");}
+
+/* buttons*/
+.btn-success{background: #333; border-color: #ffc229; color: #ffc229; text-shadow-color: #fff; text-transform: uppercase;}
+.btn-success:hover, .btn-success:focus, .btn-success:active, .btn-success.active, .btn-success.disabled, .btn-success[disabled]{background: #222; color: #ffc229;}
+
+.btn-yellow{background: #ffc229; border-color: #fff; color: #333; text-shadow-color: #fff;}
+.btn-yellow:hover{background: #ffbf20;}
+.btn-yellow.disabled{background: gray;}
+
+/*facebook login*/
+.fb-login {
+    width: auto;
+    background: url("/images/facebook/fIconBg.png") repeat-x scroll right top transparent;
+    border: 1px solid #415B91;
+    color: #FFFFFF;
+    cursor: pointer;
+    font-family: 'Lucida Grande',Tahoma,Verdana,Arial,sans-serif;
+    font-size: 12px;
+    font-weight: bold;
+    line-height: 20px;
+    text-align: center;
+    display: inline-block;
+}
+
+.fb-login span {
+    background: url(/images/facebook/fIcon.png) no-repeat scroll left top transparent;
+    height: 20px;
+    outline: medium none;
+    padding: 0 5px 0 30px;
+    display: inline-block;
+}
+
+
+
+#container{position: relative; min-height: 100%;}
+
+/*Alert section*/
+.alert ul{margin: 10px 20px;}
+
+.error_list{margin: 0; padding: 0; list-style: none;}
+label.error, .error_list > li{color: red;}
+
+/*footer*/
+#footer-place-hoolder{height: 50px;} /*for calc #container height*/
 #footer a, #footer{color: #4d4d4d;}
-#footer{background-color: #ffc229; text-align: center; display: block; width: 100%; padding:5px 0; margin-top: 15px;}
+#footer{position: absolute; left:0; bottom: 0; width: 100%; background-color: #ffc229; text-align: center; display: block; width: 100%; padding:5px 0; margin-top: 15px;}
 #footer a{text-transform: uppercase;}
-#logo{float: left; display: block; background-position: 0 center; background-repeat: no-repeat; cursor: pointer;}
 
+/* Top nav
+***********/
+#top-nav-place-holder{height: 80px;} /*for calc #container height*/
 
+.navbar-inverse .navbar-inner{border-color: #999;}
+.navbar-inner .container{position: relative; }
+
+/*logo*/
+#logo{float: left; display: block; background-position: 0 center; background-repeat: no-repeat; cursor: pointer; background-image: url(/images/neverMiss/layout/logo.png); width: 180px; height: 65px;}
+
+/*main nav*/
+#top-nav-wrapper{ position:relative; height: 65px; left:180px;}
+#main-nav, #user-nav{position: absolute; bottom: 0px; float: none;}
+#main-nav{ left: 50%; margin-left: -380px;}
+#user-nav{left:auto; right:180px;}
+#user-nav .user-pic{width: 32px; height: 32px; position: absolute; left: -28px; top: -8px;}
+
+.navbar-inverse .nav{font-size: 12px;font-family: SignikaRegular;}
+.navbar .nav > li > a{text-transform: uppercase;}
+.navbar-inverse .nav .active > a, .navbar-inverse .nav .active > a:hover, .navbar-inverse .nav .active > a:focus{border-bottom: 3px solid #ffc229;}
+
+/*login*/
+#nav-login-btn a{padding: 3px 6px; border: 1px solid #ffc229; margin-bottom: 12px;}
+
+/*user nav*/
 .caret, .nav .open .dropdown-toggle{color: #fff;}
 .nav .dropdown-toggle .caret, .nav .dropdown-toggle:hover .caret, .nav .open .dropdown-toggle .caret{border-top-color: #ffc229 !important; border-bottom-color: #ffc229 !important;}
 #user-nav .user-pic{border: 1px solid #ffc229;} 
 
 .dropdown-menu{
-	
 	background-color: #1a1a1a;
 	border-color:#ffc229;
 	 -webkit-border-radius: 0;
@@ -74,78 +143,26 @@ body{font-size: 12px;}
     text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
 }
 
-@media (min-width: 980px) {
-	body{padding-top: 80px;}
-	#top-nav-place-holder{height: 80px;}
-	.navbar-inverse .navbar-inner{border-color: #999;}
-	.navbar-inner .container{position: relative; }
-	#logo{background-image: url(/images/neverMiss/layout/logo.png); width: 180px; height: 65px;}
-	.nav-collapse.collapse{height: 65px !important; left:180px;}
-	
-	#main-nav, #user-nav{position: absolute; bottom: 0px; float: none;}
-	#main-nav{
-		left: 50%;
-		margin-left: -380px;
-	}
-	#user-nav{left:auto; right:180px;}
-	#user-nav .user-pic{width: 32px; height: 32px; position: absolute; left: -28px; top: -8px;}
-	
-	.navbar-inverse .nav{font-size: 12px;font-family: SignikaRegular;}
-	.navbar .nav > li > a{text-transform: uppercase;}
-	.navbar-inverse .nav .active > a, .navbar-inverse .nav .active > a:hover, .navbar-inverse .nav .active > a:focus{border-bottom: 3px solid #ffc229;}
-	
-	#nav-login-btn a{padding: 3px 6px; border: 1px solid #ffc229; margin-bottom: 12px;}
-	
-}
 
+/*CSS Queries - NOT WORKING ON IE < 9!
+****************************************/
 @media (max-width: 979px) {
+	body{padding-top: 0;}
+	
 	#top-nav-place-holder{display: none;}
-	.container{padding-left: 15px; padding-right: 15px;}
-	#logo{background-image: url(/images/neverMiss/layout/logoSmall.png);  width: 142px; height: 34px; margin-left: 15px;}
+
+	#top-nav-wrapper{display: inline;}
+	.navbar-inverse .nav .active > a, .navbar-inverse .nav .active > a:hover, .navbar-inverse .nav .active > a:focus{border-bottom: inherit;}
+	
+	#top-nav-wrapper, #logo, #main-nav, #user-nav, #user-nav .user-pic{position:inherit; left: inherit; right: inherit; top:inherit; bottom: inherit;}
+	
+	#main-nav{margin-left: inherit;}
+	#nav-login-btn a{border: inherit; margin:0 0 10px; padding: 9px 15px;}
+	
+	#logo{ background-image: url(/images/neverMiss/layout/logoSmall.png);  width: 142px; height: 34px; margin-left: 15px;}
 	#user-nav .user-pic{width: 20px; height: 20px; margin-right: 5px;}
 }
 
-/*sections*/
-.section{border-bottom: 1px solid #ffc229;}
-.section.light-gray{background-color: #f2f2f2;}
-
-/* buttons*/
-.btn-success{background: #333; border-color: #ffc229; color: #ffc229; text-shadow-color: #fff; text-transform: uppercase;}
-.btn-success:hover, .btn-success:focus, .btn-success:active, .btn-success.active, .btn-success.disabled, .btn-success[disabled]{background: #222; color: #ffc229;}
-
-.btn-yellow{background: #ffc229; border-color: #fff; color: #333; text-shadow-color: #fff;}
-.btn-yellow:hover{background: #ffbf20;}
-.btn-yellow.disabled{background: gray;}
 
 
-.alert ul{margin: 10px 20px;}
 
-.error_list{margin: 0; padding: 0; list-style: none;}
-label.error, .error_list > li{color: red;}
-
-/*facebook login*/
-.fb-login {
-    width: auto;
-    background: url("/images/facebook/fIconBg.png") repeat-x scroll right top transparent;
-    border: 1px solid #415B91;
-    color: #FFFFFF;
-    cursor: pointer;
-    font-family: 'Lucida Grande',Tahoma,Verdana,Arial,sans-serif;
-    font-size: 12px;
-    font-weight: bold;
-    line-height: 20px;
-    text-align: center;
-    display: inline-block;
-}
-
-.fb-login span {
-    background: url(/images/facebook/fIcon.png) no-repeat scroll left top transparent;
-    height: 20px;
-    outline: medium none;
-    padding: 0 5px 0 30px;
-    display: inline-block;
-}
-
-/*More Icons*/
-.icon-loading{background-image: url("/images/neverMiss/icons/ajax-loader-black.gif"); background-repeat: no-repeat; background-position: 0 center; width: 16px;}
-.icon-loading.icon-white{background-image: url("/images/neverMiss/icons/ajax-loader-white.gif");}

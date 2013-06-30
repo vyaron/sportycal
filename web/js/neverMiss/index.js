@@ -52,7 +52,7 @@ jQuery(document).ready(function(){
 		delayTime = 1000;
 	}
 	
-	window.addEventListener(orientationEvent, function(){
+	jQuery(window).on(orientationEvent, function(){
 		window.setTimeout(updatePlayerSize, delayTime);
 	}, false);
 });
