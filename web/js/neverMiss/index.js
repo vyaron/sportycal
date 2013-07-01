@@ -14,15 +14,20 @@ function getPlayerSize(){
 	return {width : playerWidth, height : playerHeight};
 }
 
+
 function updatePlayerSize(){
 	if (gPlayer){
 		var playerSize = getPlayerSize();
 		
+		//gPlayer.container.hide();
 		gPlayer.options.videoWidth = playerSize.width;
 		gPlayer.options.videoHeight = playerSize.height;
 		gPlayer.setPlayerSize(playerSize.width, playerSize.height);
 		gPlayer.media.setVideoSize(playerSize.width, playerSize.height);
 		gPlayer.setControlsSize();
+
+		//gPlayer.container.show();
+
 	}
 }
 
@@ -43,6 +48,7 @@ jQuery(document).ready(function(){
 	gPlayer = new MediaElementPlayer(playeEl, {features : ['playpause','progress','fullscreen']});
 	
 	//Set player resize event
+
 	var supportsOrientationChange = "onorientationchange" in window;
     var orientationEvent = "resize";
 	var delayTime = 0;
@@ -51,6 +57,7 @@ jQuery(document).ready(function(){
 		orientationEvent = 'orientationchange';
 		delayTime = 1000;
 	}
+	
 	
 	if (window.addEventListener){
 		window.addEventListener(orientationEvent, function(){
@@ -61,5 +68,4 @@ jQuery(document).ready(function(){
 			window.setTimeout(updatePlayerSize, delayTime);
 		}, false);
 	}
-	
 });

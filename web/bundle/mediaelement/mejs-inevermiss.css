@@ -1,5 +1,6 @@
 .mejs-container.mejs-inevermiss {
 	border: 1px solid #ffc229;
+	box-shadow:2px 2px 2px #1a120c;
 }
 
 .mejs-inevermiss .mejs-controls {

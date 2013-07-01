@@ -21,7 +21,7 @@ use_stylesheet('/css/neverMiss/index.css');
 			</div>
 			<div class="span6">
 				<div id="player-wrapper">
-					<video id="player" class="mejs-inevermiss pull-right" poster="/videos/nevermiss/iNeverMiss.jpg">
+					<video id="player" class="mejs-inevermiss pull-right" width="100%" height="100%" poster="/videos/nevermiss/iNeverMiss.jpg">
 					    <!-- Pseudo HTML5 -->
 					    <source type="video/webm" src="/videos/nevermiss/iNeverMiss.webm"/>
 					   	<source type="video/mp4" src="/videos/nevermiss/iNeverMiss.mp4"/>
