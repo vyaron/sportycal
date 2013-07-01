@@ -6,7 +6,7 @@ body{padding-top: 66px;}
 
 /* Banner
 *********/
-#banner{background: center center no-repeat #67411c url("/images/neverMiss/index/banner.jpg"); background-size: 100% 100%; font-family: SignikaRegular;}
+#banner{background: center center no-repeat #67411c url("/images/neverMiss/index/banner.jpg"); background-size: cover; font-family: SignikaRegular;}
 #banner .container{position: relative;}
 
 /*calendars caounter*/
@@ -53,7 +53,7 @@ body{padding-top: 66px;}
 
 @media (max-width: 767px) {
 	
-	#banner{background-size: auto 100%; padding: 0 15px;}
+	#banner{/*background-size: auto 100%;*/ padding: 0 15px;}
 	
 	#banner h1{font-size: 20px; line-height:inherit; margin: 10px; }
 	#banner p{font-size: 14px; line-height: normal;}
