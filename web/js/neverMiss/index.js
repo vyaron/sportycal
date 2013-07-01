@@ -52,7 +52,14 @@ jQuery(document).ready(function(){
 		delayTime = 1000;
 	}
 	
-	jQuery(window).on(orientationEvent, function(){
-		window.setTimeout(updatePlayerSize, delayTime);
-	}, false);
+	if (window.addEventListener){
+		window.addEventListener(orientationEvent, function(){
+			window.setTimeout(updatePlayerSize, delayTime);
+		}, false);
+	} else {
+		window.attachEvent(orientationEvent, function(){
+			window.setTimeout(updatePlayerSize, delayTime);
+		}, false);
+	}
+	
 });
