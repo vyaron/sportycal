@@ -7,6 +7,17 @@ class nmActions extends sfActions{
 		if ($this->calsDownloadedCount > 100) $this->calsDownloadedCount -= 100;
 	}
 	
+	
+	public function executePricing(sfWebRequest $request){
+		$this->getResponse()->setSlot('pricing', true);
+		$this->setTemplate('comingSoon', 'nm');
+	}
+	
+	public function executeCaseStudies(sfWebRequest $request){
+		$this->getResponse()->setSlot('caseStudies', true);
+		$this->setTemplate('comingSoon', 'nm');
+	}
+	
 	//TODO: check defarent Timezones cals
 	public function executeImportCal(sfWebRequest $request){
 		$user = UserUtils::getLoggedIn();

@@ -1,7 +1,7 @@
 @IMPORT url("/fonts/signika/stylesheet.css");
 
 html, body{height: 100%;}
-body{padding-top: 80px; font-size: 12px;}
+body{/*padding-top: 80px;*/ font-size: 12px;}
 
 .cb{clear: both;}
 .mt10{margin-top: 10px;}
@@ -71,6 +71,8 @@ body{padding-top: 80px; font-size: 12px;}
 
 
 #container{position: relative; min-height: 100%;}
+
+#top-navbar-placholder{height: 66px; margin-bottom: 15px; display: block;} /*for calc #container height*/
 
 /*Alert section*/
 .alert ul{margin: 10px 20px;}
@@ -147,7 +149,7 @@ label.error, .error_list > li{color: red;}
 /*CSS Queries - NOT WORKING ON IE < 9!
 ****************************************/
 @media (max-width: 979px) {
-	body{padding-top: 0;}
+	#top-navbar-placholder{display: none;}
 	
 	#top-nav-place-holder{display: none;}
 

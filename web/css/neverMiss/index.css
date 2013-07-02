@@ -1,7 +1,8 @@
 @CHARSET "utf-8";
 
-body{padding-top: 66px;}
+/*body{padding-top: 66px;}*/
 
+#top-navbar-placholder{margin-bottom: 0px;}
 .navbar-fixed-top{margin-bottom: 0;} /*mobile top navigation - remove margin top*/
 
 /* Banner

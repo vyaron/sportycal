@@ -1,0 +1,8 @@
+#coming-soon-wrapper{background: center bottom no-repeat url("/images/neverMiss/layout/comigSoonHr.png"); margin-top: 140px;}
+#coming-soon-wrapper h1{color: #ffc229; font-size: 78px; line-height: normal; text-align: center; font-weight: normal; margin-top:19px; margin-bottom: 33px; }
+#coming-soon-icon{background: center 0 no-repeat url("/images/neverMiss/layout/comigSoonIcon.png"); height: 62px; display: block;}
+
+@media (max-width: 979px) {
+	#coming-soon-wrapper{margin-top: 0;}
+	#coming-soon-wrapper h1{font-size: 35px;}
+}

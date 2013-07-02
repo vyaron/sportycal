@@ -29,7 +29,7 @@
     <?php mb_internal_encoding('UTF-8');?>
     
     <div id="container">
-
+		<div id="top-navbar-placholder">&nbsp;</div>
 	    <div class="navbar navbar-inverse navbar-fixed-top">
 	      <div class="navbar-inner">
 	        <div class="container">
@@ -43,6 +43,8 @@
 	          	<div id="top-nav-wrapper">
 		            <ul id="main-nav" class="nav">
 		              <li<?php echo has_slot('homepage') ? ' class="active"' : '';?>><a href="/">Home</a></li>
+		              <li<?php echo has_slot('pricing') ? ' class="active"' : '';?>><a href="<?php echo url_for('nm/pricing') ?>">Pricing</a></li>
+		              <li<?php echo has_slot('caseStudies') ? ' class="active"' : '';?>><a href="<?php echo url_for('nm/caseStudies') ?>">Case Studies</a></li>
 		              <?php if ($user):?>
 		              <li<?php echo has_slot('calList') ? ' class="active"' : '';?>><a href="<?php echo url_for('nm/calList') ?>">Calendars</a></li>
 					  <?php endif;?>
@@ -94,6 +96,8 @@
 				<a href="<?php echo url_for('partner/login') ?>"><?php echo __('Log In');?></a>&nbsp;&nbsp;|&nbsp;&nbsp;
 				<?php endif;?>
 		        
+		        <a href="<?php echo url_for('nm/pricing') ?>">Pricing</a>&nbsp;&nbsp;|&nbsp;&nbsp;
+		        <a href="<?php echo url_for('nm/caseStudies') ?>">Case Studies</a>&nbsp;&nbsp;|&nbsp;&nbsp;
 		        <a href="<?php echo url_for('main/terms') ?>"><?php echo __('Terms & Conditions');?></a>
 	    	</div>
 	    </div>
