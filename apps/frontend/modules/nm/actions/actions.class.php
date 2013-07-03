@@ -7,7 +7,21 @@ class nmActions extends sfActions{
 		if ($this->calsDownloadedCount > 100) $this->calsDownloadedCount -= 100;
 	}
 	
-	
+	/*
+	public function executeGetPricingToken(sfWebRequest $request){
+		$user = UserUtils::getLoggedIn();
+		$res = array('success' => false, 'msg' => 'No user found');
+
+		if ($user){
+			$licensario = new Licensario();
+			$res = $licensario->getToken($user);
+		}
+		
+		
+		echo json_encode($res);
+		return sfView::NONE;
+	}
+	*/
 	public function executePricing(sfWebRequest $request){
 		$this->getResponse()->setSlot('pricing', true);
 		$this->setTemplate('comingSoon', 'nm');
