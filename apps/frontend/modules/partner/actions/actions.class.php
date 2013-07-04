@@ -93,14 +93,16 @@ class partnerActions extends sfActions
   }
 
   
-  protected function processLoginForm(sfWebRequest $request, sfForm $form)
+  protected function processLoginForm(sfWebRequest $request, sfForm $form, $isAjax = false)
   {
+  	$res = array('success' => false, 'msg' => __('Incorrect Email/Password Combination.'));
+  	
     $form->bind($request->getParameter('user'));
     if ($form->isValid())
     {
     	
     	$userValues = $form->getValues();
-      
+
   		$user = UserTable::getByEmail($userValues["email"]);
   		// TODO: encryption
         if ($user && $user->getPass() === $userValues["password"]) {
@@ -108,21 +110,30 @@ class partnerActions extends sfActions
 			// Create the login session
 			UserUtils::logUserIn($user);
 			
-			$refererUrl = UserUtils::getRefererUrl();
-			if ($refererUrl) {
-				UserUtils::setRefererUrl(null);
-				$this->redirect($refererUrl);
+			if ($isAjax){
+				$res['success'] = true;
+				$res['msg'] = __('Log in success');
+				$res['html'] = $this->getPartial('global/topNav', array('user' => $user));
 			} else {
-				if (sfConfig::get('app_domain_isNeverMiss')) $this->redirect('/nm/calList');
-				else $this->redirect('@homepage');
+				$refererUrl = UserUtils::getRefererUrl();
+				if ($refererUrl) {
+					UserUtils::setRefererUrl(null);
+					$this->redirect($refererUrl);
+				} else {
+					if (sfConfig::get('app_domain_isNeverMiss')) $this->redirect('/nm/calList');
+					else $this->redirect('@homepage');
+				}
 			}
         }
-    
     }
+    
+    if ($isAjax) echo json_encode($res);
   }
   
   
   public function executeLogin(sfWebRequest $request){
+  	$isAjax = $this->getRequest()->isXmlHttpRequest();
+
   	$this->getResponse()->setSlot('login', true);
   	
   	if (sfConfig::get('app_domain_isNeverMiss')){
@@ -133,10 +144,11 @@ class partnerActions extends sfActions
 	$this->form = new LoginForm();
   	
   	if ($request->isMethod('post')) {
-		$this->processLoginForm($request, $this->form);
+		$this->processLoginForm($request, $this->form, $isAjax);
   	}
   	
-  	if (sfConfig::get('app_domain_isNeverMiss')) $this->setTemplate('login', 'nm');
+  	if ($isAjax) return sfView::NONE;	
+  	else if (sfConfig::get('app_domain_isNeverMiss')) $this->setTemplate('login', 'nm');
   }
   
 

@@ -7,7 +7,7 @@
 	var NEVER_MISS_WIDGET_URL = NEVER_MISS_WEBSITE + 'neverMissBtn';
 	var NEVER_MISS_WIDGET_BUBBLE_URL = NEVER_MISS_WEBSITE + 'neverMissPopup';
 	
-	var BUBBLE_WIDTH = 230;
+	var BUBBLE_WIDTH = 360;
 	var BUBBLE_HEIGHT = 270;
 	
 	var getWindowSize = function(){
@@ -150,7 +150,7 @@
 			var id = NEVER_MISS + '_' + t;
 			var id_bubble = 'b_' + id;
 			
-			var iframes = '<div style="position: relative;"><iframe id="' + id +'" src="' + NEVER_MISS_WIDGET_URL + '/calId/' + calId + '/popupId/' + id_bubble + (language ? ('/language/' + language) : '') + (isMobile ? ('/isMobile/' + isMobile) : '') + '" frameborder="0" border="0" style="border: medium none; overflow: hidden; height: 22px; width: 47px;" scrolling="no" title="Never Miss"></iframe>';
+			var iframes = '<div style="position: relative;"><iframe id="' + id +'" src="' + NEVER_MISS_WIDGET_URL + '/calId/' + calId + '/popupId/' + id_bubble + (language ? ('/language/' + language) : '') + (isMobile ? ('/isMobile/' + isMobile) : '') + '" frameborder="0" border="0" style="border: medium none; overflow: hidden; height: 40px; width: 160px;" scrolling="no" title="Never Miss"></iframe>';
 			if (!isMobile) iframes += '<iframe id="' + id_bubble +'" src="' + NEVER_MISS_WIDGET_BUBBLE_URL + '/calId/' + calId + '/isBubble/true/bubbleTop/'+ isShowTop + '/popupId/' + id_bubble + (language ? ('/language/' + language) : '') + '" frameborder="0" border="0" style="border: medium none; overflow: hidden; height: ' + BUBBLE_HEIGHT + 'px; width: '+ BUBBLE_WIDTH +'px; position:absolute; left:0; '+ ((isShowTop) ? 'bottom:30' : 'top:20') +'px; z-index:9999; display:none;" scrolling="no" title="Never Miss"></iframe></div>';
 
 			el.innerHTML = iframes;
@@ -179,6 +179,7 @@
 			if (action == 'open') showBubble(id);
 			else if (action == 'close') hideBubble(id);
 			else if (action == 'toggle') toggleBubble(id);
+			else if (action == 'force_close') hideBubble(id, true);
 		}
 	},false);
 	

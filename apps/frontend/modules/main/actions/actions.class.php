@@ -76,6 +76,8 @@ class mainActions extends sfActions
 
   public function executeFbLogin(sfWebRequest $request)
   {
+  	$isAjax = $this->getRequest()->isXmlHttpRequest();
+  	$isAjax = true;
     $fbLoginSuccess = false;
     //$fbCookie = FacebookUtils::getCookie(FACEBOOK_APP_ID, FACEBOOK_SECRET);
 	
@@ -100,28 +102,39 @@ class mainActions extends sfActions
       //$this->getRequest()->setError(null, 'Could not connect you using Facebook Connect');
     }
     
-    $getUserId = $request->getParameter('getUserId');
-    
-    if ($getUserId){
-    	if (isset($user)) return $this->renderText('' . $user->getId());
-    	else return $this->renderText('0');
+    if ($isAjax){
+    	if ($fbLoginSuccess){
+    		$res = array('success' => true, 'msg' => __("Facebook log in success"), 'html' => $this->getPartial('global/topNav', array('user' => $user)));
+    	} else {
+    		$res = array('success' => false,'msg' => __("Facebook log in field"));
+    	}
+    	
+    	echo json_encode($res);
+    	return sfView::NONE;
+    } else {
+    	$getUserId = $request->getParameter('getUserId');
+    	
+    	if ($getUserId){
+    		if (isset($user)) return $this->renderText('' . $user->getId());
+    		else return $this->renderText('0');
+    	}
+    	
+    	$gotoPage = $request->getParameter('gt');
+    	if ($gotoPage) $this->redirect($gotoPage);
+    	
+    	//Redirect to referer
+    	if (sfConfig::get('app_domain_isNeverMiss')){
+    		$refererUrl = UserUtils::getRefererUrl();
+    		if ($refererUrl) {
+    			UserUtils::setRefererUrl(null);
+    			$this->redirect($refererUrl);
+    		}
+    	}
+    	
+    	//die("Done");
+    	if (sfConfig::get('app_domain_isNeverMiss')) $this->redirect('/nm/calList');
+    	else $this->redirect('main/index');
     }
-    
-    $gotoPage = $request->getParameter('gt');
-    if ($gotoPage) $this->redirect($gotoPage);
-    
-    //Redirect to referer
-    if (sfConfig::get('app_domain_isNeverMiss')){
-	    $refererUrl = UserUtils::getRefererUrl();
-	    if ($refererUrl) {
-	    	UserUtils::setRefererUrl(null);
-	    	$this->redirect($refererUrl);
-	    }
-    }
-    
-    //die("Done");
-    if (sfConfig::get('app_domain_isNeverMiss')) $this->redirect('/nm/calList');
-    else $this->redirect('main/index');
   }
 
 

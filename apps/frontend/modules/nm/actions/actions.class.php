@@ -24,6 +24,10 @@ class nmActions extends sfActions{
 	*/
 	public function executePricing(sfWebRequest $request){
 		$this->getResponse()->setSlot('pricing', true);
+		/*
+		$this->loginForm = new LoginForm();
+		$this->registerForm = new NmRegisterForm();
+		*/
 		$this->setTemplate('comingSoon', 'nm');
 	}
 	
@@ -350,6 +354,52 @@ class nmActions extends sfActions{
 		return $code;
 	}
 	
+	private function registerForm(sfWebRequest $request, $cal = null){
+		$isAjax = $this->getRequest()->isXmlHttpRequest();
+		$res = array('success' => false, 'msg' => __('Rgister field!'));
+		
+		if ($request->isMethod('post')){
+			$this->form->bind($request->getParameter('register'));
+				
+			if ($this->form->isValid()){
+				$now = date('Y-m-d H:i:s');
+				$rootName = $this->form->getValue('company_name') ? $this->form->getValue('company_name') : $this->form->getValue('full_name');
+				$website = $this->form->getValue('website');
+					
+				//Create user
+				$user = new User();
+				$user->setFullName($this->form->getValue('full_name'));
+				$user->setEmail($this->form->getValue('email'));
+				$user->setPass($this->form->getValue('password'));
+				$user->setType(User::TYPE_PARTNER);
+				$user->setCreatedAt($now);
+				$user->setLastLoginDate($now);
+				$user->save();
+					
+				UserUtils::logUserIn($user);
+					
+				if ($cal) $cal->setAdoptive($user, $rootName, $website);
+				
+				if ($isAjax){
+					$res['success'] = true;
+					$res['msg'] = 'Register success';
+					$res['html'] = $this->getPartial('global/topNav', array('user' => $user));
+				}
+			}
+		}
+		
+		if ($isAjax){
+			echo json_encode($res);
+		}
+	}
+	
+	public function executeRegister(sfWebRequest $request){
+		$this->forward404Unless($this->getRequest()->isXmlHttpRequest());
+		$this->form = new NmRegisterForm();
+		$this->registerForm($request);
+		return sfView::NONE;
+	}
+	
 	public function executeWidget(sfWebRequest $request){
 		$user = UserUtils::getLoggedIn();
 		
@@ -366,33 +416,8 @@ class nmActions extends sfActions{
 		
 		$this->form = new NmRegisterForm();
 		
-		if ($user){
-			$cal->setAdoptive($user);
-			//$this->code = $this->getWidgetCode($cal, $this->language);
-		} else {
-			if ($request->isMethod('post')){
-				$this->form->bind($request->getParameter('register'));
-				if ($this->form->isValid()){
-					$now = date('Y-m-d H:i:s');
-					$rootName = $this->form->getValue('company_name') ? $this->form->getValue('company_name') : $this->form->getValue('full_name');
-					$website = $this->form->getValue('website');
-			
-					//Create user
-					$user = new User();
-					$user->setFullName($this->form->getValue('full_name'));
-					$user->setEmail($this->form->getValue('email'));
-					$user->setPass($this->form->getValue('password'));
-					$user->setType(User::TYPE_PARTNER);
-					$user->setCreatedAt($now);
-					$user->setLastLoginDate($now);
-					$user->save();
-			
-					UserUtils::logUserIn($user);
-			
-					$cal->setAdoptive($user, $rootName, $website);
-				}
-			}
-		}
+		if ($user) $cal->setAdoptive($user);
+		else $this->registerForm($request, $cal);
 
 		$this->user = UserUtils::getLoggedIn();
 	}

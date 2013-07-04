@@ -10,7 +10,7 @@ class LoginForm extends BaseForm
     ));
 
 	$this->setValidators(array(
-      'email'   => new sfValidatorEmail(array(), array('invalid' => 'Incorrect Email/Password Combination.')),
+      'email'   => new sfValidatorEmail(array(), array('invalid' => __('Incorrect Email/Password Combination.'))),
       'password' => new sfValidatorString()
     ));
 

@@ -5,8 +5,8 @@
 </head>
 <link rel="stylesheet" href="/widgets/neverMiss/css/main.css"/>
 <style>
-#never-miss-btn, #never-miss-mobile-btn, #never-miss-disabled-btn{background: url('/widgets/neverMiss/imgs/btn.jpg') no-repeat 0 0; display: block; height:20px; width:45px; text-decoration: none;}
-#never-miss-mobile-btn{background: url('/widgets/neverMiss/imgs/mobile-btn.jpg') no-repeat 0 0;}
+#never-miss-btn, #never-miss-mobile-btn, #never-miss-disabled-btn{background: url('/widgets/neverMiss/imgs/btn.png') no-repeat 0 0; display: block; height:36px; width:159px; text-decoration: none;}
+#never-miss-mobile-btn{background: url('/widgets/neverMiss/imgs/mobile-btn.png') no-repeat 0 0;}
 
 #never-miss-disabled-btn{cursor: not-allowed; opacity:0.3; filter:alpha(opacity=30);}
 </style>

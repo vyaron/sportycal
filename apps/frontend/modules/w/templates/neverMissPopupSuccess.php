@@ -3,15 +3,24 @@
 <head>
 <link rel="stylesheet" href="/widgets/neverMiss/css/main.css"/>
 <style type="text/css">
-body{background-color: transparent;}
-	#widget-bubble.bubble-top{position: absolute; left: 0; bottom: 0;}
+	body{background-color: transparent;}
+	#widget-bubble{position: absolute; left: 0; min-width: 300px; color: #666px; font-size: 10px;}
+	#widget-bubble.bubble-top{bottom: 0;}
 	
+	.cal-link{width: 100px; height: 31px; line-height:31px; font-size:12px; float: left; display: block; margin-right: 7px; cursor: pointer; background: 0 bottom no-repeat url("/widgets/neverMiss/imgs/cal-link.png"); text-decoration: none; color: #333;}
+	.cal-link:hover{color: #000;}
+	.cal-link span{padding-left: 33px; background-position: 7px center; background-repeat: no-repeat; background-image: url("/widgets/neverMiss/imgs/cal-link.png"); display: block;}
+	.cal-link.outlook span{background-position: 0 0;}
+	.cal-link.ical span{background-position: 0 -31px;}
+	.cal-link.google span{background-position: 0 -62px;}
+	/*
 	.cal-link{display: block; float: left; margin-right: 5px; width: 30px; height: 30px; border: 2px dashed transparent; text-decoration: none; background-repeat: no-repeat; background-position: center center; outline: none;}
 	.cal-link:hover, .cal-link.selected{border-color: #ccc;}
 	.cal-link.google{background-image: url('/widgets/neverMiss/imgs/google.png');}
 	.cal-link.outlook{background-image: url('/widgets/neverMiss/imgs/outlook.png');}
 	.cal-link.ical{background-image: url('/widgets/neverMiss/imgs/ical.png');}
 	.cal-link.email{background-image: url('/widgets/neverMiss/imgs/email.png');}
+	*/
 	
 	/*New Window*/
 	.window-open{margin: 10px;}
@@ -19,17 +28,19 @@ body{background-color: transparent;}
 	/*Bubble*/
 	.speech-bubble {
 	    position:relative;
-	    width: 170px;
-	    padding: 10px;
+	    width: 335px;
+	    padding: 7px;
 	    /*margin: 3em;*/
 	    
-	    background-color:#FFF;
-	    color: #666;
+	    background-color:#f2f2f2;
 	    font: normal 12px "Segoe UI", Arial, Sans-serif;
-	    -moz-border-radius: 10px;
-	    -webkit-border-radius: 10px;
-	    border-radius: 10px;
-	    border: 10px solid #ccc;
+	    -moz-border-radius: 7px;
+	    -webkit-border-radius: 7px;
+	    border-radius: 7px;
+	    border: 1px solid #b3b3b3;
+	    border-bottom-width: 2px; 
+	    border-right-width: 2px; 
+	    box-shadow:1px 1px 3px rgba(0,0,0,0.5); 
 	}
 	
 	.speech-bubble.bubble-top{margin-bottom: 25px;}
@@ -40,38 +51,38 @@ body{background-color: transparent;}
 	    content: "\0020";
 	    display:block;
 	    position:absolute;
-	    left:3px;
+	    left:20px;
 	    z-index:2;
 	    width: 0;
 	    height: 0;
 	    overflow:hidden;
-	    border: solid 20px transparent;
+	    border: solid 4px transparent;
 	}
 	
 	.speech-bubble.bubble-top:before, .speech-bubble.bubble-top:after{
 	    border-bottom: 0;
-	    border-top-color:#fff;
-	    bottom:-20px;
+	    border-top-color:#f2f2f2;
+	    bottom:-4px;
 	}
 	
 	.speech-bubble.bubble-buttom:before, .speech-bubble.bubble-buttom:after{
 	    border-top: 0;
-	    border-bottom-color:#FFF;
-	    top:-20px;
+	    border-bottom-color:#f2f2f2;
+	    top:-4px;
 	}
 	
 	.speech-bubble:before {
 	 	z-index:1;
 	}
 	
-	.speech-bubble.bubble-top:before{
-		bottom:-30px;
-	    border-top-color:#ccc;
+ 	.speech-bubble.bubble-top:before{ 
+		bottom:-5px;
+	    border-top-color:#b3b3b3;
 	}
 	
 	.speech-bubble.bubble-buttom:before{
-	    top:-30px;
-	    border-bottom-color:#ccc;
+	    top:-5px;
+	    border-bottom-color:#b3b3b3;
 	}
 
     
@@ -79,16 +90,21 @@ body{background-color: transparent;}
     #mailinglist-form-loading{padding-left: 25px; background: url("/images/neverMiss/icons/ajax-loader-black.gif") no-repeat 0 center;}
     #mailinglist-form-success{color: green;}
     #mailinglist-form-error{color: red;}
+    
+    #close-btn{font-size: 7px; text-align:center; color: 666px; position: absolute; right: 0px; top: 0px; line-height:20px; width:20px; display:block; text-decoration: none;}
 </style>
 <title>Widget bubble</title>
 </head>
 
 <body>
-<div id="widget-bubble" class="<?php echo ($isBubble) ? 'speech-bubble' : 'window-open'?> <?php echo ($bubbleTop) ? 'bubble-top' : 'bubble-buttom';?>">
+<div id="widget-bubble" class="<?php echo ($isBubble ? 'speech-bubble' : 'window-open');?> <?php echo ($bubbleTop) ? 'bubble-top' : 'bubble-buttom';?>">
+	<a id="close-btn" href="#" title="<?php echo __('Click here to close');?>">x</a>
+	
+	<p><?php echo __('Please click the calendar of your choice');?></p>
 	<div class="clearfix">
-		<a class="cal-link google" href="#" data-href="/cal/sub/id/<?php echo $calId?>/ct/google/ref/widget/cal.ics" data-desc="<?php echo __('Download to Google calendar');?>">&nbsp;</a>
-		<a class="cal-link outlook" href="#" data-href="/cal/sub/id/<?php echo $calId?>/ct/outlook/ref/widget/cal.ics" data-desc="<?php echo __('Download to Outlook calendar');?>">&nbsp;</a>
-		<a class="cal-link ical" href="#" data-href="/cal/sub/id/<?php echo $calId?>/ct/any/ref/widget/cal.ics" data-desc="<?php echo __('Copy iCal link');?>">&nbsp;</a>
+		<a class="cal-link google" target="_blank" href="/cal/sub/id/<?php echo $calId?>/ct/google/ref/widget/cal.ics"><span>Outlook</span></a>
+		<a class="cal-link outlook" target="_blank" href="/cal/sub/id/<?php echo $calId?>/ct/outlook/ref/widget/cal.ics"><span>iCal</span></a>
+		<a class="cal-link ical" target="_blank" href="/cal/sub/id/<?php echo $calId?>/ct/any/ref/widget/cal.ics"><span>G Calendar</span></a>
 		<!-- <a class="cal-link email" href="#">&nbsp;</a> -->
 	</div>
 	
@@ -110,11 +126,6 @@ body{background-color: transparent;}
 			<input type="submit" class="btn btn-success" value="<?php echo __('Send');?>"/>
 		</form>
 	</div>
-	
-	<div id="desc-wrapper" style="display:none;">
-		<p id="link-desc"></p>
-		<a id="continue-btn" class="btn btn-success" href="#" target="_blank"><?php echo __('Continue');?></a>
-	</div>
 </div>
 
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
@@ -122,6 +133,7 @@ body{background-color: transparent;}
 <script type="text/javascript">
 var gSelected = null;
 
+/*
 function validateFullName(name) { 
     var re = /^[a-zA-Z ]+$/;
     return re.test(name);
@@ -185,6 +197,7 @@ function prepareMailinglistForm(){
 	});
 }
 
+
 function showCalLink(e){
 	e.preventDefault();
 
@@ -217,6 +230,7 @@ function showCalLink(e){
 	}
 }
 
+
 function setCalLinksEvents(){
 	jQuery('.cal-link').click(showCalLink);
 	jQuery('.cal-link').mouseenter(showCalLink);
@@ -225,6 +239,7 @@ function setCalLinksEvents(){
 		window.setTimeout(function(){window.close();}, 1000);
 	});
 }
+
 
 function getUserGmtMins(){
 	var d = new Date();
@@ -236,7 +251,7 @@ function getUserGmtMins(){
 function setTimezone(){
 	jQuery('#mailinglist-tz').val(getUserGmtMins());
 }
-
+*/
 jQuery(document).ready(function(){
 	var popupId = '<?php echo $popupId;?>';
 	jQuery('#widget-bubble').hover(function(e){
@@ -244,10 +259,17 @@ jQuery(document).ready(function(){
 	}, function(){
 		if (parent.postMessage) parent.postMessage(popupId + '@close', "*");
 	});
+
+	jQuery('#close-btn').click(function(e){
+		e.preventDefault();
+		
+		if (parent.postMessage) parent.postMessage(popupId + '@force_close', "*");
+		else if (window.parent != window) window.close();
+	});
 	
-	prepareMailinglistForm();
-	setCalLinksEvents();
-	setTimezone();
+	//prepareMailinglistForm();
+	//setCalLinksEvents();
+	//setTimezone();
 });
 
 </script>

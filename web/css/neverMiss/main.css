@@ -105,7 +105,7 @@ label.error, .error_list > li{color: red;}
 
 .navbar-inverse .nav{font-size: 12px;font-family: SignikaRegular;}
 .navbar .nav > li > a{text-transform: uppercase;}
-.navbar-inverse .nav .active > a, .navbar-inverse .nav .active > a:hover, .navbar-inverse .nav .active > a:focus{border-bottom: 3px solid #ffc229;}
+.navbar-inverse .nav .active > a, .navbar-inverse .nav .active > a:hover, .navbar-inverse .nav .active > a:focus{border-bottom: 3px solid #ffc229; padding-bottom: 7px;}
 
 /*login*/
 #nav-login-btn a{padding: 3px 6px; border: 1px solid #ffc229; margin-bottom: 12px;}
@@ -154,7 +154,7 @@ label.error, .error_list > li{color: red;}
 	#top-nav-place-holder{display: none;}
 
 	#top-nav-wrapper{display: inline;}
-	.navbar-inverse .nav .active > a, .navbar-inverse .nav .active > a:hover, .navbar-inverse .nav .active > a:focus{border-bottom: inherit;}
+	.navbar-inverse .nav .active > a, .navbar-inverse .nav .active > a:hover, .navbar-inverse .nav .active > a:focus{border-bottom: inherit; padding-bottom: inherit;}
 	
 	#top-nav-wrapper, #logo, #main-nav, #user-nav, #user-nav .user-pic{position:inherit; left: inherit; right: inherit; top:inherit; bottom: inherit;}
 	
