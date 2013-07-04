@@ -91,7 +91,7 @@
     #mailinglist-form-success{color: green;}
     #mailinglist-form-error{color: red;}
     
-    #close-btn{font-size: 7px; text-align:center; color: 666px; position: absolute; right: 0px; top: 0px; line-height:20px; width:20px; display:block; text-decoration: none;}
+    #close-btn{font-size: 7px; text-align:center; color: 666px; position: absolute; right: 0px; top: 0px; line-height:20px; width:20px; display:block; text-decoration: none; outline: none;}
 </style>
 <title>Widget bubble</title>
 </head>
