@@ -8,26 +8,37 @@ class nmActions extends sfActions{
 	}
 	
 	/*
-	public function executeGetPricingToken(sfWebRequest $request){
-		$user = UserUtils::getLoggedIn();
-		$res = array('success' => false, 'msg' => 'No user found');
-
-		if ($user){
-			$licensario = new Licensario();
-			$res = $licensario->getToken($user);
-		}
-		
-		
-		echo json_encode($res);
-		return sfView::NONE;
-	}
-	*/
-	public function executePricing(sfWebRequest $request){
+	public function executeLicenceWizard(sfWebRequest $request){
 		$this->getResponse()->setSlot('pricing', true);
-		/*
+		
+		$user = UserUtils::getLoggedIn();
+		$this->paymentPlanCode = $request->getParameter('c');
+		
+		if (!$user){
+			$this->redirect('/nm/loginAndRegister/c/' . $this->paymentPlanCode);
+		} else {
+			$partner = $user->getPartner();
+			if ($partner){
+				$this->externalUserId = $partner->tryToGetExternalUserId();
+				$this->token = Licensario::getToken($this->externalUserId);
+				
+			}
+		}
+
+		$this->forward404Unless(($this->externalUserId && $this->token && $this->paymentPlanCode));
+	}
+	
+	public function executeLoginAndRegister(sfWebRequest $request){
+		$this->code = $request->getParameter('c');
+		
 		$this->loginForm = new LoginForm();
 		$this->registerForm = new NmRegisterForm();
-		*/
+	}
+*/
+	
+	public function executePricing(sfWebRequest $request){
+		$this->getResponse()->setSlot('pricing', true);
+		
 		$this->setTemplate('comingSoon', 'nm');
 	}
 	

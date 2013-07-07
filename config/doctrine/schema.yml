@@ -1423,6 +1423,20 @@ Partner:
       primary: false
       notnull: false
       autoincrement: false
+    external_user_id:
+      type: string(64)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: false
+      autoincrement: false
+    licence_code:
+      type: string(512)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: false
+      autoincrement: false
     max_subscribers:
       type: integer(4)
       fixed: false

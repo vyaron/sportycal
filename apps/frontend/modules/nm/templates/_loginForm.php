@@ -11,6 +11,7 @@
 		
 		<?php echo $form['email']->renderLabel();?>
 		<?php echo $form['email']->render(array('placeholder' => 'name@domain.com', 'required'=>'required', 'minlength'=>'3'));?>
+
 		
 		<?php echo $form['password']->renderLabel();?>
 		<?php echo $form['password']->render(array('required'=>'required'));?>
@@ -18,6 +19,8 @@
 		<?php echo $form['email']->renderError();?>
 		
 		<?php //echo $form ?>
+		
+		<br/>
 		<input class="btn btn-success pull-right" type="submit" value="Login" />
 	</fieldset>
 </form>

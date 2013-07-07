@@ -1,3 +1,10 @@
+-- ALTER TABLE user DROP INDEX fkUSER_email;
+-- ALTER IGNORE TABLE user ADD UNIQUE INDEX(email);
+
+ALTER TABLE `partner` ADD `external_user_id` VARCHAR( 64 ) NULL DEFAULT NULL AFTER `tz` , ADD INDEX ( `external_user_id` );
+ALTER TABLE `partner` ADD `licence_code` VARCHAR( 512 ) NULL DEFAULT NULL AFTER `external_user_id` , ADD INDEX ( `licence_code` );
+
+----------------------------------------------------------------------------------------------
 ALTER TABLE `partner` ADD `max_subscribers` INT UNSIGNED NULL DEFAULT '100';
 
 ----------------------------DONE ON PROD-------------------------------------------------------

@@ -1,0 +1,22 @@
+#forms-wrapper{width: 740px; margin: 0 auto;}
+#login-form, #register-form{float: left;}
+#login-form{max-width: 220px; margin-right: 50px;}
+#register-form{max-width: 570px;}
+
+
+/*CSS Queries - NOT WORKING ON IE < 9!
+****************************************/
+@media (min-width: 1200px) {
+	#forms-wrapper{width: 840px;}
+}
+
+@media (min-width: 768px) and (max-width: 979px) {
+	#forms-wrapper{width: 632px;}
+}
+
+@media (max-width: 768px) {
+	#login-form input[type=text], #login-form input[type=password]{width: 100%; width: calc(100% - 15px); }
+	#forms-wrapper{width: auto; margin: 0;}
+	#login-form, #register-form{float: none; max-width: inherit; -moz-box-sizing:border-box;}
+	#login-form{margin-right: auto;}
+}

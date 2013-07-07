@@ -1,12 +1,13 @@
 <?php 
 $backUrl = Utils::iff($backUrl, null);
 $isShowLogin = Utils::iff($isShowLogin, false);
+$legend = Utils::iff($legend, 'Register');
 ?>
 <form id="register-form" method="POST">
 	<fieldset>
 		<?php echo $form['_csrf_token']->render();?>
 		<legend class="clearfix">
-			<span class="pull-left">Register to save:</span>
+			<span class="pull-left"><?php echo $legend;?>:</span>
 			
 			<?php if ($isShowLogin):?>
 			<span id="register-login-wrapper" class="pull-right">

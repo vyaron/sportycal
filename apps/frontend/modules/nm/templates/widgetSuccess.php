@@ -32,7 +32,7 @@
 			</fieldset>
 		</form>
 		<?php else:?>
-			<?php include_partial('nm/registerForm', array('form' => $form, 'isShowLogin' => true, 'backUrl' => url_for('nm/calEdit/?id=' . $calId))); ?>
+			<?php include_partial('nm/registerForm', array('form' => $form, 'isShowLogin' => true, 'backUrl' => url_for('nm/calEdit/?id=' . $calId), 'legend' => 'Register to save')); ?>
 		<?php endif;?>
 	</div>
 	<div class="span6">
