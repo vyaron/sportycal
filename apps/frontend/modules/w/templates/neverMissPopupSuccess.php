@@ -13,14 +13,6 @@
 	.cal-link.outlook span{background-position: 0 0;}
 	.cal-link.ical span{background-position: 0 -31px;}
 	.cal-link.google span{background-position: 0 -62px;}
-	/*
-	.cal-link{display: block; float: left; margin-right: 5px; width: 30px; height: 30px; border: 2px dashed transparent; text-decoration: none; background-repeat: no-repeat; background-position: center center; outline: none;}
-	.cal-link:hover, .cal-link.selected{border-color: #ccc;}
-	.cal-link.google{background-image: url('/widgets/neverMiss/imgs/google.png');}
-	.cal-link.outlook{background-image: url('/widgets/neverMiss/imgs/outlook.png');}
-	.cal-link.ical{background-image: url('/widgets/neverMiss/imgs/ical.png');}
-	.cal-link.email{background-image: url('/widgets/neverMiss/imgs/email.png');}
-	*/
 	
 	/*New Window*/
 	.window-open{margin: 10px;}
@@ -30,7 +22,6 @@
 	    position:relative;
 	    width: 335px;
 	    padding: 7px;
-	    /*margin: 3em;*/
 	    
 	    background-color:#f2f2f2;
 	    font: normal 12px "Segoe UI", Arial, Sans-serif;
@@ -43,48 +34,55 @@
 	    box-shadow:1px 1px 3px rgba(0,0,0,0.5); 
 	}
 	
-	.speech-bubble.bubble-top{margin-bottom: 25px;}
-	.speech-bubble.bubble-buttom{margin-top:25px;}
+	.speech-bubble.bottom-right, .speech-bubble.bottom-left{margin-top:25px;}
+	.speech-bubble.top-right, .speech-bubble.top-left{margin-bottom:25px; position: absolute; bottom: 0;}
 
 	.speech-bubble:before,
 	.speech-bubble:after {
 	    content: "\0020";
 	    display:block;
 	    position:absolute;
-	    left:20px;
-	    z-index:2;
+	    
 	    width: 0;
 	    height: 0;
 	    overflow:hidden;
 	    border: solid 4px transparent;
 	}
 	
-	.speech-bubble.bubble-top:before, .speech-bubble.bubble-top:after{
-	    border-bottom: 0;
-	    border-top-color:#f2f2f2;
-	    bottom:-4px;
-	}
+	.speech-bubble:before {z-index:1;}
+	.speech-bubble:after {z-index:2;}
 	
-	.speech-bubble.bubble-buttom:before, .speech-bubble.bubble-buttom:after{
-	    border-top: 0;
+	.speech-bubble.bottom-right:before, .speech-bubble.bottom-right:after,
+	.speech-bubble.top-right:before, .speech-bubble.top-right:after{left:20px;}
+	
+	.speech-bubble.bottom-left:before, .speech-bubble.bottom-left:after,
+	.speech-bubble.top-left:before, .speech-bubble.top-left:after{right:20px;}
+	
+	.speech-bubble.bottom-right:before, .speech-bubble.bottom-right:after, 
+	.speech-bubble.bottom-left:before, .speech-bubble.bottom-left:after{
+		border-top: 0;
 	    border-bottom-color:#f2f2f2;
 	    top:-4px;
 	}
 	
-	.speech-bubble:before {
-	 	z-index:1;
+	.speech-bubble.top-right:before, .speech-bubble.top-right:after, 
+	.speech-bubble.top-left:before, .speech-bubble.top-left:after{
+		border-bottom: 0;
+	    border-top-color:#f2f2f2;
+	    bottom:-4px;
 	}
 	
- 	.speech-bubble.bubble-top:before{ 
-		bottom:-5px;
-	    border-top-color:#b3b3b3;
-	}
-	
-	.speech-bubble.bubble-buttom:before{
-	    top:-5px;
+	.speech-bubble.bottom-right:before, .speech-bubble.bottom-left:before{
+		border-top: 0;
 	    border-bottom-color:#b3b3b3;
+	    top:-5px;
 	}
-
+	
+	.speech-bubble.top-right:before, .speech-bubble.top-left:before{
+		border-bottom: 0;
+	    border-top-color:#b3b3b3;
+	    bottom:-5px;
+	}
     
     #mailinglist-form-loading, #mailinglist-form-success, #mailinglist-form-error{font-size: 14px; margin: 10px 0;}
     #mailinglist-form-loading{padding-left: 25px; background: url("/images/neverMiss/icons/ajax-loader-black.gif") no-repeat 0 center;}
@@ -97,7 +95,7 @@
 </head>
 
 <body>
-<div id="widget-bubble" class="<?php echo ($isBubble ? 'speech-bubble' : 'window-open');?> <?php echo ($bubbleTop) ? 'bubble-top' : 'bubble-buttom';?>">
+<div id="widget-bubble" class="<?php echo ($isBubble ? 'speech-bubble ' . $bubblePos : 'window-open');?>">
 	<a id="close-btn" href="#" title="<?php echo __('Click here to close');?>">x</a>
 	
 	<p><?php echo __('Please click the calendar of your choice');?></p>
