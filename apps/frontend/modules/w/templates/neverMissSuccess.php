@@ -23,9 +23,7 @@
 	
 	
 	function getOffsetTop(el){
-		if (!el) return 0;
-		
-		return (el.offsetTop > 0) ? el.offsetTop : getOffsetTop(el.offsetParent);
+		return (el) ? el.offsetTop + getOffsetTop(el.offsetParent) : 0;
 	}
 	
 	function getOffsetLeft(el){
