@@ -77,7 +77,6 @@ class mainActions extends sfActions
   public function executeFbLogin(sfWebRequest $request)
   {
   	$isAjax = $this->getRequest()->isXmlHttpRequest();
-  	$isAjax = true;
     $fbLoginSuccess = false;
     //$fbCookie = FacebookUtils::getCookie(FACEBOOK_APP_ID, FACEBOOK_SECRET);
 	
