@@ -30,6 +30,7 @@ class wActions extends sfActions{
 		
 		$this->bubblePos = $request->getParameter('bubblePos', 'bottom-right');
 		$this->language = $request->getParameter('language');
+		$this->isRTL = ($this->language == 'he') ? true : false; 
 		
 		if (!($this->calId)){
 			echo 'ERROR!!!';

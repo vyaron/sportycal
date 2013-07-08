@@ -4,12 +4,14 @@
 <link rel="stylesheet" href="/widgets/neverMiss/css/main.css"/>
 <style type="text/css">
 	body{background-color: transparent;}
+
 	#widget-bubble{position: absolute; left: 0; min-width: 300px; color: #666px; font-size: 10px;}
 	#widget-bubble.bubble-top{bottom: 0;}
-	
 	.cal-link{width: 100px; height: 31px; line-height:31px; font-size:12px; float: left; display: block; margin-right: 7px; cursor: pointer; background: 0 bottom no-repeat url("/widgets/neverMiss/imgs/cal-link.png"); text-decoration: none; color: #333;}
+	
 	.cal-link:hover{color: #000;}
 	.cal-link span{padding-left: 33px; background-position: 7px center; background-repeat: no-repeat; background-image: url("/widgets/neverMiss/imgs/cal-link.png"); display: block;}
+	
 	.cal-link.outlook span{background-position: 0 0;}
 	.cal-link.ical span{background-position: 0 -31px;}
 	.cal-link.google span{background-position: 0 -62px;}
@@ -90,12 +92,22 @@
     #mailinglist-form-error{color: red;}
     
     #close-btn{font-size: 7px; text-align:center; color: 666px; position: absolute; right: 0px; top: 0px; line-height:20px; width:20px; display:block; text-decoration: none; outline: none;}
+    
+    
+    /*RTL*/
+    .rtl{direction: rtl; text-align: right;}
+	.rtl .cal-link{float: right;}
+	.rtl .cal-link:first-child{margin-right: 0;}
+	.rtl .cal-link span{padding-right: 33px; padding-left:0;}
+	.rtl .cal-link.outlook span{background-position: 65px 0;}
+	.rtl .cal-link.ical span{background-position: 65px -31px;}
+	.rtl .cal-link.google span{background-position: 65px -62px;}
 </style>
 <title>Widget bubble</title>
 </head>
 
 <body>
-<div id="widget-bubble" class="<?php echo ($isBubble ? 'speech-bubble ' . $bubblePos : 'window-open');?>">
+<div id="widget-bubble" class="<?php echo ($isBubble ? 'speech-bubble ' . $bubblePos : 'window-open');?><?php echo ($isRTL ? ' rtl' : '');?>">
 	<a id="close-btn" href="#" title="<?php echo __('Click here to close');?>">x</a>
 	
 	<p><?php echo __('Please click the calendar of your choice');?></p>

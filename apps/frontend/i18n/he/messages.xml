@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE xliff PUBLIC "-//XLIFF//DTD XLIFF//EN" "http://www.oasis-open.org/committees/xliff/documents/xliff.dtd">
 <xliff version="1.0">
-  <file source-language="EN" target-language="he" datatype="plaintext" original="messages" date="2013-05-30T09:59:12Z" product-name="messages">
+  <file source-language="EN" target-language="he" datatype="plaintext" original="messages" date="2013-07-08T14:56:47Z" product-name="messages">
     <header/>
     <body>
       <trans-unit id="1">
@@ -531,6 +531,46 @@
       <trans-unit id="158">
         <source>Continue</source>
         <target>המשך</target>
+      </trans-unit>
+      <trans-unit id="159">
+        <source>Sign Out</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="160">
+        <source>Facebook log in success</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="161">
+        <source>Facebook log in field</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="162">
+        <source>Rgister field!</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="163">
+        <source>Incorrect Email/Password Combination.</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="164">
+        <source>Log in success</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="165">
+        <source>You have the maximum number Subscriptions</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="166">
+        <source>Click here to close</source>
+        <target>לסגירה לחץ כאן</target>
+      </trans-unit>
+      <trans-unit id="167">
+        <source>Please click the calendar of your choice</source>
+        <target>אנא בחר לוח שנה</target>
+      </trans-unit>
+      <trans-unit id="168">
+        <source>Full name</source>
+        <target/>
       </trans-unit>
     </body>
   </file>
