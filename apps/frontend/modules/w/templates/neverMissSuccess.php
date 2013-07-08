@@ -7,6 +7,9 @@
 	var NEVER_MISS_WIDGET_URL = NEVER_MISS_WEBSITE + 'neverMissBtn';
 	var NEVER_MISS_WIDGET_BUBBLE_URL = NEVER_MISS_WEBSITE + 'neverMissPopup';
 	
+	var BTN_WIDTH = 160;
+	var BTN_HEIGHT = 40;
+	
 	var BUBBLE_WIDTH = 360;
 	var BUBBLE_HEIGHT = 130;
 	
@@ -178,7 +181,7 @@
 			var id = NEVER_MISS + '_' + t;
 			var id_bubble = 'b_' + id;
 			
-			var iframes = '<div style="position: relative;"><iframe id="' + id +'" src="' + NEVER_MISS_WIDGET_URL + '/calId/' + calId + '/popupId/' + id_bubble + (language ? ('/language/' + language) : '') + (isMobile ? ('/isMobile/' + isMobile) : '') + '" frameborder="0" border="0" style="border: medium none; overflow: hidden; height: 40px; width: 160px;" scrolling="no" title="Never Miss"></iframe>';
+			var iframes = '<div style="position: relative; height: ' + BTN_HEIGHT + 'px; width: ' + BTN_WIDTH + 'px;"><iframe id="' + id +'" src="' + NEVER_MISS_WIDGET_URL + '/calId/' + calId + '/popupId/' + id_bubble + (language ? ('/language/' + language) : '') + (isMobile ? ('/isMobile/' + isMobile) : '') + '" frameborder="0" border="0" style="border: medium none; overflow: hidden; height: ' + BTN_HEIGHT + 'px; width: ' + BTN_WIDTH + 'px;" scrolling="no" title="Never Miss"></iframe>';
 			if (!isMobile) iframes += '<iframe id="' + id_bubble +'" src="' + NEVER_MISS_WIDGET_BUBBLE_URL + '/calId/' + calId + '/isBubble/true/bubblePos/'+ bubbleClassPos + '/popupId/' + id_bubble + (language ? ('/language/' + language) : '') + '" frameborder="0" border="0" style="border: medium none; overflow: hidden; height: ' + BUBBLE_HEIGHT + 'px; width: '+ BUBBLE_WIDTH +'px; position:absolute; '+ ((isRight) ? 'left:0' : 'right:0') +'; '+ ((isTop) ? 'bottom:30' : 'top:20') +'px; z-index:9999; display:none;" scrolling="no" title="Never Miss"></iframe></div>';
 
 			el.innerHTML = iframes;
