@@ -734,52 +734,11 @@ class Cal extends BaseCal
     
     public function setAdoptive(User $user, $rootName="ROOT", $website=null){
     	if (!$this->getByUserId()){
-    		$partner = $user->getPartner();
-    		
-    		if (!$partner){
-    			//Create Partner
-    			$partner = new Partner();
-    			$partner->setName($rootName);
-    			$partner->setHash($user->getId()); //TODO: replace with nice hash
-    		
-    			//TODO: add timezone ?
-    			$partner->Save();
-    		
-    			//Create PartnerUser
-    			$partnerUser = new PartnerUser();
-    			$partnerUser->setPartnerId($partner->getId());
-    			$partnerUser->setUserId($user->getId());
-    			$partnerUser->save();
-    		
-    			if ($user->isSimple()){
-    				$user->setType(User::TYPE_PARTNER);
-    				$user->save();
-    			}
-    		}
-    		 
-    		$category = $partner->getRootCategory();
-    		if (!$category){
-    			//Create Category
-    			$category = new Category();
-    			$category->setName($rootName);
-    			$category->setIsPublic(false);
-    			$category->setPartnerId($partner->getId());
-    			$category->setByUserId($user->getId());
-    			$category->setParentId(Category::CTG_NEVER_MISS);
-    			$category->save();
-    			
-    			$category->setCategoryIdsPath(Category::CTG_NEVER_MISS . ',' . $category->getId());
-    			$category->save();
-    		
-    			//Create PartnerDesc
-    			$partnerDesc = new PartnerDesc();
-    			$partnerDesc->setPartnerId($partner->getId());
-    			$partnerDesc->setWebsite($website);
-    			$partnerDesc->setCategoryId($category->getId());
-    			$partnerDesc->setCalId($this->getId());
-    			$partnerDesc->save();
-    		}
-    		 
+    		$partner = $user->createPartner($rootName, $website);
+    		$partnerDesc = $partner->getPartnerDesc()->getFirst();
+ 
+    		$category = $partner->getPartnerDesc()->getFirst()->getCategory();
+
     		//Set orphan cal parent
     		$this->setByUserId($user->getId());
     		$this->setIsPublic(true);

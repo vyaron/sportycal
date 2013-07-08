@@ -204,28 +204,7 @@ class Partner extends BasePartner
 		return $externalUserId;
 	}
 	
-	/*
-	public function getExternalUserId(){
-		$externalUserId = $this->_get('external_user_id');
-		if (!$externalUserId){
-			$user = $this->getFirstUser();
-
-			$data = array('email' => $user->getEmail());
-			$data['user_first_name'] = $user->getFullName();
-			$data['user_signed_up_at'] = $user->getCreatedAt();
-	
-			if ($user->getFbCode()) $data['signed_up_via'] = "facebook";
-			if ($user->getBirthdate()) $data['user_born_at'] = $user->getBirthdate();
-			
-			$externalUserId = Licensario::getExternalUserId($user->getId(), $data);
-			ut
-			if ($externalUserId) {
-				$this->_set('external_user_id', $externalUserId);
-				$this->save();
-			}
-		}
-		
-		return $externalUserId;
+	public function getMaxSubscribers(){
+		return PartnerLicence::getMaxSubscribers($this->_get('licence_code'));
 	}
-	*/
 }

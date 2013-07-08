@@ -30,6 +30,10 @@ class User extends BaseUser
         return ($type == self::TYPE_PARTNER);
     }
     
+    /**
+     * 
+     * @return Doctrine_Collection Partner
+     */
     public function getPartner(){
     	$partner = null;
     	
@@ -55,5 +59,59 @@ class User extends BaseUser
     	$cals->orderBy('c.updated_at DESC');
     	
     	return $cals->execute();
+    }
+    
+    public function createPartner($rootName="ROOT", $website=null){
+    	$partner = $this->getPartner();
+    	if (!$partner){
+    		//Create Partner
+    		$partner = new Partner();
+    		$partner->setName($rootName);
+    		$partner->setHash($this->getId()); //TODO: replace with nice hash
+    	
+    		//TODO: add timezone ?
+    		$partner->Save();
+    	
+    		//Create PartnerUser
+    		$partnerUser = new PartnerUser();
+    		$partnerUser->setPartnerId($partner->getId());
+    		$partnerUser->setUserId($this->getId());
+    		$partnerUser->save();
+    		
+    		//$partner->setPartnerUser($partnerUser);
+    	
+    		if ($this->isSimple()){
+    			$this->setType(User::TYPE_PARTNER);
+    			$this->save();
+    		}
+    	}
+    	 
+    	$category = $partner->getRootCategory();
+    	if (!$category){
+    		//Create Category
+    		$category = new Category();
+    		$category->setName($rootName);
+    		$category->setIsPublic(false);
+    		$category->setPartnerId($partner->getId());
+    		$category->setByUserId($this->getId());
+    		$category->setParentId(Category::CTG_NEVER_MISS);
+    		$category->save();
+    		 
+    		$category->setCategoryIdsPath(Category::CTG_NEVER_MISS . ',' . $category->getId());
+    		$category->save();
+    	
+    		//Create PartnerDesc
+    		$partnerDesc = new PartnerDesc();
+    		$partnerDesc->setPartnerId($partner->getId());
+    		$partnerDesc->setWebsite($website);
+    		$partnerDesc->setCategory($category);
+    		//$partnerDesc->setCategoryId($category->getId());
+    		//$partnerDesc->setCalId($this->getId());
+    		$partnerDesc->save();
+    		
+    		//$partner->setPartnerDesc($partnerDesc);
+    	}
+    	
+    	return $partner;
     }
 }

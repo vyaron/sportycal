@@ -1,1 +1,7 @@
 #wizard-iframe{height: 685px; overflow: hidden;}
+
+/*CSS Queries - NOT WORKING ON IE < 9!
+****************************************/
+@media (max-width: 689px) {
+	#wizard-iframe{height: 1000px;}
+}

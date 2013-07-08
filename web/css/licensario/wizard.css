@@ -1,3 +1,12 @@
+
+html, body{height: 100%;}
+.wrapper{position: relative; min-height: 100%;}
+
+#choosePaymentFailedStep .inner_content{padding: 0;}
+#choosePaymentFailedStep .items_wrapper{margin: 50px auto;}
+
+#choosePaymentFailedStep .inner_content p.items.middle, #choosePaymentFailedStep .inner_content p.items.omega{display: none;}
+
 .inner_content:after, .clearfix:after {
 	content: ".";
 	display: block;
@@ -20,15 +29,30 @@ html[xmlns] .inner_content, html[xmlns] .clearfix {
 }
 
 .wrapper{background: none;}
+.wrapper .inner_wrapper{height: auto;}
 .button.mark_close{display: none;}
 .inner_wrapper > img{display: none;}
 
 .inner_content, .wrapper .inner_wrapper{width: 690px;}
 .inner_content{padding: 0;  margin: 0 auto; display: block;}
-#footer .inner_footer{width: auto;}
+
+#footer{position: relative; padding: 20px 0;}
+#footer .inner_footer{width: auto; }
 
 /*CSS Queries - NOT WORKING ON IE < 9!
 ****************************************/
 @media (max-width: 689px) {
 	.inner_content, .wrapper .inner_wrapper{width: 300px;}
+	#choosePaymentInfoStep .top_section h1, #choosePaymentInfoStep .top_section .info, #billingAddressContainer, #paymentMethodcontainer{float: none;}
+	#choosePaymentInfoStep .top_section h1{font-size: 40px;}
+	#paymentMethodcontainer{width: auto; height: auto;}
+	#billingAddressContainer, .creditCardContainer, .cardContainer, .paypalContainer{padding: 0 15px 20px;}
+	.creditCardContainer, .cardContainer, .paypalContainer{padding-top: 15px; margin-top: 0;}
+	#billingAddressContainer{margin-right: 0;}
+	.btn_continue{margin-top: 15px;}
+	#footer{position: relative;}
+	#footer .inner_footer a{padding: 0 5px;}
+	#footer .inner_footer a:first-child, #footer .inner_footer > span{display: none;}
+	
+	#choosePaymentFailedStep .inner_content h1 { font-size: 30px; line-height: normal;}
 }

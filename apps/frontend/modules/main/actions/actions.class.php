@@ -77,14 +77,14 @@ class mainActions extends sfActions
   public function executeFbLogin(sfWebRequest $request)
   {
   	$isAjax = $this->getRequest()->isXmlHttpRequest();
+
     $fbLoginSuccess = false;
     //$fbCookie = FacebookUtils::getCookie(FACEBOOK_APP_ID, FACEBOOK_SECRET);
 	
     $fbUser = FacebookUtils::getUser();
-	
+    
     if ($fbUser) {
         $user = $this->handleFBUser($fbUser);
-        
 		//Utils::pp($user);
         if ($user) {
           // Create the login session
@@ -174,6 +174,10 @@ class mainActions extends sfActions
 	    $user->save();
 
     }
+    
+    if (sfConfig::get('app_domain_isNeverMiss') 
+    		&& ($user->getType() != User::TYPE_PARTNER || $user->getType() != User::TYPE_MASTER)) $partner = $user->createPartner();
+    
 
     return $user;
     

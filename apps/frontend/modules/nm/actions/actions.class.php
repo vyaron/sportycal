@@ -34,7 +34,7 @@ class nmActions extends sfActions{
 		$this->loginForm = new LoginForm();
 		$this->registerForm = new NmRegisterForm();
 	}
-*/
+	*/
 	
 	public function executePricing(sfWebRequest $request){
 		$this->getResponse()->setSlot('pricing', true);

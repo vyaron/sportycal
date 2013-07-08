@@ -13,7 +13,6 @@ Doctrine_Manager::getInstance()->bindComponent('Partner', 'doctrine');
  * @property string $tz
  * @property string $external_user_id
  * @property string $licence_code
- * @property integer $max_subscribers
  * @property Doctrine_Collection $Alias
  * @property Doctrine_Collection $Cal
  * @property Doctrine_Collection $CalRequest
@@ -30,7 +29,6 @@ Doctrine_Manager::getInstance()->bindComponent('Partner', 'doctrine');
  * @method string              getTz()               Returns the current record's "tz" value
  * @method string              getExternalUserId()   Returns the current record's "external_user_id" value
  * @method string              getLicenceCode()      Returns the current record's "licence_code" value
- * @method integer             getMaxSubscribers()   Returns the current record's "max_subscribers" value
  * @method Doctrine_Collection getAlias()            Returns the current record's "Alias" collection
  * @method Doctrine_Collection getCal()              Returns the current record's "Cal" collection
  * @method Doctrine_Collection getCalRequest()       Returns the current record's "CalRequest" collection
@@ -46,7 +44,6 @@ Doctrine_Manager::getInstance()->bindComponent('Partner', 'doctrine');
  * @method Partner             setTz()               Sets the current record's "tz" value
  * @method Partner             setExternalUserId()   Sets the current record's "external_user_id" value
  * @method Partner             setLicenceCode()      Sets the current record's "licence_code" value
- * @method Partner             setMaxSubscribers()   Sets the current record's "max_subscribers" value
  * @method Partner             setAlias()            Sets the current record's "Alias" collection
  * @method Partner             setCal()              Sets the current record's "Cal" collection
  * @method Partner             setCalRequest()       Sets the current record's "CalRequest" collection
@@ -121,16 +118,6 @@ abstract class BasePartner extends sfDoctrineRecord
              'notnull' => false,
              'autoincrement' => false,
              'length' => 512,
-             ));
-        $this->hasColumn('max_subscribers', 'integer', 4, array(
-             'type' => 'integer',
-             'fixed' => 0,
-             'unsigned' => true,
-             'primary' => false,
-             'default' => '100',
-             'notnull' => false,
-             'autoincrement' => false,
-             'length' => 4,
              ));
     }
 
