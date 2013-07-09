@@ -205,8 +205,11 @@
 			var id = NEVER_MISS + '_' + t;
 			var id_bubble = 'b_' + id;
 			
+			var bubbleStartPos = (Math.floor(btn_height/2 - 20));
+			if (isRTL) bubbleStartPos -= 8; //box-shadow + 1px border
+			
 			var iframes = '<div style="position: relative; height: ' + btn_height + 'px; width: ' + btn_width + 'px;"><iframe id="' + id +'" src="' + NEVER_MISS_WIDGET_URL + '/calId/' + calId + '/popupId/' + id_bubble + (language ? ('/language/' + language) : '') + (btnStyle ? ('/btnStyle/' + btnStyle) : '') + (btnSize ? ('/btnSize/' + btnSize) : '') + (color ? ('/color/' + color) : '') + (isMobile ? ('/isMobile/' + isMobile) : '') + '" frameborder="0" border="0" style="border: medium none; overflow: hidden; height: ' + btn_height + 'px; width: ' + btn_width + 'px;" scrolling="no" title="Never Miss"></iframe>';
-			if (!isMobile) iframes += '<iframe id="' + id_bubble +'" src="' + NEVER_MISS_WIDGET_BUBBLE_URL + '/calId/' + calId + '/isBubble/true/bubblePos/'+ bubbleClassPos + '/popupId/' + id_bubble + (language ? ('/language/' + language) : '') + '" frameborder="0" border="0" style="border: medium none; overflow: hidden; height: ' + BUBBLE_HEIGHT + 'px; width: '+ BUBBLE_WIDTH +'px; position:absolute; '+ ((isRight) ? 'left' : 'right') +':' + (Math.floor(btn_height/2 - 20)) + 'px; '+ ((isTop) ? 'bottom' : 'top')  + ':' + btn_height +'px; z-index:9999; display:none;" scrolling="no" title="Never Miss"></iframe></div>';
+			if (!isMobile) iframes += '<iframe id="' + id_bubble +'" src="' + NEVER_MISS_WIDGET_BUBBLE_URL + '/calId/' + calId + '/isBubble/true/bubblePos/'+ bubbleClassPos + '/popupId/' + id_bubble + (language ? ('/language/' + language) : '') + '" frameborder="0" border="0" style="border: medium none; overflow: hidden; height: ' + BUBBLE_HEIGHT + 'px; width: '+ BUBBLE_WIDTH +'px; position:absolute; '+ ((isRight) ? 'left' : 'right') +':' + bubbleStartPos + 'px; '+ ((isTop) ? 'bottom' : 'top')  + ':' + btn_height +'px; z-index:9999; display:none;" scrolling="no" title="Never Miss"></iframe></div>';
 
 			el.innerHTML = iframes;
 		}
