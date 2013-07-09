@@ -9,6 +9,8 @@
 	var NEVER_MISS_WIDGET_URL = NEVER_MISS_WEBSITE + 'neverMissBtn';
 	var NEVER_MISS_WIDGET_BUBBLE_URL = NEVER_MISS_WEBSITE + 'neverMissPopup';
 	
+	var BUBBLE_PREFIX = 'b_';
+	
 	var BUBBLE_WIDTH = 360;
 	var BUBBLE_HEIGHT = 130;
 	
@@ -154,6 +156,7 @@
 	}
 	
 	function showBubble(id){
+		setBubblePos(id);
 		clearHideInterval(id);
 		
 		var iframeEl = document.getElementById(id);
@@ -175,7 +178,43 @@
 		else gHideInterval[id] = window.setInterval(hideFunc, 500);
 
 	}
-
+	
+	function setBubblePos(id){
+		var btnEl = document.getElementById(id.substr(BUBBLE_PREFIX.length));
+		var iframeEl = document.getElementById(id);
+		
+		if (btnEl && iframeEl){
+			var bubbleClassPos = getBubbleClassPos(btnEl);
+			var isTop = (bubbleClassPos.indexOf('top') >= 0) ? true : false;
+			var isRight = (bubbleClassPos.indexOf('right') >= 0) ? true : false;
+			
+			var bubbleStartPos = (Math.floor(btn_height/2 - 20));
+			if (isRTL) bubbleStartPos -= 8; //box-shadow + 1px border
+			
+			var left = 'auto';
+			var right = 'auto';
+			var top = 'auto';
+			var bottom = 'auto';
+			
+			if (isRight) left = bubbleStartPos + 'px';
+			else right = bubbleStartPos + 'px';
+			
+			if (isTop) bottom = btn_height + 'px';
+			else top = btn_height + 'px';
+			
+			//console.log('left:' + left + ', right:' + right + ', top:' + top + ', bottom:' + bottom);
+			//Change bubble position
+			iframeEl.style.left = left;
+			iframeEl.style.right = right;
+			iframeEl.style.top = top;
+			iframeEl.style.bottom = bottom;
+			
+			//change bubble source - reload the iframe if needed
+			var src = iframeEl.src.replace(/(bubblePos\/)(\w+).+?(\/)/, '$1' + bubbleClassPos + '/');
+			if (src != iframeEl.src) iframeEl.src = src;
+		}
+	}
+	
 	function injectIframe(els){
 		for ( var i = 0; i < els.length; i++) {
 			var el = els[i];
@@ -196,20 +235,15 @@
 			setBtnSize(btnStyle, btnSize);
 			
 			var bubbleClassPos = getBubbleClassPos(el);
-			var isTop = (bubbleClassPos.indexOf('top') >= 0) ? true : false;
-			var isRight = (bubbleClassPos.indexOf('right') >= 0) ? true : false;
 			
 			var d = new Date();
 			var t = d.getTime() + i;
 			
 			var id = NEVER_MISS + '_' + t;
-			var id_bubble = 'b_' + id;
-			
-			var bubbleStartPos = (Math.floor(btn_height/2 - 20));
-			if (isRTL) bubbleStartPos -= 8; //box-shadow + 1px border
+			var id_bubble = BUBBLE_PREFIX + id;
 			
 			var iframes = '<div style="position: relative; height: ' + btn_height + 'px; width: ' + btn_width + 'px;"><iframe id="' + id +'" src="' + NEVER_MISS_WIDGET_URL + '/calId/' + calId + '/popupId/' + id_bubble + (language ? ('/language/' + language) : '') + (btnStyle ? ('/btnStyle/' + btnStyle) : '') + (btnSize ? ('/btnSize/' + btnSize) : '') + (color ? ('/color/' + color) : '') + (isMobile ? ('/isMobile/' + isMobile) : '') + '" frameborder="0" border="0" style="border: medium none; overflow: hidden; height: ' + btn_height + 'px; width: ' + btn_width + 'px;" scrolling="no" title="Never Miss"></iframe>';
-			if (!isMobile) iframes += '<iframe id="' + id_bubble +'" src="' + NEVER_MISS_WIDGET_BUBBLE_URL + '/calId/' + calId + '/isBubble/true/bubblePos/'+ bubbleClassPos + '/popupId/' + id_bubble + (language ? ('/language/' + language) : '') + '" frameborder="0" border="0" style="border: medium none; overflow: hidden; height: ' + BUBBLE_HEIGHT + 'px; width: '+ BUBBLE_WIDTH +'px; position:absolute; '+ ((isRight) ? 'left' : 'right') +':' + bubbleStartPos + 'px; '+ ((isTop) ? 'bottom' : 'top')  + ':' + btn_height +'px; z-index:9999; display:none;" scrolling="no" title="Never Miss"></iframe></div>';
+			if (!isMobile) iframes += '<iframe id="' + id_bubble +'" src="' + NEVER_MISS_WIDGET_BUBBLE_URL + '/calId/' + calId + '/isBubble/true/bubblePos/'+ bubbleClassPos + '/popupId/' + id_bubble + (language ? ('/language/' + language) : '') + '" frameborder="0" border="0" style="border: medium none; overflow: hidden; height: ' + BUBBLE_HEIGHT + 'px; width: '+ BUBBLE_WIDTH +'px; position:absolute; z-index:9999; display:none;" scrolling="no" title="Never Miss"></iframe></div>';
 
 			el.innerHTML = iframes;
 		}
