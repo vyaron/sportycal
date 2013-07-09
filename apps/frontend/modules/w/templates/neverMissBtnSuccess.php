@@ -1,3 +1,14 @@
+<?php 
+$href = url_for('w/neverMissPopup/?calid=' . $calId . ($language ? ('&language=' . $language) : ''));
+
+if ($isReachedMaxSubscribers) $href = '#';
+else if ($isMobile) {
+	$href = '/cal/sub/id/' . $calId . '/ct/mobile/ref/widget/cal.ics';
+}
+
+$target = '_self';
+if ($isMobile) $target = Utils::clientIsAndroid() ? '_blank' : 'attachment';
+?>
 <!DOCTYPE HTML>
 <html>
 <head>
@@ -5,33 +16,50 @@
 </head>
 <link rel="stylesheet" href="/widgets/neverMiss/css/main.css"/>
 <style>
-#never-miss-btn, #never-miss-mobile-btn, #never-miss-disabled-btn{background: url('/widgets/neverMiss/imgs/btn.png') no-repeat 0 0; display: block; height:36px; width:159px; text-decoration: none;}
-#never-miss-mobile-btn{background: url('/widgets/neverMiss/imgs/mobile-btn.png') no-repeat 0 0;}
+/*
+.never-miss-btn, .never-miss-mobile-btn, .never-miss-disabled-btn{background: url('/widgets/neverMiss/imgs/btn.png') no-repeat 0 0; display: block; height:36px; width:159px; text-decoration: none;}
+.never-miss-mobile-btn{background: url('/widgets/neverMiss/imgs/mobile-btn.png') no-repeat 0 0;}
 
-#never-miss-disabled-btn{cursor: not-allowed; opacity:0.3; filter:alpha(opacity=30);}
+.never-miss-disabled-btn{cursor: not-allowed; opacity:0.3; filter:alpha(opacity=30);}
+*/
+
+.never-miss-btn{background: url('/widgets/neverMiss/imgs/btn.png') no-repeat 0 0; display: block; height:36px; width:159px; text-decoration: none;}
+.never-miss-btn.dark{background-image:  url('/widgets/neverMiss/imgs/btn-dark.png');}
+
+.never-miss-btn.small{background-image: url('/widgets/neverMiss/imgs/btn-small.png'); width: 88px; height: 20px;}
+.never-miss-btn.dark.small{background-image:  url('/widgets/neverMiss/imgs/btn-dark-small.png');}
+
+.never-miss-btn.mobile{background-image: url('/widgets/neverMiss/imgs/mobile-btn.png');}
+.never-miss-btn.mobile.dark{background-image: url('/widgets/neverMiss/imgs/mobile-btn-dark.png');}
+
+.never-miss-btn.mobile.small{background-image: url('/widgets/neverMiss/imgs/mobile-btn-small.png');}
+.never-miss-btn.mobile.dark.small{background-image: url('/widgets/neverMiss/imgs/mobile-btn-dark-small.png');}
+
+.never-miss-btn.only_icon{background-image: url('/widgets/neverMiss/imgs/only-icon.png') !important; width: 36px; height: 36px;}
+.never-miss-btn.only_icon.small{background-image: url('/widgets/neverMiss/imgs/only-icon-small.png') !important; width: 20px; height: 20px;}
+
+
+.never-miss-btn.disabled{cursor: not-allowed; opacity:0.3; filter:alpha(opacity=30);}
+
 </style>
 <body>
-<?php if ($isReachedMaxSubscribers):?>
-<a id="never-miss-disabled-btn" title="<?php echo __('You have the maximum number Subscriptions');?>">&nbsp</a>
-<?php elseif ($isMobile):?>
-<a id="never-miss-mobile-btn" target="<?php echo Utils::clientIsAndroid() ? '_blank' : 'attachment';?>" href="/cal/sub/id/<?php echo $calId;?>/ct/mobile/ref/widget/cal.ics">&nbsp;</a>
+<a class="never-miss-btn<?php echo ($isReachedMaxSubscribers) ? ' disabled' : '';?><?php echo ($isMobile) ? ' mobile' : '';?><?php echo ($btnStyle) ? " $btnStyle" : '';?><?php echo ($btnSize) ? " $btnSize" : '';?><?php echo ($color) ? " $color" : '';?>" href="<?php echo $href;?>" target="<?php echo $target;?>"<?php echo ($isReachedMaxSubscribers) ? ' title="' .  __('Reached subscriptions limit') . '"' : '';?>>&nbsp;</a>
+<?php if($isMobile):?>
 <iframe name="attachment" style="width: 1px; height: 1px; border: 0;"></iframe>
-<?php else:?>
-<a id="never-miss-btn" href="<?php echo url_for('w/neverMissPopup/?calid=' . $calId . ($language ? ('&language=' . $language) : ''))?>">&nbsp;</a>
-
+<?php elseif (!$isReachedMaxSubscribers && !$isMobile):?>
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 <script>window.jQuery || document.write('<script src="/widgets/neverMiss/js/vendor/jquery-1.9.1.min.js"><\/script>');</script>
 <script type="text/javascript">
 var gWindow = null;
 jQuery(document).ready(function(){
 	var popupId = '<?php echo $popupId;?>';
-	jQuery('#never-miss-btn').hover(function(e){
+	jQuery('.never-miss-btn').hover(function(e){
 		if (parent.postMessage) parent.postMessage(popupId + '@open', "*");
 	}, function(){
 		if (parent.postMessage) parent.postMessage(popupId + '@close', "*");
 	});
 	
-	jQuery('#never-miss-btn').click(function(e){
+	jQuery('.never-miss-btn').click(function(e){
 		e.preventDefault();
 
 		if (parent.postMessage) {

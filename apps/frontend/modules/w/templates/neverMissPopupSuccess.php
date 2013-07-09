@@ -36,8 +36,8 @@
 	    box-shadow:1px 1px 3px rgba(0,0,0,0.5); 
 	}
 	
-	.speech-bubble.bottom-right, .speech-bubble.bottom-left{margin-top:25px;}
-	.speech-bubble.top-right, .speech-bubble.top-left{margin-bottom:25px; position: absolute; bottom: 0;}
+	.speech-bubble.bottom-right, .speech-bubble.bottom-left{margin-top:10px;}
+	.speech-bubble.top-right, .speech-bubble.top-left{margin-bottom:10px; position: absolute; bottom: 0;}
 
 	.speech-bubble:before,
 	.speech-bubble:after {
@@ -55,10 +55,10 @@
 	.speech-bubble:after {z-index:2;}
 	
 	.speech-bubble.bottom-right:before, .speech-bubble.bottom-right:after,
-	.speech-bubble.top-right:before, .speech-bubble.top-right:after{left:20px;}
+	.speech-bubble.top-right:before, .speech-bubble.top-right:after{left:15px;}
 	
 	.speech-bubble.bottom-left:before, .speech-bubble.bottom-left:after,
-	.speech-bubble.top-left:before, .speech-bubble.top-left:after{right:20px;}
+	.speech-bubble.top-left:before, .speech-bubble.top-left:after{right:15px;}
 	
 	.speech-bubble.bottom-right:before, .speech-bubble.bottom-right:after, 
 	.speech-bubble.bottom-left:before, .speech-bubble.bottom-left:after{

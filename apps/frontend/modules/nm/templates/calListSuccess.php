@@ -20,17 +20,20 @@
 		</tr>
 	</thead>
 	<tbody>
-	<?php foreach ($calList['data'] as $i => $cal):?>
+	<?php foreach ($calList['data'] as $i => $cal): $isReachedMaxSubs = ($maxSubcribers && $cal['cal_request_count'] >= $maxSubcribers);?>
 		<tr id="cal_<?php echo $cal['id'];?>" class="<?php echo ($cal['deleted_at'] ? 'cal-is-deleted' : 'cal-is-active') ?>"/>
 			<td><?php echo ($i + 1);?></td>
 			<td><?php echo date('Y-m-d H:s', strtotime($cal['updated_at']));?></td>
 			<td><?php echo $cal['name'];?></td>
 			<td><?php echo $cal['event_count'];?></td>
 			<td>
-				<span class="<?php echo ($maxSubcribers && $cal['cal_request_count'] >= $maxSubcribers) ? 'max-subscribers' : '';?>"><?php echo $cal['cal_request_count'];?></span>
+				<span <?php echo $isReachedMaxSubs ? 'title="' . __('Reached subscriptions limit') . '"' : '';?> class="<?php echo $isReachedMaxSubs ? 'max-subscribers' : '';?>"><?php echo $cal['cal_request_count'];?></span>
 			</td>
 			<td class="hidden-phone">
 				<div class="cal-active">
+					<?php if ($isReachedMaxSubs):?>
+					<a class="btn btn-mini" href="<?php echo url_for('nm/pricing');?>"><i class="icon-shopping-cart"></i> Upgrade</a>
+					<?php endif;?>
 					<a class="btn btn-mini" href="<?php echo url_for('nm/widget/?calId=' . $cal['id']);?>">&lt;Embed/&gt;</a>
 					<a class="btn btn-mini" href="<?php echo url_for('nm/calEdit/?id=' . $cal['id']);?>"><i class="icon-pencil"></i> Edit</a>
 					<a class="btn btn-mini delete-cal" data-cal-id="<?php echo $cal['id'];?>" href="<?php echo url_for('nm/calDelete');?>" data-name="<?php echo $cal['name'];?>"><i class="icon-trash"></i> Delete</a>
@@ -48,7 +51,7 @@
 <?php endif;?>
 
 
-<a class="btn btn-success hidden-phone" href="<?php echo url_for('nm/calCreate')?>" title="Click here to create new calendar"><i class="icon-plus icon-yellow"></i> Create calendar</a>
+<a class="btn btn-success hidden-phone" href="<?php echo url_for('nm/calCreate')?>" title="Click here to create new calendar"><i class="icon-plus icon-yellow"></i> New calendar</a>
 
 <div id="delete-cal-modal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 	<div class="modal-header">

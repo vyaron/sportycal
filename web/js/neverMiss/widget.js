@@ -1,16 +1,24 @@
+function updateWidgetData(){
+	var el = jQuery(this);
+
+	var attrName = 'data-' + el.attr('name');
+	var val = el.val();
+	
+	var regExp = new RegExp('(' + attrName + '=")(\\w+)');
+
+	var copyJsCode = jQuery('#copy-js-code');
+
+	var newVal = copyJsCode.val().replace(regExp, '$1' + val);
+	copyJsCode.text(newVal);
+	
+	jQuery('.nm-follow').attr(attrName, val);
+	if (iNeverMiss && iNeverMiss.reload) iNeverMiss.reload();
+}
+
 jQuery(document).ready(function(){
 	setFbLoginEvents(true);
 	
-	jQuery('#language').change(function(){
-		var lang = jQuery(this).val();
-
-		var copyJsCode = jQuery('#copy-js-code');
-		var newVal = copyJsCode.val().replace(/(data-language=")(\w+)/, '$1' + lang);
-		copyJsCode.text(newVal);
-		
-		jQuery('.nm-follow').attr('data-language', lang);
-		if (iNeverMiss && iNeverMiss.reload) iNeverMiss.reload();
-	});
+	jQuery('#language, #btn-style, #btn-size, #color').change(updateWidgetData);
 	
 	jQuery('#register-form').validate({
 		errorPlacement: function(error, element) {

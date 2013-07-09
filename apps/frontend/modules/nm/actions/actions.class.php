@@ -36,6 +36,7 @@ class nmActions extends sfActions{
 	}
 	*/
 	
+	
 	public function executePricing(sfWebRequest $request){
 		$this->getResponse()->setSlot('pricing', true);
 		
@@ -351,20 +352,6 @@ class nmActions extends sfActions{
 		}
 	}
 	
-	private function getWidgetCode($cal, $language='en'){
-		$code = '';
-		
-		$scriptUrl = sfConfig::get('app_domain_short') . '/w/neverMiss/all.js';
-		
-		if ($cal){
-			$code = '<div class="nm-follow" data-cal-id="' . $cal->getId() . '" data-language="' . $language . '"></div>' . "\n";
-			$code .= '<script>(function(d, s, id) {var js, fjs = d.getElementsByTagName(s)[0];if (d.getElementById(id)) return;js = d.createElement(s); js.id = id;js.src = "//' . $scriptUrl . '";fjs.parentNode.insertBefore(js, fjs);}(document, \'script\', \'never-miss-jssdk\'));</script>';
-
-		}
-		
-		return $code;
-	}
-	
 	private function registerForm(sfWebRequest $request, $cal = null){
 		$isAjax = $this->getRequest()->isXmlHttpRequest();
 		$res = array('success' => false, 'msg' => __('Rgister field!'));
@@ -415,15 +402,14 @@ class nmActions extends sfActions{
 		$user = UserUtils::getLoggedIn();
 		
 		$this->calId = $request->getParameter('calId');
-		$this->language = $request->getParameter('language', 'en');
-		$this->languagesOptions = array(
-			'en' => 'English',
-			'he' => 'Hebrew'		
-		);
+		$this->language = $request->getParameter('language', NeverMissWidget::DEFAULT_LANGUAGE);
+		$this->btnStyle = $request->getParameter('btn-style', NeverMissWidget::DEFAULT_VALUE);
+		$this->btnSize = $request->getParameter('btn-size', NeverMissWidget::DEFAULT_VALUE);
+		$this->color = $request->getParameter('color', NeverMissWidget::DEFAULT_VALUE);
 		
 		$this->forward404Unless($cal = Doctrine::getTable('Cal')->find(array($this->calId)), sprintf('Object cal does not exist (%s).', $this->calId));
 		
-		$this->code = $this->getWidgetCode($cal, $this->language);
+		$this->code = NeverMissWidget::getWidgetCode($cal, $this->language, $this->btnStyle, $this->btnSize, $this->color);
 		
 		$this->form = new NmRegisterForm();
 		

@@ -14,9 +14,27 @@
 				
 				<label for="language">Language:</label>
 				<select id="language" class="span6" name="language">
-  					<?php foreach ($languagesOptions as $value => $name):?>
+  					<?php foreach (NeverMissWidget::$LANGUAGES_OPTIONS as $value => $name):?>
   					<option value="<?php echo $value;?>"<?php echo ($value == $language) ? ' selected="selected"' : ''?>><?php echo $name;?></option>
   					<?php endforeach;?>
+				</select>
+				
+				<label for="btn-style">Button Style:</label>
+				<select id="btn-style" class="span6" name="btn-style">
+  					<option value="<?php echo NeverMissWidget::DEFAULT_VALUE;?>">Default</option>
+  					<option value="only_icon">Only icon</option>
+				</select>
+				
+				<label for="btn-size">Button Size:</label>
+				<select id="btn-size" class="span6" name="btn-size">
+  					<option value="<?php echo NeverMissWidget::DEFAULT_VALUE;?>">Default</option>
+  					<option value="small">Small</option>
+				</select>
+				
+				<label for="color">Color:</label>
+				<select id="color" class="span6" name="color">
+  					<option value="<?php echo NeverMissWidget::DEFAULT_VALUE;?>">Default</option>
+  					<option value="dark">Dark</option>
 				</select>
 				
 				<label for="copy-js-code"><?php echo __('Copy this code to your site (iframe)');?>:</label>
