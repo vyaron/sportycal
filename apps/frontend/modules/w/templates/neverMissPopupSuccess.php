@@ -96,12 +96,16 @@
     
     /*RTL*/
     .rtl{direction: rtl; text-align: right;}
+    .rtl .cal-link{direction: ltr; text-align: left;}
+    .rtl #close-btn{right: auto; left:0;}
+    /*
 	.rtl .cal-link{float: right;}
 	.rtl .cal-link:first-child{margin-right: 0;}
 	.rtl .cal-link span{padding-right: 33px; padding-left:0;}
 	.rtl .cal-link.outlook span{background-position: 65px 0;}
 	.rtl .cal-link.ical span{background-position: 65px -31px;}
 	.rtl .cal-link.google span{background-position: 65px -62px;}
+	*/
 </style>
 <title>Widget bubble</title>
 </head>

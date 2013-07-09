@@ -157,7 +157,7 @@
 		};
 
 		if (fast) hideFunc();
-		else gHideInterval[id] = window.setInterval(hideFunc, 3000);
+		else gHideInterval[id] = window.setInterval(hideFunc, 500);
 
 	}
 
