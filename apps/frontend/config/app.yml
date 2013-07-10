@@ -19,9 +19,9 @@ all:
     apiSecret: 160fbf80457f30da67fb25ff04ac493f822152d54ecf1eaed9fd0abc1869cb43
   mailinglist:
     fromName: iNeverMiss.biz Support
-    fromEmail: support@inevermiss.biz
-    replyToName: iNeverMiss.biz Sales
-    replyToEmail: sales@inevermiss.biz
+    fromEmail: support@inevermiss.net
+    replyToName: iNeverMiss.net Sales
+    replyToEmail: sales@inevermiss.net
   gmail:
     username: test4inevermiss@gmail.com
     password: 123454321Aa
