@@ -433,9 +433,12 @@ class nmActions extends sfActions{
 		
 		if ($cal){
 			$mail = new PHPMailer();
-
+			
+			//$mail->SMTPDebug = 3;
+			//$mail->Debugoutput = 'html';
+			
 			$env = sfContext::getInstance()->getConfiguration()->getEnvironment();
-			if ($env == 'prod'){
+			if ($env == 'dev'){
 				//Gmail SMTP
 				$mail->IsSMTP();
 				$mail->Host       = 'smtp.gmail.com';
