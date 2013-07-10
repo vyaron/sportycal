@@ -23,8 +23,8 @@ all:
     replyToName: iNeverMiss.net Sales
     replyToEmail: sales@inevermiss.net
   gmail:
-    username: test4inevermiss@gmail.com
-    password: 123454321Aa
+    username: ido@inevermiss.net
+    password: y@ch1s#!
   domain:
     isNeverMiss: false
     isMobile: false

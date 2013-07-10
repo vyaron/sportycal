@@ -421,7 +421,6 @@ class nmActions extends sfActions{
 	
 	public function executeSubscribeByMail(sfWebRequest $request){
 		$this->forward404Unless($user = UserUtils::getLoggedIn());
-		
 		$res = array('success' => false, 'msg' => 'Subscribe by mail failed!');
 		
 		$message = $request->getParameter('message');
@@ -438,7 +437,7 @@ class nmActions extends sfActions{
 			//$mail->Debugoutput = 'html';
 			
 			$env = sfContext::getInstance()->getConfiguration()->getEnvironment();
-			if ($env == 'dev'){
+			if (true || $env == 'dev'){
 				//Gmail SMTP
 				$mail->IsSMTP();
 				$mail->Host       = 'smtp.gmail.com';
