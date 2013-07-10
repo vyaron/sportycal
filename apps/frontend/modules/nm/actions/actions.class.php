@@ -460,7 +460,7 @@ class nmActions extends sfActions{
 
 			if ($mail->Send()){
 				$res['success'] = true;
-				$res['msg'] = 'Sen mail to: ' . $user->getEmail();
+				$res['msg'] = 'Send mail to: ' . $user->getEmail();
 			}
 		}
 	

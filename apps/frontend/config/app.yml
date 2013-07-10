@@ -18,13 +18,13 @@ all:
     apiKey: bc5e3dbd1618ba04fff03d21429692fe1e53553305d7cf4ed257fa1801e2eaaa
     apiSecret: 160fbf80457f30da67fb25ff04ac493f822152d54ecf1eaed9fd0abc1869cb43
   mailinglist:
-    fromName: iNeverMiss.biz Support
+    fromName: iNeverMiss.net Support
     fromEmail: support@inevermiss.net
     replyToName: iNeverMiss.net Sales
     replyToEmail: sales@inevermiss.net
   gmail:
-    username: ido@inevermiss.net
-    password: y@ch1s#!
+    username: subscribe@inevermiss.net
+    password: <SeE<Z4M777
   domain:
     isNeverMiss: false
     isMobile: false
