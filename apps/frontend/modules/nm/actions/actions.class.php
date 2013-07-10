@@ -418,4 +418,48 @@ class nmActions extends sfActions{
 
 		$this->user = UserUtils::getLoggedIn();
 	}
+	
+	public function executeSubscribeByMail(sfWebRequest $request){
+		$this->forward404Unless($user = UserUtils::getLoggedIn());
+		
+		$res = array('success' => false, 'msg' => 'Subscribe by mail failed!');
+		
+		$message = $request->getParameter('message');
+		if (!$message) $message = __('Please click the calendar of your choice');
+		
+		$cal = Doctrine::getTable('Cal')->find(array($request->getParameter('calId')));
+		
+		//$cal = new Cal();
+		
+		if ($cal){
+			$mail = new PHPMailer();
+				
+			//Gmail SMTP
+			$mail->IsSMTP();
+			$mail->Host       = 'smtp.gmail.com';
+			$mail->Port       = 587;
+			$mail->SMTPSecure = 'tls';
+			$mail->SMTPAuth   = true;
+				
+			$mail->Username   = sfConfig::get('app_gmail_username');
+			$mail->Password   = sfConfig::get('app_gmail_password');
+				
+			$mail->SetFrom(sfConfig::get('app_mailinglist_fromEmail'), sfConfig::get('app_mailinglist_fromName'));
+			$mail->AddReplyTo(sfConfig::get('app_mailinglist_replyToEmail'), sfConfig::get('app_mailinglist_replyToName'));
+				
+			$mail->AddAddress($user->getEmail(), $user->getFullName());
+
+			$mail->Subject = 'Subscribe ' . $cal->getName() . ' Calendar By Mail';
+			$mail->MsgHTML($this->getPartial('nm/subscribeByMailHtml', array('user' => $user, 'cal' => $cal, 'message' => $message)));
+			$mail->AltBody = $this->getPartial('nm/subscribeByMailTxt', array('user' => $user, 'cal' => $cal, 'message' => $message));
+
+			if ($mail->Send()){
+				$res['success'] = true;
+				$res['msg'] = 'Sen mail to: ' . $user->getEmail();
+			}
+		}
+	
+		echo json_encode($res);
+		return sfView::NONE;
+	}
 }

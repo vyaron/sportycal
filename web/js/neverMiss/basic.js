@@ -37,7 +37,7 @@ function handleLoginRes(res){
 	
 	setGlobalAlert(res);
 	
-	if (typeof handleAfterLoginRes != undefined) handleAfterLoginRes(res);
+	if (typeof handleAfterLoginRes != 'undefined') handleAfterLoginRes(res);
 }
 
 function setFbLoginEvents(getLocation1, isInFlow1){

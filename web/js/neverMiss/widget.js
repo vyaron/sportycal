@@ -15,8 +15,29 @@ function updateWidgetData(){
 	if (iNeverMiss && iNeverMiss.reload) iNeverMiss.reload();
 }
 
+function setEmailFormEvent(){
+	var form = jQuery('#email-form');
+	
+	form.validate();
+	
+	form.submit(function(e){
+		e.preventDefault();
+		
+		var formEl = jQuery(this);
+		if (formEl.valid()){
+			jQuery.ajax({
+				url : '/nm/subscribeByMail/?d=' + (new Date()).getTime(),
+				type : 'POST',
+				dataType : 'json',
+				data : formEl.serializeArray()
+			}).done(handleLoginRes);
+		}
+	});
+}
+
 jQuery(document).ready(function(){
 	setFbLoginEvents(true);
+	setEmailFormEvent();
 	
 	jQuery('#language, #btn-style, #btn-size, #color').change(updateWidgetData);
 	

@@ -60,6 +60,20 @@
 		<br/>
 		<legend>Mobile Preview:</legend>
 		<div data-is-mobile="true" data-language="en" data-cal-id="<?php echo $calId;?>" class="nm-follow"></div>
+		
+		<?php if ($user):?>
+		<br/>
+		<br/>
+		<legend>Subscribe By Mail:</legend>
+		<form id="email-form">
+			<p>Send me an email with the calendars.<br/>That I could send it to my contacts.</p>
+			<fieldset>
+				<input type="hidden" name="calId" value="<?php echo $calId;?>"/>
+				<textarea name="message" class="span6" placeholder="Type your message..."><?php echo __('Please click the calendar of your choice');?></textarea><br/>
+				<input class="btn pull-right" type="submit" value="send"/>
+			</fieldset>
+		</form>
+		<?php endif;?>
 	</div>
 </div>
 
