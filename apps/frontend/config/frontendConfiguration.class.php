@@ -11,9 +11,9 @@ class frontendConfiguration extends sfApplicationConfiguration
   	$ext = null;
   	
   	$host = strtolower($_SERVER['HTTP_HOST']);
-  	$pos = strpos($host, I_NEVER_MISS . '.');
+  	$hostParts = explode('.', $host, 3);
   	
-  	if ($pos >= 0) $ext = substr($host, $pos + (strlen(I_NEVER_MISS) - 1));
+  	if ($pos >= 0) $ext = $hostParts[count($hostParts) -1];
 
   	return $ext;
   }
