@@ -38,8 +38,9 @@
 				</select>
 				
 				<label for="copy-js-code"><?php echo __('Copy this code to your site (iframe)');?>:</label>
-				<textarea id="copy-js-code" spellcheck="false" class="span6"><?php echo $code;?></textarea>
 				
+				<textarea id="copy-js-code" spellcheck="false" class="span6"><?php echo $code;?></textarea>
+
 				<div class="row mt10">
 					<div class="span6 clearfix">
 						<a class="btn btn-small pull-left" href="<?php echo url_for('nm/calEdit/?id=' . $calId);?>" title="Edit your calendar"><i class="icon-arrow-left"></i> Back</a>
@@ -69,6 +70,7 @@
 			<p>Send me an email with the calendars.<br/>That I could send it to my contacts.</p>
 			<fieldset>
 				<input type="hidden" name="calId" value="<?php echo $calId;?>"/>
+				<label for="message">Email content:</label>
 				<textarea name="message" class="span6" placeholder="Type your message..."><?php echo __('Please click the calendar of your choice');?></textarea><br/>
 				<input class="btn pull-right" type="submit" value="send"/>
 			</fieldset>

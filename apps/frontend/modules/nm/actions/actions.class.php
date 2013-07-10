@@ -433,17 +433,20 @@ class nmActions extends sfActions{
 		
 		if ($cal){
 			$mail = new PHPMailer();
+
+			$env = sfContext::getInstance()->getConfiguration()->getEnvironment();
+			if ($env == 'prod'){
+				//Gmail SMTP
+				$mail->IsSMTP();
+				$mail->Host       = 'smtp.gmail.com';
+				$mail->Port       = 587;
+				$mail->SMTPSecure = 'tls';
+				$mail->SMTPAuth   = true;
 				
-			//Gmail SMTP
-			$mail->IsSMTP();
-			$mail->Host       = 'smtp.gmail.com';
-			$mail->Port       = 587;
-			$mail->SMTPSecure = 'tls';
-			$mail->SMTPAuth   = true;
-				
-			$mail->Username   = sfConfig::get('app_gmail_username');
-			$mail->Password   = sfConfig::get('app_gmail_password');
-				
+				$mail->Username   = sfConfig::get('app_gmail_username');
+				$mail->Password   = sfConfig::get('app_gmail_password');
+			}
+
 			$mail->SetFrom(sfConfig::get('app_mailinglist_fromEmail'), sfConfig::get('app_mailinglist_fromName'));
 			$mail->AddReplyTo(sfConfig::get('app_mailinglist_replyToEmail'), sfConfig::get('app_mailinglist_replyToName'));
 				
