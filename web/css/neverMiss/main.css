@@ -1,7 +1,7 @@
 @IMPORT url("/fonts/signika/stylesheet.css");
 
 html, body{height: 100%;}
-body{/*padding-top: 80px;*/ font-size: 12px;}
+body{/*padding-top: 80px;*/ font-size: 12px; background-color: #f2f2f2;}
 
 .cb{clear: both;}
 .mt10{margin-top: 10px;}
@@ -11,6 +11,9 @@ body{/*padding-top: 80px;*/ font-size: 12px;}
 /*sections*/
 .section{border-bottom: 1px solid #ffc229;}
 .section.light-gray{background-color: #f2f2f2;}
+
+h2{text-transform: uppercase; font-size: 38px; margin-bottom: 25px;}
+h2 .btn.btn-success{font-weight: normal; margin-top: 4px;}
 
 /*yellow icons*/
 .icon-yellow,
@@ -38,12 +41,12 @@ body{/*padding-top: 80px;*/ font-size: 12px;}
 .icon-loading.icon-white{background-image: url("/images/neverMiss/icons/ajax-loader-white.gif");}
 
 /* buttons*/
-.btn-success{background: #333; border-color: #ffc229; color: #ffc229; text-shadow-color: #fff; text-transform: uppercase;}
-.btn-success:hover, .btn-success:focus, .btn-success:active, .btn-success.active, .btn-success.disabled, .btn-success[disabled]{background: #222; color: #ffc229;}
+.btn-success{background: #ffc229; border-color: #fff; color: #333; text-shadow-color: #fff; text-transform: uppercase; font-size:18px; line-height:18px; -webkit-border-radius: 8px; -moz-border-radius: 8px; border-radius: 8px; box-shadow:1px 1px 3px #3d3d3d; padding: 6px 15px;}
+.btn-success:hover, .btn-success:focus, .btn-success:active, .btn-success.active, .btn-success.disabled, .btn-success[disabled]{background: #ffbf20; color: #000;}
+.btn-success.disabled{background: gray !important;}
 
-.btn-yellow{background: #ffc229; border-color: #fff; color: #333; text-shadow-color: #fff;}
-.btn-yellow:hover{background: #ffbf20;}
-.btn-yellow.disabled{background: gray;}
+/*Inputs*/
+textarea, input[type="text"], input[type="password"], input[type="datetime"], input[type="datetime-local"], input[type="date"], input[type="month"], input[type="time"], input[type="week"], input[type="number"], input[type="email"], input[type="url"], input[type="search"], input[type="tel"], input[type="color"], .uneditable-input, select{border-color: #ffc229; -webkit-border-radius: 0px; -moz-border-radius: 0px; border-radius: 0px;}
 
 /*facebook login*/
 .fb-login {

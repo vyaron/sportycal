@@ -3,11 +3,63 @@ function reloadCalendar(){
 	scheduler.load("/nm/calEvents/?id=" + gCalId, 'json');
 }
 
+function setEventList(){
+	var html = '';
+	
+	var events = [];
+	jQuery.extend(events, scheduler.get_visible_events());
+	
+	var minDate = new Date(scheduler._min_date);
+	if (events.length){
+		var dayKeys = [];
+		var dayKeyToEvents = [];
+		
+		while(minDate < scheduler._max_date){
+			var dayKey = minDate.getDate() + '.' + minDate.getMonth() + '.' + minDate.getFullYear();
+			dayKeys.push(dayKey); // Saving the order
+			
+			var nextDate = new Date(minDate.getFullYear(), minDate.getMonth(), minDate.getDate()+1);
+			for ( var i = 0; i < events.length; i++) {
+				var event = events[i];
+				if ((event.start_date >= minDate && event.start_date < nextDate)
+					|| (event.start_date <= minDate && event.end_date > minDate)){
+					if (! (dayKey in dayKeyToEvents)) dayKeyToEvents[dayKey] = [];
+					
+					dayKeyToEvents[dayKey].push(event);
+				}
+			}
+			
+			minDate = nextDate;
+		}
+		
+		
+		for ( var i = 0; i < dayKeys.length; i++) {
+			if (dayKeys[i] in dayKeyToEvents){
+				html += '<li><div>' + dayKeys[i] + '</div>';
+				for ( var j = 0; j < dayKeyToEvents[dayKeys[i]].length; j++) {
+					html += '<div>' + dayKeyToEvents[dayKeys[i]][j].text + '</div>';
+				}
+				
+				html += '</li>';
+			}
+		}
+		
+
+	} else {
+		html = '<li>No Events...</li>';
+	}
+	
+	jQuery('#event-list').html(html);
+}
+
 function loadCalendar(){
+	scheduler.xy.nav_height = 53;
+	
 	scheduler.locale.labels.full_day = 'All Day';
 	
 	//scheduler.config.touch = "force";
 	scheduler.config.xml_date = "%Y-%m-%d %H:%i";
+	
 	
 	scheduler.config.prevent_cache = true;
 	scheduler.config.first_hour = 10;
@@ -88,6 +140,14 @@ function loadCalendar(){
 				break;
 		}
 	});
+	
+	
+	scheduler.attachEvent('onXLE', setEventList);
+	scheduler.attachEvent('onViewChange', setEventList);
+	scheduler.attachEvent('onEventAdded', setEventList);
+	scheduler.attachEvent('onEventChanged', setEventList);
+	scheduler.attachEvent('onEventDeleted', setEventList);
+	
 	
 	scheduler.config.lightbox.sections = [ {
 		name : "name",

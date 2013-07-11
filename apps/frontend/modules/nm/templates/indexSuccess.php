@@ -11,10 +11,10 @@ use_stylesheet('/css/neverMiss/index.css');
 			<div class="span6">
 				<p>Allow your users to follow your events <br/>(sales, promotions, games, shows, etc)<br/> using their everyday calendar. </p>
 				
-				<a id="start-now-btn" class="btn btn-yellow btn-large hidden-phone" href="<?php echo url_for('nm/calCreate') ?>">START NOW. <strong>IT'S FREE!</strong></a>
+				<a id="start-now-btn" class="btn btn-success btn-large hidden-phone" href="<?php echo url_for('nm/calCreate') ?>">START NOW. <strong>IT'S FREE!</strong></a>
 		
 				<div class="visible-phone">
-					<a class="btn btn-yellow btn-large disabled" href="#">START NOW. <strong>IT'S FREE!</strong></a>
+					<a class="btn btn-success btn-large disabled" href="#">START NOW. <strong>IT'S FREE!</strong></a>
 					<p>for now, it's easier to create your calendar with your desktop</p>
 				</div>
 				

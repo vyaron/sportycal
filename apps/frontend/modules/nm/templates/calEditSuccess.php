@@ -19,31 +19,62 @@ use_stylesheet('/css/neverMiss/calEdit.css');
 
 <?php include_partial('formError', array('form' => $form)) ?>
 
-<h2>Edit Your Calendar</h2>
+<h2><span class="color-y">Edit</span> Your Calendar. <a class="pull-right continue-btn btn btn-success" href="#">Continue</a></h2>
 
 <?php if ($tzFullName):?>
 <h5>Timezone: <?php echo $tzFullName;?></h5>
 <?php endif;?>
 
-<div class="form-actions">
-	<a class="continue-btn btn btn-success pull-right" href="#">Continue</a>
-</div>
+<table id="cal-edit-wrapper">
+	<tr>
+		<td>
+			<form id="cal-form" method="POST">
+				<?php echo $form['_csrf_token']->render();?>
+				<input id="cal-id" type="hidden" name="id" value="<?php echo $cal->getId();?>">
+				
+				<table>
+					<tr>
+						<td><?php echo $form['name']->render(array('placeholder' => 'ENTER CALENDAR NAME HERE', 'required'=>'required', 'minlength'=>'3'));?></td>
+						<td><input id="cal_description" type="text" name="cal[description]" placeholder="DESCRIPTION"/></td>
+						<td><?php echo $form['tz']->render();?></td>
+					</tr>
+				</table>
+			</form>
+		</td>
+		<td class="right-col">&nbsp;</td>
+	</tr>
+	<tr>
+		<td>
+			<div id="scheduler_here" class="dhx_cal_container" style="line-height:normal;">
+				<div id="cal-header" class="dhx_cal_navline">
+					<div class="dhx_cal_prev_button">&nbsp;</div>
+					<div class="dhx_cal_date"></div>
+					<div class="dhx_cal_next_button">&nbsp;</div>
+				</div>
+				<div class="dhx_cal_header">Ido</div>
+				<div class="dhx_cal_data"></div>
+				
+				<!-- 
+				<div class="dhx_cal_bottom_navline">
+					<div class="dhx_cal_today_button"></div>
+					<div class="cal_import_button">Import</div>
+					<div class="dhx_cal_tab" name="day_tab" style="right: 204px;"></div>
+					<div class="dhx_cal_tab" name="week_tab" style="right: 140px;"></div>
+					<div class="dhx_cal_tab" name="month_tab" style="right: 76px;"></div>
+				</div>
+				 -->
+			</div>
+		</td>
+		<td class="right-col">
+			<div id="events-wrapper">
+				<h3>My Events</h3>
+				<ul id="event-list"></ul>
+			</div>
+			<a class="continue-btn btn btn-success" href="#">Continue</a>
+		</td>
+	</tr>
+</table>
 
-
-<div id="scheduler_here" class="dhx_cal_container" style="width: 100%; height:500px; line-height:normal;">
-	<div class="dhx_cal_navline">
-		<div class="dhx_cal_prev_button">&nbsp;</div>
-		<div class="dhx_cal_next_button">&nbsp;</div>
-		<div class="dhx_cal_today_button"></div>
-		<div class="cal_import_button">Import</div>
-		<div class="dhx_cal_date"></div>
-		<div class="dhx_cal_tab" name="day_tab" style="right: 204px;"></div>
-		<div class="dhx_cal_tab" name="week_tab" style="right: 140px;"></div>
-		<div class="dhx_cal_tab" name="month_tab" style="right: 76px;"></div>
-	</div>
-	<div class="dhx_cal_header"></div>
-	<div class="dhx_cal_data"></div>
-</div>
 
 <a id="clear-events" href="#clear-events-modal" role="button" data-toggle="modal"><i class="icon-trash"></i> Clear all Events</a>
  
@@ -79,32 +110,6 @@ use_stylesheet('/css/neverMiss/calEdit.css');
 		<button class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button>
 	</div>
 </div>
-
-
-<form id="cal-form" method="POST">
-	<?php echo $form['_csrf_token']->render();?>
-	<input id="cal-id" type="hidden" name="id" value="<?php echo $cal->getId();?>">
-	<fieldset>
-		<legend>Calendar Information:</legend>
-		
-		<div class="row">
-			<div class="span2"><?php echo $form['name']->renderLabel();?></div>
-			<div class="span4"><?php echo $form['name']->render(array('class' => 'span4', 'placeholder' => 'Enter calendar name', 'required'=>'required', 'minlength'=>'3'));?></div>
-		</div>
-		<div class="row">
-			<div class="span2"><?php echo $form['description']->renderLabel();?></div>
-			<div class="span4"><?php echo $form['description']->render(array('class' => 'span4', 'placeholder' => 'Enter description'));?></div>
-		</div>
-		<div class="row">
-			<div class="span2">Time Zone</div>
-			<div class="span4"><?php echo $form['tz']->render(array('class' => 'span4'));?></div>
-		</div>
-
-		<div class="form-actions clearfix">
-			<input type="submit" class="btn btn-success pull-right" value="Continue"/>
-		</div>
-	</fieldset>
-</form>
 
 </div>
 <?php 

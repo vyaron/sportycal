@@ -163,7 +163,6 @@ scheduler._qi_button_click = function(node){
 		var id = scheduler._quick_info_box_id;
 		var btnName = mask.split(" ")[1].replace("icon_","");
 		if (btnName == 'save'){
-			cl(jQuery(qi));
 			var nweText = jQuery(qi).find('.dhx_cal_qi_tcontent .data_edit').val().trim();
 			if (nweText) {
 				scheduler.getEvent(id).text = nweText;

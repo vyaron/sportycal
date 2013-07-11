@@ -2527,7 +2527,7 @@ scheduler.updateView = function(date, mode) {
 scheduler.setCurrentView = function(date, mode) {
 	if (!this.callEvent("onBeforeViewChange", [this._mode, this._date, mode, date])) return;
 	this.updateView(date, mode);
-	this.callEvent("onViewChange", [this._mode, this._date]);
+	this.callEvent("onBeforeViewChange", [this._mode, this._date]);
 };
 scheduler._render_x_header = function(i,left,d,h){
 	//header scale	
