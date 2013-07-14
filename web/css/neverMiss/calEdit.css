@@ -1,5 +1,6 @@
 @CHARSET "utf-8";
 
+body{background-color: #f2f2f2;}
 
 #scheduler_here, #cal-edit-wrapper{width: 100%; height: 530px;}
 #cal-edit-wrapper{border-collapse: collapse;}

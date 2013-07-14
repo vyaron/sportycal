@@ -1,0 +1,60 @@
+#plan-boxs{position: relative; margin: 38px auto; width: 900px; height: 519px;}
+
+.plan-box{position:absolute; top:0; z-index:1; width: 225px; height: 505px; display: block; background-color:#fff; text-align: center; border: 1px solid #828282; font-family: 'PT Sans Narrow', sans-serif;}
+
+.plan-box .title-wrapper{height: 77px; border-bottom: 4px solid #ffc229;}
+
+.plan-box .title-wrapper h2, .plan-box .sub-wrapper{font-size: 27px;}
+.plan-box .title-wrapper h2{text-transform: uppercase; font-weight: bold; color: #fff; text-shadow: 0 -1px 1px #000; margin: 0; line-height: 77px;}
+.plan-box .sub-wrapper{color: #000; margin: 18px 0; line-height: 25px;}
+.plan-box .sub-wrapper .big{font-size: 35px;}
+
+.plan-box .desc-wrapper{min-height: 160px; margin: 35px 0;}
+.plan-box .desc-wrapper h3, .plan-box .desc-wrapper p{line-height: 32px; font-size: 15px; margin: 0; padding: 0 48px; background: center 0 url("/images/neverMiss/pricing/desc-border.png");}
+.plan-box .desc-wrapper h3{color:#4c4c4c;}
+.plan-box .desc-wrapper p{color:#394255;}
+
+.plan-box .price-wrapper{font-size: 28px; margin: 17px 0;}
+.plan-box .btn-wrapper a{font-size: 22px; padding: 14px 40px;}
+
+.plan-box.plan-box-A{left:0;}
+.plan-box.plan-box-B{left:218px; top:-7px; z-index: 3; height: 519px; width: 239px; box-shadow:0px 5px 13px rgba(0,0,0,0.3);}
+.plan-box.plan-box-C{left:450px; z-index: 2; box-shadow:3px 0px 5px rgba(0,0,0,0.3);}
+.plan-box.plan-box-D{left:675px;}
+
+
+
+.plan-box.plan-box-B .desc-wrapper h3, .plan-box.plan-box-B .desc-wrapper p{padding: 0 55px;}
+
+.plan-box.plan-box-A .title-wrapper{background-color: #cdcdcd;}
+.plan-box.plan-box-B .title-wrapper{border-bottom-color: #1a1a1a; background-color: #ffc229;}
+.plan-box.plan-box-C .title-wrapper{background-color: #a7a7a7;}
+.plan-box.plan-box-D .title-wrapper{background-color: #7f7f7f;}
+
+.plan-box.plan-box-A .title-wrapper h2{
+  color:#8d8d8d;
+  text-shadow: 0 1px 2px #fff;
+}
+
+.plan-box.plan-box-B .sub-wrapper{margin-bottom: 50px;}
+
+.plan-box.plan-box-B .title-wrapper h2{color:#1a1a1a;}
+.plan-box.plan-box-D .title-wrapper h2{line-height: 30px; padding-top: 10px;}
+
+
+/*CSS Queries - NOT WORKING ON IE < 9!
+****************************************/
+@media (max-width: 905px) {
+	#plan-boxs{width: auto; height: auto;}
+	.plan-box, .plan-box.plan-box-B, .plan-box.plan-box-C{position: static; left:auto; top:auto; z-index:auto; width: 100%; height: auto; margin-bottom: 15px; box-shadow:none;}
+	.plan-box .desc-wrapper{min-height: 0;}
+	.plan-box .btn-wrapper{margin: 15px 0;}
+}
+
+@media (min-width: 768px) and (max-width: 905px) {
+	#plan-boxs{margin: 0 20px;}
+}
+
+@media (max-width: 767px) {
+	#plan-boxs{margin: 0;}
+}

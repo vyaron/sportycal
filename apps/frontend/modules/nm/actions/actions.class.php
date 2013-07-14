@@ -6,7 +6,6 @@ class nmActions extends sfActions{
 		
 		if ($this->calsDownloadedCount > 100) $this->calsDownloadedCount -= 100;
 	}
-	
 	/*
 	public function executeLicenceWizard(sfWebRequest $request){
 		$this->getResponse()->setSlot('pricing', true);
@@ -40,7 +39,8 @@ class nmActions extends sfActions{
 	public function executePricing(sfWebRequest $request){
 		$this->getResponse()->setSlot('pricing', true);
 		
-		$this->setTemplate('comingSoon', 'nm');
+		$user = UserUtils::getLoggedIn();
+		if (!$user || !$user->isMaster()) $this->setTemplate('comingSoon', 'nm');
 	}
 	
 	public function executeCaseStudies(sfWebRequest $request){
