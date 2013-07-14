@@ -54,17 +54,19 @@ function setEventList(){
 
 function loadCalendar(){
 	scheduler.xy.nav_height = 53;
+	scheduler.xy.lightbox_additional_height = 70;
 	
 	scheduler.locale.labels.full_day = 'All Day';
+	scheduler.locale.labels.section_location = "Location";
+	scheduler.locale.labels.section_name = "Event Name";
+	scheduler.locale.labels.new_event = "TYPE THE EVENT NAME HERE";
 	
 	//scheduler.config.touch = "force";
 	scheduler.config.xml_date = "%Y-%m-%d %H:%i";
-	
-	
+
 	scheduler.config.prevent_cache = true;
 	scheduler.config.first_hour = 10;
-	scheduler.locale.labels.section_location = "Location";
-	scheduler.locale.labels.section_name = "Event Name";
+	
 	scheduler.config.details_on_create = true;
 	scheduler.config.details_on_dblclick = true;
 	scheduler.config.multi_day = true;
@@ -78,6 +80,8 @@ function loadCalendar(){
 	scheduler.config.buttons_left=["dhx_delete_btn"];
 	
 	scheduler.config.time_step = 30;
+	
+	scheduler.config.wide_form=false;
 	
 	//scheduler.config.server_utc = true; //convert server side dates from utc to local timezone, and backward during data sending to server;
 	
@@ -151,7 +155,8 @@ function loadCalendar(){
 	
 	scheduler.config.lightbox.sections = [ {
 		name : "name",
-		height : 30,
+		placeholder : "TYPE THE EVENT NAME HERE",
+		height : 22,
 		map_to : "text",
 		type : "textarea",
 		focus : true
@@ -162,12 +167,14 @@ function loadCalendar(){
 		map_to : "auto"
 	}, {
 		name : "description",
-		height : 130,
+		placeholder : "DESCRIPTION",
+		height : 52,
 		map_to : "details",
 		type : "textarea"
 	}, {
 		name : "location",
-		height : 43,
+		placeholder : "LOCATION",
+		height : 22,
 		type : "textarea",
 		map_to : "location"
 	},/* {
@@ -176,6 +183,12 @@ function loadCalendar(){
 		map_to : "rec_type",
 		button : "recurring"
 	}*/];
+	
+	//Overide core functions
+	scheduler.form_blocks.textarea.render = function(sns){
+		var height=(sns.height||"130")+"px";
+		return "<div class='dhx_cal_ltext " + sns.name +"' style='height:"+height+";'><textarea" + (sns.placeholder ? " placeholder='" + sns.placeholder + "'" : "") + "></textarea></div>";
+	};
 	
 	scheduler.init('scheduler_here', new Date(), "month");
 	scheduler.load("/nm/calEvents/?id=" + gCalId, 'json');
@@ -227,6 +240,8 @@ function setCalImportEvents(){
 		}
 	});
 }
+
+
 
 
 var gCalId = null;

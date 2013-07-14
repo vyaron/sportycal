@@ -43,7 +43,7 @@ use_stylesheet('/css/neverMiss/calEdit.css');
 		</td>
 		<td class="right-col">&nbsp;</td>
 	</tr>
-	<tr>
+	<tr class="hidden-phone">
 		<td>
 			<div id="scheduler_here" class="dhx_cal_container" style="line-height:normal;">
 				<div id="cal-header" class="dhx_cal_navline">

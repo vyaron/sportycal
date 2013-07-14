@@ -1,3 +1,4 @@
+scheduler.locale.labels.from = 'From';
 scheduler.locale.labels.to = 'To';
 
 scheduler.form_blocks.datetime = {
@@ -5,19 +6,19 @@ scheduler.form_blocks.datetime = {
 		var cfg = scheduler.config;
 		
 		var start = '<input type="text" class="datepicker"/> <input type="text" class="timepicker"/>';
-		var end = '<input type="text" class="timepicker"/> <input type="text" class="datepicker"/>';
+		var end = '<input type="text" class="datepicker"/> <input type="text" class="timepicker"/>';
 		
 		var height = 30;
 		
 		var fullDateHtml = '';
 		if (cfg.full_day) {
-			fullDateHtml = '<br/><label class="inline checkbox"><input class="full_date" type="checkbox"/>&nbsp;' + this.locale.labels.full_day + '</label>';
+			fullDateHtml = '<label class="full_date_wrapper" class="inline checkbox"><input class="full_date" type="checkbox"/>&nbsp;' + this.locale.labels.full_day + '</label>';
 			height += 40;
 		}
 		
 		
 		
-		return "<div style='height:" + height + "px;padding-top:0px;font-size:inherit;' class='dhx_section_datetime dhx_cal_ltext'>"+start+"<span style='font-weight:normal; font-size:10pt;'>&nbsp;" + this.locale.labels.to + "&nbsp;</span>"+end+fullDateHtml+"</div>";
+		return "<div style='height:" + height + "px; font-size:inherit;' class='dhx_section_datetime dhx_cal_ltext'><label>" + this.locale.labels.from + "</label>"+start+"<br/><label>" + this.locale.labels.to + "</label>"+end+fullDateHtml+"</div>";
 	},
 	
 	set_value:function(node,value,ev,config){

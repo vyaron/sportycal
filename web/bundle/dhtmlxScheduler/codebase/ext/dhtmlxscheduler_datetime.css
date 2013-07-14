@@ -1,1 +1,5 @@
-.dhx_section_datetime .datepicker, .dhx_section_datetime .timepicker{width: 100px;}
+.dhx_section_datetime label{width: 40px; display: inline-block; font-size: 12px;}
+.dhx_section_datetime .datepicker{width: 70px;}
+.dhx_section_datetime .timepicker{width: 55px;}
+.dhx_section_datetime .full_date_wrapper{ width:70px; margin-bottom: 10px; margin-left: 5px; text-transform: uppercase;}
+.dhx_section_datetime .full_date_wrapper input{margin: 0;}

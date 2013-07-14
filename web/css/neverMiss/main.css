@@ -97,7 +97,7 @@ label.error, .error_list > li{color: red;}
 .navbar-inner .container{position: relative; }
 
 /*logo*/
-#logo{float: left; display: block; background-position: 0 center; background-repeat: no-repeat; cursor: pointer; background-image: url(/images/neverMiss/layout/logo.png); width: 180px; height: 65px;}
+#logo{position:absolute; left:0; top:0; z-index:2; display: block; background-position: 0 center; background-repeat: no-repeat; cursor: pointer; background-image: url(/images/neverMiss/layout/logo.png); width: 180px; height: 65px;}
 
 /*main nav*/
 #top-nav-wrapper{ position:relative; height: 65px; left:180px;}

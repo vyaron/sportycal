@@ -13,7 +13,7 @@
 #cal-form table td input, #cal-form table td select{width: 100%; -webkit-box-sizing: border-box; -moz-box-sizing: border-box; box-sizing: border-box; height: 25px; line-height: 25px; display: block; font-size: 12px;}
 
 #events-wrapper{min-height: 480px;}
-#events-wrapper h3{border-bottom: 5px solid #ffc229; font-size: 22px; font-weight: normal;}
+#events-wrapper h3{border-bottom: 5px solid #ffc229; font-size: 22px; font-weight: normal; text-transform: uppercase;}
 #events-wrapper ul{display: block; margin: 0; padding: 0; list-style: none;}
 #events-wrapper ul li{border-top:2px solid #ffc229; padding: 15px 0; font-size: 12px;}
 #events-wrapper ul li:first-child{border: none;}
@@ -32,7 +32,7 @@
 
 
 .dhx_cal_light select{width: auto; height: auto; line-height: normal;}
-.dhx_cal_light label{display:inline;}
+/*.dhx_cal_light label{display:inline;}*/
 
 .cal_import_button{
 	background: none repeat scroll 0 0 transparent;
@@ -67,3 +67,19 @@
 #clear-events{margin-top: 25px; display: inline-block;}
 
 
+/*lightbox*/
+.dhx_cal_light, .dhx_cal_light_rec{width: 322px;}
+.dhx_cal_light_rec .dhx_cal_larea{width: 320px; margin-top: 20px;}
+.dhx_cal_light .dhx_cal_lsection, .dhx_cal_light .dhx_cal_ltitle{display: none;}
+.dhx_cal_light .dhx_cal_ltext{padding: 5px 24px;}
+.dhx_cal_light .dhx_cal_ltext textarea, .dhx_cal_light .dhx_cal_ltext textarea:-moz-placeholder {font-size: 12px; line-height: 22px; padding:0 6px;}
+.dhx_cal_light .dhx_cal_ltext.name textarea{color: #333; margin: 0; border: 0; background: #ffc229;}
+.dhx_cal_ltext textarea {border-color: #FFC229;}
+
+.dhx_btn_set, .dhx_btn_set div{height: 20px;}
+.dhx_btn_set{background: #b3b3b3; border: none; -webkit-border-radius: 10px; -moz-border-radius: 10px; border-radius: 10px; width: 80px;}
+.dhx_btn_set div{color: #fff; line-height: 20px; font-size: 12px; text-transform: uppercase; text-shadow: none; padding: 0px; text-align: center; width: 100%;}
+.dhx_left_btn_set{margin-left: 25px;}
+.dhx_right_btn_set{margin-right: 25px;}
+.dhx_cancel_btn_set{margin-right: 5px;}
+.dhx_save_btn_set{background-color: #FFC229;}
