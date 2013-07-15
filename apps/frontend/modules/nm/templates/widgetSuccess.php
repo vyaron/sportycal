@@ -1,4 +1,7 @@
-<?php use_stylesheet('/css/neverMiss/widget.css');?>
+<?php 
+use_stylesheet('http://fonts.googleapis.com/css?family=PT+Sans+Narrow:400,700');
+use_stylesheet('/css/neverMiss/widget.css');
+?>
 
 <div class="container">
 
@@ -8,74 +11,89 @@
 <div class="row">
 	<div class="span6">
 		<?php if ($user):?>
-		<form id="widget-form" method="GET">
-			<fieldset>
-				<legend>Custom widget:</legend>
-				
-				<label for="language">Language:</label>
-				<select id="language" class="span6" name="language">
-  					<?php foreach (NeverMissWidget::$LANGUAGES_OPTIONS as $value => $name):?>
-  					<option value="<?php echo $value;?>"<?php echo ($value == $language) ? ' selected="selected"' : ''?>><?php echo $name;?></option>
-  					<?php endforeach;?>
-				</select>
-				
-				<label for="btn-style">Button Style:</label>
-				<select id="btn-style" class="span6" name="btn-style">
-  					<option value="<?php echo NeverMissWidget::DEFAULT_VALUE;?>">Default</option>
-  					<option value="only_icon">Only icon</option>
-				</select>
-				
-				<label for="btn-size">Button Size:</label>
-				<select id="btn-size" class="span6" name="btn-size">
-  					<option value="<?php echo NeverMissWidget::DEFAULT_VALUE;?>">Default</option>
-  					<option value="small">Small</option>
-				</select>
-				
-				<label for="color">Color:</label>
-				<select id="color" class="span6" name="color">
-  					<option value="<?php echo NeverMissWidget::DEFAULT_VALUE;?>">Default</option>
-  					<option value="dark">Dark</option>
-				</select>
-				
-				<label for="copy-js-code"><?php echo __('Copy this code to your site (iframe)');?>:</label>
-				
-				<textarea id="copy-js-code" spellcheck="false" class="span6"><?php echo $code;?></textarea>
-
-				<div class="row mt10">
-					<div class="span6 clearfix">
-						<a class="btn btn-small pull-left" href="<?php echo url_for('nm/calEdit/?id=' . $calId);?>" title="Edit your calendar"><i class="icon-arrow-left"></i> Back</a>
-						<a class="btn btn-success pull-right" href="<?php echo url_for('nm/calList');?>"><i class="icon-list icon-yellow"></i> Finish</a>
-					</div>
+		<h2><span class="color-y">Custom</span> widget</h2>
+		
+		<form id="widget-form" class="form-horizontal" method="GET">
+			<div class="control-group">
+				<label class="control-label" for="language">Language:</label>
+				<div class="controls">
+					<select id="language" name="language">
+	  					<?php foreach (NeverMissWidget::$LANGUAGES_OPTIONS as $value => $name):?>
+	  					<option value="<?php echo $value;?>"<?php echo ($value == $language) ? ' selected="selected"' : ''?>><?php echo $name;?></option>
+	  					<?php endforeach;?>
+					</select>
 				</div>
-				
-			</fieldset>
+			</div>
+			<div class="control-group">
+				<label class="control-label" for="btn-style">Button Style:</label>
+				<div class="controls">
+					<select id="btn-style" name="btn-style">
+	  					<option value="<?php echo NeverMissWidget::DEFAULT_VALUE;?>">Default</option>
+	  					<option value="only_icon">Only icon</option>
+					</select>
+				</div>
+			</div>
+			<div class="control-group">
+				<label class="control-label" for="btn-size">Button Size:</label>
+				<div class="controls">
+					<select id="btn-size" name="btn-size">
+	  					<option value="<?php echo NeverMissWidget::DEFAULT_VALUE;?>">Default</option>
+	  					<option value="small">Small</option>
+					</select>
+				</div>
+			</div>
+			<div class="control-group">
+				<label class="control-label" for="color">Color:</label>
+				<div class="controls">
+					<select id="color" name="color">
+	  					<option value="<?php echo NeverMissWidget::DEFAULT_VALUE;?>">Default</option>
+	  					<option value="dark">Dark</option>
+					</select>
+				</div>
+			</div>
 		</form>
+		
+		<hr/>
+		
+		<form class="form-horizontal">
+			<div class="control-group">
+				<label class="control-label" for="copy-js-code">Copy and paste this code<br/><span class="caption">into your website (&lt;body/&gt;):</span></label>
+				<div class="controls">
+					<textarea id="copy-js-code" spellcheck="false"><?php echo $code;?></textarea>
+				</div>
+			</div>
+		</form>
+
+		<hr/>
+		
+		<form id="email-form" method="POST">
+			<input type="hidden" name="calId" value="<?php echo $calId;?>"/>
+			<label for="language">Subscribe By Mail:<br/><span class="caption">(Sends an email with the calendars that you can send to your contacts)</span></label>
+
+			<textarea name="message" class="span6" placeholder="Type your message..."><?php echo __('Please click the calendar of your choice');?></textarea><br/>
+			
+			<div class="clearfix">
+				<input class="btn btn-small pull-right" type="submit" value="send"/>
+			</div>
+		</form>
+		
+		<hr/>
+		
+		<div class="clearfix mt15">
+			<a class="btn btn-success pull-left" href="<?php echo url_for('nm/calEdit/?id=' . $calId);?>" title="Edit your calendar">&lt;&lt;</a>
+			<a class="btn btn-success pull-right" href="<?php echo url_for('nm/calList');?>">Next &gt;&gt;</a>
+		</div>
+		
+		
 		<?php else:?>
-			<?php include_partial('nm/registerForm', array('form' => $form, 'isShowLogin' => true, 'backUrl' => url_for('nm/calEdit/?id=' . $calId), 'legend' => 'Register to save')); ?>
+			<?php include_partial('nm/registerForm', array('form' => $form, 'isShowLogin' => true, 'backUrl' => url_for('nm/calEdit/?id=' . $calId), 'legend' => ' to save')); ?>
 		<?php endif;?>
 	</div>
 	<div class="span6">
-		<legend>Desktop Preview:</legend>
-		<?php echo sfOutputEscaperGetterDecorator::unescape($code);?>
-		<br/>
-		<br/>
-		<legend>Mobile Preview:</legend>
-		<div data-is-mobile="true" data-language="en" data-cal-id="<?php echo $calId;?>" class="nm-follow"></div>
-		
-		<?php if ($user):?>
-		<br/>
-		<br/>
-		<legend>Subscribe By Mail:</legend>
-		<form id="email-form">
-			<p>Send me an email with the calendars.<br/>That I could send it to my contacts.</p>
-			<fieldset>
-				<input type="hidden" name="calId" value="<?php echo $calId;?>"/>
-				<label for="message">Email content:</label>
-				<textarea name="message" class="span6" placeholder="Type your message..."><?php echo __('Please click the calendar of your choice');?></textarea><br/>
-				<input class="btn pull-right" type="submit" value="send"/>
-			</fieldset>
-		</form>
-		<?php endif;?>
+		<div id="widget-bg">
+			<div id="desktop-widget"><?php echo sfOutputEscaperGetterDecorator::unescape($code);?></div>
+			<div id="mobile-widget"><div data-is-mobile="true" data-language="en" data-cal-id="<?php echo $calId;?>" class="nm-follow"></div></div>
+		</div>
 	</div>
 </div>
 

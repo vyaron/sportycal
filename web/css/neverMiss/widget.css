@@ -1,3 +1,19 @@
 @CHARSET "utf-8";
-#copy-js-code{resize: none; height: 100px;}
-#register-login-wrapper{font-weight: normal; font-size: 14px;}
+
+body{background-color: #f2f2f2;}
+
+#copy-js-code{resize: none; height: 50px; font-size: 12px; line-height: 15px;}
+#register-login-wrapper{font-weight: normal; font-size: 14px; margin-top:25px; margin-bottom: 50px;}
+.register-login-btn{margin-left: 8px; height: 22px; line-height: 22px; font-size:12px; padding:0 8px; text-transform: uppercase; background-color: #ffc229; color: #1a1a1a;}
+.register-login-btn:hover{color: #000; text-decoration: none;}
+
+.form-horizontal .control-label, #email-form label{font-family: 'PT Sans Narrow', sans-serif; font-size: 16px; font-weight: bold; text-align: left; color:#ffc229;}
+.form-horizontal .control-label .caption, #email-form label .caption{font-weight: normal; color: #000;}
+.form-horizontal .controls input, .form-horizontal .controls select, .form-horizontal .controls textarea{width: 100%;}
+.form-horizontal .controls .inline input{width: auto; margin-top: 0;}
+.form-horizontal .controls textarea{-moz-box-sizing: border-box; -webkit-box-sizing: border-box; -ms-box-sizing: border-box; box-sizing: border-box;}
+
+#widget-bg{background: 0 0 no-repeat url("/images/neverMiss/widget/widgets-bg.jpg"); width: 486px; height: 497px; display: block; position: relative; margin-left: 30px; margin-top: 10px;}
+#desktop-widget, #mobile-widget{position: absolute; transform:scale(0.8); ms-transform:scale(0.8); -webkit-transform:scale(0.8); transform-origin:0 0 0; ms-transform-origin:0 0 0; -webkit-transform-origin:0 0 0;}
+#desktop-widget{left: 15px; top: 138px; z-index: 2;}
+#mobile-widget{left: 272px; top: 226px; z-index: 1;}

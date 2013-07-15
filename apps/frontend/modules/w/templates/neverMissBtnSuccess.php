@@ -29,11 +29,13 @@ if ($isMobile) $target = Utils::clientIsAndroid() ? '_blank' : 'attachment';
 .never-miss-btn.small{background-image: url('/widgets/neverMiss/imgs/btn-small.png'); width: 88px; height: 20px;}
 .never-miss-btn.dark.small{background-image:  url('/widgets/neverMiss/imgs/btn-dark-small.png');}
 
+/*
 .never-miss-btn.mobile{background-image: url('/widgets/neverMiss/imgs/mobile-btn.png');}
 .never-miss-btn.mobile.dark{background-image: url('/widgets/neverMiss/imgs/mobile-btn-dark.png');}
 
 .never-miss-btn.mobile.small{background-image: url('/widgets/neverMiss/imgs/mobile-btn-small.png');}
 .never-miss-btn.mobile.dark.small{background-image: url('/widgets/neverMiss/imgs/mobile-btn-dark-small.png');}
+*/
 
 .never-miss-btn.only_icon{background-image: url('/widgets/neverMiss/imgs/only-icon.png') !important; width: 36px; height: 36px;}
 .never-miss-btn.only_icon.small{background-image: url('/widgets/neverMiss/imgs/only-icon-small.png') !important; width: 20px; height: 20px;}
