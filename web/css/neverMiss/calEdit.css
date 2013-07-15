@@ -12,19 +12,32 @@ body{background-color: #f2f2f2;}
 #cal-form table td{padding-left: 17px; width: 33.333%;}
 #cal-form table td:first-child{padding-left: 0;}
 #cal-form table td input, #cal-form table td select{width: 100%; -webkit-box-sizing: border-box; -moz-box-sizing: border-box; box-sizing: border-box; height: 25px; line-height: 25px; display: block; font-size: 12px;}
+#cal-form table td input{padding:0 6px;}
 
 #events-wrapper{min-height: 480px;}
 #events-wrapper h3{border-bottom: 5px solid #ffc229; font-size: 22px; font-weight: normal; text-transform: uppercase;}
 #events-wrapper ul{display: block; margin: 0; padding: 0; list-style: none;}
+#events-wrapper ul li a{color: #333;}
 #events-wrapper ul li{border-top:2px solid #ffc229; padding: 15px 0; font-size: 12px;}
 #events-wrapper ul li:first-child{border: none;}
 
 /* Calendar
 *****************/
+#scheduler_here{background-color: transparent;}
+
+#cal-bottom-btns{margin-top: 15px;}
+.cal-btn{background: #b3b3b3;  border: none; -webkit-border-radius: 10px; -moz-border-radius: 10px; border-radius: 10px; width: 115px; color: #fff !important; height:20px; line-height: 20px; font-size: 12px; text-transform: uppercase; text-align: center; display: inline-block; margin-right: 3px; outline: none !important; text-decoration: none !important;}
+.cal-btn:hover, .cal-btn:active, .cal-btn.selected{background: #FFC229;}
+.cal-btn.selected{cursor: default;}
+
+#cal-today-btn{margin-left: 35px;}
+
+#clear-events{display: inline-block; float: right; color: #333;}
+
 /*Header*/
 #cal-header{height: 53px; background-color: #ffc229; -webkit-border-radius: 8px; -moz-border-radius: 8px; border-radius: 8px;}
 
-#cal-header.dhx_cal_navline .dhx_cal_date{color: #fff; text-transform: uppercase; font-size: 23px; font-weight: bold; top:0; height: 59px; line-height: 59px;}
+#cal-header.dhx_cal_navline .dhx_cal_date{color: #fff; text-transform: uppercase; font-size: 23px; font-weight: bold; top:0; height: 53px; line-height: 53px;}
 
 #cal-header .dhx_cal_prev_button, #cal-header .dhx_cal_next_button{background-repeat: no-repeat; background-image: url("/images/neverMiss/calEdit/cal-arrows.png"); width: 14px; height: 16px; border: none; opacity:0.7; filter:alpha(opacity=70); top:19px;}
 #cal-header .dhx_cal_prev_button:hover, #cal-header .dhx_cal_next_button:hover{opacity:1; filter:alpha(opacity=100);}
@@ -54,28 +67,33 @@ body{background-color: #f2f2f2;}
 }
 
 /*Fix left border issue*/
+
 .dhx_scheduler_month .dhx_cal_header .dhx_scale_bar{background: #f2f2f2; color: #666;}
-.dhx_scheduler_month .dhx_cal_header .dhx_scale_bar:first-child{background: 0 0 repeat-y url("/images/neverMiss/calEdit/grayBorder.gif");}
+.dhx_scheduler_month .dhx_cal_header .dhx_scale_bar:first-child, .dhx_scheduler_day .dhx_cal_header .dhx_scale_bar, .dhx_multi_day{background: 0 0 repeat-y url("/images/neverMiss/calEdit/grayBorder.gif");}
 .dhx_scheduler_month .dhx_month_body, .dhx_scheduler_month .dhx_month_head{border-color: #ffc229;}
 .dhx_scheduler_month .dhx_month_head{width: auto !important; }
 .dhx_multi_day{width: 100% !important;}
-.dhx_cal_data tr td:first-child .dhx_month_head, .dhx_cal_data tr td:first-child  .dhx_month_body, .dhx_scheduler_week .dhx_scale_holder .dhx_scale_hour, .dhx_scheduler_day .dhx_scale_holder .dhx_scale_hour, .dhx_scheduler_day .dhx_cal_header .dhx_scale_bar, .dhx_multi_day{background: 0 0 repeat-y url("/images/neverMiss/calEdit/yellowBorder.gif");}
+.dhx_cal_data tr td:first-child .dhx_month_head, .dhx_cal_data tr td:first-child  .dhx_month_body, .dhx_scheduler_week .dhx_scale_holder .dhx_scale_hour, .dhx_scheduler_day .dhx_scale_holder .dhx_scale_hour{background: 0 0 repeat-y url("/images/neverMiss/calEdit/yellowBorder.gif");}
 .dhx_scheduler_day .dhx_cal_header .dhx_scale_bar, .dhx_multi_day{background-position: right 0;}
 .dhx_scheduler_week .dhx_cal_header .dhx_scale_bar{background: transparent;}
 .dhx_multi_day_icon_small{border-left: 1px solid #cecece; width: 49px !important;}
 .dhx_scheduler_week, .dhx_scheduler_day, .dhx_scheduler_month{border-bottom: 1px solid #ffc229;}
 
-#clear-events{margin-top: 25px; display: inline-block;}
+.dhx_scheduler_month .dhx_cal_data tr td.dhx_now{background-color: #FFF3A1;}
 
+.dhx_cal_event_line, .dhx_cal_event .dhx_header, .dhx_cal_event .dhx_footer, .dhx_cal_event .dhx_body, .dhx_cal_event .dhx_title{background-color: gray;}
+.dhx_cal_event_clear{color: #333;}
+.dhx_cal_data, .dhx_multi_day{background-color: #fff;}
 
 /*lightbox*/
 .dhx_cal_light, .dhx_cal_light_rec{width: 322px;}
-.dhx_cal_light_rec .dhx_cal_larea{width: 320px; margin-top: 20px;}
+.dhx_cal_larea, .dhx_cal_light_rec .dhx_cal_larea{width: 320px; margin-top: 20px;}
 .dhx_cal_light .dhx_cal_lsection, .dhx_cal_light .dhx_cal_ltitle{display: none;}
 .dhx_cal_light .dhx_cal_ltext{padding: 5px 24px;}
-.dhx_cal_light .dhx_cal_ltext textarea, .dhx_cal_light .dhx_cal_ltext textarea:-moz-placeholder {font-size: 12px; line-height: 22px; padding:0 6px;}
-.dhx_cal_light .dhx_cal_ltext.name textarea{color: #333; margin: 0; border: 0; background: #ffc229;}
-.dhx_cal_ltext textarea {border-color: #FFC229;}
+.dhx_cal_light .dhx_cal_ltext textarea, .dhx_cal_light .dhx_cal_ltext textarea:-moz-placeholder, .dhx_cal_light .dhx_cal_ltext.name input, .dhx_cal_light .dhx_cal_ltext.location input{font-size: 12px; line-height: 22px; padding:0 6px;}
+.dhx_cal_light .dhx_cal_ltext.name input, .dhx_cal_light .dhx_cal_ltext.location input{color: #333; margin: 0; width: 100%; -webkit-box-sizing: border-box; -moz-box-sizing: border-box; box-sizing: border-box; height: 20px;}
+.dhx_cal_light .dhx_cal_ltext.name input{border: 0; background: #ffc229;}
+.dhx_cal_ltext textarea, .dhx_cal_light .dhx_cal_ltext.location input{border: 1px solid #FFC229;}
 
 .dhx_btn_set, .dhx_btn_set div{height: 20px;}
 .dhx_btn_set{background: #b3b3b3; border: none; -webkit-border-radius: 10px; -moz-border-radius: 10px; border-radius: 10px; width: 80px;}
@@ -84,3 +102,8 @@ body{background-color: #f2f2f2;}
 .dhx_right_btn_set{margin-right: 25px;}
 .dhx_cancel_btn_set{margin-right: 5px;}
 .dhx_save_btn_set{background-color: #FFC229;}
+
+/*datepicker*/
+.ui-widget-header{background: #ffc229; color: #fff;}
+.ui-widget-header .ui-icon{background-image: url("/bundle/jquery/themes/base/minified/images/ui-icons_000_256x240.png");}
+.ui-datepicker .ui-datepicker-prev-hover, .ui-datepicker .ui-datepicker-next-hover{background: none;}

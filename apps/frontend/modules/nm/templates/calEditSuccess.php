@@ -9,7 +9,7 @@ use_stylesheet('/bundle/dhtmlxScheduler/codebase/dhtmlxscheduler.css');
 use_stylesheet('/bundle/dhtmlxScheduler/codebase/dhtmlxscheduler_dhx_terrace.css');
 
 use_stylesheet('/bundle/dhtmlxScheduler/codebase/ext/dhtmlxscheduler_datetime.css');
-use_stylesheet('/bundle/dhtmlxScheduler/sources/ext/dhtmlxscheduler_inevermiss_quick_info.css');
+//use_stylesheet('/bundle/dhtmlxScheduler/sources/ext/dhtmlxscheduler_inevermiss_quick_info.css');
 
 use_stylesheet('/bundle/jquery-file-upload/css/jquery.fileupload-ui.css');
 use_stylesheet('/css/neverMiss/calEdit.css');
@@ -34,12 +34,14 @@ use_stylesheet('/css/neverMiss/calEdit.css');
 				
 				<table>
 					<tr>
-						<td><?php echo $form['name']->render(array('placeholder' => 'ENTER CALENDAR NAME HERE', 'required'=>'required', 'minlength'=>'3'));?></td>
-						<td><input id="cal_description" type="text" name="cal[description]" placeholder="DESCRIPTION"/></td>
+						<td><?php echo $form['name']->render(array('placeholder' => 'ENTER CALENDAR NAME HERE', 'required'=>'required', 'minlength'=>'3', 'autofocus' => "autofocus"));?></td>
+						<td><input id="cal_description" type="text" name="cal[description]" placeholder="OPTIONAL DESCRIPTION"/></td>
 						<td><?php echo $form['tz']->render();?></td>
 					</tr>
 				</table>
 			</form>
+			
+			<h4>Add events to your calendar by clicking on a day</h4>
 		</td>
 		<td class="right-col">&nbsp;</td>
 	</tr>
@@ -53,16 +55,16 @@ use_stylesheet('/css/neverMiss/calEdit.css');
 				</div>
 				<div class="dhx_cal_header">Ido</div>
 				<div class="dhx_cal_data"></div>
+			</div>
+			<div id="cal-bottom-btns" class="clearfix">
+				<a class="cal-btn cal-btn-view selected pull-left" data-type="month" href="#">Month</a>
+				<a class="cal-btn cal-btn-view pull-left" data-type="week" href="#">Week</a>
+				<a class="cal-btn cal-btn-view pull-left" data-type="day" href="#">Day</a>
 				
-				<!-- 
-				<div class="dhx_cal_bottom_navline">
-					<div class="dhx_cal_today_button"></div>
-					<div class="cal_import_button">Import</div>
-					<div class="dhx_cal_tab" name="day_tab" style="right: 204px;"></div>
-					<div class="dhx_cal_tab" name="week_tab" style="right: 140px;"></div>
-					<div class="dhx_cal_tab" name="month_tab" style="right: 76px;"></div>
-				</div>
-				 -->
+				<a id="cal-today-btn" class="cal-btn pull-left" data-type="today" href="#">Today</a>
+				<a id="cal-import-btn" class="cal-btn pull-left" href="#">Import</a>
+				
+				<a id="clear-events" href="#clear-events-modal" role="button" data-toggle="modal"><i class="icon-trash"></i> Clear all Events</a>
 			</div>
 		</td>
 		<td class="right-col">
@@ -74,9 +76,6 @@ use_stylesheet('/css/neverMiss/calEdit.css');
 		</td>
 	</tr>
 </table>
-
-
-<a id="clear-events" href="#clear-events-modal" role="button" data-toggle="modal"><i class="icon-trash"></i> Clear all Events</a>
  
 <div id="clear-events-modal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 	<div class="modal-header">
@@ -98,7 +97,7 @@ use_stylesheet('/css/neverMiss/calEdit.css');
 		<h3 id="myModalLabel">Import calendar</h3>
 	</div>
 	<div class="modal-body">
-		<p>Choose the file that contains your events. iNeverMiss Calendar can import event information in iCal:</p>
+		<p>Choose the file that contains your events.<br/>iNeverMiss Calendar can import event information in iCal:</p>
 		<span class="btn btn-success fileinput-button">
 			<span id="ical-fileupload-loading-label" style="display:none;"><i class="icon-loading icon-yellow"></i> Uploading...</span>
 			<span id="ical-fileupload-label" ><i class="icon-plus icon-yellow"></i> Select Calendar *.ics</span>
@@ -121,9 +120,9 @@ use_javascript('/bundle/dhtmlxScheduler/codebase/dhtmlxscheduler.js');
 use_javascript('/bundle/dhtmlxScheduler/codebase/ext/dhtmlxscheduler_dhx_terrace.js');
 //use_javascript('/bundle/dhtmlxScheduler/codebase/ext/dhtmlxscheduler_quick_info.js');
 use_javascript('/bundle/dhtmlxScheduler/codebase/ext/dhtmlxscheduler_recurring.js');
-use_javascript('/bundle/dhtmlxScheduler/codebase/ext/dhtmlxscheduler_minical.js');
+//use_javascript('/bundle/dhtmlxScheduler/codebase/ext/dhtmlxscheduler_minical.js');
 
-use_javascript('/bundle/dhtmlxScheduler/sources/ext/dhtmlxscheduler_inevermiss_quick_info.js');
+//use_javascript('/bundle/dhtmlxScheduler/sources/ext/dhtmlxscheduler_inevermiss_quick_info.js');
 use_javascript('/bundle/dhtmlxScheduler/sources/ext/dhtmlxscheduler_datetime.js');
 
 use_javascript('/bundle/jquery-plugin-validation/js/jquery.validate.min.js');

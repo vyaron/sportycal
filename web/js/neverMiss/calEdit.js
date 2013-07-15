@@ -35,9 +35,9 @@ function setEventList(){
 		
 		for ( var i = 0; i < dayKeys.length; i++) {
 			if (dayKeys[i] in dayKeyToEvents){
-				html += '<li><div>' + dayKeys[i] + '</div>';
+				html += '<li><strong>' + dayKeys[i] + '</strong>';
 				for ( var j = 0; j < dayKeyToEvents[dayKeys[i]].length; j++) {
-					html += '<div>' + dayKeyToEvents[dayKeys[i]][j].text + '</div>';
+					html += '<div><a data-event-id="' + dayKeyToEvents[dayKeys[i]][j].id + '" href="#">' + dayKeyToEvents[dayKeys[i]][j].text + '</a></div>';
 				}
 				
 				html += '</li>';
@@ -52,6 +52,18 @@ function setEventList(){
 	jQuery('#event-list').html(html);
 }
 
+function changeCalView(e){
+	e.preventDefault();
+	
+	$('.cal-btn-view').removeClass('selected');
+	
+	var btn = $(this);
+	btn.addClass('selected');
+	
+	var viewType = btn.attr('data-type');
+	scheduler.updateView(null, viewType);
+}
+
 function loadCalendar(){
 	scheduler.xy.nav_height = 53;
 	scheduler.xy.lightbox_additional_height = 70;
@@ -59,7 +71,7 @@ function loadCalendar(){
 	scheduler.locale.labels.full_day = 'All Day';
 	scheduler.locale.labels.section_location = "Location";
 	scheduler.locale.labels.section_name = "Event Name";
-	scheduler.locale.labels.new_event = "TYPE THE EVENT NAME HERE";
+	//scheduler.locale.labels.new_event = "TYPE THE EVENT NAME HERE";
 	
 	//scheduler.config.touch = "force";
 	scheduler.config.xml_date = "%Y-%m-%d %H:%i";
@@ -128,6 +140,12 @@ function loadCalendar(){
 		else deleteBtn.show();
 	});
 	
+	scheduler.attachEvent("onClick", function(id, e){
+		if (id) scheduler.showLightbox(id);
+		
+		return false;
+	});
+	
 	scheduler.attachEvent("onEmptyClick", function (date, e){
 		var src = e.target|| e.srcElement;
 		if (this.config.readonly) return;
@@ -148,17 +166,23 @@ function loadCalendar(){
 	
 	scheduler.attachEvent('onXLE', setEventList);
 	scheduler.attachEvent('onViewChange', setEventList);
-	scheduler.attachEvent('onEventAdded', setEventList);
+	scheduler.attachEvent('onEventIdChange', setEventList);
 	scheduler.attachEvent('onEventChanged', setEventList);
 	scheduler.attachEvent('onEventDeleted', setEventList);
 	
+	
+	jQuery('#event-list').on('click', 'a[data-event-id]', function(e){
+		e.preventDefault();
+		var eventId = jQuery(this).attr('data-event-id');
+		scheduler.showLightbox(eventId);
+	});
 	
 	scheduler.config.lightbox.sections = [ {
 		name : "name",
 		placeholder : "TYPE THE EVENT NAME HERE",
 		height : 22,
 		map_to : "text",
-		type : "textarea",
+		type : "text",
 		focus : true
 	}, {
 		name : "time",
@@ -175,7 +199,7 @@ function loadCalendar(){
 		name : "location",
 		placeholder : "LOCATION",
 		height : 22,
-		type : "textarea",
+		type : "text",
 		map_to : "location"
 	},/* {
 		name : "recurring",
@@ -185,6 +209,16 @@ function loadCalendar(){
 	}*/];
 	
 	//Overide core functions
+	scheduler.form_blocks.text = {	
+		render : function(sns){
+			var height=(sns.height||"130")+"px";
+			return "<div class='dhx_cal_ltext " + sns.name +"' style='height:"+height+";'><input" + (sns.placeholder ? " placeholder='" + sns.placeholder + "'" : "") + "/></div>";
+		},
+		set_value : scheduler.form_blocks.textarea.set_value,
+		get_value : scheduler.form_blocks.textarea.get_value,
+		focus:  scheduler.form_blocks.textarea.focus
+	};
+	
 	scheduler.form_blocks.textarea.render = function(sns){
 		var height=(sns.height||"130")+"px";
 		return "<div class='dhx_cal_ltext " + sns.name +"' style='height:"+height+";'><textarea" + (sns.placeholder ? " placeholder='" + sns.placeholder + "'" : "") + "></textarea></div>";
@@ -195,10 +229,22 @@ function loadCalendar(){
 	var dp = new dataProcessor("/nm/calEvents/?id=" + gCalId);
 	
 	dp.init(scheduler);
+	
+	$('#cal-today-btn').click(function(e){
+		e.preventDefault();
+		
+		try {
+			scheduler._click.dhx_cal_today_button();
+		} catch (e) {
+			// TODO: handle exception
+		}
+		
+	});
+	$('.cal-btn-view').click(changeCalView);
 }
 
 function setCalImportEvents(){
-	jQuery('.cal_import_button').click(function(e){
+	jQuery('#cal-import-btn').click(function(e){
 		e.preventDefault();
 		
 		jQuery('#ical-fileupload-label').show();
@@ -255,6 +301,7 @@ jQuery(document).ready(function(){
 	
 	jQuery('.continue-btn').click(function(e){
 		e.preventDefault();
+		
 		jQuery('#cal-form').submit();
 	});
 });
