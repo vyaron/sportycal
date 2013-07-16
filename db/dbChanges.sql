@@ -1,3 +1,8 @@
+ALTER TABLE `partner` DROP `external_user_id`;
+ALTER TABLE `partner` ADD `licence_start_at` timestamp NULL DEFAULT NULL;
+
+
+----------------------------DONE ON PROD-------------------------------------------------------
 -- ALTER TABLE user DROP INDEX fkUSER_email;
 -- ALTER IGNORE TABLE user ADD UNIQUE INDEX(email);
 

@@ -1,7 +1,7 @@
 <?php 
 $backUrl = Utils::iff($backUrl, null);
 $isShowLogin = Utils::iff($isShowLogin, false);
-$legend = Utils::iff($legend, 'Register');
+$legend = Utils::iff($legend, false);
 ?>
 
 <h2><span class="color-y">Register</span> <?php echo $legend ? $legend : '';?>:</h2>

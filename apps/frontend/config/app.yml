@@ -9,14 +9,12 @@ dev:
   facebook:
     appId: 313400138677127
     secret: 62094be3d3db0caf976e93cc44ef7cad
-  licensario:
-    apiKey: b3448e470128a1fa1e1999f85e2bf1f95e4aa7067f76431645937b1470419926
-    apiSecret: b969f923328a2d23db94736a19311b64aeb6edaca9c92f62f51006d83487dd13
+  paypal:
+    url: https://www.sandbox.paypal.com
     
 all:
-  licensario:
-    apiKey: bc5e3dbd1618ba04fff03d21429692fe1e53553305d7cf4ed257fa1801e2eaaa
-    apiSecret: 160fbf80457f30da67fb25ff04ac493f822152d54ecf1eaed9fd0abc1869cb43
+  paypal:
+    url: https://www.paypal.com
   mailinglist:
     fromName: iNeverMiss.net Support
     fromEmail: support@inevermiss.net

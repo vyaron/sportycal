@@ -756,6 +756,8 @@ class Cal extends BaseCal
     	
     	$partner = $this->getPartner();
     	if ($partner && $partner->getMaxSubscribers()){
+    		//TODO: clac cal_request after partner_licence_start_at + X month
+    		
     		$q = Doctrine_Query::create()
 	    		->select('c.id, COUNT(cr.id) cal_request_count')
 	    		->from('Cal c')

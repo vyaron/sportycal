@@ -1423,15 +1423,15 @@ Partner:
       primary: false
       notnull: false
       autoincrement: false
-    external_user_id:
-      type: string(64)
+    licence_code:
+      type: string(512)
       fixed: false
       unsigned: false
       primary: false
       notnull: false
       autoincrement: false
-    licence_code:
-      type: string(512)
+    licence_start_at:
+      type: timestamp(25)
       fixed: false
       unsigned: false
       primary: false

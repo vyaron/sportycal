@@ -6,41 +6,80 @@ class nmActions extends sfActions{
 		
 		if ($this->calsDownloadedCount > 100) $this->calsDownloadedCount -= 100;
 	}
-	/*
-	public function executeLicenceWizard(sfWebRequest $request){
-		$this->getResponse()->setSlot('pricing', true);
-		
-		$user = UserUtils::getLoggedIn();
-		$this->paymentPlanCode = $request->getParameter('c');
-		
-		if (!$user){
-			$this->redirect('/nm/loginAndRegister/c/' . $this->paymentPlanCode);
-		} else {
-			$partner = $user->getPartner();
-			if ($partner){
-				$this->externalUserId = $partner->tryToGetExternalUserId();
-				$this->token = Licensario::getToken($this->externalUserId);
-				
-			}
-		}
-
-		$this->forward404Unless(($this->externalUserId && $this->token && $this->paymentPlanCode));
-	}
+	
 	
 	public function executeLoginAndRegister(sfWebRequest $request){
 		$this->code = $request->getParameter('c');
-		
+	
 		$this->loginForm = new LoginForm();
 		$this->registerForm = new NmRegisterForm();
 	}
+	
+	//TODO: implamnet IPN
+	/*
+	public function executePaypalIpn(sfWebRequest $request){
+		$logPath = sfConfig::get('sf_log_dir').'/paypal.log';
+		$custom_logger = new sfFileLogger(new sfEventDispatcher(), array('file' => $logPath));
+		
+		$json = json_encode($_REQUEST);
+		$custom_logger->info($json);
+
+		return sfView::NONE;
+	}
 	*/
 	
+	//TODO: implamnet auth checkout
+	public function executeCheckoutSuccess(sfWebRequest $request){
+		$this->forward404Unless($user = UserUtils::getLoggedIn());
+		$this->forward404Unless($partner = $user->getPartner());
+		
+		//$auth = $request->getParameter('auth');
+		$paypalPlanCode = $request->getParameter('payer_id');
+		$subscrDate = $request->getParameter('subscr_date');
+		if ($paypalPlanCode && $subscrDate){
+			
+			$liceneCode = PartnerLicence::getPlanCode($paypalPlanCode);
+			
+			//TODO: convert to GMT from PDT
+			$liceneStartAt = date('Y-m-d H:i', strtotime($subscrDate));
+			
+			if ($liceneCode && $liceneStartAt){
+				$partner->setLicenceCode($liceneCode);
+				$partner->setLicenceStartAt($liceneStartAt);
+				$partner->save();
+			}
+		}
+		
+		$this->redirect('/nm/calList');
+	}
+	
+	public function executeCheckout(sfWebRequest $request){
+		$user = UserUtils::getLoggedIn();
+		
+		$planCode = $request->getParameter('c');
+		if (!$user) {
+			$url = '/nm/loginAndRegister/c/' . $planCode;
+		} else {
+			//TODO: fill user data: email, full name... - for checkout with credit card
+			$params = array(
+				'cmd' => '_s-xclick',
+				'hosted_button_id' => PartnerLicence::getPaypalPlan($planCode),
+				'custom' => 'uid:' . $user->getId(),
+				//'notify_url' => 'http://inevermiss.net/nm/paypalIpn', // Hardcoded for local tests
+				'rm' => 2
+			);
+			
+			$url = sfConfig::get('app_paypal_url') . '/cgi-bin/webscr/?' . http_build_query($params, '', '&');
+		}
+		
+		$this->redirect($url);
+	}
 	
 	public function executePricing(sfWebRequest $request){
 		$this->getResponse()->setSlot('pricing', true);
 		
 		$user = UserUtils::getLoggedIn();
-		if (!$user || !$user->isMaster()) $this->setTemplate('comingSoon', 'nm');
+		//if (!$user || !$user->isMaster()) $this->setTemplate('comingSoon', 'nm');
 	}
 	
 	public function executeCaseStudies(sfWebRequest $request){
@@ -375,8 +414,9 @@ class nmActions extends sfActions{
 				$user->save();
 					
 				UserUtils::logUserIn($user);
-					
+
 				if ($cal) $cal->setAdoptive($user, $rootName, $website);
+				else if ($user->getType() != User::TYPE_PARTNER || $user->getType() != User::TYPE_MASTER) $partner = $user->createPartner($rootName, $website);
 				
 				if ($isAjax){
 					$res['success'] = true;

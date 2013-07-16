@@ -1,5 +1,5 @@
 function handleAfterLoginRes(res){
-	if (res && res.success) window.location.href = '/nm/licenceWizard/?c=' + gCode;
+	if (res && res.success) window.location.href = '/nm/checkout/?c=' + gCode;
 }
 
 function setLogin(){
