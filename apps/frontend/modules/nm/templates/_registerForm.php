@@ -58,7 +58,7 @@ $legend = Utils::iff($legend, false);
 			<label class="inline">
 				<input type="checkbox" name="register[agree]" required="required"/>&nbsp;
 				<span><?php echo __('I agree');?></span>&nbsp;
-				<a target="_blank" href="/main/downCalTerms"><?php echo __('Terms & Conditions');?></a>
+				<a target="_blank" href="/nm/terms/?nlo=1"><?php echo __('Terms & Conditions');?></a>
 			</label>
 		</div>
 	</div>

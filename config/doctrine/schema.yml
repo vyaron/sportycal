@@ -1430,7 +1430,7 @@ Partner:
       primary: false
       notnull: false
       autoincrement: false
-    licence_start_at:
+    licence_ends_at:
       type: timestamp(25)
       fixed: false
       unsigned: false

@@ -22,12 +22,14 @@ use_stylesheet('/css/neverMiss/pricing.css');
 		
 		<?php if ($plan['price']):?>
 		<div class="price-wrapper"><strong>$<?php echo $plan['price'];?></strong>/ Month</div>
+		<?php elseif ($plan['price'] === 0):?>
+		<div class="price-wrapper"><strong>Free</strong></div>
 		<?php else:?>
 		<div class="price-wrapper"><strong>Call</strong></div>
 		<?php endif;?>
 		
 		<div class="btn-wrapper">
-			<a class="btn btn-success" href="<?php echo url_for('/nm/checkout/?c=' . $key)?>">select &gt;&gt;</a>
+			<a class="btn btn-success" href="<?php echo PartnerLicence::getPlanUrl($key)?>">select &gt;&gt;</a>
 		</div>
 	</div>
 	<?php endforeach;?>

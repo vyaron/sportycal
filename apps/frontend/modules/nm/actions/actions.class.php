@@ -7,6 +7,14 @@ class nmActions extends sfActions{
 		if ($this->calsDownloadedCount > 100) $this->calsDownloadedCount -= 100;
 	}
 	
+	public function executeContact(sfWebRequest $request){
+
+	}
+	
+	public function executeTerms(sfWebRequest $request){
+		$nlo = $request->getParameter('nlo');
+		if ($nlo) $this->setLayout(false);
+	}
 	
 	public function executeLoginAndRegister(sfWebRequest $request){
 		$this->code = $request->getParameter('c');
@@ -15,41 +23,37 @@ class nmActions extends sfActions{
 		$this->registerForm = new NmRegisterForm();
 	}
 	
-	//TODO: implamnet IPN
-	/*
 	public function executePaypalIpn(sfWebRequest $request){
+		/*
 		$logPath = sfConfig::get('sf_log_dir').'/paypal.log';
 		$custom_logger = new sfFileLogger(new sfEventDispatcher(), array('file' => $logPath));
 		
 		$json = json_encode($_REQUEST);
 		$custom_logger->info($json);
+		*/
+		
+		$isPaymentCompleted = $request->getParameter('payment_status') == 'Completed' ? true : false;
+		
+		$custom = $request->getParameter('custom');
+		$itemNumber = $request->getParameter('item_number');
+		$paymentDate = $request->getParameter('payment_date');
+		
+		if ($isPaymentCompleted && self::isComeFromPaypal($request)) PartnerLicence::setLicence($custom, $itemNumber, $paymentDate);
 
 		return sfView::NONE;
 	}
-	*/
 	
-	//TODO: implamnet auth checkout
+	//TODO: check PDT - https://developer.paypal.com/webapps/developer/docs/classic/paypal-payments-standard/integration-guide/paymentdatatransfer/
 	public function executeCheckoutSuccess(sfWebRequest $request){
-		$this->forward404Unless($user = UserUtils::getLoggedIn());
-		$this->forward404Unless($partner = $user->getPartner());
+		//Utils::pp($request->getPostParameters());
 		
-		//$auth = $request->getParameter('auth');
-		$paypalPlanCode = $request->getParameter('payer_id');
-		$subscrDate = $request->getParameter('subscr_date');
-		if ($paypalPlanCode && $subscrDate){
-			
-			$liceneCode = PartnerLicence::getPlanCode($paypalPlanCode);
-			
-			//TODO: convert to GMT from PDT
-			$liceneStartAt = date('Y-m-d H:i', strtotime($subscrDate));
-			
-			if ($liceneCode && $liceneStartAt){
-				$partner->setLicenceCode($liceneCode);
-				$partner->setLicenceStartAt($liceneStartAt);
-				$partner->save();
-			}
-		}
+		$custom = $request->getParameter('custom');
+		$itemNumber = $request->getParameter('item_number');
+		//$paymentDate = $request->getParameter('payment_date');
+		$paymentDate = $request->getParameter('subscr_date');
 		
+		PartnerLicence::setLicence($custom, $itemNumber, $paymentDate);
+
 		$this->redirect('/nm/calList');
 	}
 	
@@ -57,19 +61,32 @@ class nmActions extends sfActions{
 		$user = UserUtils::getLoggedIn();
 		
 		$planCode = $request->getParameter('c');
-		if (!$user) {
+		if (!$user || !$partner = $user->getPartner()) {
 			$url = '/nm/loginAndRegister/c/' . $planCode;
 		} else {
-			//TODO: fill user data: email, full name... - for checkout with credit card
-			$params = array(
-				'cmd' => '_s-xclick',
-				'hosted_button_id' => PartnerLicence::getPaypalPlan($planCode),
-				'custom' => 'uid:' . $user->getId(),
-				//'notify_url' => 'http://inevermiss.net/nm/paypalIpn', // Hardcoded for local tests
-				'rm' => 2
-			);
+			$currLicence = $partner->getLicence();
+			$newLicence = new PartnerLicence($planCode, date('Y-m-d H:i:s', strtotime('+1 month +1 day')));
 			
-			$url = sfConfig::get('app_paypal_url') . '/cgi-bin/webscr/?' . http_build_query($params, '', '&');
+			if ($newLicence->isBetterThan($currLicence)){
+				//TODO: fill user data: email, full name... - for checkout with credit card
+				$custom = array('uid' => $user->getId());
+					
+				$params = array(
+						'cmd' => '_s-xclick',
+						'hosted_button_id' => PartnerLicence::getPaypalPlan($planCode),
+						'custom' => json_encode($custom),
+						'notify_url' => 'http://inevermiss.net/nm/paypalIpn', // Prod
+						//'notify_url' => (sfConfig::get('app_domain_full') . '/nm/paypalIpn'), // Prod
+						//'notify_url' => 'http://80.246.133.237:8080/nm/paypalIpn', // local test
+				
+						'rm' => 2
+				);
+					
+				$url = sfConfig::get('app_paypal_url') . '/cgi-bin/webscr/?' . http_build_query($params, '', '&');
+			} else {
+				$url = '/nm/calList';
+			}
+			
 		}
 		
 		$this->redirect($url);
@@ -171,18 +188,13 @@ class nmActions extends sfActions{
 		$this->getResponse()->setSlot('calList', true);
 		
 		$user = UserUtils::getLoggedIn();
-		if (!$user) $this->redirect('partner/login');
-		
-		$maxSubcribers = null;
-		$partner = $user->getPartner();
-		if ($partner) $maxSubcribers = $partner->getMaxSubscribers();
+		if (!$user || !$partner = $user->getPartner()) $this->redirect('partner/login');
 		
 		$offset = $request->getParameter('p', 0);
-		
 		$calList = CalTable::getCalList($user->getId(), $offset);
 		
 		$this->calList = $calList;
-		$this->maxSubcribers = $maxSubcribers;
+		$this->licenece = $partner->getLicence();
 	}
 	
 	public function executeCalDelete(sfWebRequest $request){

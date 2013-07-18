@@ -4,3 +4,6 @@
 .cal-is-deleted{color: lightgray;}
 .cal-active, .cal-deleted{display: none;}
 .cal-is-deleted .cal-deleted, .cal-is-active .cal-active{display: block;}
+
+#plan-box{float: right; font-size: 16px; font-weight: normal;}
+#plan-box.ended{color: red;}

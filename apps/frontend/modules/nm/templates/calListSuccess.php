@@ -2,7 +2,7 @@
 
 <div class="container">
 
-<h2>Calendars</h2>
+<h2>Calendars <a id="plan-box" class="<?php echo ($licenece->isEnded() ? 'ended' : '');?>" href="<?php echo url_for('/nm/pricing')?>" title="Max subscribers <?php echo $licenece->getMaxSubscribers();?>">[*] <?php echo $licenece->getName();?></a></h2>
 
 <?php if (!$calList['total']): ?>
 <p>No calendars!</p>
@@ -20,7 +20,7 @@
 		</tr>
 	</thead>
 	<tbody>
-	<?php foreach ($calList['data'] as $i => $cal): $isReachedMaxSubs = ($maxSubcribers && $cal['cal_request_count'] >= $maxSubcribers);?>
+	<?php foreach ($calList['data'] as $i => $cal): $isReachedMaxSubs = $licenece->isReachedTheMaxSubscribers($cal['cal_request_count']);?>
 		<tr id="cal_<?php echo $cal['id'];?>" class="<?php echo ($cal['deleted_at'] ? 'cal-is-deleted' : 'cal-is-active') ?>"/>
 			<td><?php echo ($i + 1);?></td>
 			<td><?php echo date('Y-m-d H:s', strtotime($cal['updated_at']));?></td>

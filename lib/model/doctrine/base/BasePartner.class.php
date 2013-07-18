@@ -12,7 +12,7 @@ Doctrine_Manager::getInstance()->bindComponent('Partner', 'doctrine');
  * @property string $name
  * @property string $tz
  * @property string $licence_code
- * @property timestamp $licence_start_at
+ * @property timestamp $licence_ends_at
  * @property Doctrine_Collection $Alias
  * @property Doctrine_Collection $Cal
  * @property Doctrine_Collection $CalRequest
@@ -23,36 +23,36 @@ Doctrine_Manager::getInstance()->bindComponent('Partner', 'doctrine');
  * @property Doctrine_Collection $ShortUrl
  * @property Doctrine_Collection $UserCal
  * 
- * @method integer             getId()               Returns the current record's "id" value
- * @method string              getHash()             Returns the current record's "hash" value
- * @method string              getName()             Returns the current record's "name" value
- * @method string              getTz()               Returns the current record's "tz" value
- * @method string              getLicenceCode()      Returns the current record's "licence_code" value
- * @method timestamp           getLicenceStartAt()   Returns the current record's "licence_start_at" value
- * @method Doctrine_Collection getAlias()            Returns the current record's "Alias" collection
- * @method Doctrine_Collection getCal()              Returns the current record's "Cal" collection
- * @method Doctrine_Collection getCalRequest()       Returns the current record's "CalRequest" collection
- * @method Doctrine_Collection getCategory()         Returns the current record's "Category" collection
- * @method Doctrine_Collection getIntel()            Returns the current record's "Intel" collection
- * @method Doctrine_Collection getPartnerDesc()      Returns the current record's "PartnerDesc" collection
- * @method Doctrine_Collection getPartnerUser()      Returns the current record's "PartnerUser" collection
- * @method Doctrine_Collection getShortUrl()         Returns the current record's "ShortUrl" collection
- * @method Doctrine_Collection getUserCal()          Returns the current record's "UserCal" collection
- * @method Partner             setId()               Sets the current record's "id" value
- * @method Partner             setHash()             Sets the current record's "hash" value
- * @method Partner             setName()             Sets the current record's "name" value
- * @method Partner             setTz()               Sets the current record's "tz" value
- * @method Partner             setLicenceCode()      Sets the current record's "licence_code" value
- * @method Partner             setLicenceStartAt()   Sets the current record's "licence_start_at" value
- * @method Partner             setAlias()            Sets the current record's "Alias" collection
- * @method Partner             setCal()              Sets the current record's "Cal" collection
- * @method Partner             setCalRequest()       Sets the current record's "CalRequest" collection
- * @method Partner             setCategory()         Sets the current record's "Category" collection
- * @method Partner             setIntel()            Sets the current record's "Intel" collection
- * @method Partner             setPartnerDesc()      Sets the current record's "PartnerDesc" collection
- * @method Partner             setPartnerUser()      Sets the current record's "PartnerUser" collection
- * @method Partner             setShortUrl()         Sets the current record's "ShortUrl" collection
- * @method Partner             setUserCal()          Sets the current record's "UserCal" collection
+ * @method integer             getId()              Returns the current record's "id" value
+ * @method string              getHash()            Returns the current record's "hash" value
+ * @method string              getName()            Returns the current record's "name" value
+ * @method string              getTz()              Returns the current record's "tz" value
+ * @method string              getLicenceCode()     Returns the current record's "licence_code" value
+ * @method timestamp           getLicenceEndsAt()   Returns the current record's "licence_ends_at" value
+ * @method Doctrine_Collection getAlias()           Returns the current record's "Alias" collection
+ * @method Doctrine_Collection getCal()             Returns the current record's "Cal" collection
+ * @method Doctrine_Collection getCalRequest()      Returns the current record's "CalRequest" collection
+ * @method Doctrine_Collection getCategory()        Returns the current record's "Category" collection
+ * @method Doctrine_Collection getIntel()           Returns the current record's "Intel" collection
+ * @method Doctrine_Collection getPartnerDesc()     Returns the current record's "PartnerDesc" collection
+ * @method Doctrine_Collection getPartnerUser()     Returns the current record's "PartnerUser" collection
+ * @method Doctrine_Collection getShortUrl()        Returns the current record's "ShortUrl" collection
+ * @method Doctrine_Collection getUserCal()         Returns the current record's "UserCal" collection
+ * @method Partner             setId()              Sets the current record's "id" value
+ * @method Partner             setHash()            Sets the current record's "hash" value
+ * @method Partner             setName()            Sets the current record's "name" value
+ * @method Partner             setTz()              Sets the current record's "tz" value
+ * @method Partner             setLicenceCode()     Sets the current record's "licence_code" value
+ * @method Partner             setLicenceEndsAt()   Sets the current record's "licence_ends_at" value
+ * @method Partner             setAlias()           Sets the current record's "Alias" collection
+ * @method Partner             setCal()             Sets the current record's "Cal" collection
+ * @method Partner             setCalRequest()      Sets the current record's "CalRequest" collection
+ * @method Partner             setCategory()        Sets the current record's "Category" collection
+ * @method Partner             setIntel()           Sets the current record's "Intel" collection
+ * @method Partner             setPartnerDesc()     Sets the current record's "PartnerDesc" collection
+ * @method Partner             setPartnerUser()     Sets the current record's "PartnerUser" collection
+ * @method Partner             setShortUrl()        Sets the current record's "ShortUrl" collection
+ * @method Partner             setUserCal()         Sets the current record's "UserCal" collection
  * 
  * @package    evento
  * @subpackage model
@@ -110,7 +110,7 @@ abstract class BasePartner extends sfDoctrineRecord
              'autoincrement' => false,
              'length' => 512,
              ));
-        $this->hasColumn('licence_start_at', 'timestamp', 25, array(
+        $this->hasColumn('licence_ends_at', 'timestamp', 25, array(
              'type' => 'timestamp',
              'fixed' => 0,
              'unsigned' => false,

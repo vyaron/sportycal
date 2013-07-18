@@ -1,5 +1,5 @@
 ALTER TABLE `partner` DROP `external_user_id`;
-ALTER TABLE `partner` ADD `licence_start_at` timestamp NULL DEFAULT NULL;
+ALTER TABLE `partner` ADD `licence_ends_at` timestamp NULL DEFAULT NULL;
 
 
 ----------------------------DONE ON PROD-------------------------------------------------------

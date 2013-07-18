@@ -67,7 +67,7 @@
 		        
 		        <a href="<?php echo url_for('nm/pricing') ?>">Pricing</a>&nbsp;&nbsp;|&nbsp;&nbsp;
 		        <a href="<?php echo url_for('nm/caseStudies') ?>">Case Studies</a>&nbsp;&nbsp;|&nbsp;&nbsp;
-		        <a href="<?php echo url_for('main/terms') ?>"><?php echo __('Terms & Conditions');?></a>
+		        <a href="<?php echo url_for('nm/terms') ?>"><?php echo __('Terms & Conditions');?></a>
 	    	</div>
 	    </div>
     </div>

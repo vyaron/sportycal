@@ -755,7 +755,7 @@ class Cal extends BaseCal
     	$isReached = false;
     	
     	$partner = $this->getPartner();
-    	if ($partner && $partner->getMaxSubscribers()){
+    	if ($partner && $licence = $partner->getLicence()){
     		//TODO: clac cal_request after partner_licence_start_at + X month
     		
     		$q = Doctrine_Query::create()
@@ -767,10 +767,11 @@ class Cal extends BaseCal
 	    		->groupBy('cr.cal_id');
     		
     		$calRequests = $q->fetchArray();
+
+    		$countSubscribers = (isset($calRequests[0]) && isset($calRequests[0]['cal_request_count'])) ? $calRequests[0]['cal_request_count'] : 0;
     		
-    		if (isset($calRequests[0]) 
-    				&& isset($calRequests[0]['cal_request_count']) 
-    				&& $calRequests[0]['cal_request_count'] >= $partner->getMaxSubscribers()) $isReached = true;
+    		$licence = $partner->getLicence();
+    		$isReached = $licence->isReachedTheMaxSubscribers($countSubscribers);
     	}
     	
     	return $isReached;
