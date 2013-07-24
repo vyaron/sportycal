@@ -144,7 +144,7 @@ class PartnerLicence{
 	}
 	
 	public function isEnded(){
-		return time() > $this->endes_at;
+		return ($this->endes_at && time() > $this->endes_at);
 	}
 	
 	public function isReachedTheMaxSubscribers($num){
