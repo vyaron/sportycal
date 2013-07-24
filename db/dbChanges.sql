@@ -1,3 +1,4 @@
+----------------------------DONE ON PROD-------------------------------------------------------
 ALTER TABLE `partner` DROP `external_user_id`;
 ALTER TABLE `partner` ADD `licence_ends_at` timestamp NULL DEFAULT NULL;
 
