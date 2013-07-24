@@ -38,7 +38,7 @@ class nmActions extends sfActions{
 		$itemNumber = $request->getParameter('item_number');
 		$paymentDate = $request->getParameter('payment_date');
 		
-		if ($isPaymentCompleted && self::isComeFromPaypal($request)) PartnerLicence::setLicence($custom, $itemNumber, $paymentDate);
+		if ($isPaymentCompleted && PartnerLicence::isComeFromPaypal($request)) PartnerLicence::setLicence($custom, $itemNumber, $paymentDate);
 
 		return sfView::NONE;
 	}
