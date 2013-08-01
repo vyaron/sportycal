@@ -15,6 +15,7 @@ Doctrine_Manager::getInstance()->bindComponent('CalRequest', 'doctrine');
  * @property integer $partner_id
  * @property integer $category_id
  * @property string $hash
+ * @property UserCal $UserCal
  * @property Partner $Partner
  * @property Category $Category
  * @property Cal $Cal
@@ -27,6 +28,7 @@ Doctrine_Manager::getInstance()->bindComponent('CalRequest', 'doctrine');
  * @method integer    getPartnerId()   Returns the current record's "partner_id" value
  * @method integer    getCategoryId()  Returns the current record's "category_id" value
  * @method string     getHash()        Returns the current record's "hash" value
+ * @method UserCal    getUserCal()     Returns the current record's "UserCal" value
  * @method Partner    getPartner()     Returns the current record's "Partner" value
  * @method Category   getCategory()    Returns the current record's "Category" value
  * @method Cal        getCal()         Returns the current record's "Cal" value
@@ -38,6 +40,7 @@ Doctrine_Manager::getInstance()->bindComponent('CalRequest', 'doctrine');
  * @method CalRequest setPartnerId()   Sets the current record's "partner_id" value
  * @method CalRequest setCategoryId()  Sets the current record's "category_id" value
  * @method CalRequest setHash()        Sets the current record's "hash" value
+ * @method CalRequest setUserCal()     Sets the current record's "UserCal" value
  * @method CalRequest setPartner()     Sets the current record's "Partner" value
  * @method CalRequest setCategory()    Sets the current record's "Category" value
  * @method CalRequest setCal()         Sets the current record's "Cal" value
@@ -129,6 +132,10 @@ abstract class BaseCalRequest extends sfDoctrineRecord
     public function setUp()
     {
         parent::setUp();
+        $this->hasOne('UserCal', array(
+             'local' => 'user_cal_id',
+             'foreign' => 'id'));
+
         $this->hasOne('Partner', array(
              'local' => 'partner_id',
              'foreign' => 'id'));

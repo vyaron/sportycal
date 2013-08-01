@@ -1,3 +1,7 @@
+DELETE FROM cal_request WHERE id IN (8967, 1068, 6948);
+ALTER TABLE `cal_request` ADD INDEX ( `user_cal_id` );
+ALTER TABLE `cal_request` ADD FOREIGN KEY ( `user_cal_id` ) REFERENCES `evento`.`user_cal` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT ;
+
 ----------------------------DONE ON PROD-------------------------------------------------------
 ALTER TABLE `partner` DROP `external_user_id`;
 ALTER TABLE `partner` ADD `licence_ends_at` timestamp NULL DEFAULT NULL;

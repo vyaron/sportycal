@@ -86,15 +86,15 @@ class adminActions extends sfActions
   	
   	$this->generalDetails = null;
   	if (count($calIds)){
-  		$this->generalDetails = Doctrine::getTable('UserCal')
-	  		->createQuery('uc')
-	  		->select('COUNT(uc.id) AS num_user_cal, MAX(uc.taken_at) as taken_at')
-  			->whereIn('uc.partner_id', $partnerId)
-  			->execute()->getFirst();
+  		$this->generalDetails = $this->getCalReqTotalDownloads($partnerId);
+  		
+  		$this->generalDetailsLastMonth = $this->getCalReqTotalDownloads($partnerId, null, true);
+  		$this->eventsCount = $this->getCalReqEventsDownloads($partnerId);
+  		$this->activeCount = $this->getCalReqTotalActive($partnerId);
   	}
 	
-  	$this->calReportByDays = $this->getUserCalReportByDays($partnerId);
-  	$this->calReportByTypes = $this->getUserCalReportByTypes($partnerId);
+  	$this->calReportByDays = $this->getCalReqReportByDays($partnerId);
+  	$this->calReportByTypes = $this->getCalReqReportByTypes($partnerId);
   }
   
   public function executePartnerCalReport(sfWebRequest $request) {
@@ -112,7 +112,14 @@ class adminActions extends sfActions
   	$calId = $request->getParameter('calId');
   	$this->forward404Unless($calId);
   	
+  	$this->generalDetails = null;
   	if ($calId){
+  		$this->generalDetails = $this->getCalReqTotalDownloads($partnerId, $calId);
+  		
+  		$this->generalDetailsLastMonth = $this->getCalReqTotalDownloads($partnerId, $calId, true);
+  		$this->eventsCount = $this->getCalReqEventsDownloads($partnerId, $calId);
+  		$this->activeCount = $this->getCalReqTotalActive($partnerId, $calId);
+
   		$q = Doctrine::getTable('Cal')
 	  		->createQuery('c')
 	  		->select('c.id')
@@ -122,11 +129,10 @@ class adminActions extends sfActions
 	  		->limit(1);
 
   		$this->cal = $q->execute()->getFirst();
-
+  		
   		if ($this->cal) {
-  			$this->reportByDays = $this->getUserCalReportByDays($partnerId, $calId);
-	  		
-	  		$this->reportByTypes = $this->getUserCalReportByTypes($partnerId, $calId);
+  			$this->reportByDays = $this->getCalReqReportByDays($partnerId, $calId);
+	  		$this->reportByTypes = $this->getCalReqReportByTypes($partnerId, $calId);
 
 	  		/*
 	  		$this->reportByActionTypes = Doctrine::getTable('intel')
@@ -143,32 +149,80 @@ class adminActions extends sfActions
   		}
   	}
   }
-	
-  private function getUserCalReportByDays($partnerId, $calId=null){
-  	$reportByDays = Doctrine::getTable('UserCal')
-	  	->createQuery('uc')
-	  	->select('uc.taken_at, COUNT(uc.id) AS num_user_cal')
-	  	->where('uc.partner_id =?', array($partnerId))
-	  	->groupBy('DAY(uc.taken_at)')
+  
+  private function getCalReqEventsDownloads($partnerId, $calId=null){
+  	$q = Doctrine::getTable('CalRequest')
+	  	->createQuery('cr')
+	  	->select('COUNT(e.id) events_count')
+	  	->innerJoin('cr.Cal c')
+	  	->leftJoin('c.Event e')
+	  	->whereIn('cr.partner_id', $partnerId)
+	  	->andWhere('cr.cal_id IS NOT NULL');
+  	 
+  	if ($calId) $q->andWhereIn('cr.cal_id', $calId);
+  	
+  	$res = $q->execute()->getFirst();
+  	
+  	return $res['events_count'];
+  }
+
+  private function getCalReqTotalActive($partnerId, $calId=null){
+  	$q = Doctrine::getTable('CalRequest')
+  	->createQuery('cr')
+  	->select('cr.id, COUNT(cr.id) AS active_count')
+  	->innerJoin('cr.UserCal uc')
+  	->whereIn('cr.partner_id', $partnerId)
+  	->andWhere('cr.cal_id IS NOT NULL')
+  	->andWhere('cr.created_at >= ?', date("Y-m-d H:i:s",strtotime("-2 day")));
+  	 
+  	if ($calId) $q->andWhereIn('cr.cal_id', $calId);
+  	
+  	$res = $q->execute()->getFirst();
+  	 
+  	return $res['active_count'];
+  }
+  
+  private function getCalReqTotalDownloads($partnerId, $calId=null, $lastMonth = false){
+  	$q = Doctrine::getTable('CalRequest')
+	  		->createQuery('cr')
+	  		->select('cr.id, COUNT(cr.id) AS total_count, MAX(uc.taken_at) as last_taken_at')
+	  		->innerJoin('cr.UserCal uc')
+	  		->whereIn('cr.partner_id', $partnerId)
+  			->andWhere('cr.cal_id IS NOT NULL');
+  	
+  	if ($calId) $q->andWhereIn('cr.cal_id', $calId);
+  	if ($lastMonth) $q->andWhere('uc.taken_at >= ?', date("Y-m-d H:i:s",strtotime("-1 month")));
+  	
+  	return $q->execute()->getFirst();
+  }
+  
+  private function getCalReqReportByDays($partnerId, $calId=null){
+  	$reportByDays = Doctrine::getTable('CalRequest')
+	  	->createQuery('cr')
+	  	->select('cr.id, uc.taken_at AS taken_at, COUNT(cr.id) AS num_user_cal')
+	  	->innerJoin('cr.UserCal uc')
+	  	->where('cr.partner_id =?', array($partnerId))
+	  	->andWhere('cr.cal_id IS NOT NULL')
+	  	->groupBy('DATE(uc.taken_at)')
 	  	->orderBy('uc.taken_at DESC');
   	
-  	if ($calId) $reportByDays->andWhere('uc.cal_id =?', array($calId));
+  	if ($calId) $reportByDays->andWhere('cr.cal_id =?', array($calId));
   	
   	return $reportByDays->execute();
   }
   
-  private function getUserCalReportByTypes($partnerId, $calId=null){
-  	$reportByTypes = Doctrine::getTable('UserCal')
-	  	->createQuery('uc')
-	  	->select('uc.cal_type, COUNT(uc.id) AS num_user_cal')
-	  	->where('uc.partner_id =?', array($partnerId))
-	  	->groupBy('uc.cal_type');
+  private function getCalReqReportByTypes($partnerId, $calId=null){
+  	$reportByTypes = Doctrine::getTable('CalRequest')
+	  	->createQuery('cr')
+	  	->select('cr.cal_type, COUNT(cr.id) AS num_user_cal')
+	  	->where('cr.partner_id =?', array($partnerId))
+	  	->andWhere('cr.cal_id IS NOT NULL')
+	  	->groupBy('cr.cal_type');
   	
-  	if ($calId) $reportByTypes->andWhere('uc.cal_id =?', array($calId));
+  	if ($calId) $reportByTypes->andWhere('cr.cal_id =?', array($calId));
   	
   	return $reportByTypes->execute();
   }
-
 
   private function countCals(){
   	set_time_limit (180);

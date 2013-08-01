@@ -27,6 +27,7 @@ Doctrine_Manager::getInstance()->bindComponent('UserCal', 'doctrine');
  * @property Partner $Partner
  * @property Category $Category
  * @property User $User_5
+ * @property Doctrine_Collection $CalRequest
  * @property Doctrine_Collection $CategoryLinkUsage
  * @property Doctrine_Collection $Intel
  * 
@@ -50,6 +51,7 @@ Doctrine_Manager::getInstance()->bindComponent('UserCal', 'doctrine');
  * @method Partner             getPartner()                  Returns the current record's "Partner" value
  * @method Category            getCategory()                 Returns the current record's "Category" value
  * @method User                getUser5()                    Returns the current record's "User_5" value
+ * @method Doctrine_Collection getCalRequest()               Returns the current record's "CalRequest" collection
  * @method Doctrine_Collection getCategoryLinkUsage()        Returns the current record's "CategoryLinkUsage" collection
  * @method Doctrine_Collection getIntel()                    Returns the current record's "Intel" collection
  * @method UserCal             setId()                       Sets the current record's "id" value
@@ -72,6 +74,7 @@ Doctrine_Manager::getInstance()->bindComponent('UserCal', 'doctrine');
  * @method UserCal             setPartner()                  Sets the current record's "Partner" value
  * @method UserCal             setCategory()                 Sets the current record's "Category" value
  * @method UserCal             setUser5()                    Sets the current record's "User_5" value
+ * @method UserCal             setCalRequest()               Sets the current record's "CalRequest" collection
  * @method UserCal             setCategoryLinkUsage()        Sets the current record's "CategoryLinkUsage" collection
  * @method UserCal             setIntel()                    Sets the current record's "Intel" collection
  * 
@@ -244,6 +247,10 @@ abstract class BaseUserCal extends sfDoctrineRecord
         $this->hasOne('User as User_5', array(
              'local' => 'birthday_cal_for_user_id',
              'foreign' => 'id'));
+
+        $this->hasMany('CalRequest', array(
+             'local' => 'id',
+             'foreign' => 'user_cal_id'));
 
         $this->hasMany('CategoryLinkUsage', array(
              'local' => 'id',

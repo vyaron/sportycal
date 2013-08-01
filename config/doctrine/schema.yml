@@ -324,6 +324,10 @@ CalRequest:
       notnull: false
       autoincrement: false
   relations:
+    UserCal:
+      local: user_cal_id
+      foreign: id
+      type: one
     Partner:
       local: partner_id
       foreign: id
@@ -2150,6 +2154,10 @@ UserCal:
       local: birthday_cal_for_user_id
       foreign: id
       type: one
+    CalRequest:
+      local: id
+      foreign: user_cal_id
+      type: many
     CategoryLinkUsage:
       local: id
       foreign: user_cal_id

@@ -25,6 +25,16 @@ $user = UserUtils::getLoggedIn();
 </form>
 <?php endif;?>
 
+<?php if ($generalDetails):?>
+<div style="padding-bottom:30px;">
+	<p class="generalInfo"><span class="b">Total downloads:</span> <?php echo $generalDetails->total_count;?></p>
+	<p class="generalInfo"><span class="b">Total active calendars:</span> <?php echo $activeCount;?></p>
+	<p class="generalInfo"><span class="b">Total Downloads Last Month:</span> <?php echo $generalDetailsLastMonth->total_count;?></p>
+	<p class="generalInfo"><span class="b">Total events in user calendars count:</span> <?php echo $eventsCount;?></p>
+	<p class="generalInfo"><span class="b">Last download:</span> <?php echo $generalDetails->last_taken_at;?></p>
+</div>
+<?php endif;?>
+
 <?php if($shortUrls):?>
 	<table class="partnerReport partnerReportTable" style="width:900px;">
 		<thead>
@@ -48,13 +58,6 @@ $user = UserUtils::getLoggedIn();
 		<?php endforeach;?>
 		</tbody>
 	</table>
-<?php endif;?>
-
-<?php if ($generalDetails):?>
-<div style="padding-bottom:30px;">
-	<p class="generalInfo"><span class="b">Total Downloads:</span> <?php echo $generalDetails->num_user_cal;?></p>
-	<p class="generalInfo"><span class="b">Last download:</span> <?php echo $generalDetails->getTakenAt();?></p>
-</div>
 <?php endif;?>
 
 <script type="text/javascript" src="https://www.google.com/jsapi"></script>
