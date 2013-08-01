@@ -15,7 +15,8 @@ function setEventList(){
 		var dayKeyToEvents = [];
 		
 		while(minDate < scheduler._max_date){
-			var dayKey = minDate.getDate() + '.' + minDate.getMonth() + '.' + minDate.getFullYear();
+			//var dayKey = minDate.getDate() + '.' + minDate.getMonth() + '.' + minDate.getFullYear();
+			var dayKey = $.datepicker.formatDate( "dd M yy", minDate);
 			dayKeys.push(dayKey); // Saving the order
 			
 			var nextDate = new Date(minDate.getFullYear(), minDate.getMonth(), minDate.getDate()+1);

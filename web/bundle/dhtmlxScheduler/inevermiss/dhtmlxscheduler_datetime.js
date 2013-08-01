@@ -32,7 +32,7 @@ scheduler.form_blocks.datetime = {
 		if (!node.is_prepare_events){
 			//Set datepicker, timepicker
 			var datepickerOptions = {
-				dateFormat : 'mm/dd/yy'
+				dateFormat : 'dd M yy'
 			};
 			
 			if (ev.start_date) datepickerOptions.defaultDate = ev.start_date;
