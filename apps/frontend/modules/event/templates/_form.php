@@ -78,8 +78,8 @@
   				<input id="countryCodes" type="hidden" name="event[countryCodes]" value="<?php echo $countryCodes?>"/>
   				<select id="countryCodesDropDown">
   					<option value="">Add country filter</option>
-  					<?php foreach (LocationTable::getCountryOptions() as $location):?>
-  					<option value="<?php echo $location->getCountry()?>"><?php echo $location->getCountry() . ' - ' . $location->getName()?></option>
+  					<?php foreach (LocationTable::getCountryOptions() as $code => $name):?>
+  					<option value="<?php echo $code?>"><?php echo $code . ' - ' . $name?></option>
   					<?php endforeach;?>
   				</select>
   			</td>

@@ -3,7 +3,37 @@
 
 class LocationTable extends Doctrine_Table
 {
-    
+
+	private static $countriesIso3 = array(
+		'GBR' => 'United Kingdom',
+		'RUS' => 'Russian Federation',
+		'CAN' => 'Canada',
+		'DEU' => 'Germany',
+		'AUS' => 'Australia',
+		'UKR' => 'Ukraine',
+		'ROU' => 'Romania',
+		'NLD' => 'Netherlands',
+		'BRA' => 'Brazil',
+		'GRC' => 'Greece',
+		'IRL' => 'Ireland',
+		'PRT' => 'Portugal',
+		'SWE' => 'Sweden',
+		'POL' => 'Poland',
+		'BLR' => 'Belarus',
+		'CHE' => 'Switzerland',
+		'CHN' => 'China',
+		'AUT' => 'Austria',
+		'NZL' => 'New Zealand',
+		'ARG' => 'Argentina',
+		'FIN' => 'Finland',
+		'LVA' => 'Latvia',
+		'EST' => 'Estonia',
+		'IND' => 'India',
+		'NOR' => 'Norway',
+		'LTU' => 'Lithuania',
+		'MEX' => 'Mexico'
+	);
+
     public static function getInstance()
     {
         return Doctrine_Core::getTable('Location');
@@ -120,11 +150,7 @@ class LocationTable extends Doctrine_Table
     }
     
     public static function getCountryOptions(){
-    	return Doctrine::getTable('Location')->createQuery('l')
-    	->select('l.id, l.country, l.name')
-    	->where('l.type_id =3')
-    	->groupBy('l.country')
-    	->orderBy('l.country')->execute();
+    	return self::$countriesIso3;
     }
 
 }
