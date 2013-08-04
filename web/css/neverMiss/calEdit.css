@@ -2,7 +2,7 @@
 
 body{background-color: #f2f2f2;}
 
-#scheduler_here, #cal-edit-wrapper{width: 100%; height: 530px;}
+#scheduler_here, #cal-edit-wrapper{width: 100%; /*min-height: 530px;*/}
 #cal-edit-wrapper{border-collapse: collapse;}
 #cal-edit-wrapper td{vertical-align: top;}
 #cal-edit-wrapper .right-col{width: 145px; padding-left: 40px;}
@@ -44,6 +44,13 @@ body{background-color: #f2f2f2;}
 #cal-header .dhx_cal_prev_button{background-position: 0 0; left:16px;}
 #cal-header .dhx_cal_next_button{background-position: right 0; right:16px;}
 
+/* disabled scroll*/
+.dhx_cal_container, .dhx_cal_data{overflow: visible;}
+/*.dhx_cal_data{top: 0 !important; min-height:500px; height:auto !important; position: relative; margin-top: 75px;}*/
+.dhx_multi_day{position: relative;}
+.dhx_cal_data{position: relative; top: 0 !important; margin-top: 75px;}
+.dhx_scheduler_month .dhx_cal_data{height: auto !important; min-height: 500px;}
+.dhx_scheduler_day .dhx_cal_data, .dhx_scheduler_week .dhx_cal_data{height: 616px !important;}
 
 .dhx_cal_light select{width: auto; height: auto; line-height: normal;}
 /*.dhx_cal_light label{display:inline;}*/
@@ -77,7 +84,7 @@ body{background-color: #f2f2f2;}
 .dhx_scheduler_day .dhx_cal_header .dhx_scale_bar, .dhx_multi_day{background-position: right 0;}
 .dhx_scheduler_week .dhx_cal_header .dhx_scale_bar{background: transparent;}
 .dhx_multi_day_icon_small{border-left: 1px solid #cecece; width: 49px !important;}
-.dhx_scheduler_week, .dhx_scheduler_day, .dhx_scheduler_month{border-bottom: 1px solid #ffc229;}
+.dhx_scheduler_week, .dhx_scheduler_day, .dhx_scheduler_month{/*border-bottom: 1px solid #ffc229;*/}
 
 .dhx_scheduler_month .dhx_cal_data tr td.dhx_now{background-color: #FFF3A1;}
 

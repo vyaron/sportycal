@@ -77,6 +77,9 @@ function loadCalendar(){
 	//scheduler.config.touch = "force";
 	scheduler.config.xml_date = "%Y-%m-%d %H:%i";
 
+	
+	scheduler.xy.scroll_width = 0;
+	
 	scheduler.config.prevent_cache = true;
 	scheduler.config.first_hour = 10;
 	

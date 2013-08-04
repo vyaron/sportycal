@@ -47,7 +47,7 @@ use_stylesheet('/css/neverMiss/calEdit.css');
 	</tr>
 	<tr class="hidden-phone">
 		<td>
-			<div id="scheduler_here" class="dhx_cal_container" style="line-height:normal;">
+			<div id="scheduler_here" class="dhx_cal_container clearfix" style="line-height:normal;">
 				<div id="cal-header" class="dhx_cal_navline">
 					<div class="dhx_cal_prev_button">&nbsp;</div>
 					<div class="dhx_cal_date"></div>
@@ -55,7 +55,11 @@ use_stylesheet('/css/neverMiss/calEdit.css');
 				</div>
 				<div class="dhx_cal_header">Ido</div>
 				<div class="dhx_cal_data"></div>
+				<div class="cb"></div>
 			</div>
+			
+			
+			
 			<div id="cal-bottom-btns" class="clearfix">
 				<a class="cal-btn cal-btn-view selected pull-left" data-type="month" href="#">Month</a>
 				<a class="cal-btn cal-btn-view pull-left" data-type="week" href="#">Week</a>
@@ -115,11 +119,14 @@ use_stylesheet('/css/neverMiss/calEdit.css');
 use_javascript('/bundle/jquery/js/jquery-ui-1.10.3.custom.min.js');
 use_javascript('/bundle/jquery-timepicker/js/jquery.timepicker.min.js');
 
+
+//use_javascript('/bundle/dhtmlxScheduler/sources/dhtmlxscheduler.js');
 use_javascript('/bundle/dhtmlxScheduler/codebase/dhtmlxscheduler.js');
 
+//use_javascript('/bundle/dhtmlxScheduler/sources/ext/dhtmlxscheduler_dhx_terrace.js');
 use_javascript('/bundle/dhtmlxScheduler/codebase/ext/dhtmlxscheduler_dhx_terrace.js');
 //use_javascript('/bundle/dhtmlxScheduler/codebase/ext/dhtmlxscheduler_quick_info.js');
-use_javascript('/bundle/dhtmlxScheduler/codebase/ext/dhtmlxscheduler_recurring.js');
+//use_javascript('/bundle/dhtmlxScheduler/codebase/ext/dhtmlxscheduler_recurring.js');
 //use_javascript('/bundle/dhtmlxScheduler/codebase/ext/dhtmlxscheduler_minical.js');
 
 //use_javascript('/bundle/dhtmlxScheduler/inevermiss/dhtmlxscheduler_inevermiss_quick_info.js');
