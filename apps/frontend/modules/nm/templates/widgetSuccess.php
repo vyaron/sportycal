@@ -51,6 +51,17 @@ use_stylesheet('/css/neverMiss/widget.css');
 					</select>
 				</div>
 			</div>
+			<div class="control-group">
+				<label class="control-label" for="upcoming">Upcoming Events:</label>
+				<div class="controls">
+					<select id="upcoming" name="upcoming">
+	  					<option value="0">None</option>
+	  					<?php for ($i=1; $i <= 5; $i++):?>
+	  					<option value="<?php echo $i;?>"><?php echo $i;?></option>
+	  					<?php endfor;?>
+					</select>
+				</div>
+			</div>
 		</form>
 		
 		<hr/>

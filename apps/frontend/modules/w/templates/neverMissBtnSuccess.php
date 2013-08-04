@@ -43,9 +43,35 @@ if ($isMobile) $target = Utils::clientIsAndroid() ? '_blank' : 'attachment';
 
 .never-miss-btn.disabled{cursor: not-allowed; opacity:0.3; filter:alpha(opacity=30);}
 
+.upcoming-wrapper{font-size: 12px; padding: 10px; background-color: #fff;}
+.upcoming-wrapper h4, .upcoming-wrapper h5{margin: 0;}
+.upcoming-wrapper h4{font-size: 14px; border-bottom: 3px solid #FFC229; padding-bottom: 7px;}
+.upcoming-wrapper h5{font-size: 13px;}
+.upcoming-wrapper ul{margin: 0; padding: 0; list-style: none;}
+.upcoming-wrapper > ul > li{border-top: 2px solid #FFC229; padding: 10px 0;}
+.upcoming-wrapper > ul > li:FIRST-CHILD {border-top:none;}
 </style>
 <body>
 <a class="never-miss-btn<?php echo ($isReachedMaxSubscribers) ? ' disabled' : '';?><?php echo ($isMobile) ? ' mobile' : '';?><?php echo ($btnStyle) ? " $btnStyle" : '';?><?php echo ($btnSize) ? " $btnSize" : '';?><?php echo ($color) ? " $color" : '';?>" href="<?php echo $href;?>" target="<?php echo $target;?>"<?php echo ($isReachedMaxSubscribers) ? ' title="' .  __('Reached subscriptions limit') . '"' : '';?>>&nbsp;</a>
+
+<?php if (count($dayKeyOrder)):?>
+<div class="upcoming-wrapper">
+	<h4>Upcoming Events:</h4>
+	<ul>
+		<?php foreach ($dayKeyOrder as $dayKey):?>
+		<li>
+			<h5><?php echo $dayKey;?></h5>
+			<ul>
+				<?php foreach ($dayKey2Events[$dayKey] as $event):?>
+				<li><?php echo Utils::substr($event->getName(), 15);?></li>
+				<?php endforeach;?>
+			</ul>
+		</li>
+		<?php endforeach;?>
+	</ul>
+</div>
+<?php endif;?>
+
 <?php if($isMobile):?>
 <iframe name="attachment" style="width: 1px; height: 1px; border: 0;"></iframe>
 <?php elseif (!$isReachedMaxSubscribers && !$isMobile):?>

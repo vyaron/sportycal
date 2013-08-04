@@ -6,6 +6,8 @@ class wActions extends sfActions{
 	
 	public function executeNeverMissBtn(sfWebRequest $request){
 		$this->calId = $request->getParameter('calId');
+		if (!$this->calId) die();
+		
 		$this->popupId = $request->getParameter('popupId');
 		
 		$this->language = $request->getParameter('language');
@@ -18,6 +20,34 @@ class wActions extends sfActions{
 		
 		$this->color = $request->getParameter('color');
 		if ($this->color != 'dark') $this->color = null;
+		
+		$upcoming = $request->getParameter('upcoming');
+		if (!($upcoming > 0  && $upcoming <= 5)) $upcoming = 0;
+		
+		$dayKeyOrder = array();
+		$dayKey2Events = array();
+		if ($upcoming) {
+			$events = Doctrine_Query::create()
+				->from('Event e')
+				->where('e.cal_id = ?', $this->calId)
+				->andWhere('e.starts_at >= NOW()')
+				->limit($upcoming)
+				->orderBy('e.starts_at ASC')->execute();
+
+			foreach ($events as $event){
+				$dayKey = date('d M Y', strtotime($event->getStartsAt()));
+				
+				if (! key_exists($dayKey, $dayKey2Events)) {
+					$dayKeyOrder[] = $dayKey;
+					$dayKey2Events[$dayKey] = array();
+				}
+				
+				$dayKey2Events[$dayKey][] = $event;
+			}
+		}
+		
+		$this->dayKeyOrder = $dayKeyOrder;
+		$this->dayKey2Events = $dayKey2Events;
 		
 		$this->isMobile = $request->getParameter('isMobile', Utils::clientIsMobile());
 		

@@ -39,7 +39,7 @@ jQuery(document).ready(function(){
 	setFbLoginEvents(true);
 	setEmailFormEvent();
 	
-	jQuery('#language, #btn-style, #btn-size, #color').change(updateWidgetData);
+	jQuery('#language, #btn-style, #btn-size, #color, #upcoming').change(updateWidgetData);
 	
 	jQuery('#register-form').validate({
 		errorPlacement: function(error, element) {

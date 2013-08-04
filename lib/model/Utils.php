@@ -12,6 +12,12 @@ class Utils {
 	const DEVICE_TYPE_WINDOWS_PHONE = "windowsPhone";
 	const DEVICE_TYPE_FIREFOX_DEVICE = "firefoxDevice";
 	
+	public static function substr($str, $length){
+		if (strlen($str) > $length){
+			return substr($str, 0, $length-1) . '&hellip;';
+		} else return $str;
+	}
+	
 	public static function obsafe_print_r($var, $return = false, $html = false, $level = 0) {
 		if (empty($var)) {
 			$type = gettype($var);

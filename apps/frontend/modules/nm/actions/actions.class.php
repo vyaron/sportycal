@@ -459,10 +459,11 @@ class nmActions extends sfActions{
 		$this->btnStyle = $request->getParameter('btn-style', NeverMissWidget::DEFAULT_VALUE);
 		$this->btnSize = $request->getParameter('btn-size', NeverMissWidget::DEFAULT_VALUE);
 		$this->color = $request->getParameter('color', NeverMissWidget::DEFAULT_VALUE);
+		$this->upcoming = $request->getParameter('upcoming', 0);
 		
 		$this->forward404Unless($cal = Doctrine::getTable('Cal')->find(array($this->calId)), sprintf('Object cal does not exist (%s).', $this->calId));
 		
-		$this->code = NeverMissWidget::getWidgetCode($cal, $this->language, $this->btnStyle, $this->btnSize, $this->color);
+		$this->code = NeverMissWidget::getWidgetCode($cal, $this->language, $this->btnStyle, $this->btnSize, $this->color, $this->upcoming);
 		
 		$this->form = new NmRegisterForm();
 		
