@@ -19,7 +19,12 @@
     
     <title><?php echo sfConfig::get('app_domain_name');?> Website</title>
     
-    <link rel="shortcut icon" href="/faviconNm.ico"/>
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/ico/144b.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="/ico/114b.png">
+	<link rel="apple-touch-icon-precomposed" sizes="72x72" href="/ico/72b.png">
+	<link rel="apple-touch-icon-precomposed" href="/ico/57b.png">
+	<link rel="shortcut icon" href="/ico/32b.png">
+	
 	<link href="/bundle/bootstrap/css/bootstrap.css" rel="stylesheet"/>
     <link href="/bundle/bootstrap/css/bootstrap-responsive.css" rel="stylesheet"/>
     <link href="/css/neverMiss/main.css" rel="stylesheet"/>
