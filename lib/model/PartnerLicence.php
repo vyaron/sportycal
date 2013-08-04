@@ -10,10 +10,10 @@ class PartnerLicence{
 	const DEFAULT_PLAN = self::PLAN_A;
 	
 	private static $PLANS = array(
-		self::PLAN_A => array('max_subscribers' => 2000, 'name' => 'Basic Account', 'price' => 0, 'desc' => 'Text text text text Text Text text text text Text Text text text text Text Text text text text Text'),
-		self::PLAN_B => array('max_subscribers' => 10000, 'name' => 'Pro Account', 'price' => 100, 'desc' => 'Text text text text Text Text text text text Text Text text text text Text Text text text text Text'),
-		self::PLAN_C => array('max_subscribers' => 50000, 'name' => 'Premuim Account', 'price' => 400, 'desc' => 'Text text text text Text Text text text text Text Text text text text Text Text text text text Text'),
-		self::PLAN_D => array('max_subscribers' => self::UNLIMITED, 'name' => 'Super Extra Basic Account', 'price' => null, 'desc' => 'Text text text text Text Text text text text Text Text text text text Text Text text text text Text'),
+		self::PLAN_A => array('prestige' => 0, 'max_subscribers' => 10, 'max_calendars' => 1, 'max_events' => 10, 'name' => 'Free Account', 'price' => 0, 'desc' => ''),
+		self::PLAN_B => array('prestige' => 1, 'max_subscribers' => 500, 'max_calendars' => 3, 'max_events' => 100, 'name' => 'Starters Account', 'price' => 6.9, 'desc' => ''),
+		self::PLAN_C => array('prestige' => 2, 'max_subscribers' => 5000, 'max_calendars' => 10, 'max_events' => self::UNLIMITED, 'name' => 'Business Account', 'price' => 49, 'desc' => ''),
+		self::PLAN_D => array('prestige' => 3, 'max_subscribers' => 50000, 'max_calendars' => self::UNLIMITED, 'max_events' => self::UNLIMITED, 'name' => 'Pro Account', 'price' => 390, 'desc' => ''),
 	);
 	
 	//TODO: change to real plans
@@ -103,8 +103,7 @@ class PartnerLicence{
 		$url = null;
 	
 		if ($planCode == self::PLAN_A) $url = url_for('/nm/calCreate');
-		else if ($planCode == self::PLAN_B || $planCode == self::PLAN_C) $url = url_for('/nm/checkout/?c=' . $planCode);
-		else if ($planCode == self::PLAN_D) $url = url_for('/nm/contact');
+		else if ($planCode == self::PLAN_B || $planCode == self::PLAN_C || $planCode == self::PLAN_D) $url = url_for('/nm/checkout/?c=' . $planCode);
 	
 		return $url;
 	}
@@ -131,6 +130,10 @@ class PartnerLicence{
 		return $this->plan['price'];
 	}
 	
+	public function getPrestige(){
+		return $this->plan['prestige'] ? $this->plan['prestige'] : 0;
+	}
+	
 	public function getMaxSubscribers(){
 		$maxSubscribers =  $this->plan['max_subscribers'];
 		
@@ -139,16 +142,28 @@ class PartnerLicence{
 		return $maxSubscribers;
 	}
 	
+	public function getMaxCalendars(){
+		$maxCalendars =  $this->plan['max_calendars'];
+	
+		if ($this->isEnded()) $maxCalendars = self::$PLANS[self::DEFAULT_PLAN]['max_calendars'];
+	
+		return $maxCalendars;
+	}
+	
 	public function isBetterThan($partnerLicence){
-		return ($this->isUnlimited() || ($this->getMaxSubscribers() > $partnerLicence->getMaxSubscribers() && !$partnerLicence->isUnlimited()));
+		return ($this->isUnlimited() || ($this->getPrestige() > $partnerLicence->getPrestige() && !$partnerLicence->isUnlimited()));
 	}
 	
 	public function isEnded(){
 		return ($this->endes_at && time() > $this->endes_at);
 	}
 	
-	public function isReachedTheMaxSubscribers($num){
+	public function isReachedMaxSubscribers($num){
 		return (!$this->isUnlimited() && $num >= $this->getMaxSubscribers()) ? true : false;
+	}
+	
+	public function isReachedMaxCalendars($num){
+		return (!$this->isUnlimited() && $num >= $this->getMaxCalendars()) ? true : false;
 	}
 	
 	public function isUnlimited(){

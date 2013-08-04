@@ -9,7 +9,7 @@ use_stylesheet('/css/neverMiss/index.css');
 		
 		<div class="row">
 			<div class="span6">
-				<p>Allow your users to follow your events <br/>(sales, promotions, games, shows, etc)<br/> using their everyday calendar. </p>
+				<p>Allow users to see events created by you in their personal calendars. Your users will never miss a sale, a promotion, a show or an event</p>
 				
 				<a id="start-now-btn" class="btn btn-success btn-large hidden-phone" href="<?php echo url_for('nm/calCreate') ?>">START NOW. <strong>IT'S FREE!</strong></a>
 		
@@ -46,20 +46,20 @@ use_stylesheet('/css/neverMiss/index.css');
 			<div class="span4">
 				<div class="box box-icon-a">
 					<h3>Simple</h3>
-					<p>Customers subscribe to your calendar in just ONE CLICK, using any calendar (Google, Outlook, etc), on any device (Mobile, PC, Mac).</p>
-          <p>Your client will be getting a Just-in-Time reminder and will be able to plan their next visit to your service.</p>
+					<p>Users subscribe to your calendar in just one click, using any calendar (Google, Outlook, or iCal), on any device (Mobile, PC or Mac).</p>
+          			<p>Your users will get a reminder just in time and will be able to plan their day with you in it.</p>
 				</div>
 			</div>
 			<div class="span4">
 				<div class="box box-icon-b">
 					<h3>Easy</h3>
-					<p>Adding the iNeverMiss subscription service is quick.  Just hit start now, add up-coming events, and then add the iNeverMiss button to your site or CMS.</p>
+					<p>Adding the iNeverMiss subscription service to your site is quick. Hit start now and then you'll just need to add up-coming events, and publish the iNeverMiss button to your site.</p>
 				</div>
 			</div>
 			<div class="span4">
 				<div class="box box-icon-c">
 					<h3>Relationship</h3>
-					<p>Boost your brand and enhance customer relationships whether you are a retailer, loyalty club, sports club, fan club, event organizer, artist... make sure your followers never miss you.</p>
+					<p>Boost your brand and enhance user relationships whether you are a retailer, loyalty club, sports club, fan club, event organizer, artist... make sure your users never miss you.</p>
 				</div>
 			</div>
 		</div>

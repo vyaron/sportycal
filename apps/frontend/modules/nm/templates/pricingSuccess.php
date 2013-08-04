@@ -16,8 +16,18 @@ use_stylesheet('/css/neverMiss/pricing.css');
 		<?php endif;?>
 		
 		<div class="desc-wrapper">
-			<h3>Extra features:</h3>
-			<p><?php echo $plan['desc'];?></p>
+			<h3>FEATURES:</h3>
+			<?php if ($plan['max_events'] == PartnerLicence::UNLIMITED):?>
+			<p>unlimited calendars</p>
+			<?php else:?>
+			<p><?php echo $plan['max_calendars'];?> calendars</p>
+			<?php endif;?>
+			
+			<?php if ($plan['max_events'] == PartnerLicence::UNLIMITED):?>
+			<p>unlimited events</p>
+			<?php else:?>
+			<p><?php echo $plan['max_events'];?> events</p>
+			<?php endif;?>
 		</div>
 		
 		<?php if ($plan['price']):?>
@@ -34,3 +44,8 @@ use_stylesheet('/css/neverMiss/pricing.css');
 	</div>
 	<?php endforeach;?>
 </div>
+
+<div class="container clearfix">
+	<p class="pull-right">Need more subscribers? <a class="btn btn-success" href="<?php echo url_for('/nm/contact')?>">call us</a></p>
+</div>
+

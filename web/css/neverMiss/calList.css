@@ -1,9 +1,10 @@
 @CHARSET "utf-8";
 .max-subscribers{font-weight: bold; background-color: yellow; padding: 3px 5px;}
 
-.cal-is-deleted{color: lightgray;}
-.cal-active, .cal-deleted{display: none;}
-.cal-is-deleted .cal-deleted, .cal-is-active .cal-active{display: block;}
+.cal-is-deleted, .cal-is-overload{color: lightgray;}
+.cal-active, .cal-deleted, .cal-overload{display: none;}
+.cal-is-deleted .cal-deleted, .cal-is-active .cal-active, .cal-is-overload .cal-overload{display: block;}
+.cal-is-overload .cal-active, .cal-is-deleted .cal-overload{display: none;}
 
 #plan-box{float: right; font-size: 16px; font-weight: normal;}
 #plan-box.ended{color: red;}

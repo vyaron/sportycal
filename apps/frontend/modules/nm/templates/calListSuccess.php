@@ -20,8 +20,8 @@
 		</tr>
 	</thead>
 	<tbody>
-	<?php foreach ($calList['data'] as $i => $cal):?>
-		<tr id="cal_<?php echo $cal['id'];?>" class="<?php echo ($cal['deleted_at'] ? 'cal-is-deleted' : 'cal-is-active') ?>"/>
+	<?php foreach ($calList['data'] as $i => $cal): $isOverload = (($i + ($calList['offset'] * $calList['limit'])) >= $licenece->getMaxCalendars()) ? true : false; ?>
+		<tr id="cal_<?php echo $cal['id'];?>" class="<?php echo $cal['deleted_at'] ? 'cal-is-deleted' : 'cal-is-active';?> <?php echo $isOverload ? 'cal-is-overload' : ''?>"/>
 			<td><?php echo ($i + 1);?></td>
 			<td><?php echo date('Y-m-d H:s', strtotime($cal['updated_at']));?></td>
 			<td><?php echo $cal['name'];?></td>
@@ -41,6 +41,9 @@
 				<div class="cal-deleted">
 					<a class="btn btn-mini cal-restore" data-cal-id="<?php echo $cal['id'];?>" href="<?php echo url_for('nm/calRestore');?>"><i class="icon-refresh"></i> Restore</a>
 				</div>
+				<div class="cal-overload">
+					<a class="btn btn-mini" title="Reached calendars limit" href="<?php echo url_for('nm/pricing');?>"><i class="icon-shopping-cart"></i> Upgrade</a>
+				</div>
 			</td>
 		</tr>
 	<?php endforeach;?>
@@ -50,8 +53,11 @@
 <?php include_partial('pagination', array('list' => $calList, 'url' => '/nm/calList/')); ?>
 <?php endif;?>
 
-
+<?php if ($isReachedMaxCals):?>
+<a class="btn btn-success disabled" href="#" title="Reached calendars limit">New calendar</a>
+<?php else:?>
 <a class="btn btn-success hidden-phone" href="<?php echo url_for('nm/calCreate')?>" title="Click here to create new calendar"><i class="icon-plus icon-yellow"></i> New calendar</a>
+<?php endif;?>
 
 <div id="delete-cal-modal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 	<div class="modal-header">

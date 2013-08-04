@@ -96,7 +96,7 @@ class nmActions extends sfActions{
 		$this->getResponse()->setSlot('pricing', true);
 		
 		$user = UserUtils::getLoggedIn();
-		//if (!$user || !$user->isMaster()) $this->setTemplate('comingSoon', 'nm');
+		if (!$user || !$user->isMaster()) $this->setTemplate('comingSoon', 'nm');
 	}
 	
 	public function executeCaseStudies(sfWebRequest $request){
@@ -196,6 +196,7 @@ class nmActions extends sfActions{
 		$this->calList = $calList;
 		$this->licenece = $partner->getLicence();
 		$this->isReachedMaxSubs = $partner->isReachedMaxSubscribers();
+		$this->isReachedMaxCals = $partner->isReachedMaxCalendars();
 	}
 	
 	public function executeCalDelete(sfWebRequest $request){
