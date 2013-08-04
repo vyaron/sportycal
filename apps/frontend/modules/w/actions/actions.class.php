@@ -22,7 +22,8 @@ class wActions extends sfActions{
 		$this->isMobile = $request->getParameter('isMobile', Utils::clientIsMobile());
 		
 		$cal = Doctrine::getTable('Cal')->find(array($this->calId));
-		$this->isReachedMaxSubscribers = $cal->isReachedMaxSubscribers();
+		$partner = $cal->getPartner();
+		$this->isReachedMaxSubscribers = $partner ? $partner->isReachedMaxSubscribers() : false;
 		
 		if (!($cal && $this->calId && $this->popupId)){
 			echo 'ERROR!!!';

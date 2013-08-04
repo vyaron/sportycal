@@ -189,12 +189,13 @@ class nmActions extends sfActions{
 		
 		$user = UserUtils::getLoggedIn();
 		if (!$user || !$partner = $user->getPartner()) $this->redirect('partner/login');
-		
+
 		$offset = $request->getParameter('p', 0);
 		$calList = CalTable::getCalList($user->getId(), $offset);
 		
 		$this->calList = $calList;
 		$this->licenece = $partner->getLicence();
+		$this->isReachedMaxSubs = $partner->isReachedMaxSubscribers();
 	}
 	
 	public function executeCalDelete(sfWebRequest $request){

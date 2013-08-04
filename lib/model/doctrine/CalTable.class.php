@@ -79,6 +79,10 @@ class CalTable extends Doctrine_Table
     		}
     	}
     	
+    	foreach ($cals as &$cal){
+    		if (!key_exists('cal_request_count', $cal)) $cal['cal_request_count'] = 0;
+    	}
+    	
     	$calList = array(
     		'offset' => $offset,
     		'limit' => $limit,

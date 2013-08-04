@@ -750,30 +750,4 @@ class Cal extends BaseCal
     		UserUtils::setOrphanCalId(null);
     	}
     }
-    
-    public function isReachedMaxSubscribers(){
-    	$isReached = false;
-    	
-    	$partner = $this->getPartner();
-    	if ($partner && $licence = $partner->getLicence()){
-    		//TODO: clac cal_request after partner_licence_start_at + X month
-    		
-    		$q = Doctrine_Query::create()
-	    		->select('c.id, COUNT(cr.id) cal_request_count')
-	    		->from('Cal c')
-	    		->leftJoin('c.CalRequest cr')
-	    		->where('c.id =?', $this->getId())
-	    		->andWhere('c.deleted_at IS NULL')
-	    		->groupBy('cr.cal_id');
-    		
-    		$calRequests = $q->fetchArray();
-
-    		$countSubscribers = (isset($calRequests[0]) && isset($calRequests[0]['cal_request_count'])) ? $calRequests[0]['cal_request_count'] : 0;
-    		
-    		$licence = $partner->getLicence();
-    		$isReached = $licence->isReachedTheMaxSubscribers($countSubscribers);
-    	}
-    	
-    	return $isReached;
-    }
 }

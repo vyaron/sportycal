@@ -20,7 +20,7 @@
 		</tr>
 	</thead>
 	<tbody>
-	<?php foreach ($calList['data'] as $i => $cal): $isReachedMaxSubs = $licenece->isReachedTheMaxSubscribers($cal['cal_request_count']);?>
+	<?php foreach ($calList['data'] as $i => $cal):?>
 		<tr id="cal_<?php echo $cal['id'];?>" class="<?php echo ($cal['deleted_at'] ? 'cal-is-deleted' : 'cal-is-active') ?>"/>
 			<td><?php echo ($i + 1);?></td>
 			<td><?php echo date('Y-m-d H:s', strtotime($cal['updated_at']));?></td>

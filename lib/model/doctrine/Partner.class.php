@@ -191,4 +191,27 @@ class Partner extends BasePartner
 		$this->setLicenceEndsAt($licenceEndsAt);
 		$this->save();
 	}
+	
+	public function isReachedMaxSubscribers(){
+		$isReached = false;
+		
+		if ($licence = $this->getLicence()){
+			$q = Doctrine_Query::create()
+			->select('c.id, COUNT(cr.id) cal_request_count')
+			->from('Cal c')
+			->innerJoin('c.CalRequest cr')
+			->where('c.partner_id =?', $this->getId())
+			->andWhere('c.deleted_at IS NULL')
+			->groupBy('cr.cal_id');
+		
+			$calRequests = $q->fetchOne();
+
+			$countSubscribers = ($calRequests && $calRequests['cal_request_count']) ? $calRequests['cal_request_count'] : 0;
+		
+			$licence = $this->getLicence();
+			$isReached = $licence->isReachedTheMaxSubscribers($countSubscribers);
+		}
+		 
+		return $isReached;
+	}
 }
