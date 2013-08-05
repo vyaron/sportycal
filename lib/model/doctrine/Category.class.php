@@ -330,6 +330,13 @@ class Category extends BaseCategory
 	}
 	
 	public function logicRevive(){
+		$q = Doctrine_Query::create()
+		  ->update('Cal c')
+		  ->set('c.deleted_at', 'NULL')
+		  ->where('c.category_id = ?', $this->getId())
+		  ->execute();
+		
+		
 		//revive current ctg
 		$this->setDeletedAt(NULL);
     	$this->save();
