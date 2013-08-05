@@ -736,14 +736,19 @@ class Cal extends BaseCal
     	if (!$this->getByUserId()){
     		$partner = $user->createPartner($rootName, $website);
     		$partnerDesc = $partner->getPartnerDesc()->getFirst();
- 
+ 		
     		$category = $partner->getPartnerDesc()->getFirst()->getCategory();
-
+			
+    		$isReachedMaxCalendars = $partner->isReachedMaxCalendars();
+    		
     		//Set orphan cal parent
     		$this->setByUserId($user->getId());
     		$this->setIsPublic(true);
     		$this->setCategoryId($category->getId());
     		$this->setPartnerId($partner->getId());
+    		
+    		if ($isReachedMaxCalendars) $this->setDeletedAt(date('Y-m-d H:i:s'));
+    		
     		$this->save();
     		
     		//clear from session

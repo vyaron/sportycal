@@ -5,6 +5,15 @@ class nmActions extends sfActions{
 		$this->calsDownloadedCount = CalRequestTable::getCount();
 		
 		if ($this->calsDownloadedCount > 100) $this->calsDownloadedCount -= 100;
+		
+		$isReachedMaxCalendars = false;
+		$user = UserUtils::getLoggedIn();
+		if ($user) {
+			$partner = $user->getPartner();
+			if ($partner) $isReachedMaxCalendars = $partner->isReachedMaxCalendars();
+		}
+		
+		$this->isReachedMaxCalendars = $isReachedMaxCalendars;
 	}
 	
 	public function executeContact(sfWebRequest $request){
@@ -70,11 +79,14 @@ class nmActions extends sfActions{
 			if ($newLicence->isBetterThan($currLicence)){
 				//TODO: fill user data: email, full name... - for checkout with credit card
 				$custom = array('uid' => $user->getId());
-					
+				$returnUrl = sfConfig::get('app_domain_full') . '/nm/checkoutSuccess';
+								
 				$params = array(
 						'cmd' => '_s-xclick',
 						'hosted_button_id' => PartnerLicence::getPaypalPlan($planCode),
+						//'modify' => 2,
 						'custom' => json_encode($custom),
+						'return' => $returnUrl,
 						'notify_url' => 'http://inevermiss.net/nm/paypalIpn', // Prod
 						//'notify_url' => (sfConfig::get('app_domain_full') . '/nm/paypalIpn'), // Prod
 						//'notify_url' => 'http://80.246.133.237:8080/nm/paypalIpn', // local test
@@ -193,10 +205,24 @@ class nmActions extends sfActions{
 		$offset = $request->getParameter('p', 0);
 		$calList = CalTable::getCalList($user->getId(), $offset);
 		
+		$licenceErrors = array();
+		
+		$isReachedMaxSubscribers = $partner->isReachedMaxSubscribers();
+		if ($isReachedMaxSubscribers) $licenceErrors[] = __('Reached subscriptions limit');
+		
+		$isReachedMaxCalendars = $partner->isReachedMaxCalendars();
+		if ($isReachedMaxCalendars) $licenceErrors[] = __('Reached calendars limit');
+		
+		$isReachedMaxEvents = $partner->isReachedMaxEvents();
+		if ($isReachedMaxEvents) $licenceErrors[] = __('Reached events limit');
+		
+		//Utils::pp($errors);
+		
+		$this->licenceErrors = $licenceErrors;
 		$this->calList = $calList;
+		
 		$this->licenece = $partner->getLicence();
-		$this->isReachedMaxSubs = $partner->isReachedMaxSubscribers();
-		$this->isReachedMaxCals = $partner->isReachedMaxCalendars();
+		$this->isReachedMaxCalendars = $isReachedMaxCalendars;
 	}
 	
 	public function executeCalDelete(sfWebRequest $request){
@@ -225,11 +251,16 @@ class nmActions extends sfActions{
 		$cal = Doctrine::getTable('Cal')->find(array($request->getParameter('id')));
 
 		if ($cal && $cal->isOwner($user)){
-			$cal->setDeletedAt(null);
-			$cal->save();
-			
-			$res['success'] = true;
-			$res['msg'] = $cal->getName() . ' calendar restored.';
+			$partner = $user->getPartner();
+			if ($partner->isReachedMaxCalendars()){
+				$res['msg'] = 'Calendar not restored - reached max calendars!';
+			} else {
+				$cal->setDeletedAt(null);
+				$cal->save();
+					
+				$res['success'] = true;
+				$res['msg'] = $cal->getName() . ' calendar restored.';
+			}
 		}
 	
 		echo json_encode($res);
@@ -468,8 +499,12 @@ class nmActions extends sfActions{
 		
 		$this->form = new NmRegisterForm();
 		
-		if ($user) $cal->setAdoptive($user);
-		else $this->registerForm($request, $cal);
+		if ($user) {
+			$cal->setAdoptive($user);
+			if ($user->getPartner()->isReachedMaxCalendars()) $this->redirect('/nm/calList/');
+		} else {
+			$this->registerForm($request, $cal);
+		}
 
 		$this->user = UserUtils::getLoggedIn();
 	}

@@ -47,7 +47,7 @@ jQuery(document).ready(function(){
 			type : 'POST',
 			dataType : 'json'
 		}).done(function(res){
-			el.parents('tr').removeClass('cal-is-deleted').addClass('cal-is-active');
+			if (res && res.success) el.parents('tr').removeClass('cal-is-deleted').addClass('cal-is-active');
 			setGlobalAlert(res);
 		}).fail(setGlobalAlert);
 	});

@@ -235,4 +235,26 @@ class Partner extends BasePartner
 			
 		return $isReached;
 	}
+	
+	public function isReachedMaxEvents(){
+		$isReached = false;
+	
+		if ($licence = $this->getLicence()){
+			$q = Doctrine_Query::create()
+			->select('e.id, COUNT(e.id) AS event_count')
+			->from('Event e')
+			->innerJoin('e.Cal c')
+			->where('c.partner_id =?', $this->id)
+			->andWhere('c.deleted_at IS NULL');
+	
+			$eventCount = $q->fetchOne();
+	
+			$eventCount = ($eventCount && $eventCount['event_count']) ? $eventCount['event_count'] : 0;
+	
+			$licence = $this->getLicence();
+			$isReached = $licence->isReachedMaxEvents($eventCount);
+		}
+			
+		return $isReached;
+	}
 }

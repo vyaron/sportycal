@@ -5,7 +5,7 @@ function numberWithCommas(x) {
         x = x.replace(pattern, "$1,$2");
     return x;
 }
-
+/*
 function getPlayerSize(){
 	var playerEl = jQuery('#player-wrapper');
 	var playerWidth = playerEl.width();
@@ -30,6 +30,7 @@ function updatePlayerSize(){
 
 	}
 }
+*/
 
 var gPlayer = null;
 jQuery(document).ready(function(){
@@ -39,16 +40,20 @@ jQuery(document).ready(function(){
 		calDownCounter.text(numberWithCommas(val + Math.floor(Math.random() * 5)));
 	}, Math.floor((Math.random() + 0.3) * 2000));
 	
-	var playerSize =getPlayerSize();
+	
 	var playeEl = jQuery('#player');
+	/*
+	var playerSize = getPlayerSize();
+	
 	playeEl.attr({
 		width : playerSize.width,
 		height : playerSize.height
 	});
+	*/
 	gPlayer = new MediaElementPlayer(playeEl, {features : ['playpause','progress','fullscreen']});
 	
 	//Set player resize event
-
+	/*
 	var supportsOrientationChange = "onorientationchange" in window;
     var orientationEvent = "resize";
 	var delayTime = 0;
@@ -68,4 +73,5 @@ jQuery(document).ready(function(){
 			window.setTimeout(updatePlayerSize, delayTime);
 		}, false);
 	}
+	*/
 });

@@ -18,15 +18,17 @@ class PartnerLicence{
 	
 	//TODO: change to real plans
 	private static $PAYPAL_PLANS = array(
-		self::PLAN_A => 'Y5RK59Y45C7BJ',
-		self::PLAN_B => 'JHRH9HHV4QFWG',
-		self::PLAN_C => '38SUU5ULHQ7KS'
+		//self::PLAN_A => 'Y5RK59Y45C7BJ',
+		self::PLAN_B => '7ZKZHATKWHPY8',
+		self::PLAN_C => 'YLT29ZFCMMA6Q',
+		self::PLAN_D => '7BJTQC3CL3GNG'
 	);
 	
 	private static $PAYPAL_SANBOX_PLANS = array(
-		self::PLAN_A => 'Y5RK59Y45C7BJ',
-		self::PLAN_B => 'JHRH9HHV4QFWG',
-		self::PLAN_C => '38SUU5ULHQ7KS'
+		//self::PLAN_A => 'Y5RK59Y45C7BJ',
+		self::PLAN_B => '7PFXEQNF3TCB6',
+		self::PLAN_C => 'ZZX3NSQCA23YL',
+		self::PLAN_D => 'FYL8MLRLZMBNJ'
 	);
 	
 	/*Paypal*/
@@ -150,6 +152,14 @@ class PartnerLicence{
 		return $maxCalendars;
 	}
 	
+	public function getMaxEvents(){
+		$maxEvents =  $this->plan['max_events'];
+	
+		if ($this->isEnded()) $maxEvents = self::$PLANS[self::DEFAULT_PLAN]['max_events'];
+	
+		return $maxEvents;
+	}
+	
 	public function isBetterThan($partnerLicence){
 		return ($this->isUnlimited() || ($this->getPrestige() > $partnerLicence->getPrestige() && !$partnerLicence->isUnlimited()));
 	}
@@ -159,13 +169,20 @@ class PartnerLicence{
 	}
 	
 	public function isReachedMaxSubscribers($num){
-		return (!$this->isUnlimited() && $num >= $this->getMaxSubscribers()) ? true : false;
+		$maxSubscribers = $this->getMaxSubscribers();
+		return (!($maxSubscribers == self::UNLIMITED) && $num >= $maxSubscribers) ? true : false;
 	}
 	
 	public function isReachedMaxCalendars($num){
-		return (!$this->isUnlimited() && $num >= $this->getMaxCalendars()) ? true : false;
+		$maxCalendars = $this->getMaxCalendars();
+		return (!($maxCalendars == self::UNLIMITED) && $num >= $maxCalendars) ? true : false;
 	}
 	
+	public function isReachedMaxEvents($num){
+		$maxEvents = $this->getMaxEvents();
+		return (!($maxEvents == self::UNLIMITED) && $num >= $maxEvents) ? true : false;
+	}
+
 	public function isUnlimited(){
 		return $this->getMaxSubscribers() == self::UNLIMITED;
 	}

@@ -2,6 +2,18 @@
 
 <div class="container">
 
+<?php if (count($licenceErrors)):?>
+	<div class="alert alert-block alert-error">
+		<h4>You have exceeded the framework of the license</h4>
+		<ul>
+		<?php foreach($licenceErrors as $licenceError):?>
+			<li><?php echo $licenceError;?></li>
+		<?php endforeach;?>
+		</ul>
+		<p>Upgrade your licence:&nbsp;&nbsp;&nbsp;<a class="btn btn-mini" href="<?php echo url_for('nm/pricing');?>"><i class="icon-shopping-cart"></i> Upgrade</a></p>
+	</div>
+<?php endif;?>
+
 <h2>Calendars <a id="plan-box" class="<?php echo ($licenece->isEnded() ? 'ended' : '');?>" href="<?php echo url_for('/nm/pricing')?>" title="Max subscribers <?php echo $licenece->getMaxSubscribers();?>">[*] <?php echo $licenece->getName();?></a></h2>
 
 <?php if (!$calList['total']): ?>
@@ -20,29 +32,23 @@
 		</tr>
 	</thead>
 	<tbody>
-	<?php foreach ($calList['data'] as $i => $cal): $isOverload = (($i + ($calList['offset'] * $calList['limit'])) >= $licenece->getMaxCalendars()) ? true : false; ?>
-		<tr id="cal_<?php echo $cal['id'];?>" class="<?php echo $cal['deleted_at'] ? 'cal-is-deleted' : 'cal-is-active';?> <?php echo $isOverload ? 'cal-is-overload' : ''?>"/>
+	<?php foreach ($calList['data'] as $i => $cal): ?>
+		<tr id="cal_<?php echo $cal['id'];?>" class="<?php echo $cal['deleted_at'] ? 'cal-is-deleted' : 'cal-is-active';?>"/>
 			<td><?php echo ($i + 1);?></td>
 			<td><?php echo date('Y-m-d H:s', strtotime($cal['updated_at']));?></td>
 			<td><?php echo $cal['name'];?></td>
 			<td><?php echo $cal['event_count'];?></td>
 			<td>
-				<span <?php echo $isReachedMaxSubs ? 'title="' . __('Reached subscriptions limit') . '"' : '';?> class="<?php echo $isReachedMaxSubs ? 'max-subscribers' : '';?>"><?php echo $cal['cal_request_count'];?></span>
+				<span><?php echo $cal['cal_request_count'];?></span>
 			</td>
 			<td class="hidden-phone">
 				<div class="cal-active">
-					<?php if ($isReachedMaxSubs):?>
-					<a class="btn btn-mini" href="<?php echo url_for('nm/pricing');?>"><i class="icon-shopping-cart"></i> Upgrade</a>
-					<?php endif;?>
 					<a class="btn btn-mini" href="<?php echo url_for('nm/widget/?calId=' . $cal['id']);?>">&lt;Embed/&gt;</a>
 					<a class="btn btn-mini" href="<?php echo url_for('nm/calEdit/?id=' . $cal['id']);?>"><i class="icon-pencil"></i> Edit</a>
 					<a class="btn btn-mini delete-cal" data-cal-id="<?php echo $cal['id'];?>" href="<?php echo url_for('nm/calDelete');?>" data-name="<?php echo $cal['name'];?>"><i class="icon-trash"></i> Delete</a>
 				</div>
 				<div class="cal-deleted">
 					<a class="btn btn-mini cal-restore" data-cal-id="<?php echo $cal['id'];?>" href="<?php echo url_for('nm/calRestore');?>"><i class="icon-refresh"></i> Restore</a>
-				</div>
-				<div class="cal-overload">
-					<a class="btn btn-mini" title="Reached calendars limit" href="<?php echo url_for('nm/pricing');?>"><i class="icon-shopping-cart"></i> Upgrade</a>
 				</div>
 			</td>
 		</tr>
@@ -53,8 +59,8 @@
 <?php include_partial('pagination', array('list' => $calList, 'url' => '/nm/calList/')); ?>
 <?php endif;?>
 
-<?php if ($isReachedMaxCals):?>
-<a class="btn btn-success disabled" href="#" title="Reached calendars limit">New calendar</a>
+<?php if ($isReachedMaxCalendars):?>
+<a class="btn btn-success disabled" href="#" title="<?php echo __('Reached calendars limit');?>">New calendar</a>
 <?php else:?>
 <a class="btn btn-success hidden-phone" href="<?php echo url_for('nm/calCreate')?>" title="Click here to create new calendar"><i class="icon-plus icon-yellow"></i> New calendar</a>
 <?php endif;?>

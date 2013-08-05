@@ -1,12 +1,14 @@
 @IMPORT url("/fonts/signika/stylesheet.css");
 
 html, body{height: 100%;}
-body{/*padding-top: 80px;*/ font-size: 12px;}
+body{/*padding-top: 80px;*/ font-size: 12px; font-family: arial}
 
 .cb{clear: both;}
 .mt10{margin-top: 10px;}
 .color-y{color: #ffc229;}
 .fs14{font-size:14px;};
+
+.bby{border-bottom: 1px solid #ffc229;}
 
 /*sections*/
 .section{border-bottom: 1px solid #ffc229;}
@@ -115,12 +117,13 @@ label.error, .error_list > li{color: red;}
 #user-nav{left:auto; right:180px;}
 #user-nav .user-pic{width: 32px; height: 32px; position: absolute; left: -28px; top: -8px;}
 
+.navbar-fixed-top .navbar-inner{background: #1a1a1a;}
 .navbar-inverse .nav{font-size: 12px;font-family: SignikaRegular;}
-.navbar .nav > li > a{text-transform: uppercase;}
-.navbar-inverse .nav .active > a, .navbar-inverse .nav .active > a:hover, .navbar-inverse .nav .active > a:focus{border-bottom: 3px solid #ffc229; padding-bottom: 7px;}
+.navbar .nav > li > a{text-transform: uppercase; padding: 0; padding-bottom: 4px; margin: 0 10px; color: #fff;}
+.navbar-inverse .nav .active > a, .navbar-inverse .nav .active > a:hover, .navbar-inverse .nav .active > a:focus{border-bottom: 3px solid #ffc229; padding-bottom: 1px; background: none;}
 
 /*login*/
-#nav-login-btn a{padding: 3px 6px; border: 1px solid #ffc229; margin-bottom: 12px;}
+#nav-login-btn a{padding: 3px 6px; border: 1px solid #ffc229; margin-right:0; margin-bottom: 12px;}
 
 /*user nav*/
 .caret, .nav .open .dropdown-toggle{color: #fff;}
@@ -166,7 +169,8 @@ label.error, .error_list > li{color: red;}
 	#top-nav-place-holder{display: none;}
 
 	#top-nav-wrapper{display: inline;}
-	.navbar-inverse .nav .active > a, .navbar-inverse .nav .active > a:hover, .navbar-inverse .nav .active > a:focus{border-bottom: inherit; padding-bottom: inherit;}
+	.navbar .nav > li > a{padding: 9px 15px; margin: 0;}
+	.navbar-inverse .nav .active > a, .navbar-inverse .nav .active > a:hover, .navbar-inverse .nav .active > a:focus{border-bottom: inherit;}
 	
 	#top-nav-wrapper, #logo, #main-nav, #user-nav, #user-nav .user-pic{position:inherit; left: inherit; right: inherit; top:inherit; bottom: inherit;}
 	
