@@ -115,7 +115,7 @@ label.error, .error_list > li{color: red;}
 #main-nav, #user-nav{position: absolute; bottom: 0px; float: none;}
 #main-nav{ left: 50%; margin-left: -380px;}
 #user-nav{left:auto; right:180px;}
-#user-nav .user-pic{width: 32px; height: 32px; position: absolute; left: -28px; top: -8px;}
+#user-nav .user-pic{width: 32px; height: 32px; position: absolute; left: -28px; top: -10px;}
 
 .navbar-fixed-top .navbar-inner{background: #1a1a1a;}
 .navbar-inverse .nav{font-size: 12px;font-family: SignikaRegular;}

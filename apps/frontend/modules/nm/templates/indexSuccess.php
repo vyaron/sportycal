@@ -12,7 +12,7 @@ use_stylesheet('/css/neverMiss/index.css');
 				<p>Allow users to see events created by you in their personal calendars. Your users will never miss a sale, a promotion, a show or an event</p>
 			</div>
 			<div id="banner-col-right">
-				<div id="player-wrapper" style="width: 355px; height: 217px;">
+				<div id="player-wrapper">
 					<video id="player" class="mejs-inevermiss pull-right" width="100%" height=100% poster="/videos/nevermiss/iNeverMiss.jpg">
 					    <!-- Pseudo HTML5 -->
 					    <source type="video/webm" src="/videos/nevermiss/iNeverMiss.webm"/>
@@ -51,20 +51,20 @@ use_stylesheet('/css/neverMiss/index.css');
 		<div class="row">
 			<div class="span4">
 				<div class="box">
-					<h3 class="box-icon box-icon-a">Simple</h3>
+					<h3><i class="box-icon-a"></i> Simple</h3>
 					<p>Users subscribe to your calendar in just one click, using any calendar (Google, Outlook, or iCal), on any device (Mobile, PC or Mac).</p>
           			<p>Your users will get a reminder just in time and will be able to plan their day with you in it.</p>
 				</div>
 			</div>
 			<div class="span4">
 				<div class="box">
-					<h3 class="box-icon box-icon-b">Easy</h3>
+					<h3><i class="box-icon-b"></i> Easy</h3>
 					<p>Adding the iNeverMiss subscription service to your site is quick. Hit start now and then you'll just need to add up-coming events, and publish the iNeverMiss button to your site.</p>
 				</div>
 			</div>
 			<div class="span4">
 				<div class="box">
-					<h3 class="box-icon box-icon-c">Relationship</h3>
+					<h3><i class="box-icon-c"></i> Relationship</h3>
 					<p>Boost your brand and enhance user relationships whether you are a retailer, loyalty club, sports club, fan club, event organizer, artist... make sure your users never miss you.</p>
 				</div>
 			</div>

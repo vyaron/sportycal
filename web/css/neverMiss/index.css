@@ -27,29 +27,45 @@
 /* 3 box section */
 .box{background-position: 0 25px; background-repeat: no-repeat; margin-top: 34px; margin-bottom: 25px;}
 
-.box h3{color: #ffc229; text-transform: uppercase; font-size: 25px; margin-bottom:15px; background-position: 0 0; background-repeat:no-repeat; padding-top: 15px; }
-.box h3.box-icon-a{background-image: url("/images/neverMiss/index/iconA.png"); padding-left: 38px;}
-.box h3.box-icon-b{background-image: url("/images/neverMiss/index/iconB.png"); padding-left: 66px;}
-.box h3.box-icon-c{background-image: url("/images/neverMiss/index/iconC.png"); padding-left: 54px;}
+.box h3{color: #ffc229; text-transform: uppercase; font-size: 25px; margin-bottom:15px; line-height: 72px; height: 52px;}
+.box .box-icon-a, .box .box-icon-b, .box .box-icon-c{height: 52px; background-position: 0 0; background-repeat: no-repeat; display: inline-block; vertical-align: top;}
+.box .box-icon-a{background-image: url("/images/neverMiss/index/iconA.png"); width: 28px;}
+.box .box-icon-b{background-image: url("/images/neverMiss/index/iconB.png"); width: 56px;}
+.box .box-icon-c{background-image: url("/images/neverMiss/index/iconC.png"); width: 44px;}
 
 .box p{font-size: 13px; line-height: 17px;}
 
 /*down cal link section*/
 #down-cal-link{font-size: 24px; color: #333; text-decoration: none; margin-top: 25px; margin-bottom: 125px; display: inline-block;}
 
+#player-wrapper{width: 355px; height: 217px;}
+
 /*CSS Queries - NOT WORKING ON IE < 9!
 ****************************************/
+@media (max-width: 979px) {
+	#banner-col-left h1{font-size: 28px; line-height:32px;}
+	#banner-col-left p{font-size: 21px; line-height: 25px;}
+	#player-wrapper{width: 290px; height: 177px;}
+	.box{text-align: center;}
+	.box h3{font-size: 25px; white-space: nowrap;}
+}
 @media (min-width: 768px) and (max-width: 979px) {
 	#banner-content{margin-top: 80px;}
 	#banner-col-left{width: 350px;}
-	#banner-col-left h1{font-size: 28px; line-height:32px;}
-	#banner-col-left p{font-size: 21px; line-height: 25px;}
+	#banner-col-left h1{margin-bottom: 20px;}
+	
+	.start-now-btn{margin: 40px auto;}
 }
 
 @media (max-width: 767px) {
 	#banner-content{margin-top: 20px;}
+	
 	#banner-col-left, #banner-col-right{float: none; padding: 10px; width: auto;}
-
+	
+	#banner-col-left h1, #banner-col-left p{text-align: center;}
+	#banner-col-left h1{margin: 10px 0;}
+	
+	#player-wrapper{margin: 0 auto;}
 }
 /*
 @media (min-width: 1200px) {
