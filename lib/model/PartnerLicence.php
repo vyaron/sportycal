@@ -69,7 +69,7 @@ class PartnerLicence{
 		return $output == 'VERIFIED' ? true : false;
 	}
 	
-	public static function setLicence($custom, $itemNumber, $paymentDate){
+	public static function setLicence($custom, $itemNumber, $paymentDate, $cancelCurrentLicence){
 		if ($custom && $itemNumber && $paymentDate){
 			$customData = json_decode($custom, true);
 				
@@ -84,6 +84,11 @@ class PartnerLicence{
 			$licenceEndsAt = $endsDate->format('Y-m-d H:i:s');
 	
 			if ($partner && $licenceCode && $licenceEndsAt){
+				if ($cancelCurrentLicence){
+					$currentLicence = $partner->getLicence();
+					if ($currentLicence) $partner->cancelLicence();
+				}
+				
 				$partner->setLicence($licenceCode, $licenceEndsAt);
 			}
 				
@@ -160,7 +165,8 @@ class PartnerLicence{
 		return $maxEvents;
 	}
 	
-	public function isBetterThan($partnerLicence){
+	public function isBetterThan($partnerLicence=null){
+		if (!$partnerLicence) return true;
 		return ($this->isUnlimited() || ($this->getPrestige() > $partnerLicence->getPrestige() && !$partnerLicence->isUnlimited()));
 	}
 	

@@ -61,7 +61,7 @@ class nmActions extends sfActions{
 		//$paymentDate = $request->getParameter('payment_date');
 		$paymentDate = $request->getParameter('subscr_date');
 		
-		PartnerLicence::setLicence($custom, $itemNumber, $paymentDate);
+		PartnerLicence::setLicence($custom, $itemNumber, $paymentDate, true);
 
 		$this->redirect('/nm/calList');
 	}
