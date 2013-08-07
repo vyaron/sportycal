@@ -95,7 +95,11 @@ class PayPal{
 	}
 	
 	//https://developer.paypal.com/webapps/developer/docs/classic/ipn/integration-guide/IPNIntro/#example_req_resp
-	public static function isIpnVerified($params){
+	public static function isIpnVerified($params, $isTest = false){
+		//TODO: create better solution for $isTest hard-coded url
+		$paypalUrl = sfConfig::get('app_paypal_url');
+		if ($isTest) $paypalUrl = 'https://www.sandbox.paypal.com';
+			
 		//$request->getPostParameters()
 		$url = 'https://' . sfConfig::get('app_paypal_url') . '/cgi-bin/webscr?cmd=_notify-validate&' . http_build_query($params);
 	

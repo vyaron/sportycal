@@ -34,9 +34,9 @@ class nmActions extends sfActions{
 	
 	public function executePaypalIpn(sfWebRequest $request){
 		$postData = $request->getPostParameters();
-		if (PayPal::isIpnVerified($postData)){
-			$isTest = $postData['test_ipn'] ? true : false;
-			
+		$isTest = (isset($postData['test_ipn']) && $postData['test_ipn']) ? true : false;
+		
+		if (PayPal::isIpnVerified($postData, $isTest)){
 			$partner = null;
 			$partnerId = PayPal::getPartnerId($postData['custom']);
 			if ($partnerId) $partner = Doctrine::getTable('Partner')->find(array($partnerId));
