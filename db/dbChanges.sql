@@ -16,7 +16,7 @@ CREATE TABLE IF NOT EXISTS `paypal_ipn` (
 
 ALTER TABLE `paypal_ipn` ADD CONSTRAINT `paypal_ipn_ibfk_1` FOREIGN KEY (`partner_id`) REFERENCES `partner` (`id`);
 
-ALTER TABLE `partner` ADD `paypal_code` VARCHAR( 512 ) NULL DEFAULT NULL AFTER `licence_code` 
+ALTER TABLE `partner` ADD `paypal_code` VARCHAR( 512 ) NULL DEFAULT NULL AFTER `licence_code`;
 ----------------------------DONE ON PROD-------------------------------------------------------
 DELETE FROM cal_request WHERE id IN (8967, 1068, 6948);
 ALTER TABLE `cal_request` ADD INDEX ( `user_cal_id` );
