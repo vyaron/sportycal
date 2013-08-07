@@ -48,7 +48,7 @@ class nmActions extends sfActions{
 				$paypalIpn->setIpnCode($postData['ipn_track_id']);
 				$paypalIpn->setTransactionCode($postData['subscr_id']);
 				$paypalIpn->setStatus($postData['payer_status']);
-				$paypalIpn->setResData($postData);
+				$paypalIpn->setResData(json_encode($postData));
 				$paypalIpn->setIsTest($isTest);
 				$paypalIpn->setCreatedAt(date('Y-m-d h:i:s'));
 				

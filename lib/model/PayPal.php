@@ -101,7 +101,7 @@ class PayPal{
 		if ($isTest) $paypalUrl = 'https://www.sandbox.paypal.com';
 			
 		//$request->getPostParameters()
-		$url = 'https://' . sfConfig::get('app_paypal_url') . '/cgi-bin/webscr?cmd=_notify-validate&' . http_build_query($params);
+		$url = $paypalUrl . '/cgi-bin/webscr?cmd=_notify-validate&' . http_build_query($params);
 	
 		// create curl resource
 		$ch = curl_init();
