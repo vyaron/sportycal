@@ -324,16 +324,16 @@ CalRequest:
       notnull: false
       autoincrement: false
   relations:
-    UserCal:
-      local: user_cal_id
-      foreign: id
-      type: one
     Partner:
       local: partner_id
       foreign: id
       type: one
     Category:
       local: category_id
+      foreign: id
+      type: one
+    UserCal:
+      local: user_cal_id
       foreign: id
       type: one
     Cal:
@@ -1434,6 +1434,13 @@ Partner:
       primary: false
       notnull: false
       autoincrement: false
+    paypal_code:
+      type: string(512)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: false
+      autoincrement: false
     licence_ends_at:
       type: timestamp(25)
       fixed: false
@@ -1467,6 +1474,10 @@ Partner:
       foreign: partner_id
       type: many
     PartnerUser:
+      local: id
+      foreign: partner_id
+      type: many
+    PaypalIpn:
       local: id
       foreign: partner_id
       type: many
@@ -1575,6 +1586,71 @@ PartnerUser:
       type: one
     User:
       local: user_id
+      foreign: id
+      type: one
+PaypalIpn:
+  connection: doctrine
+  tableName: paypal_ipn
+  columns:
+    id:
+      type: integer(8)
+      fixed: false
+      unsigned: true
+      primary: true
+      autoincrement: true
+    partner_id:
+      type: integer(8)
+      fixed: false
+      unsigned: true
+      primary: false
+      notnull: true
+      autoincrement: false
+    ipn_code:
+      type: string(512)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: true
+      autoincrement: false
+    transaction_code:
+      type: string(256)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: true
+      autoincrement: false
+    status:
+      type: string(128)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: true
+      autoincrement: false
+    res_data:
+      type: string()
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: true
+      autoincrement: false
+    is_test:
+      type: integer(1)
+      fixed: false
+      unsigned: false
+      primary: false
+      default: '0'
+      notnull: true
+      autoincrement: false
+    created_at:
+      type: timestamp(25)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: true
+      autoincrement: false
+  relations:
+    Partner:
+      local: partner_id
       foreign: id
       type: one
 ShortUrl:

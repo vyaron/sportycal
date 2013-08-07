@@ -1,3 +1,23 @@
+SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
+SET time_zone = "+00:00";
+
+CREATE TABLE IF NOT EXISTS `paypal_ipn` (
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  `partner_id` bigint(20) unsigned NOT NULL,
+  `ipn_code` varchar(512) NOT NULL,
+  `transaction_code` varchar(256) NOT NULL,
+  `status` varchar(128) NOT NULL,
+  `res_data` text NOT NULL,
+  `is_test` boolean NOT NULL default 0,
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`),
+  KEY `partner_id` (`partner_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+ALTER TABLE `paypal_ipn` ADD CONSTRAINT `paypal_ipn_ibfk_1` FOREIGN KEY (`partner_id`) REFERENCES `partner` (`id`);
+
+ALTER TABLE `partner` ADD `paypal_code` VARCHAR( 512 ) NULL DEFAULT NULL AFTER `licence_code` 
+----------------------------DONE ON PROD-------------------------------------------------------
 DELETE FROM cal_request WHERE id IN (8967, 1068, 6948);
 ALTER TABLE `cal_request` ADD INDEX ( `user_cal_id` );
 ALTER TABLE `cal_request` ADD FOREIGN KEY ( `user_cal_id` ) REFERENCES `evento`.`user_cal` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT ;

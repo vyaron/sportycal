@@ -186,9 +186,12 @@ class Partner extends BasePartner
 		return new PartnerLicence($this->getLicenceCode(), $this->getLicenceEndsAt());
 	}
 	
-	public function setLicence($licenceCode, $licenceEndsAt){
+	public function setLicence($licenceCode, $licenceEndsAt, $paypalCode=null){
 		$this->setLicenceCode($licenceCode);
 		$this->setLicenceEndsAt($licenceEndsAt);
+		
+		if ($paypalCode) $this->setPaypalCode($paypalCode);
+		
 		$this->save();
 	}
 	
@@ -256,44 +259,5 @@ class Partner extends BasePartner
 		}
 			
 		return $isReached;
-	}
-	public function cancelLicence(){
-		
-		if (!$this->getLicenceCode() || !$this->getLicenceEndsAt() || strtotime($this->getLicenceEndsAt()) < time()) return false;
-		
-		//TODO: replace with Paypal cancel API
-		$mail = new PHPMailer();
-			
-		//$mail->SMTPDebug = 3;
-		//$mail->Debugoutput = 'html';
-			
-		//Gmail SMTP
-		$mail->IsSMTP();
-		$mail->Host       = 'smtp.gmail.com';
-		$mail->Port       = 587;
-		$mail->SMTPSecure = 'tls';
-		$mail->SMTPAuth   = true;
-	
-		$mail->Username   = sfConfig::get('app_gmail_username');
-		$mail->Password   = sfConfig::get('app_gmail_password');
-	
-	
-		$mail->SetFrom(sfConfig::get('app_mailinglist_fromEmail'), sfConfig::get('app_mailinglist_fromName'));
-		$mail->AddReplyTo(sfConfig::get('app_mailinglist_replyToEmail'), sfConfig::get('app_mailinglist_replyToName'));
-	
-		$mail->AddAddress('vyaron@gmail.com', 'Internal Mail');
-	
-		$mail->Subject = 'Cancel ' . $this->getName() . ' Subscribe';
-		
-		$txt = "Partner ID: " . $this->getId() . "\n";
-		$txt .= "Partner Name: " . $this->getName() . "\n";
-		$txt .= "Licence Code: " . $this->getLicenceCode() . "\n";
-		$txt .= "Licence Ends At: " . $this->getLicenceEndsAt() . "\n";
-		
-		$mail->MsgHTML($txt);
-		$mail->AltBody = $txt;
-		
-		
-		$mail->Send();
 	}
 }

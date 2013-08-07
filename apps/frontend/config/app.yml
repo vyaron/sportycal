@@ -11,10 +11,20 @@ dev:
     secret: 62094be3d3db0caf976e93cc44ef7cad
   paypal:
     url: https://www.sandbox.paypal.com
+    nvpApiUrl: https://api-3t.sandbox.paypal.com/nvp
+    user: il.mrbit.test_api1.gmail.com
+    pwd: J5GDNALQRQDTRPUR
+    signature: AFcWxV21C7fd0v3bYYYRCpSSRl31A5WRB56.MHOen7D.4UQEzBgUxmEZ
+    version: 98
     
 all:
   paypal:
     url: https://www.paypal.com
+    nvpApiUrl: https://api-3t.paypal.com/nvp
+    user: rami.vachner_api1.sportycal.com
+    pwd: MHZETD8UBGR949M3
+    signature: AFcWxV21C7fd0v3bYYYRCpSSRl31ABtKzf1Z7rFUmynPPt-wxfTh3EYl
+    version: 98
   mailinglist:
     fromName: iNeverMiss.net Support
     fromEmail: support@inevermiss.net

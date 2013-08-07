@@ -33,36 +33,45 @@ class nmActions extends sfActions{
 	}
 	
 	public function executePaypalIpn(sfWebRequest $request){
-		/*
-		$logPath = sfConfig::get('sf_log_dir').'/paypal.log';
-		$custom_logger = new sfFileLogger(new sfEventDispatcher(), array('file' => $logPath));
+		$postData = $request->getPostParameters();
+		if (PayPal::isIpnVerified($postData)){
+			$isTest = $postData['test_ipn'] ? true : false;
+			
+			$partner = null;
+			$partnerId = PayPal::getPartnerId($postData['custom']);
+			if ($partnerId) $partner = Doctrine::getTable('Partner')->find(array($partnerId));
+			
+			if ($partner){
+				$paypalIpn = new PaypalIpn();
+				
+				$paypalIpn->setPartnerId($partner->getId());
+				$paypalIpn->setIpnCode($postData['ipn_track_id']);
+				$paypalIpn->setTransactionCode($postData['subscr_id']);
+				$paypalIpn->setStatus($postData['payer_status']);
+				$paypalIpn->setResData($postData);
+				$paypalIpn->setIsTest($isTest);
+				$paypalIpn->setCreatedAt(date('Y-m-d h:i:s'));
+				
+				$paypalIpn->save();
+				
+				if ($paypalIpn->isCompleted()) PartnerLicence::setLicence($postData['custom'], $postData['item_number'], $postData['payment_date']);
+			}
+		}
 		
-		$json = json_encode($_REQUEST);
-		$custom_logger->info($json);
-		*/
-		
-		$isPaymentCompleted = $request->getParameter('payment_status') == 'Completed' ? true : false;
-		
-		$custom = $request->getParameter('custom');
-		$itemNumber = $request->getParameter('item_number');
-		$paymentDate = $request->getParameter('payment_date');
-		
-		if ($isPaymentCompleted && PartnerLicence::isComeFromPaypal($request)) PartnerLicence::setLicence($custom, $itemNumber, $paymentDate);
-
 		return sfView::NONE;
 	}
 	
 	//TODO: check PDT - https://developer.paypal.com/webapps/developer/docs/classic/paypal-payments-standard/integration-guide/paymentdatatransfer/
 	public function executeCheckoutSuccess(sfWebRequest $request){
 		//Utils::pp($request->getPostParameters());
-		
 		$custom = $request->getParameter('custom');
 		$itemNumber = $request->getParameter('item_number');
-		//$paymentDate = $request->getParameter('payment_date');
-		$paymentDate = $request->getParameter('subscr_date');
-		
-		PartnerLicence::setLicence($custom, $itemNumber, $paymentDate, true);
 
+		$paymentDate = $request->getParameter('subscr_date');
+		$paymentId = $request->getParameter('subscr_id');
+		
+		PartnerLicence::setLicence($custom, $itemNumber, $paymentDate, $paymentId, true);
+		
 		$this->redirect('/nm/calList');
 	}
 	
@@ -70,38 +79,18 @@ class nmActions extends sfActions{
 		$user = UserUtils::getLoggedIn();
 		
 		$planCode = $request->getParameter('c');
-		if (!$user || !$partner = $user->getPartner()) {
+		if (!$planCode || !$user || !$partner = $user->getPartner()) {
 			$url = '/nm/loginAndRegister/c/' . $planCode;
 		} else {
 			$currLicence = $partner->getLicence();
 			$newLicence = new PartnerLicence($planCode, date('Y-m-d H:i:s', strtotime('+1 month +1 day')));
 			
-			if ($newLicence->isBetterThan($currLicence)){
-				//TODO: fill user data: email, full name... - for checkout with credit card
-				$custom = array('uid' => $user->getId());
-				$returnUrl = sfConfig::get('app_domain_full') . '/nm/checkoutSuccess';
-								
-				$params = array(
-						'cmd' => '_s-xclick',
-						'hosted_button_id' => PartnerLicence::getPaypalPlan($planCode),
-						//'modify' => 2,
-						'custom' => json_encode($custom),
-						'return' => $returnUrl,
-						'notify_url' => 'http://inevermiss.net/nm/paypalIpn', // Prod
-						//'notify_url' => (sfConfig::get('app_domain_full') . '/nm/paypalIpn'), // Prod
-						//'notify_url' => 'http://80.246.133.237:8080/nm/paypalIpn', // local test
-				
-						'rm' => 2
-				);
-					
-				$url = sfConfig::get('app_paypal_url') . '/cgi-bin/webscr/?' . http_build_query($params, '', '&');
-			} else {
-				$url = '/nm/calList';
-			}
-			
+			if ($newLicence->isBetterThan($currLicence)) $url = PayPal::getSubscriptionUrl($planCode, $partner);
+			else $url = '/nm/calList';
 		}
 		
-		$this->redirect($url);
+		if ($url) $this->redirect($url);
+		else $this->redirect('/');
 	}
 	
 	public function executePricing(sfWebRequest $request){
