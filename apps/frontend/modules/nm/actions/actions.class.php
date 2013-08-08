@@ -17,7 +17,57 @@ class nmActions extends sfActions{
 	}
 	
 	public function executeContact(sfWebRequest $request){
+		$form = new ContactForm();
+		
+		if ($request->isMethod('post')){
+			$res = array('success' => false, 'msg' => 'Message not send');
 
+			$params = $request->getParameter('contact');
+			$params['subject'] = 'iNeverMiss contact';
+			$params['ip_address'] = Utils::getClientIP();
+			$params['created_at'] = date('Y-m-d H:i:s');
+			
+			$form->bind($params);
+			
+			//Utils::pa($form->isValid());
+			//Utils::pp($form->getErrorSchema());
+			
+			if ($form->isValid()){
+				$contact = $form->save();
+				
+				$mail = new PHPMailer();
+				$mail->IsSMTP();
+				$mail->Host       = 'smtp.gmail.com';
+				$mail->Port       = 587;
+				$mail->SMTPSecure = 'tls';
+				$mail->SMTPAuth   = true;
+				
+				$mail->Username   = sfConfig::get('app_gmail_username');
+				$mail->Password   = sfConfig::get('app_gmail_password');
+				
+				$mail->SetFrom($contact->getSenderEmail(), $contact->getSenderName());
+
+				$mail->AddAddress('vyaron@gmail.com', 'Yaron Biton');
+				//$mail->AddAddress('il.mrbit@gmail.com', 'Yaron Biton');
+				
+				$mail->Subject = $contact->getSubject();
+				
+				$txt = 'From: ' . $contact->getSenderName() . "\n";
+				$txt .= 'Phone: ' . $contact->getPhone() . "\n";
+				$txt .= 'Message: ' . $contact->getMessage();
+				
+				$mail->MsgHTML(nl2br($txt));
+				$mail->AltBody = $txt;
+				
+				if ($mail->Send()) $res = array('success' => true, 'msg' => 'Message send');
+			}
+			
+			echo json_encode($res);
+			
+			return sfView::NONE;
+		}
+		
+		$this->form = $form;
 	}
 	
 	public function executeTerms(sfWebRequest $request){

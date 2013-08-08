@@ -64,16 +64,25 @@
 	    <div id="footer">
 	    	<div class="container">
 	    		<span style="color:gray"><?php echo sfConfig::get('app_domain_name');?> &copy; <?php echo date('Y');?></span>&nbsp;&nbsp;|&nbsp;&nbsp;
-		        <?php if ($user):?>
-				<a href="<?php echo url_for('main/logout') ?>"><?php echo __('Sign Out');?></a>&nbsp;&nbsp;|&nbsp;&nbsp;
-				<?php else:?>
-				<a href="<?php echo url_for('partner/login') ?>"><?php echo __('Log In');?></a>&nbsp;&nbsp;|&nbsp;&nbsp;
-				<?php endif;?>
-		        
 		        <a href="<?php echo url_for('nm/pricing') ?>">Pricing</a>&nbsp;&nbsp;|&nbsp;&nbsp;
 		        <a href="<?php echo url_for('nm/caseStudies') ?>">Case Studies</a>&nbsp;&nbsp;|&nbsp;&nbsp;
 		        <a href="<?php echo url_for('nm/terms') ?>"><?php echo __('Terms & Conditions');?></a>
-	    	</div>
+
+				<ul class="soical-nav clearfix">
+					<li><a title="Share on Facebook"
+						href="https://www.facebook.com/dialog/feed?app_id=149891285173878&amp;link= http://misterbit.co.il/&amp;redirect_uri=http://misterbit.co.il/"
+						target="_blank" class="soical-icon soical-icon-facebook"></a></li>
+					<li><a title="Share on Google+"
+						href="https://plus.google.com/share?url=http://misterbit.co.il/"
+						target="_blank" class="soical-icon soical-icon-google"></a></li>
+					<li><a title="Share on Twitter"
+						href="http://twitter.com/share?url=http://misterbit.co.il/"
+						target="_blank" class="soical-icon soical-icon-twitter"></a></li>
+					<li><a title="Share on Linkedin"
+						href="http://www.linkedin.com/shareArticle?mini=true&amp;url=http://misterbit.co.il/"
+						target="_blank" class="soical-icon soical-icon-linkdin"></a></li>
+				</ul>
+			</div>
 	    </div>
     </div>
     

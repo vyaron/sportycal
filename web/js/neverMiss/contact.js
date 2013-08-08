@@ -1,0 +1,19 @@
+jQuery(document).ready(function(){
+	var form = jQuery('#contact-form');
+	
+	form.validate();
+	
+	form.submit(function(e){
+		e.preventDefault();
+		
+		var formEl = jQuery(this);
+		if (formEl.valid()){
+			jQuery.ajax({
+				url : '/frontend_dev.php/nm/contact/?d=' + (new Date()).getTime(),
+				type : 'POST',
+				dataType : 'json',
+				data : formEl.serializeArray()
+			}).done(setGlobalAlert);
+		}
+	});
+});

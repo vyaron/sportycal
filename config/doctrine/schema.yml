@@ -725,6 +725,13 @@ Contact:
       primary: false
       notnull: false
       autoincrement: false
+    phone:
+      type: string(32)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: false
+      autoincrement: false
   relations:
     User:
       local: by_user_id
@@ -1624,7 +1631,7 @@ PaypalIpn:
       fixed: false
       unsigned: false
       primary: false
-      notnull: true
+      notnull: false
       autoincrement: false
     res_data:
       type: string()

@@ -1,0 +1,8 @@
+#contact-form{width: 250px; margin: 0 auto;}
+
+
+/*CSS Queries - NOT WORKING ON IE < 9!
+****************************************/
+@media (max-width: 480px) {
+	#contact-form{width: auto;}
+}

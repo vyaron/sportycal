@@ -1,3 +1,4 @@
+ALTER TABLE `contact` ADD `phone` VARCHAR( 32 ) NULL DEFAULT NULL AFTER `ip_address`;
 ----------------------------DONE ON PROD-------------------------------------------------------
 ALTER TABLE `paypal_ipn` CHANGE `status` `status` VARCHAR( 128 ) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL ;
 ----------------------------DONE ON PROD-------------------------------------------------------

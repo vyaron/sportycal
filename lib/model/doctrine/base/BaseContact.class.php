@@ -15,6 +15,7 @@ Doctrine_Manager::getInstance()->bindComponent('Contact', 'doctrine');
  * @property string $sender_name
  * @property string $sender_email
  * @property string $ip_address
+ * @property string $phone
  * @property User $User
  * 
  * @method integer   getId()           Returns the current record's "id" value
@@ -25,6 +26,7 @@ Doctrine_Manager::getInstance()->bindComponent('Contact', 'doctrine');
  * @method string    getSenderName()   Returns the current record's "sender_name" value
  * @method string    getSenderEmail()  Returns the current record's "sender_email" value
  * @method string    getIpAddress()    Returns the current record's "ip_address" value
+ * @method string    getPhone()        Returns the current record's "phone" value
  * @method User      getUser()         Returns the current record's "User" value
  * @method Contact   setId()           Sets the current record's "id" value
  * @method Contact   setSubject()      Sets the current record's "subject" value
@@ -34,6 +36,7 @@ Doctrine_Manager::getInstance()->bindComponent('Contact', 'doctrine');
  * @method Contact   setSenderName()   Sets the current record's "sender_name" value
  * @method Contact   setSenderEmail()  Sets the current record's "sender_email" value
  * @method Contact   setIpAddress()    Sets the current record's "ip_address" value
+ * @method Contact   setPhone()        Sets the current record's "phone" value
  * @method Contact   setUser()         Sets the current record's "User" value
  * 
  * @package    evento
@@ -117,6 +120,15 @@ abstract class BaseContact extends sfDoctrineRecord
              'notnull' => false,
              'autoincrement' => false,
              'length' => 50,
+             ));
+        $this->hasColumn('phone', 'string', 32, array(
+             'type' => 'string',
+             'fixed' => 0,
+             'unsigned' => false,
+             'primary' => false,
+             'notnull' => false,
+             'autoincrement' => false,
+             'length' => 32,
              ));
     }
 

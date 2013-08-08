@@ -96,10 +96,13 @@ textarea.error, input.error[type="text"], input.error[type="password"], input.er
 label.error, .error_list > li{color: red;}
 
 /*footer*/
+#footer .container{position: relative;}
+#footer .soical-nav{position: absolute; right: 0; top: 0;}
 #footer-place-hoolder{height: 50px;} /*for calc #container height*/
 #footer a, #footer{color: #4d4d4d;}
-#footer{position: absolute; left:0; bottom: 0; width: 100%; background-color: #ffc229; text-align: center; display: block; width: 100%; padding:5px 0; margin-top: 15px;}
+#footer{position: absolute; left:0; bottom: 0; width: 100%; background-color: #ffc229; text-align: center; display: block; width: 100%; height:37px; padding:5px 0; margin-top: 15px;}
 #footer a{text-transform: uppercase;}
+
 
 /* Top nav
 ***********/
@@ -162,6 +165,19 @@ label.error, .error_list > li{color: red;}
 }
 
 
+/* Social nav*/
+.soical-nav{display: block; padding: 0; margin: 0; list-style: none;}
+.soical-nav li{display: block; float: right;}
+.soical-icon{display:block; width: 41px; height: 41px; background-repeat: no-repeat; background-image: url('/images/neverMiss/layout/social.png'); cursor: pointer;}
+.soical-icon-facebook{background-position: -82px -39px;}
+.soical-icon-google{background-position: -41px -39px;}
+.soical-icon-twitter{background-position: -123px -39px;}
+.soical-icon-linkdin{background-position: 0 -39px;}
+.soical-icon-facebook:hover{background-position: -82px 0;}
+.soical-icon-google:hover{background-position: -41px 0;}
+.soical-icon-twitter:hover{background-position: -123px 0;}
+.soical-icon-linkdin:hover{background-position: 0 0;}
+
 /*CSS Queries - NOT WORKING ON IE < 9!
 ****************************************/
 @media (max-width: 979px) {
@@ -180,7 +196,15 @@ label.error, .error_list > li{color: red;}
 	
 	#logo{ background-image: url(/images/neverMiss/layout/logoSmall.png);  width: 142px; height: 34px; margin-left: 15px;}
 	#user-nav .user-pic{width: 20px; height: 20px; margin-right: 5px;}
+	
+	#footer{height: auto;}
+	#footer .soical-nav{position: static; width: 170px; margin: 0 auto;}
 }
+
+@media (max-width: 767px) {
+	
+}
+
 
 
 
