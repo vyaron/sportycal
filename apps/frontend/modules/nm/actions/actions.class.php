@@ -33,14 +33,15 @@ class nmActions extends sfActions{
 	}
 	
 	public function executePaypalIpn(sfWebRequest $request){
+		$reqData = $_REQUEST;
+		
 		/*
 		$logPath = sfConfig::get('sf_log_dir').'/paypal.log';
 		$custom_logger = new sfFileLogger(new sfEventDispatcher(), array('file' => $logPath));
-		$json = json_encode($_REQUEST);
+		$json = json_encode($reqData);
 		$custom_logger->info($json);
 		*/
 		
-		$reqData = $request->getRequestParameters();
 		$isTest = (isset($reqData['test_ipn']) && $reqData['test_ipn']) ? true : false;
 		
 		if (PayPal::isIpnVerified($reqData, $isTest)){
