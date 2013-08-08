@@ -13,5 +13,5 @@ body{background-color: #f2f2f2;}
 .form-horizontal .controls .inline input{width: auto; margin-top: 0;}
 .form-horizontal .controls textarea, #copy-js-code, #message{-moz-box-sizing: border-box; -webkit-box-sizing: border-box; -ms-box-sizing: border-box; box-sizing: border-box;}
 
-#widget-bg{background: center center no-repeat url("/images/neverMiss/widget/widgets-bg.jpg"); width: 460px; height: 240px; display: block; position: relative; margin-top: 70px;}
-#desktop-widget{position: absolute; left: 50%; top: 50%; margin-left: -82px; margin-top: -23px;}
+#widget-bg{background: 0 0 no-repeat url("/images/neverMiss/widget/widgets-bg.jpg"); width: 460px; min-height: 240px; display: block; position: relative; margin-top: 70px;}
+#desktop-widget{padding-top: 100px; padding-left: 160px;}
