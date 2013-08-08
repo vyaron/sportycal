@@ -33,28 +33,35 @@ class nmActions extends sfActions{
 	}
 	
 	public function executePaypalIpn(sfWebRequest $request){
-		$postData = $request->getPostParameters();
-		$isTest = (isset($postData['test_ipn']) && $postData['test_ipn']) ? true : false;
+		/*
+		$logPath = sfConfig::get('sf_log_dir').'/paypal.log';
+		$custom_logger = new sfFileLogger(new sfEventDispatcher(), array('file' => $logPath));
+		$json = json_encode($_REQUEST);
+		$custom_logger->info($json);
+		*/
 		
-		if (PayPal::isIpnVerified($postData, $isTest)){
+		$reqData = $request->getRequestParameters();
+		$isTest = (isset($reqData['test_ipn']) && $reqData['test_ipn']) ? true : false;
+		
+		if (PayPal::isIpnVerified($reqData, $isTest)){
 			$partner = null;
-			$partnerId = PayPal::getPartnerId($postData['custom']);
+			$partnerId = PayPal::getPartnerId($reqData['custom']);
 			if ($partnerId) $partner = Doctrine::getTable('Partner')->find(array($partnerId));
 			
 			if ($partner){
 				$paypalIpn = new PaypalIpn();
 				
 				$paypalIpn->setPartnerId($partner->getId());
-				$paypalIpn->setIpnCode($postData['ipn_track_id']);
-				$paypalIpn->setTransactionCode($postData['subscr_id']);
-				$paypalIpn->setStatus($postData['payer_status']);
-				$paypalIpn->setResData(json_encode($postData));
+				$paypalIpn->setIpnCode($reqData['ipn_track_id']);
+				$paypalIpn->setTransactionCode($reqData['subscr_id']);
+				$paypalIpn->setStatus($reqData['payer_status']);
+				$paypalIpn->setResData(json_encode($reqData));
 				$paypalIpn->setIsTest($isTest);
 				$paypalIpn->setCreatedAt(date('Y-m-d h:i:s'));
 				
 				$paypalIpn->save();
 				
-				if ($paypalIpn->isCompleted()) PartnerLicence::setLicence($postData['custom'], $postData['item_number'], $postData['payment_date']);
+				if ($paypalIpn->isCompleted()) PartnerLicence::setLicence($reqData['custom'], $reqData['item_number'], $reqData['payment_date']);
 			}
 		}
 		
