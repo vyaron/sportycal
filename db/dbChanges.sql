@@ -1,3 +1,6 @@
+----------------------------DONE ON PROD-------------------------------------------------------
+ALTER TABLE `paypal_ipn` CHANGE `status` `status` VARCHAR( 128 ) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL ;
+----------------------------DONE ON PROD-------------------------------------------------------
 SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
 
