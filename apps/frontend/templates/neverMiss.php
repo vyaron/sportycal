@@ -70,16 +70,16 @@
 
 				<ul class="soical-nav clearfix">
 					<li><a title="Share on Facebook"
-						href="https://www.facebook.com/dialog/feed?app_id=149891285173878&amp;link= http://misterbit.co.il/&amp;redirect_uri=http://misterbit.co.il/"
+						href="https://www.facebook.com/dialog/feed?app_id=<?php echo sfConfig::get('app_facebook_appId');?>&amp;link=<?php echo sfConfig::get('app_domain_full');?>&amp;redirect_uri=<?php echo sfConfig::get('app_domain_full');?>"
 						target="_blank" class="soical-icon soical-icon-facebook"></a></li>
 					<li><a title="Share on Google+"
-						href="https://plus.google.com/share?url=http://misterbit.co.il/"
+						href="https://plus.google.com/share?url=<?php echo sfConfig::get('app_domain_full');?>"
 						target="_blank" class="soical-icon soical-icon-google"></a></li>
 					<li><a title="Share on Twitter"
-						href="http://twitter.com/share?url=http://misterbit.co.il/"
+						href="http://twitter.com/share?url=<?php echo sfConfig::get('app_domain_full');?>"
 						target="_blank" class="soical-icon soical-icon-twitter"></a></li>
 					<li><a title="Share on Linkedin"
-						href="http://www.linkedin.com/shareArticle?mini=true&amp;url=http://misterbit.co.il/"
+						href="http://www.linkedin.com/shareArticle?mini=true&amp;url=<?php echo sfConfig::get('app_domain_full');?>"
 						target="_blank" class="soical-icon soical-icon-linkdin"></a></li>
 				</ul>
 			</div>

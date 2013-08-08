@@ -98,7 +98,7 @@ label.error, .error_list > li{color: red;}
 /*footer*/
 #footer .container{position: relative;}
 #footer .soical-nav{position: absolute; right: 0; top: 0;}
-#footer-place-hoolder{height: 50px;} /*for calc #container height*/
+#footer-place-hoolder{height: 70px;} /*for calc #container height*/
 #footer a, #footer{color: #4d4d4d;}
 #footer{position: absolute; left:0; bottom: 0; width: 100%; background-color: #ffc229; text-align: center; display: block; width: 100%; height:37px; padding:5px 0; margin-top: 15px;}
 #footer a{text-transform: uppercase;}
