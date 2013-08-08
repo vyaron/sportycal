@@ -197,6 +197,7 @@ label.error, .error_list > li{color: red;}
 	#logo{ background-image: url(/images/neverMiss/layout/logoSmall.png);  width: 142px; height: 34px; margin-left: 15px;}
 	#user-nav .user-pic{width: 20px; height: 20px; margin-right: 5px;}
 	
+	#footer-place-hoolder{height: 90px;} 
 	#footer{height: auto;}
 	#footer .soical-nav{position: static; width: 170px; margin: 0 auto;}
 }
