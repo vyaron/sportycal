@@ -55,7 +55,7 @@ class nmActions extends sfActions{
 				$paypalIpn->setPartnerId($partner->getId());
 				$paypalIpn->setIpnCode($reqData['ipn_track_id']);
 				$paypalIpn->setTransactionCode($reqData['subscr_id']);
-				$paypalIpn->setStatus($reqData['payer_status']);
+				$paypalIpn->setStatus($reqData['payment_status']);
 				$paypalIpn->setResData(json_encode($reqData));
 				$paypalIpn->setIsTest($isTest);
 				$paypalIpn->setCreatedAt(date('Y-m-d h:i:s'));
