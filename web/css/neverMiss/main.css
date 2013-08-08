@@ -4,6 +4,7 @@ html, body{height: 100%;}
 body{/*padding-top: 80px;*/ font-size: 12px; font-family: arial}
 
 .cb{clear: both;}
+.mt0{margin-top: 0;}
 .mt10{margin-top: 10px;}
 .color-y{color: #ffc229;}
 .fs14{font-size:14px;};

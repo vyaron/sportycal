@@ -63,39 +63,6 @@ use_stylesheet('/css/neverMiss/widget.css');
 				</div>
 			</div>
 		</form>
-		
-		<hr/>
-		
-		<form class="form-horizontal">
-			<div class="control-group">
-				<label class="control-label" for="copy-js-code">Copy and paste this code<br/><span class="caption">into your website (&lt;body/&gt;):</span></label>
-				<div class="controls">
-					<textarea id="copy-js-code" spellcheck="false"><?php echo $code;?></textarea>
-				</div>
-			</div>
-		</form>
-
-		<hr/>
-		
-		<form id="email-form" method="POST">
-			<input type="hidden" name="calId" value="<?php echo $calId;?>"/>
-			<label for="language">Subscribe By Mail:<br/><span class="caption">(Sends an email with the calendars that you can send to your contacts)</span></label>
-
-			<textarea name="message" class="span6" placeholder="Type your message..."><?php echo __('Please click the calendar of your choice');?></textarea><br/>
-			
-			<div class="clearfix">
-				<input class="btn btn-small pull-right" type="submit" value="send"/>
-			</div>
-		</form>
-		
-		<hr/>
-		
-		<div class="clearfix mt15">
-			<a class="btn btn-success pull-left" href="<?php echo url_for('nm/calEdit/?id=' . $calId);?>" title="Edit your calendar">&lt;&lt;</a>
-			<a class="btn btn-success pull-right" href="<?php echo url_for('nm/calList');?>">Next &gt;&gt;</a>
-		</div>
-		
-		
 		<?php else:?>
 			<?php include_partial('nm/registerForm', array('form' => $form, 'isShowLogin' => true, 'backUrl' => url_for('nm/calEdit/?id=' . $calId), 'legend' => ' to save')); ?>
 		<?php endif;?>
@@ -103,9 +70,47 @@ use_stylesheet('/css/neverMiss/widget.css');
 	<div class="span6">
 		<div id="widget-bg">
 			<div id="desktop-widget"><?php echo sfOutputEscaperGetterDecorator::unescape($code);?></div>
-			<div id="mobile-widget"><div data-is-mobile="true" data-language="en" data-cal-id="<?php echo $calId;?>" class="nm-follow"></div></div>
 		</div>
 	</div>
+</div>
+
+<hr/>
+
+<div class="row">
+	<div class="span6">
+		<h2 class="mt0"><span class="color-y">Copy &amp; paste</span> this code</h2>
+	</div>
+	<div class="span6">
+		<p>Copy and paste this code into your website (&lt;body/&gt;):</p>
+		<textarea id="copy-js-code" spellcheck="false"><?php echo $code;?></textarea>
+	</div>
+</div>
+
+<hr/>
+
+<div class="row">
+	<div class="span6">
+		<h2 class="mt0"><span class="color-y">Subscribe</span> By Mail</h2>
+	</div>
+	<div class="span6">
+		<form id="email-form" method="POST">
+			<input type="hidden" name="calId" value="<?php echo $calId;?>"/>
+
+			<p>Sends an email with the calendars that you can send to your contacts</p>
+			<textarea id="message" name="message" class="span6" placeholder="Type your message..."><?php echo __('Please click the calendar of your choice');?></textarea><br/>
+			
+			<div class="clearfix">
+				<input class="btn btn-small pull-right" type="submit" value="send"/>
+			</div>
+		</form>
+	</div>
+</div>
+		
+<hr/>
+
+<div class="clearfix mt15">
+	<a class="btn btn-success pull-left" href="<?php echo url_for('nm/calEdit/?id=' . $calId);?>" title="Edit your calendar">&lt;&lt;</a>
+	<a class="btn btn-success pull-right" href="<?php echo url_for('nm/calList');?>">Next &gt;&gt;</a>
 </div>
 
 </div>

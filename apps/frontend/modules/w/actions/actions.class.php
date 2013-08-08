@@ -11,7 +11,9 @@ class wActions extends sfActions{
 		$this->popupId = $request->getParameter('popupId');
 		
 		$this->language = $request->getParameter('language');
-
+		$this->isRTL = ($this->language == NeverMissWidget::LANGUAGE_HEBREW) ? true : false; 
+		sfContext::getInstance()->getI18N()->setCulture($this->language);
+		
 		$this->btnStyle = $request->getParameter('btnStyle');
 		if ($this->btnStyle != 'only_icon') $this->btnStyle = null;
 		
@@ -65,20 +67,19 @@ class wActions extends sfActions{
 	
 	public function executeNeverMissPopup(sfWebRequest $request){
 		$this->calId = $request->getParameter('calId');
-		$this->popupId = $request->getParameter('popupId');
-		$this->isBubble = $request->getParameter('isBubble') === 'true' ? true : false;
-		
-		$this->bubblePos = $request->getParameter('bubblePos', 'bottom-right');
-		$this->language = $request->getParameter('language');
-		$this->isRTL = ($this->language == NeverMissWidget::LANGUAGE_HEBREW) ? true : false; 
-		
 		if (!($this->calId)){
 			echo 'ERROR!!!';
 			return sfView::NONE;
 		}
 		
-		sfContext::getInstance()->getI18N()->setCulture($this->language);
+		$this->popupId = $request->getParameter('popupId');
+		$this->isBubble = $request->getParameter('isBubble') === 'true' ? true : false;
+		$this->bubblePos = $request->getParameter('bubblePos', 'bottom-right');
 		
+		$this->language = $request->getParameter('language');
+		$this->isRTL = ($this->language == NeverMissWidget::LANGUAGE_HEBREW) ? true : false; 
+		sfContext::getInstance()->getI18N()->setCulture($this->language);
+
 		$this->setLayout(false);
 	}
 }

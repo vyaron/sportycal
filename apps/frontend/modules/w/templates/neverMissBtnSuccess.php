@@ -19,15 +19,21 @@ if ($isMobile) $target = Utils::clientIsAndroid() ? '_blank' : 'attachment';
 /*
 .never-miss-btn, .never-miss-mobile-btn, .never-miss-disabled-btn{background: url('/widgets/neverMiss/imgs/btn.png') no-repeat 0 0; display: block; height:36px; width:159px; text-decoration: none;}
 .never-miss-mobile-btn{background: url('/widgets/neverMiss/imgs/mobile-btn.png') no-repeat 0 0;}
-
 .never-miss-disabled-btn{cursor: not-allowed; opacity:0.3; filter:alpha(opacity=30);}
 */
 
-.never-miss-btn{background: url('/widgets/neverMiss/imgs/btn.png') no-repeat 0 0; display: block; height:36px; width:159px; text-decoration: none;}
+.never-miss-btn{background: url('/widgets/neverMiss/imgs/btn.png') no-repeat 0 0; display: block; height:46px; width:164px; text-decoration: none;}
 .never-miss-btn.dark{background-image:  url('/widgets/neverMiss/imgs/btn-dark.png');}
 
-.never-miss-btn.small{background-image: url('/widgets/neverMiss/imgs/btn-small.png'); width: 88px; height: 20px;}
+.never-miss-btn.small{background-image: url('/widgets/neverMiss/imgs/btn-small.png'); width: 82px; height: 23px;}
 .never-miss-btn.dark.small{background-image:  url('/widgets/neverMiss/imgs/btn-dark-small.png');}
+
+.never-miss-btn-txt, .never-miss-btn-small-txt{color: #fff;}
+.never-miss-btn-txt{font-size: 13px; line-height: 14px; margin-left: 55px; margin-top:9px;}
+.never-miss-btn-small-txt{font-size: 8px; line-height: 23px; margin-left: 26px; margin-top:0px;}
+
+.never-miss-btn.small .never-miss-btn-small-txt, .never-miss-btn .never-miss-btn-txt{display: inline-block;}
+.never-miss-btn .never-miss-btn-small-txt, .never-miss-btn.small .never-miss-btn-txt, .never-miss-btn.only_icon .never-miss-btn-txt, .never-miss-btn.only_icon .never-miss-btn-small-txt{display: none;}
 
 /*
 .never-miss-btn.mobile{background-image: url('/widgets/neverMiss/imgs/mobile-btn.png');}
@@ -37,9 +43,10 @@ if ($isMobile) $target = Utils::clientIsAndroid() ? '_blank' : 'attachment';
 .never-miss-btn.mobile.dark.small{background-image: url('/widgets/neverMiss/imgs/mobile-btn-dark-small.png');}
 */
 
-.never-miss-btn.only_icon{background-image: url('/widgets/neverMiss/imgs/only-icon.png') !important; width: 36px; height: 36px;}
-.never-miss-btn.only_icon.small{background-image: url('/widgets/neverMiss/imgs/only-icon-small.png') !important; width: 20px; height: 20px;}
-
+.never-miss-btn.only_icon{background-image: url('/widgets/neverMiss/imgs/only-icon.png'); width: 46px; height: 46px;}
+.never-miss-btn.only_icon.small{background-image: url('/widgets/neverMiss/imgs/only-icon-small.png'); width: 23px; height: 23px;}
+.never-miss-btn.only_icon.dark{background-image: url('/widgets/neverMiss/imgs/only-icon-dark.png');}
+.never-miss-btn.only_icon.dark.small{background-image: url('/widgets/neverMiss/imgs/only-icon-dark-small.png');}
 
 .never-miss-btn.disabled{cursor: not-allowed; opacity:0.3; filter:alpha(opacity=30);}
 
@@ -50,20 +57,27 @@ if ($isMobile) $target = Utils::clientIsAndroid() ? '_blank' : 'attachment';
 .upcoming-wrapper ul{margin: 0; padding: 0; list-style: none;}
 .upcoming-wrapper > ul > li{border-top: 2px solid #FFC229; padding: 10px 0;}
 .upcoming-wrapper > ul > li:FIRST-CHILD {border-top:none;}
+
+.rtl{text-align: right; direction: rtl;}
+.rtl .never-miss-btn-txt{font-size: 17px; margin-left: 0; margin-right: 12px; margin-top: 15px;}
+.rtl .never-miss-btn-small-txt{font-size: 14px; margin-left: 0; margin-right: 10px;}
 </style>
-<body>
-<a class="never-miss-btn<?php echo ($isReachedMaxSubscribers) ? ' disabled' : '';?><?php echo ($isMobile) ? ' mobile' : '';?><?php echo ($btnStyle) ? " $btnStyle" : '';?><?php echo ($btnSize) ? " $btnSize" : '';?><?php echo ($color) ? " $color" : '';?>" href="<?php echo $href;?>" target="<?php echo $target;?>"<?php echo ($isReachedMaxSubscribers) ? ' title="' .  __('Reached subscriptions limit') . '"' : '';?>>&nbsp;</a>
+<body class="<?php echo ($isRTL ? 'rtl' : '');?>">
+<a class="never-miss-btn<?php echo ($isReachedMaxSubscribers) ? ' disabled' : '';?><?php echo ($isMobile) ? ' mobile' : '';?><?php echo ($btnStyle) ? " $btnStyle" : '';?><?php echo ($btnSize) ? " $btnSize" : '';?><?php echo ($color) ? " $color" : '';?>" href="<?php echo $href;?>" target="<?php echo $target;?>"<?php echo ($isReachedMaxSubscribers) ? ' title="' .  __('Reached subscriptions limit') . '"' : '';?>>
+	<span class="never-miss-btn-small-txt"><?php echo __('DOWNLOAD');?></span>
+	<span class="never-miss-btn-txt"><?php echo __('DOWNLOAD TO CALENDAR');?></span>
+</a>
 
 <?php if (count($dayKeyOrder)):?>
 <div class="upcoming-wrapper">
-	<h4>Upcoming Events:</h4>
+	<h4><?php echo __('Upcoming Events');?>:</h4>
 	<ul>
 		<?php foreach ($dayKeyOrder as $dayKey):?>
 		<li>
 			<h5><?php echo $dayKey;?></h5>
 			<ul>
 				<?php foreach ($dayKey2Events[$dayKey] as $event):?>
-				<li><?php echo Utils::substr($event->getName(), 15);?></li>
+				<li title="<?php echo $event->getName();?>"><?php echo Utils::substr($event->getName(), 15);?></li>
 				<?php endforeach;?>
 			</ul>
 		</li>

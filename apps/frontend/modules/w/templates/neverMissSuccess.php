@@ -15,22 +15,24 @@
 	var BUBBLE_HEIGHT = 130;
 	
 	var isRTL = false;
-	var btn_width = 160;
-	var btn_height = 40;
+	var btn_width = 164;
+	var btn_height = 46;
 	var upcoming_height = 0;
 	
 	function setBtnSize(btnStyle, btnSize, upcoming){
 		if (btnSize == 'small'){
-			btn_width = (btnStyle == 'only_icon') ? 20 :88;
-			btn_height = 20;
+			btn_width = (btnStyle == 'only_icon') ? 23 :82;
+			btn_height = 23;
 		} else {
-			btn_width = (btnStyle == 'only_icon') ? 36 :160;
-			btn_height = 36;
+			btn_width = (btnStyle == 'only_icon') ? 46 :164;
+			btn_height = 46;
 		}
 		
 		if (upcoming){
 			btn_width = Math.max(btn_width, 150);
-			upcoming_height = 43 +  (upcoming * 51);
+			upcoming_height = 46 +  (upcoming * 51);
+		} else {
+			upcoming_height = 0;
 		}
 	}
 	

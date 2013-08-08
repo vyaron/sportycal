@@ -11,7 +11,7 @@ class PartnerLicence{
 	
 	private static $PLANS = array(
 		self::PLAN_A => array('prestige' => 0, 'max_subscribers' => 10, 'max_calendars' => 1, 'max_events' => 10, 'name' => 'Free Account', 'price' => 0, 'desc' => ''),
-		self::PLAN_B => array('prestige' => 1, 'max_subscribers' => 500, 'max_calendars' => 3, 'max_events' => 100, 'name' => 'Starters Account', 'price' => 6.9, 'desc' => ''),
+		self::PLAN_B => array('prestige' => 1, 'max_subscribers' => 500, 'max_calendars' => 3, 'max_events' => 100, 'name' => 'Starters Account', 'price' => 7, 'desc' => ''),
 		self::PLAN_C => array('prestige' => 2, 'max_subscribers' => 5000, 'max_calendars' => 10, 'max_events' => self::UNLIMITED, 'name' => 'Business Account', 'price' => 49, 'desc' => ''),
 		self::PLAN_D => array('prestige' => 3, 'max_subscribers' => 50000, 'max_calendars' => self::UNLIMITED, 'max_events' => self::UNLIMITED, 'name' => 'Pro Account', 'price' => 390, 'desc' => ''),
 	);

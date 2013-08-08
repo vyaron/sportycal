@@ -498,7 +498,9 @@ class nmActions extends sfActions{
 		
 		if ($user) {
 			$cal->setAdoptive($user);
-			if ($user->getPartner()->isReachedMaxCalendars()) $this->redirect('/nm/calList/');
+			
+			//Set deleted at if partner reached max calendars
+			if ($cal->getDeletedAt()) $this->redirect('/nm/calList/');
 		} else {
 			$this->registerForm($request, $cal);
 		}
