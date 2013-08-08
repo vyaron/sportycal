@@ -250,7 +250,7 @@ class nmActions extends sfActions{
 		if ($cal && $cal->isOwner($user)){
 			$partner = $user->getPartner();
 			if ($partner->isReachedMaxCalendars()){
-				$res['msg'] = 'Calendar not restored - reached max calendars!';
+				$res['msg'] = 'Calendar not restored - reached max calendars';
 			} else {
 				$cal->setDeletedAt(null);
 				$cal->save();
