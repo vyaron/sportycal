@@ -81,7 +81,7 @@ use_stylesheet('/css/neverMiss/widget.css');
 		<h2 class="mt0"><span class="color-y">Copy &amp; paste</span> this code</h2>
 	</div>
 	<div class="span6">
-		<p>Copy and paste this code into your website (&lt;body/&gt;):</p>
+		<p>Copy and paste this code into your website:</p>
 		<textarea id="copy-js-code" spellcheck="false"><?php echo $code;?></textarea>
 	</div>
 </div>
@@ -96,7 +96,7 @@ use_stylesheet('/css/neverMiss/widget.css');
 		<form id="email-form" method="POST">
 			<input type="hidden" name="calId" value="<?php echo $calId;?>"/>
 
-			<p>Sends an email with the calendars that you can send to your contacts</p>
+			<p>Sends an email with the calendars that you can send to your users</p>
 			<textarea id="message" name="message" class="span6" placeholder="Type your message..."><?php echo __('Please click the calendar of your choice');?></textarea><br/>
 			
 			<div class="clearfix">

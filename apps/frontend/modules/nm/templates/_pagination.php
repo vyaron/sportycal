@@ -1,8 +1,9 @@
 <?php 
 //$list = array('total' => 100, 'limit' => 10, 'offset' => 9);
 
-$max = 4;
+$onePage = ($list['total'] <= $list['limit']) ? true : false;
 
+$max = 4;
 $maxOffset = max(floor($list['total'] / $list['limit']) -1, 0);
 if ($list['total'] > $list['limit'] && ($list['total'] % $list['limit'] != 0)) $maxOffset++;
 
@@ -11,6 +12,7 @@ $end = min($start + $max, $maxOffset + 2);
 
 //echo "Start: $start, End: $end, MaxOffset: $maxOffset" . '<br/>';
 ?>
+<?php if (!$onePage):?>
 <p class="pull-left">page <?php echo $list['offset'] + 1;?> of <?php echo $maxOffset + 1;?></p>
 <div class="pagination pagination-centered">
 	<ul>
@@ -21,3 +23,4 @@ $end = min($start + $max, $maxOffset + 2);
 		<?php endfor;?>
 	</ul>
 </div>
+<?php endif;?>

@@ -216,7 +216,7 @@ function loadCalendar(){
 	scheduler.form_blocks.text = {	
 		render : function(sns){
 			var height=(sns.height||"130")+"px";
-			return "<div class='dhx_cal_ltext " + sns.name +"' style='height:"+height+";'><input" + (sns.placeholder ? " placeholder='" + sns.placeholder + "'" : "") + "/></div>";
+			return "<div class='dhx_cal_ltext " + sns.name +"' style='height:"+height+";'><input type='text'" + (sns.placeholder ? " placeholder='" + sns.placeholder + "'" : "") + "/></div>";
 		},
 		set_value : scheduler.form_blocks.textarea.set_value,
 		get_value : scheduler.form_blocks.textarea.get_value,
