@@ -499,15 +499,6 @@ class nmActions extends sfActions{
 				UserUtils::logUserIn($user);
 				
 				if ($user->getType() != User::TYPE_PARTNER || $user->getType() != User::TYPE_MASTER) $partner = $user->createPartner($rootName, $website);
-				
-				$refererUrl = UserUtils::getRefererUrl();
-				if ($refererUrl) {
-					UserUtils::setRefererUrl(null);
-					$this->redirect($refererUrl);
-				} else {
-					if (sfConfig::get('app_domain_isNeverMiss')) $this->redirect('/nm/calList');
-					else $this->redirect('@homepage');
-				}
 			}
 		}
 	}
@@ -519,6 +510,18 @@ class nmActions extends sfActions{
 		
 		if (!$user && $request->isMethod('post') && $registerData = $request->getParameter('register')) {
 			$this->registerForm($registerData);
+		}
+		
+		$user = UserUtils::getLoggedIn();
+		if ($user){
+			$refererUrl = UserUtils::getRefererUrl();
+			if ($refererUrl) {
+				UserUtils::setRefererUrl(null);
+				$this->redirect($refererUrl);
+			} else {
+				if (sfConfig::get('app_domain_isNeverMiss')) $this->redirect('/nm/calList');
+				else $this->redirect('@homepage');
+			}
 		}
 	}
 	
