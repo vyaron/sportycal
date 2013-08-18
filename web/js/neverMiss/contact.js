@@ -8,12 +8,16 @@ jQuery(document).ready(function(){
 		
 		var formEl = jQuery(this);
 		if (formEl.valid()){
+			formEl.addClass('loading');
 			jQuery.ajax({
 				url : '/frontend_dev.php/nm/contact/?d=' + (new Date()).getTime(),
 				type : 'POST',
 				dataType : 'json',
 				data : formEl.serializeArray()
-			}).done(setGlobalAlert);
+			}).done(function(res){
+				formEl.removeClass('loading');
+				setGlobalAlert(res);
+			});
 		}
 	});
 });

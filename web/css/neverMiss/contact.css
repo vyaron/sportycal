@@ -3,6 +3,11 @@
 #contact-info{margin-left: 20px;}
 #contact-info ul li{margin: 5px 0;}
 
+.form, .loading .loading-img{display:block;}
+.loading-img, .loading .form{display: none;}
+.loading-img{height: 150px; background: center center no-repeat url('/images/neverMiss/layout/ajax-loader.gif');}
+
+
 /*CSS Queries - NOT WORKING ON IE < 9!
 ****************************************/
 @media (max-width: 540px) {
