@@ -10,7 +10,7 @@
 	</li>
 	<?php if ($user):?>
 	<li <?php echo has_slot('calList') ? ' class="active"' : '';?>>
-		<a href="<?php echo url_for('nm/calList') ?>">Calendars</a>
+		<a href="<?php echo url_for('nm/calList') ?>">My Calendars</a>
 	</li>
 	<?php endif;?>
 </ul>

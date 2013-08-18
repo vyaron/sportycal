@@ -93,62 +93,57 @@ class partnerActions extends sfActions
   }
 
   
-  protected function processLoginForm(sfWebRequest $request, sfForm $form, $isAjax = false)
+  protected function processLoginForm($data)
   {
-  	$res = array('success' => false, 'msg' => __('Incorrect Email/Password Combination.'));
-  	
-    $form->bind($request->getParameter('user'));
-    if ($form->isValid())
-    {
-    	
-    	$userValues = $form->getValues();
+  	if ($data){
+  		$this->form->bind($data);
+  		
+  		if ($this->form->isValid()){
+  			 
+  			$userValues = $this->form->getValues();
+  		
+  			$user = UserTable::getByEmail($userValues["email"]);
+  			// TODO: encryption
+  			if ($user && $user->getPass() === $userValues["password"]) {
+  					
+  				// Create the login session
+  				UserUtils::logUserIn($user);
+  					
+  				$refererUrl = UserUtils::getRefererUrl();
+  				if ($refererUrl) {
+  					UserUtils::setRefererUrl(null);
+  					$this->redirect($refererUrl);
+  				} else {
+  					if (sfConfig::get('app_domain_isNeverMiss')) $this->redirect('/nm/calList');
+  					else $this->redirect('@homepage');
+  				}
 
-  		$user = UserTable::getByEmail($userValues["email"]);
-  		// TODO: encryption
-        if ($user && $user->getPass() === $userValues["password"]) {
-        	
-			// Create the login session
-			UserUtils::logUserIn($user);
-			
-			if ($isAjax){
-				$res['success'] = true;
-				$res['msg'] = __('Log in success');
-				$res['html'] = $this->getPartial('global/topNav', array('user' => $user));
-			} else {
-				$refererUrl = UserUtils::getRefererUrl();
-				if ($refererUrl) {
-					UserUtils::setRefererUrl(null);
-					$this->redirect($refererUrl);
-				} else {
-					if (sfConfig::get('app_domain_isNeverMiss')) $this->redirect('/nm/calList');
-					else $this->redirect('@homepage');
-				}
-			}
-        }
-    }
-    
-    if ($isAjax) echo json_encode($res);
+  			} else {
+  				$emailValidator = $this->form->getValidator('email');
+  				$this->form->getErrorSchema()->addError(new sfValidatorError(new sfValidatorString(), 'Incorrect Email/Password Combination'), 'invalid');
+  			}
+  		}
+
+  	}
   }
   
   
   public function executeLogin(sfWebRequest $request){
-  	$isAjax = $this->getRequest()->isXmlHttpRequest();
-
   	$this->getResponse()->setSlot('login', true);
   	
   	if (sfConfig::get('app_domain_isNeverMiss')){
 	  	$url = $this->getRequest()->getReferer();
-	  	if (strpos($url, sfConfig::get('app_domain_full')) === 0 && !strpos($url, '/partner/login') && !strpos($url, '/nm/index')) UserUtils::setRefererUrl($url);
+	  	if (strpos($url, sfConfig::get('app_domain_full')) === 0 
+	  			&& !strpos($url, '/partner/login')
+	  			&& !strpos($url, '/nm/register')
+	  			&& !strpos($url, '/nm/index')) UserUtils::setRefererUrl($url);
   	}
   	
 	$this->form = new LoginForm();
+
+  	if ($request->isMethod('post') && $userData = $request->getParameter('user')) $this->processLoginForm($userData);
   	
-  	if ($request->isMethod('post')) {
-		$this->processLoginForm($request, $this->form, $isAjax);
-  	}
-  	
-  	if ($isAjax) return sfView::NONE;	
-  	else if (sfConfig::get('app_domain_isNeverMiss')) $this->setTemplate('login', 'nm');
+  	if (sfConfig::get('app_domain_isNeverMiss')) $this->setTemplate('login', 'nm');
   }
   
 

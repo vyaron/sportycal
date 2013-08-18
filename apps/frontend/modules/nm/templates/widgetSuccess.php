@@ -117,4 +117,5 @@ use_stylesheet('/css/neverMiss/widget.css');
 <?php 
 use_javascript('/bundle/jquery-plugin-validation/js/jquery.validate.min.js');
 use_javascript('/js/neverMiss/widget.js');
+use_javascript('/js/neverMiss/register.js');
 ?>

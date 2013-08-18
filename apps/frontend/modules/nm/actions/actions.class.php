@@ -75,13 +75,6 @@ class nmActions extends sfActions{
 		if ($nlo) $this->setLayout(false);
 	}
 	
-	public function executeLoginAndRegister(sfWebRequest $request){
-		$this->code = $request->getParameter('c');
-	
-		$this->loginForm = new LoginForm();
-		$this->registerForm = new NmRegisterForm();
-	}
-	
 	public function executePaypalIpn(sfWebRequest $request){
 		$reqData = $_REQUEST;
 		
@@ -138,7 +131,8 @@ class nmActions extends sfActions{
 		
 		$planCode = $request->getParameter('c');
 		if (!$planCode || !$user || !$partner = $user->getPartner()) {
-			$url = '/nm/loginAndRegister/c/' . $planCode;
+			UserUtils::setRefererUrl('/nm/checkout/c/' . $planCode);
+			$url = '/nm/register';
 		} else {
 			$currLicence = $partner->getLicence();
 			$newLicence = new PartnerLicence($planCode, date('Y-m-d H:i:s', strtotime('+1 month +1 day')));
@@ -483,13 +477,10 @@ class nmActions extends sfActions{
 		}
 	}
 	
-	private function registerForm(sfWebRequest $request, $cal = null){
-		$isAjax = $this->getRequest()->isXmlHttpRequest();
-		$res = array('success' => false, 'msg' => __('Rgister field!'));
-		
-		if ($request->isMethod('post')){
-			$this->form->bind($request->getParameter('register'));
-				
+	private function registerForm($data){
+		if ($data){
+			$this->form->bind($data);
+	
 			if ($this->form->isValid()){
 				$now = date('Y-m-d H:i:s');
 				$rootName = $this->form->getValue('company_name') ? $this->form->getValue('company_name') : $this->form->getValue('full_name');
@@ -506,28 +497,29 @@ class nmActions extends sfActions{
 				$user->save();
 					
 				UserUtils::logUserIn($user);
-
-				if ($cal) $cal->setAdoptive($user, $rootName, $website);
-				else if ($user->getType() != User::TYPE_PARTNER || $user->getType() != User::TYPE_MASTER) $partner = $user->createPartner($rootName, $website);
 				
-				if ($isAjax){
-					$res['success'] = true;
-					$res['msg'] = 'Register success';
-					$res['html'] = $this->getPartial('global/topNav', array('user' => $user));
+				if ($user->getType() != User::TYPE_PARTNER || $user->getType() != User::TYPE_MASTER) $partner = $user->createPartner($rootName, $website);
+				
+				$refererUrl = UserUtils::getRefererUrl();
+				if ($refererUrl) {
+					UserUtils::setRefererUrl(null);
+					$this->redirect($refererUrl);
+				} else {
+					if (sfConfig::get('app_domain_isNeverMiss')) $this->redirect('/nm/calList');
+					else $this->redirect('@homepage');
 				}
 			}
-		}
-		
-		if ($isAjax){
-			echo json_encode($res);
 		}
 	}
 	
 	public function executeRegister(sfWebRequest $request){
-		$this->forward404Unless($this->getRequest()->isXmlHttpRequest());
+		$user = UserUtils::getLoggedIn();
+
 		$this->form = new NmRegisterForm();
-		$this->registerForm($request);
-		return sfView::NONE;
+		
+		if (!$user && $request->isMethod('post') && $registerData = $request->getParameter('register')) {
+			$this->registerForm($registerData);
+		}
 	}
 	
 	public function executeWidget(sfWebRequest $request){
@@ -546,16 +538,25 @@ class nmActions extends sfActions{
 		
 		$this->form = new NmRegisterForm();
 		
+		$rootName = null;
+		$website = null;
+		if (!$user && $request->isMethod('post') && $registerData = $request->getParameter('register')) {
+			$this->registerForm($registerData);
+			
+			$rootName = $registerData['company_name'] ? $registerData['company_name'] : $registerData['full_name'];
+			$website = $registerData['website'];
+			
+			$user = UserUtils::getLoggedIn();
+		}
+
 		if ($user) {
-			$cal->setAdoptive($user);
+			$cal->setAdoptive($user, $rootName, $website);
 			
 			//Set deleted at if partner reached max calendars
 			if ($cal->getDeletedAt()) $this->redirect('/nm/calList/');
-		} else {
-			$this->registerForm($request, $cal);
 		}
 
-		$this->user = UserUtils::getLoggedIn();
+		$this->user = $user;
 	}
 	
 	public function executeSubscribeByMail(sfWebRequest $request){

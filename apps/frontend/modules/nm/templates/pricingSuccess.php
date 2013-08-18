@@ -3,7 +3,9 @@ use_stylesheet('http://fonts.googleapis.com/css?family=PT+Sans+Narrow:400,700');
 use_stylesheet('/css/neverMiss/pricing.css');
 ?>
 
-<h2 class="text-center"><span class="color-y">Upgrade</span> your account:</h2>
+<div class="container">
+	<h2><span class="color-y">Upgrade</span> your account</h2>
+</div>
 
 <div id="plan-boxs">
 	<?php foreach (PartnerLicence::getPlans() as $key => $plan):?>
@@ -12,7 +14,7 @@ use_stylesheet('/css/neverMiss/pricing.css');
 		<?php if ($plan['max_subscribers'] == PartnerLicence::UNLIMITED):?>
 		<div class="sub-wrapper"><strong><span class="big">Unlimited</span><br/>subscribers</strong></div>
 		<?php else:?>
-		<div class="sub-wrapper">up to <strong><span class="big"><?php echo $plan['max_subscribers'];?></span><br/>subscribers</strong></div>
+		<div class="sub-wrapper">up to <strong><span class="big"><?php echo number_format($plan['max_subscribers']);?></span><br/>subscribers</strong></div>
 		<?php endif;?>
 		
 		<div class="desc-wrapper">
@@ -26,7 +28,7 @@ use_stylesheet('/css/neverMiss/pricing.css');
 			<?php if ($plan['max_events'] == PartnerLicence::UNLIMITED):?>
 			<p>unlimited events</p>
 			<?php else:?>
-			<p><?php echo $plan['max_events'];?> events</p>
+			<p><?php echo number_format($plan['max_events']);?> events</p>
 			<?php endif;?>
 		</div>
 		

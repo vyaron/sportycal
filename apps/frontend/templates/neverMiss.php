@@ -106,6 +106,8 @@
 	
 	<div id="fb-root"></div>
 	<script type="text/javascript" src="/bundle/jquery/js/jquery-1.10.1.min.js"></script>
+	<script type="text/javascript" src="/bundle/jquery-placeholder/jquery.placeholder.js"></script>
+	
 	<script type="text/javascript" src="/js/neverMiss/basic.js"></script>
 	<script type="text/javascript" src="/bundle/bootstrap/js/bootstrap.min.js"></script>
 	<?php include_javascripts()?>
@@ -144,6 +146,10 @@
 
 			  ga('create', 'UA-42665653-1', 'inevermiss.net');
 			  ga('send', 'pageview');
+
+		jQuery(document).ready(function(){
+			jQuery('input, textarea').placeholder();
+		});	  
 	</script>
   </body>
 </html>

@@ -4,71 +4,37 @@ $isShowLogin = Utils::iff($isShowLogin, false);
 $legend = Utils::iff($legend, false);
 ?>
 
-<h2><span class="color-y">Register</span> <?php echo $legend ? $legend : '';?>:</h2>
 
-<?php if ($isShowLogin):?>
-<div id="register-login-wrapper" class="clearfix">
-	<a class="fb-login pull-left" href="#"><span>Log In</span></a>
-	<a class="register-login-btn pull-left" href="<?php echo url_for('partner/login');?>">Login</a>
+<div class="form-box">
+	<h2>
+		<span class="content"><strong>Sign Up</strong> <?php echo $legend ? $legend : '';?></span>
+	</h2>
+	
+	<span class="content">
+		<button class="fb-login"><span>Sign up with facebook</span></button>
+	
+		<hr/>
+		
+		<form id="register-form" method="POST">
+			<?php echo $form['_csrf_token']->render();?>
+			
+			<?php echo $form['full_name']->render(array('placeholder' => 'Full name', 'required'=>'required', 'minlength'=>'3', 'class' => 'block'));?>
+			<?php echo $form['email']->render(array('placeholder' => 'Email Address', 'required'=>'required', 'type'=>'email', 'class' => 'block'));?>
+			<?php echo $form['password']->render(array('placeholder' => 'Password', 'required'=>'required', 'minlength'=>'7', 'class' => 'block'));?>
+			<?php echo $form['company_name']->render(array('placeholder' => 'Companey name', 'required'=>'required', 'class' => 'block'));?>
+			<?php echo $form['website']->render(array('placeholder' => 'website: http://www.site.com', 'class' => 'block'));?>
+			
+			<p class="help-block">
+				Already a member? <a href="<?php echo url_for('/partner/login');?>">Log in</a><br/>
+				By signing up, you agree to our <a href="<?php echo url_for('/nm/terms/?nlo=1');?>" target="_blank">Terms of Use</a>
+			</p>
+			
+			<div class="actions clearfix">
+				<?php if ($backUrl):?>
+				<a class="btn btn-success pull-left" href="<?php echo $backUrl;?>" title="Edit your calendar">&lt;&lt;</a>
+				<?php endif;?>
+				<input type="submit" value="Sign up" class="btn btn-success pull-right"/>
+			</div>
+		</form>
+	</span>
 </div>
-<?php endif;?>
-
-<form id="register-form" class="form-horizontal" method="POST">
-	<?php echo $form['_csrf_token']->render();?>
-
-	<div class="control-group">
-		<?php echo $form['full_name']->renderLabel(null, array('class' => 'control-label'));?>
-		<div class="controls">
-			<?php echo $form['full_name']->render(array('placeholder' => 'Enter your full name', 'required'=>'required', 'minlength'=>'3'));?>
-		</div>
-	</div>
-	<div class="control-group">
-		<?php echo $form['email']->renderLabel(null, array('class' => 'control-label'));?>
-		<div class="controls">
-			<?php echo $form['email']->render(array('placeholder' => 'example@site.com', 'required'=>'required', 'type'=>'email'));?>
-		</div>
-	</div>
-	<div class="control-group">
-		<?php echo $form['password']->renderLabel(null, array('class' => 'control-label'));?>
-		<div class="controls">
-			<?php echo $form['password']->render(array('placeholder' => 'Enter password', 'required'=>'required', 'minlength'=>'7'));?>
-		</div>
-	</div>
-	<div class="control-group">
-		<?php echo $form['confirm_password']->renderLabel(null, array('class' => 'control-label'));?>
-		<div class="controls">
-			<?php echo $form['confirm_password']->render(array('placeholder' => 'ReEnter password'));?>
-		</div>
-	</div>
-	<div class="control-group">
-		<?php echo $form['company_name']->renderLabel(null, array('class' => 'control-label'));?>
-		<div class="controls">
-			<?php echo $form['company_name']->render(array('placeholder' => 'Enter companey name', 'required'=>'required'));?>
-		</div>
-	</div>
-	<div class="control-group">
-		<?php echo $form['website']->renderLabel(null, array('class' => 'control-label'));?>
-		<div class="controls">
-			<?php echo $form['website']->render(array('placeholder' => 'http://www.site.com'));?>
-		</div>
-	</div>
-	<div class="control-group">
-		<div class="control-label">&nbsp;</div>
-		<div class="controls">
-			<label class="inline">
-				<input type="checkbox" name="register[agree]" required="required"/>&nbsp;
-				<span><?php echo __('I agree');?></span>&nbsp;
-				<a target="_blank" href="/nm/terms/?nlo=1"><?php echo __('Terms & Conditions');?></a>
-			</label>
-		</div>
-	</div>
-	
-	<hr/>
-	
-	<div class="clearfix">
-		<?php if ($backUrl):?>
-		<a class="btn btn-success pull-left" href="<?php echo $backUrl;?>" title="Edit your calendar">&lt;&lt;</a>
-		<?php endif;?>
-		<input type="submit" value="Register" class="btn btn-success pull-right"/>
-	</div>
-</form>

@@ -1,0 +1,10 @@
+body{background: center center no-repeat url('/images/neverMiss/login/bg.jpg'); background-size: cover;}
+#form-box-center{width: 520px; margin: 0 auto; margin-top: 90px;}
+/*CSS Queries - NOT WORKING ON IE < 9!
+****************************************/
+@media (max-width: 979px) {
+	#form-box-center{margin-top: 20px;}
+}
+@media (max-width: 550px) {
+	#form-box-center{width: auto;}
+}

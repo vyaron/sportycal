@@ -54,13 +54,29 @@ h2 .btn.btn-success{font-weight: normal; margin-top: 4px;}
 .btn-small:hover, .btn-small:focus, .btn-small:active, .btn-small.active, .btn-small.disabled, .btn-small[disabled]{background: #ffbf20;}
 
 /*Inputs*/
+.placeholder{color: #aaa !important;}
 textarea, input[type="text"], input[type="password"], input[type="datetime"], input[type="datetime-local"], input[type="date"], input[type="month"], input[type="time"], input[type="week"], input[type="number"], input[type="email"], input[type="url"], input[type="search"], input[type="tel"], input[type="color"], .uneditable-input, select{border-color: #ffc229; -webkit-border-radius: 0px; -moz-border-radius: 0px; border-radius: 0px;}
 
 textarea:focus, input[type="text"]:focus, input[type="password"]:focus, input[type="datetime"]:focus, input[type="datetime-local"]:focus, input[type="date"]:focus, input[type="month"]:focus, input[type="time"]:focus, input[type="week"]:focus, input[type="number"]:focus, input[type="email"]:focus, input[type="url"]:focus, input[type="search"]:focus, input[type="tel"]:focus, input[type="color"]:focus, .uneditable-input:focus, input:focus:invalid, textarea:focus:invalid, select:focus:invalid,input:focus:invalid:focus, textarea:focus:invalid:focus, select:focus:invalid:focus{border-color: rgba(255, 194, 41, 0.8); box-shadow:0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 8px rgba(255, 194, 41, 0.6);}
 input:focus:invalid, textarea:focus:invalid, select:focus:invalid,input:focus:invalid:focus, textarea:focus:invalid:focus, select:focus:invalid:focus{color: inherit;}
 textarea.error, input.error[type="text"], input.error[type="password"], input.error[type="datetime"], input.error[type="datetime-local"], input.error[type="date"], input.error[type="month"], input.error[type="time"], input.error[type="week"], input.error[type="number"], input.error[type="email"], input.error[type="url"], input.error[type="search"], input.error[type="tel"], input.error[type="color"]{border-color: #E9322D !important; box-shadow:0 0 3px red !important;}
 
+/*Form box*/
+.form-box{box-shadow: 2px 2px 5px #000; padding-bottom: 35px; font-family: signikaregular; border: 1px solid #ccc; background-color: #f2f2f2;}
+.form-box .content{width: 300px; margin: 0 auto; display: block;}
+.form-box .actions{margin-top: 20px;}
+.form-box h2{background-color: #fbbb2c; font-weight: normal; font-size: 38px; height: 73px; line-height: 73px; margin: 0; text-align: center;}
+.form-box input.block{width: 100%; display: block; margin-bottom: 10px; -moz-box-sizing: border-box; -webkit-box-sizing: border-box; -ms-box-sizing: border-box; box-sizing: border-box; font-size: 16px; height: 33px; line-height: 33px; padding: 0 14px;}
+.form-box h2 strong{color: #fff; font-weight: bold;}
+.form-box .help-block a, .form-box .help-block{color: #666; font-size: 14px;}
+.form-box .help-block a{text-decoration: underline;}
+.form-box .fb-login{display:block; margin:0 auto; margin-top: 20px; margin-bottom: 15px; text-align: center;}
+.form-box hr{border-top: 1px solid #cbcbcb; border-bottom: 1px solid #fff;}
+
 /*facebook login*/
+.fb-login{background-color: #637bad; border: 1px solid #fff; -webkit-border-radius: 20px; -moz-border-radius: 20px; border-radius: 20px; box-shadow: 2px 2px 7px #000; color: #fff; font-size: 21px; padding: 0 20px;}
+.fb-login span{background: 0 center no-repeat url('/images/neverMiss/layout/fb-login.png'); padding-left: 35px; height: 52px; line-height: 52px; display: inline-block;}
+/*
 .fb-login {
     width: auto;
     background: url("/images/facebook/fIconBg.png") repeat-x scroll right top transparent;
@@ -82,7 +98,7 @@ textarea.error, input.error[type="text"], input.error[type="password"], input.er
     padding: 0 5px 0 30px;
     display: inline-block;
 }
-
+*/
 
 
 #container{position: relative; min-height: 100%;}

@@ -14,7 +14,7 @@
 	</div>
 <?php endif;?>
 
-<h2>Calendars <a id="plan-box" class="<?php echo ($licenece->isEnded() ? 'ended' : '');?>" href="<?php echo url_for('/nm/pricing')?>" title="Max subscribers <?php echo $licenece->getMaxSubscribers();?>">[*] <?php echo $licenece->getName();?></a></h2>
+<h2>My Calendars <a id="plan-box" class="<?php echo ($licenece->isEnded() ? 'ended' : '');?>" href="<?php echo url_for('/nm/pricing')?>" title="Max subscribers <?php echo $licenece->getMaxSubscribers();?>">[*] <?php echo $licenece->getName();?></a></h2>
 
 <?php if (!$calList['total']): ?>
 <p>No calendars!</p>
