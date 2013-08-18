@@ -1,8 +1,12 @@
-#contact-form{width: 250px; margin: 0 auto;}
-
+#contact-box{margin: 0 auto; width: 520px;}
+#contact-form, #contact-info{width: 250px; float: left;}
+#contact-info{margin-left: 20px;}
+#contact-info ul li{margin: 5px 0;}
 
 /*CSS Queries - NOT WORKING ON IE < 9!
 ****************************************/
-@media (max-width: 480px) {
-	#contact-form{width: auto;}
+@media (max-width: 540px) {
+	#contact-box{width: auto;}
+	#contact-form{width: auto; float: none;}
+	#contact-info{margin: 0;}
 }

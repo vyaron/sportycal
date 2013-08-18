@@ -14,7 +14,7 @@ body{background-color: #f2f2f2;}
 #cal-form table td input, #cal-form table td select{width: 100%; -webkit-box-sizing: border-box; -moz-box-sizing: border-box; box-sizing: border-box; height: 25px; line-height: 25px; display: block; font-size: 12px;}
 #cal-form table td input{padding:0 6px;}
 
-#events-wrapper{min-height: 480px;}
+#events-wrapper{min-height: 530px;}
 #events-wrapper h3{border-bottom: 5px solid #ffc229; font-size: 22px; font-weight: normal; text-transform: uppercase;}
 #events-wrapper ul{display: block; margin: 0; padding: 0; list-style: none;}
 #events-wrapper ul li a{color: #333;}

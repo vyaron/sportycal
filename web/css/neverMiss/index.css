@@ -11,7 +11,7 @@
 #banner .container{position: relative;}
 #banner-content{margin-top: 90px;}
 
-#banner-col-left{float: left; width: 550px;}
+#banner-col-left{float: left; width: 540px;}
 #banner-col-right{float: right;}
 
 #banner-col-left h1{font-size: 44px; line-height:50px; font-weight: bold; color:#ffc229; text-transform: uppercase; text-shadow:1px 1px 2px #1a120c; margin-top:0px; margin-bottom: 34px;}
@@ -38,14 +38,14 @@
 /*down cal link section*/
 #down-cal-link{font-size: 24px; color: #333; text-decoration: none; margin-top: 25px; margin-bottom: 125px; display: inline-block;}
 
-#player-wrapper{width: 355px; height: 217px;}
+#player-wrapper{width: 385px; height: 240px;}
 
 /*CSS Queries - NOT WORKING ON IE < 9!
 ****************************************/
 @media (max-width: 979px) {
 	#banner-col-left h1{font-size: 28px; line-height:32px;}
 	#banner-col-left p{font-size: 21px; line-height: 25px;}
-	#player-wrapper{width: 290px; height: 177px;}
+	#player-wrapper{width: 315px; height: 177px;}
 	.box{text-align: center;}
 	.box h3{font-size: 25px; white-space: nowrap;}
 }
