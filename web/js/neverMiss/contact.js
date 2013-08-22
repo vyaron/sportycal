@@ -10,7 +10,7 @@ jQuery(document).ready(function(){
 		if (formEl.valid()){
 			formEl.addClass('loading');
 			jQuery.ajax({
-				url : '/frontend_dev.php/nm/contact/?d=' + (new Date()).getTime(),
+				url : '/nm/contact/?d=' + (new Date()).getTime(),
 				type : 'POST',
 				dataType : 'json',
 				data : formEl.serializeArray()

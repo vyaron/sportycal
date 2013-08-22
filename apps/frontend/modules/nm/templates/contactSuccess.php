@@ -5,19 +5,35 @@
 	<div class="stamp-box-top"></div>
 	<div class="stamp-box-center">
 		<div class="stamp-box-content">
+			<div class="hidden-phone">
+				<div class="row-fluid">
+					<div class="span6">
+						<h2><span class="color-y">Contact Us</span></h2>
+					</div>
+					<div class="span6">
+						<h2>MAILING ADDRESS</h2>
+					</div>
+				</div>
+				
+				<hr/>
+			</div>
+			
 			<div class="row-fluid">
+				
 				<div class="span6">
-					<h2><span class="color-y">Contact Us</span></h2>
+					<div class="visible-phone">
+						<h2><span class="color-y">Contact Us</span></h2>
+						<hr/>
+					</div>
 					
-					<hr/>
 					
 					<form id="contact-form" method="POST">
 						<div class="form">
 							<?php echo $form['_csrf_token']->render();?>
-							<input class="input-block-level" type="text" minlength="3" required="required" placeholder="Enter your full name" name="contact[sender_name]"/>
-							<input class="input-block-level" type="email" minlength="3" required="required" placeholder="name@domain.com" name="contact[sender_email]"/>
-							<input class="input-block-level" type="tel" minlength="7" placeholder="972-3-1234567" name="contact[phone]"/>
-							<textarea class="input-block-level" rows="3" cols="3" placeholder="Enter your message here..." name="contact[message]" required="required"></textarea>
+							<input class="input-block-level" type="text" minlength="3" required="required" placeholder="Your Name" name="contact[sender_name]"/>
+							<input class="input-block-level" type="email" minlength="3" required="required" placeholder="E-mail" name="contact[sender_email]"/>
+							<input class="input-block-level" type="tel" minlength="7" placeholder="Phone" name="contact[phone]"/>
+							<textarea class="input-block-level" rows="3" cols="3" placeholder="Message" name="contact[message]" required="required"></textarea>
 							
 							<div class="clearfix mt10">
 								<input type="submit" class="btn btn-success pull-right" value="Send"/>
@@ -27,9 +43,10 @@
 					</form>
 				</div>
 				<div class="span6">
-					<h2>MAILING ADDRESS</h2>
-					
-					<hr/>
+					<div class="visible-phone">
+						<h2>MAILING ADDRESS</h2>
+						<hr/>
+					</div>
 					
 					<p>
 					<a href="mailto://info@jivygroup.com">info@jivygroup.com</a>

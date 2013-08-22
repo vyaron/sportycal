@@ -59,7 +59,9 @@ class nmActions extends sfActions{
 				$mail->MsgHTML(nl2br($txt));
 				$mail->AltBody = $txt;
 				
-				if ($mail->Send()) $res = array('success' => true, 'msg' => 'Message send');
+				$mail->Send();
+					
+				$res = array('success' => true, 'msg' => 'Thank you for your contact');
 			}
 			
 			echo json_encode($res);

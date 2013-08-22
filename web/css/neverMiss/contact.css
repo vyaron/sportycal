@@ -1,4 +1,4 @@
-body{background: 0 0 #000 no-repeat url('/images/neverMiss/login/bg.jpg'); background-size: cover;}
+#container{background: 0 0 #000 no-repeat url('/images/neverMiss/login/bg.jpg'); background-size: cover;}
 
 
 
@@ -13,8 +13,9 @@ body{background: 0 0 #000 no-repeat url('/images/neverMiss/login/bg.jpg'); backg
 .stamp-box-content h2{font-weight: normal; margin-bottom: 15px;}
 .stamp-box-content h2 .color-y{font-weight: bold;}
 .stamp-box-content hr{margin-top: 15px; margin-bottom: 40px;}
+.stamp-box-content .hidden-phone hr{margin-top: 0;}
 .stamp-box-content p, .stamp-box-content address{font-size: 16px; line-height: 21px;}
-.stamp-box-content p a{color: #666; border-bottom: 1px solid #ffc229; text-decoration: none;}
+.stamp-box-content p a{color: #666; border-bottom: 1px solid #ffc229; text-decoration: none; line-height: 25px; display: inline-block;}
 .stamp-box-content img{border: 3px solid #ffc229;}
 
 .stamp-box-content .input-block-level{min-height: 33px;}
@@ -38,7 +39,7 @@ body{background: 0 0 #000 no-repeat url('/images/neverMiss/login/bg.jpg'); backg
 }
 
 @media (max-width: 767px) {
-	.stamp-box{margin: 20px 0;}
+	.stamp-box{margin: 20px;}
 }
 
 @media (max-width: 400px) {
