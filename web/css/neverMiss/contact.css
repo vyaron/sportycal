@@ -1,7 +1,27 @@
-#contact-box{margin: 0 auto; width: 520px;}
-#contact-form, #contact-info{width: 250px; float: left;}
-#contact-info{margin-left: 20px;}
-#contact-info ul li{margin: 5px 0;}
+body{background: 0 0 #000 no-repeat url('/images/neverMiss/login/bg.jpg'); background-size: cover;}
+
+
+
+.stamp-box{width: 994px; margin: 40px auto;}
+.stamp-box-top, .stamp-box-center,.stamp-box-bottom{background-position: 0 0;}
+.stamp-box-top,.stamp-box-bottom{background-repeat: no-repeat;}
+.stamp-box-top{background-image: url('/images/neverMiss/contact/stamp-box/top.png'); height: 18px;}
+.stamp-box-center{background-repeat: repeat-y; background-image: url('/images/neverMiss/contact/stamp-box/center.png');}
+.stamp-box-bottom{background-image: url('/images/neverMiss/contact/stamp-box/bottom.png'); height: 24px;}
+.stamp-box-content{padding: 10px 35px; padding-bottom: 100px;}
+
+.stamp-box-content h2{font-weight: normal; margin-bottom: 15px;}
+.stamp-box-content h2 .color-y{font-weight: bold;}
+.stamp-box-content hr{margin-top: 15px; margin-bottom: 40px;}
+.stamp-box-content p, .stamp-box-content address{font-size: 16px; line-height: 21px;}
+.stamp-box-content p a{color: #666; border-bottom: 1px solid #ffc229; text-decoration: none;}
+.stamp-box-content img{border: 3px solid #ffc229;}
+
+.stamp-box-content .input-block-level{min-height: 33px;}
+
+
+#contact-form, #contact-info{width: 290px;}
+#contact-form textarea{min-height: 235px;}
 
 .form, .loading .loading-img{display:block;}
 .loading-img, .loading .form{display: none;}
@@ -10,8 +30,17 @@
 
 /*CSS Queries - NOT WORKING ON IE < 9!
 ****************************************/
-@media (max-width: 540px) {
-	#contact-box{width: auto;}
-	#contact-form{width: auto; float: none;}
-	#contact-info{margin: 0;}
+@media (max-width: 995px){
+	.stamp-box-content{padding-bottom: 50px;}
+	.stamp-box-content h2{font-size: 30px; ma}
+	.stamp-box{width: auto; box-shadow:1px 1px 10px #000; margin: 40px 20px;}
+	.stamp-box-top, .stamp-box-center,.stamp-box-bottom{background: #f2f2f2;}
+}
+
+@media (max-width: 767px) {
+	.stamp-box{margin: 20px 0;}
+}
+
+@media (max-width: 400px) {
+	#contact-form, #contact-info{width: auto;}
 }
