@@ -352,7 +352,15 @@ class calActions extends sfActions
   	}
   	 
   	$events = $this->cal->getEventsForIcal($calType, $partner, $tags, $intelLabel, $intelValue, $remider);
-
+	
+  	//wix hardcore change demo calendar
+  	if ($this->cal->getId() == Wix::DEFAULT_CAL_ID){
+  		foreach ($events as $i => &$event){
+  			$event['start_date'] = date('Ymd\THis\Z', strtotime('+' . ($i+1) . 'day'));
+  			$event['end_date'] = date('Ymd\THis\Z', strtotime('+' . ($i+1) . ' day +1 hour'));
+  		}
+  	}
+  	
   	$export = new ICalExporter();
   	$export->setTitle(GeneralUtils::icalEscape($this->cal->getName()));
   	
