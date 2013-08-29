@@ -27,15 +27,16 @@
 	
 	<link href="/bundle/bootstrap/css/bootstrap.css" rel="stylesheet"/>
     <link href="/bundle/bootstrap/css/bootstrap-responsive.css" rel="stylesheet"/>
+    <link href="/fonts/signika/stylesheet.css" rel="stylesheet"/>
     <link href="/css/neverMiss/main.css" rel="stylesheet"/>
     <?php include_stylesheets() ?>
   </head>
-  <body>
+  <body class="<?php echo has_slot('isPopup') ? 'is-popup' : '';?>">
     <?php mb_internal_encoding('UTF-8');?>
     
     <div id="container">
 		<div id="top-navbar-placholder">&nbsp;</div>
-	    <div class="navbar navbar-inverse navbar-fixed-top">
+	    <div class="navbar navbar-inverse navbar-fixed-top hidden-popup">
 	      <div class="navbar-inner">
 	        <div class="container">
 	          <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
@@ -61,7 +62,7 @@
 		<?php echo $sf_content ?>
 	
 		<div id="footer-place-hoolder">&nbsp;</div>
-	    <div id="footer">
+	    <div id="footer" class="hidden-popup">
 	    	<div class="container">
 	    		<span style="color:gray"><?php echo sfConfig::get('app_domain_name');?> &copy; <?php echo date('Y');?></span>&nbsp;&nbsp;|&nbsp;&nbsp;
 		        <a href="<?php echo url_for('nm/pricing') ?>">Pricing</a>&nbsp;&nbsp;|&nbsp;&nbsp;

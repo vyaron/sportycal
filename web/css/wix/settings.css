@@ -1,0 +1,14 @@
+body{padding: 20px;}
+
+.mb15{margin-bottom: 15px;}
+
+#app-info{border: 1px solid #E5E5E5; border-radius: 4px 4px 4px 4px;  margin-bottom: 15px; padding: 10px;}
+#logo{width: 32px; height: 32px; background: 0 0 no-repeat url('/ico/32b.png'); float: left; margin-right: 5px; margin-bottom: 5px;}
+
+/*
+header table td{vertical-align: top;}
+header table:first-child td:first-child{border-right:1px solid #ccc;}
+header table:first-child td{padding: 20px;}
+.intro .icon{margin: 0;}
+.intro .icon .logo{background-image: url("/images/wix/logo.png");}
+*/

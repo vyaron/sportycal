@@ -301,11 +301,51 @@ jQuery(document).ready(function(){
 	
 	setCalImportEvents();
 	
-	jQuery('#cal-form').validate();
+	var calForm = jQuery('#cal-form');
+	calForm.validate();
+	calForm.submit(function(e){
+		e.preventDefault();
+		
+		if (calForm.valid()){
+			jQuery.ajax({
+				url : '',
+				type : 'PUT',
+				dataType : 'json',
+				data : calForm.serialize()
+			}).always(function(res){
+				setGlobalAlert(res);
+				
+				if (res && res.success){
+					if (opener){
+						if (opener.refreshWidget) opener.refreshWidget();
+						opener.refresh();
+						window.close();
+					} else {
+						window.location.href = '/nm/widget/id/' + gCalId;
+					}
+				}
+			});
+		}
+	});
+	
 	
 	jQuery('.continue-btn').click(function(e){
 		e.preventDefault();
 		
 		jQuery('#cal-form').submit();
+	});
+	
+	jQuery('#clear-events-submit').click(function(e){
+		e.preventDefault();
+		
+		jQuery.ajax({
+			url : '/nm/calEventsClear',
+			data : {id : gCalId}
+		}).always(function(res){
+			setGlobalAlert(res);
+			
+			//TODO: replace with scheduler.clearAll() + recalcolate cells size
+			window.location.reload();
+		});
 	});
 });

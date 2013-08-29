@@ -183,6 +183,7 @@ class nmActions extends sfActions{
 				$eventsHash = $export->toHash($content);
 				
 				$childEventsHash = array();
+				$childEvents = array();
 				
 				$collectionEvent = new Doctrine_Collection('Event');
 				foreach ($eventsHash as $eventHash){
@@ -311,20 +312,27 @@ class nmActions extends sfActions{
 	}
 	
 	public function executeCalEventsClear(sfWebRequest $request){
+		$res = array('success' => false, 'msg' => 'Clear event failed');
+		
 		$user = UserUtils::getLoggedIn();
 		$cal = Doctrine::getTable('Cal')->find(array($request->getParameter('id')));
-		$this->forward404Unless($cal && $cal->isOwner($user), sprintf('Object cal does not exist (%s).', $request->getParameter('id')));
+		if ($cal && $cal->isOwner($user)){
+			Doctrine::getTable('Event')->deleteBy($cal->getId());
+			
+			$dateNow = date("Y-m-d g:i:s");
+			$cal->setUpdatedAt($dateNow);
+			$cal->save();
+			
+			$res['success'] = true;
+			$res['msg'] = 'Events cleared';
+		}
 		
-		Doctrine::getTable('Event')->deleteBy($cal->getId());
-		
-		$dateNow = date("Y-m-d g:i:s");
-		$cal->setUpdatedAt($dateNow);
-		$cal->save();
-		
-		$this->redirect('/nm/calEdit/id/' . $cal->getId());
+		echo json_encode($res);
+		return sfView::NONE;
 	}
 	
 	public function executeCalCreate(sfWebRequest $request){
+		$isPopup = $request->getParameter('isPopup');
 		$dateNow = date("Y-m-d g:i");
 		
 		$currCalId = UserUtils::getOrphanCalId();
@@ -339,12 +347,16 @@ class nmActions extends sfActions{
 			$cal->setIsPublic(false);
 			$cal->setCategoryId(Category::CTG_NEVER_MISS);
 			$cal->setCategoryIdsPath(Category::CTG_NEVER_MISS);
+			
 			$cal->save();
 		}
 		 
 		UserUtils::setOrphanCalId($cal->getId());
-		 
-		$this->redirect('/nm/calEdit/id/' . $cal->getId());
+		
+		$url = '/nm/calEdit/id/' . $cal->getId();
+		if ($isPopup) $url .= '/?isPopup=' . $isPopup;
+		
+		$this->redirect($url);
 	}
 	
 	public function executeCalEdit(sfWebRequest $request){
@@ -373,7 +385,9 @@ class nmActions extends sfActions{
 		$this->form->setDefault('description', $cal->getDescription());
 		$this->form->setDefault('tz', $tz);
 		
-		if ($request->isMethod(sfRequest::POST)){
+		if ($request->isMethod(sfRequest::PUT)){
+			$res = array('success' => false, 'msg' => 'calendar not updated');
+			
 			$this->form->bind($request->getParameter('cal'));
 			if ($this->form->isValid()){
 				$this->cal->setName($this->form->getValue('name'));
@@ -387,10 +401,15 @@ class nmActions extends sfActions{
 			        ->where('cal_id = ?', $this->cal->getId())
 					->execute();
 				
-				//TODO: get root ctg AND website (old users come from sportycal)
-				if ($user && !$this->cal->isOwner($user)) $this->cal->setAdoptive($user);
+				//case user not redirect to widget
+				if ($user && !$this->cal->getByUserId() && $this->cal->isOwner($user)) $this->cal->setAdoptive($user);
 				
-				$this->redirect('/nm/widget/calId/' . $cal->getId());
+				$res['success'] = true;
+				$res['msg'] = 'Calendar updated';
+				
+				echo json_encode($res);
+				return sfView::NONE;
+				//$this->redirect('/nm/widget/calId/' . $cal->getId());
 			}
 		}
 	}
@@ -480,19 +499,21 @@ class nmActions extends sfActions{
 	}
 	
 	private function registerForm($data){
+		$res = array('success' => false, 'msg' => 'Register failed');
+		
 		if ($data){
-			$this->form->bind($data);
-	
-			if ($this->form->isValid()){
+			$this->registerForm->bind($data);
+			
+			if ($this->registerForm->isValid()){
 				$now = date('Y-m-d H:i:s');
-				$rootName = $this->form->getValue('company_name') ? $this->form->getValue('company_name') : $this->form->getValue('full_name');
-				$website = $this->form->getValue('website');
+				$rootName = $this->registerForm->getValue('company_name') ? $this->registerForm->getValue('company_name') : $this->registerForm->getValue('full_name');
+				$website = $this->registerForm->getValue('website');
 					
 				//Create user
 				$user = new User();
-				$user->setFullName($this->form->getValue('full_name'));
-				$user->setEmail($this->form->getValue('email'));
-				$user->setPass($this->form->getValue('password'));
+				$user->setFullName($this->registerForm->getValue('full_name'));
+				$user->setEmail($this->registerForm->getValue('email'));
+				$user->setPass($this->registerForm->getValue('password'));
 				$user->setType(User::TYPE_PARTNER);
 				$user->setCreatedAt($now);
 				$user->setLastLoginDate($now);
@@ -500,18 +521,35 @@ class nmActions extends sfActions{
 					
 				UserUtils::logUserIn($user);
 				
-				if ($user->getType() != User::TYPE_PARTNER || $user->getType() != User::TYPE_MASTER) $partner = $user->createPartner($rootName, $website);
+				//if ($user->getType() != User::TYPE_PARTNER || $user->getType() != User::TYPE_MASTER) $partner = $user->createPartner($rootName, $website);
+				$partner = $user->createPartner($rootName, $website);
+				
+				
+				$res['success'] = true;
+				$res['msg'] = 'Registration was successful';
+			} else {
+				foreach ($this->registerForm->getErrorSchema() as $name => $value){
+					//TODO: add custom error msg
+					$renderName = $this->registerForm[$name]->renderName();
+					$res['errors'][$renderName] = null;
+				}
 			}
 		}
+		return $res;
 	}
 	
 	public function executeRegister(sfWebRequest $request){
 		$user = UserUtils::getLoggedIn();
 
-		$this->form = new NmRegisterForm();
+		$this->registerForm = new NmRegisterForm();
+		$this->loginForm = new LoginForm();
+		$this->isShowLogin = false;
 		
 		if (!$user && $request->isMethod('post') && $registerData = $request->getParameter('register')) {
-			$this->registerForm($registerData);
+			$res = $this->registerForm($registerData);
+			
+			echo json_encode($res);
+			return sfView::NONE;
 		}
 		
 		$user = UserUtils::getLoggedIn();
@@ -525,6 +563,8 @@ class nmActions extends sfActions{
 				else $this->redirect('@homepage');
 			}
 		}
+		
+		$this->setTemplate('loginAndRegister', 'nm');
 	}
 	
 	public function executeWidget(sfWebRequest $request){
@@ -541,21 +581,24 @@ class nmActions extends sfActions{
 		
 		$this->code = NeverMissWidget::getWidgetCode($cal, $this->language, $this->btnStyle, $this->btnSize, $this->color, $this->upcoming);
 		
-		$this->form = new NmRegisterForm();
+		$this->registerForm = new NmRegisterForm();
+		$this->loginForm = new LoginForm();
+		$this->isShowLogin = false;
 		
-		$rootName = null;
-		$website = null;
-		if (!$user && $request->isMethod('post') && $registerData = $request->getParameter('register')) {
-			$this->registerForm($registerData);
+// 		$rootName = null;
+// 		$website = null;
+// 		if (!$user && $request->isMethod('post') && $registerData = $request->getParameter('register')) {
+// 			$this->registerForm($registerData);
 			
-			$rootName = $registerData['company_name'] ? $registerData['company_name'] : $registerData['full_name'];
-			$website = $registerData['website'];
+// 			$rootName = $registerData['company_name'] ? $registerData['company_name'] : $registerData['full_name'];
+// 			$website = $registerData['website'];
 			
-			$user = UserUtils::getLoggedIn();
-		}
+// 			$user = UserUtils::getLoggedIn();
+// 		}
 
 		if ($user) {
-			$cal->setAdoptive($user, $rootName, $website);
+			//$cal->setAdoptive($user, $rootName, $website);
+			$cal->setAdoptive($user);
 			
 			//Set deleted at if partner reached max calendars
 			if ($cal->getDeletedAt()) $this->redirect('/nm/calList/');

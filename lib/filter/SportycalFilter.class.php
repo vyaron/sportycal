@@ -33,7 +33,12 @@ class SportycalFilter extends sfFilter {
 
   		$hasLayout = (sfConfig::get('has_layout', null) == 'off') ? false : true;
 
-  		if (sfConfig::get('app_domain_isNeverMiss') && $hasLayout) $this->getContext()->getActionStack()->getFirstEntry()->getActionInstance()->setLayout('neverMiss');
+  		if (sfConfig::get('app_domain_isNeverMiss') && $hasLayout) {
+  			$isPopup = $this->getReqParam('isPopup');
+			if ($isPopup) $this->getContext()->getResponse()->setSlot('isPopup', true);
+			
+  			$this->getContext()->getActionStack()->getFirstEntry()->getActionInstance()->setLayout('neverMiss');
+  		}
   		
         //execute the next filter in the chain
         $filterChain->execute();

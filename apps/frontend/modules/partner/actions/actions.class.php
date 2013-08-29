@@ -95,6 +95,8 @@ class partnerActions extends sfActions
   
   protected function processLoginForm($data)
   {
+  	$res = array('success' => false, 'msg' => 'Incorrect Email/Password Combination');
+  	
   	if ($data){
   		$this->form->bind($data);
   		
@@ -108,43 +110,63 @@ class partnerActions extends sfActions
   					
   				// Create the login session
   				UserUtils::logUserIn($user);
-  					
-  				$refererUrl = UserUtils::getRefererUrl();
-  				if ($refererUrl) {
-  					UserUtils::setRefererUrl(null);
-  					$this->redirect($refererUrl);
-  				} else {
-  					if (sfConfig::get('app_domain_isNeverMiss')) $this->redirect('/nm/calList');
-  					else $this->redirect('@homepage');
-  				}
 
+  				$res['success'] = true;
+  				$res['msg'] = 'Authentication succeeded';
   			} else {
   				$emailValidator = $this->form->getValidator('email');
   				$this->form->getErrorSchema()->addError(new sfValidatorError(new sfValidatorString(), 'Incorrect Email/Password Combination'), 'invalid');
   			}
   		}
-
   	}
+  	
+  	return $res;
   }
   
   
   public function executeLogin(sfWebRequest $request){
   	$this->getResponse()->setSlot('login', true);
   	
+  	$isAjax = $request->isXmlHttpRequest();
+
   	if (sfConfig::get('app_domain_isNeverMiss')){
-	  	$url = $this->getRequest()->getReferer();
-	  	if (strpos($url, sfConfig::get('app_domain_full')) === 0 
-	  			&& !strpos($url, '/partner/login')
-	  			&& !strpos($url, '/nm/register')
-	  			&& !strpos($url, '/nm/index')) UserUtils::setRefererUrl($url);
+  		$url = $this->getRequest()->getReferer();
+  		if (strpos($url, sfConfig::get('app_domain_full')) === 0
+  				&& !strpos($url, '/partner/login')
+  				&& !strpos($url, '/nm/register')
+  				&& !strpos($url, '/nm/index')) UserUtils::setRefererUrl($url);
   	}
-  	
-	$this->form = new LoginForm();
+  		
+  	$this->form = new LoginForm();
 
-  	if ($request->isMethod('post') && $userData = $request->getParameter('user')) $this->processLoginForm($userData);
-  	
-  	if (sfConfig::get('app_domain_isNeverMiss')) $this->setTemplate('login', 'nm');
+  	if ($request->isMethod('post') && $userData = $request->getParameter('user')) {
+  		$res = $this->processLoginForm($userData);
+  			
+  		if ($isAjax){
+  			echo json_encode($res);
+  			return sfView::NONE;
+  		}
+  	}
+	
+  	$user = UserUtils::getLoggedIn();
+  	if ($user){
+  		$refererUrl = UserUtils::getRefererUrl();
+  		if ($refererUrl) {
+  			UserUtils::setRefererUrl(null);
+  			$this->redirect($refererUrl);
+  		} else {
+  			if (sfConfig::get('app_domain_isNeverMiss')) $this->redirect('/nm/calList');
+  			else $this->redirect('@homepage');
+  		}
+  	}
+
+
+  	if (sfConfig::get('app_domain_isNeverMiss')) {
+  		$this->registerForm = new NmRegisterForm();
+  		$this->loginForm = $this->form;
+  		$this->isShowLogin = true;
+
+  		$this->setTemplate('loginAndRegister', 'nm');
+  	}
   }
-  
-
 }

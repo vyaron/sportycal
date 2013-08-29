@@ -89,11 +89,14 @@ use_stylesheet('/css/neverMiss/calEdit.css');
 	<div class="modal-body">
 		<p>Are you sure you want to delete all events from calendar?</p>
 	</div>
+	
+	
 	<div class="modal-footer">
 		<button class="btn" data-dismiss="modal" aria-hidden="true">No</button>
-		<a class="btn btn-primary" href="<?php echo url_for('nm/calEventsClear/?id=' . $cal->getId()) ?>">Yes</a>
+		<button id="clear-events-submit" class="btn btn-primary">Yes</button>
 	</div>
 </div>
+
 
 <div id="cal-import-modal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 	<div class="modal-header">
@@ -107,7 +110,6 @@ use_stylesheet('/css/neverMiss/calEdit.css');
 			<span id="ical-fileupload-label" ><i class="icon-plus icon-yellow"></i> Select Calendar *.ics</span>
 			<input id="ical-fileupload" type="file" name="file" data-url="<?php echo url_for('nm/importCal/?id=' . $cal->getId())?>" accept="text/calendar"/>
 		</span>
-
 	</div>
 	<div class="modal-footer">
 		<button class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button>
@@ -126,7 +128,7 @@ use_javascript('/bundle/dhtmlxScheduler/codebase/dhtmlxscheduler.js');
 //use_javascript('/bundle/dhtmlxScheduler/sources/ext/dhtmlxscheduler_dhx_terrace.js');
 use_javascript('/bundle/dhtmlxScheduler/codebase/ext/dhtmlxscheduler_dhx_terrace.js');
 //use_javascript('/bundle/dhtmlxScheduler/codebase/ext/dhtmlxscheduler_quick_info.js');
-//use_javascript('/bundle/dhtmlxScheduler/codebase/ext/dhtmlxscheduler_recurring.js');
+use_javascript('/bundle/dhtmlxScheduler/codebase/ext/dhtmlxscheduler_recurring.js');
 //use_javascript('/bundle/dhtmlxScheduler/codebase/ext/dhtmlxscheduler_minical.js');
 
 //use_javascript('/bundle/dhtmlxScheduler/inevermiss/dhtmlxscheduler_inevermiss_quick_info.js');

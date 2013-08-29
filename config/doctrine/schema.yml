@@ -2358,3 +2358,62 @@ UserSearch:
       local: user_id
       foreign: id
       type: one
+Wix:
+  connection: doctrine
+  tableName: wix
+  columns:
+    id:
+      type: integer(8)
+      fixed: false
+      unsigned: true
+      primary: true
+      autoincrement: true
+    user_id:
+      type: integer(8)
+      fixed: false
+      unsigned: true
+      primary: false
+      notnull: false
+      autoincrement: false
+    cal_id:
+      type: integer(8)
+      fixed: false
+      unsigned: true
+      primary: false
+      notnull: false
+      autoincrement: false
+    instance_code:
+      type: string(512)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: true
+      autoincrement: false
+    locale:
+      type: string(16)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: false
+      autoincrement: false
+    upcoming:
+      type: integer(4)
+      fixed: false
+      unsigned: true
+      primary: false
+      notnull: false
+      autoincrement: false
+    created_at:
+      type: timestamp(25)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: true
+      autoincrement: false
+    updated_at:
+      type: timestamp(25)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: false
+      autoincrement: false

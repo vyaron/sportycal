@@ -1,9 +1,7 @@
 <?php 
 $backUrl = Utils::iff($backUrl, null);
-$isShowLogin = Utils::iff($isShowLogin, false);
 $legend = Utils::iff($legend, false);
 ?>
-
 
 <div class="form-box">
 	<h2>
@@ -25,7 +23,7 @@ $legend = Utils::iff($legend, false);
 			<?php echo $form['website']->render(array('placeholder' => 'website: http://www.site.com', 'class' => 'block'));?>
 			
 			<p class="help-block">
-				Already a member? <a href="<?php echo url_for('/partner/login');?>">Log in</a><br/>
+				Already a member? <a class="toggle-login-register" href="<?php echo url_for('/partner/login');?>">Log in</a><br/>
 				By signing up, you agree to our <a href="<?php echo url_for('/nm/terms/?nlo=1');?>" target="_blank">Terms of Use</a>
 			</p>
 			

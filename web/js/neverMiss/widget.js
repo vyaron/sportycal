@@ -30,7 +30,7 @@ function setEmailFormEvent(){
 				type : 'POST',
 				dataType : 'json',
 				data : formEl.serializeArray()
-			}).done(handleLoginRes);
+			}).done(setGlobalAlert);
 		}
 	});
 }
