@@ -81,7 +81,7 @@
 </div>
 
 <script type="text/javascript">
-	var BASE_URL = 'http://inevermiss.local';
+	var BASE_URL = '<?php echo sfConfig::get('app_domain_full');?>';
 </script>
 <?php 
 use_javascript('/bundle/bootstrap/js/bootstrap.min.js');
