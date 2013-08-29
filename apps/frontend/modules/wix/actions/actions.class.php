@@ -78,12 +78,15 @@ class wixActions extends sfActions{
 		$dayKeyOrder = array();
 		$dayKey2Events = array();
 		if ($upcoming) {
-			$events = Doctrine_Query::create()
+			$q = Doctrine_Query::create()
 				->from('Event e')
 				->where('e.cal_id = ?', $calId)
-				->andWhere('e.starts_at >= NOW()')
 				->limit($upcoming)
-				->orderBy('e.starts_at ASC')->execute();
+				->orderBy('e.starts_at ASC');
+			
+			if ($cal->getId() != Wix::DEFAULT_CAL_ID) $q->andWhere('e.starts_at >= NOW()');
+			
+			$events = $q->execute();
 			
 			if ($cal->getId() == Wix::DEFAULT_CAL_ID){
 				foreach ($events as $i => &$event){

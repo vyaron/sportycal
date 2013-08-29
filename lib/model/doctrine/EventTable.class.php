@@ -280,8 +280,9 @@ class EventTable extends Doctrine_Table
 			}
 		}
 		
-		//Utils::pa($eventsCount);
-    	if ($eventsCount && !$hasRecEvent) {
+		if ($calId == Wix::DEFAULT_CAL_ID){
+			$events = $events;
+		} else if ($eventsCount && !$hasRecEvent) {
     		$lastEventTime = strtotime($events[$eventsCount-1]->getStartsAt());
     		// There are future events, remove all past events
     		if ($lastEventTime > $yesterday) {
@@ -293,7 +294,7 @@ class EventTable extends Doctrine_Table
 				$events = $futureEvents;    			
     		}
     	} 
-    	
+
     	
     	// The location is not enough to remove duplicates, as sometimes there is an address there and not Home/Away
     	$events = self::removeDuplicates($events);
