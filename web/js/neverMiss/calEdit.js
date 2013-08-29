@@ -321,7 +321,7 @@ jQuery(document).ready(function(){
 						opener.refresh();
 						window.close();
 					} else {
-						window.location.href = '/nm/widget/id/' + gCalId;
+						window.location.href = '/nm/widget/calId/' + gCalId;
 					}
 				}
 			});
