@@ -263,6 +263,10 @@ Cal:
       local: id
       foreign: cal_id
       type: many
+    Wix:
+      local: id
+      foreign: cal_id
+      type: many
 CalRequest:
   connection: doctrine
   tableName: cal_request
@@ -2062,6 +2066,10 @@ User:
       local: id
       foreign: user_id
       type: many
+    Wix:
+      local: id
+      foreign: user_id
+      type: many
 UserBirthday:
   connection: doctrine
   tableName: user_birthday
@@ -2417,3 +2425,12 @@ Wix:
       primary: false
       notnull: false
       autoincrement: false
+  relations:
+    Cal:
+      local: cal_id
+      foreign: id
+      type: one
+    User:
+      local: user_id
+      foreign: id
+      type: one

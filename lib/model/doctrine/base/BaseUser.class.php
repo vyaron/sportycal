@@ -46,6 +46,7 @@ Doctrine_Manager::getInstance()->bindComponent('User', 'doctrine');
  * @property Doctrine_Collection $UserCal_5
  * @property Doctrine_Collection $UserFbUser
  * @property Doctrine_Collection $UserSearch
+ * @property Doctrine_Collection $Wix
  * 
  * @method integer             getId()              Returns the current record's "id" value
  * @method string              getEmail()           Returns the current record's "email" value
@@ -86,6 +87,7 @@ Doctrine_Manager::getInstance()->bindComponent('User', 'doctrine');
  * @method Doctrine_Collection getUserCal5()        Returns the current record's "UserCal_5" collection
  * @method Doctrine_Collection getUserFbUser()      Returns the current record's "UserFbUser" collection
  * @method Doctrine_Collection getUserSearch()      Returns the current record's "UserSearch" collection
+ * @method Doctrine_Collection getWix()             Returns the current record's "Wix" collection
  * @method User                setId()              Sets the current record's "id" value
  * @method User                setEmail()           Sets the current record's "email" value
  * @method User                setPass()            Sets the current record's "pass" value
@@ -125,6 +127,7 @@ Doctrine_Manager::getInstance()->bindComponent('User', 'doctrine');
  * @method User                setUserCal5()        Sets the current record's "UserCal_5" collection
  * @method User                setUserFbUser()      Sets the current record's "UserFbUser" collection
  * @method User                setUserSearch()      Sets the current record's "UserSearch" collection
+ * @method User                setWix()             Sets the current record's "Wix" collection
  * 
  * @package    evento
  * @subpackage model
@@ -420,6 +423,10 @@ abstract class BaseUser extends sfDoctrineRecord
              'foreign' => 'user_id'));
 
         $this->hasMany('UserSearch', array(
+             'local' => 'id',
+             'foreign' => 'user_id'));
+
+        $this->hasMany('Wix', array(
              'local' => 'id',
              'foreign' => 'user_id'));
     }

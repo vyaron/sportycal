@@ -15,6 +15,8 @@ Doctrine_Manager::getInstance()->bindComponent('Wix', 'doctrine');
  * @property integer $upcoming
  * @property timestamp $created_at
  * @property timestamp $updated_at
+ * @property Cal $Cal
+ * @property User $User
  * 
  * @method integer   getId()            Returns the current record's "id" value
  * @method integer   getUserId()        Returns the current record's "user_id" value
@@ -24,6 +26,8 @@ Doctrine_Manager::getInstance()->bindComponent('Wix', 'doctrine');
  * @method integer   getUpcoming()      Returns the current record's "upcoming" value
  * @method timestamp getCreatedAt()     Returns the current record's "created_at" value
  * @method timestamp getUpdatedAt()     Returns the current record's "updated_at" value
+ * @method Cal       getCal()           Returns the current record's "Cal" value
+ * @method User      getUser()          Returns the current record's "User" value
  * @method Wix       setId()            Sets the current record's "id" value
  * @method Wix       setUserId()        Sets the current record's "user_id" value
  * @method Wix       setCalId()         Sets the current record's "cal_id" value
@@ -32,6 +36,8 @@ Doctrine_Manager::getInstance()->bindComponent('Wix', 'doctrine');
  * @method Wix       setUpcoming()      Sets the current record's "upcoming" value
  * @method Wix       setCreatedAt()     Sets the current record's "created_at" value
  * @method Wix       setUpdatedAt()     Sets the current record's "updated_at" value
+ * @method Wix       setCal()           Sets the current record's "Cal" value
+ * @method Wix       setUser()          Sets the current record's "User" value
  * 
  * @package    evento
  * @subpackage model
@@ -119,6 +125,12 @@ abstract class BaseWix extends sfDoctrineRecord
     public function setUp()
     {
         parent::setUp();
-        
+        $this->hasOne('Cal', array(
+             'local' => 'cal_id',
+             'foreign' => 'id'));
+
+        $this->hasOne('User', array(
+             'local' => 'user_id',
+             'foreign' => 'id'));
     }
 }

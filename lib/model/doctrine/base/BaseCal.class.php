@@ -33,6 +33,7 @@ Doctrine_Manager::getInstance()->bindComponent('Cal', 'doctrine');
  * @property Doctrine_Collection $PartnerDesc
  * @property Doctrine_Collection $ShortUrl
  * @property Doctrine_Collection $UserCal
+ * @property Doctrine_Collection $Wix
  * 
  * @method integer             getId()                Returns the current record's "id" value
  * @method integer             getByUserId()          Returns the current record's "by_user_id" value
@@ -60,6 +61,7 @@ Doctrine_Manager::getInstance()->bindComponent('Cal', 'doctrine');
  * @method Doctrine_Collection getPartnerDesc()       Returns the current record's "PartnerDesc" collection
  * @method Doctrine_Collection getShortUrl()          Returns the current record's "ShortUrl" collection
  * @method Doctrine_Collection getUserCal()           Returns the current record's "UserCal" collection
+ * @method Doctrine_Collection getWix()               Returns the current record's "Wix" collection
  * @method Cal                 setId()                Sets the current record's "id" value
  * @method Cal                 setByUserId()          Sets the current record's "by_user_id" value
  * @method Cal                 setCategoryId()        Sets the current record's "category_id" value
@@ -86,6 +88,7 @@ Doctrine_Manager::getInstance()->bindComponent('Cal', 'doctrine');
  * @method Cal                 setPartnerDesc()       Sets the current record's "PartnerDesc" collection
  * @method Cal                 setShortUrl()          Sets the current record's "ShortUrl" collection
  * @method Cal                 setUserCal()           Sets the current record's "UserCal" collection
+ * @method Cal                 setWix()               Sets the current record's "Wix" collection
  * 
  * @package    evento
  * @subpackage model
@@ -286,6 +289,10 @@ abstract class BaseCal extends sfDoctrineRecord
              'foreign' => 'cal_id'));
 
         $this->hasMany('UserCal', array(
+             'local' => 'id',
+             'foreign' => 'cal_id'));
+
+        $this->hasMany('Wix', array(
              'local' => 'id',
              'foreign' => 'cal_id'));
     }

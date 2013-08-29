@@ -1,3 +1,27 @@
+SET FOREIGN_KEY_CHECKS=0;
+SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
+SET time_zone = "+00:00";
+
+DROP TABLE IF EXISTS `wix`;
+CREATE TABLE IF NOT EXISTS `wix` (
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  `user_id` bigint(20) unsigned DEFAULT NULL,
+  `cal_id` bigint(20) unsigned DEFAULT NULL,
+  `instance_code` varchar(512) NOT NULL,
+  `locale` varchar(16) DEFAULT NULL,
+  `upcoming` int(10) unsigned DEFAULT NULL,
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `cal_id` (`cal_id`,`instance_code`),
+  KEY `user_id` (`user_id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+ALTER TABLE `wix`
+  ADD CONSTRAINT `wix_ibfk_2` FOREIGN KEY (`cal_id`) REFERENCES `cal` (`id`),
+  ADD CONSTRAINT `wix_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`);
+SET FOREIGN_KEY_CHECKS=1;
+----------------------------DONE ON PROD-------------------------------------------------------
 ALTER TABLE `contact` ADD `phone` VARCHAR( 32 ) NULL DEFAULT NULL AFTER `ip_address`;
 ----------------------------DONE ON PROD-------------------------------------------------------
 ALTER TABLE `paypal_ipn` CHANGE `status` `status` VARCHAR( 128 ) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL ;
