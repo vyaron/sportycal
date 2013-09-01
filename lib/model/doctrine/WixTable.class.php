@@ -18,9 +18,17 @@ class WixTable extends Doctrine_Table
     }
     
     public static function getByInstanceCode($instanceCode){
-    	return Doctrine::getTable('Wix')
+    	$wix = Doctrine::getTable('Wix')
     		->createQuery('w')
     		->where('instance_code =?', $instanceCode)
     		->fetchOne();
+    	
+    	if (!$wix) {
+    		$wix = new Wix();
+    		$wix->setCalId(Wix::DEFAULT_CAL_ID);
+    		$wix->setUpcoming(Wix::DEFAULT_UPCOMING);
+    	}
+    	
+    	return $wix;
     }
 }

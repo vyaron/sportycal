@@ -2,7 +2,7 @@
 class wixActions extends sfActions{
 	private function init(sfWebRequest $request, $needInstance = false){
 		if ($needInstance){
-			$this->forward404Unless($instance = $request->getParameter('instance'));
+			$instance = $request->getParameter('instance');
 			
 			$locale = $request->getParameter('locale');
 			
@@ -39,7 +39,7 @@ class wixActions extends sfActions{
 		
 		if (!$wix->getUserId()) $wix->setUserId($userId);
 
-		if ($wix->getUserId() == $userId){
+		if ($wix->getInstanceCode() && $wix->getUserId() == $userId){
 			if ($calId) $wix->setCalId($calId);
 			if ($upcoming) $wix->setUpcoming($upcoming);
 			
