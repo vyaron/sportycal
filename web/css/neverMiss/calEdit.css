@@ -6,7 +6,7 @@ body{background-color: #f2f2f2;}
 #cal-edit-wrapper{border-collapse: collapse;}
 #cal-edit-wrapper h4{font-weight: normal;}
 #cal-edit-wrapper td{vertical-align: top;}
-#cal-edit-wrapper .right-col{width: 145px; padding-left: 40px;}
+#cal-edit-wrapper .right-col{width: 135px; padding-left: 25px;}
 
 #cal-form{margin-bottom: 0px;}
 #cal-form table{border-collapse: collapse; width: 100%;}
