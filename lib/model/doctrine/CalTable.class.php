@@ -49,7 +49,7 @@ class CalTable extends Doctrine_Table
     	else $total = 0;
     	
     	$q->select('c.id, c.name, c.updated_at, c.deleted_at, COUNT(e.id) event_count')
-    		->leftJoin('c.Event e')
+    		->leftJoin('c.Event e ON e.cal_id = c.id AND (e.starts_at > NOW() OR (e.starts_at <= NOW() AND e.ends_at > NOW()))')
     		->groupBy('c.id')
     		->offset($offset * $limit)
     		->limit($limit);

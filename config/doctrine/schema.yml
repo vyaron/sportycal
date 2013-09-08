@@ -872,6 +872,13 @@ Event:
       primary: false
       notnull: false
       autoincrement: false
+    reminder:
+      type: integer(4)
+      fixed: false
+      unsigned: true
+      primary: false
+      notnull: false
+      autoincrement: false
     starts_at:
       type: timestamp(25)
       fixed: false
@@ -2426,11 +2433,11 @@ Wix:
       notnull: false
       autoincrement: false
   relations:
-    Cal:
-      local: cal_id
-      foreign: id
-      type: one
     User:
       local: user_id
+      foreign: id
+      type: one
+    Cal:
+      local: cal_id
       foreign: id
       type: one

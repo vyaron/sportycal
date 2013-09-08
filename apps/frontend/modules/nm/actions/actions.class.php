@@ -247,7 +247,8 @@ class nmActions extends sfActions{
 		if (!$user || !$partner = $user->getPartner()) $this->redirect('partner/login');
 
 		$offset = $request->getParameter('p', 0);
-		$calList = CalTable::getCalList($user->getId(), $offset);
+		$limit = 11;
+		$calList = CalTable::getCalList($user->getId(), $offset, $limit);
 		
 		$licenceErrors = array();
 		
@@ -442,6 +443,7 @@ class nmActions extends sfActions{
 				$location = $request->getParameter($id . '_location');
 				$startDate = $request->getParameter($id . '_start_date');
 				$endDate = $request->getParameter($id . '_end_date');
+				$reminder = $request->getParameter($id . '_reminder');
 				
 				//Recurring events
 				$recType = $request->getParameter($id . '_rec_type');
@@ -471,6 +473,7 @@ class nmActions extends sfActions{
 					$event->setEndsAt($endDate);
 					$event->setUpdatedAt($dateStr);
 					$event->setTz($tz);
+					$event->setReminder($reminder);
 					
 					
 					//recurring events

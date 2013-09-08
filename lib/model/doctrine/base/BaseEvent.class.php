@@ -18,6 +18,7 @@ Doctrine_Manager::getInstance()->bindComponent('Event', 'doctrine');
  * @property string $tags
  * @property string $rec_type
  * @property integer $length
+ * @property integer $reminder
  * @property timestamp $starts_at
  * @property timestamp $ends_at
  * @property timestamp $created_at
@@ -42,6 +43,7 @@ Doctrine_Manager::getInstance()->bindComponent('Event', 'doctrine');
  * @method string              getTags()        Returns the current record's "tags" value
  * @method string              getRecType()     Returns the current record's "rec_type" value
  * @method integer             getLength()      Returns the current record's "length" value
+ * @method integer             getReminder()    Returns the current record's "reminder" value
  * @method timestamp           getStartsAt()    Returns the current record's "starts_at" value
  * @method timestamp           getEndsAt()      Returns the current record's "ends_at" value
  * @method timestamp           getCreatedAt()   Returns the current record's "created_at" value
@@ -65,6 +67,7 @@ Doctrine_Manager::getInstance()->bindComponent('Event', 'doctrine');
  * @method Event               setTags()        Sets the current record's "tags" value
  * @method Event               setRecType()     Sets the current record's "rec_type" value
  * @method Event               setLength()      Sets the current record's "length" value
+ * @method Event               setReminder()    Sets the current record's "reminder" value
  * @method Event               setStartsAt()    Sets the current record's "starts_at" value
  * @method Event               setEndsAt()      Sets the current record's "ends_at" value
  * @method Event               setCreatedAt()   Sets the current record's "created_at" value
@@ -185,6 +188,15 @@ abstract class BaseEvent extends sfDoctrineRecord
              'notnull' => false,
              'autoincrement' => false,
              'length' => 8,
+             ));
+        $this->hasColumn('reminder', 'integer', 4, array(
+             'type' => 'integer',
+             'fixed' => 0,
+             'unsigned' => true,
+             'primary' => false,
+             'notnull' => false,
+             'autoincrement' => false,
+             'length' => 4,
              ));
         $this->hasColumn('starts_at', 'timestamp', 25, array(
              'type' => 'timestamp',

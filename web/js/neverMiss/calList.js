@@ -1,4 +1,7 @@
 jQuery(document).ready(function(){
+	jQuery('[data-toggle=tooltip]').tooltip();
+	
+	
 	jQuery('.delete-cal').click(function(e){
 		e.preventDefault();
 		
@@ -47,7 +50,7 @@ jQuery(document).ready(function(){
 			type : 'POST',
 			dataType : 'json'
 		}).done(function(res){
-			if (res && res.success) el.parents('tr').removeClass('cal-is-deleted').addClass('cal-is-active');
+			if (res && res.success) jQuery('#cal_' + calId).removeClass('cal-is-deleted').addClass('cal-is-active');
 			setGlobalAlert(res);
 		}).fail(setGlobalAlert);
 	});

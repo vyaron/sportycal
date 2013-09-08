@@ -1,3 +1,4 @@
+ALTER TABLE `event` ADD `reminder` INT UNSIGNED NULL DEFAULT NULL AFTER `length`;
 ----------------------------DONE ON PROD-------------------------------------------------------
 SET FOREIGN_KEY_CHECKS=0;
 SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";

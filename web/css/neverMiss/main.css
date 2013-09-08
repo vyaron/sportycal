@@ -6,6 +6,7 @@ html, body{height: 100%;}
 body{/*padding-top: 80px;*/ font-size: 12px; font-family: arial}
 
 .cb{clear: both;}
+.cr{clear: right;}
 .mt0{margin-top: 0;}
 .mt10{margin-top: 10px;}
 .color-y{color: #ffc229;}
@@ -48,12 +49,33 @@ h2 .btn.btn-success{font-weight: normal; margin-top: 4px;}
 .icon-loading.icon-white{background-image: url("/images/neverMiss/icons/ajax-loader-white.gif");}
 
 /* buttons*/
-.btn-success{background: #ffc229; border-color: #fff; color: #333; text-shadow-color: #fff; text-transform: uppercase; font-size:18px; line-height:18px; -webkit-border-radius: 8px; -moz-border-radius: 8px; border-radius: 8px; box-shadow:1px 1px 3px #3d3d3d; padding: 6px 15px;}
-.btn-success:hover, .btn-success:focus, .btn-success:active, .btn-success.active, .btn-success.disabled, .btn-success[disabled]{background: #ffbf20; color: #000;}
-.btn-success.disabled{background: gray !important;}
+.btn{background: #b2b2b2; border-color: #fff; color: #333; text-shadow-color: #fff; text-transform: uppercase; font-size:18px; line-height:18px; -webkit-border-radius: 10px; -moz-border-radius: 10px; border-radius: 10px; box-shadow:1px 1px 3px #3d3d3d; padding: 4px 15px;}
+.btn:hover, .btn:focus, .btn:active, .btn.active, .btn.disabled, .btn[disabled]{background: #b2b2b2; color: #000;}
 
-.btn-small{text-transform: uppercase; font-size: 16px; height: 30px; line-height: 30px; padding: 0 10px; background: #ffbf20; border: none; text-shadow: none;}
+.btn-success{background: #ffc229;}
+.btn-success:hover, .btn-success:focus, .btn-success:active, .btn-success.active, .btn-success.disabled, .btn-success[disabled]{background: #ffbf20; color: #000;}
+
+.btn.disabled{background: gray !important;}
+
+.btn-small{font-size: 16px; height: 30px; line-height: 30px; padding: 0 10px; background: #ffbf20; border: none; text-shadow: none; box-shadow:none;}
 .btn-small:hover, .btn-small:focus, .btn-small:active, .btn-small.active, .btn-small.disabled, .btn-small[disabled]{background: #ffbf20;}
+
+.btn-mini{font-size: 12px; line-height: 12px;}
+
+/*Tooltip*/
+.tooltip-inner{background-color: #fff; color: #333; border: 1px solid #ffbf20; -webkit-border-radius: 0px; -moz-border-radius: 0px; border-radius: 0px;}
+.tooltip.top .tooltip-arrow {
+  border-top-color: #ffbf20;
+}
+.tooltip.right .tooltip-arrow {
+  border-right-color: #ffbf20;
+}
+.tooltip.left .tooltip-arrow {
+  border-left-color: #ffbf20;
+}
+.tooltip.bottom .tooltip-arrow {
+  border-bottom-color: #ffbf20;
+}
 
 /*Inputs*/
 .placeholder{color: #aaa !important;}
@@ -78,29 +100,6 @@ textarea.error, input.error[type="text"], input.error[type="password"], input.er
 /*facebook login*/
 .fb-login{background-color: #637bad; border: 1px solid #fff; -webkit-border-radius: 20px; -moz-border-radius: 20px; border-radius: 20px; box-shadow: 2px 2px 7px #000; color: #fff; font-size: 21px; padding: 0 20px;}
 .fb-login span{background: 0 center no-repeat url('/images/neverMiss/layout/fb-login.png'); padding-left: 35px; height: 52px; line-height: 52px; display: inline-block;}
-/*
-.fb-login {
-    width: auto;
-    background: url("/images/facebook/fIconBg.png") repeat-x scroll right top transparent;
-    border: 1px solid #415B91;
-    color: #FFFFFF;
-    cursor: pointer;
-    font-family: 'Lucida Grande',Tahoma,Verdana,Arial,sans-serif;
-    font-size: 12px;
-    font-weight: bold;
-    line-height: 20px;
-    text-align: center;
-    display: inline-block;
-}
-
-.fb-login span {
-    background: url(/images/facebook/fIcon.png) no-repeat scroll left top transparent;
-    height: 20px;
-    outline: medium none;
-    padding: 0 5px 0 30px;
-    display: inline-block;
-}
-*/
 
 
 #container{position: relative; min-height: 100%;}

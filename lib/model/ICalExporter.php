@@ -183,7 +183,7 @@ class ICalExporter {
 					$str .= "BEGIN:VALARM\n";
 					$str .= "TRIGGER:-PT" . ($h[$i]['reminder'] * 60) . "M\n";
 					$str .= "ACTION:DISPLAY\n";
-					$str .= "DESCRIPTION: Are you ready for the game?\n";
+					$str .= "DESCRIPTION: " . $h[$i]['reminder_msg'] . "?\n";
 					$str .= "END:VALARM\n";
 				}
 				
@@ -204,7 +204,7 @@ class ICalExporter {
 					$str .= "BEGIN:VALARM\n";
 					$str .= "TRIGGER:-PT" . ($h[$i]['reminder'] * 60) . "M\n";
 					$str .= "ACTION:DISPLAY\n";
-					$str .= "DESCRIPTION: " . $h[$i]['remider_msg'] . "\n";
+					$str .= "DESCRIPTION: " . $h[$i]['reminder_msg'] . "\n";
 					$str .= "END:VALARM\n";
 				}
 				
@@ -222,7 +222,7 @@ class ICalExporter {
 					$str .= "BEGIN:VALARM\n";
 					$str .= "TRIGGER:-PT" . ($h[$i]['reminder'] * 60) . "M\n";
 					$str .= "ACTION:DISPLAY\n";
-					$str .= "DESCRIPTION: Are you ready for the game?\n";
+					$str .= "DESCRIPTION: " . $h[$i]['reminder_msg'] . "\n";
 					$str .= "END:VALARM\n";
 				}
 				

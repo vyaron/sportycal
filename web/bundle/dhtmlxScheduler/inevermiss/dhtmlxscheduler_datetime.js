@@ -8,17 +8,20 @@ scheduler.form_blocks.datetime = {
 		var start = '<input type="text" class="datepicker"/> <input type="text" class="timepicker"/>';
 		var end = '<input type="text" class="datepicker"/> <input type="text" class="timepicker"/>';
 		
-		var height = 30;
+		var height = 70;
 		
 		var fullDateHtml = '';
 		if (cfg.full_day) {
-			fullDateHtml = '<label class="full_date_wrapper" class="inline checkbox"><input class="full_date" type="checkbox"/>&nbsp;' + this.locale.labels.full_day + '</label>';
-			height += 40;
+			fullDateHtml = '<label class="full_date_wrapper pull-right" class="inline checkbox">' + this.locale.labels.full_day + '&nbsp;<input class="full_date" type="checkbox"/></label>';
 		}
 		
-		
-		
-		return "<div style='height:" + height + "px; font-size:inherit;' class='dhx_section_datetime dhx_cal_ltext'><label>" + this.locale.labels.from + "</label>"+start+"<br/><label>" + this.locale.labels.to + "</label>"+end+fullDateHtml+"</div>";
+		var reminderHtml = '';
+		if (cfg.reminder) {
+			reminderHtml = '<select class="reminder pull-right" name="reminder"><option value="">No reminder</option><option value="1440">1 Day</option><option value="240">4 Hours</option></select>';
+		}
+
+		return "<div style='height:" + height + "px; font-size:inherit;' class='dhx_section_datetime dhx_cal_ltext'><label>" + this.locale.labels.from + "</label>"+start+fullDateHtml+"<br/><label>" + this.locale.labels.to + "</label>"+end+reminderHtml+"</div>";
+		return html;
 	},
 	
 	set_value:function(node,value,ev,config){
@@ -27,6 +30,9 @@ scheduler.form_blocks.datetime = {
 		var datepickers = sectionEl.find('.datepicker');
 		var timepickers = sectionEl.find('.timepicker');
 		var fullDateCheckbox = sectionEl.find('.full_date');
+		
+		var reminder = sectionEl.find('.reminder');
+		reminder.val(ev.event_reminder);
 		
 		//run one time!
 		if (!node.is_prepare_events){
@@ -123,9 +129,13 @@ scheduler.form_blocks.datetime = {
 			else ev.end_date=scheduler.date.add(ev.start_date,scheduler.config.time_step,"minute");
 		}
 		
+		var reminder = sectionEl.find('.reminder').val();
+		
+		ev.reminder = reminder ? reminder : null;
+		
 		return {
 			start_date : new Date(ev.start_date),
-			end_date : new Date(ev.end_date)				
+			end_date : new Date(ev.end_date)
 		};
 	},
 	focus:function(node){
@@ -133,4 +143,4 @@ scheduler.form_blocks.datetime = {
 		
 		scheduler._focus(jQuery(node).find('.datepicker')[0]); 
 	}
-}
+};

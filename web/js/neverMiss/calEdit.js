@@ -91,6 +91,7 @@ function loadCalendar(){
 	scheduler.config.auto_end_date = true;
 	
 	scheduler.config.full_day = true;
+	scheduler.config.reminder = true;
 	
 	scheduler.config.buttons_right=["dhx_save_btn","dhx_cancel_btn"];
 	scheduler.config.buttons_left=["dhx_delete_btn"];

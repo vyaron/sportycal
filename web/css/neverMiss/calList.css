@@ -1,8 +1,61 @@
-@CHARSET "utf-8";
+#container{background: 0 0 #000 no-repeat url('/images/neverMiss/layout/bg.jpg'); background-size: cover;}
 
+.box-content{margin-top: 40px; background-color: #f2f2f2; box-shadow:1px 1px 10px #000;}
+.box-content-margin{margin: 0 20px;}
+
+.box-content h2{font-weight: normal; margin-top: 30px; margin-bottom: 20px;}
+.box-content .plan{ float: right; font-size: 14px; color: #333; text-transform: none; margin-top: 8px;}
+
+.cal-active, .cal-deleted{display: none;}
+.cal-is-deleted .cal-deleted, .cal-is-active .cal-active{display: block;}
+
+.cal-boxes{margin-left: 20px;}
+.cal-box{float: left; margin-right: 20px; margin-bottom:20px; border: 1px solid #c1c1c1; box-shadow:1px 1px 2px #000; width: 207px; min-height: 260px;}
+.cal-box h3{background-color: #fbbb2c; color: #fff; font-size: 22px; font-weight: normal; height: 38px; line-height: 38px; margin: 0; padding: 0 20px;}
+.cal-box .content{margin: 20px; margin-top: 30px; margin-bottom: 5px;}
+.cal-box .content ul{list-style: none; padding: 0; margin: 0;}
+.cal-box .content li{font-size: 14px; border-top:2px solid #fbbb2c; clear: both; padding-top: 10px; margin-bottom: 10px;}
+.cal-box .content li:first-child{border-top:none; padding-top: 0;}
+.cal-box .content li .value{font-weight: bold; color: #fbbb2c; float: right;}
+
+.cal-box.cal-is-deleted h3{color: #fcd375;}
+.cal-box.cal-is-deleted .content ul{opacity:0.2; filter:alpha(opacity=20);}
+
+.cal-box .btns{margin-top: 25px; margin-bottom: 10px;}
+.cal-box .btn{font-size: 14px; line-height: 14px; padding: 6px 10px;}
+
+.add-ico{background: right center no-repeat url("/images/neverMiss/calList/add-ico.png"); padding-right: 30px;}
+.add-ico, .add-ico:hover{color: #fff;}
+
+.delete-ico{background: 0 center no-repeat url("/images/neverMiss/calList/delete-ico.png"); padding-left: 15px;}
+.delete-ico, .delete-ico:hover{color: #666;}
+
+.main-container{margin-top: 40px; background-color: #f2f2f2; box-shadow:1px 1px 10px #000;}
+.main-container-content{margin: 0 20px;}
+
+.main-container h2{font-weight: normal; margin-top: 30px; margin-bottom: 20px;}
+.main-container .plan{ float: right; font-size: 14px; color: #333; text-transform: none; margin-top: 8px;}
+
+.upgrade-warning{margin-bottom: 25px;}
+
+/*
 .cal-is-deleted{color: lightgray;}
 .cal-active, .cal-deleted{display: none;}
 .cal-is-deleted .cal-deleted, .cal-is-active .cal-active{display: block;}
 
 #plan-box{float: right; font-size: 16px; font-weight: normal;}
 #plan-box.ended{color: red;}
+*/
+
+/*CSS Queries - NOT WORKING ON IE < 9!
+****************************************/
+@media (min-width: 768px) and (max-width: 979px) {
+	.cal-box{width: 212px;}
+}
+
+@media (max-width: 767px) {
+	.cal-box{width: auto; float: none;}
+}
+	
+	
+	

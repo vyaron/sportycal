@@ -141,7 +141,10 @@ class Cal extends BaseCal
     		$flatEvent['event_length'] = $event->getLength() ? $event->getLength() : '';
     		$flatEvent['event_pid'] = $event->getPid() ? $event->getPid() : 0;
     	
-    		if ($event->hasHour() && $remider){
+    		if ($event->getReminder()){
+    			$flatEvent['reminder'] = $event->getReminder();
+    			$flatEvent['reminder_msg'] = 'Are you ready for ' . $event->getName();
+    		} else if ($event->hasHour() && $remider){
     			$flatEvent['reminder'] = $remider;
     			$flatEvent['reminder_msg'] = $remiderMsg;
     		}
@@ -723,6 +726,7 @@ class Cal extends BaseCal
     		$flatEvent['rec_type'] = $event->getRecType() ? $event->getRecType() : '';
     		$flatEvent['event_length'] = $event->getLength() ? $event->getLength() : '';
     		$flatEvent['event_pid'] = $event->getPid() ? $event->getPid() : 0;
+    		$flatEvent['event_reminder'] = $event->getReminder() ? $event->getReminder() : '';
     		 
     		if ($flatEvent['end_date'] == '0000-00-00 00:00:00') $flatEvent['end_date'] = '9999-01-01 00:00:00';
     		 

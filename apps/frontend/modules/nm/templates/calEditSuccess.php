@@ -41,7 +41,7 @@ use_stylesheet('/css/neverMiss/calEdit.css');
 				</table>
 			</form>
 			
-			<h4>Add events to your calendar by clicking on a day</h4>
+			<h4 class="hidden-phone">Add events to your calendar by clicking on a day / import from other calenders <a id="cal-import-btn" class="cal-btn pull-right" href="#">Import</a></h4>
 		</td>
 		<td class="right-col">&nbsp;</td>
 	</tr>
@@ -61,12 +61,14 @@ use_stylesheet('/css/neverMiss/calEdit.css');
 			
 			
 			<div id="cal-bottom-btns" class="clearfix">
+				<a id="cal-today-btn" class="cal-btn pull-left" data-type="today" href="#">Today</a>
+				
 				<a class="cal-btn cal-btn-view selected pull-left" data-type="month" href="#">Month</a>
 				<a class="cal-btn cal-btn-view pull-left" data-type="week" href="#">Week</a>
 				<a class="cal-btn cal-btn-view pull-left" data-type="day" href="#">Day</a>
 				
-				<a id="cal-today-btn" class="cal-btn pull-left" data-type="today" href="#">Today</a>
-				<a id="cal-import-btn" class="cal-btn pull-left" href="#">Import</a>
+				
+				
 				
 				<a id="clear-events" href="#clear-events-modal" role="button" data-toggle="modal"><i class="icon-trash"></i> Clear all Events</a>
 			</div>
