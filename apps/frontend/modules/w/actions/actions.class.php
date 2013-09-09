@@ -32,13 +32,15 @@ class wActions extends sfActions{
 		$upcoming = $request->getParameter('upcoming');
 		if (!($upcoming > 0  && $upcoming <= 5)) $upcoming = 0;
 		
-		
+		$partner = null;
 		if ($this->calId) {
 			$cal = Doctrine::getTable('Cal')->find($this->calId);
 			$this->forward404Unless($cal);
+			$partner = $cal->getPartner();
 		} elseif ($this->ctgId) {
 			$ctg = Doctrine::getTable('Category')->find($this->ctgId);
 			$this->forward404Unless($ctg);
+			$partner = $ctg->getPartner();
 			$aggregatedCal = $ctg->getAggregatedCal();
 			$cal = $aggregatedCal;
 		}
@@ -75,7 +77,7 @@ class wActions extends sfActions{
 		$this->isMobile = $request->getParameter('isMobile', Utils::clientIsMobile());
 		
 		//$cal = Doctrine::getTable('Cal')->find(array($this->calId));
-		$partner = $cal->getPartner();
+		
 		$this->isReachedMaxSubscribers = $partner ? $partner->isReachedMaxSubscribers() : false;
 		
 		if (!($cal && $this->popupId)){
