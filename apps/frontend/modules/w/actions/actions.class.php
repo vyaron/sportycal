@@ -23,6 +23,10 @@ class wActions extends sfActions{
 		$this->color = $request->getParameter('color');
 		if ($this->color != 'dark') $this->color = null;
 		
+		$this->width = $request->getParameter('width');
+		$this->height = $request->getParameter('height');
+		$this->src = $request->getParameter('src');
+		
 		$upcoming = $request->getParameter('upcoming');
 		if (!($upcoming > 0  && $upcoming <= 5)) $upcoming = 0;
 		

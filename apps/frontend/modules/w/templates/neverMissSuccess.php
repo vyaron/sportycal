@@ -19,18 +19,23 @@
 	var btn_height = 46;
 	var upcoming_height = 0;
 	
-	function setBtnSize(btnStyle, btnSize, upcoming){
-		if (btnSize == 'small'){
-			btn_width = (btnStyle == 'only_icon') ? 23 :82;
-			btn_height = 23;
+	function setBtnSize(btnStyle, btnSize, upcoming, width, height){
+		if (typeof width != 'undefined' && typeof height != 'undefined'){
+			btn_width = parseInt(width);
+			btn_height = parseInt(height);
 		} else {
-			btn_width = (btnStyle == 'only_icon') ? 46 :164;
-			btn_height = 46;
+			if (btnSize == 'small'){
+				btn_width = (btnStyle == 'only_icon') ? 23 :82;
+				btn_height = 23;
+			} else {
+				btn_width = (btnStyle == 'only_icon') ? 46 :164;
+				btn_height = 46;
+			}
 		}
 		
 		if (upcoming){
 			btn_width = Math.max(btn_width, 150);
-			upcoming_height = 46 +  (upcoming * 51);
+			upcoming_height = Math.max(46, btn_height) +  (upcoming * 51);
 		} else {
 			upcoming_height = 0;
 		}
@@ -239,9 +244,13 @@
 			
 			var isMobile = el.getAttribute('data-is-mobile');
 			
+			var width = el.getAttribute('data-width');
+			var height = el.getAttribute('data-height');
+			var src = el.getAttribute('data-src');
+			
 			isRTL = (language == LANGUAGE_HEBREW) ? true : false;
 			
-			setBtnSize(btnStyle, btnSize, upcoming);
+			setBtnSize(btnStyle, btnSize, upcoming, width, height);
 			
 			var bubbleClassPos = getBubbleClassPos(el);
 			
@@ -250,8 +259,8 @@
 			
 			var id = NEVER_MISS + '_' + t;
 			var id_bubble = BUBBLE_PREFIX + id;
-			
-			var iframes = '<div style="position: relative; height: ' + (btn_height + upcoming_height) + 'px; width: ' + btn_width + 'px;"><iframe id="' + id +'" src="' + NEVER_MISS_WIDGET_URL + '/calId/' + calId + '/popupId/' + id_bubble + (language ? ('/language/' + language) : '') + (btnStyle ? ('/btnStyle/' + btnStyle) : '') + (btnSize ? ('/btnSize/' + btnSize) : '') + (color ? ('/color/' + color) : '') + (upcoming ? ('/upcoming/' + upcoming) : '') + (isMobile ? ('/isMobile/' + isMobile) : '') + '" frameborder="0" border="0" style="border: medium none; overflow: hidden; height: ' + (btn_height + upcoming_height) + 'px; width: ' + btn_width + 'px;" scrolling="no" title="Never Miss"></iframe>';
+
+			var iframes = '<div style="position: relative; height: ' + (btn_height + upcoming_height) + 'px; width: ' + btn_width + 'px;"><iframe id="' + id +'" src="' + NEVER_MISS_WIDGET_URL + '/calId/' + calId + '/popupId/' + id_bubble + (language ? ('/language/' + language) : '') + (btnStyle ? ('/btnStyle/' + btnStyle) : '') + (btnSize ? ('/btnSize/' + btnSize) : '') + (color ? ('/color/' + color) : '') + (upcoming ? ('/upcoming/' + upcoming) : '') + (isMobile ? ('/isMobile/' + isMobile) : '') + (width ? ('/width/' + width) : '') + (height ? ('/height/' + height) : '') + (src ? ('/?src=' + encodeURIComponent(src)) : '') + '" frameborder="0" border="0" style="border: medium none; overflow: hidden; height: ' + (btn_height + upcoming_height) + 'px; width: ' + btn_width + 'px;" scrolling="no" title="Never Miss"></iframe>';
 			if (!isMobile) iframes += '<iframe id="' + id_bubble +'" src="' + NEVER_MISS_WIDGET_BUBBLE_URL + '/calId/' + calId + '/isBubble/true/bubblePos/'+ bubbleClassPos + '/popupId/' + id_bubble + (language ? ('/language/' + language) : '') + '" frameborder="0" border="0" style="border: medium none; overflow: hidden; height: ' + BUBBLE_HEIGHT + 'px; width: '+ BUBBLE_WIDTH +'px; position:absolute; z-index:9999; display:none;" scrolling="no" title="Never Miss"></iframe></div>';
 
 			el.innerHTML = iframes;

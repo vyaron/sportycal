@@ -63,10 +63,15 @@ if ($isMobile) $target = Utils::clientIsAndroid() ? '_blank' : 'attachment';
 .rtl .never-miss-btn-small-txt{font-size: 14px; margin-left: 0; margin-right: 10px;}
 </style>
 <body class="<?php echo ($isRTL ? 'rtl' : '');?>">
+
+<?php if ($src):?>
+<a class="never-miss-btn" style="display: block; background: 0 0 no-repeat url('<?php echo $src?>'); width: <?php echo $width;?>px; height: <?php echo $height;?>px;"></a>
+<?php else:?>
 <a class="never-miss-btn<?php echo ($isReachedMaxSubscribers) ? ' disabled' : '';?><?php echo ($isMobile) ? ' mobile' : '';?><?php echo ($btnStyle) ? " $btnStyle" : '';?><?php echo ($btnSize) ? " $btnSize" : '';?><?php echo ($color) ? " $color" : '';?>" href="<?php echo $href;?>" target="<?php echo $target;?>"<?php echo ($isReachedMaxSubscribers) ? ' title="' .  __('Reached subscriptions limit') . '"' : '';?>>
 	<span class="never-miss-btn-small-txt"><?php echo __('DOWNLOAD');?></span>
 	<span class="never-miss-btn-txt"><?php echo __('DOWNLOAD TO CALENDAR');?></span>
 </a>
+<?php endif;?>
 
 <?php if (count($dayKeyOrder)):?>
 <div class="upcoming-wrapper">
