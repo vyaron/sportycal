@@ -7,8 +7,9 @@ class wActions extends sfActions{
 	public function executeNeverMissBtn(sfWebRequest $request){
 		$this->calId = $request->getParameter('calId');
 		$this->ctgId = $request->getParameter('ctgId');
-
 		if (!$this->calId && !$this->ctgId) die();
+		
+		$this->ref = $request->getParameter('ref');
 
 		$this->popupId = $request->getParameter('popupId');
 		
