@@ -96,6 +96,8 @@ class wActions extends sfActions{
 			return sfView::NONE;
 		}
 		
+		$this->ref = $request->getParameter('ref');
+		
 		$this->popupId = $request->getParameter('popupId');
 		$this->isBubble = $request->getParameter('isBubble') === 'true' ? true : false;
 		$this->bubblePos = $request->getParameter('bubblePos', 'bottom-right');
