@@ -350,7 +350,7 @@ class calActions extends sfActions
   	} else {
   		return sfView::NONE;
   	}
-  	 
+  	
   	$events = $this->cal->getEventsForIcal($calType, $partner, $tags, $intelLabel, $intelValue, $remider);
 	
   	//wix hardcore change demo calendar
@@ -374,7 +374,7 @@ class calActions extends sfActions
   	//$urlParams = array('id', 'ctgId', 'ct', 'label', 'remider', 'l', 'v', 'bc', 'ref');
   	
   	if ($userCal->getCalId()) 			$params['id'] 		= $userCal->getCalId();
-  	else if ($userCal->getCategoryId()) $params['ctgId'] 	= $userCal->getCalId();
+  	else if ($userCal->getCategoryId()) $params['ctgId'] 	= $userCal->getCategoryId();
   	
   	if ($userCal->getCalType()) $params['ct'] = $userCal->getCalType();
   	else $params['ct'] = Cal::TYPE_ANY;
@@ -680,7 +680,6 @@ class calActions extends sfActions
   
   
   public function executeSub(sfWebRequest $request)   {
-  	  
   	$partner 		= SportyCalAPI::getValidPartner($request);
 
   	$calId      	= $request->getParameter('id');
@@ -695,7 +694,7 @@ class calActions extends sfActions
   	
   	$this->forward404Unless($calId || $ctgId);
   
-  
+
   	$url = null;
   	
   	if ($calId) {
@@ -713,7 +712,6 @@ class calActions extends sfActions
   		$url = $cal->getIcalUrl($calType);
    	}
   
-  	
   	$ip 			= Utils::getClientIP();
   	$dateNow    	= date("Y-m-d g:i");
   	 
@@ -743,7 +741,7 @@ class calActions extends sfActions
   	} else {
   		$url = str_replace("USERCAL", $userCalId, $url);
   	}
-
+  	
   	if ($calType == Cal::TYPE_ANY) {
 		echo "Use this Url:  $url ";
   		return sfView::NONE;  		

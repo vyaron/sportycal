@@ -116,9 +116,9 @@
 	
 	<p><?php echo __('Please click the calendar of your choice');?></p>
 	<div class="clearfix">
-		<a class="cal-link google" target="_blank" href="/cal/sub/id/<?php echo $calId?>/ct/outlook/ref/widget/cal.ics"><span>Outlook</span></a>
-		<a class="cal-link outlook" target="_blank" href="/cal/sub/id/<?php echo $calId?>/ct/any/ref/widget/cal.ics"><span>iCal</span></a>
-		<a class="cal-link ical" target="_blank" href="/cal/sub/id/<?php echo $calId?>/ct/google/ref/widget/cal.ics"><span>G Calendar</span></a>
+		<a class="cal-link google" target="_blank" href="/cal/sub<?php echo $calId ? '/id/' . $calId : '';?><?php echo $ctgId ? '/ctgId/' . $ctgId : '';?>/ct/outlook/ref/widget/cal.ics"><span>Outlook</span></a>
+		<a class="cal-link outlook" target="_blank" href="/cal/sub<?php echo $calId ? '/id/' . $calId : '';?><?php echo $ctgId ? '/ctgId/' . $ctgId : '';?>/ct/any/ref/widget/cal.ics"><span>iCal</span></a>
+		<a class="cal-link ical" target="_blank" href="/cal/sub<?php echo $calId ? '/id/' . $calId : '';?><?php echo $ctgId ? '/ctgId/' . $ctgId : '';?>/ct/google/ref/widget/cal.ics"><span>G Calendar</span></a>
 		<!-- <a class="cal-link email" href="#">&nbsp;</a> -->
 	</div>
 	
