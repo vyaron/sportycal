@@ -65,7 +65,7 @@ if ($isMobile) $target = Utils::clientIsAndroid() ? '_blank' : 'attachment';
 <body class="<?php echo ($isRTL ? 'rtl' : '');?>">
 
 <?php if ($src):?>
-<a class="never-miss-btn" style="display: block; background: 0 0 no-repeat url('<?php echo $src?>'); width: <?php echo $width;?>px; height: <?php echo $height;?>px;"></a>
+<a class="never-miss-btn<?php echo ($isReachedMaxSubscribers) ? ' disabled' : '';?>" style="display: block; background: 0 0 no-repeat url('<?php echo $src?>'); width: <?php echo $width;?>px; height: <?php echo $height;?>px;"></a>
 <?php else:?>
 <a class="never-miss-btn<?php echo ($isReachedMaxSubscribers) ? ' disabled' : '';?><?php echo ($isMobile) ? ' mobile' : '';?><?php echo ($btnStyle) ? " $btnStyle" : '';?><?php echo ($btnSize) ? " $btnSize" : '';?><?php echo ($color) ? " $color" : '';?>" href="<?php echo $href;?>" target="<?php echo $target;?>"<?php echo ($isReachedMaxSubscribers) ? ' title="' .  __('Reached subscriptions limit') . '"' : '';?>>
 	<span class="never-miss-btn-small-txt"><?php echo __('DOWNLOAD');?></span>
