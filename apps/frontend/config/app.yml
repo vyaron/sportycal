@@ -18,6 +18,9 @@ dev:
     version: 98
     
 all:
+  wix:
+    appKey : 12e3edc7-b350-5cc8-e263-59d559d56671
+    appSecretKey : 8be3c89d-1858-4203-95c1-c3a6bf87034a  
   paypal:
     url: https://www.paypal.com
     nvpApiUrl: https://api-3t.paypal.com/nvp

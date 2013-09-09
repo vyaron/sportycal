@@ -2,6 +2,11 @@
 use_stylesheet('/bundle/custom-scrollbar-plugin/css/jquery.mCustomScrollbar.css');
 use_stylesheet('/css/wix/widget.css');
 ?>
+
+<style type="text/css">
+.upcoming-wrapper h4, .upcoming-wrapper > ul > li{border-color: <?php echo $lineColor;?>}
+</style>
+
 <div id="widget-wrapper">
 	<div id="btns">
 		<a class="btn btn-mini" target="_blank" href="/cal/sub/id/<?php echo $calId?>/ct/outlook/ref/widget/cal.ics"><span>Outlook</span></a>

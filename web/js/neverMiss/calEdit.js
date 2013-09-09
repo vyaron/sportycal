@@ -1,9 +1,15 @@
+function refreshOpenerWidget(){
+	if (opener && opener.refreshWidget) opener.refreshWidget();
+}
+
 function reloadCalendar(){
 	scheduler.clearAll();
 	scheduler.load("/nm/calEvents/?id=" + gCalId, 'json');
 }
 
 function setEventList(){
+	refreshOpenerWidget();
+	
 	var html = '';
 	
 	var events = [];

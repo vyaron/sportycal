@@ -1,4 +1,7 @@
-<?php use_stylesheet('/css/wix/settings.css');?>
+<?php 
+use_stylesheet('/css/wix/settings.css');
+use_stylesheet('/bundle/colorpicker/css/colorpicker.css');
+?>
 
 <div class="container">
 	<div id="app-info">
@@ -13,17 +16,19 @@
 			<?php if ($user):?>
 			<p>Hi, <?php echo $user->getFullName();?> <button id="logout-btn" class="btn btn-small pull-right">logout</button></p>
 			<?php else:?>
-			<p>Connect your acccount <button id="login-btn" class="btn btn-success btn-small pull-right">login</button></p>
+			<p><button id="login-btn" class="btn btn-success btn-small pull-right">Login / Sign up</button></p>
 			<?php endif;?>
 		</div>
 	</div>
 
 	<form id="settings-form">
 		<input type="hidden" name="instance" value="<?php echo $wix->getInstanceCode();?>"/>
+		<input type="hidden" name="compId" value="<?php echo $wix->getCompCode();?>"/>
+		
 		<div class="accordion" id="accordion2">
 			<div class="accordion-group">
 				<div class="accordion-heading">
-					<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseOne"> Calendar</a>
+					<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseOne"> Calendar setup</a>
 				</div>
 				<div id="collapseOne" class="accordion-body collapse in">
 					<div class="accordion-inner">
@@ -56,15 +61,6 @@
 							<?php endif;?>
 						</div>
 						<?php endif;?>
-						
-						<div class="controls controls-row">
-							<label class="span3">Upcoming Events: </label>
-							<select name="upcoming" class="span1">
-								<?php foreach (Wix::$UPCOMING_OPTIONS as $val => $name):?>
-								<option value="<?php echo $val;?>" <?php echo ($val == $upcoming) ? 'selected="selected"' : '';?>><?php echo $name;?></option>
-								<?php endforeach;?>
-							</select>
-						</div>
 					</div>
 				</div>
 			</div>
@@ -73,7 +69,25 @@
 					<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseTwo"> Layout</a>
 				</div>
 				<div id="collapseTwo" class="accordion-body collapse">
-					<div class="accordion-inner">...</div>
+					<div class="accordion-inner">
+						<div class="controls controls-row">
+							<label class="span3">Displayed Events number: </label>
+							<select name="upcoming" class="span1">
+								<?php foreach (Wix::$UPCOMING_OPTIONS as $val => $name):?>
+								<option value="<?php echo $val;?>" <?php echo ($val == $upcoming) ? 'selected="selected"' : '';?>><?php echo $name;?></option>
+								<?php endforeach;?>
+							</select>
+						</div>
+						<div class="controls controls-row">
+							<label class="span3">Color: </label>
+							<div class="span6">
+								<div id="line-color-wrapper" data-color="<?php echo $lineColor;?>" class="input-append color">
+									<input id="line-color" name="line_color" value="<?php echo $lineColor;?>" type="text" class="span2">
+									<span class="add-on"><i style="background-color: <?php echo $lineColor;?>;"></i></span>
+								</div>
+							</div>
+						</div>
+					</div>
 				</div>
 			</div>
 		</div>
@@ -85,5 +99,6 @@
 </script>
 <?php 
 use_javascript('/bundle/bootstrap/js/bootstrap.min.js');
+use_javascript('/bundle/colorpicker/js/bootstrap-colorpicker.js');
 use_javascript('/js/wix/settings.js');
 ?>

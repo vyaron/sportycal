@@ -13,10 +13,25 @@
 class Wix extends BaseWix{
 	const DEFAULT_CAL_ID = 9166;
 	const DEFAULT_UPCOMING = 5;
+	const DEFAULT_LINE_COLOR = '#FFC229';
 	public static $UPCOMING_OPTIONS = array(
 		5 => 5,
 		10 => 10,
 		20 => 20,
 		50 => 50		
 	);
+	
+	public function getLineColorForDisplay(){
+		return $this->getLineColor() ? $this->getLineColor() : Wix::DEFAULT_LINE_COLOR;
+	}
+	
+	public static function getInstanceData($instance){
+		$json = null;
+		
+		list( $code, $data ) = explode( '.', $instance);
+
+		if (base64_decode(strtr($code, "-_", "+/")) == hash_hmac("sha256", $data, sfConfig::get('app_wix_appSecretKey'), true)) $json = json_decode(base64_decode($data));
+	
+		return $json;
+	}
 }

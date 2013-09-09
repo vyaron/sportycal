@@ -3,20 +3,29 @@ class wixActions extends sfActions{
 	private function init(sfWebRequest $request, $needInstance = false){
 		if ($needInstance){
 			$instance = $request->getParameter('instance');
-			
+			$compId = $request->getParameter('origCompId', $request->getParameter('compId'));
 			$locale = $request->getParameter('locale');
 			
-			$wix = WixTable::getByInstanceCode($instance);
-			if (!$wix){
+			$data = Wix::getInstanceData($instance);
+
+			if ($data && $instance && $compId){
+				$wix = WixTable::getBy($data->instanceId, $compId);
+				if (!$wix){
+					$wix = new Wix();
+						
+					$wix->setInstanceCode($data->instanceId);
+					$wix->setCompCode($compId);
+					$wix->setLocale($locale);
+					$wix->setCreatedAt(date('Y-m-d H:i:s'));
+						
+					$wix->save();
+				}
+			} else {
 				$wix = new Wix();
-			
-				$wix->setInstanceCode($instance);
-				$wix->setLocale($locale);
-				$wix->setCreatedAt(date('Y-m-d H:i:s'));
-			
-				$wix->save();
+				$wix->setCalId(Wix::DEFAULT_CAL_ID);
+				$wix->setUpcoming(Wix::DEFAULT_UPCOMING);
 			}
-			
+
 			$this->wix = $wix;
 		}
 		
@@ -29,20 +38,24 @@ class wixActions extends sfActions{
 	
 	public function executeUpdate(sfWebRequest $request){
 		$instance = $request->getParameter('instance');
-		$wix = WixTable::getByInstanceCode($instance);
+		$compId = $request->getParameter('compId');
+		
+		$wix = WixTable::getBy($instance, $compId);
 
 		$this->forward404Unless($wix);
 		
 		$userId = UserUtils::getLoggedInId();
 		$calId = $request->getParameter('cal_id');
 		$upcoming = $request->getParameter('upcoming');
+		$lineColor = $request->getParameter('line_color');
 		
 		if (!$wix->getUserId()) $wix->setUserId($userId);
 
 		if ($wix->getInstanceCode() && $wix->getUserId() == $userId){
 			if ($calId) $wix->setCalId($calId);
 			if ($upcoming) $wix->setUpcoming($upcoming);
-			
+			if ($lineColor && preg_match('/^#[0-9A-F]{6}$/i', $lineColor)) $wix->setLineColor($lineColor);
+				
 			$wix->setUpdatedAt(date('Y-m-d H:i:s'));
 			$wix->save();
 		}
@@ -65,6 +78,7 @@ class wixActions extends sfActions{
 		
 		$this->calId = $this->wix->getCalId();
 		$this->upcoming = $this->wix->getUpcoming();
+		$this->lineColor = $this->wix->getLineColorForDisplay();
 	}
 	
 	public function executeWidget(sfWebRequest $request){
@@ -109,8 +123,9 @@ class wixActions extends sfActions{
 		
 		$this->calId = $calId;
 		$this->upcoming = $upcoming;
-		
+
 		$this->dayKeyOrder = $dayKeyOrder;
 		$this->dayKey2Events = $dayKey2Events;
+		$this->lineColor = $this->wix->getLineColorForDisplay();
 	}
 }

@@ -11,8 +11,10 @@ Doctrine_Manager::getInstance()->bindComponent('Wix', 'doctrine');
  * @property integer $user_id
  * @property integer $cal_id
  * @property string $instance_code
+ * @property string $comp_code
  * @property string $locale
  * @property integer $upcoming
+ * @property string $line_color
  * @property timestamp $created_at
  * @property timestamp $updated_at
  * @property User $User
@@ -22,8 +24,10 @@ Doctrine_Manager::getInstance()->bindComponent('Wix', 'doctrine');
  * @method integer   getUserId()        Returns the current record's "user_id" value
  * @method integer   getCalId()         Returns the current record's "cal_id" value
  * @method string    getInstanceCode()  Returns the current record's "instance_code" value
+ * @method string    getCompCode()      Returns the current record's "comp_code" value
  * @method string    getLocale()        Returns the current record's "locale" value
  * @method integer   getUpcoming()      Returns the current record's "upcoming" value
+ * @method string    getLineColor()     Returns the current record's "line_color" value
  * @method timestamp getCreatedAt()     Returns the current record's "created_at" value
  * @method timestamp getUpdatedAt()     Returns the current record's "updated_at" value
  * @method User      getUser()          Returns the current record's "User" value
@@ -32,8 +36,10 @@ Doctrine_Manager::getInstance()->bindComponent('Wix', 'doctrine');
  * @method Wix       setUserId()        Sets the current record's "user_id" value
  * @method Wix       setCalId()         Sets the current record's "cal_id" value
  * @method Wix       setInstanceCode()  Sets the current record's "instance_code" value
+ * @method Wix       setCompCode()      Sets the current record's "comp_code" value
  * @method Wix       setLocale()        Sets the current record's "locale" value
  * @method Wix       setUpcoming()      Sets the current record's "upcoming" value
+ * @method Wix       setLineColor()     Sets the current record's "line_color" value
  * @method Wix       setCreatedAt()     Sets the current record's "created_at" value
  * @method Wix       setUpdatedAt()     Sets the current record's "updated_at" value
  * @method Wix       setUser()          Sets the current record's "User" value
@@ -84,6 +90,15 @@ abstract class BaseWix extends sfDoctrineRecord
              'autoincrement' => false,
              'length' => 512,
              ));
+        $this->hasColumn('comp_code', 'string', 512, array(
+             'type' => 'string',
+             'fixed' => 0,
+             'unsigned' => false,
+             'primary' => false,
+             'notnull' => true,
+             'autoincrement' => false,
+             'length' => 512,
+             ));
         $this->hasColumn('locale', 'string', 16, array(
              'type' => 'string',
              'fixed' => 0,
@@ -101,6 +116,15 @@ abstract class BaseWix extends sfDoctrineRecord
              'notnull' => false,
              'autoincrement' => false,
              'length' => 4,
+             ));
+        $this->hasColumn('line_color', 'string', 7, array(
+             'type' => 'string',
+             'fixed' => 0,
+             'unsigned' => false,
+             'primary' => false,
+             'notnull' => false,
+             'autoincrement' => false,
+             'length' => 7,
              ));
         $this->hasColumn('created_at', 'timestamp', 25, array(
              'type' => 'timestamp',

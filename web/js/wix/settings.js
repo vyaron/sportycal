@@ -22,7 +22,6 @@ function toggleEditBtn(){
 
 var gSettingAjax = null;
 $(document).ready(function(){
-	
 	$('#login-btn').click(function(e){
 		e.preventDefault();
 		var popup = window.open(BASE_URL + '/partner/login/?isPopup=1', '', 'width=650,height=600,location=0,menubar=0,status=0,titlebar=0,toolbar=0');
@@ -41,7 +40,7 @@ $(document).ready(function(){
 	
 	$('#create-btn').click(function(e){
 		e.preventDefault();
-		var popup = window.open(BASE_URL + '/nm/calCreate/?isPopup=1');
+		var popup = window.open(BASE_URL + '/nm/calCreate/?isPopup=1', 'Create', 'width=980,height=835');
 		popup.focus();
 	});
 	
@@ -52,13 +51,15 @@ $(document).ready(function(){
 		e.preventDefault();
 		
 		var calId = $('#settings-form [name="cal_id"]').val();
-		var popup = window.open(BASE_URL + '/nm/calEdit/id/' + calId + '/?isPopup=1');
+		var popup = window.open(BASE_URL + '/nm/calEdit/id/' + calId + '/?isPopup=1', 'Edit', 'width=980,height=835');
 		popup.focus();
 	});
 	
 	var settingsForm = $('#settings-form');
 	settingsForm.submit(function(e){
 		e.preventDefault();
+		
+		if (gSettingAjax) gSettingAjax.abort();
 		
 		gSettingAjax = $.ajax({
 			url : BASE_URL + '/wix/update',
@@ -70,5 +71,14 @@ $(document).ready(function(){
 	
 	$('#settings-form select').change(function(){
 		settingsForm.submit();
+	});
+	
+	$('#line-color-wrapper').colorpicker().on('hide', function(){
+		settingsForm.submit();
+	});
+	
+	$('#line-color').keyup(function(e){
+		var val = $(this).val();
+		if (/^#[0-9A-F]{6}$/i.test(val)) $('#line-color-wrapper').colorpicker('setValue', val);
 	});
 });
