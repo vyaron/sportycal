@@ -11,8 +11,8 @@
 
 .cal-boxes{margin-left: 20px;}
 .cal-box{float: left; margin-right: 20px; margin-bottom:20px; border: 1px solid #c1c1c1; box-shadow:1px 1px 2px #000; width: 207px; min-height: 260px;}
-.cal-box h3{background-color: #fbbb2c; color: #fff; font-size: 22px; font-weight: normal; height: 38px; line-height: 38px; margin: 0; padding: 0 20px;}
-.cal-box .content{margin: 20px; margin-top: 30px; margin-bottom: 5px;}
+.cal-box h3{background-color: #fbbb2c; color: #fff; font-size: 22px; font-weight: normal; height: 38px; line-height: 38px; margin: 0; padding: 0 15px;}
+.cal-box .content{margin: 15px; margin-top: 30px; margin-bottom: 5px;}
 .cal-box .content ul{list-style: none; padding: 0; margin: 0;}
 .cal-box .content li{font-size: 14px; border-top:2px solid #fbbb2c; clear: both; padding-top: 10px; margin-bottom: 10px;}
 .cal-box .content li:first-child{border-top:none; padding-top: 0;}

@@ -303,6 +303,16 @@ function setCalImportEvents(){
 
 var gCalId = null;
 jQuery(document).ready(function(){
+	$('#desc-info').tooltip({
+		title : 'This description will be add to all the events in your calendar',
+		trigger : 'click hover'
+	});
+//	jQuery('#desc-info').click(function(e){
+//		e.preventDefault();
+////		$('#cal_description').tooltip('show');
+//		//data-trigger="click hover" data-placement="top" data-original-title="This description will be add to all the events in your calendar"
+//	});
+	
 	gCalId = jQuery('#cal-id').val();
 	loadCalendar();
 	
@@ -326,7 +336,7 @@ jQuery(document).ready(function(){
 					if (opener){
 						if (opener.refreshWidget) opener.refreshWidget();
 						opener.refresh();
-						window.close();
+						//window.close();
 					} else {
 						window.location.href = '/nm/widget/calId/' + gCalId;
 					}

@@ -15,6 +15,10 @@ body{background-color: #f2f2f2;}
 #cal-form table td input, #cal-form table td select{width: 100%; -webkit-box-sizing: border-box; -moz-box-sizing: border-box; box-sizing: border-box; height: 25px; line-height: 25px; display: block; font-size: 12px;}
 #cal-form table td input{padding:0 6px;}
 
+#cal-form table td #cal_description{float: left; max-width: 213px;}
+.is-popup #cal-form table td #cal_description{max-width: 235px;}
+#desc-info{float: right; margin-top: 5px; margin-right: 5px; cursor: pointer;}
+
 #events-wrapper{min-height: 530px;}
 #events-wrapper h3{border-bottom: 5px solid #ffc229; font-size: 22px; font-weight: normal; text-transform: uppercase;}
 #events-wrapper ul{display: block; margin: 0; padding: 0; list-style: none;}
@@ -115,3 +119,15 @@ body{background-color: #f2f2f2;}
 .ui-widget-header{background: #ffc229; color: #fff;}
 .ui-widget-header .ui-icon{background-image: url("/bundle/jquery/themes/base/minified/images/ui-icons_000_256x240.png");}
 .ui-datepicker .ui-datepicker-prev-hover, .ui-datepicker .ui-datepicker-next-hover{background: none;}
+
+
+/*CSS Queries - NOT WORKING ON IE < 9!
+****************************************/
+@media (min-width: 768px) and (max-width: 979px) {
+	#cal-form table td #cal_description{max-width: 155px;}
+}
+
+@media (max-width: 767px) {
+	#cal-form table td #cal_description{width: calc(100% - 30px);}
+	#cal-edit-wrapper .right-col{display: none;}
+}

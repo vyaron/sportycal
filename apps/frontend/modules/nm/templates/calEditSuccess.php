@@ -19,7 +19,7 @@ use_stylesheet('/css/neverMiss/calEdit.css');
 
 <?php include_partial('formError', array('form' => $form)) ?>
 
-<h2><span class="color-y">Edit</span> Your Calendar. <a class="pull-right continue-btn btn btn-success" href="#">Continue</a></h2>
+<h2><span class="color-y">Edit</span> Your Calendar. <a class="pull-right continue-btn btn btn-success hidden-popup" href="#">Continue</a></h2>
 
 <?php if ($tzFullName):?>
 <h5>Timezone: <?php echo $tzFullName;?></h5>
@@ -31,19 +31,26 @@ use_stylesheet('/css/neverMiss/calEdit.css');
 			<form id="cal-form" method="POST">
 				<?php echo $form['_csrf_token']->render();?>
 				<input id="cal-id" type="hidden" name="id" value="<?php echo $cal->getId();?>">
-				
 				<table>
 					<tr>
 						<td><?php echo $form['name']->render(array('placeholder' => 'ENTER CALENDAR NAME HERE', 'required'=>'required', 'minlength'=>'3', 'autofocus' => "autofocus"));?></td>
-						<td><input id="cal_description" type="text" name="cal[description]" placeholder="OPTIONAL DESCRIPTION"/></td>
+						<td class="clearfix">
+							<input id="cal_description" type="text" name="cal[description]" placeholder="OPTIONAL DESCRIPTION"/>
+							<i id="desc-info" class="icon-question-sign"></i>
+						</td>
 						<td><?php echo $form['tz']->render();?></td>
+						<td class="visible-popup">
+							<a class="pull-right continue-btn btn btn-success" href="#">Save</a>
+						</td>
 					</tr>
 				</table>
 			</form>
 			
+			<hr class="visible-popup"/>
+			
 			<h4 class="hidden-phone">Add events to your calendar by clicking on a day / import from other calenders <a id="cal-import-btn" class="cal-btn pull-right" href="#">Import</a></h4>
 		</td>
-		<td class="right-col">&nbsp;</td>
+		<td class="right-col hidden-popup">&nbsp;</td>
 	</tr>
 	<tr class="hidden-phone">
 		<td>
@@ -73,7 +80,7 @@ use_stylesheet('/css/neverMiss/calEdit.css');
 				<a id="clear-events" href="#clear-events-modal" role="button" data-toggle="modal"><i class="icon-trash"></i> Clear all Events</a>
 			</div>
 		</td>
-		<td class="right-col">
+		<td class="right-col hidden-popup">
 			<div id="events-wrapper">
 				<h3>My Events</h3>
 				<ul id="event-list"></ul>
@@ -122,7 +129,7 @@ use_stylesheet('/css/neverMiss/calEdit.css');
 <?php 
 use_javascript('/bundle/jquery/js/jquery-ui-1.10.3.custom.min.js');
 use_javascript('/bundle/jquery-timepicker/js/jquery.timepicker.min.js');
-
+use_javascript('/bundle/bootstrap/js/bootstrap.js');
 
 //use_javascript('/bundle/dhtmlxScheduler/sources/dhtmlxscheduler.js');
 use_javascript('/bundle/dhtmlxScheduler/codebase/dhtmlxscheduler.js');

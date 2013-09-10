@@ -36,11 +36,16 @@ $(document).ready(function(){
 		}).always(refresh);
 	});
 	
+	$('#upgrade-btn').click(function(e){
+		e.preventDefault();
+		if (Wix) Wix.Settings.openBillingPage();
+	});
+	
 	$('#reload-btn').click(refresh);
 	
 	$('#create-btn').click(function(e){
 		e.preventDefault();
-		var popup = window.open(BASE_URL + '/nm/calCreate/?isPopup=1', 'Create', 'width=980,height=835');
+		var popup = window.open(BASE_URL + '/nm/calCreate/?isPopup=1', 'Create', 'width=980,height=870,scrollbars=1');
 		popup.focus();
 	});
 	
@@ -51,7 +56,7 @@ $(document).ready(function(){
 		e.preventDefault();
 		
 		var calId = $('#settings-form [name="cal_id"]').val();
-		var popup = window.open(BASE_URL + '/nm/calEdit/id/' + calId + '/?isPopup=1', 'Edit', 'width=980,height=835');
+		var popup = window.open(BASE_URL + '/nm/calEdit/id/' + calId + '/?isPopup=1', 'Edit', 'width=980,height=870,scrollbars=1');
 		popup.focus();
 	});
 	
@@ -73,12 +78,18 @@ $(document).ready(function(){
 		settingsForm.submit();
 	});
 	
-	$('#line-color-wrapper').colorpicker().on('hide', function(){
+	$('#bg-opacity').click(function(){
 		settingsForm.submit();
 	});
 	
-	$('#line-color').keyup(function(e){
-		var val = $(this).val();
-		if (/^#[0-9A-F]{6}$/i.test(val)) $('#line-color-wrapper').colorpicker('setValue', val);
+	['line', 'bg', 'text'].forEach(function(name){
+		$('#' + name + '-color-wrapper').colorpicker().on('hide', function(){
+			settingsForm.submit();
+		});
+		
+		$('#' + name + '-color').keyup(function(e){
+			var val = $(this).val();
+			if (/^#[0-9A-F]{6}$/i.test(val)) $('#' + name + '-color-wrapper').colorpicker('setValue', val);
+		});
 	});
 });

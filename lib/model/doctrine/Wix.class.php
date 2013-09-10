@@ -11,18 +11,42 @@
  * @version    SVN: $Id: Builder.php 7490 2010-03-29 19:53:27Z jwage $
  */
 class Wix extends BaseWix{
+	const PREMUIM_PRODUCT_CODE = 'Premium-Package-1';
 	const DEFAULT_CAL_ID = 9166;
 	const DEFAULT_UPCOMING = 5;
 	const DEFAULT_LINE_COLOR = '#FFC229';
+	const DEFAULT_TEXT_COLOR = '#333333';
+	const DEFAULT_BG_COLOR = '#FFFFFF';
+	const DEFAULT_BG_OPACITY = 0.7;
 	public static $UPCOMING_OPTIONS = array(
+		1 => 1,
+		2 => 2,
 		5 => 5,
-		10 => 10,
-		20 => 20,
-		50 => 50		
+		10 => 10		
 	);
+	
+	public function getCalIdForDisplay(){
+		return $this->getCalId() ? $this->getCalId() : Wix::DEFAULT_CAL_ID;
+	}
+
+	public function getUpcomingForDisplay(){
+		return $this->getUpcoming() ? $this->getUpcoming() : Wix::DEFAULT_UPCOMING;
+	}
 	
 	public function getLineColorForDisplay(){
 		return $this->getLineColor() ? $this->getLineColor() : Wix::DEFAULT_LINE_COLOR;
+	}
+	
+	public function getTextColorForDisplay(){
+		return $this->getTextColor() ? $this->getTextColor() : Wix::DEFAULT_TEXT_COLOR;
+	}
+	
+	public function getBgColorForDisplay(){
+		return $this->getBgColor() ? $this->getBgColor() : Wix::DEFAULT_BG_COLOR;
+	}
+	
+	public function getBgOpacityForDisplay(){
+		return $this->getBgOpacity() ? $this->getBgOpacity() : Wix::DEFAULT_BG_OPACITY;
 	}
 	
 	public static function getInstanceData($instance){
@@ -33,5 +57,9 @@ class Wix extends BaseWix{
 		if (base64_decode(strtr($code, "-_", "+/")) == hash_hmac("sha256", $data, sfConfig::get('app_wix_appSecretKey'), true)) $json = json_decode(base64_decode($data));
 	
 		return $json;
+	}
+	
+	public static function isPremium($data){
+		return ($data->vendorProductId && $data->vendorProductId == Wix::PREMUIM_PRODUCT_CODE) ? true : false;
 	}
 }

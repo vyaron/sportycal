@@ -205,7 +205,7 @@ class Partner extends BasePartner
 			->innerJoin('c.CalRequest cr')
 			->where('c.partner_id =?', $this->getId())
 			->andWhere('c.deleted_at IS NULL')
-			->groupBy('cr.cal_id');
+			->groupBy('c.partner_id');
 		
 			$calRequests = $q->fetchOne();
 
@@ -214,7 +214,7 @@ class Partner extends BasePartner
 			$licence = $this->getLicence();
 			$isReached = $licence->isReachedMaxSubscribers($countSubscribers);
 		}
-		 
+
 		return $isReached;
 	}
 	

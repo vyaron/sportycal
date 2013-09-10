@@ -19,6 +19,13 @@ use_stylesheet('/bundle/colorpicker/css/colorpicker.css');
 			<p><button id="login-btn" class="btn btn-success btn-small pull-right">Login / Sign up</button></p>
 			<?php endif;?>
 		</div>
+		
+		<?php if ($user):?>
+		<hr/>
+		<div class="clearfix">
+			<p>Premuim features <button id="upgrade-btn" class="btn btn-success btn-small">Upgrade this App</button></p>
+		</div>
+		<?php endif;?>
 	</div>
 
 	<form id="settings-form">
@@ -32,17 +39,12 @@ use_stylesheet('/bundle/colorpicker/css/colorpicker.css');
 				</div>
 				<div id="collapseOne" class="accordion-body collapse in">
 					<div class="accordion-inner">
-						
-						<div class="mb15 clearfix">
-							<button id="reload-btn" class="btn pull-right"><i class="icon-refresh"></i></button>
-						</div>
-						
 						<?php if ($user): $calsCount = count($cals);?>
 						<div class="controls controls-row">
 							<label class="span3">Calendar: </label>
 							<?php if ($calsCount === 0):?>
 								<div class="span6">
-									<button id="create-btn" class="btn btn-primary btn-block mb15">Create</button>
+									<button id="create-btn" class="btn btn-primary btn-block mb15">Create your First!</button>
 								</div>
 							<?php elseif ($calsCount === 1): ?>
 								<input type="hidden" name="cal_id" value="<?php echo $calId;?>"/>
@@ -60,6 +62,8 @@ use_stylesheet('/bundle/colorpicker/css/colorpicker.css');
 								<button id="edit-btn" class="btn btn-small pull-right">Edit</button>
 							<?php endif;?>
 						</div>
+						<?php elseif (!$calId):?>
+						<p>Demo Calendar</p>
 						<?php endif;?>
 					</div>
 				</div>
@@ -79,7 +83,7 @@ use_stylesheet('/bundle/colorpicker/css/colorpicker.css');
 							</select>
 						</div>
 						<div class="controls controls-row">
-							<label class="span3">Color: </label>
+							<label class="span3">Line Color: </label>
 							<div class="span6">
 								<div id="line-color-wrapper" data-color="<?php echo $lineColor;?>" class="input-append color">
 									<input id="line-color" name="line_color" value="<?php echo $lineColor;?>" type="text" class="span2">
@@ -87,11 +91,38 @@ use_stylesheet('/bundle/colorpicker/css/colorpicker.css');
 								</div>
 							</div>
 						</div>
+						<div class="controls controls-row">
+							<label class="span3">Text Color: </label>
+							<div class="span6">
+								<div id="text-color-wrapper" data-color="<?php echo $textColor;?>" class="input-append color">
+									<input id="text-color" name="text_color" value="<?php echo $textColor;?>" type="text" class="span2">
+									<span class="add-on"><i style="background-color: <?php echo $textColor;?>;"></i></span>
+								</div>
+							</div>
+						</div>
+						<div class="controls controls-row">
+							<label class="span3">Background Color: </label>
+							<div class="span6">
+								<div id="bg-color-wrapper" data-color="<?php echo $bgColor;?>" class="input-append color">
+									<input id="bg-color" name="bg_color" value="<?php echo $bgColor;?>" type="text" class="span2">
+									<span class="add-on"><i style="background-color: <?php echo $bgColor;?>;"></i></span>
+								</div>
+								<label class="checkbox inline"><input id="bg-opacity" name="bg_opacity" type="checkbox" selected="selected" value="1"/> half transparent</label>
+							</div>
+						</div>
 					</div>
 				</div>
 			</div>
 		</div>
+		
+		<?php if ($user && $calsCount):?>
+		<div class="clearfix">
+			<button id="reload-btn" class="btn btn-link btn-small pull-right">reload</button>
+		</div>
+		<?php endif;?>
 	</form>
+	
+	
 </div>
 
 <script type="text/javascript">

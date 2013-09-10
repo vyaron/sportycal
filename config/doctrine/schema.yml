@@ -328,16 +328,16 @@ CalRequest:
       notnull: false
       autoincrement: false
   relations:
-    UserCal:
-      local: user_cal_id
-      foreign: id
-      type: one
     Partner:
       local: partner_id
       foreign: id
       type: one
     Category:
       local: category_id
+      foreign: id
+      type: one
+    UserCal:
+      local: user_cal_id
       foreign: id
       type: one
     Cal:
@@ -2427,6 +2427,27 @@ Wix:
       autoincrement: false
     line_color:
       type: string(7)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: false
+      autoincrement: false
+    text_color:
+      type: string(7)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: false
+      autoincrement: false
+    bg_color:
+      type: string(7)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: false
+      autoincrement: false
+    bg_opacity:
+      type: decimal(10)
       fixed: false
       unsigned: false
       primary: false

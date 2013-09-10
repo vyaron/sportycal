@@ -15,7 +15,7 @@
 					<h3><span data-placement="top" data-toggle="tooltip" data-original-title="<?php echo $cal['name'];?>"><?php echo Utils::substr($cal['name'], 10);?></span></h3>
 					<div class="content">
 						<ul>
-							<li>Last Modified <span class="value"><?php echo date('j.n.y', strtotime($cal['updated_at']));?></span></li>
+							<li>Last Modified <span class="value"><?php echo date('d M Y', strtotime($cal['updated_at']));?></span></li>
 							<li>Upcoming Events <span class="value"><?php echo $cal['event_count'];?></span></li>
 							<li>Subscribers <span class="value"><?php echo $cal['cal_request_count'];?></span></li>
 						</ul>

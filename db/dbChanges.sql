@@ -1,3 +1,6 @@
+ALTER TABLE `wix` ADD `text_color` VARCHAR( 7 ) NULL DEFAULT NULL AFTER `line_color` ;
+ALTER TABLE `wix` ADD `bg_color` VARCHAR( 7 ) NULL DEFAULT NULL AFTER `text_color` ;
+ALTER TABLE `wix` ADD `bg_opacity` DECIMAL NULL DEFAULT NULL AFTER `bg_color`;
 ----------------------------DONE ON PROD-------------------------------------------------------
 ALTER TABLE `wix` ADD `line_color` VARCHAR( 7 ) NULL DEFAULT NULL AFTER `upcoming`;
 ALTER TABLE `wix` ADD `comp_code` VARCHAR( 512 ) NOT NULL AFTER `instance_code` , ADD INDEX ( `comp_code` );

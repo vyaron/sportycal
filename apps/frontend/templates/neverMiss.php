@@ -17,7 +17,7 @@
     <meta name="keywords" content="calendar, google calendar, outlook calendar, event, events, calendar wizard, calendar widget" />
     <meta name="description" content="Create follow calendar"/>
     
-    <title><?php echo sfConfig::get('app_domain_name');?> Website</title>
+    <title><?php echo sfConfig::get('app_domain_name');?> - Share Events with Clients - The Easy Way</title>
     
     <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/ico/144b.png">
     <link rel="apple-touch-icon-precomposed" sizes="114x114" href="/ico/114b.png">

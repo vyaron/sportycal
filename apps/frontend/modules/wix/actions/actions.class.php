@@ -25,7 +25,8 @@ class wixActions extends sfActions{
 				$wix->setCalId(Wix::DEFAULT_CAL_ID);
 				$wix->setUpcoming(Wix::DEFAULT_UPCOMING);
 			}
-
+			
+			$this->wixData = $data;
 			$this->wix = $wix;
 		}
 		
@@ -34,6 +35,10 @@ class wixActions extends sfActions{
 	
 	public function executeSignUp(sfWebRequest $request){
 		$this->init($request, false);
+	}
+	
+	private function isColor($color){
+		return preg_match('/^#[0-9A-F]{6}$/i', $color) ? true : false;
 	}
 	
 	public function executeUpdate(sfWebRequest $request){
@@ -48,13 +53,21 @@ class wixActions extends sfActions{
 		$calId = $request->getParameter('cal_id');
 		$upcoming = $request->getParameter('upcoming');
 		$lineColor = $request->getParameter('line_color');
+		$textColor = $request->getParameter('text_color');
+		$bgColor = $request->getParameter('bg_color');
+		$bgOpacity = $request->getParameter('bg_opacity');
 		
 		if (!$wix->getUserId()) $wix->setUserId($userId);
 
 		if ($wix->getInstanceCode() && $wix->getUserId() == $userId){
 			if ($calId) $wix->setCalId($calId);
 			if ($upcoming) $wix->setUpcoming($upcoming);
-			if ($lineColor && preg_match('/^#[0-9A-F]{6}$/i', $lineColor)) $wix->setLineColor($lineColor);
+			if ($lineColor && $this->isColor($lineColor)) $wix->setLineColor($lineColor);
+			if ($textColor && $this->isColor($textColor)) $wix->setTextColor($textColor);
+			if ($bgColor && $this->isColor($bgColor)) $wix->setBgColor($bgColor);
+			
+			if ($bgOpacity) $wix->setBgOpacity(null); //Get the default opacity
+			else $wix->setBgOpacity(1); // 100% opacity
 				
 			$wix->setUpdatedAt(date('Y-m-d H:i:s'));
 			$wix->save();
@@ -77,15 +90,18 @@ class wixActions extends sfActions{
 		}
 		
 		$this->calId = $this->wix->getCalId();
-		$this->upcoming = $this->wix->getUpcoming();
+		$this->upcoming = $this->wix->getUpcomingForDisplay();
 		$this->lineColor = $this->wix->getLineColorForDisplay();
+		$this->textColor = $this->wix->getTextColorForDisplay();
+		$this->bgColor = $this->wix->getBgColorForDisplay();
+		$this->bgOpacity = $this->wix->getBgOpacityForDisplay();
 	}
 	
 	public function executeWidget(sfWebRequest $request){
 		$this->init($request, true);
 		
-		$calId = $this->wix->getCalId() ? $this->wix->getCalId() : Wix::DEFAULT_CAL_ID;
-		$upcoming = $this->wix->getUpcoming() ? $this->wix->getUpcoming() : Wix::DEFAULT_UPCOMING;
+		$calId = $this->wix->getCalIdForDisplay();
+		$upcoming = $this->wix->getUpcomingForDisplay();
 		
 		$cal = Doctrine::getTable('Cal')->find(array($calId));
 
@@ -121,11 +137,23 @@ class wixActions extends sfActions{
 			}
 		}
 		
+		$partner = $cal->getPartner();
+		//if ($this->wixData && $this->wixData['vendorProductId'])
+		if (Wix::isPremium($this->wixData)) {
+			$this->setLicenceCode(PartnerLicence::PLAN_B);
+			$this->setLicenceEndsAt(strtotime('+1 day'));
+		}
+
+		$this->isReachedMaxSubscribers = $partner ? $partner->isReachedMaxSubscribers() : false;
+
 		$this->calId = $calId;
 		$this->upcoming = $upcoming;
 
 		$this->dayKeyOrder = $dayKeyOrder;
 		$this->dayKey2Events = $dayKey2Events;
 		$this->lineColor = $this->wix->getLineColorForDisplay();
+		$this->textColor = $this->wix->getTextColorForDisplay();
+		$this->bgColor = $this->wix->getBgColorForDisplay();
+		$this->bgOpacity = $this->wix->getBgOpacityForDisplay();
 	}
 }

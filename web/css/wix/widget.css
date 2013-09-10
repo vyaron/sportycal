@@ -7,16 +7,7 @@ margin: 5px;
 }
 
 #btns{margin-bottom: 10px;}
-/*
-.cal-link{width: 100px; height: 31px; line-height:31px; font-size:12px; float: left; display: block; margin-right: 7px; cursor: pointer; background: 0 bottom no-repeat url("/widgets/neverMiss/imgs/cal-link.png"); text-decoration: none; color: #333; font-size: 10px;}
-
-.cal-link:hover{color: #000;}
-.cal-link span{padding-left: 33px; background-position: 7px center; background-repeat: no-repeat; background-image: url("/widgets/neverMiss/imgs/cal-link.png"); display: block;}
-
-.cal-link.outlook span{background-position: 0 0;}
-.cal-link.ical span{background-position: 0 -31px;}
-.cal-link.google span{background-position: 0 -62px;}
-*/
+#btns .btn.disabled{cursor: not-allowed;}
 
 .upcoming-wrapper{font-size: 12px; /*padding: 10px; background-color: #fff;*/}
 .upcoming-wrapper h4, .upcoming-wrapper h5{margin: 0;}
