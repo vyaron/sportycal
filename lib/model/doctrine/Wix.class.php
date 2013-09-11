@@ -12,7 +12,7 @@
  */
 class Wix extends BaseWix{
 	const PREMUIM_PRODUCT_CODE = 'Premium-Package-1';
-	const DEFAULT_CAL_ID = 9166;
+	const DEFAULT_CAL_ID = 9228;
 	const DEFAULT_UPCOMING = 5;
 	const DEFAULT_LINE_COLOR = '#FFC229';
 	const DEFAULT_TEXT_COLOR = '#333333';

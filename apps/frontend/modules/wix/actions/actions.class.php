@@ -11,12 +11,20 @@ class wixActions extends sfActions{
 			if ($data && $instance && $compId){
 				$wix = WixTable::getBy($data->instanceId, $compId);
 				if (!$wix){
+					$user = UserUtils::getLoggedIn();
+					
 					$wix = new Wix();
 						
 					$wix->setInstanceCode($data->instanceId);
 					$wix->setCompCode($compId);
 					$wix->setLocale($locale);
 					$wix->setCreatedAt(date('Y-m-d H:i:s'));
+					
+					if ($user) {
+						$wix->setUserId($userId);
+						$cal = $user->getFirstCal();
+						if ($cal) $wix->setCalId($cal->getId());
+					}
 						
 					$wix->save();
 				}
@@ -139,12 +147,7 @@ class wixActions extends sfActions{
 		}
 		
 		$partner = $cal->getPartner();
-// 		if (Wix::isPremium($this->wixData)) {
-// 			$partner->setLicenceCode(PartnerLicence::PLAN_B);
-// 			$partner->setLicenceEndsAt(strtotime('+1 day'));
-// 		}
-
-		$this->isReachedMaxSubscribers = $partner && !Wix::isPremium($this->wixData) ? $partner->isReachedMaxSubscribers() : false;
+		$this->isReachedMaxSubscribers = ($partner && !Wix::isPremium($this->wixData)) ? $partner->isReachedMaxSubscribers() : false;
 
 		$this->calId = $calId;
 		$this->upcoming = $upcoming;

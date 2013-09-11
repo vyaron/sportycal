@@ -46,19 +46,32 @@ class User extends BaseUser
     	return $partner;
     }
     
+    private function getCalsQuery(){
+    	$cals = Doctrine_Query::create()
+    	->from('Cal c')
+    	->where('c.by_user_id = ?', $this->getId());
+    	 
+    	if (!$this->isMaster()) $cals->andWhere('c.deleted_at IS NULL');
+    	 
+    	$cals->orderBy('c.updated_at DESC');
+    	
+    	return $cals;
+    }
+    
     /**
      * @return Doctrine_Collection Cal
      */
     public function getCals(){
-    	$cals = Doctrine_Query::create()
-    	->from('Cal c')
-    	->where('c.by_user_id = ?', $this->getId());
-    	
-    	if (!$this->isMaster()) $cals->andWhere('c.deleted_at IS NULL');
-    	
-    	$cals->orderBy('c.updated_at DESC');
-    	
+    	$cals = $this->getCalsQuery();
     	return $cals->execute();
+    }
+    
+    /**
+     * @return Doctrine_Collection Cal
+     */
+    public function getFirstCal(){
+    	$cals = $this->getCalsQuery();
+    	return $cals->fetchOne();
     }
     
     public function createPartner($rootName="ROOT", $website=null){
