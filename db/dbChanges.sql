@@ -1,9 +1,3 @@
-ALTER TABLE `wix` ADD `text_color` VARCHAR( 7 ) NULL DEFAULT NULL AFTER `line_color` ;
-ALTER TABLE `wix` ADD `bg_color` VARCHAR( 7 ) NULL DEFAULT NULL AFTER `text_color` ;
-ALTER TABLE `wix` ADD `bg_opacity` DECIMAL NULL DEFAULT NULL AFTER `bg_color`;
-----------------------------DONE ON PROD-------------------------------------------------------
-ALTER TABLE `wix` ADD `line_color` VARCHAR( 7 ) NULL DEFAULT NULL AFTER `upcoming`;
-ALTER TABLE `wix` ADD `comp_code` VARCHAR( 512 ) NOT NULL AFTER `instance_code` , ADD INDEX ( `comp_code` );
 ----------------------------DONE ON PROD-------------------------------------------------------
 ALTER TABLE `event` ADD `reminder` INT UNSIGNED NULL DEFAULT NULL AFTER `length`;
 ----------------------------DONE ON PROD-------------------------------------------------------
@@ -17,18 +11,25 @@ CREATE TABLE IF NOT EXISTS `wix` (
   `user_id` bigint(20) unsigned DEFAULT NULL,
   `cal_id` bigint(20) unsigned DEFAULT NULL,
   `instance_code` varchar(512) NOT NULL,
+  `comp_code` varchar(512) NOT NULL,
   `locale` varchar(16) DEFAULT NULL,
   `upcoming` int(10) unsigned DEFAULT NULL,
+  `line_color` varchar(7) DEFAULT NULL,
+  `text_color` varchar(7) DEFAULT NULL,
+  `bg_color` varchar(7) DEFAULT NULL,
+  `bg_opacity` decimal(10,0) DEFAULT NULL,
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
-  UNIQUE KEY `cal_id` (`cal_id`,`instance_code`),
-  KEY `user_id` (`user_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+  UNIQUE KEY `instance_code` (`instance_code`,`comp_code`),
+  KEY `cal_id` (`cal_id`),
+  KEY `user_id` (`user_id`),
+  KEY `comp_code` (`comp_code`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 ALTER TABLE `wix`
-  ADD CONSTRAINT `wix_ibfk_2` FOREIGN KEY (`cal_id`) REFERENCES `cal` (`id`),
-  ADD CONSTRAINT `wix_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`);
+  ADD CONSTRAINT `wix_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`),
+  ADD CONSTRAINT `wix_ibfk_2` FOREIGN KEY (`cal_id`) REFERENCES `cal` (`id`);
 SET FOREIGN_KEY_CHECKS=1;
 ----------------------------DONE ON PROD-------------------------------------------------------
 ALTER TABLE `contact` ADD `phone` VARCHAR( 32 ) NULL DEFAULT NULL AFTER `ip_address`;

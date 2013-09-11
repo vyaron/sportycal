@@ -107,7 +107,7 @@ use_stylesheet('/bundle/colorpicker/css/colorpicker.css');
 									<input id="bg-color" name="bg_color" value="<?php echo $bgColor;?>" type="text" class="span2">
 									<span class="add-on"><i style="background-color: <?php echo $bgColor;?>;"></i></span>
 								</div>
-								<label class="checkbox inline"><input id="bg-opacity" name="bg_opacity" type="checkbox" selected="selected" value="1"/> half transparent</label>
+								<label class="checkbox inline"><input id="bg-opacity" name="bg_opacity" type="checkbox" <?php echo ($bgOpacity == 1) ? '' : 'checked="checked"';?> value="1"/> half transparent</label>
 							</div>
 						</div>
 					</div>
