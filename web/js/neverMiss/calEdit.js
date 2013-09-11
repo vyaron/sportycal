@@ -303,22 +303,37 @@ function setCalImportEvents(){
 
 var gCalId = null;
 jQuery(document).ready(function(){
+	var calForm = jQuery('#cal-form');
+	
+	//WIX - Save calendar on create
+	if (opener && !jQuery('#cal_name').val()){
+		var data = {};
+		data['cal[_csrf_token]'] = jQuery('#cal__csrf_token').val();
+		data['cal[tz]'] = jQuery('#cal_tz').val();
+		data['cal[name]'] = 'New Calendar';
+		
+		jQuery.ajax({
+			url : '',
+			type : 'PUT',
+			dataType : 'json',
+			data : data
+		}).always(function(res){
+			if (opener.refreshWidget) opener.refreshWidget();
+			opener.refresh();		});
+	}
+	
 	$('#desc-info').tooltip({
-		title : 'This description will be add to all the events in your calendar',
-		trigger : 'click hover'
+		title : 'This description will be added to all the events in your calendar',
+		trigger : 'click hover',
+		placement : 'right'
 	});
-//	jQuery('#desc-info').click(function(e){
-//		e.preventDefault();
-////		$('#cal_description').tooltip('show');
-//		//data-trigger="click hover" data-placement="top" data-original-title="This description will be add to all the events in your calendar"
-//	});
+
 	
 	gCalId = jQuery('#cal-id').val();
 	loadCalendar();
 	
 	setCalImportEvents();
 	
-	var calForm = jQuery('#cal-form');
 	calForm.validate();
 	calForm.submit(function(e){
 		e.preventDefault();

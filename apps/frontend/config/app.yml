@@ -31,11 +31,11 @@ all:
   mailinglist:
     fromName: iNeverMiss.net Support
     fromEmail: support@inevermiss.net
-    replyToName: iNeverMiss.net Sales
-    replyToEmail: sales@inevermiss.net
+    replyToName: iNeverMiss.net Support
+    replyToEmail: support@inevermiss.net
   gmail:
-    username: subscribe@inevermiss.net
-    password: <SeE<Z4M777
+    username: support@inevermiss.net
+    password: SportYcal900
   domain:
     isNeverMiss: false
     isMobile: false

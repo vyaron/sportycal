@@ -16,7 +16,6 @@ use_stylesheet('/css/neverMiss/calEdit.css');
 ?>
 
 <div class="container">
-
 <?php include_partial('formError', array('form' => $form)) ?>
 
 <h2><span class="color-y">Edit</span> Your Calendar. <a class="pull-right continue-btn btn btn-success hidden-popup" href="#">Continue</a></h2>
@@ -39,8 +38,8 @@ use_stylesheet('/css/neverMiss/calEdit.css');
 							<i id="desc-info" class="icon-question-sign"></i>
 						</td>
 						<td><?php echo $form['tz']->render();?></td>
-						<td class="visible-popup">
-							<a class="pull-right continue-btn btn btn-success" href="#">Save</a>
+						<td class="pl0">
+							<a class="pull-right continue-btn btn btn-success visible-popup ml15" href="#">Save</a>
 						</td>
 					</tr>
 				</table>
@@ -126,10 +125,10 @@ use_stylesheet('/css/neverMiss/calEdit.css');
 </div>
 
 </div>
+
 <?php 
 use_javascript('/bundle/jquery/js/jquery-ui-1.10.3.custom.min.js');
 use_javascript('/bundle/jquery-timepicker/js/jquery.timepicker.min.js');
-use_javascript('/bundle/bootstrap/js/bootstrap.js');
 
 //use_javascript('/bundle/dhtmlxScheduler/sources/dhtmlxscheduler.js');
 use_javascript('/bundle/dhtmlxScheduler/codebase/dhtmlxscheduler.js');

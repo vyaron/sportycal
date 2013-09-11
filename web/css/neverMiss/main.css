@@ -1,14 +1,16 @@
 /*@IMPORT url("/fonts/signika/stylesheet.css");*/
 .is-popup .hidden-popup, .visible-popup{display: none !important;}
-.is-popup .visible-popup, .hidden-popup{display: block;}
+.is-popup .visible-popup, .hidden-popup{display: block !important;}
 
 html, body{height: 100%;}
 body{/*padding-top: 80px;*/ font-size: 12px; font-family: arial}
 
 .cb{clear: both;}
 .cr{clear: right;}
+.pl0{padding-left: 0 !important;}
 .mt0{margin-top: 0;}
 .mt10{margin-top: 10px;}
+.ml15{margin-left: 15px;}
 .color-y{color: #ffc229;}
 .fs14{font-size:14px;};
 

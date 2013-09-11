@@ -15,7 +15,7 @@ body{background-color: #f2f2f2;}
 #cal-form table td input, #cal-form table td select{width: 100%; -webkit-box-sizing: border-box; -moz-box-sizing: border-box; box-sizing: border-box; height: 25px; line-height: 25px; display: block; font-size: 12px;}
 #cal-form table td input{padding:0 6px;}
 
-#cal-form table td #cal_description{float: left; max-width: 213px;}
+#cal-form table td #cal_description{float: left; max-width: 217px;}
 .is-popup #cal-form table td #cal_description{max-width: 235px;}
 #desc-info{float: right; margin-top: 5px; margin-right: 5px; cursor: pointer;}
 
@@ -124,7 +124,7 @@ body{background-color: #f2f2f2;}
 /*CSS Queries - NOT WORKING ON IE < 9!
 ****************************************/
 @media (min-width: 768px) and (max-width: 979px) {
-	#cal-form table td #cal_description{max-width: 155px;}
+	#cal-form table td #cal_description{max-width: 158px;}
 }
 
 @media (max-width: 767px) {

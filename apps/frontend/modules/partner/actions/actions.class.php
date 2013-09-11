@@ -134,6 +134,7 @@ class partnerActions extends sfActions
   		if (strpos($url, sfConfig::get('app_domain_full')) === 0
   				&& !strpos($url, '/partner/login')
   				&& !strpos($url, '/nm/register')
+  				&& !strpos($url, '/wix/')
   				&& !strpos($url, '/nm/index')) UserUtils::setRefererUrl($url);
   	}
   		

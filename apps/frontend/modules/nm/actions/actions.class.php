@@ -46,9 +46,9 @@ class nmActions extends sfActions{
 				$mail->Password   = sfConfig::get('app_gmail_password');
 				
 				$mail->SetFrom($contact->getSenderEmail(), $contact->getSenderName());
-
-				$mail->AddAddress('vyaron@gmail.com', 'Yaron Biton');
-				//$mail->AddAddress('il.mrbit@gmail.com', 'Yaron Biton');
+				
+				$mail->AddAddress(sfConfig::get('app_mailinglist_fromEmail'), sfConfig::get('app_mailinglist_fromName'));
+				//$mail->AddAddress('vyaron@gmail.com', 'Yaron Biton');
 				
 				$mail->Subject = $contact->getSubject();
 				
@@ -641,7 +641,7 @@ class nmActions extends sfActions{
 			}
 
 			$mail->SetFrom(sfConfig::get('app_mailinglist_fromEmail'), sfConfig::get('app_mailinglist_fromName'));
-			$mail->AddReplyTo(sfConfig::get('app_mailinglist_replyToEmail'), sfConfig::get('app_mailinglist_replyToName'));
+			//$mail->AddReplyTo(sfConfig::get('app_mailinglist_replyToEmail'), sfConfig::get('app_mailinglist_replyToName'));
 				
 			$mail->AddAddress($user->getEmail(), $user->getFullName());
 
