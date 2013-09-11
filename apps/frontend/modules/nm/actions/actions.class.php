@@ -49,12 +49,13 @@ class nmActions extends sfActions{
 				$mail->SetFrom($contact->getSenderEmail(), $contact->getSenderName());
 				$mail->AddReplyTo($contact->getSenderEmail(), $contact->getSenderName());
 				$mail->AddAddress(sfConfig::get('app_mailinglist_fromEmail'), sfConfig::get('app_mailinglist_fromName'));
-				$mail->AddAddress($contact->getSenderEmail(), $contact->getSenderName());
+				///$mail->AddAddress($contact->getSenderEmail(), $contact->getSenderName());
 				//$mail->AddAddress('vyaron@gmail.com', 'Yaron Biton');
 				
 				$mail->Subject = $contact->getSubject();
 				
 				$txt = 'From: ' . $contact->getSenderName() . "\n";
+				$txt .= 'Email: ' . $contact->getSenderEmail() . "\n";
 				$txt .= 'Phone: ' . $contact->getPhone() . "\n";
 				$txt .= 'Message: ' . $contact->getMessage();
 				
