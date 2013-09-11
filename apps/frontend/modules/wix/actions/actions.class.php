@@ -25,7 +25,7 @@ class wixActions extends sfActions{
 				$wix->setCalId(Wix::DEFAULT_CAL_ID);
 				$wix->setUpcoming(Wix::DEFAULT_UPCOMING);
 			}
-			
+			//$data->vendorProductId = Wix::PREMUIM_PRODUCT_CODE;
 			$this->wixData = $data;
 			$this->wix = $wix;
 		}
@@ -89,6 +89,7 @@ class wixActions extends sfActions{
 			}
 		}
 		
+		$this->isPremium = Wix::isPremium($this->wixData);
 		$this->calId = $this->wix->getCalId();
 		$this->upcoming = $this->wix->getUpcomingForDisplay();
 		$this->lineColor = $this->wix->getLineColorForDisplay();
@@ -138,13 +139,12 @@ class wixActions extends sfActions{
 		}
 		
 		$partner = $cal->getPartner();
-		//if ($this->wixData && $this->wixData['vendorProductId'])
-		if (Wix::isPremium($this->wixData)) {
-			$this->setLicenceCode(PartnerLicence::PLAN_B);
-			$this->setLicenceEndsAt(strtotime('+1 day'));
-		}
+// 		if (Wix::isPremium($this->wixData)) {
+// 			$partner->setLicenceCode(PartnerLicence::PLAN_B);
+// 			$partner->setLicenceEndsAt(strtotime('+1 day'));
+// 		}
 
-		$this->isReachedMaxSubscribers = $partner ? $partner->isReachedMaxSubscribers() : false;
+		$this->isReachedMaxSubscribers = $partner && !Wix::isPremium($this->wixData) ? $partner->isReachedMaxSubscribers() : false;
 
 		$this->calId = $calId;
 		$this->upcoming = $upcoming;

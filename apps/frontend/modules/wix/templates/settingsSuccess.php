@@ -20,10 +20,10 @@ use_stylesheet('/bundle/colorpicker/css/colorpicker.css');
 			<?php endif;?>
 		</div>
 		
-		<?php if ($user):?>
+		<?php if (!$isPremium && $user):?>
 		<hr/>
 		<div class="clearfix">
-			<p>Premuim features <button id="upgrade-btn" class="btn btn-success btn-small">Upgrade this App</button></p>
+			<p>Premuim features <button id="upgrade-btn" class="btn btn-purple btn-small">Upgrade this App</button></p>
 		</div>
 		<?php endif;?>
 	</div>

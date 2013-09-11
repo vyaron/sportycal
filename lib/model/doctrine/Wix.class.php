@@ -62,4 +62,5 @@ class Wix extends BaseWix{
 	public static function isPremium($data){
 		return ($data->vendorProductId && $data->vendorProductId == Wix::PREMUIM_PRODUCT_CODE) ? true : false;
 	}
+	
 }

@@ -5,10 +5,35 @@ body{padding: 20px;}
 #app-info{border: 1px solid #E5E5E5; border-radius: 4px 4px 4px 4px;  margin-bottom: 15px; padding: 10px;}
 #logo{width: 32px; height: 32px; background: 0 0 no-repeat url('/ico/32b.png'); float: left; margin-right: 5px; margin-bottom: 5px;}
 
-/*
-header table td{vertical-align: top;}
-header table:first-child td:first-child{border-right:1px solid #ccc;}
-header table:first-child td{padding: 20px;}
-.intro .icon{margin: 0;}
-.intro .icon .logo{background-image: url("/images/wix/logo.png");}
-*/
+.btn-purple {
+  color: #ffffff;
+  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+  background-color: #9f199f;
+  background-image: -moz-linear-gradient(top, #a41aa4, #991899);
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#a41aa4), to(#991899));
+  background-image: -webkit-linear-gradient(top, #a41aa4, #991899);
+  background-image: -o-linear-gradient(top, #a41aa4, #991899);
+  background-image: linear-gradient(to bottom, #a41aa4, #991899);
+  background-repeat: repeat-x;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#a41aa4', endColorstr='#991899', GradientType=0);
+  border-color: #845ba7;
+  border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
+  *background-color: #9f199f;
+  /* Darken IE7 buttons by default so they stand out more given they won't have borders */
+
+  filter: progid:DXImageTransform.Microsoft.gradient(enabled = false);
+}
+.btn-purple:hover,
+.btn-purple:focus,
+.btn-purple:active,
+.btn-purple.active,
+.btn-purple.disabled,
+.btn-purple[disabled] {
+  color: #ffffff;
+  background-color: #8a168a;
+  *background-color: #400b40;
+}
+.btn-purple:active,
+.btn-purple.active {
+  background-color: #8a168a \9;
+}
