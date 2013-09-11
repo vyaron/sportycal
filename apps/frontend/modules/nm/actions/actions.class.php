@@ -45,9 +45,11 @@ class nmActions extends sfActions{
 				$mail->Username   = sfConfig::get('app_gmail_username');
 				$mail->Password   = sfConfig::get('app_gmail_password');
 				
+				//$mail->AddAddress($contact->getSenderEmail(), $contact->getSenderName());
 				$mail->SetFrom($contact->getSenderEmail(), $contact->getSenderName());
-				
+				$mail->AddReplyTo($contact->getSenderEmail(), $contact->getSenderName());
 				$mail->AddAddress(sfConfig::get('app_mailinglist_fromEmail'), sfConfig::get('app_mailinglist_fromName'));
+				$mail->AddAddress($contact->getSenderEmail(), $contact->getSenderName());
 				//$mail->AddAddress('vyaron@gmail.com', 'Yaron Biton');
 				
 				$mail->Subject = $contact->getSubject();
