@@ -6,17 +6,15 @@ class NmRegisterForm extends BaseForm {
 				'email'   => new sfWidgetFormInputText(),
 				'password' => new sfWidgetFormInputPassword(),
 				//'confirm_password' => new sfWidgetFormInputPassword(),
-				'company_name'   => new sfWidgetFormInputText(),
 				'website'   => new sfWidgetFormInputText(),
 				//'agree'   => new sfWidgetFormInputCheckbox(),
 		));
 
 		$this->setValidators(array(
 				'full_name'   => new sfValidatorString(array('required' => true, 'min_length' => 3, 'trim' => true)),
-				'email'   => new sfValidatorDoctrineUnique(array('required' => true, 'model' => 'User', 'column' => 'email'), array('invalid' => 'This e-mail address already exists')),
+				'email'   => new sfValidatorDoctrineUnique(array('required' => true, 'model' => 'User', 'column' => 'email'), array('invalid' => __('This e-mail address already exists'))),
 				'password' => new sfValidatorString(array('required' => true, 'min_length' => 4)),
 				//'confirm_password' => new sfValidatorString(array('required' => true)),
-				'company_name' => new sfValidatorString(array('required' => true, 'min_length' => 3, 'trim' => true)),
 				'website' => new sfValidatorString(array('required' => false)),
 				/*
 				'website' => new sfValidatorAnd(array(

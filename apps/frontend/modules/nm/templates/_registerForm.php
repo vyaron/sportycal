@@ -19,7 +19,6 @@ $legend = Utils::iff($legend, false);
 			<?php echo $form['full_name']->render(array('placeholder' => 'Full name', 'required'=>'required', 'minlength'=>'3', 'class' => 'block'));?>
 			<?php echo $form['email']->render(array('placeholder' => 'Email Address', 'required'=>'required', 'type'=>'email', 'class' => 'block'));?>
 			<?php echo $form['password']->render(array('placeholder' => 'Password', 'required'=>'required', 'minlength'=>'7', 'class' => 'block'));?>
-			<?php echo $form['company_name']->render(array('placeholder' => 'Companey name', 'required'=>'required', 'class' => 'block'));?>
 			<?php echo $form['website']->render(array('placeholder' => 'website: http://www.site.com', 'class' => 'block'));?>
 			
 			<p class="help-block">
@@ -31,7 +30,7 @@ $legend = Utils::iff($legend, false);
 				<?php if ($backUrl):?>
 				<a class="btn btn-success pull-left" href="<?php echo $backUrl;?>" title="Edit your calendar">&lt;&lt;</a>
 				<?php endif;?>
-				<input type="submit" value="Sign up" class="btn btn-success pull-right"/>
+				<button type="submit" class="btn btn-success pull-right"><span>Sign up</span></button>
 			</div>
 		</form>
 	</span>

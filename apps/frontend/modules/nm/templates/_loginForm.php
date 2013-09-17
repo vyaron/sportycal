@@ -26,7 +26,7 @@ $backUrl = Utils::iff($backUrl, null);
 				<?php if ($backUrl):?>
 				<a class="btn btn-success pull-left" href="<?php echo $backUrl;?>" title="Edit your calendar">&lt;&lt;</a>
 				<?php endif;?>
-				<input type="submit" value="Log In" class="btn btn-success pull-right"/>
+				<button type="submit" class="btn btn-success pull-right"><span>Log In</span></button>
 			</div>
 		</form>
 	</span>

@@ -370,6 +370,8 @@ jQuery(document).ready(function(){
 						window.location.href = '/nm/widget/calId/' + gCalId;
 					}
 				}
+				
+				jQuery('.continue-btn').removeClass('loading');
 			});
 		}
 	});
@@ -377,6 +379,8 @@ jQuery(document).ready(function(){
 	
 	jQuery('.continue-btn').click(function(e){
 		e.preventDefault();
+		
+		$(this).addClass('loading');
 		
 		jQuery('#cal-form').submit();
 	});

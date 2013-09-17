@@ -64,6 +64,8 @@ h2 .btn.btn-success{font-weight: normal; margin-top: 4px;}
 
 .btn-mini{font-size: 12px; line-height: 12px;}
 
+.btn.loading span, .fb-login.loading span{padding-left: 25px; background: no-repeat 0 center url('/images/neverMiss/icons/ajax-loader-white.gif'); cursor: progress;}
+
 /*Tooltip*/
 .tooltip-inner{background-color: #fff; color: #333; border: 1px solid #ffbf20; -webkit-border-radius: 0px; -moz-border-radius: 0px; border-radius: 0px;}
 .tooltip.top .tooltip-arrow {

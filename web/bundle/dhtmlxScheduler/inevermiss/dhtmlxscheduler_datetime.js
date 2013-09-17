@@ -1,7 +1,7 @@
 scheduler.locale.labels.from = 'From';
 scheduler.locale.labels.to = 'To';
 
-scheduler.config.default_reminder = 60;
+scheduler.config.default_reminder = 1;
 
 scheduler.form_blocks.datetime = {
 	render:function(sns) {
@@ -19,7 +19,7 @@ scheduler.form_blocks.datetime = {
 		
 		var reminderHtml = '';
 		if (cfg.reminder) {
-			reminderHtml = '<select class="reminder pull-right" name="reminder"><option value="60">1 Hours</option><option value="240">4 Hours</option><option value="1440">1 Day</option></select>';
+			reminderHtml = '<select class="reminder pull-right" name="reminder" title="reminder"><option value="1">on start</option><option value="60">1 Hours</option><option value="240">4 Hours</option><option value="1440">1 Day</option></select>';
 		}
 
 		return "<div style='height:" + height + "px; font-size:inherit;' class='dhx_section_datetime dhx_cal_ltext'><label>" + this.locale.labels.from + "</label>"+start+fullDateHtml+"<br/><label>" + this.locale.labels.to + "</label>"+end+reminderHtml+"</div>";
@@ -59,7 +59,7 @@ scheduler.form_blocks.datetime = {
 			
 			
 			var timepickerOptions = {
-				
+				timeFormat: 'H:i'
 			};
 			
 			//TODO - validation + more autocomplete logic

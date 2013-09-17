@@ -51,6 +51,8 @@ function handleRegisterForm(){
 	registerForm.submit(function(e){
 		e.preventDefault();
 		
+		registerForm.find('[type=submit]').addClass('loading');
+		
 		if (registerForm.valid()){
 			jQuery.ajax({
 				url : '/nm/register',
@@ -58,6 +60,7 @@ function handleRegisterForm(){
 				dataType : 'json',
 				data : registerForm.serialize()
 			}).done(function(res){
+				registerForm.find('[type="submit"]').removeClass('loading');
 				setGlobalAlert(res);
 				
 				if (res){
@@ -76,6 +79,8 @@ function handleLoginForm(){
 	loginForm.submit(function(e){
 		e.preventDefault();
 		
+		loginForm.find('[type=submit]').addClass('loading');
+		
 		if (loginForm.valid()){
 			jQuery.ajax({
 				url : '/partner/login',
@@ -83,6 +88,8 @@ function handleLoginForm(){
 				dataType : 'json',
 				data : loginForm.serialize()
 			}).done(function(res){
+				loginForm.find('[type=submit]').removeClass('loading');
+				
 				setGlobalAlert(res);
 				
 				if (res){
@@ -99,7 +106,11 @@ function setFbLoginEvents(){
 		e.preventDefault();
 		
 		if (FB){
+			jQuery(this).addClass('loading');
+			
 			FB.login(function(res) {
+				jQuery(this).removeClass('loading');
+				
 				if (res && res.authResponse){
 					jQuery.ajax({
 						url : '/main/fbLogin/?d=' + (new Date()).getTime(),

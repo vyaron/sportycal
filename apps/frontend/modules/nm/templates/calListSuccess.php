@@ -14,7 +14,7 @@
 		<?php if ($calList['total']): ?>
 		<?php foreach ($calList['data'] as $i => $cal): ?>
 			<div id="cal_<?php echo $cal['id'];?>" class="cal-box <?php echo $cal['deleted_at'] ? 'cal-is-deleted' : 'cal-is-active';?>">
-				<h3><span data-placement="top" data-toggle="tooltip" data-original-title="<?php echo $cal['name'];?>"><?php echo Utils::substr($cal['name'], 10);?></span></h3>
+				<h3 data-placement="top" data-toggle="tooltip" data-original-title="<?php echo $cal['name'];?>"><span><?php echo $cal['name'];?></span></h3>
 				<div class="content">
 					<ul>
 						<li>Last Modified <span class="value"><?php echo date('d M Y', strtotime($cal['updated_at']));?></span></li>

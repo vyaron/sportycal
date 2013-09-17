@@ -18,7 +18,7 @@ use_stylesheet('/css/neverMiss/calEdit.css');
 <div class="container">
 <?php include_partial('formError', array('form' => $form)) ?>
 
-<h2><span class="color-y">Edit</span> Your Calendar. <a class="pull-right continue-btn btn btn-success hidden-popup" href="#">Continue</a></h2>
+<h2><span class="color-y">Edit</span> Your Calendar. <a class="pull-right continue-btn btn btn-success hidden-popup" href="#"><span>Continue</span></a></h2>
 
 <?php if ($tzFullName):?>
 <h5>Timezone: <?php echo $tzFullName;?></h5>
@@ -39,7 +39,7 @@ use_stylesheet('/css/neverMiss/calEdit.css');
 						</td>
 						<td><?php echo $form['tz']->render();?></td>
 						<td class="pl0">
-							<a class="pull-right continue-btn btn btn-success visible-popup ml15" href="#">Save</a>
+							<a class="pull-right continue-btn btn btn-success visible-popup ml15" href="#"><span>Save</span></a>
 						</td>
 					</tr>
 				</table>
@@ -84,7 +84,7 @@ use_stylesheet('/css/neverMiss/calEdit.css');
 				<h3>My Events</h3>
 				<ul id="event-list"></ul>
 			</div>
-			<a class="continue-btn btn btn-success" href="#">Continue</a>
+			<a class="continue-btn btn btn-success" href="#"><span>Continue</span></a>
 		</td>
 	</tr>
 </table>

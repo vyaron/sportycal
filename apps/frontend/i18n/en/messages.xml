@@ -1,0 +1,597 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE xliff PUBLIC "-//XLIFF//DTD XLIFF//EN" "http://www.oasis-open.org/committees/xliff/documents/xliff.dtd">
+<xliff version="1.0">
+  <file source-language="EN" target-language="en" datatype="plaintext" original="messages" date="2013-09-17T14:39:45Z" product-name="messages">
+    <header/>
+    <body>
+      <trans-unit id="1">
+        <source>Watch the Video</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="2">
+        <source>Log In</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="3">
+        <source>Logout</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="4">
+        <source>About Us</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="5">
+        <source>Contact Us</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="6">
+        <source>Terms &amp; Conditions</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="7">
+        <source>Birthdays Calendar</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="8">
+        <source>Get an iPad</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="9">
+        <source>Mobile Site</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="10">
+        <source>Partners Login</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="11">
+        <source>Partners Reports</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="12">
+        <source>Design by Hovav Sadan: hovavnowalla@gmail.com</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="13">
+        <source>Master Page</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="14">
+        <source>Updated:</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="15">
+        <source>By:</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="16">
+        <source>Contains:</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="17">
+        <source>Events</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="18">
+        <source>calendars</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="19">
+        <source>coming soon</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="20">
+        <source>Search</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="21">
+        <source>More Options</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="22">
+        <source>Hide Options</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="23">
+        <source>filter by dates</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="24">
+        <source>From</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="25">
+        <source>To</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="26">
+        <source>[x] Close</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="27">
+        <source>Home</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="28">
+        <source>Sign Out</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="29">
+        <source>New</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="30">
+        <source>The league has Ended</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="31">
+        <source>Events will be automatically added to your calendar when published</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="32">
+        <source>No future games published yet</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="33">
+        <source>Google Calendar</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="34">
+        <source>Outlook</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="35">
+        <source>Mobile</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="36">
+        <source>Link</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="37">
+        <source>Download to your own Calendar:</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="38">
+        <source>Reminder</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="39">
+        <source>Hours</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="40">
+        <source>Hour</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="41">
+        <source>Just Click to add to your Google Calendar</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="42">
+        <source>Just Click to add to your Outlook Calendar 2007 and up</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="43">
+        <source>iPhone/iPad calendar</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="44">
+        <source>use your iPhone/iPad to browse and download the calendar</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="45">
+        <source>Android</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="46">
+        <source>click the google calendar button to add to your google account and synch the calendar from your device, need instructions?</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="47">
+        <source>see here</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="48">
+        <source>Hardcopy</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="49">
+        <source>Download a PDF, print and use as you wish</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="50">
+        <source>Need help adding schedules to</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="51">
+        <source>Yahoo</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="52">
+        <source>calendar</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="53">
+        <source>Click Here</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="54">
+        <source>Subscribe with any calendar that supports Ical</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="55">
+        <source>Yahoo, Lotus notes, and many others.</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="56">
+        <source>To add this calendar, copy &amp; use the following URL:</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="57">
+        <source>Sent to your Google Calendar</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="58">
+        <source>Google will now index and add this calendar (might take few minutes)</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="59">
+        <source>Sent to your Outlook Calendar</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="60">
+        <source>Sent to your Mobile</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="61">
+        <source>Opened a new window with your PDF</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="62">
+        <source>How about Sharing?</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="63">
+        <source>Sport is Great, We hope you enjoy the games.</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="64">
+        <source>How about sharing with your friends?</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="65">
+        <source>Download Entire League Calendar</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="66">
+        <source>Events List</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="67">
+        <source>Automatically updated in your Calendar!</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="68">
+        <source>What</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="69">
+        <source>Where</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="70">
+        <source>When</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="71">
+        <source>Admin</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="72">
+        <source>Edit</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="73">
+        <source>Preview</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="74">
+        <source>Preview HTML</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="75">
+        <source>Presented in Timezone:</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="76">
+        <source>Times will be converted to your exact timezone by your calendar</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="77">
+        <source>Updated</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="78">
+        <source>Specific Hour</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="79">
+        <source>Facebook log in success</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="80">
+        <source>Facebook log in field</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="81">
+        <source>Customize your Cal-Download Widget</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="82">
+        <source>Type</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="83">
+        <source>Calendar</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="84">
+        <source>Category</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="85">
+        <source>Start typing</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="86">
+        <source>Label</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="87">
+        <source>Style</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="88">
+        <source>Language</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="89">
+        <source>Apply</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="90">
+        <source>Copy this code to your site (iframe)</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="91">
+        <source>I agree</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="92">
+        <source>To customize which text is presented in the event description</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="93">
+        <source>email to</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="94">
+        <source>to get your partner-id</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="95">
+        <source>If you already have your partner-id, enter here</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="96">
+        <source>and click Apply</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="97">
+        <source>Top</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="98">
+        <source>Sponsored Calendars</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="99">
+        <source>Search Results</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="100">
+        <source>Looked for</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="101">
+        <source>Sport Events</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="102">
+        <source>Found</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="103">
+        <source>results</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="104">
+        <source>No results found, please try again</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="105">
+        <source>Back to Home Page</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="106">
+        <source>Categories</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="107">
+        <source>Name</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="108">
+        <source>Calendars</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="109">
+        <source>Context</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="110">
+        <source>Date</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="111">
+        <source>We appreciate your Feedback</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="112">
+        <source>Thank you!</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="113">
+        <source>How do you feel about our site:</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="114">
+        <source>Email</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="115">
+        <source>Please type the letters</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="116">
+        <source>Some of the data entered is not valid</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="117">
+        <source>Send</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="118">
+        <source>Message not send</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="119">
+        <source>Please click the calendar of your choice</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="120">
+        <source>Reached calendars limit</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="121">
+        <source>Reached subscriptions limit</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="122">
+        <source>DOWNLOAD</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="123">
+        <source>DOWNLOAD TO CALENDAR</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="124">
+        <source>Upcoming Events</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="125">
+        <source>Click here to close</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="126">
+        <source>Full name</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="127">
+        <source>Thank you for your contact</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="128">
+        <source>File not supported!</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="129">
+        <source>%count% Events imported</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="130">
+        <source>You've reached your %name% limit</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="131">
+        <source>You've reached both your %name1% limit and your %name2% limit</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="132">
+        <source>You've reached your </source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="133">
+        <source>%name% limit</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="134">
+        <source>, please upgrade your account</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="135">
+        <source>Calendar not deleted!</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="136">
+        <source>%name% calendar deleted.</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="137">
+        <source>Calendar not restored!</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="138">
+        <source>Calendar not restored - reached max calendars</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="139">
+        <source>%name% calendar restored.</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="140">
+        <source>Clear event failed</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="141">
+        <source>Events cleared</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="142">
+        <source>calendar not updated</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="143">
+        <source>Register failed</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="144">
+        <source>Subscribe by mail failed!</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="145">
+        <source>Send mail to: %email%</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="146">
+        <source>This e-mail address already exists</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="147">
+        <source>Incorrect Email/Password Combination.</source>
+        <target/>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

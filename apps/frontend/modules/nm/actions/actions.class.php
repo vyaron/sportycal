@@ -20,7 +20,7 @@ class nmActions extends sfActions{
 		$form = new ContactForm();
 		
 		if ($request->isMethod('post')){
-			$res = array('success' => false, 'msg' => 'Message not send');
+			$res = array('success' => false, 'msg' => __('Message not send'));
 
 			$params = $request->getParameter('contact');
 			$params['subject'] = 'iNeverMiss contact';
@@ -64,7 +64,7 @@ class nmActions extends sfActions{
 				
 				$mail->Send();
 					
-				$res = array('success' => true, 'msg' => 'Thank you for your contact');
+				$res = array('success' => true, 'msg' => __('Thank you for your contact'));
 			}
 			
 			echo json_encode($res);
@@ -171,7 +171,7 @@ class nmActions extends sfActions{
 		//$eventsHash = $export->toHash($content);
 		//Utils::pp($eventsHash);
 		
-		$res = array('success' => false, 'msg' => 'File not supported!');
+		$res = array('success' => false, 'msg' => __('File not supported!'));
 		if ($request->isMethod('post')){
 			$file = $request->getFiles('file');
 			
@@ -230,7 +230,7 @@ class nmActions extends sfActions{
 				$collectionChildEvent->save();
 				
 				$res['success'] = true;
-				$res['msg'] = ($collectionEvent->count() + $collectionChildEvent->count()) . ' Events imported';
+				$res['msg'] = __('%count% Events imported', array('%count%' => ($collectionEvent->count() + $collectionChildEvent->count())));
 			}
 		}
 		
@@ -261,29 +261,24 @@ class nmActions extends sfActions{
 		$isReachedMaxEvents = $partner->isReachedMaxEvents();
 		if ($isReachedMaxEvents) $licenceErrors[] = 'events';
 		
-		$licenceErrors = array('subscribers', 'calendars', 'events');
+		//$licenceErrors = array('subscribers', 'calendars', 'events');
 		
 		$errorsCount = count($licenceErrors);
 		if ($errorsCount){
-			if ($errorsCount == 1) $licenceError = 'You have reached your ' . $licenceErrors[0] . ' limit';
+			if ($errorsCount == 1) $licenceError = __('You\'ve reached your %name% limit', array('%name%' =>$licenceErrors[0]));
 			else if ($errorsCount == 2) {
-				$licenceError = 'You have reached both your ';
-				
-				foreach ($licenceErrors as $i => $name){
-					$licenceError .= $name . ' limit';
-					if ($i == 0) $licenceError .= ' and your ';
-				}
+				$licenceError = __('You\'ve reached both your %name1% limit and your %name2% limit', array('%name1%' => $licenceErrors[0], '%name2%' => $licenceErrors[1]));
 			} else {
-				$licenceError = 'You have reached your ';
+				$licenceError = __('You\'ve reached your ');
 				
 				foreach ($licenceErrors as $i => $name){
 					if ($i != 0) $licenceError .= ', ';
-					$licenceError .= $name . ' limit';
+					$licenceError .= __('%name% limit', array('%name%' => $name));
 					
 				}
 			}
 			
-			$licenceError .= ', please upgrade your account';
+			$licenceError .= __(', please upgrade your account');
 		}
 		
 		$this->licenceError = $licenceError;
@@ -294,7 +289,7 @@ class nmActions extends sfActions{
 	}
 	
 	public function executeCalDelete(sfWebRequest $request){
-		$res = array('success' => false, 'msg' => 'Calendar not deleted!');
+		$res = array('success' => false, 'msg' => __('Calendar not deleted!'));
 		
 		$user = UserUtils::getLoggedIn();
 		$cal = Doctrine::getTable('Cal')->find(array($request->getParameter('id')));
@@ -305,7 +300,7 @@ class nmActions extends sfActions{
 			$cal->save();
 			
 			$res['success'] = true;
-			$res['msg'] = $cal->getName() . ' calendar deleted.';
+			$res['msg'] = __('%name% calendar deleted.', array('%name%' => $cal->getName()));
 		}
 		
 		echo json_encode($res);
@@ -313,7 +308,7 @@ class nmActions extends sfActions{
 	}
 	
 	public function executeCalRestore(sfWebRequest $request){
-		$res = array('success' => false, 'msg' => 'Calendar not restored!');
+		$res = array('success' => false, 'msg' => __('Calendar not restored!'));
 		
 		$user = UserUtils::getLoggedIn();
 		$cal = Doctrine::getTable('Cal')->find(array($request->getParameter('id')));
@@ -321,13 +316,13 @@ class nmActions extends sfActions{
 		if ($cal && $cal->isOwner($user)){
 			$partner = $user->getPartner();
 			if ($partner->isReachedMaxCalendars()){
-				$res['msg'] = 'Calendar not restored - reached max calendars';
+				$res['msg'] = __('Calendar not restored - reached max calendars');
 			} else {
 				$cal->setDeletedAt(null);
 				$cal->save();
 					
 				$res['success'] = true;
-				$res['msg'] = $cal->getName() . ' calendar restored.';
+				$res['msg'] = __('%name% calendar restored.', array('%name%' => $cal->getName()));
 			}
 		}
 	
@@ -336,7 +331,7 @@ class nmActions extends sfActions{
 	}
 	
 	public function executeCalEventsClear(sfWebRequest $request){
-		$res = array('success' => false, 'msg' => 'Clear event failed');
+		$res = array('success' => false, 'msg' => __('Clear event failed'));
 		
 		$user = UserUtils::getLoggedIn();
 		$cal = Doctrine::getTable('Cal')->find(array($request->getParameter('id')));
@@ -348,7 +343,7 @@ class nmActions extends sfActions{
 			$cal->save();
 			
 			$res['success'] = true;
-			$res['msg'] = 'Events cleared';
+			$res['msg'] = __('Events cleared');
 		}
 		
 		echo json_encode($res);
@@ -410,7 +405,7 @@ class nmActions extends sfActions{
 		$this->form->setDefault('tz', $tz);
 		
 		if ($request->isMethod(sfRequest::PUT)){
-			$res = array('success' => false, 'msg' => 'calendar not updated');
+			$res = array('success' => false, 'msg' => __('calendar not updated'));
 			
 			$this->form->bind($request->getParameter('cal'));
 			if ($this->form->isValid()){
@@ -525,14 +520,14 @@ class nmActions extends sfActions{
 	}
 	
 	private function registerForm($data){
-		$res = array('success' => false, 'msg' => 'Register failed');
+		$res = array('success' => false, 'msg' => __('Register failed'));
 		
 		if ($data){
 			$this->registerForm->bind($data);
 			
 			if ($this->registerForm->isValid()){
 				$now = date('Y-m-d H:i:s');
-				$rootName = $this->registerForm->getValue('company_name') ? $this->registerForm->getValue('company_name') : $this->registerForm->getValue('full_name');
+				$rootName = $this->registerForm->getValue('full_name');
 				$website = $this->registerForm->getValue('website');
 					
 				//Create user
@@ -638,7 +633,7 @@ class nmActions extends sfActions{
 	
 	public function executeSubscribeByMail(sfWebRequest $request){
 		$this->forward404Unless($user = UserUtils::getLoggedIn());
-		$res = array('success' => false, 'msg' => 'Subscribe by mail failed!');
+		$res = array('success' => false, 'msg' => __('Subscribe by mail failed!'));
 		
 		$message = $request->getParameter('message');
 		if (!$message) $message = __('Please click the calendar of your choice');
@@ -677,7 +672,7 @@ class nmActions extends sfActions{
 
 			if ($mail->Send()){
 				$res['success'] = true;
-				$res['msg'] = 'Send mail to: ' . $user->getEmail();
+				$res['msg'] = __('Send mail to: %email%', array('%email%' => $user->getEmail()));
 			}
 		}
 	
