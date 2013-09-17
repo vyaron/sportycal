@@ -49,7 +49,7 @@
 					</div>
 					
 					<p>
-					<a href="mailto://info@jivygroup.com">info@jivygroup.com</a>
+					<a href="mailto://<?php echo sfConfig::get('app_gmail_username')?>"><?php echo sfConfig::get('app_gmail_username')?></a>
 					</p>
 					
 					<p>

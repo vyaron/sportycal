@@ -5,9 +5,6 @@
 	<li <?php echo has_slot('pricing') ? ' class="active"' : '';?>>
 		<a href="<?php echo url_for('nm/pricing') ?>">Pricing</a>
 	</li>
-	<li <?php echo has_slot('caseStudies') ? ' class="active"' : '';?>>
-		<a href="<?php echo url_for('nm/caseStudies') ?>">Case Studies</a>
-	</li>
 	<?php if ($user):?>
 	<li <?php echo has_slot('calList') ? ' class="active"' : '';?>>
 		<a href="<?php echo url_for('nm/calList') ?>">My Calendars</a>

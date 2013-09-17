@@ -63,7 +63,7 @@ class CalTable extends Doctrine_Table
     		$calId2Index[$cal['id']] = $i;
     	}
     	
-    	$calIds = array_keys($calId2Index);
+    	$calIds = $calId2Index ? array_keys($calId2Index) : array();
     	if (count($calIds)){
     		$q = Doctrine_Query::create()
 	    		->select('c.id, COUNT(cr.id) cal_request_count')

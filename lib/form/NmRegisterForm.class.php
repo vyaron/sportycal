@@ -13,7 +13,7 @@ class NmRegisterForm extends BaseForm {
 
 		$this->setValidators(array(
 				'full_name'   => new sfValidatorString(array('required' => true, 'min_length' => 3, 'trim' => true)),
-				'email'   => new sfValidatorDoctrineUnique(array('required' => true, 'model' => 'User', 'column' => 'email'), array('invalid' => 'already exist')),
+				'email'   => new sfValidatorDoctrineUnique(array('required' => true, 'model' => 'User', 'column' => 'email'), array('invalid' => 'This e-mail address already exists')),
 				'password' => new sfValidatorString(array('required' => true, 'min_length' => 4)),
 				//'confirm_password' => new sfValidatorString(array('required' => true)),
 				'company_name' => new sfValidatorString(array('required' => true, 'min_length' => 3, 'trim' => true)),

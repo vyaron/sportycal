@@ -81,7 +81,7 @@ if ($isMobile) $target = Utils::clientIsAndroid() ? '_blank' : 'attachment';
 			<h5><?php echo $dayKey;?></h5>
 			<ul>
 				<?php foreach ($dayKey2Events[$dayKey] as $event):?>
-				<li title="<?php echo $event->getName();?>"><?php echo Utils::substr($event->getName(), 15);?></li>
+				<li title="<?php echo $event->getName();?>"><?php echo (!Event::isAllDay($event)) ? $event->getStartTimeForDisplay() . ' ' : '';?><?php echo Utils::substr($event->getName(), 10);?></li>
 				<?php endforeach;?>
 			</ul>
 		</li>

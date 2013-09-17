@@ -1,6 +1,8 @@
 scheduler.locale.labels.from = 'From';
 scheduler.locale.labels.to = 'To';
 
+scheduler.config.default_reminder = 60;
+
 scheduler.form_blocks.datetime = {
 	render:function(sns) {
 		var cfg = scheduler.config;
@@ -17,7 +19,7 @@ scheduler.form_blocks.datetime = {
 		
 		var reminderHtml = '';
 		if (cfg.reminder) {
-			reminderHtml = '<select class="reminder pull-right" name="reminder"><option value="">No reminder</option><option value="1440">1 Day</option><option value="240">4 Hours</option></select>';
+			reminderHtml = '<select class="reminder pull-right" name="reminder"><option value="60">1 Hours</option><option value="240">4 Hours</option><option value="1440">1 Day</option></select>';
 		}
 
 		return "<div style='height:" + height + "px; font-size:inherit;' class='dhx_section_datetime dhx_cal_ltext'><label>" + this.locale.labels.from + "</label>"+start+fullDateHtml+"<br/><label>" + this.locale.labels.to + "</label>"+end+reminderHtml+"</div>";
@@ -32,7 +34,9 @@ scheduler.form_blocks.datetime = {
 		var fullDateCheckbox = sectionEl.find('.full_date');
 		
 		var reminder = sectionEl.find('.reminder');
-		reminder.val(ev.event_reminder);
+		
+		if (ev.reminder) ev.event_reminder = ev.reminder;
+		reminder.val(ev.event_reminder ? ev.event_reminder : scheduler.config.default_reminder);
 		
 		//run one time!
 		if (!node.is_prepare_events){

@@ -36,6 +36,7 @@ use_stylesheet('/css/neverMiss/widget.css');
 
 <hr/>
 
+<?php if (false):?>
 <div class="row">
 	<div class="span6">
 		<h2 class="mt0"><span class="color-y">Subscribe</span> By Mail</h2>
@@ -55,6 +56,7 @@ use_stylesheet('/css/neverMiss/widget.css');
 </div>
 		
 <hr/>
+<?php endif;?>
 
 <div class="clearfix mt15">
 	<a class="btn btn-success pull-left" href="<?php echo url_for('nm/calEdit/?id=' . $calId);?>" title="Edit your calendar">&lt;&lt;</a>

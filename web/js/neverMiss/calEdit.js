@@ -7,6 +7,10 @@ function reloadCalendar(){
 	scheduler.load("/nm/calEvents/?id=" + gCalId, 'json');
 }
 
+function isAllDay(ev){
+	return (scheduler.date.time_part(ev.start_date)===0 && scheduler.date.time_part(ev.end_date)===0) ? true : false;
+}
+
 function setEventList(){
 	refreshOpenerWidget();
 	
@@ -43,8 +47,18 @@ function setEventList(){
 		for ( var i = 0; i < dayKeys.length; i++) {
 			if (dayKeys[i] in dayKeyToEvents){
 				html += '<li><strong>' + dayKeys[i] + '</strong>';
+				
+				dayKeyToEvents[dayKeys[i]].sort(function(ev1, ev2){
+					return isAllDay(ev1) ? -1 : (scheduler.date.time_part(ev1.start_date) - scheduler.date.time_part(ev2.start_date));
+				});
+				
 				for ( var j = 0; j < dayKeyToEvents[dayKeys[i]].length; j++) {
-					html += '<div><a data-event-id="' + dayKeyToEvents[dayKeys[i]][j].id + '" href="#">' + dayKeyToEvents[dayKeys[i]][j].text + '</a></div>';
+					var ev = dayKeyToEvents[dayKeys[i]][j];
+					
+					var t = '';
+					if (!(isAllDay(ev))) t = scheduler.date.to_fixed(ev.start_date.getHours()) +':'+ scheduler.date.to_fixed(ev.start_date.getMinutes()) + '&nbsp;';
+					
+					html += '<div><a data-event-id="' + dayKeyToEvents[dayKeys[i]][j].id + '" href="#">' + t + dayKeyToEvents[dayKeys[i]][j].text + '</a></div>';
 				}
 				
 				html += '</li>';

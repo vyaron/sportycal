@@ -157,11 +157,6 @@ class nmActions extends sfActions{
 		if (!$user && !($user->getEmail() == 'uzi@jivygroup.com' || $user->isMaster())) $this->setTemplate('comingSoon', 'nm');
 	}
 	
-	public function executeCaseStudies(sfWebRequest $request){
-		$this->getResponse()->setSlot('caseStudies', true);
-		$this->setTemplate('comingSoon', 'nm');
-	}
-	
 	//TODO: check defarent Timezones cals
 	public function executeImportCal(sfWebRequest $request){
 		$user = UserUtils::getLoggedIn();
@@ -534,10 +529,13 @@ class nmActions extends sfActions{
 				$res['success'] = true;
 				$res['msg'] = 'Registration was successful';
 			} else {
-				foreach ($this->registerForm->getErrorSchema() as $name => $value){
-					//TODO: add custom error msg
-					$renderName = $this->registerForm[$name]->renderName();
-					$res['errors'][$renderName] = null;
+				
+				foreach ($this->registerForm->getErrorSchema() as $name => $errorsSchema){
+					foreach ($errorsSchema as $name => $validatorError){
+						$renderName = $this->registerForm[$name]->renderName();
+						$res['errors'][$renderName] = $validatorError->getMessageFormat();
+						break;
+					}
 				}
 			}
 		}

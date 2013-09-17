@@ -562,4 +562,15 @@ class Event extends BaseEvent
     	
     	return $url;
     }
+    
+    public function getStartTimeForDisplay(){
+    	return date('H:i', strtotime($this->getStartsAt()));
+    }
+    
+    public static function isAllDay($event){
+    	$s = explode(' ', $event->getStartsAt());
+    	$e = explode(' ', $event->getEndsAt());
+    	
+    	return ($s[0] != $e[0] && $s[1] == $e[1]) ? true : false;
+    }
 }

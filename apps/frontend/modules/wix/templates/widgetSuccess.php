@@ -25,7 +25,7 @@ body{color: <?php echo $textColor;?>;}
 				<h5><?php echo $dayKey;?></h5>
 				<ul>
 					<?php foreach ($dayKey2Events[$dayKey] as $event):?>
-					<li title="<?php echo $event->getName();?>"><?php echo $event->getName();?></li>
+					<li title="<?php echo $event->getName();?>"><?php echo (!Event::isAllDay($event)) ? $event->getStartTimeForDisplay() . ' ' : '';?><?php echo $event->getName();?></li>
 					<?php endforeach;?>
 				</ul>
 			</li>

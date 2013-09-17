@@ -1,4 +1,5 @@
-<?php use_stylesheet('/css/neverMiss/calList.css');?>
+<?php use_stylesheet('/css/neverMiss/calList.css');
+?>
 
 <div class="container">
 	<div class="box-content">
@@ -8,8 +9,9 @@
 			<hr class="cr"/>
 		</div>
 		
-		<?php if ($calList['total']): ?>
+		
 			<div class="cal-boxes clearfix">
+			<?php if ($calList['total']): ?>
 			<?php foreach ($calList['data'] as $i => $cal): ?>
 				<div id="cal_<?php echo $cal['id'];?>" class="cal-box <?php echo $cal['deleted_at'] ? 'cal-is-deleted' : 'cal-is-active';?>">
 					<h3><span data-placement="top" data-toggle="tooltip" data-original-title="<?php echo $cal['name'];?>"><?php echo Utils::substr($cal['name'], 10);?></span></h3>
@@ -36,6 +38,7 @@
 					</div>
 				</div>
 			<?php endforeach;?>
+			<?php endif;?>
 				<div class="cal-box">
 					<?php if ($isReachedMaxCalendars):?>
 					<h3><span class="add-ico">Add New</span></h3>
@@ -44,6 +47,11 @@
 					</div>
 					<?php else:?>
 					<h3><a href="<?php echo url_for('nm/calCreate')?>" class="add-ico">Add New</a></h3>
+						<?php if (!$calList['total']):?>
+						<div class="content">
+							<p>create your first calendar</p>
+						</div>
+						<?php endif;?>
 					<?php endif;?>
 				</div>
 			</div>
@@ -52,7 +60,7 @@
 				<?php include_partial('pagination', array('list' => $calList, 'url' => '/nm/calList/')); ?>
 			</div>
 			
-		<?php endif;?>
+		
 		
 		<?php if (count($licenceErrors)):?>
 			<div class="box-content-margin clearfix">
