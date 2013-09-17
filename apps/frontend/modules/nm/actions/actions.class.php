@@ -154,7 +154,7 @@ class nmActions extends sfActions{
 		$this->getResponse()->setSlot('pricing', true);
 		
 		$user = UserUtils::getLoggedIn();
-		if (!$user || !$user->isMaster()) $this->setTemplate('comingSoon', 'nm');
+		if (!$user && !($user->getEmail() == 'uzi@jivygroup.com' || $user->isMaster())) $this->setTemplate('comingSoon', 'nm');
 	}
 	
 	public function executeCaseStudies(sfWebRequest $request){
