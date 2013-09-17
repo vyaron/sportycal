@@ -10,69 +10,64 @@
 		</div>
 		
 		
-			<div class="cal-boxes clearfix">
-			<?php if ($calList['total']): ?>
-			<?php foreach ($calList['data'] as $i => $cal): ?>
-				<div id="cal_<?php echo $cal['id'];?>" class="cal-box <?php echo $cal['deleted_at'] ? 'cal-is-deleted' : 'cal-is-active';?>">
-					<h3><span data-placement="top" data-toggle="tooltip" data-original-title="<?php echo $cal['name'];?>"><?php echo Utils::substr($cal['name'], 10);?></span></h3>
-					<div class="content">
-						<ul>
-							<li>Last Modified <span class="value"><?php echo date('d M Y', strtotime($cal['updated_at']));?></span></li>
-							<li>Upcoming Events <span class="value"><?php echo $cal['event_count'];?></span></li>
-							<li>Subscribers <span class="value"><?php echo $cal['cal_request_count'];?></span></li>
-						</ul>
-						
-						<div class="btns clearfix">
-							<div class="cal-deleted">
-								<button data-cal-id="<?php echo $cal['id'];?>" href="<?php echo url_for('nm/calRestore');?>" class="btn btn-success pull-right cal-restore">Restore</button>
-							</div>
-							<div class="cal-active">
-								<a href="<?php echo url_for('nm/calEdit/?id=' . $cal['id']);?>" class="btn btn-success pull-left">Edit</a>
-								<a href="<?php echo url_for('nm/widget/?calId=' . $cal['id']);?>" class="btn pull-right">Customize</a>
-							</div>
+		<div class="cal-boxes clearfix">
+		<?php if ($calList['total']): ?>
+		<?php foreach ($calList['data'] as $i => $cal): ?>
+			<div id="cal_<?php echo $cal['id'];?>" class="cal-box <?php echo $cal['deleted_at'] ? 'cal-is-deleted' : 'cal-is-active';?>">
+				<h3><span data-placement="top" data-toggle="tooltip" data-original-title="<?php echo $cal['name'];?>"><?php echo Utils::substr($cal['name'], 10);?></span></h3>
+				<div class="content">
+					<ul>
+						<li>Last Modified <span class="value"><?php echo date('d M Y', strtotime($cal['updated_at']));?></span></li>
+						<li>Upcoming Events <span class="value"><?php echo $cal['event_count'];?></span></li>
+						<li>Subscribers <span class="value"><?php echo $cal['cal_request_count'];?></span></li>
+					</ul>
+					
+					<div class="btns clearfix">
+						<div class="cal-deleted">
+							<button data-cal-id="<?php echo $cal['id'];?>" href="<?php echo url_for('nm/calRestore');?>" class="btn btn-success pull-right cal-restore">Restore</button>
 						</div>
-						
 						<div class="cal-active">
-							<a class="delete-cal delete-ico" data-cal-id="<?php echo $cal['id'];?>" href="<?php echo url_for('nm/calDelete');?>" data-name="<?php echo $cal['name'];?>">delete calendar</a>
+							<a href="<?php echo url_for('nm/calEdit/?id=' . $cal['id']);?>" class="btn btn-success pull-left">Edit</a>
+							<a href="<?php echo url_for('nm/widget/?calId=' . $cal['id']);?>" class="btn pull-right">Customize</a>
 						</div>
 					</div>
+					
+					<div class="cal-active">
+						<a class="delete-cal delete-ico" data-cal-id="<?php echo $cal['id'];?>" href="<?php echo url_for('nm/calDelete');?>" data-name="<?php echo $cal['name'];?>">delete calendar</a>
+					</div>
 				</div>
-			<?php endforeach;?>
-			<?php endif;?>
-				<div class="cal-box">
-					<?php if ($isReachedMaxCalendars):?>
-					<h3><span class="add-ico">Add New</span></h3>
+			</div>
+		<?php endforeach;?>
+		<?php endif;?>
+			<div class="cal-box">
+				<?php if ($isReachedMaxCalendars):?>
+				<h3><span class="add-ico">Add New</span></h3>
+				<div class="content">
+					<p>To create more calendars please <a href="<?php echo url_for('nm/pricing');?>">upgrade</a></p>
+				</div>
+				<?php else:?>
+				<h3><a href="<?php echo url_for('nm/calCreate')?>" class="add-ico">Add New</a></h3>
+					<?php if (!$calList['total']):?>
 					<div class="content">
-						<p>To create more calendars please <a href="<?php echo url_for('nm/pricing');?>">upgrade</a></p>
+						<p>create your first calendar</p>
 					</div>
-					<?php else:?>
-					<h3><a href="<?php echo url_for('nm/calCreate')?>" class="add-ico">Add New</a></h3>
-						<?php if (!$calList['total']):?>
-						<div class="content">
-							<p>create your first calendar</p>
-						</div>
-						<?php endif;?>
 					<?php endif;?>
-				</div>
+				<?php endif;?>
 			</div>
-			
-			<div class="box-content-margin clearfix">
-				<?php include_partial('pagination', array('list' => $calList, 'url' => '/nm/calList/')); ?>
-			</div>
+		</div>
+		
+		<div class="box-content-margin clearfix">
+			<?php include_partial('pagination', array('list' => $calList, 'url' => '/nm/calList/')); ?>
+		</div>
 			
 		
 		
-		<?php if (count($licenceErrors)):?>
+		<?php if (count($licenceError)):?>
 			<div class="box-content-margin clearfix">
 				<hr/>
 				
 				<div class="upgrade-warning">
-					<h4>You have reached your liscence limits</h4>
-					<ul>
-					<?php foreach($licenceErrors as $licenceError):?>
-						<li><?php echo $licenceError;?></li>
-					<?php endforeach;?>
-					</ul>
+					<p><?php echo $licenceError;?></p>
 					<p>Upgrade your licence:&nbsp;&nbsp;&nbsp;<a class="btn btn-success btn-mini" href="<?php echo url_for('nm/pricing');?>"><i class="icon-shopping-cart"></i> Upgrade</a></p>
 				</div>
 			</div>

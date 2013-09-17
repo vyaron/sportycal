@@ -248,20 +248,45 @@ class nmActions extends sfActions{
 		$limit = 11;
 		$calList = CalTable::getCalList($user->getId(), $offset, $limit);
 		
+		$licenceError = null;
 		$licenceErrors = array();
 		
+		
 		$isReachedMaxSubscribers = $partner->isReachedMaxSubscribers();
-		if ($isReachedMaxSubscribers) $licenceErrors[] = __('Reached subscriptions limit');
+		if ($isReachedMaxSubscribers) $licenceErrors[] = 'subscribers';
 		
 		$isReachedMaxCalendars = $partner->isReachedMaxCalendars();
-		if ($isReachedMaxCalendars) $licenceErrors[] = __('Reached calendars limit');
+		if ($isReachedMaxCalendars) $licenceErrors[] = 'calendars';
 		
 		$isReachedMaxEvents = $partner->isReachedMaxEvents();
-		if ($isReachedMaxEvents) $licenceErrors[] = __('Reached events limit');
+		if ($isReachedMaxEvents) $licenceErrors[] = 'events';
 		
-		//Utils::pp($errors);
+		$licenceErrors = array('subscribers', 'calendars', 'events');
 		
-		$this->licenceErrors = $licenceErrors;
+		$errorsCount = count($licenceErrors);
+		if ($errorsCount){
+			if ($errorsCount == 1) $licenceError = 'You have reached your ' . $licenceErrors[0] . ' limit';
+			else if ($errorsCount == 2) {
+				$licenceError = 'You have reached both your ';
+				
+				foreach ($licenceErrors as $i => $name){
+					$licenceError .= $name . ' limit';
+					if ($i == 0) $licenceError .= ' and your ';
+				}
+			} else {
+				$licenceError = 'You have reached your ';
+				
+				foreach ($licenceErrors as $i => $name){
+					if ($i != 0) $licenceError .= ', ';
+					$licenceError .= $name . ' limit';
+					
+				}
+			}
+			
+			$licenceError .= ', please upgrade your account';
+		}
+		
+		$this->licenceError = $licenceError;
 		$this->calList = $calList;
 		
 		$this->licenece = $partner->getLicence();
