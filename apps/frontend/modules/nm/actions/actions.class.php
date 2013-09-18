@@ -290,6 +290,7 @@ class nmActions extends sfActions{
 		
 		$this->licenece = $partner->getLicence();
 		$this->isReachedMaxCalendars = $isReachedMaxCalendars;
+		$this->isReachedMaxSubscribers = $isReachedMaxSubscribers;
 	}
 	
 	public function executeCalDelete(sfWebRequest $request){
