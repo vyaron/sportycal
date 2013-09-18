@@ -262,6 +262,9 @@ class nmActions extends sfActions{
 		if ($isReachedMaxEvents) $licenceErrors[] = 'events';
 		
 		//$licenceErrors = array('subscribers', 'calendars', 'events');
+		//$licenceErrors = array('calendars', 'events');
+		//$licenceErrors = array('subscribers');
+		//$licenceErrors = array();
 		
 		$errorsCount = count($licenceErrors);
 		if ($errorsCount){
@@ -282,6 +285,7 @@ class nmActions extends sfActions{
 		}
 		
 		$this->licenceError = $licenceError;
+		$this->subscribers = $partner->getSubscribers();
 		$this->calList = $calList;
 		
 		$this->licenece = $partner->getLicence();

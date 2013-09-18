@@ -60,19 +60,19 @@
 			<?php include_partial('pagination', array('list' => $calList, 'url' => '/nm/calList/')); ?>
 		</div>
 			
-		
-		
-		<?php if (count($licenceError)):?>
-			<div class="box-content-margin clearfix">
-				<hr/>
+		<div class="box-content-margin clearfix">
+			<hr />
+			
+			<div class="upgrade-warning clearfix">
+				<?php if (count($licenceError)):?>
+				<p class="pull-right"><strong class="color-y">CONGRATULATIONS!</strong> <?php echo $licenceError;?></p>
+				<?php endif;?>
 				
-				<div class="upgrade-warning">
-					<p><?php echo $licenceError;?></p>
-					<p>Upgrade your licence:&nbsp;&nbsp;&nbsp;<a class="btn btn-success btn-mini" href="<?php echo url_for('nm/pricing');?>"><i class="icon-shopping-cart"></i> Upgrade</a></p>
-				</div>
+				<div class="cb"></div>
+				
+				<p class="pull-right"><span class="subscribers-text">Total Subscribers <span class="subscribers-count"><span class="<?php echo ($isReachedMaxCalendars) ? 'warning' : '';?>warning"><?php echo number_format($subscribers);?>/</span><?php echo number_format($licenece->getMaxSubscribers());?></span></span> <a class="btn btn-success btn-large" href="<?php echo url_for('nm/pricing');?>">Upgrade account</a></p>
 			</div>
-		<?php endif;?>
-		
+		</div>
 	</div>
 </div>
 

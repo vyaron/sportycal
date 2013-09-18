@@ -12,6 +12,9 @@
  */
 class Partner extends BasePartner
 {
+	
+	private $subscribersCount = null;
+	
 	public function __toString()  	{
     	return $this->getName();
 	}
@@ -195,21 +198,29 @@ class Partner extends BasePartner
 		$this->save();
 	}
 	
+	public function getSubscribers(){
+		if (is_null($this->subscribersCount)){
+			$q = Doctrine_Query::create()
+				->select('c.id, COUNT(cr.id) cal_request_count')
+				->from('Cal c')
+				->innerJoin('c.CalRequest cr')
+				->where('c.partner_id =?', $this->getId())
+				->andWhere('c.deleted_at IS NULL')
+				->groupBy('c.partner_id');
+			
+			$calRequests = $q->fetchOne();
+			
+			$this->subscribersCount = ($calRequests && $calRequests['cal_request_count']) ? $calRequests['cal_request_count'] : 0;
+		}
+		
+		return $this->subscribersCount;
+	}
+	
 	public function isReachedMaxSubscribers(){
 		$isReached = false;
 		
 		if ($licence = $this->getLicence()){
-			$q = Doctrine_Query::create()
-			->select('c.id, COUNT(cr.id) cal_request_count')
-			->from('Cal c')
-			->innerJoin('c.CalRequest cr')
-			->where('c.partner_id =?', $this->getId())
-			->andWhere('c.deleted_at IS NULL')
-			->groupBy('c.partner_id');
-		
-			$calRequests = $q->fetchOne();
-
-			$countSubscribers = ($calRequests && $calRequests['cal_request_count']) ? $calRequests['cal_request_count'] : 0;
+			$countSubscribers = $this->getSubscribers();
 		
 			$licence = $this->getLicence();
 			$isReached = $licence->isReachedMaxSubscribers($countSubscribers);

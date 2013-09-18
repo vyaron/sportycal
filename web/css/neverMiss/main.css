@@ -59,10 +59,11 @@ h2 .btn.btn-success{font-weight: normal; margin-top: 4px;}
 
 .btn.disabled{background: gray !important;}
 
-.btn-small{font-size: 16px; height: 30px; line-height: 30px; padding: 0 10px; background: #ffbf20; border: none; text-shadow: none; box-shadow:none;}
-.btn-small:hover, .btn-small:focus, .btn-small:active, .btn-small.active, .btn-small.disabled, .btn-small[disabled]{background: #ffbf20;}
+.btn.btn-small{font-size: 16px; height: 30px; line-height: 30px; padding: 0 10px; background: #ffbf20; border: none; text-shadow: none; box-shadow:none;}
+.btn.btn-small:hover, .btn-small:focus, .btn-small:active, .btn-small.active, .btn-small.disabled, .btn-small[disabled]{background: #ffbf20;}
 
-.btn-mini{font-size: 12px; line-height: 12px;}
+.btn.btn-mini{font-size: 12px; line-height: 12px;}
+.btn.btn-large{font-size: 26px; line-height: 26px; padding: 5px 25px;}
 
 .btn.loading span, .fb-login.loading span{padding-left: 25px; background: no-repeat 0 center url('/images/neverMiss/icons/ajax-loader-white.gif'); cursor: progress;}
 

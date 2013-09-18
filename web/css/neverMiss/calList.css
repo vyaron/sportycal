@@ -37,6 +37,10 @@
 .main-container .plan{ float: right; font-size: 14px; color: #333; text-transform: none; margin-top: 8px;}
 
 .upgrade-warning{margin-bottom: 25px;}
+.upgrade-warning p{font-size: 15px;}
+.upgrade-warning p .subscribers-text{vertical-align: middle; padding-top: 5px;}
+.upgrade-warning .subscribers-count{font-size: 30px; color: #ffc229; margin-right: 16px; font-family: 'SignikaLight';}
+.upgrade-warning .subscribers-count .warning{color: #f05a24; font-family: 'SignikaBold';}
 
 /*
 .cal-is-deleted{color: lightgray;}

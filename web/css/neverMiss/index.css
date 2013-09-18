@@ -21,7 +21,7 @@
 #cal-down-counter-wrapper{position: absolute; right: 0; top: 0; display:block;  line-height: 30px; padding: 0 10px; background-color: #1a1a1a; color: #ffc229; font-family: SignikaRegular; font-size: 11px; text-transform: uppercase;}
 #cal-down-counter{font-size: 26px; margin-left: 10px;}
 
-.start-now-btn{margin:60px auto; padding: 13px 21px; font-size: 28px; font-family: arial;}
+.btn.btn-large.start-now-btn{margin:60px auto; padding: 13px 21px; font-size: 28px; font-family: arial;}
 
 
 /* 3 box section */
