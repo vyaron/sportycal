@@ -22,7 +22,6 @@
 .cal-box.cal-is-deleted .content ul{opacity:0.2; filter:alpha(opacity=20);}
 
 .cal-box .btns{margin-top: 25px; margin-bottom: 10px;}
-.cal-box .btn{font-size: 14px; line-height: 14px; padding: 6px 10px;}
 
 .add-ico{background: right center no-repeat url("/images/neverMiss/calList/add-ico.png"); padding-right: 30px;}
 .add-ico, .add-ico:hover{color: #fff;}

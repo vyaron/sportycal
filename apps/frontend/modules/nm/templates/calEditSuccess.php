@@ -47,7 +47,8 @@ use_stylesheet('/css/neverMiss/calEdit.css');
 			
 			<hr class="visible-popup"/>
 			
-			<h4 class="hidden-phone">Add events to your calendar by clicking on a day / import from other calenders <a id="cal-import-btn" class="cal-btn pull-right" href="#">Import</a></h4>
+
+			<h4 class="hidden-phone clearfix">Add events to your calendar by clicking on a day / import from other calenders <a id="cal-import-btn" class="btn btn-mini pull-right" href="#">Import</a></h4>
 		</td>
 		<td class="right-col hidden-popup">&nbsp;</td>
 	</tr>
@@ -67,16 +68,13 @@ use_stylesheet('/css/neverMiss/calEdit.css');
 			
 			
 			<div id="cal-bottom-btns" class="clearfix">
-				<a id="cal-today-btn" class="cal-btn pull-left" data-type="today" href="#">Today</a>
+				<a id="cal-today-btn" class="btn btn-mini pull-left" data-type="today" href="#">Today</a>
 				
-				<a class="cal-btn cal-btn-view selected pull-left" data-type="month" href="#">Month</a>
-				<a class="cal-btn cal-btn-view pull-left" data-type="week" href="#">Week</a>
-				<a class="cal-btn cal-btn-view pull-left" data-type="day" href="#">Day</a>
-				
-				
-				
-				
-				<a id="clear-events" href="#clear-events-modal" role="button" data-toggle="modal"><i class="icon-trash"></i> Clear all Events</a>
+				<a class="btn btn-mini cal-btn-view btn-success pull-left" data-type="month" href="#">Month</a>
+				<a class="btn btn-mini cal-btn-view pull-left" data-type="week" href="#">Week</a>
+				<a class="btn btn-mini cal-btn-view pull-left" data-type="day" href="#">Day</a>
+
+				<a id="clear-events" href="#clear-events-modal" role="button" data-toggle="modal">Clear all Events</a>
 			</div>
 		</td>
 		<td class="right-col hidden-popup">

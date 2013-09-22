@@ -10,20 +10,28 @@ scheduler.form_blocks.datetime = {
 		var start = '<input type="text" class="datepicker"/> <input type="text" class="timepicker"/>';
 		var end = '<input type="text" class="datepicker"/> <input type="text" class="timepicker"/>';
 		
-		var height = 70;
+		var height = 55;
 		
 		var fullDateHtml = '';
 		if (cfg.full_day) {
-			fullDateHtml = '<label class="full_date_wrapper pull-right" class="inline checkbox">' + this.locale.labels.full_day + '&nbsp;<input class="full_date" type="checkbox"/></label>';
+			//fullDateHtml = '<label class="full_date_wrapper pull-right" class="inline checkbox">' + this.locale.labels.full_day + '&nbsp;<input class="full_date" type="checkbox"/></label>';
+			fullDateHtml = '<div class="pull-right"><label for="full-date">' + this.locale.labels.full_day + '</label><input id="full-date" class="full_date" type="checkbox"/></div>';
 		}
 		
 		var reminderHtml = '';
 		if (cfg.reminder) {
-			reminderHtml = '<select class="reminder pull-right" name="reminder" title="reminder"><option value="1">on start</option><option value="60">1 Hours</option><option value="240">4 Hours</option><option value="1440">1 Day</option></select>';
+			reminderHtml = '<select class="reminder" name="reminder" title="reminder"><option value="1">on start</option><option value="60">1 Hours</option><option value="240">4 Hours</option><option value="1440">1 Day</option></select>';
 		}
-
-		return "<div style='height:" + height + "px; font-size:inherit;' class='dhx_section_datetime dhx_cal_ltext'><label>" + this.locale.labels.from + "</label>"+start+fullDateHtml+"<br/><label>" + this.locale.labels.to + "</label>"+end+reminderHtml+"</div>";
-		return html;
+		
+		var sectionHtml = '<div class="dhx_section_datetime dhx_cal_ltext" style="height:' + height + 'px;">';
+		
+		sectionHtml += '<div class="clearfix"><label>' + this.locale.labels.from + '</label>' + start + fullDateHtml + '</div>';
+		sectionHtml += '<div class="clearfix"><label>' + this.locale.labels.to + '</label>' + end + reminderHtml + '</div>';
+		
+		sectionHtml += '</div>';
+		
+		return sectionHtml;
+		//return "<div style='height:" + height + "px; font-size:inherit;' class='dhx_section_datetime dhx_cal_ltext'><label>" + this.locale.labels.from + "</label>"+start+fullDateHtml+"<br/><label>" + this.locale.labels.to + "</label>"+end+reminderHtml+"</div>";
 	},
 	
 	set_value:function(node,value,ev,config){

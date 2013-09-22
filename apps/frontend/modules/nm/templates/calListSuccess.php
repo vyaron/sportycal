@@ -27,8 +27,8 @@
 							<button data-cal-id="<?php echo $cal['id'];?>" href="<?php echo url_for('nm/calRestore');?>" class="btn btn-success pull-right cal-restore">Restore</button>
 						</div>
 						<div class="cal-active">
-							<a href="<?php echo url_for('nm/calEdit/?id=' . $cal['id']);?>" class="btn btn-success pull-left">Edit</a>
-							<a href="<?php echo url_for('nm/widget/?calId=' . $cal['id']);?>" class="btn pull-right">Customize</a>
+							<a href="<?php echo url_for('nm/calEdit/?id=' . $cal['id']);?>" class="btn btn-mini btn-success pull-left">Edit</a>
+							<a href="<?php echo url_for('nm/widget/?calId=' . $cal['id']);?>" class="btn btn-mini pull-right">Customize</a>
 						</div>
 					</div>
 					

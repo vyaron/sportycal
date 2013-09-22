@@ -28,6 +28,7 @@ body{background-color: #f2f2f2;}
 
 /* Calendar
 *****************/
+.btn.btn-mini{min-width: 80px; padding: 4px 0;}clear-events
 #scheduler_here{background-color: transparent;}
 
 #cal-bottom-btns{margin-top: 15px;}
@@ -35,9 +36,11 @@ body{background-color: #f2f2f2;}
 .cal-btn:hover, .cal-btn:active, .cal-btn.selected{background: #FFC229;}
 .cal-btn.selected{cursor: default;}
 
+.cal-btn-view{margin-right: 5px;}
+
 #cal-today-btn{margin-right: 35px;}
 
-#clear-events{display: inline-block; float: right; color: #333;}
+#clear-events{display: inline-block; float: right; color: #333; background: no-repeat 0 center url("/images/neverMiss/calEdit/trash.png"); padding-left: 20px;}
 
 /*Header*/
 #cal-header{height: 53px; background-color: #ffc229; -webkit-border-radius: 8px; -moz-border-radius: 8px; border-radius: 8px;}
@@ -103,8 +106,8 @@ body{background-color: #f2f2f2;}
 .dhx_cal_light .dhx_cal_lsection, .dhx_cal_light .dhx_cal_ltitle{display: none;}
 .dhx_cal_light .dhx_cal_ltext{padding: 5px 24px;}
 .dhx_cal_light .dhx_cal_ltext textarea, .dhx_cal_light .dhx_cal_ltext textarea:-moz-placeholder, .dhx_cal_light .dhx_cal_ltext.name input, .dhx_cal_light .dhx_cal_ltext.location input{font-size: 12px; line-height: 22px; padding:0 6px;}
-.dhx_cal_light .dhx_cal_ltext.name input, .dhx_cal_light .dhx_cal_ltext.location input{color: #333; margin: 0; width: 100%; -webkit-box-sizing: border-box; -moz-box-sizing: border-box; box-sizing: border-box; height: 20px;}
-.dhx_cal_light .dhx_cal_ltext.name input{border: 0; background: #ffc229;}
+.dhx_cal_light .dhx_cal_ltext.name input, .dhx_cal_light .dhx_cal_ltext.location input, .dhx_section_datetime input, .dhx_section_datetime select{color: #333; margin: 0; -webkit-box-sizing: border-box; -moz-box-sizing: border-box; box-sizing: border-box; height: 24px;}
+.dhx_cal_light .dhx_cal_ltext.name input, .dhx_cal_light .dhx_cal_ltext.location input{width: 100%;}
 .dhx_cal_ltext textarea, .dhx_cal_light .dhx_cal_ltext.location input{border: 1px solid #FFC229;}
 
 .dhx_btn_set, .dhx_btn_set div{height: 20px;}

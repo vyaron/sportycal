@@ -76,10 +76,10 @@ function setEventList(){
 function changeCalView(e){
 	e.preventDefault();
 	
-	$('.cal-btn-view').removeClass('selected');
+	$('.cal-btn-view').removeClass('btn-success');
 	
 	var btn = $(this);
-	btn.addClass('selected');
+	btn.addClass('btn-success');
 	
 	var viewType = btn.attr('data-type');
 	scheduler.updateView(null, viewType);

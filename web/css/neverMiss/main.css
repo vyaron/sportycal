@@ -51,7 +51,7 @@ h2 .btn.btn-success{font-weight: normal; margin-top: 4px;}
 .icon-loading.icon-white{background-image: url("/images/neverMiss/icons/ajax-loader-white.gif");}
 
 /* buttons*/
-.btn{background: #b2b2b2; border-color: #fff; color: #333; text-shadow-color: #fff; text-transform: uppercase; font-size:18px; line-height:18px; -webkit-border-radius: 10px; -moz-border-radius: 10px; border-radius: 10px; box-shadow:1px 1px 3px #3d3d3d; padding: 4px 15px;}
+.btn{background: #b2b2b2; border-color: #fff; color: #333; text-shadow-color: #fff; text-transform: uppercase; font-size:18px; line-height:18px; -webkit-border-radius: 10px; -moz-border-radius: 10px; border-radius: 10px; box-shadow:1px 1px 3px #3d3d3d; padding: 4px 15px; font-family: 'PT Sans Narrow', sans-serif;}
 .btn:hover, .btn:focus, .btn:active, .btn.active, .btn.disabled, .btn[disabled]{background: #b2b2b2; color: #000;}
 
 .btn-success{background: #ffc229;}
@@ -62,7 +62,7 @@ h2 .btn.btn-success{font-weight: normal; margin-top: 4px;}
 .btn.btn-small{font-size: 16px; height: 30px; line-height: 30px; padding: 0 10px; background: #ffbf20; border: none; text-shadow: none; box-shadow:none;}
 .btn.btn-small:hover, .btn-small:focus, .btn-small:active, .btn-small.active, .btn-small.disabled, .btn-small[disabled]{background: #ffbf20;}
 
-.btn.btn-mini{font-size: 12px; line-height: 12px;}
+.btn.btn-mini{font-size: 13px; line-height: 13px;}
 .btn.btn-large{font-size: 26px; line-height: 26px; padding: 5px 25px;}
 
 .btn.loading span, .fb-login.loading span{padding-left: 25px; background: no-repeat 0 center url('/images/neverMiss/icons/ajax-loader-white.gif'); cursor: progress;}
