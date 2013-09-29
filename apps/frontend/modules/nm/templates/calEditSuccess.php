@@ -20,10 +20,6 @@ use_stylesheet('/css/neverMiss/calEdit.css');
 
 <h2><span class="color-y">Edit</span> Your Calendar. <a class="pull-right continue-btn btn btn-success hidden-popup" href="#"><span>Continue</span></a></h2>
 
-<?php if ($tzFullName):?>
-<h5>Timezone: <?php echo $tzFullName;?></h5>
-<?php endif;?>
-
 <table id="cal-edit-wrapper">
 	<tr>
 		<td>

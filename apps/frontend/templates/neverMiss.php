@@ -64,7 +64,7 @@
 		<div id="footer-place-hoolder">&nbsp;</div>
 	    <div id="footer" class="hidden-popup">
 	    	<div class="container">
-	    		<span style="color:gray"><?php echo sfConfig::get('app_domain_name');?> &copy; <?php echo date('Y');?></span>&nbsp;&nbsp;|&nbsp;&nbsp;
+	    		<span style="color:gray"><?php echo sfConfig::get('app_domain_name');?> (Tipical LTD) &copy; <?php echo date('Y');?></span>&nbsp;&nbsp;|&nbsp;&nbsp;
 		        <a href="<?php echo url_for('nm/pricing') ?>">Pricing</a>&nbsp;&nbsp;|&nbsp;&nbsp;
 		        <a href="<?php echo url_for('nm/caseStudies') ?>">Case Studies</a>&nbsp;&nbsp;|&nbsp;&nbsp;
 		        <a href="<?php echo url_for('nm/contact') ?>">Contact</a>&nbsp;&nbsp;|&nbsp;&nbsp;

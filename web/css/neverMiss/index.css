@@ -17,6 +17,9 @@
 #banner-col-left h1{font-size: 44px; line-height:50px; font-weight: bold; color:#ffc229; text-transform: uppercase; text-shadow:1px 1px 2px #1a120c; margin-top:0px; margin-bottom: 34px;}
 #banner-col-left p{color: #fff; text-shadow:1px 1px 1px #1a120c; font-size: 25px; line-height: 29px; margin-bottom: 0;}
 
+#start-wrapper{text-align: center;}
+#start-wrapper p{margin-bottom: 10px; color: #fff;}
+
 /*calendars caounter*/
 #cal-down-counter-wrapper{position: absolute; right: 0; top: 0; display:block;  line-height: 30px; padding: 0 10px; background-color: #1a1a1a; color: #ffc229; font-family: SignikaRegular; font-size: 11px; text-transform: uppercase;}
 #cal-down-counter{font-size: 26px; margin-left: 10px;}

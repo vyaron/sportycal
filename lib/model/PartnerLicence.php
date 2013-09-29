@@ -11,9 +11,9 @@ class PartnerLicence{
 	
 	private static $PLANS = array(
 		self::PLAN_A => array('prestige' => 0, 'max_subscribers' => 10, 'max_calendars' => 1, 'max_events' => 10, 'name' => 'Free', 'price' => 0, 'desc' => ''),
-		self::PLAN_B => array('prestige' => 1, 'max_subscribers' => 500, 'max_calendars' => 3, 'max_events' => 100, 'name' => 'Starters', 'price' => 7, 'desc' => ''),
-		self::PLAN_C => array('prestige' => 2, 'max_subscribers' => 5000, 'max_calendars' => 10, 'max_events' => self::UNLIMITED, 'name' => 'Business', 'price' => 49, 'desc' => ''),
-		self::PLAN_D => array('prestige' => 3, 'max_subscribers' => 50000, 'max_calendars' => self::UNLIMITED, 'max_events' => self::UNLIMITED, 'name' => 'Pro', 'price' => 390, 'desc' => ''),
+		self::PLAN_B => array('prestige' => 1, 'max_subscribers' => 250, 'max_calendars' => 3, 'max_events' => 100, 'name' => 'Starters', 'price' => 7, 'desc' => ''),
+		self::PLAN_C => array('prestige' => 2, 'max_subscribers' => 2500, 'max_calendars' => 10, 'max_events' => self::UNLIMITED, 'name' => 'Business', 'price' => 59, 'desc' => ''),
+		self::PLAN_D => array('prestige' => 3, 'max_subscribers' => 25000, 'max_calendars' => self::UNLIMITED, 'max_events' => self::UNLIMITED, 'name' => 'Pro', 'price' => 490, 'desc' => ''),
 	);
 
 	public static function setLicence($custom, $itemNumber, $paymentDate, $paypalCode=null, $cancelCurrentLicence=false){

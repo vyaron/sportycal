@@ -116,7 +116,7 @@ function setFbLoginEvents(){
 						url : '/main/fbLogin/?d=' + (new Date()).getTime(),
 						dataType : 'json'
 					}).done(function(res){
-						setGlobalAlert(res);
+						if (!res.success) setGlobalAlert(res);
 						reloadLoginRegister();
 					});
 				} else {

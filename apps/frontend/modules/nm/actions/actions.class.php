@@ -402,7 +402,7 @@ class nmActions extends sfActions{
 		UserUtils::setUserTZ(GeneralUtils::$timezones[$tz]);
 		UserUtils::setUserTzValue($tz);
 		
-		$this->tzFullName = $event ? (GeneralUtils::getUTCStrFromJSTZ($tz) . ' - ' . GeneralUtils::$timezones[$tz]) : null;
+		//$this->tzFullName = $event ? (GeneralUtils::getUTCStrFromJSTZ($tz) . ' - ' . GeneralUtils::$timezones[$tz]) : null;
 		
 		$this->form = new NmCalForm();
 		$this->form->setDefault('name', $cal->getName());

@@ -24,18 +24,14 @@ use_stylesheet('/css/neverMiss/index.css');
 			</div>
 		</div>
 		
-		<div style="text-align: center;">
+		<div id="start-wrapper">
 			<?php if ($isReachedMaxCalendars):?>
 			<a class="start-now-btn btn btn-success btn-large disabled hidden-phone" href="#" title="<?php echo __('Reached calendars limit');?>">START NOW. <strong>IT'S FREE!</strong></a>
 			<?php else:?>
 			<a class="start-now-btn btn btn-success btn-large hidden-phone" href="<?php echo url_for('nm/calCreate') ?>">START NOW. <strong>IT'S FREE!</strong></a>
 			<?php endif;?>
 			
-			
-			<div class="visible-phone">
-				<a class="btn btn-success btn-large disabled" href="#">START NOW. <strong>IT'S FREE!</strong></a>
-				<p>for now, it's easier to create your calendar with your desktop</p>
-			</div>
+			<p class="visible-phone">You are on a mobile, we recommend creating your calendar on a desktop, its easy.</p>
 		</div>
 		
 		<div id="cal-down-counter-wrapper" class="clearfix">

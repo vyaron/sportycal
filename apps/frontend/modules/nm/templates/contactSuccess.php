@@ -48,6 +48,8 @@
 						<hr/>
 					</div>
 					
+					<p>iNeverMiss (Tipical LTD)</p>
+					
 					<p>
 					<a href="mailto://<?php echo sfConfig::get('app_gmail_username')?>"><?php echo sfConfig::get('app_gmail_username')?></a>
 					</p>
