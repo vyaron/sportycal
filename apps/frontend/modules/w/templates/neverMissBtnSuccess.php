@@ -1,7 +1,7 @@
 <?php 
 $href = url_for('w/neverMissPopup/?calid=' . $calId . ($language ? ('&language=' . $language) : ''));
 
-if ($isReachedMaxSubscribers) $href = '#';
+if ($isReachedMaxSubscribers) $href = null;
 else if ($isMobile) $href = '/cal/sub' . ($calId ? '/id/' . $calId : '') . ($ctgId ? '/ctgId/' . $ctgId : '') . ($ref ? '/ref/' . $ref : '') . '/ct/mobile/cal.ics';
 
 
@@ -64,9 +64,9 @@ if ($isMobile) $target = Utils::clientIsAndroid() ? '_blank' : 'attachment';
 <body class="<?php echo ($isRTL ? 'rtl' : '');?>">
 
 <?php if ($src):?>
-<a class="never-miss-btn<?php echo ($isReachedMaxSubscribers) ? ' disabled' : '';?>" href="<?php echo $href;?>" target="<?php echo $target;?>"<?php echo ($isReachedMaxSubscribers) ? ' title="' .  __('Reached subscriptions limit') . '"' : '';?> style="display: block; background: 0 0 no-repeat url('<?php echo $src?>'); width: <?php echo $width;?>px; height: <?php echo $height;?>px;"></a>
+<a class="never-miss-btn<?php echo ($isReachedMaxSubscribers) ? ' disabled' : '';?>" <?php echo $href ? 'href="' . $href . '"' : '';?> target="<?php echo $target;?>"<?php echo ($isReachedMaxSubscribers) ? ' title="' .  __('Reached subscriptions limit') . '"' : '';?> style="display: block; background: 0 0 no-repeat url('<?php echo $src?>'); width: <?php echo $width;?>px; height: <?php echo $height;?>px;"></a>
 <?php else:?>
-<a class="never-miss-btn<?php echo ($isReachedMaxSubscribers) ? ' disabled' : '';?><?php echo ($isMobile) ? ' mobile' : '';?><?php echo ($btnStyle) ? " $btnStyle" : '';?><?php echo ($btnSize) ? " $btnSize" : '';?><?php echo ($color) ? " $color" : '';?>" href="<?php echo $href;?>" target="<?php echo $target;?>"<?php echo ($isReachedMaxSubscribers) ? ' title="' .  __('Reached subscriptions limit') . '"' : '';?>>
+<a class="never-miss-btn<?php echo ($isReachedMaxSubscribers) ? ' disabled' : '';?><?php echo ($isMobile) ? ' mobile' : '';?><?php echo ($btnStyle) ? " $btnStyle" : '';?><?php echo ($btnSize) ? " $btnSize" : '';?><?php echo ($color) ? " $color" : '';?>" <?php echo $href ? 'href="' . $href . '"' : '';?> target="<?php echo $target;?>"<?php echo ($isReachedMaxSubscribers) ? ' title="' .  __('Reached subscriptions limit') . '"' : '';?>>
 	<span class="never-miss-btn-small-txt"><?php echo __('DOWNLOAD');?></span>
 	<span class="never-miss-btn-txt"><?php echo __('DOWNLOAD TO CALENDAR');?></span>
 </a>
