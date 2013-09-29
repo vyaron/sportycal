@@ -1,0 +1,4 @@
+body{background-color: #f1f1f1;}
+#top-navbar-placholder, .navbar-fixed-top{margin-bottom: 0;}
+#banner{padding:15px; font-size: 27px; text-transform:uppercase; text-align:center; color: #fff; background-color: #faba2c; font-weight: bold; margin-top: 0;}
+#instructions{margin: 0 atuo; background: 0 0 no-repeat url('/images/neverMiss/getAndroidCal/instructions.jpg'); width: 397px; height: 611px; margin: 0 auto;}

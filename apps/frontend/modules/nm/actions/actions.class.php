@@ -16,6 +16,16 @@ class nmActions extends sfActions{
 		$this->isReachedMaxCalendars = $isReachedMaxCalendars;
 	}
 	
+	public function executeGetAndroidCal(sfWebRequest $request){
+		$h = (int) $request->getParameter('h');
+		$fn = $request->getParameter('fn', 'Calendar');
+		//"/cal/get/h/$id/$fileName.ics";
+		$this->forward404Unless($userCal = Doctrine::getTable('UserCal')->find($request->getParameter('h')));
+		
+		$this->userCalId = $userCal->getId();
+		$this->fileName = $fn;
+	}
+	
 	public function executeContact(sfWebRequest $request){
 		$form = new ContactForm();
 		
