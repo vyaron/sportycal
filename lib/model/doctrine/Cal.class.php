@@ -160,23 +160,27 @@ class Cal extends BaseCal
     
     private $cachedEvents;
     private $birthdayEvents;
-    public function getEvents() {
+    public function getEvents($startsAt = null, $setFakeDates = false) {
+    	$events = array();
     	
-    	if ($this->isAggregated()) {
-    		return $this->aggregatedEvents;	
-    	}
-    	if ($this->isBirthdayCal()) {
-    		return $this->birthdayEvents;	
-    	}
-    	
-    	//Utils::pp("NOT AGG");
-    	
-    	if (!isset($this->cachedEvents)) {
-    		$this->cachedEvents = EventTable::getEvents($this->getId());
-    		
-    		
-    	}
-        return $this->cachedEvents;
+    	if ($this->isAggregated()) $events = $this->aggregatedEvents;	
+    	else if ($this->isBirthdayCal()) $events = $this->birthdayEvents;	
+    	else if (!isset($this->cachedEvents)) $events = $this->cachedEvents = EventTable::getEvents($this->getId()); //Utils::pp("NOT AGG");
+		
+    	if ($setFakeDates){
+    		foreach ($events as $i => &$event){
+    			$event->setStartsAt(date('Y-m-d 10:30:00', strtotime('+' . ($i+1) . 'day')));
+    			$event->setEndsAt(date('Y-m-d 11:30:00', strtotime('+' . ($i+1) . ' day')));
+    		}
+    	} else if ($startsAt){
+        	$filteredEvents = array();
+        	foreach ($events as $i => $event){
+        		if (strtotime($event->getStartsAt()) >= strtotime($startsAt)) $filteredEvents[] = $event;
+        	}
+        	$events = $filteredEvents;
+        }
+        
+        return $events;
     }
     
     public function hasHours() {

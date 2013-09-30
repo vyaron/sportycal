@@ -106,57 +106,33 @@ class wixActions extends sfActions{
 		$this->bgOpacity = $this->wix->getBgOpacityForDisplay();
 	}
 	
+	
+	
 	public function executeWidget(sfWebRequest $request){
 		$this->init($request, true);
-		
+
 		$calId = $this->wix->getCalIdForDisplay();
 		$upcoming = $this->wix->getUpcomingForDisplay();
+		$isMobile = $request->getParameter('isMobile', Utils::clientIsMobile());
 		
-		$cal = Doctrine::getTable('Cal')->find(array($calId));
-
-		$dayKeyOrder = array();
-		$dayKey2Events = array();
-		if ($upcoming) {
-			$q = Doctrine_Query::create()
-				->from('Event e')
-				->where('e.cal_id = ?', $calId)
-				->limit($upcoming)
-				->orderBy('e.starts_at ASC');
-			
-			if ($cal->getId() != Wix::DEFAULT_CAL_ID) $q->andWhere('e.starts_at >= NOW()');
-			
-			$events = $q->execute();
-			
-			if ($cal->getId() == Wix::DEFAULT_CAL_ID){
-				foreach ($events as $i => &$event){
-					$event->setStartsAt(date('Y-m-d H:i:s', strtotime('+' . ($i+1) . 'day')));
-					$event->setEndsAt(date('Y-m-d H:i:s', strtotime('+' . ($i+1) . ' day +1 hour')));
-				}
-			}
-			
-			foreach ($events as $event){
-				$dayKey = date('d M Y', strtotime($event->getStartsAt()));
+		if ($calId) $cal = Doctrine::getTable('Cal')->find($calId);
 		
-				if (! key_exists($dayKey, $dayKey2Events)) {
-					$dayKeyOrder[] = $dayKey;
-					$dayKey2Events[$dayKey] = array();
-				}
+		if (!$cal) die();
 		
-				$dayKey2Events[$dayKey][] = $event;
-			}
-		}
+		$partner = $cal ? $cal->getPartner() : $ctg->getPartner();
 		
-		$partner = $cal->getPartner();
+		$this->events = CalTable::getUpcomingEvents($cal, $ctg, $upcoming);
 		$this->isReachedMaxSubscribers = ($partner && !Wix::isPremium($this->wixData)) ? $partner->isReachedMaxSubscribers() : false;
-
 		$this->calId = $calId;
-		$this->upcoming = $upcoming;
-
-		$this->dayKeyOrder = $dayKeyOrder;
-		$this->dayKey2Events = $dayKey2Events;
+		$this->isMobile = $isMobile;
+		
 		$this->lineColor = $this->wix->getLineColorForDisplay();
 		$this->textColor = $this->wix->getTextColorForDisplay();
 		$this->bgColor = $this->wix->getBgColorForDisplay();
 		$this->bgOpacity = $this->wix->getBgOpacityForDisplay();
+		
+		$this->setLayout('cleanLayout');
+		
+		sfContext::getInstance()->getI18N()->setCulture($language);
 	}
 }

@@ -10,7 +10,7 @@ use_stylesheet('/css/neverMiss/widget.css');
 	<div class="span6">
 		<?php if ($user):?>
 		<h2><span class="color-y">Custom</span> widget</h2>
-		<?php include_partial('nm/widgetForm', array('language' => $language));?>
+		<?php include_partial('nm/widgetForm', array('language' => $language, 'upcoming' => $upcoming));?>
 		<?php else:?>
 			<?php include_partial('nm/loginAndRegisterForm', array('loginForm' => $loginForm, 'registerForm' => $registerForm, 'isShowLogin' => $isShowLogin, 'backUrl' => url_for('/nm/calCreate'), 'legend' => 'to save')); ?>
 		<?php endif;?>

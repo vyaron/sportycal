@@ -614,7 +614,7 @@ class nmActions extends sfActions{
 		$this->btnStyle = $request->getParameter('btn-style', NeverMissWidget::DEFAULT_VALUE);
 		$this->btnSize = $request->getParameter('btn-size', NeverMissWidget::DEFAULT_VALUE);
 		$this->color = $request->getParameter('color', NeverMissWidget::DEFAULT_VALUE);
-		$this->upcoming = $request->getParameter('upcoming', 0);
+		$this->upcoming = $request->getParameter('upcoming', 3);
 		
 		$this->forward404Unless($cal = Doctrine::getTable('Cal')->find(array($this->calId)), sprintf('Object cal does not exist (%s).', $this->calId));
 		
@@ -623,23 +623,9 @@ class nmActions extends sfActions{
 		$this->registerForm = new NmRegisterForm();
 		$this->loginForm = new LoginForm();
 		$this->isShowLogin = false;
-		
-// 		$rootName = null;
-// 		$website = null;
-// 		if (!$user && $request->isMethod('post') && $registerData = $request->getParameter('register')) {
-// 			$this->registerForm($registerData);
-			
-// 			$rootName = $registerData['company_name'] ? $registerData['company_name'] : $registerData['full_name'];
-// 			$website = $registerData['website'];
-			
-// 			$user = UserUtils::getLoggedIn();
-// 		}
 
 		if ($user) {
-			//$cal->setAdoptive($user, $rootName, $website);
 			$cal->setAdoptive($user);
-			
-			//Set deleted at if partner reached max calendars
 			if ($cal->getDeletedAt()) $this->redirect('/nm/calList/');
 		}
 

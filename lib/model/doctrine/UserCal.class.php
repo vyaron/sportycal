@@ -52,7 +52,7 @@ class UserCal extends BaseUserCal
 		$url = sfConfig::get('app_domain_full') . "/cal/get/h/$id/$fileName.ics";
 		
 		if ($this->getCalType() == Cal::TYPE_GOOGLE) $url = Cal::GOOGLE_IMPORT_URL .  urlencode($url);
-		else if ($this->getCalType() == Cal::TYPE_MOBILE && Utils::clientIsAndroid()) $url = "/nm/getCalAndroid/h/$id/fn/$fileName";
+		else if ($this->getCalType() == Cal::TYPE_MOBILE && Utils::clientIsAndroid()) $url = "/nm/getAndroidCal/h/$id/fn/$fileName";
 		else if ($this->getCalType() == Cal::TYPE_OUTLOOK || $this->getCalType() == Cal::TYPE_MOBILE) $url = str_replace('http://', 'webcal://', $url);
 
 		return $url;

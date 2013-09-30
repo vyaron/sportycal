@@ -8,23 +8,23 @@
 			<select id="btn-style" name="btn-style">
 				<option value="<?php echo NeverMissWidget::DEFAULT_VALUE;?>">Default</option>
 				<option value="only_icon">Only icon</option>
+				<option value="list">List</option>
 			</select>
 		</div>
 	</div>
-	<div class="control-group">
+	<div id="upcoming-wrapper" class="control-group" style="display: none;">
 		<label class="control-label" for="upcoming">Upcoming Events:</label>
 		<div class="controls">
 			<select id="upcoming" name="upcoming">
-				<option value="0">None</option>
 				<?php for ($i=1; $i <= 5; $i++):?>
-				<option value="<?php echo $i;?>">
+				<option value="<?php echo $i;?>" <?php echo ($upcoming == $i) ? 'selected="selected"' : '';?>>
 					<?php echo $i;?>
 				</option>
 				<?php endfor;?>
 			</select>
 		</div>
 	</div>
-	<div class="control-group">
+	<div id="btn-size-wrapper" class="control-group">
 		<label class="control-label" for="btn-size">Button Size:</label>
 		<div class="controls">
 			<select id="btn-size" name="btn-size">

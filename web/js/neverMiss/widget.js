@@ -39,6 +39,21 @@ jQuery(document).ready(function(){
 	setEmailFormEvent();
 	
 	jQuery('#language, #btn-style, #btn-size, #color, #upcoming').change(updateWidgetData);
+	jQuery('#btn-style').change(function(e){
+		if (jQuery(this).val() == 'list'){
+			jQuery('#desktop-widget').css({
+				'padding-left' : '135px',
+				'padding-top' : '20px'
+			});
+			
+			jQuery('#btn-size-wrapper').hide();
+			jQuery('#upcoming-wrapper').show();
+		} else {
+			jQuery('#desktop-widget').removeAttr('style');
+			jQuery('#btn-size-wrapper').show();
+			jQuery('#upcoming-wrapper').hide();
+		}
+	});
 	
 	jQuery('#copy-js-code').focus(function(){
 		jQuery(this).select();

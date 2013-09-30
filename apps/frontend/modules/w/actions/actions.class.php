@@ -7,7 +7,11 @@ class wActions extends sfActions{
 	public function executeNeverMissBtn(sfWebRequest $request){
 		$this->calId = $request->getParameter('calId');
 		$this->ctgId = $request->getParameter('ctgId');
-		if (!$this->calId && !$this->ctgId) die();
+
+		if ($this->calId) $cal = Doctrine::getTable('Cal')->find($this->calId);
+		if ($this->ctgId) $ctg = Doctrine::getTable('Category')->find($this->ctgId);
+		
+		if (!$cal && !$ctg) die();
 		
 		$this->ref = $request->getParameter('ref');
 
@@ -30,61 +34,16 @@ class wActions extends sfActions{
 		$this->height = $request->getParameter('height');
 		$this->src = $request->getParameter('src');
 		
-		$upcoming = $request->getParameter('upcoming');
-		if (!($upcoming > 0  && $upcoming <= 5)) $upcoming = 0;
-		
-		$partner = null;
-		if ($this->calId) {
-			$cal = Doctrine::getTable('Cal')->find($this->calId);
-			$this->forward404Unless($cal);
-			$partner = $cal->getPartner();
-		} elseif ($this->ctgId) {
-			$ctg = Doctrine::getTable('Category')->find($this->ctgId);
-			$this->forward404Unless($ctg);
-			$partner = $ctg->getPartner();
-			$aggregatedCal = $ctg->getAggregatedCal();
-			$cal = $aggregatedCal;
-		}
-		
-		
-		$dayKeyOrder = array();
-		$dayKey2Events = array();
-		if ($upcoming) {
-			$events = $cal->getEvents();
-// 			$events = Doctrine_Query::create()
-// 				->from('Event e')
-// 				->where('e.cal_id = ?', $this->calId)
-// 				->andWhere('e.starts_at >= NOW()')
-// 				->limit($upcoming)
-// 				->orderBy('e.starts_at ASC')->execute();
-			
-			foreach ($events as $i => $event){
-				if ($i == $upcoming) break;
-				
-				$dayKey = date('d M Y', strtotime($event->getStartsAt()));
-				
-				if (! key_exists($dayKey, $dayKey2Events)) {
-					$dayKeyOrder[] = $dayKey;
-					$dayKey2Events[$dayKey] = array();
-				}
-				
-				$dayKey2Events[$dayKey][] = $event;
-			}
-		}
-		
-		$this->dayKeyOrder = $dayKeyOrder;
-		$this->dayKey2Events = $dayKey2Events;
+		$partner = $cal ? $cal->getPartner() : $ctg->getPartner();
 		
 		$this->isMobile = $request->getParameter('isMobile', Utils::clientIsMobile());
 		
-		//$cal = Doctrine::getTable('Cal')->find(array($this->calId));
-		
 		$this->isReachedMaxSubscribers = $partner ? $partner->isReachedMaxSubscribers() : false;
 		
-		if (!($cal && $this->popupId)){
-			echo 'ERROR!!!';
-			return sfView::NONE;
-		}
+// 		if (!($cal && $this->popupId)){
+// 			echo 'ERROR!!!';
+// 			return sfView::NONE;
+// 		}
 		
 		$this->setLayout(false);
 	}
@@ -108,5 +67,36 @@ class wActions extends sfActions{
 		sfContext::getInstance()->getI18N()->setCulture($this->language);
 
 		$this->setLayout(false);
+	}
+	
+	public function executeNeverMissList(sfWebRequest $request){
+		$ref = $request->getParameter('ref', 'widget');
+		$calId = $request->getParameter('calId');
+		$ctgId = $request->getParameter('ctgId');
+		$upcoming = $request->getParameter('upcoming', 5);
+		$isDark = ($request->getParameter('color')) == 'dark' ? true : false;
+		$isMobile = $request->getParameter('isMobile', Utils::clientIsMobile());
+		$language = $request->getParameter('language');
+		$isRTL = ($language == NeverMissWidget::LANGUAGE_HEBREW) ? true : false;
+		
+		if ($calId) $cal = Doctrine::getTable('Cal')->find($calId);
+		elseif ($ctgId) $ctg = Doctrine::getTable('Category')->find($ctgId);
+		
+		if (!$cal && !$ctg) die();
+		
+		$partner = $cal ? $cal->getPartner() : $ctg->getPartner();
+		
+		$this->events = CalTable::getUpcomingEvents($cal, $ctg, $upcoming);
+		$this->isReachedMaxSubscribers = $partner ? $partner->isReachedMaxSubscribers() : false;
+		$this->ref = $ref;
+		$this->calId = $calId;
+		$this->ctgId = $ctgId;
+		$this->isDark = $isDark;
+		$this->isMobile = $isMobile;
+		$this->isRTL = $isRTL;
+		
+		$this->setLayout('cleanLayout');
+		
+		sfContext::getInstance()->getI18N()->setCulture($language);
 	}
 }

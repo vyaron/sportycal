@@ -15,12 +15,6 @@ if ($isMobile) $target = Utils::clientIsAndroid() ? '_blank' : 'attachment';
 </head>
 <link rel="stylesheet" href="/widgets/neverMiss/css/main.css"/>
 <style>
-/*
-.never-miss-btn, .never-miss-mobile-btn, .never-miss-disabled-btn{background: url('/widgets/neverMiss/imgs/btn.png') no-repeat 0 0; display: block; height:36px; width:159px; text-decoration: none;}
-.never-miss-mobile-btn{background: url('/widgets/neverMiss/imgs/mobile-btn.png') no-repeat 0 0;}
-.never-miss-disabled-btn{cursor: not-allowed; opacity:0.3; filter:alpha(opacity=30);}
-*/
-
 .never-miss-btn{background: url('/widgets/neverMiss/imgs/btn.png') no-repeat 0 0; display: block; height:46px; width:164px; text-decoration: none;}
 .never-miss-btn.dark{background-image:  url('/widgets/neverMiss/imgs/btn-dark.png');}
 
@@ -34,14 +28,6 @@ if ($isMobile) $target = Utils::clientIsAndroid() ? '_blank' : 'attachment';
 .never-miss-btn.small .never-miss-btn-small-txt, .never-miss-btn .never-miss-btn-txt{display: inline-block;}
 .never-miss-btn .never-miss-btn-small-txt, .never-miss-btn.small .never-miss-btn-txt, .never-miss-btn.only_icon .never-miss-btn-txt, .never-miss-btn.only_icon .never-miss-btn-small-txt{display: none;}
 
-/*
-.never-miss-btn.mobile{background-image: url('/widgets/neverMiss/imgs/mobile-btn.png');}
-.never-miss-btn.mobile.dark{background-image: url('/widgets/neverMiss/imgs/mobile-btn-dark.png');}
-
-.never-miss-btn.mobile.small{background-image: url('/widgets/neverMiss/imgs/mobile-btn-small.png');}
-.never-miss-btn.mobile.dark.small{background-image: url('/widgets/neverMiss/imgs/mobile-btn-dark-small.png');}
-*/
-
 .never-miss-btn.only_icon{background-image: url('/widgets/neverMiss/imgs/only-icon.png'); width: 46px; height: 46px;}
 .never-miss-btn.only_icon.small{background-image: url('/widgets/neverMiss/imgs/only-icon-small.png'); width: 23px; height: 23px;}
 .never-miss-btn.only_icon.dark{background-image: url('/widgets/neverMiss/imgs/only-icon-dark.png');}
@@ -49,13 +35,6 @@ if ($isMobile) $target = Utils::clientIsAndroid() ? '_blank' : 'attachment';
 
 .never-miss-btn.disabled{cursor: not-allowed; opacity:0.3; filter:alpha(opacity=30);}
 
-.upcoming-wrapper{font-size: 12px; padding: 10px; background-color: #fff;}
-.upcoming-wrapper h4, .upcoming-wrapper h5{margin: 0;}
-.upcoming-wrapper h4{font-size: 14px; border-bottom: 3px solid #FFC229; padding-bottom: 7px;}
-.upcoming-wrapper h5{font-size: 13px;}
-.upcoming-wrapper ul{margin: 0; padding: 0; list-style: none;}
-.upcoming-wrapper > ul > li{border-top: 2px solid #FFC229; padding: 10px 0;}
-.upcoming-wrapper > ul > li:FIRST-CHILD {border-top:none;}
 
 .rtl{text-align: right; direction: rtl;}
 .rtl .never-miss-btn-txt{font-size: 17px; margin-left: 0; margin-right: 12px; margin-top: 15px;}
@@ -70,24 +49,6 @@ if ($isMobile) $target = Utils::clientIsAndroid() ? '_blank' : 'attachment';
 	<span class="never-miss-btn-small-txt"><?php echo __('DOWNLOAD');?></span>
 	<span class="never-miss-btn-txt"><?php echo __('DOWNLOAD TO CALENDAR');?></span>
 </a>
-<?php endif;?>
-
-<?php if (count($dayKeyOrder)):?>
-<div class="upcoming-wrapper">
-	<h4><?php echo __('Upcoming Events');?>:</h4>
-	<ul>
-		<?php foreach ($dayKeyOrder as $dayKey):?>
-		<li>
-			<h5><?php echo $dayKey;?></h5>
-			<ul>
-				<?php foreach ($dayKey2Events[$dayKey] as $event):?>
-				<li title="<?php echo $event->getName();?>"><?php echo (!Event::isAllDay($event)) ? $event->getStartTimeForDisplay() . ' ' : '';?><?php echo Utils::substr($event->getName(), 10);?></li>
-				<?php endforeach;?>
-			</ul>
-		</li>
-		<?php endforeach;?>
-	</ul>
-</div>
 <?php endif;?>
 
 <?php if($isMobile):?>

@@ -567,9 +567,9 @@ class Event extends BaseEvent
     	return date('H:i', strtotime($this->getStartsAt()));
     }
     
-    public static function isAllDay($event){
-    	$s = explode(' ', $event->getStartsAt());
-    	$e = explode(' ', $event->getEndsAt());
+    public function isAllDay(){
+    	$s = explode(' ', $this->getStartsAt());
+    	$e = explode(' ', $this->getEndsAt());
     	
     	return ($s[0] != $e[0] && $s[1] == $e[1]) ? true : false;
     }
