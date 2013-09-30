@@ -50,7 +50,7 @@ class Event extends BaseEvent
 		
 		
 		if ($partner){
-			$desc .= @$partner->getDescTopPart(Cal::isHtmlSupported($calType), $this, $cal, ESC_RAW);
+			//$desc .= @$partner->getDescTopPart(Cal::isHtmlSupported($calType), $this, $cal, ESC_RAW);
 			$eventDesc = @$partner->getEventDescription(Cal::isHtmlSupported($calType), $this, $cal, ESC_RAW);
 		} else {
 			$eventDesc = $this->getDescription();
