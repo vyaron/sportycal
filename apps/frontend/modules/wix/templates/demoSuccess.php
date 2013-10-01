@@ -1,4 +1,4 @@
-<div style="width: 300px; margin: 10px auto;">
+<div style="width: 300px; margin: 10px;">
 	<div class="nm-follow" data-cal-id="<?php echo Wix::DEFAULT_CAL_ID;?>" data-language="en" data-btn-style="list" data-color="default"></div>
 </div>
 
