@@ -691,7 +691,8 @@ class nmActions extends sfActions{
 		
 		if (!$cal && !$ctg) $this->forward404();
 		
-		$name = $cal ? $cal->getName : $ctg->getName();
+		$name = $cal ? $cal->getName() : $ctg->getName();
+		$name = Utils::slugify($name);
 		
 		if (Utils::clientIsMobile()) {
 			$url = '/cal/sub' . ($calId ? '/id/' . $calId : '') . ($ctgId ? '/ctgId/' . $ctgId : '') . '/ct/' . Cal::TYPE_MOBILE . ($ref ? '/ref/' . $ref : '') .'/' . $name . '.ics';
