@@ -74,6 +74,7 @@ use_stylesheet('/bundle/colorpicker/css/colorpicker.css');
 				</div>
 				<div id="collapseTwo" class="accordion-body collapse">
 					<div class="accordion-inner">
+						<?php if (false):?>
 						<div class="controls controls-row">
 							<label class="span3">Displayed Events number: </label>
 							<select name="upcoming" class="span1">
@@ -82,6 +83,7 @@ use_stylesheet('/bundle/colorpicker/css/colorpicker.css');
 								<?php endforeach;?>
 							</select>
 						</div>
+						<?php endif;?>
 						<div class="controls controls-row">
 							<label class="span3">Line Color: </label>
 							<div class="span6">

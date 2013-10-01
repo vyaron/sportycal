@@ -20,9 +20,10 @@ h1{font-weight: 400; font-size: 22px; line-height:22px; padding-top:17px; paddin
 
 
 #footer{position: fixed; left: 0; bottom: 0; width: 100%;}
-#btns-title{background-color: #e5e5e5; color: #666; font-size: 11px; line-height: 10px; height: 10px;}
+#footer a.cal-btn{text-decoration: none;}
+#btns-title{background-color: #e5e5e5; color: #666; font-size: 13px; line-height: 13px; height: 13px;}
 .cal-btn, .cal-btn:hover{color: #333;}
-.cal-btn{width: 33%; height:45px; border-left: 1px solid #e5e5e5; font-size: 10px; display: block; float: left; }
+.cal-btn{width: 33%; height:45px; border-left: 1px solid #e5e5e5; font-size: 12px; display: block; float: left;}
 .cal-btn:first-child{border-left: none;}
 .cal-btn span{margin-left: 16px; background-position: 0 20px; background-repeat: no-repeat; display: block; height: 100%;}
 .cal-btn.outlook span{background-image: url('../imgs/outlook.png');}

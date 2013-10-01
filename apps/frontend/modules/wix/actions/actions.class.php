@@ -41,6 +41,10 @@ class wixActions extends sfActions{
 		$this->setLayout('wix');
 	}
 	
+	public function executeDemo(sfWebRequest $request){
+		$this->setLayout('cleanLayout');
+	}
+	
 	public function executeSignUp(sfWebRequest $request){
 		$this->init($request, false);
 	}
@@ -121,7 +125,7 @@ class wixActions extends sfActions{
 		
 		$partner = $cal ? $cal->getPartner() : $ctg->getPartner();
 		
-		$this->events = CalTable::getUpcomingEvents($cal, $ctg, $upcoming);
+		$this->events = CalTable::getUpcomingEvents($cal, $ctg);
 		$this->isReachedMaxSubscribers = ($partner && !Wix::isPremium($this->wixData)) ? $partner->isReachedMaxSubscribers() : false;
 		$this->calId = $calId;
 		$this->isMobile = $isMobile;

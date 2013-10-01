@@ -93,13 +93,13 @@ class CalTable extends Doctrine_Table
     	return $calList;
     }
     
-    public static function getUpcomingEvents($cal=null, $ctg=null, $upcoming=5){
+    public static function getUpcomingEvents($cal=null, $ctg=null, $upcoming=null){
 		if ($ctg) {
 			$aggregatedCal = $ctg->getAggregatedCal();
 			$cal = $aggregatedCal;
 		}
 	
 		$events = $cal ? $cal->getEvents(date('Y-m-d 00:00:00'), $cal->getId() == Wix::DEFAULT_CAL_ID) : array();
-		return array_splice($events, 0, $upcoming);
+		return $upcoming ? array_splice($events, 0, $upcoming) : $events;
 	}
 }

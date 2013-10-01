@@ -24,7 +24,7 @@ var gSettingAjax = null;
 $(document).ready(function(){
 	$('#login-btn').click(function(e){
 		e.preventDefault();
-		var popup = window.open(BASE_URL + '/partner/login/?isPopup=1', '', 'width=650,height=600,location=0,menubar=0,status=0,titlebar=0,toolbar=0');
+		var popup = window.open(BASE_URL + '/nm/register/?isPopup=1', '', 'width=650,height=600,location=0,menubar=0,status=0,titlebar=0,toolbar=0');
 		popup.focus();
 	});
 	
