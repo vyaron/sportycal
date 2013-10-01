@@ -19,8 +19,15 @@ class nmActions extends sfActions{
 	public function executeGetAndroidCal(sfWebRequest $request){
 		$h = (int) $request->getParameter('h');
 		$fn = $request->getParameter('fn', 'Calendar');
-		//"/cal/get/h/$id/$fileName.ics";
+
 		$this->forward404Unless($userCal = Doctrine::getTable('UserCal')->find($request->getParameter('h')));
+		
+		$partner = $userCal->getPartner();
+		if ($partner) {
+			$language = $partner->getLang();
+			$this->isRTL = ($language == NeverMissWidget::LANGUAGE_HEBREW) ? true : false;
+			sfContext::getInstance()->getI18N()->setCulture($language);
+		}
 		
 		$this->userCalId = $userCal->getId();
 		$this->fileName = $fn;

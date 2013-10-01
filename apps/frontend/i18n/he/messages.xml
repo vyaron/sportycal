@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE xliff PUBLIC "-//XLIFF//DTD XLIFF//EN" "http://www.oasis-open.org/committees/xliff/documents/xliff.dtd">
 <xliff version="1.0">
-  <file source-language="EN" target-language="he" datatype="plaintext" original="messages" date="2013-09-30T11:50:01Z" product-name="messages">
+  <file source-language="EN" target-language="he" datatype="plaintext" original="messages" date="2013-10-01T13:16:52Z" product-name="messages">
     <header/>
     <body>
       <trans-unit id="1">
@@ -687,6 +687,53 @@
       <trans-unit id="197">
         <source>Google</source>
         <target>גוגל</target>
+      </trans-unit>
+      <trans-unit id="198">
+        <source>Adding to calendar</source>
+        <target>הוסף ללוח השנה</target>
+      </trans-unit>
+      <trans-unit id="199">
+        <source>Got It!</source>
+        <target>הבנתי!</target>
+      </trans-unit>
+      <trans-unit id="200">
+        <source>Hey, You might need to..</source>
+        <target>היי, ייתכן שתצטרך..</target>
+      </trans-unit>
+      <trans-unit id="201">
+        <source>Click "OK"</source>
+        <target>לחץ "OK"</target>
+      </trans-unit>
+      <trans-unit id="202">
+        <source>don't worry..</source>
+        <target>אל תדאג..</target>
+      </trans-unit>
+      <trans-unit id="203">
+        <source>all features will work</source>
+        <target>כל התכונות יעבדו</target>
+      </trans-unit>
+      <trans-unit id="204">
+        <source>Log in to your</source>
+        <target>התחבר</target>
+      </trans-unit>
+      <trans-unit id="205">
+        <source>Google account</source>
+        <target>לחשבון גוגל</target>
+      </trans-unit>
+      <trans-unit id="206">
+        <source>unless you're already logged in</source>
+        <target>אלא אם כן אתה כבר מחובר</target>
+      </trans-unit>
+      <trans-unit id="207">
+        <source>Click</source>
+        <target>לחץ</target>
+      </trans-unit>
+      <trans-unit id="208">
+        <source>Yes, add this calendar</source>
+      </trans-unit>
+      <trans-unit id="209">
+        <source>and you're done!</source>
+        <target>וסיימת!</target>
       </trans-unit>
     </body>
   </file>

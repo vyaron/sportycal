@@ -1,4 +1,22 @@
 body{background-color: #f1f1f1;}
+.is-popup #top-navbar-placholder{display: none;}
 #top-navbar-placholder, .navbar-fixed-top{margin-bottom: 0;}
-#banner{padding:15px; font-size: 27px; text-transform:uppercase; text-align:center; color: #fff; background-color: #faba2c; font-weight: bold; margin-top: 0;}
-#instructions{margin: 0 atuo; background: 0 0 no-repeat url('/images/neverMiss/getAndroidCal/instructions.jpg'); width: 397px; height: 611px; margin: 0 auto;}
+
+.container{width: 400px;}
+
+#banner{font-family: 'SignikaSemibold'; padding:10px; font-size: 38px; line-height:38px; text-transform:uppercase; text-align:center; color: #fff; background-color: #faba2c; font-weight: bold; margin-top: 0;}
+
+#instructions, h3{font-family: 'SignikaRegular';}
+h3{font-size: 20px; color: #666; line-height: 20px; margin-top: 0; text-align: center;}
+hr{border-bottom-color: #cacaca; margin: 12px 10px;}
+
+#instructions .content{height: 175px;}
+#instructions-img{background: 0 0 no-repeat url('/images/neverMiss/getAndroidCal/instructions.jpg'); width: 207px; height: 563px; margin-right: 20px;}
+#instructions .circle{background: 0 0 no-repeat url('/images/neverMiss/getAndroidCal/circle.png'); width: 45px; height: 45px; line-height: 45px; color: #fff; font-size: 20px; text-align: center; margin-bottom: 10px;}
+
+#instructions h4, #instructions p{margin: 0; line-height: 18px; font-size: 16px;}
+#instructions h4{font-family: 'SignikaSemibold';}
+#instructions p{color: #808080;}
+
+/*#instructions1{margin: 0 atuo; background: 0 0 no-repeat url('/images/neverMiss/getAndroidCal/instructions.jpg'); width: 397px; height: 611px; margin: 0 auto;}*/
+#download-btn{float: right; margin-bottom: 15px;}
