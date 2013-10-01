@@ -73,7 +73,7 @@ $bgOpacity = Utils::iff($bgOpacity, null);
 	</ul>
 
 	<div id="footer">
-		<div id="btns-title"><?php echo __('choose your calendar');?></div>
+		<div id="btns-title"><?php echo $isMobile ? '&nbsp;' : __('choose your calendar');?></div>
 		<div class="clearfix <?php echo $isReachedMaxSubscribers ? 'disabled' : '';?>" <?php  echo $isReachedMaxSubscribers ? 'title="' .  __('Reached subscriptions limit') . '"' : '';?>>
 			<?php if ($isMobile) :?>
 				<a class="cal-btn mobile" target="_blank" <?php if (!$isReachedMaxSubscribers):?>href="/cal/sub<?php echo $calId ? '/id/' . $calId : '';?><?php echo $ctgId ? '/ctgId/' . $ctgId : '';?>/ct/mobile<?php echo $ref ? '/ref/' . $ctgId : '';?>/cal.ics"<?php endif;?>><span><?php echo __('DOWNLOAD TO CALENDAR');?></span></a>

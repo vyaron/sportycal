@@ -680,4 +680,26 @@ class nmActions extends sfActions{
 		echo json_encode($res);
 		return sfView::NONE;
 	}
+	
+	public function executeAddToCalendar(sfWebRequest $request){
+		$calId 	= $request->getParameter('calId');
+		$ctgId 	= $request->getParameter('ctgId');
+		$ref 	= $request->getParameter('ref');
+		
+		if ($calId)  $cal = Doctrine::getTable('Cal')->find($calId);
+		elseif ($ctgId) $ctg = Doctrine::getTable('Category')->find($ctgId);
+		
+		if (!$cal && !$ctg) $this->forward404();
+		
+		$name = $cal ? $cal->getName : $ctg->getName();
+		
+		if (Utils::clientIsMobile()) {
+			$url = '/cal/sub' . ($calId ? '/id/' . $calId : '') . ($ctgId ? '/ctgId/' . $ctgId : '') . '/ct/' . Cal::TYPE_MOBILE . ($ref ? '/ref/' . $ref : '') .'/' . $name . '.ics';
+			$this->redirect($url);
+		}
+		
+		$this->calId = $calId;
+		$this->ctgId = $ctgId;
+		$this->ref   = $ref;
+	}
 }

@@ -1,0 +1,4 @@
+#container{background: 0 0 #000 no-repeat url('/images/neverMiss/layout/bg.jpg'); background-size: cover;}
+#box{width: 520px; margin: 0 auto; margin-top: 90px;}
+/*#box .content{width:400px;}*/
+#box .nm-follow{margin: 0 auto; margin-top: 10px; width: 200px;}

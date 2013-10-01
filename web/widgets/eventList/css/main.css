@@ -1,6 +1,8 @@
 body, #footer{background-color: #fff;}
 body{margin: 0; padding: 0; font-family: 'PT Sans Narrow'; font-weight: 400; overflow: hidden;}
 
+#footer, #container{min-width: 200px;}
+
 ul{padding-left: 0; padding-right: 0;}
 
 #events li, h1{border-bottom-color: #ffc229; border-bottom-style: solid;}
@@ -17,17 +19,18 @@ h1{font-weight: 400; font-size: 22px; line-height:22px; padding-top:17px; paddin
 #events li .name{text-transform: uppercase; padding-bottom: 4px;}
 
 
-#footer{position: fixed; left: 0; bottom: 0; width: 100%; min-width: 200px;}
+#footer{position: fixed; left: 0; bottom: 0; width: 100%;}
 #btns-title{background-color: #e5e5e5; color: #666; font-size: 11px; line-height: 10px; height: 10px;}
 .cal-btn, .cal-btn:hover{color: #333;}
 .cal-btn{width: 33%; height:45px; border-left: 1px solid #e5e5e5; font-size: 10px; display: block; float: left; }
 .cal-btn:first-child{border-left: none;}
 .cal-btn span{margin-left: 16px; background-position: 0 20px; background-repeat: no-repeat; display: block; height: 100%;}
 .cal-btn.outlook span{background-image: url('../imgs/outlook.png');}
-.cal-btn.ical span, .cal-btn.mobile span{background-image: url('../imgs/ical.png');}
+.cal-btn.ical span{background-image: url('../imgs/ical.png');}
 .cal-btn.google span{background-image: url('../imgs/google.png');}
 
 .cal-btn.mobile{width: 100%;}
+.cal-btn.mobile span{background: 0 center no-repeat url('../imgs/ical.png'); line-height: 45px; padding-left: 25px; font-size: 14px;}
 
 #footer .disabled .cal-btn{cursor: not-allowed;}
 
