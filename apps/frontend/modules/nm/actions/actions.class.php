@@ -694,10 +694,14 @@ class nmActions extends sfActions{
 		$name = $cal ? $cal->getName() : $ctg->getName();
 		$name = Utils::slugify($name);
 		
+		$partner = $cal ? $cal->getPartner() : $ctg->getPartner();
+		
 		if (Utils::clientIsMobile()) {
 			$url = '/cal/sub' . ($calId ? '/id/' . $calId : '') . ($ctgId ? '/ctgId/' . $ctgId : '') . '/ct/' . Cal::TYPE_MOBILE . ($ref ? '/ref/' . $ref : '') .'/' . $name . '.ics';
 			$this->redirect($url);
 		}
+		
+		if ($partner && $partner->getId() == 2047) $this->redirect('/mega-demo/index.php?' . ($ctgId ? 'ctgId=' . $ctgId : 'calId=' . $calId));
 		
 		$this->calId = $calId;
 		$this->ctgId = $ctgId;
