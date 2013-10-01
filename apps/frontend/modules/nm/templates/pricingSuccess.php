@@ -23,16 +23,13 @@ use_stylesheet('/css/neverMiss/pricing.css');
 				<h3>FEATURES</h3>
 				
 				<div class="features-wrapper">
-				<?php if ($key == PartnerLicence::PLAN_D):?>
-					<p>unlimited</p>
-					<p>no iNeverMiss watermark in popup / button</p>
-					<p>no iNevenrMiss.net link in the event footer</p>
-					<p>personal account manager</p>
-					<p>subscription via channels (Mail, SMS, QR Code)</p>
-				<?php else:?>
 					<p><?php echo PartnerLicence::getCalendarsForDisplay($plan['max_calendars'])?></p>
-					<p><?php echo PartnerLicence::getEventsForDisplay($plan['max_events'], $key == PartnerLicence::PLAN_C)?></p>
-				<?php endif;?>
+					<p><?php echo PartnerLicence::getEventsForDisplay($plan['max_events'])?></p>
+					
+					<?php if ($key == PartnerLicence::PLAN_D):?>
+					<p>no iNeverMiss credit</p>
+					<p>personal account manager</p>
+					<?php endif;?>
 				</div>
 			</div>
 			

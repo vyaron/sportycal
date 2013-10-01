@@ -62,20 +62,17 @@ class PartnerLicence{
 	public static function getCalendarsForDisplay($num = null){
 		$txt = '';
 		
-		if ($num == self::UNLIMITED) $txt = 'unlimited number of calendars';
+		if ($num == self::UNLIMITED) $txt = 'unlimited calendars';
 		else if ($num == 1) $txt = '1 calendar';
 		else if ($num > 1) $txt = 'up to ' . $num . ' calendars';
 		
 		return $txt;
 	}
 	
-	public static function getEventsForDisplay($num = null, $short = false){
+	public static function getEventsForDisplay($num = null){
 		$txt = '';
 	
-		if ($num == self::UNLIMITED) {
-			$txt = 'unlimited number of events';
-			if ($short) $txt = 'unlimited events';
-		}
+		if ($num == self::UNLIMITED) $txt = 'unlimited events';
 		else if ($num == 1) $txt = '1 event';
 		else if ($num > 1) $txt = 'up to ' . $num . ' events';
 	
