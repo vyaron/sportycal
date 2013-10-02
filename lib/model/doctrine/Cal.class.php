@@ -166,7 +166,8 @@ class Cal extends BaseCal
     	if ($this->isAggregated()) $events = $this->aggregatedEvents;	
     	else if ($this->isBirthdayCal()) $events = $this->birthdayEvents;	
     	else if (!isset($this->cachedEvents)) $events = $this->cachedEvents = EventTable::getEvents($this->getId()); //Utils::pp("NOT AGG");
-		
+    	else $events = $this->cachedEvents;
+    	
     	if ($setFakeDates){
     		foreach ($events as $i => &$event){
     			$event->setStartsAt(date('Y-m-d 10:30:00', strtotime('+' . ($i+1) . 'day')));
@@ -694,7 +695,8 @@ class Cal extends BaseCal
     	
     	$currDate = date('U');
     	
-    	$events = self::getEvents();
+    	$events = $this->getEvents();
+
     	foreach ($events as $event){
     		$startsAt = strtotime($event->getStartsAt());
     		if ($startsAt >= $currDate){
