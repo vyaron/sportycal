@@ -45,9 +45,9 @@ class UserCal extends BaseUserCal
  
 	public function getIcalUrl($fileName = 'calendar'){
 		//TODO: support BC
-		
 		$id = $this->getId();
 		$fileName = Utils::slugify($fileName);
+		if (!$fileName) $fileName = 'calendar';
 		
 		$url = sfConfig::get('app_domain_full') . "/cal/get/h/$id/$fileName.ics";
 		

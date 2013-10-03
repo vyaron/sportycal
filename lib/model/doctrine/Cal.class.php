@@ -24,38 +24,39 @@ class Cal extends BaseCal
 	
 	public function getDescriptionForCal($userCal, $partner, $calType) {
 	
-		//Utils::pp($partner);
-		if ($partner && !$this->isBirthdayCal()) {
-			$desc = $partner->getDesriptionForCal($this->getId());
-		} else {
-			$desc = $this->getDescription();
-			$desc .= $this->getLinksAsHtml($userCal);
+		if (sfConfig::get('app_domain_isNeverMiss')) $desc = $this->getDescription();
+		else {
+			if ($partner && !$this->isBirthdayCal()) {
+				$desc = $partner->getDesriptionForCal($this->getId());
+			} else {
+				$desc = $this->getDescription();
+				$desc .= $this->getLinksAsHtml($userCal);
+			}
+			
+			if (false && !$partner) {
+				// Currentrly - this is for tickets:
+				$globalPartnerDesc = PartnerDesc::getDescForCal($this, $calType);
+				$desc .= $globalPartnerDesc;
+			}
 		}
-	
-		if (false && !$partner) {
-			// Currentrly - this is for tickets:
-			$globalPartnerDesc = PartnerDesc::getDescForCal($this, $calType);
-			$desc .= $globalPartnerDesc;
-		}
-	
 		
 		
 		if (!$partner || $partner->allowsSportycalLogo()) {
 			$url = "http://sportYcal.com";
 			if (Cal::isHtmlSupported($calType)) {
-				$url = "<a target='_blank' href='http://www.sportYcal.com' alt='sportycal.com' title='Find more on sportYcal.com' >sportYcal.com</a>";
+				$url = "<a target='_blank' href='" . sfConfig::get('app_domain_full') . "' alt='sportycal.com' title='Find more on " . sfConfig::get('app_domain_short') . "' >" . sfConfig::get('app_domain_short') . "</a>";
 			}
 	
-			$desc .= "\n\nCalendar provided by: $url";
+			$desc .= "\n\nCalendar provided by: " . sfConfig::get('app_domain_full');
 	
 			if (Cal::isHtmlSupported($calType)) {
-				$desc .= "\n<a href='http://www.sportycal.com'><img src='".sfConfig::get('app_domain_full')."/images/layout/logo.gif' alt='sportYcal.com' title='Find more on sportYcal.com' /></a>";
+				$desc .= "\n<a href='" . sfConfig::get('app_domain_full') . "'><img src='".sfConfig::get('app_domain_full')."/images/layout/logo.gif' alt='" . sfConfig::get('app_domain_short') . "' title='Find more on " . sfConfig::get('app_domain_short') . "' /></a>";
 			}
 		} else if ($partner && !$partner->isWhiteLabel()){
 			if (Cal::isHtmlSupported($calType)) {
-				$desc .= "<br/><br/>Powered by <a href='http://www.sportYcal.com' target='_blank'>sportYcal.com</a><br/>";
+				$desc .= "<br/><br/>Powered by <a href='" . sfConfig::get('app_domain_full') . "' target='_blank'>" . sfConfig::get('app_domain_short') . "</a><br/>";
 			} else {
-				$desc .= "\n\nPowered by sportYcal.com";
+				$desc .= "\n\nPowered by " . sfConfig::get('app_domain_full');
 			}
 		} 
 	

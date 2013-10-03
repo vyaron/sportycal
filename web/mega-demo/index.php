@@ -8,6 +8,7 @@ $ctgId  = isset($_GET['ctgId']) ? $_GET['ctgId'] : '';
 <html>
 <head>
   <meta charset="utf-8"/>
+  <link rel="SHORTCUT ICON" type="image/vnd.microsoft.icon" href="favicon.ico" />
   <style>
     body{margin:0; padding:0; direction:rtl; text-align:right; background-color:#ccc;}
     
@@ -23,7 +24,7 @@ $ctgId  = isset($_GET['ctgId']) ? $_GET['ctgId'] : '';
 <div id="container">
   <div id="content">
     <div>
-      <img id="logo" src="http://www.mega.co.il/jsfweb/resources/images/pics/logo_mega.gif"/>
+      <img id="logo" src="logo_mega.gif"/>
       <div class="cb"></div>
     </div>
 
