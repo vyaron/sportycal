@@ -3,8 +3,8 @@
 
 ec2:
   domain:
-    short: ec2-54-200-96-84.us-west-2.compute.amazonaws.com
-    full:  http://ec2-54-200-96-84.us-west-2.compute.amazonaws.com
+    short: ec2-54-200-96-222.us-west-2.compute.amazonaws.com
+    full:  http://ec2-54-200-96-222.us-west-2.compute.amazonaws.com
   facebook:
     appId: 313400138677127
     secret: 62094be3d3db0caf976e93cc44ef7cad
