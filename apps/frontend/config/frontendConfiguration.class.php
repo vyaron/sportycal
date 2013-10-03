@@ -46,6 +46,9 @@ class frontendConfiguration extends sfApplicationConfiguration
   		if ($this->getEnvironment() == 'dev'){
   			sfConfig::set('app_facebook_appId', '144855559036945');
   			sfConfig::set('app_facebook_secret', 'c6254950824ec32f2a1e3c14b5c286d2');
+  		} else if ($this->getEnvironment() == 'ec2'){
+  			sfConfig::set('app_facebook_appId', '1418512618366881');
+  			sfConfig::set('app_facebook_secret', '5826d11b1a917d0547f45c2f7f221ec7');
   		} else {
   			sfConfig::set('app_facebook_appId', '398575090257350');
   			sfConfig::set('app_facebook_secret', 'c64b6bd02f8a2dc1da4a0bc6f88fdc36');
