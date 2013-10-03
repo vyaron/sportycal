@@ -1,7 +1,21 @@
 # You can find more information about this file on the symfony website:
 # http://www.symfony-project.org/reference/1_4/en/11-App
 
-# default values
+ec2:
+  domain:
+    short: ec2-54-200-96-84.us-west-2.compute.amazonaws.com
+    full:  http://ec2-54-200-96-84.us-west-2.compute.amazonaws.com
+  facebook:
+    appId: 313400138677127
+    secret: 62094be3d3db0caf976e93cc44ef7cad
+  paypal:
+    url: https://www.sandbox.paypal.com
+    nvpApiUrl: https://api-3t.sandbox.paypal.com/nvp
+    user: il.mrbit.test_api1.gmail.com
+    pwd: J5GDNALQRQDTRPUR
+    signature: AFcWxV21C7fd0v3bYYYRCpSSRl31A5WRB56.MHOen7D.4UQEzBgUxmEZ
+    version: 98
+    
 dev:
   domain:
     short: sportycal.local
