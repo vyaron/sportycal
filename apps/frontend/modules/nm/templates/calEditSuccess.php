@@ -30,7 +30,8 @@ use_stylesheet('/css/neverMiss/calEdit.css');
 					<tr>
 						<td><?php echo $form['name']->render(array('placeholder' => 'ENTER CALENDAR NAME HERE', 'required'=>'required', 'minlength'=>'3', 'autofocus' => "autofocus"));?></td>
 						<td class="clearfix">
-							<input id="cal_description" type="text" name="cal[description]" placeholder="OPTIONAL DESCRIPTION"/>
+							<?php echo $form['description']->render(array('placeholder' => 'OPTIONAL DESCRIPTION'));?>
+<!-- 							<input id="cal_description" type="text" name="cal[description]" placeholder="OPTIONAL DESCRIPTION"/> -->
 							<i id="desc-info" class="icon-question-sign"></i>
 						</td>
 						<td><?php echo $form['tz']->render();?></td>

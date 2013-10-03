@@ -3,7 +3,7 @@ class NmCalForm extends BaseForm {
 	public function configure(){
 		$this->setWidgets(array(
 				'name'   => new sfWidgetFormInputText(),
-				'description'   => new sfWidgetFormTextarea(),
+				'description'   => new sfWidgetFormInputText(),
 				'tz' => new sfWidgetFormSelect(array('choices' => GeneralUtils::getTZList(true))),
 		));
 
