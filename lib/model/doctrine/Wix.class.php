@@ -49,6 +49,10 @@ class Wix extends BaseWix{
 		return $this->getBgOpacity() ? $this->getBgOpacity() : Wix::DEFAULT_BG_OPACITY;
 	}
 	
+	public function getBgIsTransparent(){
+		return ($this->getBgOpacity() === "") ? true : false;
+	}
+	
 	public static function getInstanceData($instance){
 		$json = null;
 		

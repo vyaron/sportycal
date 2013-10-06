@@ -15,6 +15,7 @@ $lineColor = Utils::iff($lineColor, null);
 $textColor = Utils::iff($textColor, null);
 $bgColor = Utils::iff($bgColor, null);
 $bgOpacity = Utils::iff($bgOpacity, null);
+$bgIsTransparent = Utils::iff($bgIsTransparent, false);
 ?>
 <style type="text/css">
 	<?php if ($isDark):?>
@@ -47,12 +48,17 @@ $bgOpacity = Utils::iff($bgOpacity, null);
 	.cal-btn, .cal-btn:hover{color: <?php echo $textColor;?>;}
 	<?php endif;?>
 	
-	<?php if ($bgColor):?>
-	body, #footer, .cal-btn:hover{background-color: <?php echo $bgColor;?>;}
-	<?php endif;?>
+	<?php if ($bgIsTransparent):?>
+	body, #footer, .cal-btn:hover{background:transparent;}
 	
-	<?php if ($bgOpacity):?>
-	body, #footer, .cal-btn:hover{background-color: rgba(<?php echo implode(',', Utils::hex2rgb($bgColor));?>, <?php echo $bgOpacity;?>);}
+	<?php else:?>
+		<?php if ($bgColor):?>
+		body, #footer, .cal-btn:hover{background-color: <?php echo $bgColor;?>;}
+		<?php endif;?>
+		
+		<?php if ($bgOpacity):?>
+		body, #footer, .cal-btn:hover{background-color: rgba(<?php echo implode(',', Utils::hex2rgb($bgColor));?>, <?php echo $bgOpacity;?>);}
+		<?php endif;?>
 	<?php endif;?>
 </style>
 

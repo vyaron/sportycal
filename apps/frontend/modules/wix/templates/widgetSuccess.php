@@ -7,7 +7,8 @@
 	'lineColor' => $lineColor,
 	'textColor' => $textColor,
 	'bgColor' => $bgColor,
-	'bgOpacity' => $bgOpacity
+	'bgOpacity' => $bgOpacity,
+	'bgIsTransparent' => $bgIsTransparent
 ));?>
 
 <?php 

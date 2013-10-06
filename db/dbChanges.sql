@@ -1,3 +1,4 @@
+ALTER TABLE `wix` CHANGE `bg_opacity` `bg_opacity` DECIMAL( 10, 1 ) NULL DEFAULT NULL;
 ----------------------------DONE ON PROD-------------------------------------------------------
 ALTER TABLE `event` ADD `reminder` INT UNSIGNED NULL DEFAULT NULL AFTER `length`;
 ----------------------------DONE ON PROD-------------------------------------------------------

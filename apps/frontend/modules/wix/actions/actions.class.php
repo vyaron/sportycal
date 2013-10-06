@@ -38,7 +38,7 @@ class wixActions extends sfActions{
 			$this->wix = $wix;
 		}
 		
-		$this->setLayout('wix');
+		$this->setLayout('cleanLayout');
 	}
 	
 	public function executeDemo(sfWebRequest $request){
@@ -63,23 +63,24 @@ class wixActions extends sfActions{
 		
 		$userId = UserUtils::getLoggedInId();
 		$calId = $request->getParameter('cal_id');
-		$upcoming = $request->getParameter('upcoming');
+		//$upcoming = $request->getParameter('upcoming');
 		$lineColor = $request->getParameter('line_color');
 		$textColor = $request->getParameter('text_color');
 		$bgColor = $request->getParameter('bg_color');
 		$bgOpacity = $request->getParameter('bg_opacity');
+		$bgIsTransparent =  $request->getParameter('bg_is_transparent') === 'true' ? true : false;
 		
 		if (!$wix->getUserId()) $wix->setUserId($userId);
 
 		if ($wix->getInstanceCode() && $wix->getUserId() == $userId){
 			if ($calId) $wix->setCalId($calId);
-			if ($upcoming) $wix->setUpcoming($upcoming);
+			//if ($upcoming) $wix->setUpcoming($upcoming);
 			if ($lineColor && $this->isColor($lineColor)) $wix->setLineColor($lineColor);
 			if ($textColor && $this->isColor($textColor)) $wix->setTextColor($textColor);
 			if ($bgColor && $this->isColor($bgColor)) $wix->setBgColor($bgColor);
-			
-			if ($bgOpacity) $wix->setBgOpacity(null); //Get the default opacity
-			else $wix->setBgOpacity(1); // 100% opacity
+
+			if ($bgIsTransparent) $wix->setBgOpacity(0);
+			else if ($bgOpacity) $wix->setBgOpacity($bgOpacity);
 				
 			$wix->setUpdatedAt(date('Y-m-d H:i:s'));
 			$wix->save();
@@ -107,6 +108,7 @@ class wixActions extends sfActions{
 		$this->lineColor = $this->wix->getLineColorForDisplay();
 		$this->textColor = $this->wix->getTextColorForDisplay();
 		$this->bgColor = $this->wix->getBgColorForDisplay();
+		$this->bgIsTransparent = $this->wix->getBgIsTransparent();
 		$this->bgOpacity = $this->wix->getBgOpacityForDisplay();
 	}
 	
@@ -133,9 +135,10 @@ class wixActions extends sfActions{
 		$this->lineColor = $this->wix->getLineColorForDisplay();
 		$this->textColor = $this->wix->getTextColorForDisplay();
 		$this->bgColor = $this->wix->getBgColorForDisplay();
+		$this->bgIsTransparent = $this->wix->getBgIsTransparent();
 		$this->bgOpacity = $this->wix->getBgOpacityForDisplay();
-		
-		$this->setLayout('cleanLayout');
+
+		//$this->setLayout('cleanLayout');
 		
 		sfContext::getInstance()->getI18N()->setCulture($language);
 	}
