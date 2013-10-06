@@ -93,13 +93,51 @@ class CalTable extends Doctrine_Table
     	return $calList;
     }
     
-    public static function getUpcomingEvents($cal=null, $ctg=null, $upcoming=null){
+    public static function cmpByStartsAt($a, $b){
+    	return strtotime($a->getStartsAt()) - strtotime($b->getStartsAt());
+    }
+    
+    public static function getUpcomingEvents($cal=null, $ctg=null, $upcoming=null, $isIncludeClones=false){
 		if ($ctg) {
 			$aggregatedCal = $ctg->getAggregatedCal();
 			$cal = $aggregatedCal;
 		}
 	
 		$events = $cal ? $cal->getEvents(date('Y-m-d 00:00:00'), $cal->getId() == Wix::DEFAULT_CAL_ID) : array();
+		
+		if ($isIncludeClones){
+			$eventsWithClones = array();
+			foreach ($events as $event){
+				$d_start    = new DateTime($event->getStartsAt());
+				$d_end      = new DateTime($event->getEndsAt());
+					
+				$diff = $d_start->diff($d_end);
+			
+				if ($diff->days){
+					for ($i=0; $i <= $diff->days; $i++){
+						$clonedEvent = $event->copy();
+			
+						if ($i != 0) {
+							$clonedEvent->setStartsAt($d_start->modify('+1 day')->format('Y-m-d 00:00:00'));
+			
+							if ($i != $diff->days) {
+								$endsAt = new DateTime($clonedEvent->getStartsAt());
+								$clonedEvent->setEndsAt($endsAt->modify('+1 day')->format('Y-m-d 00:00:00'));
+							}
+						}
+						if (strtotime($clonedEvent->getStartsAt()) < strtotime($event->getEndsAt())) $eventsWithClones[] = $clonedEvent;
+					}
+				} else {
+					$eventsWithClones[] = $event;
+				}
+			}
+			
+			usort($eventsWithClones, 'CalTable::cmpByStartsAt');
+			
+			$events = $eventsWithClones;
+		}
+		
+		
 		return $upcoming ? array_splice($events, 0, $upcoming) : $events;
 	}
 }

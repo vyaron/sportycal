@@ -86,7 +86,7 @@ class wActions extends sfActions{
 		
 		$partner = $cal ? $cal->getPartner() : $ctg->getPartner();
 		
-		$this->events = CalTable::getUpcomingEvents($cal, $ctg, $upcoming);
+		$this->events = CalTable::getUpcomingEvents($cal, $ctg, $upcoming, true);
 		$this->isReachedMaxSubscribers = $partner ? $partner->isReachedMaxSubscribers() : false;
 		$this->ref = $ref;
 		$this->calId = $calId;
