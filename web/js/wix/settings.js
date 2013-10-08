@@ -115,7 +115,7 @@ $(document).ready(function() {
     });
     
 	$('#create-account').click(createAccount);
-	$('#connect').click(connect);
+	$('.connect').click(connect);
 	$('#disconnect').click(disconnect);
 	$('#upgrade').click(upgrade);
 	

@@ -92,7 +92,7 @@ use_stylesheet('/bundle/wix/javascripts/components/glued-position-min/glued.min.
 						<a id="edit-calendar" href="#" style="display:none;">Edit</a>
 					<?php endif;?>
 	            <?php else:?>
-	            <p>Demo Calendar</p>
+	            <p>In order to start please first <a href="#" class="connect">connect your account</a></p>
 	            <?php endif;?>
 	        </div>
 	    </div>
