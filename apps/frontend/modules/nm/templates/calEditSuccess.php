@@ -36,7 +36,9 @@ use_stylesheet('/css/neverMiss/calEdit.css');
 						</td>
 						<td><?php echo $form['tz']->render();?></td>
 						<td class="pl0">
-							<a class="pull-right continue-btn btn btn-success visible-popup ml15" href="#"><span>Save</span></a>
+							<div class="visible-popup">
+								<a id="save-btn" class="pull-right continue-btn btn btn-success ml15" href="#" style="visibility:hidden;"><span>Save</span></a>
+							</div>
 						</td>
 					</tr>
 				</table>

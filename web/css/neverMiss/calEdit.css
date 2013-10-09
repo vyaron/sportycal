@@ -17,7 +17,7 @@ body{background-color: #f2f2f2;}
 
 #cal-form table td #cal_description{float: left; max-width: 217px;}
 .is-popup #cal-form table td #cal_description{max-width: 235px;}
-#desc-info{float: right; margin-top: 5px; margin-right: 5px; cursor: pointer;}
+#desc-info{float: left; margin-top: 5px; margin-left: 5px; cursor: pointer;}
 
 #events-wrapper{min-height: 530px;}
 #events-wrapper h3{border-bottom: 5px solid #ffc229; font-size: 22px; font-weight: normal; text-transform: uppercase;}

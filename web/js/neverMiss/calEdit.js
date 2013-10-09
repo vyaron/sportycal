@@ -313,7 +313,13 @@ function setCalImportEvents(){
 }
 
 
+function showSaveBtn(){
+	$('#save-btn').css('visibility', 'visible');
+}
 
+function hideSaveBtn(){
+	$('#save-btn').css('visibility', 'hidden');
+}
 
 var gCalId = null;
 jQuery(document).ready(function(){
@@ -363,6 +369,7 @@ jQuery(document).ready(function(){
 				
 				if (res && res.success){
 					if (opener){
+						hideSaveBtn();
 						if (opener.refreshWidget) opener.refreshWidget();
 						opener.refresh();
 						//window.close();
@@ -398,4 +405,9 @@ jQuery(document).ready(function(){
 			window.location.reload();
 		});
 	});
+	
+	if (opener){
+		$('#cal_tz').change(showSaveBtn);
+		$('#cal_name,#cal_description').keyup(showSaveBtn);
+	}
 });
