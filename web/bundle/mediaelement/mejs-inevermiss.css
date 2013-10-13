@@ -21,6 +21,9 @@
 	background: #666;
 }
 
+.mejs-controls .mejs-time-rail span{height: 6px;}
+.mejs-controls div.mejs-time-rail{padding-top: 8px;}
+
 .mejs-inevermiss .mejs-overlay-button{
 	background-image: url("/bundle/mediaelement/bigplay_inevermiss.png");
 	background-repeat:no-repeat;

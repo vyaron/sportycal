@@ -204,7 +204,7 @@ function loadCalendar(){
 	
 	scheduler.config.lightbox.sections = [ {
 		name : "name",
-		placeholder : "TYPE THE EVENT NAME HERE",
+		placeholder : "Type the event name here",
 		height : 22,
 		map_to : "text",
 		type : "text",
@@ -216,13 +216,13 @@ function loadCalendar(){
 		map_to : "auto"
 	}, {
 		name : "description",
-		placeholder : "DESCRIPTION",
+		placeholder : "Description",
 		height : 52,
 		map_to : "details",
 		type : "textarea"
 	}, {
 		name : "location",
-		placeholder : "LOCATION",
+		placeholder : "Location",
 		height : 22,
 		type : "text",
 		map_to : "location"

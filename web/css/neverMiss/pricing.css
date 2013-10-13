@@ -1,9 +1,14 @@
+h2{font-weight: normal;}
+
+.btn{font-family: arial; font-size: 16px;}
+.btn.btn-large{padding: 5px 0;}
+
 #plan-boxs{margin-bottom: 30px;}
 
 .plan-box{width: 221px; float: left; margin-left: 15px; margin-bottom:15px; border: 1px solid #ffc229; text-align: center; font-family: 'PT Sans Narrow', sans-serif;}
 .plan-box:first-child{margin-left:0;}
 
-.plan-box .title-wrapper{background-color: #ffc229; padding-top: 37px; padding-bottom: 21px; padding-left:45px; padding-right:45px; font-size: 30px; color: #fff; line-height: 32px; text-transform: uppercase;}
+.plan-box .title-wrapper{background-color: #ffc229; padding-top: 37px; padding-bottom: 21px; padding-left:0; padding-right:0; font-size: 30px; color: #fff; line-height: 32px; text-transform: uppercase; text-align: center; font-family: arial;}
 
 .plan-box.plan-box-B .title-wrapper{background-color: #fbbb2c;}
 .plan-box.plan-box-C .title-wrapper{background-color: #fab418;}
@@ -21,10 +26,12 @@
 
 .plan-box hr{border-bottom-color: #cbcbcb; border-top-color: #fff; margin-top: 12px; margin-bottom: 15px;}
 
-.plan-box .subscribers{color: #ffc229; font-size: 40px; line-height:30px; font-family: 'SignikaLight';}
-.plan-box .price{font-size: 21px; font-weight: 400; margin-bottom: 20px;}
+.plan-box .subscribers{color: #ffc229; font-size: 42px; line-height:30px; font-family: 'SignikaLight';}
+.plan-box .price{font-size: 16px; margin-bottom: 15px; font-family: SignikaBold;}
 
 .details-wrapper{background-color: #f2f2f2;}
+
+.call-us-wrapper{font-size: 15px; float: right;}
 
 /*CSS Queries - NOT WORKING ON IE < 9!
 ****************************************/

@@ -52,7 +52,7 @@ h2 .btn.btn-success{font-weight: normal; margin-top: 4px;}
 .icon-loading.icon-white{background-image: url("/images/neverMiss/icons/ajax-loader-white.gif");}
 
 /* buttons*/
-.btn{background: #b2b2b2; border-color: #fff; color: #333; text-shadow-color: #fff; text-transform: uppercase; font-size:18px; line-height:18px; -webkit-border-radius: 10px; -moz-border-radius: 10px; border-radius: 10px; box-shadow:1px 1px 3px #3d3d3d; padding: 4px 15px; font-family: 'PT Sans Narrow', sans-serif;}
+.btn{background: #b2b2b2; border-color: #fff; color: #333; text-shadow-color: #fff; text-transform: uppercase; font-size:17px; line-height:18px; -webkit-border-radius: 10px; -moz-border-radius: 10px; border-radius: 10px; box-shadow:1px 1px 3px #3d3d3d; padding: 4px 22px; font-family: 'PT Sans Narrow', sans-serif;}
 .btn:hover, .btn:focus, .btn:active, .btn.active, .btn.disabled, .btn[disabled]{background: #b2b2b2; color: #000;}
 
 .btn-success{background: #ffc229;}
@@ -85,7 +85,7 @@ h2 .btn.btn-success{font-weight: normal; margin-top: 4px;}
 
 /*Inputs*/
 .placeholder{color: #aaa !important;}
-textarea, input[type="text"], input[type="password"], input[type="datetime"], input[type="datetime-local"], input[type="date"], input[type="month"], input[type="time"], input[type="week"], input[type="number"], input[type="email"], input[type="url"], input[type="search"], input[type="tel"], input[type="color"], .uneditable-input, select{border-color: #ffc229; -webkit-border-radius: 0px; -moz-border-radius: 0px; border-radius: 0px;}
+textarea, input[type="text"], input[type="password"], input[type="datetime"], input[type="datetime-local"], input[type="date"], input[type="month"], input[type="time"], input[type="week"], input[type="number"], input[type="email"], input[type="url"], input[type="search"], input[type="tel"], input[type="color"], .uneditable-input, select{border-color: #ffc229; -webkit-border-radius: 0px; -moz-border-radius: 0px; border-radius: 0px; font-family:SignikaRegular;}
 
 textarea:focus, input[type="text"]:focus, input[type="password"]:focus, input[type="datetime"]:focus, input[type="datetime-local"]:focus, input[type="date"]:focus, input[type="month"]:focus, input[type="time"]:focus, input[type="week"]:focus, input[type="number"]:focus, input[type="email"]:focus, input[type="url"]:focus, input[type="search"]:focus, input[type="tel"]:focus, input[type="color"]:focus, .uneditable-input:focus, input:focus:invalid, textarea:focus:invalid, select:focus:invalid,input:focus:invalid:focus, textarea:focus:invalid:focus, select:focus:invalid:focus{border-color: rgba(255, 194, 41, 0.8); box-shadow:0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 8px rgba(255, 194, 41, 0.6);}
 input:focus:invalid, textarea:focus:invalid, select:focus:invalid,input:focus:invalid:focus, textarea:focus:invalid:focus, select:focus:invalid:focus{color: inherit;}
@@ -100,8 +100,8 @@ textarea.error, input.error[type="text"], input.error[type="password"], input.er
 .form-box h2 strong{color: #fff; font-weight: bold;}
 .form-box .help-block a, .form-box .help-block{color: #666; font-size: 14px;}
 .form-box .help-block a{text-decoration: underline;}
-.form-box .fb-login{display:block; margin:0 auto; margin-top: 20px; margin-bottom: 15px; text-align: center;}
-.form-box hr{border-top: 1px solid #cbcbcb; border-bottom: 1px solid #fff;}
+.form-box .fb-login{display:block; margin:0 auto; margin-top: 46px; margin-bottom: 28px; text-align: center;}
+.form-box hr{border-top: 1px solid #cbcbcb; border-bottom: 1px solid #fff; margin: 28px auto;}
 
 /*facebook login*/
 .fb-login{background-color: #637bad; border: 1px solid #fff; -webkit-border-radius: 20px; -moz-border-radius: 20px; border-radius: 20px; box-shadow: 2px 2px 7px #000; color: #fff; font-size: 21px; padding: 0 20px;}
@@ -126,8 +126,8 @@ label.error, .error_list > li{color: red;}
 #footer .container{position: relative;}
 #footer .soical-nav{position: absolute; right: 0; top: 0;}
 
-#footer a, #footer{color: #4d4d4d;}
-#footer{position: absolute; left:0; bottom: 0; width: 100%; background-color: #ffc229; text-align: center; display: block; width: 100%; height:37px; padding:5px 0; margin-top: 15px;}
+#footer a, #footer{color: #4D4D4D; font-family: SignikaRegular;}
+#footer{position: absolute; left:0; bottom: 0; width: 100%; background-color: #ffc229; text-align: center; display: block; width: 100%; height:20px; padding:5px 0; margin-top: 15px;}
 #footer a{text-transform: uppercase;}
 
 
@@ -152,7 +152,7 @@ label.error, .error_list > li{color: red;}
 .navbar-inverse .nav .active > a, .navbar-inverse .nav .active > a:hover, .navbar-inverse .nav .active > a:focus{border-bottom: 3px solid #ffc229; padding-bottom: 1px; background: none;}
 
 /*login*/
-#nav-login-btn a{padding: 3px 6px; border: 1px solid #ffc229; margin-right:0; margin-bottom: 12px;}
+#nav-login-btn a{padding: 3px 6px; border: 1px solid #ffc229; margin-right:0; margin-bottom: 12px; line-height: 14px;}
 
 /*user nav*/
 .caret, .nav .open .dropdown-toggle{color: #fff;}
@@ -192,16 +192,13 @@ label.error, .error_list > li{color: red;}
 
 /* Social nav*/
 .soical-nav{display: block; padding: 0; margin: 0; list-style: none;}
-.soical-nav li{display: block; float: right;}
-.soical-icon{display:block; width: 41px; height: 41px; background-repeat: no-repeat; background-image: url('/images/neverMiss/layout/social.png'); cursor: pointer;}
-.soical-icon-facebook{background-position: -82px -39px;}
-.soical-icon-google{background-position: -41px -39px;}
-.soical-icon-twitter{background-position: -123px -39px;}
-.soical-icon-linkdin{background-position: 0 -39px;}
-.soical-icon-facebook:hover{background-position: -82px 0;}
-.soical-icon-google:hover{background-position: -41px 0;}
-.soical-icon-twitter:hover{background-position: -123px 0;}
-.soical-icon-linkdin:hover{background-position: 0 0;}
+.soical-nav li{display: block; float: right; margin-left:5px;}
+.soical-icon{display:block; width: 18px; height: 18px; background-repeat: no-repeat; background-image: url('/images/neverMiss/layout/social.png'); cursor: pointer;}
+.soical-icon-facebook{background-position: 0 -54px;}
+.soical-icon-google{background-position: 0 0;}
+.soical-icon-twitter{background-position: 0 -36px;}
+.soical-icon-linkdin{background-position: 0 -18px;}
+
 
 /*CSS Queries - NOT WORKING ON IE < 9!
 ****************************************/

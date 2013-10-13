@@ -4,7 +4,7 @@
 <div class="container">
 	<div class="box-content">
 		<div class="box-content-margin clearfix">
-			<h2>My Calendars <a class="plan" class="<?php echo ($licenece->isEnded() ? 'ended' : '');?>" href="<?php echo url_for('/nm/pricing')?>" title="Max subscribers <?php echo $licenece->getMaxSubscribers();?>"><?php echo $licenece->getName();?></a></h2>		
+			<h2><strong class="color-y">My Calendars</strong> <a class="plan" class="<?php echo ($licenece->isEnded() ? 'ended' : '');?>" href="<?php echo url_for('/nm/pricing')?>" title="Max subscribers <?php echo $licenece->getMaxSubscribers();?>"><?php echo $licenece->getName();?></a></h2>		
 			
 			<hr class="cr"/>
 		</div>
@@ -24,7 +24,7 @@
 					
 					<div class="btns clearfix">
 						<div class="cal-deleted">
-							<button data-cal-id="<?php echo $cal['id'];?>" href="<?php echo url_for('nm/calRestore');?>" class="btn btn-success pull-right cal-restore">Restore</button>
+							<button data-cal-id="<?php echo $cal['id'];?>" href="<?php echo url_for('nm/calRestore');?>" class="btn btn-mini btn-success pull-right cal-restore">Restore</button>
 						</div>
 						<div class="cal-active">
 							<a href="<?php echo url_for('nm/calEdit/?id=' . $cal['id']);?>" class="btn btn-mini btn-success pull-left">Edit</a>

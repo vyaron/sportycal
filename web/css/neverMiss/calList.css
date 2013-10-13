@@ -1,5 +1,7 @@
 #container{background: 0 0 #000 no-repeat url('/images/neverMiss/layout/bg.jpg'); background-size: cover;}
 
+.box-content .btn.btn-mini{padding-left: 0; padding-right: 0; width: 83px;}
+
 .box-content{margin-top: 40px; background-color: #f2f2f2; box-shadow:1px 1px 10px #000;}
 .box-content-margin{margin: 0 20px;}
 
@@ -11,7 +13,7 @@
 
 .cal-boxes{margin-left: 20px;}
 .cal-box{float: left; margin-right: 20px; margin-bottom:20px; border: 1px solid #c1c1c1; box-shadow:1px 1px 2px #000; width: 207px; min-height: 260px;}
-.cal-box h3{background-color: #fbbb2c; color: #fff; font-size: 22px; font-weight: normal; height: 38px; line-height: 38px; margin: 0; padding: 0 15px; overflow: hidden; white-space: nowrap;}
+.cal-box h3{background-color: #fbbb2c; color: #fff; font-size: 22px; font-weight: normal; height: 38px; line-height: 38px; margin: 0; padding: 0 15px; overflow: hidden; white-space: nowrap; text-transform: capitalize; font-family: SignikaRegular;}
 .cal-box .content{margin: 15px; margin-top: 30px; margin-bottom: 5px;}
 .cal-box .content ul{list-style: none; padding: 0; margin: 0;}
 .cal-box .content li{font-size: 14px; border-top:2px solid #fbbb2c; clear: both; padding-top: 10px; margin-bottom: 10px;}
@@ -39,7 +41,8 @@
 .upgrade-warning p{font-size: 15px;}
 .upgrade-warning p .subscribers-text{vertical-align: middle; padding-top: 5px;}
 .upgrade-warning .subscribers-count{font-size: 30px; color: #ffc229; margin-right: 16px; font-family: 'SignikaLight';}
-.upgrade-warning .subscribers-count .warning{color: #f05a24; font-family: 'SignikaBold';}
+.upgrade-warning .subscribers-count span:first-child{font-family: 'SignikaBold';}
+.upgrade-warning .subscribers-count .warning{color: #f05a24;}
 
 /*
 .cal-is-deleted{color: lightgray;}

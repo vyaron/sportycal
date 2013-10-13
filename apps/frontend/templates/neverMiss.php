@@ -25,6 +25,7 @@
 	<link rel="apple-touch-icon-precomposed" href="/ico/57b.png">
 	<link rel="shortcut icon" href="/ico/32b.png">
 	
+	<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=PT+Sans+Narrow:400,700" />
 	<link href="/bundle/bootstrap/css/bootstrap.css" rel="stylesheet"/>
     <link href="/bundle/bootstrap/css/bootstrap-responsive.css" rel="stylesheet"/>
     <link href="/fonts/signika/stylesheet.css" rel="stylesheet"/>
@@ -64,7 +65,7 @@
 		<div id="footer-place-hoolder">&nbsp;</div>
 	    <div id="footer" class="hidden-popup">
 	    	<div class="container">
-	    		<span style="color:gray"><?php echo sfConfig::get('app_domain_name');?> (Tipical LTD) &copy; <?php echo date('Y');?></span>&nbsp;&nbsp;|&nbsp;&nbsp;
+	    		<span><?php echo sfConfig::get('app_domain_name');?> (Tipical LTD) &copy; <?php echo date('Y');?></span>&nbsp;&nbsp;|&nbsp;&nbsp;
 		        <a href="<?php echo url_for('nm/pricing') ?>">Pricing</a>&nbsp;&nbsp;|&nbsp;&nbsp;
 		        <a href="<?php echo url_for('nm/caseStudies') ?>">Case Studies</a>&nbsp;&nbsp;|&nbsp;&nbsp;
 		        <a href="<?php echo url_for('nm/contact') ?>">Contact</a>&nbsp;&nbsp;|&nbsp;&nbsp;
