@@ -73,12 +73,16 @@ class ESPNSpider extends AbstractSpider {
 		
 		$regexLines = '/(oddrow|evenrow).+?<\/tr/';
 		if (preg_match_all($regexLines,$webpage,$lines)) {
-			//echo '<pre>';
-			//var_dump($lines);
-			//echo '</pre>';
+// 			echo '<pre>';
+// 			var_dump($lines);
+// 			echo '</pre>';
+// 			die();
 			if (isset($lines[0])){
 				foreach ($lines[0] as $line){
-					$regex = "/td>([^<]+).+?game-status.+?(@|vs).+?team-name.+?>(.*?)<\/li.+?td.+?>(.*?)<\/td.+?a.+?href=\"([^\"]+).+?Tickets/";
+// 					echo($line);
+// 					die();
+					
+					$regex = "/td>([^<]+).+?game-status.+?(@|vs).+?team-name.+?>(.*?)<\/li.+?td.+?>(.*?)<\/td.+?a.+?href=\"([^\"]+)/";
 					if (preg_match($regex,$line,$matche)) {
 						/*
 						 At this point:
@@ -89,9 +93,10 @@ class ESPNSpider extends AbstractSpider {
 						 $matche[5] Tickets link.
 						 */
 						
-						//echo '<pre>';
-						//var_dump($matches);
-						//echo '</pre>';
+// 						echo '<pre>';
+// 						var_dump($matches);
+// 						echo '</pre>';
+// 						die();
 						
 						$isValid = true;
 						
