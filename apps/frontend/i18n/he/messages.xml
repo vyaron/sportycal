@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE xliff PUBLIC "-//XLIFF//DTD XLIFF//EN" "http://www.oasis-open.org/committees/xliff/documents/xliff.dtd">
 <xliff version="1.0">
-  <file source-language="EN" target-language="he" datatype="plaintext" original="messages" date="2013-10-01T13:16:52Z" product-name="messages">
+  <file source-language="EN" target-language="he" datatype="plaintext" original="messages" date="2013-10-14T09:54:43Z" product-name="messages">
     <header/>
     <body>
       <trans-unit id="1">
@@ -734,6 +734,22 @@
       <trans-unit id="209">
         <source>and you're done!</source>
         <target>וסיימת!</target>
+      </trans-unit>
+      <trans-unit id="210">
+        <source>add</source>
+        <target>הוסף</target>
+      </trans-unit>
+      <trans-unit id="211">
+        <source>to calendar</source>
+        <target>ללוח השנה</target>
+      </trans-unit>
+      <trans-unit id="212">
+        <source>powered by inevermiss.net</source>
+        <target>נוצר ע"י inevermiss.net</target>
+      </trans-unit>
+      <trans-unit id="213">
+        <source>add to calendar</source>
+        <target>הוסף ללוח השנה</target>
       </trans-unit>
     </body>
   </file>

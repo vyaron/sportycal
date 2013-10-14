@@ -12,12 +12,12 @@
 	
 	var BUBBLE_PREFIX = 'b_';
 	
-	var BUBBLE_WIDTH = 360;
-	var BUBBLE_HEIGHT = 130;
+	var BUBBLE_WIDTH = 221;
+	var BUBBLE_HEIGHT = 62;
 	
 	var isRTL = false;
-	var btn_width = 164;
-	var btn_height = 46;
+	var btn_width = 129;
+	var btn_height = 38;
 	var upcoming_height = 0;
 	
 	function setBtnSize(btnStyle, btnSize, upcoming, width, height){
@@ -26,11 +26,11 @@
 			btn_height = parseInt(height);
 		} else {
 			if (btnSize == 'small'){
-				btn_width = (btnStyle == 'only_icon') ? 23 :82;
-				btn_height = 23;
+				btn_width = (btnStyle == 'only_icon') ? 26 :86;
+				btn_height = 26;
 			} else {
-				btn_width = (btnStyle == 'only_icon') ? 46 :164;
-				btn_height = 46;
+				btn_width = (btnStyle == 'only_icon') ? 40 :129;
+				btn_height = 40;
 			}
 		}
 		
@@ -203,7 +203,6 @@
 			var isRight = (bubbleClassPos.indexOf('right') >= 0) ? true : false;
 			
 			var bubbleStartPos = (Math.floor(btn_height/2 - 20));
-			if (isRTL) bubbleStartPos -= 8; //box-shadow + 1px border
 			
 			var left = 'auto';
 			var right = 'auto';

@@ -5,116 +5,53 @@
 <style type="text/css">
 	body{background-color: transparent;}
 
-	#widget-bubble{position: absolute; left: 0; min-width: 300px; color: #666px; font-size: 10px;}
+	#widget-bubble{position: absolute; left: 0; width: 215px; color: #b2b2b2; font-size: 10px; margin:3px; box-shadow:0px 0px 3px rgba(0,0,0,0.5); background-color: #fff;}
 	#widget-bubble.bubble-top{bottom: 0;}
-	.cal-link{width: 100px; height: 31px; line-height:31px; font-size:12px; float: left; display: block; margin-right: 7px; cursor: pointer; background: 0 bottom no-repeat url("/widgets/neverMiss/imgs/cal-link.png"); text-decoration: none; color: #333;}
 	
-	.cal-link:hover{color: #000;}
-	.cal-link span{padding-left: 33px; background-position: 7px center; background-repeat: no-repeat; background-image: url("/widgets/neverMiss/imgs/cal-link.png"); display: block;}
+	#widget-bubble.bottom-left, #widget-bubble.bottom-right{margin-top: 7px;}
+	#widget-bubble.top-left, #widget-bubble.top-right{margin-bottom: 7px;}
 	
-	.cal-link.outlook span{background-position: 0 0;}
-	.cal-link.ical span{background-position: 0 -31px;}
-	.cal-link.google span{background-position: 0 -62px;}
+	.arrow{width: 7px; height: 7px; background-repeat: no-repeat; background-image: url("/widgets/neverMiss/imgs/arrows.png"); position: absolute; z-index: 2;}
+	
+	.bottom-right .arrow, .bottom-left .arrow{top:-7px; background-position: 0 0;}
+	.top-right .arrow, .top-left .arrow{bottom:-7px; background-position: 0 bottom;}
+	.bottom-right .arrow, .top-right .arrow{left:14px;}
+	.bottom-left .arrow, .top-left .arrow{right:14px;}
+	
+	.title-wrapper{background-color: #e5e5e5; height: 12px;}
+	.title{color:#666666; font-size:10px; line-height:10px; margin-left:12px; float: left;}
+	a.credit{font-size:7px; line-height:10px; margin-right:3px; text-decoration:none; color: #b2b2b2; float: right;}
+	
+	.cal-link{width: 71px; height: 40px; border-left: 1px solid #e5e5e5; color:#b2b2b2; font-size: 8px; display: block; float: left; text-decoration: none;}
+	.cal-link:first-child{border-left: none;}
+	
+	.cal-link{background-position: 14px 20px; background-repeat: no-repeat;}
+	
+	.cal-link.google{background-image: url("/widgets/eventList/imgs/google.png");}
+	.cal-link.ical{background-image: url("/widgets/eventList/imgs/ical.png");}
+	.cal-link.outlook{background-image: url("/widgets/eventList/imgs/outlook.png");}
+	
+	.cal-link span{margin-left: 14px; margin-top: 5px; display: block;}
 	
 	/*New Window*/
 	.window-open{margin: 10px;}
-	
-	/*Bubble*/
-	.speech-bubble {
-	    position:relative;
-	    width: 335px;
-	    padding: 7px;
-	    
-	    background-color:#f2f2f2;
-	    font: normal 12px "Segoe UI", Arial, Sans-serif;
-	    -moz-border-radius: 7px;
-	    -webkit-border-radius: 7px;
-	    border-radius: 7px;
-	    border: 1px solid #b3b3b3;
-	    border-bottom-width: 2px; 
-	    border-right-width: 2px; 
-	    box-shadow:1px 1px 3px rgba(0,0,0,0.5); 
-	}
-	
-	.speech-bubble.bottom-right, .speech-bubble.bottom-left{margin-top:10px;}
-	.speech-bubble.top-right, .speech-bubble.top-left{margin-bottom:10px; position: absolute; bottom: 0;}
-
-	.speech-bubble:before,
-	.speech-bubble:after {
-	    content: "\0020";
-	    display:block;
-	    position:absolute;
-	    
-	    width: 0;
-	    height: 0;
-	    overflow:hidden;
-	    border: solid 4px transparent;
-	}
-	
-	.speech-bubble:before {z-index:1;}
-	.speech-bubble:after {z-index:2;}
-	
-	.speech-bubble.bottom-right:before, .speech-bubble.bottom-right:after,
-	.speech-bubble.top-right:before, .speech-bubble.top-right:after{left:15px;}
-	
-	.speech-bubble.bottom-left:before, .speech-bubble.bottom-left:after,
-	.speech-bubble.top-left:before, .speech-bubble.top-left:after{right:15px;}
-	
-	.speech-bubble.bottom-right:before, .speech-bubble.bottom-right:after, 
-	.speech-bubble.bottom-left:before, .speech-bubble.bottom-left:after{
-		border-top: 0;
-	    border-bottom-color:#f2f2f2;
-	    top:-4px;
-	}
-	
-	.speech-bubble.top-right:before, .speech-bubble.top-right:after, 
-	.speech-bubble.top-left:before, .speech-bubble.top-left:after{
-		border-bottom: 0;
-	    border-top-color:#f2f2f2;
-	    bottom:-4px;
-	}
-	
-	.speech-bubble.bottom-right:before, .speech-bubble.bottom-left:before{
-		border-top: 0;
-	    border-bottom-color:#b3b3b3;
-	    top:-5px;
-	}
-	
-	.speech-bubble.top-right:before, .speech-bubble.top-left:before{
-		border-bottom: 0;
-	    border-top-color:#b3b3b3;
-	    bottom:-5px;
-	}
-    
-    #mailinglist-form-loading, #mailinglist-form-success, #mailinglist-form-error{font-size: 14px; margin: 10px 0;}
-    #mailinglist-form-loading{padding-left: 25px; background: url("/images/neverMiss/icons/ajax-loader-black.gif") no-repeat 0 center;}
-    #mailinglist-form-success{color: green;}
-    #mailinglist-form-error{color: red;}
-    
-    #close-btn{font-size: 7px; text-align:center; color: 666px; position: absolute; right: 0px; top: 0px; line-height:20px; width:20px; display:block; text-decoration: none; outline: none;}
-    
     
     /*RTL*/
     .rtl{direction: rtl; text-align: right;}
-    .rtl .cal-link{direction: ltr; text-align: left;}
-    .rtl #close-btn{right: auto; left:0;}
-    /*
-	.rtl .cal-link{float: right;}
-	.rtl .cal-link:first-child{margin-right: 0;}
-	.rtl .cal-link span{padding-right: 33px; padding-left:0;}
-	.rtl .cal-link.outlook span{background-position: 65px 0;}
-	.rtl .cal-link.ical span{background-position: 65px -31px;}
-	.rtl .cal-link.google span{background-position: 65px -62px;}
-	*/
+	.rtl .title{float: right; margin-left: 0; margin-right: 3px;}
+	.rtl a.credit{float: left; margin-right: 0; margin-left: 14px;}
+	.rtl .cal-link{direction: ltr; text-align: left;}
 </style>
 <title>Widget bubble</title>
 </head>
 
 <body>
 <div id="widget-bubble" class="<?php echo ($isBubble ? 'speech-bubble ' . $bubblePos : 'window-open');?><?php echo ($isRTL ? ' rtl' : '');?>">
-	<a id="close-btn" href="#" title="<?php echo __('Click here to close');?>">x</a>
-	
-	<p><?php echo __('Please click the calendar of your choice');?></p>
+	<div class="arrow">&nbsp;</div>
+	<div class="title-wrapper clearfix">
+		<div class="title"><?php echo __('choose your calendar');?></div>
+		<a class="credit" title="<?php echo __('powered by inevermiss.net');?>" href="<?php echo sfConfig::get('app_domain_full');?>" target="_blank"><?php echo __('powered by inevermiss.net');?></a>
+	</div>
 	<div class="clearfix">
 		<a class="cal-link google" target="_blank" href="/cal/sub<?php echo $calId ? '/id/' . $calId : '';?><?php echo $ctgId ? '/ctgId/' . $ctgId : '';?><?php echo $ref ? '/ref/' . $ref : '';?>/ct/outlook/cal.ics"><span>Outlook</span></a>
 		<a class="cal-link outlook" target="_blank" href="/cal/sub<?php echo $calId ? '/id/' . $calId : '';?><?php echo $ctgId ? '/ctgId/' . $ctgId : '';?><?php echo $ref ? '/ref/' . $ref : '';?>/ct/any/cal.ics"><span>iCal</span></a>

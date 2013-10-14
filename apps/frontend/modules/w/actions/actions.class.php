@@ -28,7 +28,7 @@ class wActions extends sfActions{
 		if ($this->btnSize != 'small') $this->btnSize = null;
 		
 		$this->color = $request->getParameter('color');
-		if ($this->color != 'dark') $this->color = null;
+		if ($this->color != 'dark' && $this->color != 'yellow') $this->color = null;
 		
 		$this->width = $request->getParameter('width');
 		$this->height = $request->getParameter('height');

@@ -25,6 +25,7 @@ $bgIsTransparent = Utils::iff($bgIsTransparent, false);
 	.cal-btn:hover{color: #fff; background-color: #000;}
 	#btns-title{background-color: #333;}
 	.cal-btn{border-left-color: #333;}
+	.cal-btn.mobile{background-color: #333; background-image: url("/widgets/eventList/imgs/mobile-dark.png");}
 	.mCSB_scrollTools .mCSB_draggerRail{background: #333;}
 	<?php endif;?>
 	
@@ -79,10 +80,13 @@ $bgIsTransparent = Utils::iff($bgIsTransparent, false);
 	</ul>
 
 	<div id="footer">
-		<div id="btns-title"><?php echo $isMobile ? '&nbsp;' : __('choose your calendar');?></div>
+		<?php if (!$isMobile):?>
+		<div id="btns-title"><?php echo __('choose your calendar');?></div>
+		<?php endif;?>
+		
 		<div class="clearfix <?php echo $isReachedMaxSubscribers ? 'disabled' : '';?>" <?php  echo $isReachedMaxSubscribers ? 'title="' .  __('Reached subscriptions limit') . '"' : '';?>>
 			<?php if ($isMobile) :?>
-				<a class="cal-btn mobile" target="_blank" <?php if (!$isReachedMaxSubscribers):?>href="/cal/sub<?php echo $calId ? '/id/' . $calId : '';?><?php echo $ctgId ? '/ctgId/' . $ctgId : '';?>/ct/mobile<?php echo $ref ? '/ref/' . $ref : '';?>/cal.ics"<?php endif;?>><span><?php echo __('DOWNLOAD TO CALENDAR');?></span></a>
+				<a class="cal-btn mobile" target="_blank" <?php if (!$isReachedMaxSubscribers):?>href="/cal/sub<?php echo $calId ? '/id/' . $calId : '';?><?php echo $ctgId ? '/ctgId/' . $ctgId : '';?>/ct/mobile<?php echo $ref ? '/ref/' . $ref : '';?>/cal.ics"<?php endif;?>><span><?php echo __('add to calendar');?></span></a>
 			<?php else:?>
 				<a class="cal-btn outlook" target="_blank" <?php if (!$isReachedMaxSubscribers):?>href="/cal/sub<?php echo $calId ? '/id/' . $calId : '';?><?php echo $ctgId ? '/ctgId/' . $ctgId : '';?>/ct/outlook<?php echo $ref ? '/ref/' . $ref : '';?>/cal.ics"<?php endif;?>><span><?php echo __('Outlook')?></span></a>
 				<a class="cal-btn ical" target="_blank" <?php if (!$isReachedMaxSubscribers):?>href="/cal/sub<?php echo $calId ? '/id/' . $calId : '';?><?php echo $ctgId ? '/ctgId/' . $ctgId : '';?>/ct/any<?php echo $ref ? '/ref/' . $ref : '';?>/cal.ics"<?php endif;?>><span><?php echo __('iCal');?></span></a>

@@ -39,6 +39,7 @@
 			<select id="color" name="color">
 				<option value="<?php echo NeverMissWidget::DEFAULT_VALUE;?>">Default</option>
 				<option value="dark">Dark</option>
+				<option value="yellow">Yellow</option>
 			</select>
 		</div>
 	</div>

@@ -30,8 +30,8 @@ h1{font-weight: 400; font-size: 22px; line-height:22px; padding-top:17px; paddin
 .cal-btn.ical span{background-image: url('../imgs/ical.png');}
 .cal-btn.google span{background-image: url('../imgs/google.png');}
 
-.cal-btn.mobile{width: 100%;}
-.cal-btn.mobile span{background: 0 center no-repeat url('../imgs/ical.png'); line-height: 45px; padding-left: 25px; font-size: 14px;}
+.cal-btn.mobile{width: 100%; background: #e5e5e5 no-repeat 15px 9px url('../imgs/mobile.png'); height: 40px;}
+.cal-btn.mobile span{display:block; margin-left:50px; margin-top:13px; font-size: 13px; color:#666;}
 
 #footer .disabled .cal-btn{cursor: not-allowed;}
 
