@@ -25,7 +25,6 @@
 	<link rel="apple-touch-icon-precomposed" href="/ico/57b.png">
 	<link rel="shortcut icon" href="/ico/32b.png">
 	
-	<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=PT+Sans+Narrow:400,700" />
 	<link href="/bundle/bootstrap/css/bootstrap.css" rel="stylesheet"/>
     <link href="/bundle/bootstrap/css/bootstrap-responsive.css" rel="stylesheet"/>
     <link href="/fonts/signika/stylesheet.css" rel="stylesheet"/>
