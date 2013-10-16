@@ -2,7 +2,7 @@
 
 
 
-.stamp-box{width: 994px; margin: 40px auto;}
+.stamp-box{width: 994px; margin: 0 auto; margin-bottom: 40px;}
 .stamp-box-top, .stamp-box-center,.stamp-box-bottom{background-position: 0 0;}
 .stamp-box-top,.stamp-box-bottom{background-repeat: no-repeat;}
 .stamp-box-top{background-image: url('/images/neverMiss/contact/stamp-box/top.png'); height: 18px;}

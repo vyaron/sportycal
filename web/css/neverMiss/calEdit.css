@@ -2,18 +2,23 @@
 
 body{background-color: #f2f2f2;}
 
+h2{margin-bottom: 12px;}
+h4{margin-top: 0;}
+
 #scheduler_here, #cal-edit-wrapper{width: 100%; /*min-height: 530px;*/}
 #cal-edit-wrapper{border-collapse: collapse;}
 #cal-edit-wrapper h4{font-weight: normal;}
 #cal-edit-wrapper td{vertical-align: top;}
 #cal-edit-wrapper .right-col{width: 135px; padding-left: 25px;}
 
-#cal-form{margin-bottom: 0px;}
+#cal-form{margin-bottom: 0px; min-height: 40px;}
 #cal-form table{border-collapse: collapse; width: 100%;}
 #cal-form table td{padding-left: 17px; width: 33.333%;}
 #cal-form table td:first-child{padding-left: 0;}
 #cal-form table td input, #cal-form table td select{width: 100%; -webkit-box-sizing: border-box; -moz-box-sizing: border-box; box-sizing: border-box; height: 25px; line-height: 25px; display: block; font-size: 12px; font-family: SignikaRegular;}
 #cal-form table td input{padding:0 6px;}
+
+#cal_name{text-transform: capitalize;}
 
 #cal-form table td #cal_description{float: left; max-width: 217px;}
 .is-popup #cal-form table td #cal_description{max-width: 235px;}
@@ -26,9 +31,19 @@ body{background-color: #f2f2f2;}
 #events-wrapper ul li{border-top:2px solid #ffc229; padding: 15px 0; font-size: 12px;}
 #events-wrapper ul li:first-child{border: none;}
 
+.continue-btn-fixed{padding: 0 9px; height: 24px; line-height: 24px;}
+h2 .btn.btn-success{margin-top: 6px; font-weight: normal;}
+
+#continue-btn-wrapper{width: 135px; float: right;}
+
 /* Calendar
 *****************/
-.btn.btn-mini{min-width: 80px; padding: 2px 0;}clear-events
+.dhx_cal_light, .dhx_cal_light input, .dhx_cal_light select, .dhx_scale_bar{font-family: SignikaRegular;}
+.dhx_scale_bar{text-transform: uppercase;}
+.dhx_cal_ltext textarea{background-color: #fff;}
+/*.dhx_cal_light input{font-family: SignikaRegular;}*/
+
+.btn.btn-mini{min-width: 80px; padding:0; padding-top: 2px;}
 #scheduler_here{background-color: transparent;}
 .dhx_cal_container{background-color: transparent;}
 .dhx_cal_header{border: none;}
@@ -104,7 +119,7 @@ body{background-color: #f2f2f2;}
 .dhx_scheduler_month .dhx_cal_data tr td.dhx_now .dhx_month_head{color: #fff;}
 
 .dhx_cal_event_line, .dhx_cal_event .dhx_header, .dhx_cal_event .dhx_footer, .dhx_cal_event .dhx_body, .dhx_cal_event .dhx_title{background-color: gray;}
-.dhx_cal_event_clear{color: #333;}
+.dhx_cal_event_clear{color: #666;}
 .dhx_cal_data, .dhx_multi_day{background-color: #fff;}
 
 /*lightbox*/
@@ -113,9 +128,10 @@ body{background-color: #f2f2f2;}
 .dhx_cal_light .dhx_cal_lsection, .dhx_cal_light .dhx_cal_ltitle{display: none;}
 .dhx_cal_light .dhx_cal_ltext{padding: 5px 24px;}
 .dhx_cal_light .dhx_cal_ltext textarea, .dhx_cal_light .dhx_cal_ltext textarea:-moz-placeholder, .dhx_cal_light .dhx_cal_ltext.name input, .dhx_cal_light .dhx_cal_ltext.location input{font-size: 12px; line-height: 22px; padding:0 6px; font-family: SignikaRegular;}
-.dhx_cal_light .dhx_cal_ltext.name input, .dhx_cal_light .dhx_cal_ltext.location input, .dhx_section_datetime input, .dhx_section_datetime select{color: #333; margin: 0; -webkit-box-sizing: border-box; -moz-box-sizing: border-box; box-sizing: border-box; height: 24px;}
+.dhx_cal_light .dhx_cal_ltext.name input, .dhx_cal_light .dhx_cal_ltext.location input, .dhx_section_datetime input, .dhx_section_datetime select{color: #666; margin: 0; -webkit-box-sizing: border-box; -moz-box-sizing: border-box; box-sizing: border-box; height: 24px;}
 .dhx_cal_light .dhx_cal_ltext.name input, .dhx_cal_light .dhx_cal_ltext.location input{width: 100%;}
 .dhx_cal_ltext textarea, .dhx_cal_light .dhx_cal_ltext.location input{border: 1px solid #FFC229;}
+.dhx_cal_ltext textarea, .dhx_cal_light select, .dhx_cal_light{color: #666;}
 
 .dhx_btn_set, .dhx_btn_set div{height: 20px;}
 .dhx_btn_set{background: #b3b3b3; border: none; -webkit-border-radius: 10px; -moz-border-radius: 10px; border-radius: 10px; width: 80px;}

@@ -4,7 +4,7 @@
 <div class="container">
 	<div class="box-content">
 		<div class="box-content-margin clearfix">
-			<h2><strong class="color-y">My Calendars</strong> <a class="plan" class="<?php echo ($licenece->isEnded() ? 'ended' : '');?>" href="<?php echo url_for('/nm/pricing')?>" title="Max subscribers <?php echo $licenece->getMaxSubscribers();?>"><?php echo $licenece->getName();?></a></h2>		
+			<h2>My Calendars <a class="plan" class="<?php echo ($licenece->isEnded() ? 'ended' : '');?>" href="<?php echo url_for('/nm/pricing')?>" title="Max subscribers <?php echo $licenece->getMaxSubscribers();?>"><?php echo $licenece->getName();?> Account</a></h2>		
 			
 			<hr class="cr"/>
 		</div>
@@ -17,9 +17,9 @@
 				<h3 data-placement="top" data-toggle="tooltip" data-original-title="<?php echo $cal['name'];?>"><span><?php echo $cal['name'];?></span></h3>
 				<div class="content">
 					<ul>
-						<li>Last Modified <span class="value"><?php echo date('d M Y', strtotime($cal['updated_at']));?></span></li>
-						<li>Upcoming Events <span class="value"><?php echo $cal['event_count'];?></span></li>
-						<li>Subscribers <span class="value"><?php echo $cal['cal_request_count'];?></span></li>
+						<li class="clearfix"><span class="prop">Last Modified</span> <span class="value"><?php echo date('d M Y', strtotime($cal['updated_at']));?></span></li>
+						<li class="clearfix"><span class="prop">Upcoming Events</span> <span class="value"><?php echo $cal['event_count'];?></span></li>
+						<li class="clearfix"><span class="prop">Subscribers</span> <span class="value"><?php echo $cal['cal_request_count'];?></span></li>
 					</ul>
 					
 					<div class="btns clearfix">
@@ -70,7 +70,7 @@
 				
 				<div class="cb"></div>
 				
-				<p class="pull-right"><span class="subscribers-text">Total Subscribers <span class="subscribers-count"><span class="<?php echo ($isReachedMaxSubscribers) ? 'warning' : '';?>"><?php echo number_format($subscribers);?>/</span><?php echo number_format($licenece->getMaxSubscribers());?></span></span> <a class="btn btn-success btn-large" href="<?php echo url_for('nm/pricing');?>">Upgrade account</a></p>
+				<p class="pull-right"><span class="subscribers-text">Total Subscribers <span class="subscribers-count"><span class="<?php echo ($isReachedMaxSubscribers) ? 'warning' : '';?>"><?php echo number_format($subscribers);?></span>/<?php echo number_format($licenece->getMaxSubscribers());?></span></span> <a class="btn btn-success btn-large" href="<?php echo url_for('nm/pricing');?>">Upgrade account</a></p>
 			</div>
 		</div>
 	</div>

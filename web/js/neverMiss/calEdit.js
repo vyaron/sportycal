@@ -365,8 +365,6 @@ jQuery(document).ready(function(){
 				dataType : 'json',
 				data : calForm.serialize()
 			}).always(function(res){
-				setGlobalAlert(res);
-				
 				if (res && res.success){
 					if (opener){
 						hideSaveBtn();
@@ -376,10 +374,14 @@ jQuery(document).ready(function(){
 					} else {
 						window.location.href = '/nm/widget/calId/' + gCalId;
 					}
+				} else {
+					setGlobalAlert(res);
 				}
 				
 				jQuery('.continue-btn').removeClass('loading');
 			});
+		} else {
+			jQuery('.continue-btn').removeClass('loading');
 		}
 	});
 	

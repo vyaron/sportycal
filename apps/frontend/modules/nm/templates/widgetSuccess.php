@@ -22,7 +22,10 @@ use_stylesheet('/css/neverMiss/widget.css');
 	</div>
 </div>
 
+
+<?php if ($user):?>
 <hr/>
+
 
 <div class="row">
 	<div class="span6">
@@ -35,6 +38,7 @@ use_stylesheet('/css/neverMiss/widget.css');
 </div>
 
 <hr/>
+
 
 <?php if (false):?>
 <div class="row">
@@ -62,6 +66,8 @@ use_stylesheet('/css/neverMiss/widget.css');
 	<a class="btn btn-success pull-left" href="<?php echo url_for('nm/calEdit/?id=' . $calId);?>" title="Edit your calendar">&lt;&lt;</a>
 	<a class="btn btn-success pull-right" href="<?php echo url_for('nm/calList');?>">Next &gt;&gt;</a>
 </div>
+
+<?php endif;?>
 
 </div>
 <?php 

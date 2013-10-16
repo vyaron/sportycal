@@ -1,5 +1,5 @@
 #container{background: 0 0 #000 no-repeat url('/images/neverMiss/layout/bg.jpg'); background-size: cover;}
-#form-box-center{width: 520px; margin: 0 auto; margin-top: 90px;}
+#form-box-center{width: 520px; margin: 0 auto; margin-top: 50px;}
 /*CSS Queries - NOT WORKING ON IE < 9!
 ****************************************/
 @media (max-width: 979px) {

@@ -18,7 +18,7 @@ use_stylesheet('/css/neverMiss/calEdit.css');
 <div class="container">
 <?php include_partial('formError', array('form' => $form)) ?>
 
-<h2><span class="color-y">Edit</span> Your Calendar. <a class="pull-right continue-btn btn btn-success hidden-popup" href="#"><span>Continue</span></a></h2>
+<h2><span class="color-y">Edit</span> Your Calendar. <div id="continue-btn-wrapper"><a class="pull-left continue-btn continue-btn-fixed btn btn-success hidden-popup" href="#"><span>Continue</span></a></div></h2>
 
 <table id="cal-edit-wrapper">
 	<tr>
@@ -81,7 +81,7 @@ use_stylesheet('/css/neverMiss/calEdit.css');
 				<h3>My Events</h3>
 				<ul id="event-list"></ul>
 			</div>
-			<a class="continue-btn btn btn-success" href="#"><span>Continue</span></a>
+			<a class="continue-btn continue-btn-fixed btn btn-success" href="#"><span>Continue</span></a>
 		</td>
 	</tr>
 </table>

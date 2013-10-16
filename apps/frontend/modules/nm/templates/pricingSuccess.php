@@ -46,7 +46,8 @@ use_stylesheet('/css/neverMiss/pricing.css');
 	</div>
 	
 	<div class="clearfix">
-		<p class="call-us-wrapper">Need more subscribers? <a class="btn btn-success" href="<?php echo url_for('/nm/contact')?>">call us</a></p>
+		<a class="btn btn-success pull-right" href="<?php echo url_for('/nm/contact')?>">call us</a>
+		<div class="call-us-text">Need more subscribers?</div>
 	</div>
 
 </div>

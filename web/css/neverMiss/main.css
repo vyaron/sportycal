@@ -3,7 +3,7 @@
 .is-popup .visible-popup, .hidden-popup{display: block !important;}
 
 html, body{height: 100%;}
-body{/*padding-top: 80px;*/ font-size: 12px; font-family: arial}
+body{/*padding-top: 80px;*/ font-size: 12px; font-family: arial; color: #666;}
 
 .cb{clear: both;}
 .cr{clear: right;}
@@ -23,7 +23,8 @@ body{/*padding-top: 80px;*/ font-size: 12px; font-family: arial}
 
 hr{border-bottom: 1px solid #ffc229; border-top: none;}
 
-h2{text-transform: uppercase; font-size: 38px; margin-bottom: 25px;}
+h2{text-transform: uppercase; font-size: 38px; margin-bottom: 25px; font-weight: normal;}
+h2 .color-y{font-weight: bold;}
 h2 .btn.btn-success{font-weight: normal; margin-top: 4px;}
 
 /*yellow icons*/
@@ -51,8 +52,12 @@ h2 .btn.btn-success{font-weight: normal; margin-top: 4px;}
 .icon-loading{background-image: url("/images/neverMiss/icons/ajax-loader-black.gif"); background-repeat: no-repeat; background-position: 0 center; width: 16px;}
 .icon-loading.icon-white{background-image: url("/images/neverMiss/icons/ajax-loader-white.gif");}
 
+/*pagination*/
+.pagination ul > li > a, .pagination ul > li > span{background-color: transparent; color: #666;}
+.pagination ul > .active > a, .pagination ul > .active > span, .pagination ul > .active > a:hover, .pagination ul > .active > span:hover{background-color: #fbbb2c; color: #fff;}
+
 /* buttons*/
-.btn{background: #b2b2b2; border-color: #fff; color: #333; text-shadow-color: #fff; text-transform: uppercase; font-size:17px; line-height:18px; -webkit-border-radius: 10px; -moz-border-radius: 10px; border-radius: 10px; box-shadow:1px 1px 3px #3d3d3d; padding: 4px 22px;}
+.btn{background: #b2b2b2; border-color: #fff; color: #333; /*text-shadow-color: #fff;*/ text-shadow:none; text-transform: uppercase; font-size:17px; line-height:18px; -webkit-border-radius: 10px; -moz-border-radius: 10px; border-radius: 10px; box-shadow:1px 1px 3px #3d3d3d; padding: 4px 22px;}
 .btn:hover, .btn:focus, .btn:active, .btn.active, .btn.disabled, .btn[disabled]{background: #b2b2b2; color: #000;}
 
 .btn-success{background: #ffc229;}
@@ -85,11 +90,13 @@ h2 .btn.btn-success{font-weight: normal; margin-top: 4px;}
 
 /*Inputs*/
 .placeholder{color: #aaa !important;}
-textarea, input[type="text"], input[type="password"], input[type="datetime"], input[type="datetime-local"], input[type="date"], input[type="month"], input[type="time"], input[type="week"], input[type="number"], input[type="email"], input[type="url"], input[type="search"], input[type="tel"], input[type="color"], .uneditable-input, select{border-color: #ffc229; -webkit-border-radius: 0px; -moz-border-radius: 0px; border-radius: 0px; font-family:SignikaRegular;}
+textarea, input[type="text"], input[type="password"], input[type="datetime"], input[type="datetime-local"], input[type="date"], input[type="month"], input[type="time"], input[type="week"], input[type="number"], input[type="email"], input[type="url"], input[type="search"], input[type="tel"], input[type="color"], .uneditable-input, select{border-color: #ffc229; -webkit-border-radius: 0px; -moz-border-radius: 0px; border-radius: 0px; font-family:SignikaRegular; margin-bottom: 5px; color:#666;}
 
-textarea:focus, input[type="text"]:focus, input[type="password"]:focus, input[type="datetime"]:focus, input[type="datetime-local"]:focus, input[type="date"]:focus, input[type="month"]:focus, input[type="time"]:focus, input[type="week"]:focus, input[type="number"]:focus, input[type="email"]:focus, input[type="url"]:focus, input[type="search"]:focus, input[type="tel"]:focus, input[type="color"]:focus, .uneditable-input:focus, input:focus:invalid, textarea:focus:invalid, select:focus:invalid,input:focus:invalid:focus, textarea:focus:invalid:focus, select:focus:invalid:focus{border-color: rgba(255, 194, 41, 0.8); box-shadow:0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 8px rgba(255, 194, 41, 0.6);}
+textarea:focus, input[type="text"]:focus, input[type="password"]:focus, input[type="datetime"]:focus, input[type="datetime-local"]:focus, input[type="date"]:focus, input[type="month"]:focus, input[type="time"]:focus, input[type="week"]:focus, input[type="number"]:focus, input[type="email"]:focus, input[type="url"]:focus, input[type="search"]:focus, input[type="tel"]:focus, input[type="color"]:focus, .uneditable-input:focus, input:focus:invalid, textarea:focus:invalid, select:focus:invalid,input:focus:invalid:focus, textarea:focus:invalid:focus, select:focus:invalid:focus{/*border-color: rgba(255, 194, 41, 0.8); box-shadow:0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 8px rgba(255, 194, 41, 0.6);*/ box-shadow:none; border-color: #fcd48d;}
 input:focus:invalid, textarea:focus:invalid, select:focus:invalid,input:focus:invalid:focus, textarea:focus:invalid:focus, select:focus:invalid:focus{color: inherit;}
-textarea.error, input.error[type="text"], input.error[type="password"], input.error[type="datetime"], input.error[type="datetime-local"], input.error[type="date"], input.error[type="month"], input.error[type="time"], input.error[type="week"], input.error[type="number"], input.error[type="email"], input.error[type="url"], input.error[type="search"], input.error[type="tel"], input.error[type="color"]{border-color: #E9322D !important; box-shadow:0 0 3px red !important;}
+textarea.error, input.error[type="text"], input.error[type="password"], input.error[type="datetime"], input.error[type="datetime-local"], input.error[type="date"], input.error[type="month"], input.error[type="time"], input.error[type="week"], input.error[type="number"], input.error[type="email"], input.error[type="url"], input.error[type="search"], input.error[type="tel"], input.error[type="color"]{border-color: #ba4509 !important; box-shadow:none !important;}
+
+label.error, .error_list > li, textarea.error, input.error[type="text"], input.error[type="password"], input.error[type="datetime"], input.error[type="datetime-local"], input.error[type="date"], input.error[type="month"], input.error[type="time"], input.error[type="week"], input.error[type="number"], input.error[type="email"], input.error[type="url"], input.error[type="search"], input.error[type="tel"], input.error[type="color"]{color:#ba4509 !important;}
 
 /*Form box*/
 .form-box{box-shadow: 2px 2px 5px #000; padding-bottom: 35px; font-family: signikaregular; border: 1px solid #ccc; background-color: #f2f2f2;}
@@ -111,7 +118,7 @@ textarea.error, input.error[type="text"], input.error[type="password"], input.er
 #container{position: relative; min-height: 100%;}
 
 /* placeholder */
-#top-navbar-placholder{height: 65px; margin-bottom: 15px; display: block;} /*for calc #container height*/
+#top-navbar-placholder{height: 65px; margin-bottom: 34px; display: block;} /*for calc #container height*/
 #footer-place-hoolder{height: 70px;} /*for calc #container height*/
 
 .is-popup #footer-place-hoolder, .is-popup #top-navbar-placholder{height: 20px; margin: 0;}
@@ -120,7 +127,7 @@ textarea.error, input.error[type="text"], input.error[type="password"], input.er
 .alert ul{margin: 10px 20px;}
 
 .error_list{margin: 0; padding: 0; list-style: none;}
-label.error, .error_list > li{color: red;}
+label.error, .error_list > li{font-size: 11px; line-height: 12px;}
 
 /*footer*/
 #footer .container{position: relative;}
@@ -198,6 +205,11 @@ label.error, .error_list > li{color: red;}
 .soical-icon-google{background-position: 0 0;}
 .soical-icon-twitter{background-position: 0 -36px;}
 .soical-icon-linkdin{background-position: 0 -18px;}
+
+.soical-icon-facebook:hover{background-position: -20px -54px;}
+.soical-icon-google:hover{background-position: -20px 0;}
+.soical-icon-twitter:hover{background-position: -20px -36px;}
+.soical-icon-linkdin:hover{background-position: -20px -18px;}
 
 
 /*CSS Queries - NOT WORKING ON IE < 9!
