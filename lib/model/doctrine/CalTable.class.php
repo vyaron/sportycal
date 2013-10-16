@@ -104,14 +104,19 @@ class CalTable extends Doctrine_Table
 		}
 	
 		$events = $cal ? $cal->getEvents(date('Y-m-d 00:00:00'), $cal->getId() == Wix::DEFAULT_CAL_ID) : array();
-		
 		if ($isIncludeClones){
 			$eventsWithClones = array();
 			foreach ($events as $event){
 				$d_start    = new DateTime($event->getStartsAt());
 				$d_end      = new DateTime($event->getEndsAt());
+				
+				if ($d_end->getTimestamp() < $d_start->getTimestamp()) {
+					$d_end = new DateTime(date('Y-m-d H:i:00', $d_start->getTimestamp()));
+					$d_end->modify('+30 minutes');
+				}
 					
 				$diff = $d_start->diff($d_end);
+				
 			
 				if ($diff->days){
 					for ($i=0; $i <= $diff->days; $i++){

@@ -2447,11 +2447,19 @@ Wix:
       notnull: false
       autoincrement: false
     bg_opacity:
-      type: decimal(10)
+      type: 'decimal(10, 1)'
       fixed: false
       unsigned: false
       primary: false
       notnull: false
+      autoincrement: false
+    is_show_cal_name:
+      type: integer(1)
+      fixed: false
+      unsigned: false
+      primary: false
+      default: '0'
+      notnull: true
       autoincrement: false
     created_at:
       type: timestamp(25)

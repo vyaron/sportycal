@@ -11,6 +11,7 @@ $isRTL = Utils::iff($isRTL, null);
 $isDark = Utils::iff($isDark, null);
 $isMobile = Utils::iff($isMobile, null);
 
+$title = Utils::iff($title, false);
 $lineColor = Utils::iff($lineColor, null);
 $textColor = Utils::iff($textColor, null);
 $bgColor = Utils::iff($bgColor, null);
@@ -65,7 +66,7 @@ $bgIsTransparent = Utils::iff($bgIsTransparent, false);
 
 
 <div id="container">
-	<h1><?php echo __('My Events');?></h1>
+	<h1><?php echo ($title ? $title : __('My Events'));?></h1>
 	
 	<ul id="events" style="height: 100px;">
 		<?php foreach ($events as $event):?>

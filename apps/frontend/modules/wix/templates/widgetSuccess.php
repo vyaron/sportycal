@@ -4,6 +4,7 @@
 	'isMobile' => $isMobile,
 	'isReachedMaxSubscribers' => $isReachedMaxSubscribers,
 	
+	'title' => $title,
 	'lineColor' => $lineColor,
 	'textColor' => $textColor,
 	'bgColor' => $bgColor,

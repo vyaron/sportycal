@@ -69,6 +69,7 @@ class wixActions extends sfActions{
 		$bgColor = $request->getParameter('bg_color');
 		$bgOpacity = $request->getParameter('bg_opacity');
 		$bgIsTransparent =  $request->getParameter('bg_is_transparent') === 'true' ? true : false;
+		$isShowCalName = $request->getParameter('is_show_cal_name') == 'true' ? true : false;
 		
 		if (!$wix->getUserId()) $wix->setUserId($userId);
 
@@ -81,6 +82,8 @@ class wixActions extends sfActions{
 
 			if ($bgIsTransparent) $wix->setBgOpacity(0);
 			else if ($bgOpacity) $wix->setBgOpacity($bgOpacity);
+			
+			$wix->setIsShowCalName($isShowCalName);
 				
 			$wix->setUpdatedAt(date('Y-m-d H:i:s'));
 			$wix->save();
@@ -110,13 +113,14 @@ class wixActions extends sfActions{
 		$this->bgColor = $this->wix->getBgColorForDisplay();
 		$this->bgIsTransparent = $this->wix->getBgIsTransparent();
 		$this->bgOpacity = $this->wix->getBgOpacityForDisplay();
+		$this->isShowCalName = (boolean) $this->wix->getIsShowCalName();
 	}
 	
 	
 	
 	public function executeWidget(sfWebRequest $request){
 		$this->init($request, true);
-
+		
 		$calId = $this->wix->getCalIdForDisplay();
 		$upcoming = $this->wix->getUpcomingForDisplay();
 		$isMobile = $request->getParameter('isMobile', Utils::clientIsMobile());
@@ -136,7 +140,9 @@ class wixActions extends sfActions{
 		$this->bgColor = $this->wix->getBgColorForDisplay();
 		$this->bgIsTransparent = $this->wix->getBgIsTransparent();
 		$this->bgOpacity = $this->wix->getBgOpacityForDisplay();
-
+		
+		$isShowCalName = (boolean) $this->wix->getIsShowCalName();
+		$this->title = ($isShowCalName) ? $cal->getName() : null;
 		//$this->setLayout('cleanLayout');
 		
 		sfContext::getInstance()->getI18N()->setCulture($language);

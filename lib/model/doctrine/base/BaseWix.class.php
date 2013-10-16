@@ -18,41 +18,44 @@ Doctrine_Manager::getInstance()->bindComponent('Wix', 'doctrine');
  * @property string $text_color
  * @property string $bg_color
  * @property decimal $bg_opacity
+ * @property integer $is_show_cal_name
  * @property timestamp $created_at
  * @property timestamp $updated_at
  * @property User $User
  * @property Cal $Cal
  * 
- * @method integer   getId()            Returns the current record's "id" value
- * @method integer   getUserId()        Returns the current record's "user_id" value
- * @method integer   getCalId()         Returns the current record's "cal_id" value
- * @method string    getInstanceCode()  Returns the current record's "instance_code" value
- * @method string    getCompCode()      Returns the current record's "comp_code" value
- * @method string    getLocale()        Returns the current record's "locale" value
- * @method integer   getUpcoming()      Returns the current record's "upcoming" value
- * @method string    getLineColor()     Returns the current record's "line_color" value
- * @method string    getTextColor()     Returns the current record's "text_color" value
- * @method string    getBgColor()       Returns the current record's "bg_color" value
- * @method decimal   getBgOpacity()     Returns the current record's "bg_opacity" value
- * @method timestamp getCreatedAt()     Returns the current record's "created_at" value
- * @method timestamp getUpdatedAt()     Returns the current record's "updated_at" value
- * @method User      getUser()          Returns the current record's "User" value
- * @method Cal       getCal()           Returns the current record's "Cal" value
- * @method Wix       setId()            Sets the current record's "id" value
- * @method Wix       setUserId()        Sets the current record's "user_id" value
- * @method Wix       setCalId()         Sets the current record's "cal_id" value
- * @method Wix       setInstanceCode()  Sets the current record's "instance_code" value
- * @method Wix       setCompCode()      Sets the current record's "comp_code" value
- * @method Wix       setLocale()        Sets the current record's "locale" value
- * @method Wix       setUpcoming()      Sets the current record's "upcoming" value
- * @method Wix       setLineColor()     Sets the current record's "line_color" value
- * @method Wix       setTextColor()     Sets the current record's "text_color" value
- * @method Wix       setBgColor()       Sets the current record's "bg_color" value
- * @method Wix       setBgOpacity()     Sets the current record's "bg_opacity" value
- * @method Wix       setCreatedAt()     Sets the current record's "created_at" value
- * @method Wix       setUpdatedAt()     Sets the current record's "updated_at" value
- * @method Wix       setUser()          Sets the current record's "User" value
- * @method Wix       setCal()           Sets the current record's "Cal" value
+ * @method integer   getId()               Returns the current record's "id" value
+ * @method integer   getUserId()           Returns the current record's "user_id" value
+ * @method integer   getCalId()            Returns the current record's "cal_id" value
+ * @method string    getInstanceCode()     Returns the current record's "instance_code" value
+ * @method string    getCompCode()         Returns the current record's "comp_code" value
+ * @method string    getLocale()           Returns the current record's "locale" value
+ * @method integer   getUpcoming()         Returns the current record's "upcoming" value
+ * @method string    getLineColor()        Returns the current record's "line_color" value
+ * @method string    getTextColor()        Returns the current record's "text_color" value
+ * @method string    getBgColor()          Returns the current record's "bg_color" value
+ * @method decimal   getBgOpacity()        Returns the current record's "bg_opacity" value
+ * @method integer   getIsShowCalName()    Returns the current record's "is_show_cal_name" value
+ * @method timestamp getCreatedAt()        Returns the current record's "created_at" value
+ * @method timestamp getUpdatedAt()        Returns the current record's "updated_at" value
+ * @method User      getUser()             Returns the current record's "User" value
+ * @method Cal       getCal()              Returns the current record's "Cal" value
+ * @method Wix       setId()               Sets the current record's "id" value
+ * @method Wix       setUserId()           Sets the current record's "user_id" value
+ * @method Wix       setCalId()            Sets the current record's "cal_id" value
+ * @method Wix       setInstanceCode()     Sets the current record's "instance_code" value
+ * @method Wix       setCompCode()         Sets the current record's "comp_code" value
+ * @method Wix       setLocale()           Sets the current record's "locale" value
+ * @method Wix       setUpcoming()         Sets the current record's "upcoming" value
+ * @method Wix       setLineColor()        Sets the current record's "line_color" value
+ * @method Wix       setTextColor()        Sets the current record's "text_color" value
+ * @method Wix       setBgColor()          Sets the current record's "bg_color" value
+ * @method Wix       setBgOpacity()        Sets the current record's "bg_opacity" value
+ * @method Wix       setIsShowCalName()    Sets the current record's "is_show_cal_name" value
+ * @method Wix       setCreatedAt()        Sets the current record's "created_at" value
+ * @method Wix       setUpdatedAt()        Sets the current record's "updated_at" value
+ * @method Wix       setUser()             Sets the current record's "User" value
+ * @method Wix       setCal()              Sets the current record's "Cal" value
  * 
  * @package    evento
  * @subpackage model
@@ -161,6 +164,17 @@ abstract class BaseWix extends sfDoctrineRecord
              'notnull' => false,
              'autoincrement' => false,
              'length' => 10,
+             'scale' => '1',
+             ));
+        $this->hasColumn('is_show_cal_name', 'integer', 1, array(
+             'type' => 'integer',
+             'fixed' => 0,
+             'unsigned' => false,
+             'primary' => false,
+             'default' => '0',
+             'notnull' => true,
+             'autoincrement' => false,
+             'length' => 1,
              ));
         $this->hasColumn('created_at', 'timestamp', 25, array(
              'type' => 'timestamp',

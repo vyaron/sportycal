@@ -66,6 +66,7 @@ use_stylesheet('/bundle/wix/javascripts/components/glued-position-min/glued.min.
 	<input type="hidden" name="bg_color" value="<?php echo $bgColor;?>"/>
 	<input type="hidden" name="bg_opacity" value="<?php echo $bgOpacity;?>"/>
 	<input type="hidden" name="bg_is_transparent" value="<?php echo $bgIsTransparent;?>"/>
+	<input type="hidden" name="is_show_cal_name" value="<?php echo $isShowCalName;?>"/>
 		
 	<div class="accordion">
 		<!-- Calendar -->
@@ -91,6 +92,20 @@ use_stylesheet('/bundle/wix/javascripts/components/glued-position-min/glued.min.
 						</select>
 						<a id="edit-calendar" href="#" style="display:none;">Edit</a>
 					<?php endif;?>
+					
+					
+					
+					<?php if ($calsCount > 0):?>
+					<ul class="list">
+		                <li>
+		                    <span id="is_show_cal_name" class="checkbox" data-checked="<?php echo $isShowCalName?>">
+	                        	<span class="check"></span>
+		                        Show calendar name
+		                    </span>
+		                </li>
+		            </ul>
+		            <?php endif;?>
+					
 	            <?php else:?>
 	            <p>In order to start please first <a href="#" class="connect">connect your account</a></p>
 	            <?php endif;?>

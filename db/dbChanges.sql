@@ -1,3 +1,5 @@
+ALTER TABLE `wix` ADD `is_show_cal_name` BOOLEAN NOT NULL DEFAULT FALSE AFTER `bg_opacity` ;
+----------------------------DONE ON PROD-------------------------------------------------------
 INSERT INTO `evento`.`category_link` (`id`, `category_id`, `type`, `txt`, `url`, `target_url`) VALUES (NULL, '753', 'website', 'FTBPro FOOTBALL NEWS', 'http://www.ftbpro.com', 'http://www.ftbpro.com');
 ----------------------------DONE ON PROD-------------------------------------------------------
 ALTER TABLE `wix` CHANGE `bg_opacity` `bg_opacity` DECIMAL( 10, 1 ) NULL DEFAULT NULL;
