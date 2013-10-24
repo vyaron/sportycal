@@ -16,9 +16,9 @@ $ctgId  = isset($_GET['ctgId']) ? $_GET['ctgId'] : '';
 
     .content{width: 855px; margin: 0 auto; margin-top: 30px;}
 
-    #cal-links{width: 736px; margin: 0 auto; margin-top: 300px;}
+    #cal-links{width: 740px; margin: 0 auto; margin-top: 300px;}
     .cal-link{width: 232px; height: 75px; background: 0 0 no-repeat url("images/cal-link.png"); display: block; margin-left: 19px; float: left; text-decoration: none; text-align: left; position: relative;}
-    .cal-link:first-child{margin-left: 0;}
+    .cal-link:first-child{margin-left: 5px;}
     .cal-link .txt{color: #6f6f6f; display: inline-block; font-size: 22px; line-height: 22px; position: absolute; top: 25px; right: 25px;}
 
     /*.cal-link.google .txt{margin-top: 15px;}*/
