@@ -31,12 +31,6 @@ class NHLSpider extends AbstractSpider {
 		fclose($fh);
 	
 		$this->cleanOutputCsv();
-	
-		//Retry one more time
-		if (count($outLines) === 0) {
-			sleep(5);
-			$this->getTeam($this->teamName);
-		}
 	}
 	
 
