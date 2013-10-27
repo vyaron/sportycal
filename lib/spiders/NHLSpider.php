@@ -125,7 +125,7 @@ class NHLSpider extends AbstractSpider {
 						$teamGame->date . CSV_SEP .
 						$teamGame->time . CSV_SEP .
 						$teamGame->timeZone . CSV_SEP .
-						$position;
+						$position . CSV_SEP . CSV_SEP;
 	
 			$this->addOutputCsv($csvLine);
 		}
