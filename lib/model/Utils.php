@@ -707,6 +707,22 @@ class Utils {
 		
 		return $infoLines;
 	}
+
+	public static function runNHLSpider() {
+		define ("NO_PROXIES_GO_DIRECT", 1);
+				
+		$nhlSpider = new NHLSpider();
+		$infoLines = array("Starting up E-Spider");
+		
+		$teamsGames = $nhlSpider->getTeamsGames();
+		
+		foreach ($teamsGames as $teamName => $teamGames) {
+			$nhlSpider->saveTeam($teamName, $teamGames);
+			$infoLines[] = "Handeled $teamName";
+		}
+		
+		return $infoLines;
+	}
 	
 	public 	static function runSoccernetSpider() {
 		define("NO_PROXIES_GO_DIRECT", 1);

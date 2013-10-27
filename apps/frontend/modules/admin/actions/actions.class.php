@@ -766,6 +766,12 @@ class adminActions extends sfActions
 		
 		$this->redirect("/cal/" . $cal->getId());
 	}
+	
+	public function executeNHLSpider(sfWebRequest $request) {	
+ 		$this->restrictAccess();
+		$this->outLines = Utils::runNHLSpider();
+		$this->setLayout(false);
+	}	
 }
 
 	
