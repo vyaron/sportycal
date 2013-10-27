@@ -116,11 +116,16 @@ class NHLSpider extends AbstractSpider {
 	public function saveTeam($teamName, $teamGames) {
 		$this->teamName = $teamName;
 		foreach ($teamGames as $teamGame) {
+			$position = "Away";
+			if ($teamName == $teamGame->homeTeam) {
+				$position = "Home";
+			}
 			$csvLine = 	$teamGame->visitTeam .CSV_SEP .
-			$teamGame->homeTeam .CSV_SEP .
-			$teamGame->date .CSV_SEP .
-			$teamGame->time .CSV_SEP .
-			$teamGame->timeZone;
+						$teamGame->homeTeam .CSV_SEP .
+						$teamGame->date . CSV_SEP .
+						$teamGame->time . CSV_SEP .
+						$teamGame->timeZone . CSV_SEP .
+						$position;
 	
 			$this->addOutputCsv($csvLine);
 		}

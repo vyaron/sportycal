@@ -65,7 +65,7 @@
     <a href="<?php echo url_for('admin/eSpiderMensCollegeBasketball') ?>">E-Spider - Mens College Basketball</a>&nbsp;&nbsp;|&nbsp;&nbsp;
     <a href="<?php echo url_for('admin/sSpider') ?>">Soccernet-Spider</a>&nbsp;&nbsp;|&nbsp;&nbsp;
     <a href="<?php echo url_for('admin/espnscrumSpider') ?>">Rogby-Spider</a>&nbsp;&nbsp;|&nbsp;&nbsp;
-	<a href="<?php echo url_for('admin/nHLSpider') ?>">NHL-Spider</a>&nbsp;&nbsp;|&nbsp;&nbsp;    
+	<a href="<?php echo url_for('admin/nHLSpider') ?>">NHL-Spider</a>    
 </div>
 
 <div class="divSimple">
