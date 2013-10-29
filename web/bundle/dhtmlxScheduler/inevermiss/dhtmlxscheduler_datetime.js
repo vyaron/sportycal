@@ -20,7 +20,7 @@ scheduler.form_blocks.datetime = {
 		
 		var reminderHtml = '';
 		if (cfg.reminder) {
-			reminderHtml = '<select class="reminder" name="reminder" title="reminder"><option value="1">on start</option><option value="60">1 Hours</option><option value="240">4 Hours</option><option value="1440">1 Day</option></select>';
+			reminderHtml = '<select class="reminder" name="reminder" title="reminder"><option value="1">on start</option><option value="60">1 Hour</option><option value="240">4 Hours</option><option value="1440">1 Day</option></select>';
 		}
 		
 		var sectionHtml = '<div class="dhx_section_datetime dhx_cal_ltext" style="height:' + height + 'px;">';

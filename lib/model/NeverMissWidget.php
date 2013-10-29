@@ -16,7 +16,7 @@ class NeverMissWidget{
 	
 		if ($cal){
 			$code = '<div class="nm-follow" data-cal-id="' . $cal->getId() . '" data-language="' . $language . '" data-btn-style="' . $btnStyle . '" data-btn-size="' . $btnSize . '" data-color="' . $color . '" data-upcoming="' . $upcoming . '"></div>' . "\n";
-			$code .= '<script>(function(d, s, id) {var js, fjs = d.getElementsByTagName(s)[0];if (d.getElementById(id)) return;js = d.createElement(s); js.id = id;js.src = "//' . $scriptUrl . '";fjs.parentNode.insertBefore(js, fjs);}(document, \'script\', \'never-miss-jssdk\'));</script>';
+			$code .= '<script>(function(d, s, id) {var js, fjs = d.getElementsByTagName(s)[0];if (d.getElementById(id)) return;js = d.createElement(s); js.id = id;js.src = "http://' . $scriptUrl . '";fjs.parentNode.insertBefore(js, fjs);}(document, \'script\', \'never-miss-jssdk\'));</script>';
 	
 		}
 	

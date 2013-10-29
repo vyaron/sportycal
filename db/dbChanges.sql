@@ -1,3 +1,6 @@
+----------------------------DONE ON PROD-------------------------------------------------------
+UPDATE `evento`.`partner` SET `licence_code` = 'D',`licence_ends_at` = '2014-11-28 00:00:00' WHERE `partner`.`id` =2047;
+----------------------------DONE ON PROD-------------------------------------------------------
 ALTER TABLE `wix` ADD `is_show_cal_name` BOOLEAN NOT NULL DEFAULT FALSE AFTER `bg_opacity` ;
 ----------------------------DONE ON PROD-------------------------------------------------------
 INSERT INTO `evento`.`category_link` (`id`, `category_id`, `type`, `txt`, `url`, `target_url`) VALUES (NULL, '753', 'website', 'FTBPro FOOTBALL NEWS', 'http://www.ftbpro.com', 'http://www.ftbpro.com');
