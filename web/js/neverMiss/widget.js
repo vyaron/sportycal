@@ -4,14 +4,21 @@ function updateWidgetData(){
 	var attrName = 'data-' + el.attr('name');
 	var val = el.val();
 	
-	var regExp = new RegExp('(' + attrName + '=")(\\w+)');
+	var widgetDivEl = jQuery('.nm-follow');
+	widgetDivEl.attr(attrName, val);
+	
+	for (var i=0; i< widgetDivEl[0].attributes.length; i++){
+		if (widgetDivEl[0].attributes[i].value == 'default' || !widgetDivEl[0].attributes[i].value) widgetDivEl.removeAttr(widgetDivEl[0].attributes[i].name);
+	}
 
+	
+	widgetDivEl.html('');
+	
+	
 	var copyJsCode = jQuery('#copy-js-code');
-
-	var newVal = copyJsCode.val().replace(regExp, '$1' + val);
+	var newVal = widgetDivEl[0].outerHTML + copyJsCode.text().match('<script>.+?</script>')[0];
 	copyJsCode.text(newVal);
 	
-	jQuery('.nm-follow').attr(attrName, val);
 	if (iNeverMiss && iNeverMiss.reload) iNeverMiss.reload();
 }
 
@@ -45,8 +52,6 @@ function styleChanged(){
 	} else {
 		if (this.value == 'only_icon') jQuery('#customize-prop-btn-size .customize-prop').addClass('customize-prop-icon');
 		else jQuery('#customize-prop-btn-size .customize-prop').removeClass('customize-prop-icon');
-			
-
 		
 		jQuery('#customize-option-color-yellow').show();
 		jQuery('#customize-prop-btn-size').show();
