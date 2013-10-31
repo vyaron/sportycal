@@ -23,7 +23,7 @@ body{/*padding-top: 80px;*/ font-size: 12px; font-family: arial; color: #666;}
 
 hr{border-bottom: 1px solid #ffc229; border-top: none;}
 
-h2{text-transform: uppercase; font-size: 38px; margin-bottom: 25px; font-weight: normal;}
+h2{text-transform: uppercase; font-size: 35px; margin-bottom: 25px; font-weight: normal;}
 h2 .color-y{font-weight: bold;}
 h2 .btn.btn-success{font-weight: normal; margin-top: 4px;}
 

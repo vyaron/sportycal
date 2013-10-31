@@ -77,6 +77,7 @@ class wActions extends sfActions{
 		$isDark = ($request->getParameter('color')) == 'dark' ? true : false;
 		$isMobile = $request->getParameter('isMobile', Utils::clientIsMobile());
 		$language = $request->getParameter('language');
+		$title = $request->getParameter('title');
 		$isRTL = ($language == NeverMissWidget::LANGUAGE_HEBREW) ? true : false;
 		
 		if ($calId) $cal = Doctrine::getTable('Cal')->find($calId);
@@ -94,6 +95,7 @@ class wActions extends sfActions{
 		$this->isDark = $isDark;
 		$this->isMobile = $isMobile;
 		$this->isRTL = $isRTL;
+		$this->title = $title;
 		
 		$this->setLayout('cleanLayout');
 		

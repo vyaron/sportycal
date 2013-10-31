@@ -70,7 +70,7 @@
 				
 				<div class="cb"></div>
 				
-				<p class="pull-right"><span class="subscribers-text">Total Subscribers <span class="subscribers-count"><span class="<?php echo ($isReachedMaxSubscribers) ? 'warning' : '';?>"><?php echo number_format($subscribers);?></span>/<?php echo number_format($licenece->getMaxSubscribers());?></span></span> <a class="btn btn-success btn-large" href="<?php echo url_for('nm/pricing');?>">Upgrade account</a></p>
+				<p class="pull-right"><span class="subscribers-text">Total Subscribers <span class="subscribers-count"><span class="<?php echo ($isClosedMaxSubscribers) ? 'warning' : '';?>"><?php echo number_format($subscribers);?></span>/<?php echo number_format($licenece->getMaxSubscribers());?></span></span> <a class="btn btn-success btn-large" href="<?php echo url_for('nm/pricing');?>">Upgrade account</a></p>
 			</div>
 		</div>
 	</div>

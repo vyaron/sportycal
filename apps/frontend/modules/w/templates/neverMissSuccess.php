@@ -247,6 +247,9 @@
 			
 			var isMobile = el.getAttribute('data-is-mobile');
 			
+			var title = el.getAttribute('data-title');
+			if (title) title = encodeURIComponent(title);
+			
 			var width = el.getAttribute('data-width');
 			var height = el.getAttribute('data-height');
 			var src = el.getAttribute('data-src');
@@ -267,7 +270,7 @@
 			if (btnStyle == 'list'){
 				var w = width ? width : '200';
 				var h = height ? height : '350';
-				iframes = '<div style="position: relative; height: ' + h + 'px; width: ' + w + 'px;"><iframe id="' + id +'" src="' + NEVER_MISS_WIDGET_LIST_URL + (ref ? ('/ref/' + ref) : '') + (calId ? ('/calId/' + calId) : '') + (ctgId ? ('/ctgId/' + ctgId) : '') + '/popupId/' + id_bubble + (language ? ('/language/' + language) : '') + (btnStyle ? ('/btnStyle/' + btnStyle) : '') + (btnSize ? ('/btnSize/' + btnSize) : '') + (color ? ('/color/' + color) : '') + (upcoming ? ('/upcoming/' + upcoming) : '') + (isMobile ? ('/isMobile/' + isMobile) : '') + (width ? ('/width/' + width) : '') + (height ? ('/height/' + height) : '') + (src ? ('/?src=' + encodeURIComponent(src)) : '') + '" frameborder="0" border="0" style="border: medium none; overflow: hidden; height: ' + h + 'px; width: ' + w + 'px;" scrolling="no" title="Never Miss"></iframe>';
+				iframes = '<div style="position: relative; height: ' + h + 'px; width: ' + w + 'px;"><iframe id="' + id +'" src="' + NEVER_MISS_WIDGET_LIST_URL + (ref ? ('/ref/' + ref) : '') + (calId ? ('/calId/' + calId) : '') + (ctgId ? ('/ctgId/' + ctgId) : '') + '/popupId/' + id_bubble + (language ? ('/language/' + language) : '') + (btnStyle ? ('/btnStyle/' + btnStyle) : '') + (btnSize ? ('/btnSize/' + btnSize) : '') + (color ? ('/color/' + color) : '') + (upcoming ? ('/upcoming/' + upcoming) : '') + (isMobile ? ('/isMobile/' + isMobile) : '') + (title ? ('/title/' + title) : '') + (width ? ('/width/' + width) : '') + (height ? ('/height/' + height) : '') + (src ? ('/?src=' + encodeURIComponent(src)) : '') + '" frameborder="0" border="0" style="border: medium none; overflow: hidden; height: ' + h + 'px; width: ' + w + 'px;" scrolling="no" title="Never Miss"></iframe>';
 			} else {
 				iframes = '<div style="position: relative; height: ' + (btn_height + upcoming_height) + 'px; width: ' + btn_width + 'px;"><iframe id="' + id +'" src="' + NEVER_MISS_WIDGET_URL + (ref ? ('/ref/' + ref) : '') + (calId ? ('/calId/' + calId) : '') + (ctgId ? ('/ctgId/' + ctgId) : '') + '/popupId/' + id_bubble + (language ? ('/language/' + language) : '') + (btnStyle ? ('/btnStyle/' + btnStyle) : '') + (btnSize ? ('/btnSize/' + btnSize) : '') + (color ? ('/color/' + color) : '') + (upcoming ? ('/upcoming/' + upcoming) : '') + (isMobile ? ('/isMobile/' + isMobile) : '') + (width ? ('/width/' + width) : '') + (height ? ('/height/' + height) : '') + (src ? ('/?src=' + encodeURIComponent(src)) : '') + '" frameborder="0" border="0" style="border: medium none; overflow: hidden; height: ' + (btn_height + upcoming_height) + 'px; width: ' + btn_width + 'px;" scrolling="no" title="Never Miss"></iframe>';
 				if (!isMobile) iframes += '<iframe id="' + id_bubble +'" src="' + NEVER_MISS_WIDGET_BUBBLE_URL + (ref ? ('/ref/' + ref) : '') + (calId ? ('/calId/' + calId) : '') + (ctgId ? ('/ctgId/' + ctgId) : '') + '/isBubble/true/bubblePos/'+ bubbleClassPos + '/popupId/' + id_bubble + (language ? ('/language/' + language) : '') + '" frameborder="0" border="0" style="border: medium none; overflow: hidden; height: ' + BUBBLE_HEIGHT + 'px; width: '+ BUBBLE_WIDTH +'px; max-width:none; position:absolute; z-index:9999; display:none;" scrolling="no" title="Never Miss"></iframe></div>';

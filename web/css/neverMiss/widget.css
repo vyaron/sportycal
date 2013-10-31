@@ -1,5 +1,79 @@
-@CHARSET "utf-8";
+body{background-color: #f2f2f2;}
 
+.col-left, .col-right{width: 50%;}
+.col-left{float: left;}
+.col-right{float: right;}
+.col-right h2, .col-right .content{margin-left: 32px;}
+
+
+#customize-wrapper h2, #preview-wrapper h2{line-height: 40px; height: 40px;}
+
+#customize-wrapper hr, #preview-wrapper hr{margin: 0; height: 1px;}
+#customize hr{height: 2px; border-bottom-color: #cbcbcb; width: 410px;}
+
+
+
+#customize, #preview{height: 475px;}
+#preview{background: 0 -1px no-repeat url("/images/neverMiss/widget/widget-bg.png");  position: relative; overflow:auto;}
+#widget{position: absolute; width: 130px; height: 40px; left: 50%; top:50%; margin-left: -65px; margin-top: -20px;}
+#widget.list{margin-top: 0; top:10px; width: 200px; margin-left: -100px;}
+
+#customize{font-family: SignikaRegular; font-size: 14px;}
+
+#customize input, #customize select{height: 20px; padding: 0 6px; font-size: 14px;}
+
+.customize-prop{margin-top:15px; margin-bottom:12px;}
+.customize-prop-padding{padding: 30px 0;}
+.customize-prop .customize-label{margin-top: 25px;}
+.customize-label{width: 70px;}
+.customize-label, .customize-option{float: left;}
+.customize-option{width: 117px; text-align: center; cursor: pointer;}
+.customize-option-title{font-family: SignikaSemibold; text-transform: uppercase; font-size: 11px; line-height: 11px;}
+
+.customize-option-checkbox{width: 10px; height: 10px; background-repeat: no-repeat; background-image: url("/images/neverMiss/widget/radio.png"); background-position: 0 -10px; margin: 0 auto; margin-top: 10px;}
+.customize-option:hover .customize-option-checkbox, .customize-option-checkbox.checked{background-position: 0 0;}
+
+.customize-option-title-icon{display: none;}
+.customize-prop-icon .customize-option-title-btn{display: none;}
+.customize-prop-icon .customize-option-title-icon{display: inline;}
+
+.customize-option-icon{background-position: center 0; background-repeat: no-repeat; height: 36px; margin-top: 12px;}
+.customize-option-icon-icon, .customize-option-icon-yellow, .customize-prop-icon .customize-option-icon-size-small{background-image: url("/images/neverMiss/widget/icon-yellow.png");}
+.customize-option-icon-button{background-image: url("/images/neverMiss/widget/button.png");}
+.customize-option-icon-list{background-image: url("/images/neverMiss/widget/event-list.png");}
+.customize-option-icon-default{background-image: url("/images/neverMiss/widget/icon-gray.png");}
+.customize-option-icon-dark{background-image: url("/images/neverMiss/widget/icon-dark.png");}
+.customize-option-icon-size-default{background-image: url("/images/neverMiss/widget/btn-default.png");}
+.customize-option-icon-size-small{background-image: url("/images/neverMiss/widget/btn-small.png");}
+.customize-prop-icon .customize-option-icon-size-default{background-image: url("/images/neverMiss/widget/icon-default.png");}
+
+#customize-prop-color .customize-option-icon{margin-top: 22px;}
+#customize-prop-size .customize-label{width: 50px;}
+.customize-prop-size-wrapper{float: left;}
+.customize-prop-size-wrapper input{width: 85px; margin-right: 25px;}
+#title{width: 259px;}
+#language{width: 180px;}
+
+#code-wrapper h2{line-height: 35px; margin-top: 35px; margin-bottom: 15px;}
+#code-wrapper p{line-height: 14px;}
+#copy-js-code{margin-top: 37px; resize: none; height: 110px; font-size: 12px; line-height: 15px; width: 100%; webkit-box-sizing: border-box; -moz-box-sizing: border-box; box-sizing: border-box;}
+
+@media (max-width: 979px) {
+	#customize hr{width: 330px;}
+	.customize-option{width: 90px;}
+	#customize-prop-btn-size .customize-option{width: 117px;}
+}
+
+@media (max-width: 767px) {
+	.col-left, .col-right{width: 100%; float: none; height: auto;}
+	.col-right h2, .col-right .content{margin-left: 0;}
+	#customize-wrapper h2, #preview-wrapper h2{height: auto; line-height: auto;}
+	#customize{height: auto;}
+	#customize hr{width: auto;}
+	#copy-js-code{margin-top: 10px;}
+}
+
+/*
 body{background-color: #f2f2f2;}
 
 #copy-js-code, #message{resize: none; height: 50px; font-size: 12px; line-height: 15px; width: 100%;}
@@ -15,3 +89,4 @@ body{background-color: #f2f2f2;}
 
 #widget-bg{background: 0 0 no-repeat url("/images/neverMiss/widget/widgets-bg.jpg"); width: 460px; min-height: 240px; display: block; position: relative; margin-top: 70px;}
 #desktop-widget{padding-top: 100px; padding-left: 160px;}
+*/

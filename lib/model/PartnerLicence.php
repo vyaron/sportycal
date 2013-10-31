@@ -107,7 +107,6 @@ class PartnerLicence{
 	
 	public function getMaxSubscribers(){
 		$maxSubscribers =  $this->plan['max_subscribers'];
-		
 		if ($this->isEnded()) $maxSubscribers = self::$PLANS[self::DEFAULT_PLAN]['max_subscribers'];
 
 		return $maxSubscribers;
@@ -136,6 +135,11 @@ class PartnerLicence{
 	
 	public function isEnded(){
 		return ($this->endes_at && time() > $this->endes_at);
+	}
+	
+	public function isClosedMaxSubscribers($num){
+		$maxSubscribers = $this->getMaxSubscribers();
+		return (!($maxSubscribers == self::UNLIMITED) && $num >= ($maxSubscribers * 0.8)) ? true : false;
 	}
 	
 	public function isReachedMaxSubscribers($num){

@@ -302,6 +302,7 @@ class nmActions extends sfActions{
 		}
 		
 		$this->licenceError = $licenceError;
+		$this->isClosedMaxSubscribers = $partner->isClosedMaxSubscribers();
 		$this->subscribers = $partner->getSubscribers();
 		$this->calList = $calList;
 		
@@ -613,28 +614,42 @@ class nmActions extends sfActions{
 		$this->setTemplate('loginAndRegister', 'nm');
 	}
 	
+	public function executeSignUpToSave(sfWebRequest $request){
+		$user = UserUtils::getLoggedIn();
+		
+		$this->calId = $request->getParameter('calId');
+		$this->forward404Unless($cal = Doctrine::getTable('Cal')->find(array($this->calId)), sprintf('Object cal does not exist (%s).', $this->calId));
+		
+		if (!$user){
+			$this->code = NeverMissWidget::getWidgetCode($cal, $this->language, $this->btnStyle, $this->btnSize, $this->color, $this->upcoming);
+			
+			$this->registerForm = new NmRegisterForm();
+			$this->loginForm = new LoginForm();
+			$this->isShowLogin = false;
+		} else {
+			$this->redirect('/nm/widget/?calId=' . $this->calId);
+		}
+	}
+	
 	public function executeWidget(sfWebRequest $request){
 		$user = UserUtils::getLoggedIn();
 		
 		$this->calId = $request->getParameter('calId');
+		if (!$user) $this->redirect('/nm/signUpToSave/?calId=' . $this->calId);
+		
 		$this->language = $request->getParameter('language', NeverMissWidget::DEFAULT_LANGUAGE);
 		$this->btnStyle = $request->getParameter('btn-style', NeverMissWidget::DEFAULT_VALUE);
 		$this->btnSize = $request->getParameter('btn-size', NeverMissWidget::DEFAULT_VALUE);
 		$this->color = $request->getParameter('color', NeverMissWidget::DEFAULT_VALUE);
-		$this->upcoming = $request->getParameter('upcoming', 3);
 		
 		$this->forward404Unless($cal = Doctrine::getTable('Cal')->find(array($this->calId)), sprintf('Object cal does not exist (%s).', $this->calId));
 		
-		$this->code = NeverMissWidget::getWidgetCode($cal, $this->language, $this->btnStyle, $this->btnSize, $this->color, $this->upcoming);
-		
-		$this->registerForm = new NmRegisterForm();
-		$this->loginForm = new LoginForm();
-		$this->isShowLogin = false;
-
 		if ($user) {
 			$cal->setAdoptive($user);
 			if ($cal->getDeletedAt()) $this->redirect('/nm/calList/');
 		}
+		
+		$this->code = NeverMissWidget::getWidgetCode($cal, $this->language, $this->btnStyle, $this->btnSize, $this->color);
 
 		$this->user = $user;
 	}

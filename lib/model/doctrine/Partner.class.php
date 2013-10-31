@@ -216,6 +216,19 @@ class Partner extends BasePartner
 		return $this->subscribersCount;
 	}
 	
+	public function isClosedMaxSubscribers(){
+		$isClosed = false;
+
+		if ($licence = $this->getLicence()){
+			$countSubscribers = $this->getSubscribers();
+		
+			$licence = $this->getLicence();
+			$isClosed = $licence->isClosedMaxSubscribers($countSubscribers);
+		}
+		
+		return $isClosed;
+	}
+	
 	public function isReachedMaxSubscribers(){
 		$isReached = false;
 		

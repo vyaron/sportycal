@@ -7,4 +7,5 @@
 	'isMobile' => $isMobile,
 	'isReachedMaxSubscribers' => $isReachedMaxSubscribers,
 	'isRTL' => $isRTL,
+	'title' => $title,
 ));?>
