@@ -38,7 +38,7 @@ function createCalendar(e){
 function editCalendar(e){
 	if (e) e.preventDefault();
 	
-	var calId = $('input[name="cal_id"]').val();
+	var calId = $('input[name="cal_id"], select[name="cal_id"]').val();
 	var popup = window.open(BASE_URL + '/nm/calEdit/id/' + calId + '/?isPopup=1', 'Edit', 'width=980,height=870,scrollbars=1');
 	popup.focus();
 }
