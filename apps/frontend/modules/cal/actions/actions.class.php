@@ -743,7 +743,7 @@ class calActions extends sfActions
   	}
   	
   	if ($calType == Cal::TYPE_ANY) {
-		echo "Here is a link that you can copy and paste in your favorite calendar application (Yahoo, Lotus, etc) in order to subscribe to this calendar:  $url ";
+		echo "Here is a link that you can copy and paste in your favorite calendar application (Yahoo, Lotus, etc) in order to subscribe to this calendar:<br/>$url ";
   		return sfView::NONE;  		
   	} else {
   		$this->redirect($url);
