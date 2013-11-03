@@ -252,7 +252,10 @@ class Cal extends BaseCal
     public function getLinksAsJson($partnerId) {
     	$ctg = $this->getCategory();
     	$links = $ctg->getLinks();
-    	$linksJson = CategoryLink::makeJSON($this->getId(), $partnerId, $links);
+    	
+    	$data = array('CAL_NAME' => $this->getName());
+    	
+    	$linksJson = CategoryLink::makeJSON($this->getId(), $partnerId, $links, $data);
         return $linksJson;        
     }
     public function getLinksAsHtml($userCal) {
@@ -266,8 +269,10 @@ class Cal extends BaseCal
             $userCalId = $userCal->getId();
         }
         
+        $data = array('CAL_NAME' => $this->getName());
+        
         foreach ($links as $link) {
-            $result .= "{$link->getTxt()} - \n" .
+            $result .= "{$link->getTxtToDisplay($data)} - \n" .
             	$link->getUrlToGive($this->getId(), $userCalId) . "\n\n";
         }
         return $result;        

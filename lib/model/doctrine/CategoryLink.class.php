@@ -13,23 +13,23 @@
 class CategoryLink extends BaseCategoryLink
 {
 	
-	public function toJSON($calId, $partnerId) {
+	public function toJSON($calId, $partnerId, $data=array()) {
 
 		$url = sfConfig::get('app_domain_full') . "/cal/forwardTo/cal/$calId/link/{$this->getId()}/ref/$partnerId";		
 		
 		$strJson = '{';
-		$strJson .= '"name": "'.$this->getTxt().'"';		
+		$strJson .= '"name": "'.$this->getTxtToDisplay($data).'"';		
 		$strJson .= ',"type": "'.$this->getType().'"';		
 		$strJson .= ',"url": "'.$url.'"';		
 		$strJson .= '}';
 		return $strJson;
 		
 	}
-	public static function makeJSON($calId, $partnerId, $links) {
+	public static function makeJSON($calId, $partnerId, $links, $data=array()) {
 		// Note: need this space in case that links is empty 
     	$linksJson = '[ ';
         foreach ($links as $link) {
-            $linksJson .= $link->toJSON($calId, $partnerId) . ","; 
+            $linksJson .= $link->toJSON($calId, $partnerId, $data) . ","; 
         }
         $linksJson = substr($linksJson, 0, -1);
         $linksJson .= ']';
@@ -48,6 +48,16 @@ class CategoryLink extends BaseCategoryLink
 		}
 		$url .= "link/{$this->getId()}"; 
 		return $url;
+	}
+	
+	public function getTxtToDisplay($data=array()){
+		$txt = $this->getTxt();
+		
+		foreach ($data as $key => $value){
+			$txt = str_replace('{{' . $key . '}}', $value, $txt);
+		}
+
+		return $txt;
 	}
 	
 }
