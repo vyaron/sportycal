@@ -195,6 +195,11 @@ function loadCalendar(){
 	scheduler.attachEvent('onEventChanged', setEventList);
 	scheduler.attachEvent('onEventDeleted', setEventList);
 	
+	scheduler.attachEvent('onViewChange', function(){
+		if (jQuery('#scheduler_here .dhx_now, #scheduler_here .dhx_scale_holder_now').length) jQuery('#cal-today-btn').css('visibility' , 'hidden');
+		else jQuery('#cal-today-btn').css('visibility' , 'visible');
+	});
+
 	
 	jQuery('#event-list').on('click', 'a[data-event-id]', function(e){
 		e.preventDefault();
