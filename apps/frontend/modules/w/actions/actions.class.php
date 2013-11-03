@@ -73,7 +73,7 @@ class wActions extends sfActions{
 		$ref = $request->getParameter('ref', 'widget');
 		$calId = $request->getParameter('calId');
 		$ctgId = $request->getParameter('ctgId');
-		$upcoming = $request->getParameter('upcoming', 5);
+		//$upcoming = $request->getParameter('upcoming', 5);
 		$isDark = ($request->getParameter('color')) == 'dark' ? true : false;
 		$isMobile = $request->getParameter('isMobile', Utils::clientIsMobile());
 		$language = $request->getParameter('language');
@@ -89,7 +89,7 @@ class wActions extends sfActions{
 		
 		$this->cal = $cal;
 		$this->partner = $partner;
-		$this->events = CalTable::getUpcomingEvents($cal, $ctg, $upcoming, true);
+		$this->events = CalTable::getUpcomingEvents($cal, $ctg, null, true);
 		$this->isReachedMaxSubscribers = $partner ? $partner->isReachedMaxSubscribers() : false;
 		$this->ref = $ref;
 		$this->calId = $calId;
