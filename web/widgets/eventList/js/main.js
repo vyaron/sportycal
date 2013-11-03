@@ -10,8 +10,17 @@ function calcWidgetHeight(){
 		.mCustomScrollbar("update");
 }
 
+function showDesc(e){
+	if (e) e.preventDefault();
+	
+	$(this).parent().addClass('open');
+	calcWidgetHeight();
+}
+
 $(document).ready(function(){
 	$("#events").mCustomScrollbar();
+	
+	$('.desc-btn').click(showDesc);
 	
 	calcWidgetHeight();
 	$(window).resize(calcWidgetHeight);

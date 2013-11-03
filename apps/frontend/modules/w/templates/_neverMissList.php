@@ -17,6 +17,9 @@ $textColor = Utils::iff($textColor, null);
 $bgColor = Utils::iff($bgColor, null);
 $bgOpacity = Utils::iff($bgOpacity, null);
 $bgIsTransparent = Utils::iff($bgIsTransparent, false);
+
+$cal = Utils::iff($cal, null);
+$partner = Utils::iff($partner, null);
 ?>
 <style type="text/css">
 	<?php if ($isDark):?>
@@ -42,11 +45,13 @@ $bgIsTransparent = Utils::iff($bgIsTransparent, false);
 	
 	<?php if ($lineColor):?>
 	#events li, h1{border-bottom-color: <?php echo $lineColor;?>;}
+	#events li .desc .desc-txt{border-top-color: <?php echo $lineColor;?>;}
 	.mCSB_scrollTools .mCSB_dragger .mCSB_dragger_bar, .mCSB_scrollTools .mCSB_dragger:hover .mCSB_dragger_bar{background-color: <?php echo $lineColor;?>;}
 	<?php endif;?>
 	
 	<?php if ($textColor):?>
 	body{color: <?php echo $textColor;?>;}
+	a{color: <?php echo $textColor;?>;}
 	.cal-btn, .cal-btn:hover{color: <?php echo $textColor;?>;}
 	<?php endif;?>
 	
@@ -76,6 +81,12 @@ $bgIsTransparent = Utils::iff($bgIsTransparent, false);
 				<div class="time"><?php echo $event->isAllDay() ? '' : $event->getStartTimeForDisplay();?></div>
 			</div>
 			<div class="name"><?php echo $event->getName();?></div>
+			<?php if ($event->getDescription() || ($cal && $cal->getDescription())):?>
+			<div class="desc">
+				<a class="desc-btn" href="#">Read More</a>
+				<div class="desc-txt"><?php echo nl2br($event->getDescriptionForCal($cal, null, $partner, null, null, null));?></div>
+			</div>
+			<?php endif;?>
 		</li>
 		<?php endforeach;?>
 	</ul>

@@ -9,7 +9,10 @@
 	'textColor' => $textColor,
 	'bgColor' => $bgColor,
 	'bgOpacity' => $bgOpacity,
-	'bgIsTransparent' => $bgIsTransparent
+	'bgIsTransparent' => $bgIsTransparent,
+	
+	'cal' => $cal,
+	'partner' => $partner
 ));?>
 
 <?php 

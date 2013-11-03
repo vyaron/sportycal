@@ -125,11 +125,12 @@ class wixActions extends sfActions{
 		$upcoming = $this->wix->getUpcomingForDisplay();
 		$isMobile = $request->getParameter('isMobile', Utils::clientIsMobile());
 		if ($calId) $cal = Doctrine::getTable('Cal')->find($calId);
-		
 		if (!$cal) die();
 		
 		$partner = $cal ? $cal->getPartner() : $ctg->getPartner();
 		
+		$this->cal = $cal;
+		$this->partner = $parnter;
 		$this->events = CalTable::getUpcomingEvents($cal, $ctg, null, true);
 		$this->isReachedMaxSubscribers = ($partner && !Wix::isPremium($this->wixData)) ? $partner->isReachedMaxSubscribers() : false;
 		$this->calId = $calId;

@@ -1,6 +1,8 @@
 body, #footer{background-color: #fff;}
 body{margin: 0; padding: 0; font-family: 'PT Sans Narrow'; font-weight: 400; overflow: hidden;}
 
+a{color:#000;}
+
 #footer, #container{min-width: 200px;}
 
 ul{padding-left: 0; padding-right: 0;}
@@ -17,6 +19,10 @@ h1{font-weight: 400; font-size: 22px; line-height:22px; padding-top:17px; paddin
 #events li .date{float: left;}
 #events li .time{float: right;}
 #events li .name{text-transform: uppercase; padding-bottom: 4px;}
+#events li .desc{padding-bottom: 4px;}
+#events li .desc .desc-btn, #events li .desc.open .desc-txt{display: block;}
+#events li .desc .desc-txt, #events li .desc.open .desc-btn{display: none;}
+#events li .desc .desc-txt{border-top: 1px dashed #ffc229;}
 
 
 #footer{position: fixed; left: 0; bottom: 0; width: 100%;}

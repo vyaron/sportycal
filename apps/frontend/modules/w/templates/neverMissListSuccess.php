@@ -8,4 +8,7 @@
 	'isReachedMaxSubscribers' => $isReachedMaxSubscribers,
 	'isRTL' => $isRTL,
 	'title' => $title,
+	
+	'cal' => $cal,
+	'partner' => $partner
 ));?>
