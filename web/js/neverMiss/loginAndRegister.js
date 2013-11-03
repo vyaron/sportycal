@@ -61,11 +61,12 @@ function handleRegisterForm(){
 				data : registerForm.serialize()
 			}).done(function(res){
 				registerForm.find('[type="submit"]').removeClass('loading');
-				setGlobalAlert(res);
 				
 				if (res){
 					if (res.errors) registerForm.data('validator').showErrors(res.errors);
 					else if (res.success) reloadLoginRegister();
+					
+					if (!res.success) setGlobalAlert(res);
 				}
 			});
 		}
@@ -90,11 +91,13 @@ function handleLoginForm(){
 			}).done(function(res){
 				loginForm.find('[type=submit]').removeClass('loading');
 				
-				setGlobalAlert(res);
+				//setGlobalAlert(res);
 				
 				if (res){
 					if (res.errors) loginForm.data('validator').showErrors(res.errors);
 					else if (res.success) reloadLoginRegister();
+					
+					if (!res.success) setGlobalAlert(res);
 				}
 			});
 		}

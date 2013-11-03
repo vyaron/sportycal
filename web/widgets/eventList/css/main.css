@@ -1,7 +1,8 @@
 body, #footer{background-color: #fff;}
-body{margin: 0; padding: 0; font-family: 'PT Sans Narrow'; font-weight: 400; overflow: hidden;}
+body{margin: 0; padding: 0; /*font-family: 'PT Sans Narrow';*/ font-weight: 400; overflow: hidden;}
 
 a{color:#000;}
+.cb{clear:both;}
 
 #footer, #container{min-width: 200px;}
 
@@ -18,11 +19,14 @@ h1{font-weight: 400; font-size: 22px; line-height:22px; padding-top:17px; paddin
 #events li .date, #events li .time{font-weight: 700;}
 #events li .date{float: left;}
 #events li .time{float: right;}
-#events li .name{text-transform: uppercase; padding-bottom: 4px;}
+#events li .name{text-transform: uppercase; margin-bottom: 4px;}
 #events li .desc{padding-bottom: 4px;}
-#events li .desc .desc-btn, #events li .desc.open .desc-txt{display: block;}
-#events li .desc .desc-txt, #events li .desc.open .desc-btn{display: none;}
-#events li .desc .desc-txt{border-top: 1px dashed #ffc229; padding-top: 4px;}
+#events li .desc .desc-open-btn, #events li .desc.open .desc-txt, #events li .desc.open .desc-close-btn{display: block;}
+#events li .desc .desc-txt, #events li .desc.open .desc-open-btn, #events li .desc .desc-close-btn{display: none;}
+#events li .desc .desc-txt{margin-top: 10px; font-size: 10px;}
+
+#events li .desc .desc-open-btn{text-align: right; font-size: 10px; text-decoration: none; color:#ffc229;}
+#events li .desc .desc-close-btn{width: 0; height:0; background:none; border: 5px solid transparent; border-bottom-width:8px; border-bottom-color: #ffc229; float:right; cursor: pointer;}
 
 
 #footer{position: fixed; left: 0; bottom: 0; width: 100%;}

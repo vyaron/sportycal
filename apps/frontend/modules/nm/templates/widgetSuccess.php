@@ -103,7 +103,7 @@ use_stylesheet('/css/neverMiss/widget.css');
 								</div>
 								<div class="customize-prop-size-wrapper">
 									<label class="customize-label">Height</label>
-									<input type="text" name="height" value="350"/>
+									<input type="text" name="height" value="450"/>
 								</div>
 							</div>
 						</div>

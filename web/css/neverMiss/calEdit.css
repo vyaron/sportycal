@@ -56,7 +56,7 @@ h2 .btn.btn-success{margin-top: 6px; font-weight: normal;}
 
 .cal-btn-view{margin-right: 5px;}
 
-#cal-today-btn{margin-right: 35px;}
+#cal-today-btn{margin-left: 35px;}
 
 #clear-events{display: inline-block; float: right; color: #333; background: no-repeat 0 center url("/images/neverMiss/calEdit/trash.png"); padding-left: 20px;}
 

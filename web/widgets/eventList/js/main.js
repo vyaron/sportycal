@@ -17,10 +17,18 @@ function showDesc(e){
 	calcWidgetHeight();
 }
 
+function hideDesc(e){
+	if (e) e.preventDefault();
+	
+	$(this).parent().removeClass('open');
+	calcWidgetHeight();
+}
+
 $(document).ready(function(){
 	$("#events").mCustomScrollbar();
 	
-	$('.desc-btn').click(showDesc);
+	$('.desc-open-btn').click(showDesc);
+	$('.desc-close-btn').click(hideDesc);
 	
 	calcWidgetHeight();
 	$(window).resize(calcWidgetHeight);

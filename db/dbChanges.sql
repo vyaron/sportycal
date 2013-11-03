@@ -1,3 +1,6 @@
+UPDATE `category_link` SET `txt` = 'Follow {{CAL_NAME}} news by the fans on FTBPro' WHERE `txt` = 'FTBPro FOOTBALL NEWS';
+UPDATE `category_link` SET `txt` = 'Buy a ticket to {{CAL_NAME}} games' WHERE `txt` = 'Buy a Ticket';
+UPDATE `category_link` SET `txt` = 'Visit {{CAL_NAME}} official website' WHERE `txt` = 'Web Site';
 ----------------------------DONE ON PROD-------------------------------------------------------
 UPDATE `evento`.`partner` SET `licence_code` = 'D',`licence_ends_at` = '2014-11-28 00:00:00' WHERE `partner`.`id` =2047;
 ----------------------------DONE ON PROD-------------------------------------------------------

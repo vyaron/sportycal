@@ -1,5 +1,5 @@
 <?php 
-use_stylesheet('http://fonts.googleapis.com/css?family=PT+Sans+Narrow:400,700');
+//use_stylesheet('http://fonts.googleapis.com/css?family=PT+Sans+Narrow:400,700');
 use_stylesheet('/bundle/custom-scrollbar-plugin/css/jquery.mCustomScrollbar.css');
 use_stylesheet('/widgets/eventList/css/main.css');
 
@@ -44,7 +44,7 @@ $partner = Utils::iff($partner, null);
 	<?php endif;?>
 	
 	<?php if ($lineColor):?>
-	#events li, h1{border-bottom-color: <?php echo $lineColor;?>;}
+	#events li, h1, #events li .desc .desc-close-btn{border-bottom-color: <?php echo $lineColor;?>;}
 	#events li .desc .desc-txt{border-top-color: <?php echo $lineColor;?>;}
 	.mCSB_scrollTools .mCSB_dragger .mCSB_dragger_bar, .mCSB_scrollTools .mCSB_dragger:hover .mCSB_dragger_bar{background-color: <?php echo $lineColor;?>;}
 	<?php endif;?>
@@ -83,8 +83,10 @@ $partner = Utils::iff($partner, null);
 			<div class="name"><?php echo $event->getName();?></div>
 			<?php if ($event->getDescription() || ($cal && $cal->getDescription())):?>
 			<div class="desc">
-				<a class="desc-btn" href="#">Read More</a>
+				<a class="desc-open-btn" href="#">read more&hellip;</a>
 				<div class="desc-txt"><?php echo nl2br($event->getDescriptionForCal($cal, null, $partner, null, null, null));?></div>
+				<div class="desc-close-btn" href="#">&nbsp;</div>
+				<div class="cb"></div>
 			</div>
 			<?php endif;?>
 		</li>
