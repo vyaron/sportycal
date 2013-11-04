@@ -1,9 +1,11 @@
+html, body{height: 100%;}
 body, #footer{background-color: #fff;}
 body{margin: 0; padding: 0; /*font-family: 'PT Sans Narrow';*/ font-weight: 400; overflow: hidden;}
 
 a{color:#000;}
 .cb{clear:both;}
 
+#container{position: relative; min-height: 100%;}
 #footer, #container{min-width: 200px;}
 
 ul{padding-left: 0; padding-right: 0;}
@@ -30,7 +32,7 @@ h1{font-weight: 400; font-size: 22px; line-height:22px; padding-top:17px; paddin
 #events li .desc .desc-close-btn{width: 0; height:0; background:none; border: 5px solid transparent; border-bottom-width:8px; border-bottom-color: #ffc229; float:right; cursor: pointer;}
 
 
-#footer{position: fixed; left: 0; bottom: 0; width: 100%;}
+#footer{position: absolute; left: 0; bottom: 0; width: 100%; z-index: 2;}
 #footer a.cal-btn{text-decoration: none;}
 #btns-title{background-color: #e5e5e5; color: #666; font-size: 13px; line-height: 13px; height: 13px;}
 .cal-btn, .cal-btn:hover{color: #333;}
