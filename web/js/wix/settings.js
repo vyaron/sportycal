@@ -56,6 +56,8 @@ function setValue(name, data){
 	if (name) {
 		$('input[name="' + name + '"]').val(data);
 		$('#settings-form').submit();
+		
+		if (name == 'bg_opacity') $('#bg_opacity_value').text(Math.floor(data * 100) + '%');
 	}
 }
 

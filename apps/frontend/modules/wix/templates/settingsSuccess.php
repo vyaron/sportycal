@@ -133,6 +133,8 @@ use_stylesheet('/bundle/wix/javascripts/components/glued-position-min/glued.min.
 	                        0<span id="bg_opacity" class="values slider" data-opacity="<?php echo $bgOpacity;?>"></span>100
 	                    </span>
 	                    
+	                    <span id="bg_opacity_value"><?php echo ($bgOpacity * 100) . '%';?></span>
+	                    
 	                    <span id="bg_is_transparent" class="checkbox" data-checked="<?php echo $bgIsTransparent?>">
                         	<span class="check"></span>
 	                        Transparent

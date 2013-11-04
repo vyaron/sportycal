@@ -751,6 +751,14 @@
         <source>add to calendar</source>
         <target>הוסף ללוח השנה</target>
       </trans-unit>
+      <trans-unit id="214">
+        <source>Location</source>
+        <target>מיקום</target>
+      </trans-unit>
+      <trans-unit id="215">
+        <source>read more</source>
+        <target>קרא עוד</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>

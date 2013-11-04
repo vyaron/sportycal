@@ -21,6 +21,7 @@ h1{font-weight: 400; font-size: 22px; line-height:22px; padding-top:17px; paddin
 #events li .time{float: right;}
 #events li .name{text-transform: uppercase; margin-bottom: 4px;}
 #events li .desc{padding-bottom: 4px;}
+#events li .desc .desc-txt p{margin: 0; margin-bottom: 3px;}
 #events li .desc .desc-open-btn, #events li .desc.open .desc-txt, #events li .desc.open .desc-close-btn{display: block;}
 #events li .desc .desc-txt, #events li .desc.open .desc-open-btn, #events li .desc .desc-close-btn{display: none;}
 #events li .desc .desc-txt{margin-top: 10px; font-size: 10px;}

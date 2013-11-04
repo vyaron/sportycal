@@ -41,6 +41,8 @@ $partner = Utils::iff($partner, null);
 	#events li .date{float: right;}
 	#events li .time{float: left;}
 	.cal-btn span{margin-left: 0; margin-right: 16px; background-position: right 20px;}
+	#events li .desc .desc-open-btn{text-align: left;}
+	#events li .desc .desc-close-btn{float: left;}
 	<?php endif;?>
 	
 	<?php if ($lineColor):?>
@@ -81,10 +83,13 @@ $partner = Utils::iff($partner, null);
 				<div class="time"><?php echo $event->isAllDay() ? '' : $event->getStartTimeForDisplay();?></div>
 			</div>
 			<div class="name"><?php echo $event->getName();?></div>
-			<?php if ($event->getDescription() || ($cal && $cal->getDescription())):?>
+			<?php if ($event->getLocation() || $event->getDescription() || ($cal && $cal->getDescription())):?>
 			<div class="desc">
-				<a class="desc-open-btn" href="#">read more&hellip;</a>
-				<div class="desc-txt"><?php echo nl2br($event->getDescriptionForCal($cal, null, $partner, null, null, null));?></div>
+				<a class="desc-open-btn" href="#"><?php echo __('read more')?>&hellip;</a>
+				<div class="desc-txt">
+					<?php echo ($event->getLocation()) ? '<p>' . __('Location') . ': ' . $event->getLocation() . '</p>' : ''?>
+					<?php echo ($event->getDescription() || ($cal && $cal->getDescription())) ? '<p>' .nl2br($event->getDescriptionForCal($cal, null, $partner, null, null, null)) . '</p>': '';?>
+				</div>
 				<div class="desc-close-btn" href="#">&nbsp;</div>
 				<div class="cb"></div>
 			</div>
