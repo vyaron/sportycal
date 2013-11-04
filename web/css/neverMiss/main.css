@@ -107,7 +107,7 @@ label.error, .error_list > li, textarea.error, input.error[type="text"], input.e
 .form-box h2 strong{color: #fff; font-weight: bold;}
 .form-box .help-block a, .form-box .help-block{color: #666; font-size: 14px;}
 .form-box .help-block a{text-decoration: underline;}
-.form-box .fb-login{display:block; margin:0 auto; margin-top: 46px; margin-bottom: 28px; text-align: center;}
+.form-box .fb-login{display:block; margin:0 auto; margin-top: 46px; margin-bottom: 28px; text-align: center; outline: none;}
 .form-box hr{border-top: 1px solid #cbcbcb; border-bottom: 1px solid #fff; margin: 28px auto;}
 
 /*facebook login*/
