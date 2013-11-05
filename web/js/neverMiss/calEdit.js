@@ -260,6 +260,22 @@ function loadCalendar(){
 	
 	dp.init(scheduler);
 	
+	//lightbox - don't POST on textarea enter
+	scheduler.getLightbox().onkeydown=function(e){
+		switch((e||event).keyCode){
+			case scheduler.keys.edit_save:
+				if ((e||event).shiftKey || (e||event).originalTarget.type == 'textarea') return;
+				scheduler.save_lightbox();
+				break;
+			case scheduler.keys.edit_cancel:
+				scheduler.cancel_lightbox();
+				break;
+			default:
+				break;
+		}
+	};
+	
+	
 	$('#cal-today-btn').click(function(e){
 		e.preventDefault();
 		

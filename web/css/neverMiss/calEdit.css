@@ -128,6 +128,7 @@ h2 .btn.btn-success{margin-top: 6px; font-weight: normal;}
 .dhx_cal_light .dhx_cal_lsection, .dhx_cal_light .dhx_cal_ltitle{display: none;}
 .dhx_cal_light .dhx_cal_ltext{padding: 5px 24px;}
 .dhx_cal_light .dhx_cal_ltext textarea, .dhx_cal_light .dhx_cal_ltext textarea:-moz-placeholder, .dhx_cal_light .dhx_cal_ltext.name input, .dhx_cal_light .dhx_cal_ltext.location input{font-size: 12px; line-height: 22px; padding:0 6px; font-family: SignikaRegular;}
+.dhx_cal_light .dhx_cal_ltext textarea{line-height: 14px;}
 .dhx_cal_light .dhx_cal_ltext.name input, .dhx_cal_light .dhx_cal_ltext.location input, .dhx_section_datetime input, .dhx_section_datetime select{color: #666; margin: 0; -webkit-box-sizing: border-box; -moz-box-sizing: border-box; box-sizing: border-box; height: 24px;}
 .dhx_cal_light .dhx_cal_ltext.name input, .dhx_cal_light .dhx_cal_ltext.location input{width: 100%;}
 .dhx_cal_ltext textarea, .dhx_cal_light .dhx_cal_ltext.location input{border: 1px solid #FFC229;}

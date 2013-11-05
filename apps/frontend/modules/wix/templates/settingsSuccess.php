@@ -32,7 +32,7 @@ use_stylesheet('/bundle/wix/javascripts/components/glued-position-min/glued.min.
 			
 			<?php if (!$user):?>
             <div class="login-panel">
-                <p class="create-account">Don't have an<br/>account? <a id="create-account" href="#"><strong>Create one</strong></a></p>
+                <p class="create-account">Don't have an account?<br/><a id="create-account" href="#"><strong>Create one</strong></a></p>
                 <button id="connect" class="submit btn connect">Connect account</button>
             </div>
             <?php endif;?>

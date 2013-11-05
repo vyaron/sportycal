@@ -150,18 +150,23 @@ class nmActions extends sfActions{
 	
 	public function executeCheckout(sfWebRequest $request){
 		$user = UserUtils::getLoggedIn();
+		$url = null;
 		
 		$planCode = $request->getParameter('c');
-		if (!$planCode || !$user || !$partner = $user->getPartner()) {
-			UserUtils::setRefererUrl('/nm/checkout/c/' . $planCode);
-			$url = '/nm/register';
-		} else {
-			$currLicence = $partner->getLicence();
-			$newLicence = new PartnerLicence($planCode, date('Y-m-d H:i:s', strtotime('+1 month +1 day')));
-			
-			if ($newLicence->isBetterThan($currLicence)) $url = PayPal::getSubscriptionUrl($planCode, $partner);
-			else $url = '/nm/calList';
+		
+		if ($planCode){
+			if (!$user || !$partner = $user->getPartner()) {
+				UserUtils::setRefererUrl('/nm/checkout/c/' . $planCode);
+				$url = '/nm/register';
+			} else {
+				$currLicence = $partner->getLicence();
+				$newLicence = new PartnerLicence($planCode, date('Y-m-d H:i:s', strtotime('+1 month +1 day')));
+				
+				if ($newLicence->isBetterThan($currLicence)) $url = PayPal::getSubscriptionUrl($planCode, $partner);
+				else $url = '/nm/calList';
+			}
 		}
+		
 		
 		if ($url) $this->redirect($url);
 		else $this->redirect('/');
