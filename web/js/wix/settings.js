@@ -39,7 +39,7 @@ function editCalendar(e){
 	if (e) e.preventDefault();
 	
 	var calId = $('input[name="cal_id"], select[name="cal_id"]').val();
-	var popup = window.open(BASE_URL + '/nm/calEdit/id/' + calId + '/?isPopup=1' (INSTANCE ? '&wixInstance=' + INSTANCE : ''), 'Edit', 'width=980,height=870,scrollbars=1');
+	var popup = window.open(BASE_URL + '/nm/calEdit/id/' + calId + '/?isPopup=1' + (INSTANCE ? '&wixInstance=' + INSTANCE : ''), 'Edit', 'width=980,height=870,scrollbars=1');
 	popup.focus();
 }
 

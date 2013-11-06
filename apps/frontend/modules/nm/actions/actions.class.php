@@ -387,6 +387,8 @@ class nmActions extends sfActions{
 	
 	public function executeCalCreate(sfWebRequest $request){
 		$isPopup = $request->getParameter('isPopup');
+		$wixInstance = $request->getParameter('wixInstance');
+		
 		$dateNow = date("Y-m-d g:i");
 		
 		$currCalId = UserUtils::getOrphanCalId();
@@ -408,7 +410,8 @@ class nmActions extends sfActions{
 		UserUtils::setOrphanCalId($cal->getId());
 		
 		$url = '/nm/calEdit/id/' . $cal->getId();
-		if ($isPopup) $url .= '/?isPopup=' . $isPopup;
+		if ($isPopup) $url .= '/isPopup/' . $isPopup;
+		if ($wixInstance) $url .= '/wixInstance/' . $wixInstance;
 		
 		$this->redirect($url);
 	}
