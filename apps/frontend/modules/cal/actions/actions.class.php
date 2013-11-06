@@ -746,7 +746,18 @@ class calActions extends sfActions
 		echo "Here is a link that you can copy and paste in your favorite calendar application (Yahoo, Lotus, etc) in order to subscribe to this calendar:<br/>$url ";
   		return sfView::NONE;  		
   	} else {
-  		$this->redirect($url);
+  		if ($calType == Cal::TYPE_OUTLOOK){
+  			//Fix for Firefox duble "open with" windows. Outlook redirect not working in IE!
+  			$this->getResponse()->clearHttpHeaders();
+  			$this->getResponse()->setContentType('text/calendar');
+  			$this->getResponse()->setHttpHeader('Content-Disposition: attachment; filename=' . ($fileName ? $fileName : 'cal') . '.ics');
+  			
+  			$t = file_get_contents(str_replace("webcal", "http", $url));
+  			echo $t;
+  			return sfView::NONE;
+  		} else {
+  			$this->redirect($url);
+  		}
   	}
   	
   }

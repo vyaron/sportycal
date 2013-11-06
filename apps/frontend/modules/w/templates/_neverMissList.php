@@ -38,7 +38,7 @@ $partner = Utils::iff($partner, null);
 	h1, #events li{margin-right: 0; margin-left: 30px;}
 	h1, #events li, #btns-title{padding-left: 0; padding-right: 16px;}
 	.mCustomScrollBox > .mCSB_scrollTools{right: auto; left: 2px;}
-	#events li .date{float: right;}
+	#events li .date{float: right; direction: ltr;}
 	#events li .time{float: left;}
 	.cal-btn span{margin-left: 0; margin-right: 16px; background-position: right 20px;}
 	#events li .desc .desc-open-btn{text-align: left;}
@@ -79,7 +79,7 @@ $partner = Utils::iff($partner, null);
 		<?php foreach ($events as $event):?>
 		<li>
 			<div class="clearfix">
-				<div class="date"><?php echo date('y.m.d', strtotime($event->getStartsAt()))?></div>
+				<div class="date"><?php echo date('d M Y', strtotime($event->getStartsAt()))?></div>
 				<div class="time"><?php echo $event->isAllDay() ? '' : $event->getStartTimeForDisplay();?></div>
 			</div>
 			<div class="name"><?php echo $event->getName();?></div>
@@ -107,7 +107,7 @@ $partner = Utils::iff($partner, null);
 			<?php if ($isMobile) :?>
 				<a class="cal-btn mobile" target="_blank" <?php if (!$isReachedMaxSubscribers):?>href="/cal/sub<?php echo $calId ? '/id/' . $calId : '';?><?php echo $ctgId ? '/ctgId/' . $ctgId : '';?>/ct/mobile<?php echo $ref ? '/ref/' . $ref : '';?>/cal.ics"<?php endif;?>><span><?php echo __('add to calendar');?></span></a>
 			<?php else:?>
-				<a class="cal-btn outlook" target="_blank" <?php if (!$isReachedMaxSubscribers):?>href="/cal/sub<?php echo $calId ? '/id/' . $calId : '';?><?php echo $ctgId ? '/ctgId/' . $ctgId : '';?>/ct/outlook<?php echo $ref ? '/ref/' . $ref : '';?>/cal.ics"<?php endif;?>><span><?php echo __('Outlook')?></span></a>
+				<a class="cal-btn outlook" <?php if (!$isReachedMaxSubscribers):?>href="webcal://<?php echo sfConfig::get('app_domain_short');?>/cal/sub<?php echo $calId ? '/id/' . $calId : '';?><?php echo $ctgId ? '/ctgId/' . $ctgId : '';?>/ct/outlook<?php echo $ref ? '/ref/' . $ref : '';?>/cal.ics"<?php endif;?>><span><?php echo __('Outlook')?></span></a>
 				<a class="cal-btn ical" target="_blank" <?php if (!$isReachedMaxSubscribers):?>href="/cal/sub<?php echo $calId ? '/id/' . $calId : '';?><?php echo $ctgId ? '/ctgId/' . $ctgId : '';?>/ct/any<?php echo $ref ? '/ref/' . $ref : '';?>/cal.ics"<?php endif;?>><span><?php echo __('iCal');?></span></a>
 				<a class="cal-btn google" target="_blank" <?php if (!$isReachedMaxSubscribers):?>href="/cal/sub<?php echo $calId ? '/id/' . $calId : '';?><?php echo $ctgId ? '/ctgId/' . $ctgId : '';?>/ct/google<?php echo $ref ? '/ref/' . $ref : '';?>/cal.ics"<?php endif;?>><span><?php echo __('Google');?></span></a>
 			<?php endif;?>

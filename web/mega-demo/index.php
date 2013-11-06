@@ -41,7 +41,7 @@ $ctgId  = isset($_GET['ctgId']) ? $_GET['ctgId'] : '';
             <span class="ico">&nbsp;</span>
             <span class="txt">לוח שנה אחר</span>
         </a>
-        <a class="cal-link outlook" target="_blank" href="http://inevermiss.net/cal/sub<?php echo ($calId) ? '/id/' . $calId : '';?><?php echo ($ctgId) ? '/ctgId/' . $ctgId : '';?>/ct/outlook/ref/widget/cal.ics">
+        <a class="cal-link outlook" href="webcal://inevermiss.net/cal/sub<?php echo ($calId) ? '/id/' . $calId : '';?><?php echo ($ctgId) ? '/ctgId/' . $ctgId : '';?>/ct/outlook/ref/widget/cal.ics">
             <span class="ico">&nbsp;</span>
             <span class="txt">אאוטלוק</span>
         </a>
