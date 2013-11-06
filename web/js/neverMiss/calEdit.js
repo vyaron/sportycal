@@ -85,6 +85,10 @@ function changeCalView(e){
 	scheduler.updateView(null, viewType);
 }
 
+function showMaxEventsModal(){
+	jQuery('#maxEventsModal').modal();
+}
+
 function loadCalendar(){
 	scheduler.xy.nav_height = 53;
 	scheduler.xy.lightbox_additional_height = 70;
@@ -260,6 +264,24 @@ function loadCalendar(){
 	
 	dp.init(scheduler);
 	
+	//add event - add maxEvent
+	scheduler.addEventNowOld = scheduler.addEventNow;
+	scheduler.addEventNow = function(start,end,e){
+		var isReachedMaxEvents = false;
+		if (scheduler._events){
+			var count = 0;
+			for (key in scheduler._events){
+				count++;
+				if (gMaxEvents != 'UNLIMITED' && count >= gMaxEvents) {
+					isReachedMaxEvents = true;
+					break;
+				}
+			}
+		}
+		if (!isReachedMaxEvents) this.addEventNowOld(start,end,e);
+		else showMaxEventsModal();
+	};
+	
 	//lightbox - don't POST on textarea enter
 	scheduler.getLightbox().onkeydown=function(e){
 		switch((e||event).keyCode){
@@ -318,6 +340,8 @@ function setCalImportEvents(){
         	if (res.success){
         		setGlobalSuccess(res.msg);
         		reloadCalendar();
+        		
+        		if (res.isReachedMaxEvents) showMaxEventsModal();
         	} else {
         		setGlobalError(res.msg);
         	}
@@ -430,7 +454,13 @@ jQuery(document).ready(function(){
 	});
 	
 	if (opener){
-		$('#cal_tz').change(showSaveBtn);
-		$('#cal_name,#cal_description').keyup(showSaveBtn);
+		jQuery('#cal_tz').change(showSaveBtn);
+		jQuery('#cal_name,#cal_description').keyup(showSaveBtn);
+
+		jQuery('.upgrade-link').click(function(e){
+			e.preventDefault();
+			window.opener.upgrade(e);
+			window.close();
+		});
 	}
 });

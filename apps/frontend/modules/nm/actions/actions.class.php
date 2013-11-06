@@ -188,16 +188,18 @@ class nmActions extends sfActions{
 		
 		$tz = UserUtils::getUserTZ() ? UserUtils::getUserTZ() : null;
 		
-		//$content = file_get_contents('E:/temp/cal.ics');
-		//$export = new ICalExporter();
-		//$eventsHash = $export->toHash($content);
-		//Utils::pp($eventsHash);
+		$currEventsCount = EventTable::getEvents($cal->getId(), true);
 		
-		$res = array('success' => false, 'msg' => __('File not supported!'));
+		//Get maxEvents
+		$this->setMaxEvents($request, $user);
+		
+		$res = array('success' => false, 'msg' => __('File not supported!'), 'isReachedMaxEvents' => false);
 		if ($request->isMethod('post')){
 			$file = $request->getFiles('file');
 			
 			if (key_exists('tmp_name', $file) && $file['type'] == 'text/calendar'){
+				$res['success'] = true;
+				
 				$content = file_get_contents($file['tmp_name']);
 				$export = new ICalExporter();
 				$eventsHash = $export->toHash($content);
@@ -206,7 +208,12 @@ class nmActions extends sfActions{
 				$childEvents = array();
 				
 				$collectionEvent = new Doctrine_Collection('Event');
-				foreach ($eventsHash as $eventHash){
+				foreach ($eventsHash as $i => $eventHash){
+					if ($this->maxEvents != PartnerLicence::UNLIMITED && ($collectionEvent->count() + $currEventsCount) >= $this->maxEvents) {
+						$res['isReachedMaxEvents'] = true;
+						break;
+					}
+					
 					$startDate = $eventHash['start_date'];
 					$endDate = $eventHash['end_date'];
 					$description = (key_exists('description', $eventHash) && !empty($eventHash['description'])) ? $eventHash['description'] : null;
@@ -251,7 +258,6 @@ class nmActions extends sfActions{
 				}
 				$collectionChildEvent->save();
 				
-				$res['success'] = true;
 				$res['msg'] = __('%count% Events imported', array('%count%' => ($collectionEvent->count() + $collectionChildEvent->count())));
 			}
 		}
@@ -265,7 +271,8 @@ class nmActions extends sfActions{
 		
 		$user = UserUtils::getLoggedIn();
 		if (!$user || !$partner = $user->getPartner()) $this->redirect('partner/login');
-
+		
+		
 		$offset = $request->getParameter('p', 0);
 		$limit = 11;
 		$calList = CalTable::getCalList($user->getId(), $offset, $limit);
@@ -406,12 +413,33 @@ class nmActions extends sfActions{
 		$this->redirect($url);
 	}
 	
+	private function setMaxEvents(sfWebRequest $request, $user){
+		$this->wixInstance = $request->getParameter('wixInstance');
+		
+		$partnerLicence = new PartnerLicence(PartnerLicence::DEFAULT_PLAN, date('d-m-Y', strtotime("+1 month")));
+		
+		if ($this->wixInstance){
+			$data = Wix::getInstanceData($this->wixInstance);
+			if (Wix::isPremium($data)){
+				$partnerLicence = new PartnerLicence(PartnerLicence::PLAN_B, date('d-m-Y', strtotime("+1 month")));
+			}
+		} else if ($user) {
+			$partner = $user->getPartner();
+			if ($partner) $partnerLicence = $partner->getLicence();
+		}
+		
+		$this->maxEvents = $partnerLicence->getMaxEvents();
+	}
+	
 	public function executeCalEdit(sfWebRequest $request){
 		$user = UserUtils::getLoggedIn();
 		$cal = Doctrine::getTable('Cal')->find(array($request->getParameter('id')));
 		$this->forward404Unless($cal && $cal->isOwner($user), sprintf('Object cal does not exist (%s).', $request->getParameter('id')));
 		$this->cal = $cal;
 		
+		//Get maxEvents
+		$this->setMaxEvents($request, $user);
+
 		$event = Doctrine_Query::create()
   			->from('Event e')
 			->where('e.cal_id = ?', $cal->getId())
@@ -431,6 +459,7 @@ class nmActions extends sfActions{
 		$this->form->setDefault('name', $cal->getName());
 		$this->form->setDefault('description', $cal->getDescription());
 		$this->form->setDefault('tz', $tz);
+		
 		
 		if ($request->isMethod(sfRequest::PUT)){
 			$res = array('success' => false, 'msg' => __('calendar not updated'));

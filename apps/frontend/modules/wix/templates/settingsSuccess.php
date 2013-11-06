@@ -149,6 +149,7 @@ use_stylesheet('/bundle/wix/javascripts/components/glued-position-min/glued.min.
 
 <script type="text/javascript">
 	var BASE_URL = '<?php echo sfConfig::get('app_domain_full');?>';
+	var INSTANCE = '<?php echo $instance;?>';
 </script>
 
 

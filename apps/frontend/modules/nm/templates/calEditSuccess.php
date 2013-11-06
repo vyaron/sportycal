@@ -113,7 +113,7 @@ use_stylesheet('/css/neverMiss/calEdit.css');
 		<span class="btn btn-success fileinput-button">
 			<span id="ical-fileupload-loading-label" style="display:none;"><i class="icon-loading icon-yellow"></i> Uploading...</span>
 			<span id="ical-fileupload-label" ><i class="icon-plus icon-yellow"></i> Select Calendar *.ics</span>
-			<input id="ical-fileupload" type="file" name="file" data-url="<?php echo url_for('nm/importCal/?id=' . $cal->getId())?>" accept="text/calendar"/>
+			<input id="ical-fileupload" type="file" name="file" data-url="<?php echo url_for('nm/importCal/?id=' . $cal->getId() . ($wixInstance ? '&wixInstance=' . $wixInstance : ''))?>" accept="text/calendar"/>
 		</span>
 	</div>
 	<div class="modal-footer">
@@ -121,7 +121,24 @@ use_stylesheet('/css/neverMiss/calEdit.css');
 	</div>
 </div>
 
+<div id="maxEventsModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal-header">
+		<button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
+		<h3 id="myModalLabel">You've reached your events limit</h3>
+	</div>
+	<div class="modal-body">
+		<p>please <a class="upgrade-link" href="<?php echo url_for('/nm/pricing')?>">upgrade your account</a></p>
+	</div>
+	<div class="modal-footer">
+		<button class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button>
+	</div>
 </div>
+
+</div>
+
+<script type="text/javascript">
+	var gMaxEvents = '<?php echo ($maxEvents != PartnerLicence::UNLIMITED) ? $maxEvents : 'UNLIMITED';?>';
+</script>
 
 <?php 
 use_javascript('/bundle/jquery/js/jquery-ui-1.10.3.custom.min.js');

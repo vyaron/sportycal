@@ -34,6 +34,7 @@ class wixActions extends sfActions{
 				$wix->setUpcoming(Wix::DEFAULT_UPCOMING);
 			}
 			//$data->vendorProductId = Wix::PREMUIM_PRODUCT_CODE;
+			$this->instance = $instance;
 			$this->wixData = $data;
 			$this->wix = $wix;
 		}
