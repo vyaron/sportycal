@@ -270,12 +270,16 @@ class ICalExporter {
 				if(isset($mas_[0])){
 					$mas[0] = $mas_[0];
 				}
-				switch(trim($mas[0])) {
+				
+				$key = trim($mas[0]);
+				if ($key == 'BEGIN') break;
+				
+				switch($key) {
 					case "LOCATION":
 						$arr_n[$x]['location'] = $mas[1];
 						break;
 					case "DESCRIPTION":
-						$arr_n[$x]['description'] = $mas[1];
+						$arr_n[$x]['description'] = str_replace('\n', "\n", $mas[1]);
 						break;
 					case "DTSTART":
 						$arr_n[$x]['start_date'] = $this->getMySQLDate($mas[1]);

@@ -185,6 +185,8 @@ class nmActions extends sfActions{
 		$cal = Doctrine::getTable('Cal')->find(array($request->getParameter('id')));
 		$this->forward404Unless($cal && $cal->isOwner($user), sprintf('Object cal does not exist (%s).', $request->getParameter('id')));
 		
+		$partner = null;
+		if ($user) $partner = $user->getPartner();
 		
 		$tz = UserUtils::getUserTZ() ? UserUtils::getUserTZ() : null;
 		
@@ -195,16 +197,24 @@ class nmActions extends sfActions{
 		$res = array('success' => false, 'msg' => __('File not supported!'), 'isReachedMaxEvents' => false);
 		if ($request->isMethod('post')){
 			$file = $request->getFiles('file');
-			
 			if (key_exists('tmp_name', $file) && $file['type'] == 'text/calendar'){
+			//if (true){
 				$res['success'] = true;
 				
 				$content = file_get_contents($file['tmp_name']);
+				//$content = file_get_contents('e:/temp/test.ics');
+				
 				$export = new ICalExporter();
 				$eventsHash = $export->toHash($content);
 				
 				$childEventsHash = array();
 				$childEvents = array();
+				
+				$calId = $cal->getId();
+				
+				//TODO: check way Cal->getId() increment!
+				$event = new Event();
+				$globalDesc = $event->getDescriptionForCal($cal, $userCal, $partner, $calType, $intelLabel, $intelValue);
 				
 				$collectionEvent = new Doctrine_Collection('Event');
 				foreach ($eventsHash as $i => $eventHash){
@@ -226,6 +236,11 @@ class nmActions extends sfActions{
 					}
 					
 					$event = new Event();
+					
+					
+					$description = str_replace($globalDesc, '', $description);
+					$description = trim($description);
+					
 					$event->setCalId($cal->getId());
 					$event->setCreatedAt($startDate);
 					$event->setName($eventHash['text']);
@@ -241,7 +256,6 @@ class nmActions extends sfActions{
 					if ($eventHash['event_pid'] == 0) $collectionEvent->add($event, $eventHash['id']);
 					else $childEvents[$eventHash['event_id']] = $event;
 				}
-
 				$collectionEvent->save();
 				
 				$collectionChildEvent = new Doctrine_Collection('Event');
