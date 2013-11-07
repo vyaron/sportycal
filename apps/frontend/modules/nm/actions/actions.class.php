@@ -188,9 +188,8 @@ class nmActions extends sfActions{
 		
 		$tz = UserUtils::getUserTZ() ? UserUtils::getUserTZ() : null;
 		
-		$currEventsCount = EventTable::getEvents($cal->getId(), true);
-		
 		//Get maxEvents
+		$currEventsCount = EventTable::getEvents($cal->getId(), true);
 		$this->setMaxEvents($request, $user);
 		
 		$res = array('success' => false, 'msg' => __('File not supported!'), 'isReachedMaxEvents' => false);
@@ -500,6 +499,9 @@ class nmActions extends sfActions{
 		
 		$isEditing = $request->getParameter('editing') ? true : false;
 		if ($isEditing){
+			$currEventsCount = EventTable::getEvents($cal->getId(), true);
+			$this->setMaxEvents($request, $user);
+			
 			$dateNow = date("Y-m-d g:i");
 			$cal->setUpdatedAt($dateNow);
 			$cal->save();
@@ -512,6 +514,10 @@ class nmActions extends sfActions{
 			
 			$tz = UserUtils::getUserTZ() ? UserUtils::getUserTZ() : null;
 			$dateStr = date('Y-m-d H:i:s');
+			
+			$insertedCount = 0;
+			$hasError = false;
+			
 			foreach ($ids as $id){
 				$xmlAction = $xmlData->addChild('action');
 					
@@ -536,6 +542,12 @@ class nmActions extends sfActions{
 					$event->delete();
 				} else {
 					if ($status == 'inserted'){
+						$insertedCount++;
+						if ($currEventsCount + $insertedCount > $this->maxEvents) {
+							$hasError = true;
+							continue;
+						}
+							
 						$event = new Event();
 						$event->setCalId($cal->getId());
 						$event->setCreatedAt($dateStr);
@@ -568,12 +580,14 @@ class nmActions extends sfActions{
 				$xmlAction->addAttribute('tid', $event->getId());
 			}
 			
+			if ($hasError) $this->getResponse()->setStatusCode(500);
+			
 			$this->xml = $xml;
 			$this->setLayout(false);
 		} else {
 			$res = array('data' => array());
 			$res['data'] = $cal->getEventsForScheduler();
-	
+			
 			echo json_encode($res);
 			return sfView::NONE;
 		}
