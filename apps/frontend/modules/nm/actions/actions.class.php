@@ -176,7 +176,7 @@ class nmActions extends sfActions{
 		$this->getResponse()->setSlot('pricing', true);
 		
 		$user = UserUtils::getLoggedIn();
-		if (!$user || $user && !($user->getEmail() == 'uzi@jivygroup.com' || $user->isMaster())) $this->setTemplate('comingSoon', 'nm');
+		if (!$user || $user && !($user->getEmail() == 'uzi@jivygroup.com' || $user->getEmail() == 'test@inevermiss.net' || $user->getEmail() == 'test1@inevermiss.net' || $user->getEmail() == 'test2@inevermiss.net' || $user->isMaster())) $this->setTemplate('comingSoon', 'nm');
 	}
 	
 	//TODO: check defarent Timezones cals
@@ -423,8 +423,8 @@ class nmActions extends sfActions{
 		UserUtils::setOrphanCalId($cal->getId());
 		
 		$url = '/nm/calEdit/id/' . $cal->getId();
-		if ($isPopup) $url .= '/isPopup/' . $isPopup;
 		if ($wixInstance) $url .= '/wixInstance/' . $wixInstance;
+		if ($isPopup) $url .= '/?isPopup=' . $isPopup;
 		
 		$this->redirect($url);
 	}
