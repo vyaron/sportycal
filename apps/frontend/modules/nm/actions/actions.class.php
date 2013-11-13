@@ -557,7 +557,7 @@ class nmActions extends sfActions{
 				} else {
 					if ($status == 'inserted'){
 						$insertedCount++;
-						if ($currEventsCount + $insertedCount > $this->maxEvents) {
+						if ($this->maxEvents != PartnerLicence::UNLIMITED && ($currEventsCount + $insertedCount > $this->maxEvents)) {
 							$hasError = true;
 							continue;
 						}
