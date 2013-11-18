@@ -73,7 +73,7 @@ $partner = Utils::iff($partner, null);
 
 
 <div id="container">
-	<h1><?php echo ($title ? $title : __('My Events'));?></h1>
+	<h1><?php echo ($title ? $title : __('MY EVENTS'));?></h1>
 	
 	<ul id="events" style="height: 100px;">
 		<?php foreach ($events as $event):?>
