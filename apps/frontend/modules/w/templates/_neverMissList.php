@@ -87,8 +87,9 @@ $partner = Utils::iff($partner, null);
 			<div class="desc">
 				<a class="desc-open-btn" href="#"><?php echo __('read more')?>&hellip;</a>
 				<div class="desc-txt">
+				
 					<?php echo ($event->getLocation()) ? '<p>' . __('Location') . ': ' . $event->getLocation() . '</p>' : ''?>
-					<?php echo ($event->getDescription() || ($cal && $cal->getDescription())) ? '<p>' .nl2br($event->getDescriptionForCal($cal, null, $partner, null, null, null)) . '</p>': '';?>
+					<?php echo ($event->getDescription() || ($cal && $cal->getDescription())) ? '<p>' . Utils::nl2brReplace($event->getDescriptionForCal($cal, null, $partner, null, null, null)) . '</p>': '';?>
 				</div>
 				<div class="desc-close-btn" href="#">&nbsp;</div>
 				<div class="cb"></div>
