@@ -175,8 +175,8 @@ class nmActions extends sfActions{
 	public function executePricing(sfWebRequest $request){
 		$this->getResponse()->setSlot('pricing', true);
 		
-		$user = UserUtils::getLoggedIn();
-		if (!$user || $user && !($user->getEmail() == 'uzi@jivygroup.com' || $user->getEmail() == 'test@inevermiss.net' || $user->getEmail() == 'test1@inevermiss.net' || $user->getEmail() == 'test2@inevermiss.net' || $user->isMaster())) $this->setTemplate('comingSoon', 'nm');
+		//$user = UserUtils::getLoggedIn();
+		//if (!$user || $user && !($user->getEmail() == 'uzi@jivygroup.com' || $user->getEmail() == 'test@inevermiss.net' || $user->getEmail() == 'test1@inevermiss.net' || $user->getEmail() == 'test2@inevermiss.net' || $user->isMaster())) $this->setTemplate('comingSoon', 'nm');
 	}
 	
 	//TODO: check defarent Timezones cals
