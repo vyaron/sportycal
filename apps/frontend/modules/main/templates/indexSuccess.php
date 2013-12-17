@@ -3,6 +3,15 @@
 	slot('keywords', Category::getAsKeywords(null, $categories));
 ?>
 
+<div class="rootCtgs" style="width:215px;">
+	<a class="rootCtg" href="/category/7943/world-cup-finals-brazil-2014-calendars">
+		<div class="rootCtgIcon" style="background-image: url(<?php echo url_for('/images/categories/worldCupFinalsBrazil.jpg');?>);"></div>
+		<h4>FIFA WORLD CUP</h4>
+	</a>
+	
+	<div class="cb"></div>
+</div>
+
 <!-- 
 
 <div class="rootCtgs" style="width:215px;">
