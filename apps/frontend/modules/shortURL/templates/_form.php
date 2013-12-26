@@ -32,7 +32,7 @@
     <?php if (true):?>
     	<?php echo $form->renderGlobalErrors() ?>
     	
-		<?php echo $form['hash']->renderRow();?>
+		<?php echo $form['hash']->renderRow(array('placeholder' => 'my-short-text'));?>
 		<?php echo $form['url']->renderRow();?>
 		
 		<?php if ($user->isMaster()):?>
