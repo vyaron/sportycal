@@ -119,7 +119,7 @@ $(document).ready(function() {
 	$('#create-account').click(createAccount);
 	$('.connect').click(connect);
 	$('#disconnect').click(disconnect);
-	$('#upgrade').click(upgrade);
+	$('.upgrade').click(upgrade);
 	
 	$('#create-calendar').click(createCalendar);
 	$('#edit-calendar').click(editCalendar);

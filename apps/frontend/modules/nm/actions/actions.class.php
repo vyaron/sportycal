@@ -444,6 +444,8 @@ class nmActions extends sfActions{
 			if ($partner) $partnerLicence = $partner->getLicence();
 		}
 		
+		$partnerLicence = new PartnerLicence(PartnerLicence::PLAN_B, date('d-m-Y', strtotime("+1 month")));
+		
 		$this->maxEvents = $partnerLicence->getMaxEvents();
 	}
 	
