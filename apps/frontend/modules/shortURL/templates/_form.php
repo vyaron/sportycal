@@ -33,7 +33,7 @@
     	<?php echo $form->renderGlobalErrors() ?>
     	
 		<?php echo $form['hash']->renderRow(array('placeholder' => 'my-short-text'));?>
-		<?php echo $form['url']->renderRow();?>
+		<?php echo $form['url']->renderRow(array('placeholder' => 'http://domain.com'));?>
 		
 		<?php if ($user->isMaster()):?>
 			<?php echo $form['comment']->renderRow();?>
