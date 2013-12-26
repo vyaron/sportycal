@@ -13,9 +13,12 @@ class shortURLActions extends sfActions
 
   private function restrictAccess() {
     $user = UserUtils::getLoggedIn();
-    if (!$user || !$user->isMaster()) {
+
+    if (!$user || !($user->isMaster() || $user->isPartner())) {
       $this->redirect("main/index");
     }
+    
+    $this->user = $user;
   }    
 	
 	

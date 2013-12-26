@@ -1,0 +1,14 @@
+.shortUrl, .shortUrlVal{width: 500px; margin: 0 auto; margin-top: 15px; }
+
+.shortUrlVal{
+	background: none; 
+	border:3px dashed lightgray; 
+	text-align: center; 
+	font-size: 16px; 
+	padding: 10px; 
+	resize:none; 
+	
+	cursor: pointer;
+}
+
+.error_list{color: darkred;}

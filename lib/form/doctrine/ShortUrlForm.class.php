@@ -14,7 +14,7 @@ class ShortUrlForm extends BaseShortUrlForm
   {
     $this->setWidgets(array(
       'id'          => new sfWidgetFormInputHidden(),
-      'hash'     	=> new sfWidgetFormInputText(),
+      'hash'     	=> new sfWidgetFormInputText(array('label' => 'Text to show')),
       'url'         => new sfWidgetFormInputText(),
       'comment'     => new sfWidgetFormInputText(),
       'partner_id'  => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('Partner'), 'add_empty' => true)),
@@ -25,9 +25,10 @@ class ShortUrlForm extends BaseShortUrlForm
       'id'          => new sfValidatorDoctrineChoice(array('model' => $this->getModelName(), 'column' => 'id', 'required' => false)),
       'partner_id'  => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('Partner'), 'required' => false)),
       'url'         => new sfValidatorUrl(),
-      'label'         => new sfValidatorString(array('max_length' => 255, 'required' => false)),
-      'comment'     => new sfValidatorString(array('max_length' => 255)),
-      'hash'     => new sfValidatorString(array('max_length' => 255)),
+      'label'       => new sfValidatorString(array('max_length' => 255, 'required' => false)),
+      'comment'     => new sfValidatorString(array('max_length' => 255, 'required' => false)),
+      'hash'     	=> new sfValidatorDoctrineUnique(array('throw_global_error' => true, 'column' => 'hash', 'required' => true, 'model' => $this->getModelName(), 'column' => 'hash'), array('invalid' => __('This text allready exist'))),
+      //'hash'     	=> new sfValidatorDoctrineChoice(array('required' => true, 'model' => $this->getModelName(), 'column' => 'hash'), array('invalid' => __('This text allready exist'))),
     ));
   	
   	
