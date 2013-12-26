@@ -27,7 +27,7 @@ class ShortUrlForm extends BaseShortUrlForm
       'url'         => new sfValidatorUrl(),
       'label'       => new sfValidatorString(array('max_length' => 255, 'required' => false)),
       'comment'     => new sfValidatorString(array('max_length' => 255, 'required' => false)),
-      'hash'     	=> new sfValidatorDoctrineUnique(array('throw_global_error' => true, 'column' => 'hash', 'required' => true, 'model' => $this->getModelName(), 'column' => 'hash'), array('invalid' => __('This text allready exist'))),
+      'hash'     	=> new sfValidatorDoctrineUnique(array('throw_global_error' => true, 'column' => 'hash', 'required' => true, 'model' => $this->getModelName(), 'column' => 'hash'), array('invalid' => __('This text already exist'))),
       //'hash'     	=> new sfValidatorDoctrineChoice(array('required' => true, 'model' => $this->getModelName(), 'column' => 'hash'), array('invalid' => __('This text allready exist'))),
     ));
   	
