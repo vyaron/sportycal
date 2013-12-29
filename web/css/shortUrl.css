@@ -1,3 +1,4 @@
+/*
 .shortUrl, .shortUrlVal{width: 500px; margin: 0 auto; margin-top: 15px; }
 
 .shortUrlVal{
@@ -12,3 +13,24 @@
 }
 
 .error_list{color: darkred;}
+*/
+
+#container{background: 0 0 #000 no-repeat url('/images/neverMiss/layout/bg.jpg'); background-size: cover;}
+#form-box-center{width: 520px; margin: 0 auto; margin-top: 50px;}
+#form-box-center form{padding-top:40px;}
+
+#shortUrlVal{
+	height:50px;
+	
+	margin-top:15px;
+	background: none; 
+	border:3px dashed lightgray; 
+	text-align: center; 
+	font-size: 16px; 
+	padding: 10px;
+	resize:none; 
+	
+	cursor: pointer;
+	background-color: lightyellow;
+	color:#000;
+}
