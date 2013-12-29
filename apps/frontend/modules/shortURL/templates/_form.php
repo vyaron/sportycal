@@ -6,20 +6,27 @@
 	
 	<?php echo $form->renderGlobalErrors() ?>
     	
-	<?php echo $form['hash']->render(array('placeholder' => 'text-to-show', 'class' => 'block'));?>
+    <label for="url">Target URL: </label>	
+   	<?php echo $form['url']->render(array('id' => 'url', 'placeholder' => 'http://domain.com', 'class' => 'block'));?>
+	<?php echo $form['url']->renderError();?> 	
+    	
+    <label for="hash">Text in URL: </label>
+	<?php echo $form['hash']->render(array('id' => 'hash', 'placeholder' => 'text-to-show', 'class' => 'block'));?>
 	<?php echo $form['hash']->renderError();?>
 	
-	<?php echo $form['url']->render(array('placeholder' => 'http://domain.com', 'class' => 'block'));?>
-	<?php echo $form['url']->renderError();?>
+	
 	
 	<?php if ($user->isMaster()):?>
-		<?php echo $form['comment']->render(array('placeholder' => 'comment'));?>
+		<label for="comment">Comment: </label>
+		<?php echo $form['comment']->render(array('id' => 'comment', 'placeholder' => 'desc...'));?>
 		<?php echo $form['comment']->renderError();?>
 		
-		<?php echo $form['partner_id']->render();?>
+		<label for="partner_id">Partner: </label>
+		<?php echo $form['partner_id']->render(array('id' => 'partner_id'));?>
 		<?php echo $form['partner_id']->renderError();?>
 		
-		<?php echo $form['label']->render(array('placeholder' => 'label'));?>
+		<label for="label">Label: </label>
+		<?php echo $form['label']->render(array('id' => 'label', 'placeholder' => 'label'));?>
 		<?php echo $form['label']->renderError();?>
 	<?php elseif($user->isPartner()):?>
 		<input type="hidden" name="l[partner_id]" value="<?php echo $user->getPartner()->getId();?>" />

@@ -6,7 +6,10 @@
 			</h2>
 			
 			<span class="content">
-				<input type="text" id="shortUrlVal" class="block" value="<?php echo $form->getObject()->getShortcut()?>" onclick="window.prompt ('Copy to clipboard: Ctrl+C, Enter', this.value);"/>
+				<div id="shortUrlValWrapper">
+					<label for="hash">Use this URL: </label>
+					<input type="text" id="shortUrlVal" class="block" value="<?php echo $form->getObject()->getShortcut()?>" onclick="window.prompt ('Copy to clipboard: Ctrl+C, Enter', this.value);"/>
+				</div>
 				
 				<?php include_partial('form', array('form' => $form, 'user' => $user)) ?>
 			</span>
