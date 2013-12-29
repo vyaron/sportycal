@@ -15,7 +15,7 @@ class shortURLActions extends sfActions
     $user = UserUtils::getLoggedIn();
 
     if (!$user || !($user->isMaster() || $user->isPartner())) {
-      $this->redirect("main/index");
+      sfConfig::get('app_domain_isNeverMiss') ? $this->redirect("nm/index") : $this->redirect("main/index");
     }
     
     $this->user = $user;
