@@ -791,6 +791,10 @@ class nmActions extends sfActions{
 		}
 		
 		if ($partner && $partner->getId() == 2047) $this->redirect('/mega-demo/index.php?' . ($ctgId ? 'ctgId=' . $ctgId : 'calId=' . $calId));
+		else {
+			$url = '/cal/sub' . ($calId ? '/id/' . $calId : '') . ($ctgId ? '/ctgId/' . $ctgId : '') . '/ct/' . Cal::TYPE_GOOGLE . ($ref ? '/ref/' . $ref : '') .'/' . $name . '.ics';
+			$this->redirect($url);
+		}
 		
 		$this->calId = $calId;
 		$this->ctgId = $ctgId;
