@@ -286,7 +286,9 @@ function loadCalendar(){
 	scheduler.getLightbox().onkeydown=function(e){
 		switch((e||event).keyCode){
 			case scheduler.keys.edit_save:
-				if ((e||event).shiftKey || (e||event).originalTarget.type == 'textarea') return;
+				var originalTarget = e.srcElement ? e.srcElement : (e.originalTarget ? e.originalTarget : null);
+				
+				if ((e||event).shiftKey || (originalTarget && originalTarget.type == 'textarea')) return;
 				scheduler.save_lightbox();
 				break;
 			case scheduler.keys.edit_cancel:
