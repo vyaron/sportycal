@@ -320,7 +320,7 @@
 
         offsetPosFromEvent: function(e) {
             return {
-                x : (e.offsetX || (e.clientX - e.target.offsetLeft)),
+                x : (e.offsetX || (e.clientX - e.target.offsetLeft - 200)),
                 y : (e.offsetY || (e.clientY - e.target.offsetTop))
             };
         },
@@ -523,6 +523,7 @@
                 var selector = $selector;
 
                 selector.css("top", (pos.y - this._SELECTOR_OFFSET_Y) + 'px');
+
                 selector.css("left", (pos.x - this._SELECTOR_OFFSET_X) + 'px');
 
                 this.setSelectorPosition($selector, $palettePicker, pos);
