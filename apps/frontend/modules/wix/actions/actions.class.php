@@ -3,8 +3,8 @@ class wixActions extends sfActions{
 	private function init(sfWebRequest $request, $needInstance = false){
 		if ($needInstance){
 			$instance = $request->getParameter('instance');
-			//$compId = $request->getParameter('origCompId', $request->getParameter('compId'));
-			$compId = $request->getParameter('compId');
+			$compId = $request->getParameter('origCompId', $request->getParameter('compId'));
+			//$compId = $request->getParameter('compId');
 			$locale = $request->getParameter('locale');
 			
 			$data = Wix::getInstanceData($instance);
