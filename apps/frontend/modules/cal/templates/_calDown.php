@@ -37,7 +37,7 @@
 		<label id="addReminderLabel" for="addReminder"><?php echo __('Reminder');?></label>
 		<select id="reminder" name="reminder">
 			<?php foreach (CalTable::getReminderValues() as $val):?>
-				<option value="<?php echo $val?>"><?php echo $val . ' ' . (($val > 1) ? __('Hours') : __('Hour'))?></option>
+				<option value="<?php echo $val * 60?>"><?php echo $val . ' ' . (($val > 1) ? __('Hours') : __('Hour'))?></option>
 			<?php endforeach;?>
 		</select>
 	</div>

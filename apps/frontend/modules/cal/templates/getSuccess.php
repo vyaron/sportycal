@@ -27,7 +27,7 @@ DESCRIPTION: <?php echo GeneralUtils::icalEscape2($event->getDescriptionForCal($
 LOCATION: <?php echo GeneralUtils::icalEscape($event->getLocation())."\n"?>
 <?php if ($event->hasHour() && $userCal && $userCal->getReminder() > 0) : ?>
 BEGIN:VALARM
-TRIGGER:-PT<?php echo ($userCal->getReminder() * 60)?>M
+TRIGGER:-PT<?php echo ($userCal->getReminder())?>M
 ACTION:DISPLAY
 DESCRIPTION: Are you ready for the game?
 END:VALARM
