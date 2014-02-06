@@ -181,7 +181,7 @@ class ICalExporter {
 				
 				if (isset($h[$i]['reminder'])){
 					$str .= "BEGIN:VALARM\n";
-					$str .= "TRIGGER:-PT" . ($h[$i]['reminder'] * 60) . "M\n";
+					$str .= "TRIGGER:-PT" . ($h[$i]['reminder']) . "M\n";
 					$str .= "ACTION:DISPLAY\n";
 					$str .= "DESCRIPTION: " . $h[$i]['reminder_msg'] . "?\n";
 					$str .= "END:VALARM\n";
@@ -202,7 +202,7 @@ class ICalExporter {
 				
 				if (isset($h[$i]['reminder'])){
 					$str .= "BEGIN:VALARM\n";
-					$str .= "TRIGGER:-PT" . ($h[$i]['reminder'] * 60) . "M\n";
+					$str .= "TRIGGER:-PT" . ($h[$i]['reminder']) . "M\n";
 					$str .= "ACTION:DISPLAY\n";
 					$str .= "DESCRIPTION: " . $h[$i]['reminder_msg'] . "\n";
 					$str .= "END:VALARM\n";
@@ -220,7 +220,7 @@ class ICalExporter {
 				
 				if (isset($h[$i]['reminder'])){
 					$str .= "BEGIN:VALARM\n";
-					$str .= "TRIGGER:-PT" . ($h[$i]['reminder'] * 60) . "M\n";
+					$str .= "TRIGGER:-PT" . ($h[$i]['reminder']) . "M\n";
 					$str .= "ACTION:DISPLAY\n";
 					$str .= "DESCRIPTION: " . $h[$i]['reminder_msg'] . "\n";
 					$str .= "END:VALARM\n";
