@@ -20,8 +20,11 @@ function disconnect(e){
 	if (e) e.preventDefault();
 	
 	$.ajax({
-		url : '/main/logout'
-	}).always(refresh);
+		url : '/main/logout' + (INSTANCE ? '?wixInstance=' + INSTANCE : '')
+	}).always(function(){
+        refreshWidget();
+        refresh();
+    });
 }
 
 function upgrade(e){

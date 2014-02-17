@@ -184,6 +184,21 @@ class mainActions extends sfActions
   }
 
   public function executeLogout(sfWebRequest $request) {
+    $wixInstance = $request->getParameter('wixInstance');
+      if ($wixInstance){
+          $userId = UserUtils::getLoggedInId();
+          $data = Wix::getInstanceData($wixInstance);
+
+          if ($data->instanceId && $userId){
+              $wixs = Doctrine_Query::create()
+                  ->from('Wix w')
+                  ->where('w.instance_code = ?', $data->instanceId)
+                  ->andWhere('(w.user_id = ? OR w.user_id IS NULL)', $userId)
+                  ->execute();
+              $wixs->delete();
+          }
+      }
+
     UserUtils::logUserOut();
     $this->redirect('main/index');    
   }
