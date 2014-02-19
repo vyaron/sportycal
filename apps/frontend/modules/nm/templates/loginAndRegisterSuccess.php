@@ -4,3 +4,6 @@
 		<?php include_partial('nm/loginAndRegisterForm', array('loginForm' => $loginForm, 'registerForm' => $registerForm, 'isShowLogin' => $isShowLogin)); ?>
 	</div>
 </div>
+<script>
+	var gWixInstance = '<?php echo $wixInstance;?>';
+</script>

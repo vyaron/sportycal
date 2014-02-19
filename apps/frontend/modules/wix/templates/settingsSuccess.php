@@ -58,9 +58,6 @@ use_stylesheet('/bundle/wix/javascripts/components/glued-position-min/glued.min.
 
 <!-- Settings box -->
 <form id="settings-form">
-	<input type="hidden" name="instance" value="<?php echo $wix->getInstanceCode();?>"/>
-	<input type="hidden" name="compId" value="<?php echo $wix->getCompCode();?>"/>
-	
 	<input type="hidden" name="line_color" value="<?php echo $lineColor;?>"/>
 	<input type="hidden" name="text_color" value="<?php echo $textColor;?>"/>
 	<input type="hidden" name="bg_color" value="<?php echo $bgColor;?>"/>
@@ -150,6 +147,7 @@ use_stylesheet('/bundle/wix/javascripts/components/glued-position-min/glued.min.
 <script type="text/javascript">
 	var BASE_URL = '<?php echo sfConfig::get('app_domain_full');?>';
 	var INSTANCE = '<?php echo $instance;?>';
+	var COMP_ID = '<?php echo $wix->getCompCode();?>';
 </script>
 
 

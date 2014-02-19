@@ -609,7 +609,7 @@ class nmActions extends sfActions{
 		}
 	}
 	
-	private function registerForm($data){
+	private function registerForm($data, $wixInstance = null){
 		$res = array('success' => false, 'msg' => __('Register failed'));
 		
 		if ($data){
@@ -635,6 +635,19 @@ class nmActions extends sfActions{
 				//if ($user->getType() != User::TYPE_PARTNER || $user->getType() != User::TYPE_MASTER) $partner = $user->createPartner($rootName, $website);
 				$partner = $user->createPartner($rootName, $website);
 				
+				//Connect wix instance to user
+				if ($wixInstance){
+					$data = Wix::getInstanceData($wixInstance);
+					
+					if ($data->instanceId){
+						Doctrine_Query::create()
+							->update('Wix w')
+							->set('w.user_id', '?', $user->getId())
+							->where('w.instance_code = ?', $data->instanceId)
+							->execute();
+					}
+				}
+				
 				
 				$res['success'] = true;
 				$res['msg'] = 'Registration was successful';
@@ -653,6 +666,8 @@ class nmActions extends sfActions{
 	}
 	
 	public function executeRegister(sfWebRequest $request){
+		$this->wixInstance = $request->getParameter('wixInstance');
+		
 		$user = UserUtils::getLoggedIn();
 
 		$this->registerForm = new NmRegisterForm();
@@ -660,7 +675,8 @@ class nmActions extends sfActions{
 		$this->isShowLogin = false;
 		
 		if (!$user && $request->isMethod('post') && $registerData = $request->getParameter('register')) {
-			$res = $this->registerForm($registerData);
+			
+			$res = $this->registerForm($registerData, $this->wixInstance);
 			
 			echo json_encode($res);
 			return sfView::NONE;

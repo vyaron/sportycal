@@ -55,7 +55,7 @@ function handleRegisterForm(){
 		
 		if (registerForm.valid()){
 			jQuery.ajax({
-				url : '/nm/register',
+				url : '/nm/register' + (gWixInstance ? '/?wixInstance=' + gWixInstance : ''),
 				type : 'POST',
 				dataType : 'json',
 				data : registerForm.serialize()
@@ -84,7 +84,7 @@ function handleLoginForm(){
 		
 		if (loginForm.valid()){
 			jQuery.ajax({
-				url : '/partner/login',
+				url : '/partner/login' + (gWixInstance ? '/?wixInstance=' + gWixInstance : ''),
 				type : 'POST',
 				dataType : 'json',
 				data : loginForm.serialize()

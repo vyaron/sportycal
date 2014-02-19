@@ -4,7 +4,6 @@ class wixActions extends sfActions{
 		if ($needInstance){
 			$instance = $request->getParameter('instance');
 			$compId = $request->getParameter('origCompId', $request->getParameter('compId'));
-			//$compId = $request->getParameter('compId');
 			$locale = $request->getParameter('locale');
 			
 			$data = Wix::getInstanceData($instance);
@@ -12,20 +11,12 @@ class wixActions extends sfActions{
 			if ($data && $instance && $compId){
 				$wix = WixTable::getBy($data->instanceId, $compId);
 				if (!$wix){
-					$user = UserUtils::getLoggedIn();
-					
 					$wix = new Wix();
 						
 					$wix->setInstanceCode($data->instanceId);
 					$wix->setCompCode($compId);
 					$wix->setLocale($locale);
 					$wix->setCreatedAt(date('Y-m-d H:i:s'));
-					
-					if ($user) {
-						$wix->setUserId($userId);
-						$cal = $user->getFirstCal();
-						if ($cal) $wix->setCalId($cal->getId());
-					}
 						
 					$wix->save();
 				}
@@ -56,48 +47,58 @@ class wixActions extends sfActions{
 	}
 	
 	public function executeUpdate(sfWebRequest $request){
-		$instance = $request->getParameter('instance');
-		$compId = $request->getParameter('compId');
-		
-		$wix = WixTable::getBy($instance, $compId);
+		$this->init($request, true);
 
-		$this->forward404Unless($wix);
+		$this->forward404Unless($this->wix->getInstanceCode());
 		
-		$userId = UserUtils::getLoggedInId();
 		$calId = $request->getParameter('cal_id');
-		//$upcoming = $request->getParameter('upcoming');
 		$lineColor = $request->getParameter('line_color');
 		$textColor = $request->getParameter('text_color');
 		$bgColor = $request->getParameter('bg_color');
 		$bgOpacity = $request->getParameter('bg_opacity');
 		$bgIsTransparent =  $request->getParameter('bg_is_transparent') === 'true' ? true : false;
 		$isShowCalName = $request->getParameter('is_show_cal_name') == 'true' ? true : false;
+
+		if ($calId) $this->wix->setCalId($calId);
+		if ($lineColor && $this->isColor($lineColor)) $this->wix->setLineColor($lineColor);
+		if ($textColor && $this->isColor($textColor)) $this->wix->setTextColor($textColor);
+		if ($bgColor && $this->isColor($bgColor)) $this->wix->setBgColor($bgColor);
+
+		if ($bgIsTransparent) $this->wix->setBgOpacity(0);
+		else if ($bgOpacity) $this->wix->setBgOpacity($bgOpacity);
 		
-		if (!$wix->getUserId()) $wix->setUserId($userId);
-
-		if ($wix->getInstanceCode() && $wix->getUserId() == $userId){
-			if ($calId) $wix->setCalId($calId);
-			//if ($upcoming) $wix->setUpcoming($upcoming);
-			if ($lineColor && $this->isColor($lineColor)) $wix->setLineColor($lineColor);
-			if ($textColor && $this->isColor($textColor)) $wix->setTextColor($textColor);
-			if ($bgColor && $this->isColor($bgColor)) $wix->setBgColor($bgColor);
-
-			if ($bgIsTransparent) $wix->setBgOpacity(0);
-			else if ($bgOpacity) $wix->setBgOpacity($bgOpacity);
+		$this->wix->setIsShowCalName($isShowCalName);
 			
-			$wix->setIsShowCalName($isShowCalName);
-				
-			$wix->setUpdatedAt(date('Y-m-d H:i:s'));
-			$wix->save();
-		}
+		$this->wix->setUpdatedAt(date('Y-m-d H:i:s'));
+		$this->wix->save();
 		
 		return sfView::NONE;
 	}
 	
+	private function handleLogin(){
+		//Auto login based on wix code.instance
+		if ($this->wixData->permissions == "OWNER"){
+					
+			if ($this->wix && $this->wix->getUserId()) {
+				$user = Doctrine_Query::create()
+					->from('User u')
+					->where('u.id = ?', $this->wix->getUserId())
+					->fetchOne();
+		
+				UserUtils::logUserIn($user);
+			} else {
+				UserUtils::logUserOut();
+			}
+		}
+	}
+	
 	public function executeSettings(sfWebRequest $request){
 		$this->init($request, true);
+
+		$this->handleLogin();
 		
 		$this->user = UserUtils::getLoggedIn();
+		
 		if ($this->user) {
 			$this->cals = $this->user->getCals();
 			
@@ -122,6 +123,8 @@ class wixActions extends sfActions{
 	
 	public function executeWidget(sfWebRequest $request){
 		$this->init($request, true);
+		
+		$this->handleLogin();
 		
 		$calId = $this->wix->getCalIdForDisplay();
 		$upcoming = $this->wix->getUpcomingForDisplay();
