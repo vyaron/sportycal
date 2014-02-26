@@ -78,17 +78,30 @@ class wixActions extends sfActions{
 	private function handleLogin(){
 		//Auto login based on wix code.instance
 		if ($this->wixData->permissions == "OWNER"){
-					
-			if ($this->wix && $this->wix->getUserId()) {
+			
+			$userId = $this->wix->getUserId() ? $this->wix->getUserId() : (UserUtils::getLoggedInId() ? UserUtils::getLoggedInId() : null);
+			if ($userId){
 				$user = Doctrine_Query::create()
 					->from('User u')
-					->where('u.id = ?', $this->wix->getUserId())
+					->innerJoin('u.Wix w')
+					->where('w.instance_code = ?', array($this->wixData->instanceId))
+					->andWhere('u.id = ?', $userId)
 					->fetchOne();
-		
-				UserUtils::logUserIn($user);
-			} else {
-				UserUtils::logUserOut();
+				
+				if ($user) UserUtils::logUserIn($user);
+				else UserUtils::logUserOut();
 			}
+			
+// 			if ($this->wix && $this->wix->getUserId()) {
+// 				$user = Doctrine_Query::create()
+// 					->from('User u')
+// 					->where('u.id = ?', $this->wix->getUserId())
+// 					->fetchOne();
+		
+// 				UserUtils::logUserIn($user);
+// 			} else {
+// 				UserUtils::logUserOut();
+// 			}
 		}
 	}
 	
