@@ -116,7 +116,7 @@ function setFbLoginEvents(){
 				
 				if (res && res.authResponse){
 					jQuery.ajax({
-						url : '/main/fbLogin/?d=' + (new Date()).getTime(),
+						url : '/main/fbLogin/?d=' + (new Date()).getTime() + (gWixInstance ? '&wixInstance=' + gWixInstance : ''),
 						dataType : 'json'
 					}).done(function(res){
 						if (!res.success) setGlobalAlert(res);

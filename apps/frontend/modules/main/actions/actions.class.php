@@ -103,6 +103,21 @@ class mainActions extends sfActions
     
     if ($isAjax){
     	if ($fbLoginSuccess){
+    		//Connect wix instance to user
+    		$wixInstance = $request->getParameter('wixInstance');
+    		if ($wixInstance){
+    			$data = Wix::getInstanceData($wixInstance);
+    				
+    			if ($data->instanceId){
+    				Doctrine_Query::create()
+    				->update('Wix w')
+    				->set('w.user_id', '?', $user->getId())
+    				->where('w.instance_code = ?', $data->instanceId)
+    				->execute();
+    			}
+    		}
+    		
+    		
     		$res = array('success' => true, 'msg' => __("Facebook log in success"), 'html' => $this->getPartial('global/topNav', array('user' => $user)));
     	} else {
     		$res = array('success' => false,'msg' => __("Facebook log in field"));
