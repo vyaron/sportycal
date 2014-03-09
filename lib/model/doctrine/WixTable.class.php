@@ -26,4 +26,28 @@ class WixTable extends Doctrine_Table
 
     	return $wix;
     }
+
+    public static function removeAll($wixInstance, $userId){
+        $data = Wix::getInstanceData($wixInstance);
+        if ($data->instanceId && $userId){
+            $wixs = Doctrine_Query::create()
+                ->from('Wix w')
+                ->where('w.instance_code = ?', $data->instanceId)
+                ->andWhere('(w.user_id = ? OR w.user_id IS NULL)', $userId)
+                ->execute();
+
+            $wixs->delete();
+        }
+    }
+
+    public static function bindAll($wixInstance, $userId){
+        $data = Wix::getInstanceData($wixInstance);
+        if ($data->instanceId && $userId){
+            Doctrine_Query::create()
+                ->update('Wix w')
+                ->set('w.user_id', '?', $userId)
+                ->where('w.instance_code = ?', $data->instanceId)
+                ->execute();
+        }
+    }
 }

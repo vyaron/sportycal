@@ -55,7 +55,7 @@ function handleRegisterForm(){
 		
 		if (registerForm.valid()){
 			jQuery.ajax({
-				url : '/nm/register' + (gWixInstance ? '/?wixInstance=' + gWixInstance : ''),
+				url : '/nm/register',
 				type : 'POST',
 				dataType : 'json',
 				data : registerForm.serialize()
@@ -84,7 +84,7 @@ function handleLoginForm(){
 		
 		if (loginForm.valid()){
 			jQuery.ajax({
-				url : '/partner/login' + (gWixInstance ? '/?wixInstance=' + gWixInstance : ''),
+				url : '/partner/login',
 				type : 'POST',
 				dataType : 'json',
 				data : loginForm.serialize()
@@ -116,7 +116,7 @@ function setFbLoginEvents(){
 				
 				if (res && res.authResponse){
 					jQuery.ajax({
-						url : '/main/fbLogin/?d=' + (new Date()).getTime() + (gWixInstance ? '&wixInstance=' + gWixInstance : ''),
+						url : '/main/fbLogin/?d=' + (new Date()).getTime(),
 						dataType : 'json'
 					}).done(function(res){
 						if (!res.success) setGlobalAlert(res);

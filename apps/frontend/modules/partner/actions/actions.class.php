@@ -93,7 +93,7 @@ class partnerActions extends sfActions
   }
 
   
-  protected function processLoginForm($data, $wixInstance=null)
+  protected function processLoginForm($data)
   {
   	$res = array('success' => false, 'msg' => 'Incorrect Email/Password Combination');
   	
@@ -113,17 +113,9 @@ class partnerActions extends sfActions
 
   				
   				////Connect wix instance to user
-  				if ($wixInstance){
-  					$data = Wix::getInstanceData($wixInstance);
-  				
-  					if ($data->instanceId){
-  						Doctrine_Query::create()
-  						->update('Wix w')
-  						->set('w.user_id', '?', $user->getId())
-  						->where('w.instance_code = ?', $data->instanceId)
-  						->execute();
-  					}
-  				}
+                $wixInstance = UserUtils::getWixInstance();
+                $userId = $user->getId();
+  				WixTable::bindAll($wixInstance, $userId);
   				
   				$res['success'] = true;
   				$res['msg'] = 'Authentication succeeded';
@@ -139,7 +131,6 @@ class partnerActions extends sfActions
   
   
   public function executeLogin(sfWebRequest $request){
-  	$this->wixInstance = $request->getParameter('wixInstance');
   	$this->getResponse()->setSlot('login', true);
   	
   	$isAjax = $request->isXmlHttpRequest();
@@ -156,7 +147,7 @@ class partnerActions extends sfActions
   	$this->form = new LoginForm();
 
   	if ($request->isMethod('post') && $userData = $request->getParameter('user')) {
-  		$res = $this->processLoginForm($userData, $this->wixInstance);
+  		$res = $this->processLoginForm($userData);
   			
   		if ($isAjax){
   			echo json_encode($res);

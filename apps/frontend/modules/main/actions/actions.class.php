@@ -104,20 +104,10 @@ class mainActions extends sfActions
     if ($isAjax){
     	if ($fbLoginSuccess){
     		//Connect wix instance to user
-    		$wixInstance = $request->getParameter('wixInstance');
-    		if ($wixInstance){
-    			$data = Wix::getInstanceData($wixInstance);
-    				
-    			if ($data->instanceId){
-    				Doctrine_Query::create()
-    				->update('Wix w')
-    				->set('w.user_id', '?', $user->getId())
-    				->where('w.instance_code = ?', $data->instanceId)
-    				->execute();
-    			}
-    		}
-    		
-    		
+    		$wixInstance = UserUtils::getWixInstance();
+            $userId = $user->getId();
+    		WixTable::bindAll($wixInstance, $userId);
+
     		$res = array('success' => true, 'msg' => __("Facebook log in success"), 'html' => $this->getPartial('global/topNav', array('user' => $user)));
     	} else {
     		$res = array('success' => false,'msg' => __("Facebook log in field"));
@@ -199,23 +189,13 @@ class mainActions extends sfActions
   }
 
   public function executeLogout(sfWebRequest $request) {
-    $wixInstance = $request->getParameter('wixInstance');
-      if ($wixInstance){
-          $userId = UserUtils::getLoggedInId();
-          $data = Wix::getInstanceData($wixInstance);
+      //remove all wix by logged user
+      $wixInstance = UserUtils::getWixInstance();
+      $userId = UserUtils::getLoggedInId();
+      WixTable::removeAll($wixInstance, $userId);
 
-          if ($data->instanceId && $userId){
-              $wixs = Doctrine_Query::create()
-                  ->from('Wix w')
-                  ->where('w.instance_code = ?', $data->instanceId)
-                  ->andWhere('(w.user_id = ? OR w.user_id IS NULL)', $userId)
-                  ->execute();
-              $wixs->delete();
-          }
-      }
-
-    UserUtils::logUserOut();
-    $this->redirect('main/index');    
+      UserUtils::logUserOut();
+      $this->redirect('main/index');
   }
   
   public function executeLogin(sfWebRequest $request) {

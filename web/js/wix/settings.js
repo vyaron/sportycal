@@ -6,13 +6,13 @@ function refresh(){
 
 function createAccount(e){
 	if (e) e.preventDefault();
-	var popup = window.open(BASE_URL + '/nm/register/?isPopup=1'+ (INSTANCE ? '&wixInstance=' + INSTANCE : ''), '', 'width=650,height=600,location=0,menubar=0,status=0,titlebar=0,toolbar=0');
+	var popup = window.open(BASE_URL + '/nm/register/?isPopup=1', '', 'width=650,height=600,location=0,menubar=0,status=0,titlebar=0,toolbar=0');
 	popup.focus();
 }
 
 function connect(e){
 	if (e) e.preventDefault();
-	var popup = window.open(BASE_URL + '/partner/login/?isPopup=1'+ (INSTANCE ? '&wixInstance=' + INSTANCE : ''), '', 'width=650,height=600,location=0,menubar=0,status=0,titlebar=0,toolbar=0');
+	var popup = window.open(BASE_URL + '/partner/login/?isPopup=1', '', 'width=650,height=600,location=0,menubar=0,status=0,titlebar=0,toolbar=0');
 	popup.focus();
 }
 
@@ -20,7 +20,7 @@ function disconnect(e){
 	if (e) e.preventDefault();
 	
 	$.ajax({
-		url : '/main/logout' + (INSTANCE ? '?wixInstance=' + INSTANCE : '')
+		url : '/main/logout'
 	}).always(function(){
         refresh();
     });
@@ -33,7 +33,7 @@ function upgrade(e){
 
 function createCalendar(e){
 	if (e) e.preventDefault();
-	var popup = window.open(BASE_URL + '/nm/calCreate/?isPopup=1' + (INSTANCE ? '&wixInstance=' + INSTANCE : ''), 'Create', 'width=980,height=870,scrollbars=1');
+	var popup = window.open(BASE_URL + '/nm/calCreate/?isPopup=1', 'Create', 'width=980,height=870,scrollbars=1');
 	popup.focus();
 }
 
@@ -41,7 +41,7 @@ function editCalendar(e){
 	if (e) e.preventDefault();
 	
 	var calId = $('input[name="cal_id"], select[name="cal_id"]').val();
-	var popup = window.open(BASE_URL + '/nm/calEdit/id/' + calId + '/?isPopup=1' + (INSTANCE ? '&wixInstance=' + INSTANCE : ''), 'Edit', 'width=980,height=870,scrollbars=1');
+	var popup = window.open(BASE_URL + '/nm/calEdit/id/' + calId + '/?isPopup=1', 'Edit', 'width=980,height=870,scrollbars=1');
 	popup.focus();
 }
 
@@ -100,7 +100,7 @@ $(document).ready(function() {
 		if (gSettingAjax) gSettingAjax.abort();
 		
 		gSettingAjax = $.ajax({
-			url : BASE_URL + '/wix/update/?instance=' + INSTANCE + '&origCompId=' + COMP_ID,
+			url : BASE_URL + '/wix/update/?origCompId=' + COMP_ID,
 			type : 'PUT',
 			dataType : 'json',
 			data : settingsForm.serialize()

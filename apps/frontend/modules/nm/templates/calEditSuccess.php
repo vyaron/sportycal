@@ -137,6 +137,7 @@ use_stylesheet('/css/neverMiss/calEdit.css');
 </div>
 
 <script type="text/javascript">
+    var WIX_INSTANCE = '<?php echo $wixInstance?>';
 	var gMaxEvents = '<?php echo ($maxEvents != PartnerLicence::UNLIMITED) ? $maxEvents : 'UNLIMITED';?>';
 </script>
 

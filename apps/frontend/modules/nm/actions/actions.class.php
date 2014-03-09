@@ -197,7 +197,7 @@ class nmActions extends sfActions{
 		$res = array('success' => false, 'msg' => __('File not supported!'), 'isReachedMaxEvents' => false);
 		if ($request->isMethod('post')){
 			$file = $request->getFiles('file');
-			if (key_exists('tmp_name', $file) && $file['type'] == 'text/calendar'){
+			if (key_exists('tmp_name', $file) /*&& $file['type'] == 'text/calendar'*/){
 			//if (true){
 				$res['success'] = true;
 				
@@ -400,7 +400,6 @@ class nmActions extends sfActions{
 	
 	public function executeCalCreate(sfWebRequest $request){
 		$isPopup = $request->getParameter('isPopup');
-		$wixInstance = $request->getParameter('wixInstance');
 		
 		$dateNow = date("Y-m-d g:i");
 		
@@ -423,14 +422,13 @@ class nmActions extends sfActions{
 		UserUtils::setOrphanCalId($cal->getId());
 		
 		$url = '/nm/calEdit/id/' . $cal->getId();
-		if ($wixInstance) $url .= '/wixInstance/' . $wixInstance;
 		if ($isPopup) $url .= '/?isPopup=' . $isPopup;
 		
 		$this->redirect($url);
 	}
 	
 	private function setMaxEvents(sfWebRequest $request, $user){
-		$this->wixInstance = $request->getParameter('wixInstance');
+		$this->wixInstance = UserUtils::getWixInstance();
 		
 		$partnerLicence = new PartnerLicence(PartnerLicence::DEFAULT_PLAN, date('d-m-Y', strtotime("+1 month")));
 		
@@ -607,7 +605,7 @@ class nmActions extends sfActions{
 		}
 	}
 	
-	private function registerForm($data, $wixInstance = null){
+	private function registerForm($data){
 		$res = array('success' => false, 'msg' => __('Register failed'));
 		
 		if ($data){
@@ -634,19 +632,10 @@ class nmActions extends sfActions{
 				$partner = $user->createPartner($rootName, $website);
 				
 				//Connect wix instance to user
-				if ($wixInstance){
-					$data = Wix::getInstanceData($wixInstance);
-					
-					if ($data->instanceId){
-						Doctrine_Query::create()
-							->update('Wix w')
-							->set('w.user_id', '?', $user->getId())
-							->where('w.instance_code = ?', $data->instanceId)
-							->execute();
-					}
-				}
-				
-				
+                $wixInstance = UserUtils::getWixInstance();
+                $userId = $user->getId();
+                WixTable::bindAll($wixInstance, $userId);
+
 				$res['success'] = true;
 				$res['msg'] = 'Registration was successful';
 			} else {
@@ -664,8 +653,6 @@ class nmActions extends sfActions{
 	}
 	
 	public function executeRegister(sfWebRequest $request){
-		$this->wixInstance = $request->getParameter('wixInstance');
-		
 		$user = UserUtils::getLoggedIn();
 
 		$this->registerForm = new NmRegisterForm();
@@ -674,7 +661,7 @@ class nmActions extends sfActions{
 		
 		if (!$user && $request->isMethod('post') && $registerData = $request->getParameter('register')) {
 			
-			$res = $this->registerForm($registerData, $this->wixInstance);
+			$res = $this->registerForm($registerData);
 			
 			echo json_encode($res);
 			return sfView::NONE;

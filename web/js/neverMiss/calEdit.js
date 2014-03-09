@@ -235,7 +235,7 @@ function loadCalendar(){
 		height : 22,
 		type : "text",
 		map_to : "location"
-	},/* {
+	}/* {
 		name : "recurring",
 		type : "recurring",
 		map_to : "rec_type",

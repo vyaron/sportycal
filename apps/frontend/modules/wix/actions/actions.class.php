@@ -2,7 +2,12 @@
 class wixActions extends sfActions{
 	private function init(sfWebRequest $request, $needInstance = false){
 		if ($needInstance){
-			$instance = $request->getParameter('instance');
+            //get wix instance form URL or from session
+			$instance = $request->getParameter('instance', UserUtils::getWixInstance());
+
+            //save instance on session
+            UserUtils::setWixInstance($instance);
+
 			$compId = $request->getParameter('origCompId', $request->getParameter('compId'));
 			$locale = $request->getParameter('locale');
 			
@@ -91,17 +96,6 @@ class wixActions extends sfActions{
 				if ($user) UserUtils::logUserIn($user);
 				else UserUtils::logUserOut();
 			}
-			
-// 			if ($this->wix && $this->wix->getUserId()) {
-// 				$user = Doctrine_Query::create()
-// 					->from('User u')
-// 					->where('u.id = ?', $this->wix->getUserId())
-// 					->fetchOne();
-		
-// 				UserUtils::logUserIn($user);
-// 			} else {
-// 				UserUtils::logUserOut();
-// 			}
 		}
 	}
 	
@@ -123,7 +117,7 @@ class wixActions extends sfActions{
 		
 		$this->isPremium = Wix::isPremium($this->wixData);
 		$this->calId = $this->wix->getCalId();
-		$this->upcoming = $this->wix->getUpcomingForDisplay();
+		//$this->upcoming = $this->wix->getUpcomingForDisplay();
 		$this->lineColor = $this->wix->getLineColorForDisplay();
 		$this->textColor = $this->wix->getTextColorForDisplay();
 		$this->bgColor = $this->wix->getBgColorForDisplay();
@@ -148,7 +142,7 @@ class wixActions extends sfActions{
 		$partner = $cal ? $cal->getPartner() : $ctg->getPartner();
 		
 		$this->cal = $cal;
-		$this->partner = $parnter;
+		$this->partner = $partner;
 		$this->events = CalTable::getUpcomingEvents($cal, $ctg, null, true);
 		$this->isReachedMaxSubscribers = ($partner && !Wix::isPremium($this->wixData)) ? $partner->isReachedMaxSubscribers() : false;
 		$this->calId = $calId;
@@ -164,6 +158,6 @@ class wixActions extends sfActions{
 		$this->title = ($isShowCalName) ? $cal->getName() : null;
 		//$this->setLayout('cleanLayout');
 		
-		sfContext::getInstance()->getI18N()->setCulture($language);
+		//sfContext::getInstance()->getI18N()->setCulture($language);
 	}
 }

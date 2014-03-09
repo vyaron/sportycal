@@ -31,6 +31,7 @@ class UserUtils {
 	const KEY_ORPHAN_CAL_ID			= 'orphanCalId';
 	
 	const KEY_REFERER_URL			= 'refererUrl';
+    const KEY_WIX_INSTANCE			= 'wixInstance';
 	
 	private static $cachedPartner = null;
 	
@@ -63,6 +64,20 @@ class UserUtils {
   public static function getOrphanCalId(){
   	return self::getFromSession(self::KEY_ORPHAN_CAL_ID);
   }
+
+    public static function setWixInstance($instance){
+        $userSession = sfContext::getInstance()->getUser();
+
+        if ($instance){
+            $userSession[self::KEY_WIX_INSTANCE] = $instance;
+        } else {
+            unset($userSession[self::KEY_WIX_INSTANCE]);
+        }
+    }
+
+    public static function getWixInstance(){
+        return self::getFromSession(self::KEY_WIX_INSTANCE);
+    }
   
   public static function setRefererUrl($url){
   	$userSession = sfContext::getInstance()->getUser();
