@@ -786,6 +786,7 @@ class calActions extends sfActions
             }
 
             $fileName = Utils::slugify($calendar->getName());
+            if (!$fileName) $fileName = 'calendar';
 
             $msg = __("Your %calName% Calendar is Ready!", array('%calName%' => $calendar->getName()));
             $msg .= "\n" . __("Note - due to some limitations on Android devices, you must open this link on a Desktop.");

@@ -290,6 +290,6 @@ class Partner extends BasePartner
 	}
 	
 	public function getLang(){
-		return ($this->getId() == 2047) ? NeverMissWidget::LANGUAGE_HEBREW : NeverMissWidget::DEFAULT_LANGUAGE;
+		return ($this->getId() == 2047 || $this->getId() == 2105) ? NeverMissWidget::LANGUAGE_HEBREW : NeverMissWidget::DEFAULT_LANGUAGE;
 	}
 }

@@ -2,7 +2,7 @@ body{background-color: #f1f1f1;}
 .is-popup #top-navbar-placholder{display: none;}
 #top-navbar-placholder, .navbar-fixed-top{margin-bottom: 0;}
 
-.container{width: 400px;}
+.container{max-width: 400px;}
 
 #banner{font-family: 'SignikaSemibold'; padding:10px; font-size: 38px; line-height:38px; text-transform:uppercase; text-align:center; color: #fff; background-color: #faba2c; font-weight: bold; margin-top: 0;}
 
