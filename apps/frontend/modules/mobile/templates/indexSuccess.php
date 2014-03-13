@@ -11,14 +11,12 @@
 
 
 <?php
-/*
 	$addClass = 'itemRowBg3';
-	$h2 = 'London 2012';
-	$href = '/category/2280/london-2012-calendars';
-	$iconClass = 'ctgIcon_2280';
-	$infoIconClass = 'itemArrowRight';
+	$h2 = 'FIFA WORLD CUP';
+	$href = '/category/7943/world-cup-finals-brazil-2014-calendars';
+	$iconClass = 'ctgIcon_7943';
+	$infoIconClass = 'FIFA WORLD CUP';
 	include_partial('mobile/itemRow', array('addClass' => $addClass, 'href' => $href, 'h2' => $h2, 'h3' => '&nbsp;', 'iconClass' => $iconClass, 'infoIconClass' => $infoIconClass));
-	*/
 ?>
 
 

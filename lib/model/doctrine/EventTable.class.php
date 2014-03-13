@@ -279,8 +279,12 @@ class EventTable extends Doctrine_Table
 				break;
 			}
 		}
-		
-		if ($calId == Wix::DEFAULT_CAL_ID){
+
+        //get partner
+        $partner = PartnerTable::getById(null, $calId);
+
+
+		if ($calId == Wix::DEFAULT_CAL_ID || ($partner && $partner->isHapoelTelAviv())){
 			$events = $events;
 		} else if ($eventsCount && !$hasRecEvent) {
     		$lastEventTime = strtotime($events[$eventsCount-1]->getStartsAt());

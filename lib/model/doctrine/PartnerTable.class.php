@@ -19,12 +19,17 @@ class PartnerTable extends Doctrine_Table
 		
 	}
 	
-	public static function getById($partnerId) {
-		$q =  Doctrine::getTable('Partner')
-                ->createQuery('p')
-                ->where('p.id = ?', $partnerId);
+	public static function getById($partnerId = null, $calId = null) {
+		$q =  Doctrine::getTable('Partner')->createQuery('p');
 
-        return $q->fetchOne();
+        if ($partnerId) $q->where('p.id = ?', $partnerId);
+
+        if ($calId) {
+            $q->innerJoin('p.Cal c')
+            ->where('c.id = ?', $calId);
+        }
+
+        return ($partnerId || $calId) ? $q->fetchOne() : null;
 	}
 	
 	public static function getBy() {

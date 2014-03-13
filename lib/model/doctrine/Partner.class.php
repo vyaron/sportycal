@@ -66,6 +66,10 @@ class Partner extends BasePartner
 	public function isPokerstars() {
 		return $this->getId() == 777;
 	}
+
+    public function isHapoelTelAviv() {
+        return $this->getId() == 2100;
+    }
 	
 	public function getDescTopPart($isHtmlSupported, $event, $cal) {
 		$desc = '';
