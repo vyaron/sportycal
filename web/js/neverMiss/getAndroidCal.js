@@ -8,7 +8,7 @@ function handleMailForm(){
 
         if (mailForm.valid()){
             jQuery.ajax({
-                url : '/frontend_dev.php/cal/sendAndroidMail',
+                url : '/cal/sendAndroidMail',
                 type : 'POST',
                 dataType : 'json',
                 data : mailForm.serialize()
