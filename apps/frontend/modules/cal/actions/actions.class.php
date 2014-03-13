@@ -714,6 +714,7 @@ class calActions extends sfActions
   
   	$ip 			= Utils::getClientIP();
   	$dateNow    	= date("Y-m-d g:i");
+    $userAgent = $_SERVER['HTTP_USER_AGENT'];
   	 
   	
   	// Save this UserCal
@@ -724,12 +725,16 @@ class calActions extends sfActions
   	if ($partner)			$userCal->setPartnerId($partner->getId());
   	if ($intelLabel)		$userCal->setLabel($intelLabel);
   	if ($reminder) 			$userCal->setReminder($reminder);
+    if ($userAgent)         $userCal->setUserAgent($userAgent);
   	
   	$userCal->setUserId(UserUtils::getLoggedInId());
   	$userCal->setCalType($calType);
   	$userCal->setTakenAt($dateNow);
   	$userCal->setUpdatedAt($dateNow);
   	$userCal->setIpAddress($ip);
+
+
+
   	$userCal->save();
   	$userCalId = $userCal->getId();
   	
@@ -761,6 +766,61 @@ class calActions extends sfActions
   	}
   	
   }
+
+    public function executeSendAndroidMail(sfWebRequest $request)   {
+        $email = $userData = $request->getParameter('email');
+        $userCalId = $request->getParameter('userCalId');
+        $userCal = Doctrine::getTable('UserCal')->find($userCalId);
+
+        $res = array('success' => false, 'msg' => __('Email not sent'));
+
+        if ($request->isMethod('post') && $email && $userCal) {
+            $partner = $userCal->getPartner();
+            $calendar = $userCal->getCal();
+
+            //Set language
+            if ($partner) {
+                $language = $partner->getLang();
+                $this->isRTL = ($language == NeverMissWidget::LANGUAGE_HEBREW) ? true : false;
+                sfContext::getInstance()->getI18N()->setCulture($language);
+            }
+
+            $fileName = Utils::slugify($calendar->getName());
+
+            $msg = __("Your %calName% Calendar is Ready!", array('%calName%' => $calendar->getName()));
+            $msg .= "\n" . __("Note - due to some limitations on Android devices, you must open this link on a Desktop.");
+            $msg .= "\n\n" . __("Click this link to add this calendar:");
+            $msg .= "\n" . Cal::GOOGLE_IMPORT_URL . urlencode(sfConfig::get('app_domain_full') . '/cal/get/h/' . $userCalId . '/' . $fileName . '.ics');
+            $msg .= "\n\nPowered by " . sfConfig::get('app_domain_name');
+
+            $mail = new PHPMailer();
+            $mail->IsSMTP();
+            $mail->Host       = 'smtp.gmail.com';
+            $mail->Port       = 587;
+            $mail->SMTPSecure = 'tls';
+            $mail->SMTPAuth   = true;
+            $mail->CharSet = 'UTF-8';
+
+            $mail->Username   = sfConfig::get('app_gmail_username');
+            $mail->Password   = sfConfig::get('app_gmail_password');
+
+            $mail->SetFrom(sfConfig::get('app_mailinglist_fromEmail'), $partner->getName());
+            $mail->AddReplyTo(sfConfig::get('app_mailinglist_fromEmail'), $partner->getName());
+            $mail->AddAddress($email);
+
+            $mail->Subject = __('Your %calName% Calendar is Ready!', array('%calName%' => $calendar->getName()));
+
+            $mail->MsgHTML(nl2br($msg));
+            $mail->AltBody = $msg;
+
+            $success = $mail->Send();
+
+            if ($success) $res = array('success' => true, 'msg' => __('The email was sent successfully'));
+        }
+
+        echo json_encode($res);
+        return sfView::NONE;
+    }
 }
 
  

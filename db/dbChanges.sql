@@ -1,3 +1,6 @@
+ALTER TABLE `user_cal` ADD `user_agent` VARCHAR( 256 ) NULL DEFAULT NULL ,
+ADD INDEX ( `user_agent` );
+----------------------------DONE ON PROD-------------------------------------------------------
 UPDATE `category_link` SET `txt` = 'Follow {{CAL_NAME}} news by the fans on FTBPro' WHERE `txt` = 'FTBPro FOOTBALL NEWS';
 UPDATE `category_link` SET `txt` = 'Buy a ticket to {{CAL_NAME}} games' WHERE `txt` = 'Buy a Ticket';
 UPDATE `category_link` SET `txt` = 'Visit {{CAL_NAME}} official website' WHERE `txt` = 'Web Site';

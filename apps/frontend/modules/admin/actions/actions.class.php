@@ -267,6 +267,7 @@ class adminActions extends sfActions
     
         
     $ip = Utils::getClientIP();
+    $userAgent = $_SERVER['HTTP_USER_AGENT'];
     
     //$key = null;
     //if ($ctgId) $key = 'ctgId_' . $ctgId;
@@ -289,6 +290,7 @@ class adminActions extends sfActions
     if ($hash)		$userCal->setHash($hash);
     if ($label)		$userCal->setLabel($label);
     if ($reminder != null) 	$userCal->setReminder($reminder);
+    if ($userAgent)         $userCal->setUserAgent($userAgent);
     
     $userCal->setUserId(UserUtils::getLoggedInId());
     $userCal->setCalType($calType);

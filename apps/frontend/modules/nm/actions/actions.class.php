@@ -23,12 +23,15 @@ class nmActions extends sfActions{
 		$this->forward404Unless($userCal = Doctrine::getTable('UserCal')->find($request->getParameter('h')));
 		
 		$partner = $userCal->getPartner();
+        $calendar = $userCal->getCal();
+
 		if ($partner) {
 			$language = $partner->getLang();
 			$this->isRTL = ($language == NeverMissWidget::LANGUAGE_HEBREW) ? true : false;
 			sfContext::getInstance()->getI18N()->setCulture($language);
 		}
-		
+
+        $this->calendar = $calendar;
 		$this->userCalId = $userCal->getId();
 		$this->fileName = $fn;
 	}
