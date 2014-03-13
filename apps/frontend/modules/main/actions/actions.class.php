@@ -904,5 +904,28 @@ class mainActions extends sfActions
   	$this->rootCtgId = UpdateWinnerCals::PARTNER_CTG_ID;
   	
   }
+
+    public function executeFifaWorldCup(sfWebRequest $request){
+        $ctgId = 7943;
+        $cals = CalTable::getCals($ctgId, null, null, $showPastCals);
+
+        $this->ctgId = $ctgId;
+        $this->cals = $cals;
+
+        $this->setLayout('neverMiss');
+        $this->setLayout('cleanLayout');
+        //$this->setTemplate('loginAndRegister', 'nm');
+//        $partner = SportyCalAPI::getValidPartner($request);
+//        if (!$partner) die("Invalid Partner");
+//
+//        UserUtils::setUserTZ('Asia/Jerusalem');
+//
+//        $this->fromFbApp = UserUtils::getFromFbApp();
+//        if ($this->fromFbApp) $this->setLayout("fbapp");
+//
+//        $this->partnerHash = $partner->hash;
+//        $this->rootCtgId = UpdateWinnerCals::PARTNER_CTG_ID;
+
+    }
 }
 
