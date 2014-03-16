@@ -788,7 +788,7 @@ class calActions extends sfActions
             $fileName = Utils::slugify($calendar->getName());
             if (!$fileName) $fileName = 'calendar';
 
-            $msg = __("Your %calName% Calendar is Ready!", array('%calName%' => $calendar->getName()));
+            $msg = __("Your calendar - %calName% is Ready!", array('%calName%' => $calendar->getName()));
             $msg .= "\n" . __("Note - due to some limitations on Android devices, you must open this link on a Desktop.");
             $msg .= "\n\n" . __("Click this link to add this calendar:");
             $msg .= "\n" . Cal::GOOGLE_IMPORT_URL . urlencode(sfConfig::get('app_domain_full') . '/cal/get/h/' . $userCalId . '/' . $fileName . '.ics');
@@ -809,7 +809,7 @@ class calActions extends sfActions
             $mail->AddReplyTo(sfConfig::get('app_mailinglist_fromEmail'), $partner->getName());
             $mail->AddAddress($email);
 
-            $mail->Subject = __('Your %calName% Calendar is Ready!', array('%calName%' => $calendar->getName()));
+            $mail->Subject = __('Your calendar - %calName% is Ready!', array('%calName%' => $calendar->getName()));
 
             $mail->MsgHTML(nl2br($msg));
             $mail->AltBody = $msg;

@@ -764,12 +764,12 @@
         <target>הדואר לא נשלח</target>
       </trans-unit>
       <trans-unit id="217">
-        <source>Your %calName% Calendar is Ready!</source>
-        <target>הקלנדר %calName%שלך מוכן!</target>
+        <source>Your calendar - %calName% is Ready!</source>
+        <target>הקלנדר שלך: %calName%  מוכן!</target>
       </trans-unit>
       <trans-unit id="218">
-        <source>Note - due to some limitations on Android devices, you must open this link on a Desktop.</source>
-        <target>שים לב - בשל מגבלה במכשיר האנדרואיד, עליך ללחוץ על הלינק דרך מחשב ולא דרך הטלפון.</target>
+        <source>Note - due to some limitations on Android devices, you must open the link sent to you by email via a Desktop and not via phone</source>
+        <target>שים לב - בשל מגבלה במכשיר האנדרואיד, עליך ללחוץ על הקישור שישלח אליך במייל דרך מחשב ולא דרך הטלפון.</target>
       </trans-unit>
       <trans-unit id="219">
         <source>Click this link to add this calendar:</source>
@@ -787,6 +787,12 @@
         <source>We will never use this email to spam you in any way.</source>
         <target>לעולם לא נשתמש במייל הזה לשליחת הודעות זבל.</target>
       </trans-unit>
+
+        <trans-unit id="223">
+            <source>Note - due to some limitations on Android devices, you must open this link on a Desktop.</source>
+            <target>שים לב - בשל מגבלה במכשיר האנדרואיד, עליך ללחוץ על הקישור דרך מחשב ולא דרך הטלפון.</target>
+        </trans-unit>
+
     </body>
   </file>
 </xliff>

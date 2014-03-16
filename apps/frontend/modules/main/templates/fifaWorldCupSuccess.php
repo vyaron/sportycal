@@ -27,7 +27,7 @@ use_stylesheet('/css/fifaWorldCup.css');
 <!--        </fieldset>-->
 <!--    </form>-->
 
-    <p>(Don't worry, even if your XXXX doesn't make it, you will still get the rest of the games, all the my to XXXX final.)</p>
+    <p>(Don't worry, even if your team doesn't make it, you will still get the rest of the games, all the way to the finals.)</p>
 
     <hr/>
 

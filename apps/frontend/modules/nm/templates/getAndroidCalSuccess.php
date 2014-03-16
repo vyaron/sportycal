@@ -6,14 +6,11 @@ if ($isRTL) use_stylesheet('/css/neverMiss/getAndroidCal_rtl.css');
 <h2 id="banner"><?php echo __('Adding to calendar')?></h2>
 
 <div class="container">
-	<h3><?php echo __('Your %calName% Calendar is Ready!', array('%calName%' => $calendar->getName()))?></h3>
-
+	<h3><?php echo __('Your calendar - %calName% is Ready!', array('%calName%' => $calendar->getName()))?></h3>
 	<hr/>
-
-    <p><?php echo __('Please enter your email address so we can send your subscription link.')?></p>
-    <p><?php echo __('Note - due to some limitations on Android devices, you must open this link on a Desktop.')?></p>
-
     <form id="mail-form">
+        <p><?php echo __('Please enter your email address so we can send your subscription link.')?></p>
+
         <input type="hidden" name="userCalId" value="<?php echo $userCalId;?>"/>
         <div class="row-fluid">
             <div class="span8">
@@ -27,8 +24,12 @@ if ($isRTL) use_stylesheet('/css/neverMiss/getAndroidCal_rtl.css');
         </div>
 
         <p><?php echo __('We will never use this email to spam you in any way.')?></p>
-    </form>
 
+    </form>
+    <div id="box-success" style="display:none">
+        <p><?php echo __('The email was sent successfully')?></p>
+        <p><?php echo __('Note - due to some limitations on Android devices, you must open the link sent to you by email via a Desktop and not via phone')?></p>
+    </div>
     <!--
 	<table id="instructions">
 		<tr>

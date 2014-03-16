@@ -17,7 +17,10 @@ function handleMailForm(){
 
                 //setGlobalAlert(res);
 
-                if (res.success) mailForm.hide();
+                if (res.success) {
+                    mailForm.hide();
+                    jQuery('#box-success').show();
+                }
                 else if (res && res.errors) mailForm.data('validator').showErrors(res.errors);
             });
         }
