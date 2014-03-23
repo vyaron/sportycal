@@ -424,14 +424,14 @@ class ICalExporter {
 		if(strpos($str, "BEGIN:VCALENDAR") === false) $str = file_get_contents($str);
 
 		$arr_p = $this->getParseString($str);
-
 		$arr_n = array();
 		$id = 1;
 		for($i=1;$i<=sizeof($arr_p);$i++) {
-			$startDate = strtotime($arr_p[$i]['start_date']);
-			if (! $arr_p[$i]['type'] && ($minStartDate > $startDate)) continue;
+			//$startDate = strtotime($arr_p[$i]['start_date']);
+			//if (! $arr_p[$i]['type'] && $minStartDate > $startDate) continue;
 			
 			if(isset($arr_p[$i]['rec_id'])){
+
 				$arr_n[$i]['event_id'] = $arr_p[$i]['event_id'];
 				$arr_n[$i]['start_date'] = $arr_p[$i]['start_date'];
 				$arr_n[$i]['end_date'] = $arr_p[$i]['end_date'];
@@ -444,6 +444,7 @@ class ICalExporter {
 				if (key_exists('description', $arr_p[$i])) $arr_n[$i]['description'] = $arr_p[$i]['description'];
 			}
 			else {
+
 				if(isset($arr_p[$i]['exdate'])){
 					if(sizeof($arr_p[$i]['exdate'])> 1) {
 						for($ni=0;$ni<sizeof($arr_p[$i]['exdate']);$ni++) {
@@ -525,7 +526,8 @@ class ICalExporter {
 				if (key_exists('description', $arr_p[$i])) $arr_n[$i]['description'] = $arr_p[$i]['description'];
 			}
 		}
-		
+
+//        Utils::pp($arr_n);
 		return $this->getSortArrayById($arr_n);
 	}
 }

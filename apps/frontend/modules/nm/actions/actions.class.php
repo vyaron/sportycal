@@ -198,17 +198,18 @@ class nmActions extends sfActions{
 		$this->setMaxEvents($request, $user);
 		
 		$res = array('success' => false, 'msg' => __('File not supported!'), 'isReachedMaxEvents' => false);
-		if ($request->isMethod('post')){
-			$file = $request->getFiles('file');
-			if (key_exists('tmp_name', $file) /*&& $file['type'] == 'text/calendar'*/){
+		if (true || $request->isMethod('post')){
+			//$file = $request->getFiles('file');
+			if (true || key_exists('tmp_name', $file) /*&& $file['type'] == 'text/calendar'*/){
 			//if (true){
 				$res['success'] = true;
 				
-				$content = file_get_contents($file['tmp_name']);
-				//$content = file_get_contents('e:/temp/test.ics');
+				//$content = file_get_contents($file['tmp_name']);
+				$content = file_get_contents('e:/temp/test.ics');
 				
 				$export = new ICalExporter();
 				$eventsHash = $export->toHash($content);
+
 				
 				$childEventsHash = array();
 				$childEvents = array();
@@ -243,24 +244,27 @@ class nmActions extends sfActions{
 					
 					$description = str_replace($globalDesc, '', $description);
 					$description = trim($description);
-					
+
+                    $now =  date('Y-m-d H:i:s');
+
 					$event->setCalId($cal->getId());
-					$event->setCreatedAt($startDate);
+					$event->setCreatedAt($now);
 					$event->setName($eventHash['text']);
 					$event->setDescription($description);
 					$event->setLocation($location);
 					$event->setTz($tz);
 					$event->setStartsAt($startDate);
 					$event->setEndsAt($endDate);
-					$event->setUpdatedAt($startDate);
+					$event->setUpdatedAt($now);
 					$event->setRecType($recType);
 					$event->setLength($length);
 					
 					if ($eventHash['event_pid'] == 0) $collectionEvent->add($event, $eventHash['id']);
 					else $childEvents[$eventHash['event_id']] = $event;
 				}
+
 				$collectionEvent->save();
-				
+
 				$collectionChildEvent = new Doctrine_Collection('Event');
 				foreach ($childEvents as $eventHashId => $childEvent){
 					$eventHash = $eventsHash[$eventHashId];

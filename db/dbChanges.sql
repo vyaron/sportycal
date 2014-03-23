@@ -1,3 +1,11 @@
+----------------------------DONE ON PROD-------------------------------------------------------
+ALTER TABLE `event` CHANGE `starts_at` `starts_at` DATETIME NOT NULL DEFAULT '0000-00-00 00:00:00';
+ALTER TABLE `event` CHANGE `ends_at` `ends_at` DATETIME NOT NULL DEFAULT '0000-00-00 00:00:00';
+
+UPDATE partner p
+SET p.licence_code = 'D', p.licence_ends_at = '2015-03-23 00:00:00'
+WHERE p.id = 2190;
+----------------------------DONE ON PROD-------------------------------------------------------
 ALTER TABLE `user_cal` ADD `user_agent` VARCHAR( 256 ) NULL DEFAULT NULL ,
 ADD INDEX ( `user_agent` );
 ----------------------------DONE ON PROD-------------------------------------------------------
