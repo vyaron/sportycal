@@ -20,6 +20,7 @@ dev:
   domain:
     short: sportycal.local
     full:  http://sportycal.local
+    fullNeverMiss : http://inevermiss.local
   facebook:
     appId: 313400138677127
     secret: 62094be3d3db0caf976e93cc44ef7cad
@@ -55,6 +56,7 @@ all:
     isMobile: false
     short: www.sportycal.com
     full:  http://www.sportycal.com
+    fullNeverMiss : http://www.inevermiss.net
     name: sportYcal
   captha:
     dir: /images/captchas/

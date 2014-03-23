@@ -21,7 +21,7 @@ use_stylesheet('/css/fifaWorldCup.css');
                     </select>
                 </div>
                 <div class="span4">
-                    <a id="download-calendar" class="btn btn-success btn-block" disabled="disabled" data-href="<?php echo sfConfig::get('app_domain_full')?>/nm/addToCalendar/?calId=" target="_blank">Download calendar</a>
+                    <a id="download-calendar" class="btn btn-success btn-block" disabled="disabled" data-href="<?php echo sfConfig::get('app_domain_fullNeverMiss')?>/nm/addToCalendar/?calId=" target="_blank">Download calendar</a>
                 </div>
             </div>
 <!--        </fieldset>-->
@@ -33,7 +33,7 @@ use_stylesheet('/css/fifaWorldCup.css');
 
     <p>
         <strong>Big fan?... </strong>
-        <a href="<?php echo sfConfig::get('app_domain_full')?>/nm/addToCalendar/?ctgId=<?php echo $ctgId?>" target="_blank">Download ALL Games</a>
+        <a href="<?php echo sfConfig::get('app_domain_fullNeverMiss')?>/nm/addToCalendar/?ctgId=<?php echo $ctgId?>" target="_blank">Download ALL Games</a>
     </p>
 </div>
 
