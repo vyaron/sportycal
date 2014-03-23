@@ -198,14 +198,14 @@ class nmActions extends sfActions{
 		$this->setMaxEvents($request, $user);
 		
 		$res = array('success' => false, 'msg' => __('File not supported!'), 'isReachedMaxEvents' => false);
-		if (true || $request->isMethod('post')){
-			//$file = $request->getFiles('file');
-			if (true || key_exists('tmp_name', $file) /*&& $file['type'] == 'text/calendar'*/){
+		if ($request->isMethod('post')){
+			$file = $request->getFiles('file');
+			if (key_exists('tmp_name', $file) /*&& $file['type'] == 'text/calendar'*/){
 			//if (true){
 				$res['success'] = true;
 				
-				//$content = file_get_contents($file['tmp_name']);
-				$content = file_get_contents('e:/temp/test.ics');
+				$content = file_get_contents($file['tmp_name']);
+				//$content = file_get_contents('e:/temp/test.ics');
 				
 				$export = new ICalExporter();
 				$eventsHash = $export->toHash($content);
