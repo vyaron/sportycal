@@ -907,12 +907,19 @@ class mainActions extends sfActions
 
     public function executeFifaWorldCup(sfWebRequest $request){
         $ctgId = 7943;
+        if ($request->getParameter("lang") == 'he') $ctgId = 8173;
+
+        $this->category = Doctrine::getTable('Category')->find(array($ctgId));
+
         $cals = CalTable::getCals($ctgId, null, null, $showPastCals);
+  //      $subCtgs      = CategoryTable::getCategories($ctgId);
+
 
         $this->ctgId = $ctgId;
         $this->cals = $cals;
+        $this->subCtgs = $subCtgs;
 
-        $this->setLayout('neverMiss');
+        //$this->setLayout('neverMiss');
         $this->setLayout('cleanLayout');
         //$this->setTemplate('loginAndRegister', 'nm');
 //        $partner = SportyCalAPI::getValidPartner($request);

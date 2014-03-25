@@ -464,11 +464,13 @@ class Cal extends BaseCal
 
 	}
 
-	public function getKeywords() {
-		$keywords  = $this->getName() . ",";
-		$keywords .= $this->getName() . " Calendar,";
-		$keywords .= $this->getName() . " Schedule";
-
+	public function getKeywords($short=false) {
+		$keywords  = $this->getName();
+        if (!$short) {
+            $keywords .= ",";
+            $keywords .= $this->getName() . " Calendar,";
+            $keywords .= $this->getName() . " Schedule";
+        }
 		return $keywords;
 	}
 
@@ -771,4 +773,14 @@ class Cal extends BaseCal
     		UserUtils::setOrphanCalId(null);
     	}
     }
+
+
+    public static function getKeywordsForCals($cals) {
+        $keywords = "";
+        foreach ($cals as $cal) {
+            $keywords .= $cal->getKeywords(true) . ",";
+        }
+        return $keywords;
+    }
+
 }

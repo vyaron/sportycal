@@ -2,38 +2,50 @@
 use_stylesheet('/bundle/bootstrap/css/bootstrap.min.css');
 use_stylesheet('/bundle/bootstrap/css/bootstrap-responsive.min.css');
 use_stylesheet('/css/fifaWorldCup.css');
+
+slot('title',sprintf('%s Calendars', $category->getName()));
+slot('keywords', $category->getName() . ", " .Cal::getKeywordsForCals($cals));
+
+
+$userSession = sfContext::getInstance()->getUser();
+$culture = $userSession->getCulture();
+if ($culture === 'he_IL' || $culture === 'he') $RTL = true;
+else $RTL = false;
+
+
 ?>
 
 <div class="container">
-    <h1>Fifa world cup 2014</h1>
 
+    <h1><?php echo __("FIFA World Cup 2014")?></h1>
     <hr/>
-
 <!--    <form>-->
 <!--        <fieldset>-->
             <div class="row-fluid">
-                <div class="span8">
+                <div class="span8 <?php echo ($RTL)? 'pull-right' : '' ?>">
                     <select id="teams" name="calId" class="input-block-level">
-                        <option value="0">Select your team</option>
+                        <option value="0"><?php echo __("Select your team") ?></option>
                         <?php foreach ($cals as $cal):?>
                             <option value="<?php echo $cal->getId();?>" data-imagesrc="<?php echo $cal->getTheImagePath();?>"><?php echo $cal->getName();?></option>
                         <?php endforeach;?>
                     </select>
                 </div>
                 <div class="span4">
-                    <a id="download-calendar" class="btn btn-success btn-block" disabled="disabled" data-href="<?php echo sfConfig::get('app_domain_fullNeverMiss')?>/nm/addToCalendar/?calId=" target="_blank">Download calendar</a>
+                    <a id="download-calendar" class="btn btn-success btn-block" disabled="disabled" data-href="<?php echo sfConfig::get('app_domain_fullNeverMiss')?>/nm/addToCalendar/?calId=" target="_blank">
+                        <?php echo __("Add to my Calendar") ?>
+                    </a>
                 </div>
             </div>
 <!--        </fieldset>-->
 <!--    </form>-->
 
-    <p>(Don't worry, even if your team doesn't make it, you will still get the rest of the games, all the way to the finals.)</p>
+    <p><?php echo __("(Don't worry, even if your team doesn't make it, you will still get the rest of the games, all the way to the finals.)") ?></p>
 
     <hr/>
 
     <p>
-        <strong>Big fan?... </strong>
-        <a href="<?php echo sfConfig::get('app_domain_fullNeverMiss')?>/nm/addToCalendar/?ctgId=<?php echo $ctgId?>" target="_blank">Download ALL Games</a>
+        <strong><?php echo __("Big fan?...") ?> </strong>
+        <a href="<?php echo sfConfig::get('app_domain_fullNeverMiss')?>/nm/addToCalendar/?ctgId=<?php echo $ctgId?>" target="_blank"><?php echo __("Download ALL Games") ?></a>
     </p>
 </div>
 

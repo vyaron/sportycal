@@ -792,6 +792,30 @@
             <source>Note - due to some limitations on Android devices, you must open this link on a Desktop.</source>
             <target>שים לב - בשל מגבלה במכשיר האנדרואיד, עליך ללחוץ על הקישור דרך מחשב ולא דרך הטלפון.</target>
         </trans-unit>
+        <trans-unit id="224">
+            <source>FIFA World Cup 2014</source>
+            <target>מונדיאל ברזיל 2014</target>
+        </trans-unit>
+        <trans-unit id="225">
+            <source>Select your team</source>
+            <target>בחר את קבוצתך</target>
+        </trans-unit>
+        <trans-unit id="226">
+            <source>(Don't worry, even if your team doesn't make it, you will still get the rest of the games, all the way to the finals.)</source>
+            <target>(אל תדאג, גם אם הקבוצה שלך תנשור, עדיין תקבל את כל המשחקים כל הדרך אל הגמר)</target>
+        </trans-unit>
+        <trans-unit id="227">
+            <source>Add to my Calendar</source>
+            <target>הוסף לי לקלנדר</target>
+        </trans-unit>
+        <trans-unit id="228">
+            <source>Big fan?...</source>
+            <target>אוהד שרוף?...</target>
+        </trans-unit>
+        <trans-unit id="229">
+            <source>Download ALL Games</source>
+            <target>הוסף את כל המשחקים</target>
+        </trans-unit>
 
     </body>
   </file>
