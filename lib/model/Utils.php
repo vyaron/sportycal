@@ -884,7 +884,7 @@ class Utils {
 
 	
 	public static function redirectToMobileVersionIfNeeded($controller) {
-		if (!sfConfig::get('app_domain_isNeverMiss') && !sfConfig::get('app_domain_isMobile') && self::clientIsMobile()) {
+		if (!sfConfig::get('app_domain_isNeverMiss') && !sfConfig::get('app_domain_isMobile') && self::clientIsMobile(false)) {
 			$file = $_SERVER["REQUEST_URI"];
 			$controller->redirect("http://m.sportycal.com" . $file);				
 		}
@@ -892,11 +892,11 @@ class Utils {
 	
 	
 	
-	public static function clientIsMobile() {
+	public static function clientIsMobile($withBigScreens = true) {
 		$userAgent = $_SERVER['HTTP_USER_AGENT'];
 		
 		$isMobile = false;
-		$deviceType = self::getClientDeviceType();
+		$deviceType = self::getClientDeviceType($withBigScreens);
 		if ($deviceType) $isMobile = true;
 		
 		return $isMobile;
@@ -918,17 +918,17 @@ class Utils {
         return (stripos($userAgent,'Macintosh') !== false);
     }
 	
-	public static function getClientDeviceType(){
+	public static function getClientDeviceType($withBigScreens=true){
 		$userAgent = $_SERVER['HTTP_USER_AGENT'];
 
 		$deviceType = '';
 		if (stripos($userAgent,'ipod') !== false) $deviceType = self::DEVICE_TYPE_IPOD;
-        else if (stripos($userAgent,'Macintosh') !== false) $deviceType = self::DEVICE_TYPE_MAC;
+        else if ($withBigScreens && stripos($userAgent,'Macintosh') !== false) $deviceType = self::DEVICE_TYPE_MAC;
+        else if ($withBigScreens && stripos($userAgent,'ipad') !== false ) $deviceType = self::DEVICE_TYPE_IPAD;
 		else if (stripos($userAgent,'iphone') !== false ) $deviceType = self::DEVICE_TYPE_IPHONE;
 		else if (stripos($userAgent,'android') !== false ) $deviceType = self::DEVICE_TYPE_ANDROID;
 		else if (stripos($userAgent,'opera mobi') !== false ) $deviceType = self::DEVICE_TYPE_OPERA;
 		else if (stripos($userAgent,'windows phone os') !== false && stripos($userAgent,'iemobile')) $deviceType = self::DEVICE_TYPE_WINDOWS_PHONE;
-		else if (stripos($userAgent,'ipad') !== false ) $deviceType = self::DEVICE_TYPE_IPAD;
 		else if (stripos($userAgent,'fennec') !== false) $deviceType = self::DEVICE_TYPE_FIREFOX_DEVICE;
 		
 		return $deviceType;
