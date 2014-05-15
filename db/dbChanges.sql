@@ -1,3 +1,5 @@
+----------------------------DONE ON PROD-------------------------------------------------------
+
 ALTER TABLE `wix` ADD `provision_provision_at` TIMESTAMP NULL DEFAULT NULL , ADD INDEX ( `provision_provision_at` ) ;
 ALTER TABLE `wix` ADD `billing_upgrade_at` TIMESTAMP NULL DEFAULT NULL , ADD INDEX ( `billing_upgrade_at` ) ;
 ALTER TABLE `wix` ADD `billing_cancel_at` TIMESTAMP NULL DEFAULT NULL , ADD INDEX ( `billing_cancel_at` ) ;
