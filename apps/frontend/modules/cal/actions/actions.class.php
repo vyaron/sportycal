@@ -717,6 +717,7 @@ class calActions extends sfActions
     $userAgent = $_SERVER['HTTP_USER_AGENT'];
 
 
+      //Fixed old bug - widget outlook url contain webcal:// instead of http://, then Outlook got wrong link, and create new userCal object in every cal update!
       if (Utils::clientIsOutlook()){
           $q = Doctrine::getTable('UserCal')
               ->createQuery('uc')
