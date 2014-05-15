@@ -169,36 +169,39 @@ class wixActions extends sfActions{
         $xWixEventType = $request->getHttpHeader('x-wix-event-type');
 
         //Log
-        $file = '/tmp/wix_callback.log';
+//        $file = '/tmp/wix_callback.log';
+//
+//        $current = file_get_contents($file);
+//
+//        $current .= "/********** NEW EVENT ********/\n";
+//        $current .= "x-wix-application-id:" . $xWixApplicationId . "\n";
+//        $current .= "x-wix-timestamp:" . $xWixTimestamp . "\n";
+//        $current .= "x-wix-signature:" . $xWixSignature . "\n";
+//        $current .= "x-wix-instance-id:" . $xWixInstanceId . "\n";
+//        $current .= "x-wix-event-type:" . $xWixEventType . "\n";
+//
+//        file_put_contents($file, $current);
 
-        $current = file_get_contents($file);
 
-        $current .= "/********** NEW EVENT ********/\n";
-        $current .= "x-wix-application-id:" . $xWixApplicationId . "\n";
-        $current .= "x-wix-timestamp:" . $xWixTimestamp . "\n";
-        $current .= "x-wix-signature:" . $xWixSignature . "\n";
-        $current .= "x-wix-instance-id:" . $xWixInstanceId . "\n";
-        $current .= "x-wix-event-type:" . $xWixEventType . "\n";
-
-        file_put_contents($file, $current);
-
-
-        $data = Wix::getInstanceData($xWixSignature);
-        if ($data){
+        //TODO: check signature
+//        $data = Wix::getInstanceData($xWixSignature);
+//        if ($data){
             $wix = Doctrine::getTable('Wix')
                 ->createQuery('w')
                 ->where('instance_code =?', $xWixInstanceId)
                 ->fetchOne();
 
-            $dateTime = new DateTime($xWixTimestamp);
-            $date = $dateTime->format('Y-m-d H:i:s');
+            if ($wix){
+                $dateTime = new DateTime($xWixTimestamp);
+                $date = $dateTime->format('Y-m-d H:i:s');
 
-            if ($xWixEventType == Wix::EVENT_PROVISION_PROVISION) $wix->setProvisionProvisionAt($date);
-            else if ($xWixEventType == Wix::EVENT_BILLING_UPGRADE) $wix->setBillingUpgradeAt($date);
-            else if ($xWixEventType == Wix::EVENT_BILLING_CANCEL) $wix->setBillingCancelAt($date);
+                if ($xWixEventType == Wix::EVENT_PROVISION_PROVISION) $wix->setProvisionProvisionAt($date);
+                else if ($xWixEventType == Wix::EVENT_BILLING_UPGRADE) $wix->setBillingUpgradeAt($date);
+                else if ($xWixEventType == Wix::EVENT_BILLING_CANCEL) $wix->setBillingCancelAt($date);
 
-            $wix->save();
-        }
+                $wix->save();
+            }
+//        }
 
         return sfView::NONE;
     }
