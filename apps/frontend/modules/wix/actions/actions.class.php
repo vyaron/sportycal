@@ -168,6 +168,21 @@ class wixActions extends sfActions{
         $xWixInstanceId = $request->getHttpHeader('x-wix-instance-id');
         $xWixEventType = $request->getHttpHeader('x-wix-event-type');
 
+        //Log
+        $file = '/tmp/wix_callback.log';
+
+        $current = file_get_contents($file);
+
+        $current .= "/********** NEW EVENT ********/\n";
+        $current .= "x-wix-application-id:" . $xWixApplicationId . "\n";
+        $current .= "x-wix-timestamp:" . $xWixTimestamp . "\n";
+        $current .= "x-wix-signature:" . $xWixSignature . "\n";
+        $current .= "x-wix-instance-id:" . $xWixInstanceId . "\n";
+        $current .= "x-wix-event-type:" . $xWixEventType . "\n";
+
+        file_put_contents($file, $current);
+
+
         $data = Wix::getInstanceData($xWixSignature);
         if ($data){
             $wix = Doctrine::getTable('Wix')
