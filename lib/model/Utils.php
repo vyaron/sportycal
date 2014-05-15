@@ -3,7 +3,8 @@
 
 class Utils {
 	const NEW_LINE = "\n";
-	
+
+    const DEVICE_TYPE_MAC = "macintosh";
 	const DEVICE_TYPE_IPOD = "ipod";
 	const DEVICE_TYPE_IPAD = "ipad";
 	const DEVICE_TYPE_IPHONE = "iphone";
@@ -896,7 +897,7 @@ class Utils {
 		
 		$isMobile = false;
 		$deviceType = self::getClientDeviceType();
-		if ($deviceType && $deviceType != self::DEVICE_TYPE_IPAD) $isMobile = true;
+		if ($deviceType) $isMobile = true;
 		
 		return $isMobile;
 	}
@@ -911,12 +912,18 @@ class Utils {
 		$userAgent = $_SERVER['HTTP_USER_AGENT'];
 		return (stripos($userAgent,'ipad') !== false);
 	}
+
+    public static function clientIsMac(){
+        $userAgent = $_SERVER['HTTP_USER_AGENT'];
+        return (stripos($userAgent,'Macintosh') !== false);
+    }
 	
 	public static function getClientDeviceType(){
 		$userAgent = $_SERVER['HTTP_USER_AGENT'];
 
 		$deviceType = '';
 		if (stripos($userAgent,'ipod') !== false) $deviceType = self::DEVICE_TYPE_IPOD;
+        else if (stripos($userAgent,'Macintosh') !== false) $deviceType = self::DEVICE_TYPE_MAC;
 		else if (stripos($userAgent,'iphone') !== false ) $deviceType = self::DEVICE_TYPE_IPHONE;
 		else if (stripos($userAgent,'android') !== false ) $deviceType = self::DEVICE_TYPE_ANDROID;
 		else if (stripos($userAgent,'opera mobi') !== false ) $deviceType = self::DEVICE_TYPE_OPERA;

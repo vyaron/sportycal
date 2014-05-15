@@ -153,7 +153,7 @@ use_stylesheet('/bundle/wix/javascripts/components/glued-position-min/glued.min.
 
 <?php 
 //use_javascript('//sslstatic.wix.com/services/js-sdk/1.19.0/js/Wix.js');
-use_javascript('//sslstatic.wix.com/services/js-sdk/1.24.0/js/Wix.js');
+use_javascript('//sslstatic.wix.com/services/js-sdk/1.28.0/js/Wix.js');
 
 use_javascript('/bundle/wix/javascripts/bootstrap/bootstrap-tooltip.js');
 use_javascript('/bundle/wix/javascripts/bootstrap/bootstrap-popover.js');
