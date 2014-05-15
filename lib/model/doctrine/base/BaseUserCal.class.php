@@ -23,6 +23,7 @@ Doctrine_Manager::getInstance()->bindComponent('UserCal', 'doctrine');
  * @property integer $birthday_cal_for_user_id
  * @property integer $reminder
  * @property string $user_agent
+ * @property string $website
  * @property Cal $Cal
  * @property User $User
  * @property Partner $Partner
@@ -48,6 +49,7 @@ Doctrine_Manager::getInstance()->bindComponent('UserCal', 'doctrine');
  * @method integer             getBirthdayCalForUserId()     Returns the current record's "birthday_cal_for_user_id" value
  * @method integer             getReminder()                 Returns the current record's "reminder" value
  * @method string              getUserAgent()                Returns the current record's "user_agent" value
+ * @method string              getWebsite()                  Returns the current record's "website" value
  * @method Cal                 getCal()                      Returns the current record's "Cal" value
  * @method User                getUser()                     Returns the current record's "User" value
  * @method Partner             getPartner()                  Returns the current record's "Partner" value
@@ -72,6 +74,7 @@ Doctrine_Manager::getInstance()->bindComponent('UserCal', 'doctrine');
  * @method UserCal             setBirthdayCalForUserId()     Sets the current record's "birthday_cal_for_user_id" value
  * @method UserCal             setReminder()                 Sets the current record's "reminder" value
  * @method UserCal             setUserAgent()                Sets the current record's "user_agent" value
+ * @method UserCal             setWebsite()                  Sets the current record's "website" value
  * @method UserCal             setCal()                      Sets the current record's "Cal" value
  * @method UserCal             setUser()                     Sets the current record's "User" value
  * @method UserCal             setPartner()                  Sets the current record's "Partner" value
@@ -234,6 +237,15 @@ abstract class BaseUserCal extends sfDoctrineRecord
              'notnull' => false,
              'autoincrement' => false,
              'length' => 256,
+             ));
+        $this->hasColumn('website', 'string', 512, array(
+             'type' => 'string',
+             'fixed' => 0,
+             'unsigned' => false,
+             'primary' => false,
+             'notnull' => false,
+             'autoincrement' => false,
+             'length' => 512,
              ));
     }
 

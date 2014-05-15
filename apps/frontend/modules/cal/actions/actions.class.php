@@ -685,6 +685,7 @@ class calActions extends sfActions
   	$calId      	= $request->getParameter('id');
   	$ctgId      	= $request->getParameter('ctgId');
   	$calType       	= $request->getParameter('ct');
+    $website       	= $request->getParameter('website');
   	
   	$intelLabel     = $request->getParameter('l');
   	$intelValue     = $request->getParameter('v');
@@ -737,6 +738,7 @@ class calActions extends sfActions
           if ($intelLabel)		$userCal->setLabel($intelLabel);
           if ($reminder) 			$userCal->setReminder($reminder);
           if ($userAgent)         $userCal->setUserAgent($userAgent);
+          if ($website)         $userCal->setWebsite($website);
 
           $userCal->setUserId(UserUtils::getLoggedInId());
           $userCal->setCalType($calType);

@@ -2237,6 +2237,13 @@ UserCal:
       primary: false
       notnull: false
       autoincrement: false
+    website:
+      type: string(512)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: false
+      autoincrement: false
   relations:
     Cal:
       local: cal_id

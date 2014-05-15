@@ -29,7 +29,16 @@ $(document).ready(function(){
 	
 	$('.desc-open-btn').click(showDesc);
 	$('.desc-close-btn').click(hideDesc);
-	
+
+    var ref = document.referrer;
+    if (ref){
+        ref = encodeURIComponent(ref);
+        $('.cal-btn').each(function(e, el){
+            var href = $(el).attr('href');
+            if (href) $(el).attr('href', href + '?website=' + ref);
+        });
+    }
+
 	calcWidgetHeight();
 	$(window).resize(calcWidgetHeight);
 });

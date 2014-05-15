@@ -1,3 +1,4 @@
+ALTER TABLE `user_cal` ADD `website` VARCHAR( 512 ) NULL DEFAULT NULL, ADD INDEX ( `website` ) ;
 ----------------------------DONE ON PROD-------------------------------------------------------
 
 ALTER TABLE `wix` ADD `provision_provision_at` TIMESTAMP NULL DEFAULT NULL , ADD INDEX ( `provision_provision_at` ) ;
