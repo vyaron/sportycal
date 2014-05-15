@@ -53,7 +53,7 @@
 		<a class="credit" title="<?php echo __('powered by inevermiss.net');?>" href="<?php echo sfConfig::get('app_domain_full');?>" target="_blank"><?php echo __('powered by inevermiss.net');?></a>
 	</div>
 	<div class="clearfix">
-		<a class="cal-link outlook" href="webcal://<?php echo sfConfig::get('app_domain_short');?>/cal/sub<?php echo $calId ? '/id/' . $calId : '';?><?php echo $ctgId ? '/ctgId/' . $ctgId : '';?><?php echo $ref ? '/ref/' . $ref : '';?>/ct/outlook/cal.ics"><span>Outlook</span></a>
+		<a class="cal-link outlook" href="http://<?php echo sfConfig::get('app_domain_short');?>/cal/sub<?php echo $calId ? '/id/' . $calId : '';?><?php echo $ctgId ? '/ctgId/' . $ctgId : '';?><?php echo $ref ? '/ref/' . $ref : '';?>/ct/outlook/cal.ics"><span>Outlook</span></a>
 		<a class="cal-link ical" target="_blank" href="/cal/sub<?php echo $calId ? '/id/' . $calId : '';?><?php echo $ctgId ? '/ctgId/' . $ctgId : '';?><?php echo $ref ? '/ref/' . $ref : '';?>/ct/any/cal.ics"><span>iCal</span></a>
 		<a class="cal-link google" target="_blank" href="/cal/sub<?php echo $calId ? '/id/' . $calId : '';?><?php echo $ctgId ? '/ctgId/' . $ctgId : '';?><?php echo $ref ? '/ref/' . $ref : '';?>/ct/google/cal.ics"><span>G Calendar</span></a>
 		<!-- <a class="cal-link email" href="#">&nbsp;</a> -->

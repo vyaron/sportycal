@@ -913,6 +913,11 @@ class Utils {
 		return (stripos($userAgent,'ipad') !== false);
 	}
 
+    public static function clientIsOutlook(){
+        $userAgent = $_SERVER['HTTP_USER_AGENT'];
+        return (stripos($userAgent,'Outlook') !== false);
+    }
+
     public static function clientIsMac(){
         $userAgent = $_SERVER['HTTP_USER_AGENT'];
         return (stripos($userAgent,'Macintosh') !== false);

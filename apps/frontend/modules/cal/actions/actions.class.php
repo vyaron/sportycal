@@ -715,28 +715,38 @@ class calActions extends sfActions
   	$ip 			= Utils::getClientIP();
   	$dateNow    	= date("Y-m-d g:i");
     $userAgent = $_SERVER['HTTP_USER_AGENT'];
-  	 
-  	
-  	// Save this UserCal
-  	$userCal = new UserCal();
-  	
-  	if ($calId) 			$userCal->setCalId($calId);
-  	if ($ctgId) 			$userCal->setCategoryId($ctgId);
-  	if ($partner)			$userCal->setPartnerId($partner->getId());
-  	if ($intelLabel)		$userCal->setLabel($intelLabel);
-  	if ($reminder) 			$userCal->setReminder($reminder);
-    if ($userAgent)         $userCal->setUserAgent($userAgent);
-  	
-  	$userCal->setUserId(UserUtils::getLoggedInId());
-  	$userCal->setCalType($calType);
-  	$userCal->setTakenAt($dateNow);
-  	$userCal->setUpdatedAt($dateNow);
-  	$userCal->setIpAddress($ip);
 
 
+      if (Utils::clientIsOutlook()){
+          $q = Doctrine::getTable('UserCal')
+              ->createQuery('uc')
+              ->where('cal_id =?', $calId);
 
-  	$userCal->save();
-  	$userCalId = $userCal->getId();
+          if ($calId) $q->where('cal_id =?', $calId);
+          else if ($ctgId) $q->where('ctg_id =?', $ctgId);
+
+          $userCal = $q->fetchOne();
+      } else {
+          // Save this UserCal
+          $userCal = new UserCal();
+
+          if ($calId) 			$userCal->setCalId($calId);
+          if ($ctgId) 			$userCal->setCategoryId($ctgId);
+          if ($partner)			$userCal->setPartnerId($partner->getId());
+          if ($intelLabel)		$userCal->setLabel($intelLabel);
+          if ($reminder) 			$userCal->setReminder($reminder);
+          if ($userAgent)         $userCal->setUserAgent($userAgent);
+
+          $userCal->setUserId(UserUtils::getLoggedInId());
+          $userCal->setCalType($calType);
+          $userCal->setTakenAt($dateNow);
+          $userCal->setUpdatedAt($dateNow);
+          $userCal->setIpAddress($ip);
+
+          $userCal->save();
+      }
+
+      $userCalId = $userCal->getId();
   	
   	if (sfConfig::get('app_domain_isNeverMiss')){
   		if (isset($ctg)) $fileName = $ctg->getName();
@@ -746,7 +756,8 @@ class calActions extends sfActions
   	} else {
   		$url = str_replace("USERCAL", $userCalId, $url);
   	}
-  	
+
+
   	if ($calType == Cal::TYPE_ANY) {
 		echo "Here is a link that you can copy and paste in your favorite calendar application (Yahoo, Lotus, etc) in order to subscribe to this calendar:<br/>$url ";
   		return sfView::NONE;  		
@@ -756,7 +767,7 @@ class calActions extends sfActions
   			$this->getResponse()->clearHttpHeaders();
   			$this->getResponse()->setContentType('text/calendar');
   			$this->getResponse()->setHttpHeader('Content-Disposition: attachment; filename=' . ($fileName ? $fileName : 'cal') . '.ics');
-  			
+
   			$t = file_get_contents(str_replace("webcal", "http", $url));
   			echo $t;
   			return sfView::NONE;
