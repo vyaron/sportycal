@@ -1,3 +1,7 @@
+ALTER TABLE `wix` ADD `provision_provision_at` TIMESTAMP NULL DEFAULT NULL , ADD INDEX ( `provision_provision_at` ) ;
+ALTER TABLE `wix` ADD `billing_upgrade_at` TIMESTAMP NULL DEFAULT NULL , ADD INDEX ( `billing_upgrade_at` ) ;
+ALTER TABLE `wix` ADD `billing_cancel_at` TIMESTAMP NULL DEFAULT NULL , ADD INDEX ( `billing_cancel_at` ) ;
+
 ----------------------------DONE ON PROD-------------------------------------------------------
 ALTER TABLE `event` CHANGE `starts_at` `starts_at` DATETIME NOT NULL DEFAULT '0000-00-00 00:00:00';
 ALTER TABLE `event` CHANGE `ends_at` `ends_at` DATETIME NOT NULL DEFAULT '0000-00-00 00:00:00';

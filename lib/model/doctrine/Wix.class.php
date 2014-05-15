@@ -18,6 +18,11 @@ class Wix extends BaseWix{
 	const DEFAULT_TEXT_COLOR = '#333333';
 	const DEFAULT_BG_COLOR = '#FFFFFF';
 	const DEFAULT_BG_OPACITY = 0.7;
+
+    const EVENT_PROVISION_PROVISION = '/provision/provision';
+    const EVENT_BILLING_UPGRADE = '/billing/upgrade';
+    const EVENT_BILLING_CANCEL = '/billing/cancel';
+
 	public static $UPCOMING_OPTIONS = array(
 		1 => 1,
 		2 => 2,

@@ -160,4 +160,31 @@ class wixActions extends sfActions{
 		
 		//sfContext::getInstance()->getI18N()->setCulture($language);
 	}
+
+    public function executeCallback(sfWebRequest $request){
+        $xWixApplicationId = $request->getHttpHeader('x-wix-application-id');
+        $xWixTimestamp = $request->getHttpHeader('x-wix-timestamp');
+        $xWixSignature = $request->getHttpHeader('x-wix-signature');
+        $xWixInstanceId = $request->getHttpHeader('x-wix-instance-id');
+        $xWixEventType = $request->getHttpHeader('x-wix-event-type');
+
+        $data = Wix::getInstanceData($xWixSignature);
+        if ($data){
+            $wix = Doctrine::getTable('Wix')
+                ->createQuery('w')
+                ->where('instance_code =?', $xWixInstanceId)
+                ->fetchOne();
+
+            $dateTime = new DateTime($xWixTimestamp);
+            $date = $dateTime->format('Y-m-d H:i:s');
+
+            if ($xWixEventType == Wix::EVENT_PROVISION_PROVISION) $wix->setProvisionProvisionAt($date);
+            else if ($xWixEventType == Wix::EVENT_BILLING_UPGRADE) $wix->setBillingUpgradeAt($date);
+            else if ($xWixEventType == Wix::EVENT_BILLING_CANCEL) $wix->setBillingCancelAt($date);
+
+            $wix->save();
+        }
+
+        return sfView::NONE;
+    }
 }
