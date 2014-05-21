@@ -26,7 +26,16 @@ use_stylesheet('/bundle/wix/javascripts/components/glued-position-min/glued.min.
         <div class="guest">
             <div class="description">
                 <p>
-                    Allow users to see events created by you in their personal calendars. Your users will never miss a sale, a promotion, a show or an event
+                    Display your events and allow your customers to subscribe using their personal calendars.<br/>
+                    It's Easy:
+                    <ol style="font-size:12px; color: #484848;">
+                        <li>Add your events to the calendar.</li>
+                        <li>Your users see your events in your site, and subscribe from any device or calendar they use!</li>
+                        <li>Any changes you make are automatically reflected in all your users' calendars.</li>
+                    </ol>
+                </p>
+                <p>Become a part for your customer's day!<br/>
+                    and your users will never miss a sale, a show or an event.
                 </p>
             </div>
 			
@@ -73,7 +82,7 @@ use_stylesheet('/bundle/wix/javascripts/components/glued-position-min/glued.min.
 				<?php if ($user): $calsCount = count($cals);?>
 	            	<?php if ($calsCount === 0):?>
 			            <div>
-			                <button id="create-calendar" type="button" value="option1" class="btn gray">Create your First!</button>
+			                <button id="create-calendar" type="button" value="option1" class="btn gray">Start adding events!</button>
 			            </div>
 		            <?php elseif ($calsCount === 1): ?>
 						<input type="hidden" name="cal_id" value="<?php echo $cals[0]->getId();?>"/>

@@ -1,5 +1,21 @@
-<div style="width: 300px; margin: 30px auto;">
-	<div class="nm-follow" data-cal-id="<?php echo Wix::DEFAULT_CAL_ID;?>" data-language="en" data-btn-style="list" data-color="default" data-width="300"></div>
+<?php sfContext::getInstance()->getResponse()->addStylesheet('/bundle/mediaelement/mediaelementplayer.css'); ?>
+<?php sfContext::getInstance()->getResponse()->addStylesheet('/bundle/mediaelement/mejs-inevermiss.css'); ?>
+
+
+
+
+<div id="banner-col-right">
+    <div id="player-wrapper">
+        <video id="player" class="mejs-inevermiss pull-right" width="100%" height=100% poster="/videos/nevermiss/iNeverMiss.jpg">
+            <!-- Pseudo HTML5 -->
+            <source type="video/webm" src="/videos/nevermiss/iNeverMiss.webm"/>
+            <source type="video/mp4" src="/videos/nevermiss/iNeverMiss.mp4"/>
+            <!-- <source type="video/youtube" src="http://www.youtube.com/watch?v=UQHZCQfMBB8"/> -->
+        </video>
+        <div class="cb"></div>
+    </div>
 </div>
 
-<script>(function(d, s, id) {var js, fjs = d.getElementsByTagName(s)[0];if (d.getElementById(id)) return;js = d.createElement(s); js.id = id;js.src = "//<?php echo sfConfig::get('app_domain_short');?>/w/neverMiss/all.js";fjs.parentNode.insertBefore(js, fjs);}(document, 'script', 'never-miss-jssdk'));</script>
+<script type="text/javascript" src="/bundle/jquery/js/jquery-1.10.2.min.js"></script>
+<script type="text/javascript" src="/bundle/mediaelement/mediaelement-and-player.min.js"></script>
+<script type="text/javascript" src="/js/neverMiss/index.js"></script>
