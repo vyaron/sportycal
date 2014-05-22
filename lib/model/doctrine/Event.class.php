@@ -84,11 +84,11 @@ class Event extends BaseEvent
 		if (Cal::isHtmlSupported($calType)) {
 			
 			// Use event image if exists
-			if ($eventImgPath) {
-				if ($eventImgLinkTo) $desc .= "<a target='_blank' href='$eventImgLinkTo'>";
-				$desc .= "<img src='$eventImgPath' />";
-				if ($eventImgLinkTo) $desc .= "</a>";
-			}		
+//			if ($eventImgPath) {
+//				if ($eventImgLinkTo) $desc .= "<a target='_blank' href='$eventImgLinkTo'>";
+//				$desc .= "<img src='$eventImgPath' />";
+//				if ($eventImgLinkTo) $desc .= "</a>";
+//			}
 			
 			// Build the INTEL for event-open
 			if (!$isMasterOf){
@@ -564,7 +564,11 @@ class Event extends BaseEvent
     }
     
     public function getStartTimeForDisplay(){
-    	return date('H:i', strtotime($this->getStartsAt()));
+        $timeFormat = 'h:i A';
+        //$timeFormat = 'H:i';
+        //$wix = UserUtils::getWix();
+        //if ($wix) $timeFormat = 'h:i A';
+        return date($timeFormat, strtotime($this->getStartsAt()));
     }
     
     public function isAllDay(){

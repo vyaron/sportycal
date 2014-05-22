@@ -1042,6 +1042,12 @@ class Utils {
 		$string = str_replace(array("\r\n", "\r", "\n", '\r\n', '\r','\n'), "<br />", $string);
 		return $string;  
 	}
+
+    // This is for making a Doctrine_Collection empty Object to NULL
+    public static function ifd($o) {
+        return ($o->count())? $o : null;
+    }
+
 }
 
 

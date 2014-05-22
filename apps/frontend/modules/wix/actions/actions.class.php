@@ -42,7 +42,10 @@ class wixActions extends sfActions{
 	public function executeDemo(sfWebRequest $request){
 		$this->setLayout('cleanLayout');
 	}
-	
+    public function executeLiveDemo(sfWebRequest $request){
+        $this->setLayout('cleanLayout');
+    }
+
 	public function executeSignUp(sfWebRequest $request){
 		$this->init($request, false);
 	}

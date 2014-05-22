@@ -85,9 +85,14 @@ class wActions extends sfActions{
 		
 		if (!$cal && !$ctg) die();
 		
-		$partner = $cal ? $cal->getPartner() : $ctg->getPartner();
-		
-		$this->cal = $cal;
+		$partner    = $cal ? $cal->getPartner() : $ctg->getPartner();
+
+        // Yaron: this was done to support future wix prefs such as timeformat
+        //$wix        = $cal ? $cal->getWix() : $ctg->getWix();
+        //$wix = Utils::ifd($wix);
+        //UserUtils::setWix($wix);
+
+        $this->cal = $cal;
 		$this->partner = $partner;
 		$this->events = CalTable::getUpcomingEvents($cal, $ctg, null, true);
 		$this->isReachedMaxSubscribers = $partner ? $partner->isReachedMaxSubscribers() : false;

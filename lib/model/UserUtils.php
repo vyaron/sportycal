@@ -32,9 +32,10 @@ class UserUtils {
 	
 	const KEY_REFERER_URL			= 'refererUrl';
     const KEY_WIX_INSTANCE			= 'wixInstance';
+    const KEY_WIX       			= 'wix';
 	
 	private static $cachedPartner = null;
-	
+
    public static function logUserIn($user)  {
    	
    	self::logUserOut();
@@ -367,5 +368,15 @@ class UserUtils {
     	
     	return $userCalId;
     }
+/*
+    public static function setWix($wix){
+        $userSession = sfContext::getInstance()->getUser();
+        $userSession[self::KEY_WIX] = $wix;
+    }
+
+    public static function getWix(){
+            return self::getFromSession(self::KEY_WIX);
+    }
+*/
 }
 ?>
