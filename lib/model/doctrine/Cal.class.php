@@ -170,7 +170,7 @@ class Cal extends BaseCal
     	else $events = $this->cachedEvents;
     	
     	if ($setFakeDates){
-            $times = array(array('10:30:00', '11:30:00'), array('14:30:00', '15:45:00'), array('09:30:00', '10:30:00'), array('17:45:00', '18:45:00'), array('19:20:00', '21:30:00'));
+            $times = array(array('10:30:00', '11:30:00'), array('14:30:00', '15:45:00'), array('09:30:00', '10:30:00'), array('17:45:00', '18:45:00'), array('19:20:00', '21:30:00'), array('11:30:00', '12:30:00'), array('6:10:00', '7:30:00'));
     		foreach ($events as $i => &$event){
                 $eStartTime = $times[array_rand($times)][0];
                 $eEndTime   = $times[array_rand($times)][1];
