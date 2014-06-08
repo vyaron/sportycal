@@ -76,7 +76,9 @@ $(document).ready(function() {
 	
     $('.color-selector').each(function(i, el){
     	var jEl = $(el);
-    	jEl.ColorPicker({startWithColor : jEl.attr('data-color')});
+        if (jEl.ColorPicker) {
+    	    jEl.ColorPicker({startWithColor : jEl.attr('data-color')});
+        }
     });
     
     $('.slider').each(function(i, el){
