@@ -116,7 +116,7 @@ class Event extends BaseEvent
 		}
 
 		//Facebook Share
-		if (!$partner && !$cal->isBirthdayCal()) {
+		if (false && !$partner && !$cal->isBirthdayCal()) {
 			$fbShareUrl = sfConfig::get('app_domain_full') . '/l/facebook/e/' . $this->getId();
 			$fbShareTxt = 'Share on Facebook';
 			if (Cal::isHtmlSupported($calType)) {

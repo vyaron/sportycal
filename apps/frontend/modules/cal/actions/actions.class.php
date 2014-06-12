@@ -386,7 +386,10 @@ class calActions extends sfActions
   		//if (array_key_exists($name, $urlParams)) $url .= "/$name/$value";
   		$url .= "/$name/$value";
   	}
-  	
+
+      //This work only if Partner.hash === Partner.id (avatrade)
+    if ($userCal && $userCal->getPartnerId()) $url .= '/ref/' . $userCal->getPartnerId();
+
   	$dateNow = date("Y-m-d g:i");
   	$userCal->setUpdatedAt($dateNow);
   	$userCal->save();
@@ -689,8 +692,9 @@ class calActions extends sfActions
   	
   	$intelLabel     = $request->getParameter('l');
   	$intelValue     = $request->getParameter('v');
-  
-  	// currently no need for reminder:
+
+
+      // currently no need for reminder:
   	$reminder = null;
   	
   	$this->forward404Unless($calId || $ctgId);
