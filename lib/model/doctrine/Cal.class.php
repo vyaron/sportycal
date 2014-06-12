@@ -39,7 +39,11 @@ class Cal extends BaseCal
 				$desc .= $globalPartnerDesc;
 			}
 		}
-		
+
+        if ($partner && $partner->getId() == 3675){
+            $desc .= "\nDon't forget to make a deposit by 26 June to claim your bonus of up to 15%!";
+            $desc .= "\n" . 'http://inevermiss.net/l/avatrade-mondeal';
+        }
 		
 		if (!$partner || $partner->allowsSportycalLogo()) {
 			$url = "http://sportYcal.com";
@@ -59,7 +63,9 @@ class Cal extends BaseCal
 				$desc .= "\n\nPowered by " . sfConfig::get('app_domain_full');
 			}
 		} 
-	
+
+
+
 		return $desc;
 	}
 	
