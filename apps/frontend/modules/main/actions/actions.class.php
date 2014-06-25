@@ -173,6 +173,8 @@ class mainActions extends sfActions
       $user->setUpdatedAt($mysqldate);
      
       $user->save();
+
+        UserUtils::sendRegisterEmail($user);
     } else {
       	$user->setBirthdate(date('Y-m-d', strtotime($fbUser->birthday)));
       	$user->setLastLoginDate($mysqldate);

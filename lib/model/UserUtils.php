@@ -378,5 +378,42 @@ class UserUtils {
             return self::getFromSession(self::KEY_WIX);
     }
 */
+    public static function sendRegisterEmail($user){
+        if (!sfConfig::get('app_domain_isNeverMiss')) return;
+
+        $msg = "Dear " . $user->getFullName() . ",\n\n";
+        $msg .= "In just a few simple steps you can create a calendar that will be followed by your clients – whatever calendar application (such as Google calendar, outlook, ics, mobile, etc) or device they use. \n\n";
+        $msg .= "In order to subscribe to your calendar your clients only need one click on the iNeverMiss button. Once they click, any future changes you will make on your iNeverMiss Calendar will automatically appear in theirs. \n\n";
+        $msg .= "Events are a great opportunity to engage your client. They can include a call for action, suggestion for a new product or service or simply an opportunity to interact online or offline. All that can be done in your iNeverMiss calendar.\n\n";
+        $msg .= "I am here to help with your account set-up, answer any queries and to make sure you make the most of " . sfConfig::get('app_domain_name') . ".\n\n";
+        $msg .= "I look forward to hearing from you.\n\n";
+        $msg .= "Best regards,\n\n";
+        $msg .= "Chen Lindman, CEO\n\n";
+
+
+        $mail = new PHPMailer();
+        $mail->IsSMTP();
+        $mail->Host       = 'smtp.gmail.com';
+        $mail->Port       = 587;
+        $mail->SMTPSecure = 'tls';
+        $mail->SMTPAuth   = true;
+        $mail->CharSet = 'UTF-8';
+
+//            $mail->SMTPDebug  = 2;
+
+        $mail->Username   = sfConfig::get('app_gmail_username');
+        $mail->Password   = sfConfig::get('app_gmail_password');
+
+        $mail->SetFrom(sfConfig::get('app_mailinglist_fromEmail'), sfConfig::get('app_mailinglist_fromName'));
+        $mail->AddReplyTo(sfConfig::get('app_mailinglist_fromEmail'), sfConfig::get('app_mailinglist_fromName'));
+        $mail->AddAddress($user->getEmail());
+
+        $mail->Subject = $user->getFullName() . ' - Welcome to ' . sfConfig::get('app_domain_name');
+
+        $mail->MsgHTML(nl2br($msg));
+        $mail->AltBody = $msg;
+
+        $mail->Send();
+    }
 }
 ?>

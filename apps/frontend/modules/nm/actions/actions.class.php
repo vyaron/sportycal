@@ -611,7 +611,7 @@ class nmActions extends sfActions{
 			return sfView::NONE;
 		}
 	}
-	
+
 	private function registerForm($data){
 		$res = array('success' => false, 'msg' => __('Register failed'));
 		
@@ -645,6 +645,8 @@ class nmActions extends sfActions{
 
 				$res['success'] = true;
 				$res['msg'] = 'Registration was successful';
+
+                UserUtils::sendRegisterEmail($user);
 			} else {
 				
 				foreach ($this->registerForm->getErrorSchema() as $name => $errorsSchema){
