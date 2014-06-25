@@ -127,6 +127,8 @@ class wixActions extends sfActions{
 		$this->bgIsTransparent = $this->wix->getBgIsTransparent();
 		$this->bgOpacity = $this->wix->getBgOpacityForDisplay();
 		$this->isShowCalName = (boolean) $this->wix->getIsShowCalName();
+
+        $this->setLayout(false);
 	}
 	
 	
