@@ -63,7 +63,7 @@
 
 <div class="accordion" wix-ctrl="Accordion">
 
-    <div wix-scroll="{height:446}">
+    <div wix-scroll1="{height:446}">
         <div class="acc-pane">
             <h3>Calendar Setup: </h3>
             <div class="acc-content">
@@ -145,6 +145,7 @@
 <!-- jQuery Dependency -->
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
 <!-- Wix SDK -->
+<!--<script src="//sslstatic.wix.com/services/js-sdk/1.28.0/js/Wix.js"></script>-->
 <script src="//sslstatic.wix.com/services/js-sdk/1.31.0/js/Wix.js"></script>
 
 <script type="text/javascript" src="/bundle/wix-ui-lib-v2.1.6/dist/ui-lib.min.js"></script>

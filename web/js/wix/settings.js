@@ -56,7 +56,9 @@ function toggleEditCalendar(){
 
 function setValue(name, data){
 //    console.log(name, data);
-    if (name == "bg_color"){
+    if (name == "text_color" || name == "line_color"){
+        if (data.cssColor) $('input[name="' + name + '"]').val(data.cssColor);
+    } else if (name == "bg_color"){
         if (data.color) $('input[name="' + name + '"]').val(data.color.value);
         $('input[name="bg_opacity"]').val(data.opacity);
         $('#bg_opacity_value').text(Math.floor(data.opacity * 100) + '%');
@@ -78,7 +80,9 @@ function refreshWidget(){
 $(document).ready(function () {
     if (Wix && Wix.Settings) Wix.Settings.refreshApp();
 
-    Wix.UI.initialize({});
+    Wix.UI.initialize({
+        cal_id : null
+    });
 
     $('#create-account').click(createAccount);
     $('.connect').click(connect);
