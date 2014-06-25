@@ -820,6 +820,8 @@ class calActions extends sfActions
             $mail->SMTPAuth   = true;
             $mail->CharSet = 'UTF-8';
 
+//            $mail->SMTPDebug  = 2;
+
             $mail->Username   = sfConfig::get('app_gmail_username');
             $mail->Password   = sfConfig::get('app_gmail_password');
 

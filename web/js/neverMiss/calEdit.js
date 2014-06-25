@@ -114,7 +114,7 @@ function loadCalendar(){
 	scheduler.config.event_duration = 60; //specify event duration in munites for auto end time
 	scheduler.config.auto_end_date = true;
 	
-	scheduler.config.full_day = true;
+	scheduler.config.full_day = false;
 	scheduler.config.reminder = true;
 	
 	scheduler.config.buttons_right=["dhx_save_btn","dhx_cancel_btn"];

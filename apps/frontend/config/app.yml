@@ -50,7 +50,7 @@ all:
     replyToEmail: support@inevermiss.net
   gmail:
     username: support@inevermiss.net
-    password: SportYcal900
+    password: ArtIsCool6
   domain:
     isNeverMiss: false
     isMobile: false
