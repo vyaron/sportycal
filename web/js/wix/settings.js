@@ -81,7 +81,7 @@ $(document).ready(function () {
     if (Wix && Wix.Settings) Wix.Settings.refreshApp();
 
     Wix.UI.initialize({
-        cal_id : null
+        //cal_id : null
     });
 
     $('#create-account').click(createAccount);
