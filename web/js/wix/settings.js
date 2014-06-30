@@ -81,7 +81,7 @@ $(document).ready(function () {
     if (Wix && Wix.Settings) Wix.Settings.refreshApp();
 
     Wix.UI.initialize({
-        //cal_id : null
+//        cal_id : null
     });
 
     $('#create-account').click(createAccount);
@@ -109,7 +109,7 @@ $(document).ready(function () {
     });
 
     //Toggle edit calendar button based on selected calendar
-    toggleEditCalendar();
+    if (CALS_COUNT > 1) toggleEditCalendar();
 //    var selectCalendar = $('select[name="cal_id"]');
 //    if (selectCalendar.length){
 //        selectCalendar.change(function(){

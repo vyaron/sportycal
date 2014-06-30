@@ -140,6 +140,7 @@
     var BASE_URL = '<?php echo sfConfig::get('app_domain_full');?>';
     var INSTANCE = '<?php echo $instance;?>';
     var COMP_ID = '<?php echo $wix->getCompCode();?>';
+    var CALS_COUNT = <?php echo $calsCount ? $calsCount : 0;?>
 </script>
 
 <!-- jQuery Dependency -->
