@@ -792,6 +792,9 @@ class nmActions extends sfActions{
 		
 		$name = $cal ? $cal->getName() : $ctg->getName();
 		$name = Utils::slugify($name);
+
+		// if ($partnerId) $partner = Doctrine::getTable('Partner')->find(array($partnerId));
+
 		
 		$partner = $cal ? $cal->getPartner() : $ctg->getPartner();
 		

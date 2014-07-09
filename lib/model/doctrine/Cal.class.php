@@ -169,10 +169,12 @@ class Cal extends BaseCal
     private $birthdayEvents;
     public function getEvents($startsAt = null, $setFakeDates = false) {
     	$events = array();
-    	
-    	if ($this->isAggregated()) $events = $this->aggregatedEvents;	
+
+        $includePastEvents = ($startsAt == null);
+
+    	if ($this->isAggregated()) $events = $this->aggregatedEvents;
     	else if ($this->isBirthdayCal()) $events = $this->birthdayEvents;	
-    	else if (!isset($this->cachedEvents)) $events = $this->cachedEvents = EventTable::getEvents($this->getId()); //Utils::pp("NOT AGG");
+    	else if (!isset($this->cachedEvents)) $events = $this->cachedEvents = EventTable::getEvents($this->getId(), false, $includePastEvents); //Utils::pp("NOT AGG");
     	else $events = $this->cachedEvents;
     	
     	if ($setFakeDates){
@@ -190,7 +192,8 @@ class Cal extends BaseCal
         	}
         	$events = $filteredEvents;
         }
-        
+
+
         return $events;
     }
     

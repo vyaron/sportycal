@@ -226,7 +226,7 @@ class EventTable extends Doctrine_Table
     }
 
 
-    public static function getEvents($calId, $countOnly=false){
+    public static function getEvents($calId, $countOnly=false, $includePastEvents=false){
     	
     	$q = Doctrine_Query::create()
 			->from('Event e')
@@ -286,7 +286,7 @@ class EventTable extends Doctrine_Table
 
 		if ($calId == Wix::DEFAULT_CAL_ID || ($partner && $partner->isHapoelTelAviv())){
 			$events = $events;
-		} else if ($eventsCount && !$hasRecEvent) {
+		} else if (!$includePastEvents && ($eventsCount && !$hasRecEvent)) {
     		$lastEventTime = strtotime($events[$eventsCount-1]->getStartsAt());
     		// There are future events, remove all past events
     		if ($lastEventTime > $yesterday) {
