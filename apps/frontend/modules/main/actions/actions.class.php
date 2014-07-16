@@ -936,5 +936,14 @@ class mainActions extends sfActions
 //        $this->rootCtgId = UpdateWinnerCals::PARTNER_CTG_ID;
 
     }
+
+    public function executePregnancyCal(sfWebRequest $request){
+        $calId = 12139;
+        //if ($request->getParameter("lang") == 'he') $calId = 'xxx';
+        $this->setLayout('cleanLayout');
+
+    }
+
+
 }
 

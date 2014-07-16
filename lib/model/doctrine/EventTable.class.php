@@ -226,7 +226,7 @@ class EventTable extends Doctrine_Table
     }
 
 
-    public static function getEvents($calId, $countOnly=false, $includePastEvents=false){
+    public static function getEvents($calId, $countOnly=false, $alsoPastEvents=false){
     	
     	$q = Doctrine_Query::create()
 			->from('Event e')
@@ -270,9 +270,9 @@ class EventTable extends Doctrine_Table
     	$events = $events->getData();
     	$eventsCount = count($events);
 		$yesterday = strtotime("yesterday");
-		
-		
-		$hasRecEvent = false;
+
+
+        $hasRecEvent = false;
 		foreach ($events as $event){
 			if ($event->getRecType()) {
 				$hasRecEvent = true;
@@ -286,7 +286,7 @@ class EventTable extends Doctrine_Table
 
 		if ($calId == Wix::DEFAULT_CAL_ID || ($partner && $partner->isHapoelTelAviv())){
 			$events = $events;
-		} else if (!$includePastEvents && ($eventsCount && !$hasRecEvent)) {
+		} else if (!$alsoPastEvents && $eventsCount && !$hasRecEvent) {
     		$lastEventTime = strtotime($events[$eventsCount-1]->getStartsAt());
     		// There are future events, remove all past events
     		if ($lastEventTime > $yesterday) {
@@ -297,9 +297,8 @@ class EventTable extends Doctrine_Table
 				}
 				$events = $futureEvents;    			
     		}
-    	} 
+    	}
 
-    	
     	// The location is not enough to remove duplicates, as sometimes there is an address there and not Home/Away
     	$events = self::removeDuplicates($events);
     	

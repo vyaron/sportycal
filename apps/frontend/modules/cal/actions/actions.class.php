@@ -329,13 +329,16 @@ class calActions extends sfActions
   	 
   	//http://sportycal.local/frontend_dev.php/cal/get?bc=2&ct=google
   	$birthdayCalUserId	= $request->getParameter('bc');
-  	 
-  	$this->forward404Unless($calId || $ctgId || $birthdayCalUserId);
-  	 
+    $herLastPeriod	    = $request->getParameter('lp');
+
+  	$this->forward404Unless($calId || $ctgId || $birthdayCalUserId || $herLastPeriod);
+
   	$partner = SportyCalAPI::getValidPartner($request);
   	if ($partner) UserUtils::setPartner($partner);
-  	 
-  	if ($calId) {
+
+  if ($herLastPeriod) {
+      $this->cal = Cal::getPregnancyCal($herLastPeriod);
+  }	elseif ($calId) {
   		$this->cal = Doctrine::getTable('Cal')->find($calId);
   		$this->forward404Unless($this->cal);
   	} elseif ($ctgId) {
@@ -347,7 +350,7 @@ class calActions extends sfActions
   		$birthdayCalUser = Doctrine::getTable('User')->find($birthdayCalUserId);
   		//Utils::pp($birthdayCalUser);
   		$this->cal = Cal::getBirthdayCal($birthdayCalUser);
-  	} else {
+    } else {
   		return sfView::NONE;
   	}
   	
@@ -369,12 +372,22 @@ class calActions extends sfActions
   }
   
   private function getByUserCal(sfWebRequest $request, UserCal $userCal){
-  	$params = array();
+
+      $params = array();
   	//$params = $request->getRequestParameters();
   	//$urlParams = array('id', 'ctgId', 'ct', 'label', 'remider', 'l', 'v', 'bc', 'ref');
-  	
+
+    // This is for supporting PregnancyCal
+    $lp = null;
+    $label = $userCal->getLabel();
+    if (strpos($label, 'PregnancyCal') === 0) {
+        $parts = explode(':', $label);
+        if ($parts) $lp = $parts[1];
+    }
+
   	if ($userCal->getCalId()) 			$params['id'] 		= $userCal->getCalId();
   	else if ($userCal->getCategoryId()) $params['ctgId'] 	= $userCal->getCategoryId();
+    else if ($lp)                       $params['lp'] 	    = $lp;
   	
   	if ($userCal->getCalType()) $params['ct'] = $userCal->getCalType();
   	else $params['ct'] = Cal::TYPE_ANY;
@@ -395,23 +408,26 @@ class calActions extends sfActions
   	$userCal->save();
   	
   	CalRequestTable::newReq($userCal->getCalId(), $userCal->getCalType(), $userCal->getId(), $userCal->getPartner(), $userCal->getCategoryId(), $userCal->getCalId());
-  	
+
+    //Utils::pp($url);
+
   	$this->redirect($url);
   }
   
   public function executeGet(sfWebRequest $request){
-  	//TODO: merge with old code
+
+      //TODO: merge with old code
   	if (sfConfig::get('app_domain_isNeverMiss')){
   		$h = $request->getParameter('h');
-  		
+
   		if ($h) $userCal = Doctrine::getTable('UserCal')->find($h);
   		else $userCal = null;
-  		
-  		$this->forward404Unless($userCal);
+
+        $this->forward404Unless($userCal);
   		
   		$this->getByUserCal($request, $userCal);
   	}
-  	
+
   	$hash = $request->getParameter('hash');
   
   	// Backward competability with the XXX we used to sent
@@ -425,8 +441,8 @@ class calActions extends sfActions
   		$this->userCal = Doctrine::getTable('UserCal')->getBy(null, null, null, 1, $hash)->getFirst();
   		 
   	}
-  
-  	// Dont fail if userCal is not known...
+
+      // Dont fail if userCal is not known...
   	// $this->forward404Unless($this->userCal);
   
   	// Backword compatibility - but userCal is preffered
@@ -692,12 +708,13 @@ class calActions extends sfActions
   	
   	$intelLabel     = $request->getParameter('l');
   	$intelValue     = $request->getParameter('v');
+    $lp	            = $request->getParameter('lp');
 
-
+//      if ($lp) Utils::pp("sss");
       // currently no need for reminder:
   	$reminder = null;
   	
-  	$this->forward404Unless($calId || $ctgId);
+  	$this->forward404Unless($calId || $ctgId || $lp);
   
 
   	$url = null;
@@ -715,12 +732,13 @@ class calActions extends sfActions
   		// Dirty trick to make this Cal an aggregated cal
   		//$cal->addThoseEvents(array());
   		$url = $cal->getIcalUrl($calType);
-   	}
+   	} elseif ($lp) {
+        $intelLabel = "PregnancyCal:$lp";
+    }
   
   	$ip 			= Utils::getClientIP();
   	$dateNow    	= date("Y-m-d g:i");
     $userAgent = $_SERVER['HTTP_USER_AGENT'];
-
 
       //Fixed old bug - widget outlook url contain webcal:// instead of http://, then Outlook got wrong link, and create new userCal object in every cal update!
       if (Utils::clientIsOutlook()){
@@ -757,7 +775,8 @@ class calActions extends sfActions
   	
   	if (sfConfig::get('app_domain_isNeverMiss')){
   		if (isset($ctg)) $fileName = $ctg->getName();
-  		$fileName = $cal->getName();
+        if (isset($cal)) $fileName = $cal->getName();
+        if (isset($lp))  $fileName = "PregnancyCal-$lp";
   		
   		$url = $userCal->getIcalUrl($fileName);
   	} else {

@@ -167,16 +167,16 @@ class Cal extends BaseCal
     
     private $cachedEvents;
     private $birthdayEvents;
+    private $pregnancyEvents;
     public function getEvents($startsAt = null, $setFakeDates = false) {
     	$events = array();
-
-        $includePastEvents = ($startsAt == null);
-
-    	if ($this->isAggregated()) $events = $this->aggregatedEvents;
-    	else if ($this->isBirthdayCal()) $events = $this->birthdayEvents;	
-    	else if (!isset($this->cachedEvents)) $events = $this->cachedEvents = EventTable::getEvents($this->getId(), false, $includePastEvents); //Utils::pp("NOT AGG");
-    	else $events = $this->cachedEvents;
     	
+    	if ($this->isAggregated()) $events = $this->aggregatedEvents;	
+    	else if ($this->isBirthdayCal()) $events = $this->birthdayEvents;
+        else if ($this->isPregnancyCal()) $events = $this->pregnancyEvents;
+    	else if (!isset($this->cachedEvents)) $events = $this->cachedEvents = EventTable::getEvents($this->getId(), false, ($startsAt == null)); //Utils::pp("NOT AGG");
+    	else $events = $this->cachedEvents;
+
     	if ($setFakeDates){
             $times = array(array('10:30:00', '11:30:00'), array('14:30:00', '15:45:00'), array('09:30:00', '10:30:00'), array('17:45:00', '18:45:00'), array('19:20:00', '21:30:00'), array('11:30:00', '12:30:00'), array('6:10:00', '7:30:00'));
     		foreach ($events as $i => &$event){
@@ -192,8 +192,7 @@ class Cal extends BaseCal
         	}
         	$events = $filteredEvents;
         }
-
-
+        
         return $events;
     }
     
@@ -368,7 +367,10 @@ class Cal extends BaseCal
 	public function isBirthdayCal() {
 		return (isset($this->birthdayEvents));
 	}
-	
+    public function isPregnancyCal() {
+        return (isset($this->pregnancyEvents));
+    }
+
 	private function becomeAggregated($ctg, $cals, $includeEvents) {
  		//$this->setId(999999);
 		$this->setName($ctg->getName() . __(self::AGG_EXT));
@@ -500,7 +502,13 @@ class Cal extends BaseCal
  		//Utils::pp($birthdayCal);
  		return $birthdayCal; 
 	}
-	
+    public static function getPregnancyCal($herLastPeriodDate) {
+        $pregnancyCal = new Cal();
+        $pregnancyCal->becomePregnancyCal($herLastPeriodDate);
+        //Utils::pp($pregnancyCal);
+        return $pregnancyCal;
+    }
+
 	public static function getBirthdayFbUsers($userId){
 		$q = Doctrine::getTable('FbUser')->createQuery('fbu');
     	$q->innerJoin("fbu.UserFbUser ufbu");
@@ -582,7 +590,47 @@ class Cal extends BaseCal
  		
  		
 	}
-	
+    private function becomePregnancyCal($herLastPeriod) {
+
+        $this->setName("My Pregnancy Calendar");
+        //$this->setCategoryId(Category::CTG_BIRTHDAY);
+        $this->setUpdatedAt(date('Y-m-d'));
+
+        $baseCal = Doctrine::getTable('Cal')->find(12139);
+
+        //$e1 = new Event();$e1->setName("Pregnancy Event 1");$e1->setStartsAt("2014-2-19 10:00:00");$e1->setEndsAt("2014-2-19 11:00:00");
+        //$e2 = new Event();$e2->setName("Pregnancy Event 2");$e2->setStartsAt("2014-2-24 10:00:00");$e2->setEndsAt("2014-2-24 11:00:00");
+        //$baseEvents = array($e1, $e2);
+
+        $baseEvents = $baseCal->getEvents();
+
+        $events = array();
+
+        foreach ($baseEvents as $event) {
+            $e = new Event();
+            $e->setName($event->getName());
+            $e->setLocation($event->getLocation());
+            $e->setDescription($event->getDescription());
+
+            $start2014      = new DateTime('2014-01-01');
+            $eventStarts    = new DateTime($event->getStartsAt());
+
+            $interval = $start2014->diff($eventStarts);
+
+            $eventDays = $interval->format('%a');
+            $herLastPeriodDate    = new DateTime($herLastPeriod);
+            $herLastPeriodDate->add(new DateInterval('P' . $eventDays . 'D'));
+
+            $e->setStartsAt($herLastPeriodDate->format('Y-m-d 10:00'));
+            $e->setEndsAt($herLastPeriodDate->format('Y-m-d 11:00'));
+
+            $events[] = $e;
+        }
+        //Utils::pp($events);
+        $this->pregnancyEvents = $events;
+
+    }
+
  	public static function isHtmlSupported($calType) {
  		//$partner = UserUtils::getPartner();
  		

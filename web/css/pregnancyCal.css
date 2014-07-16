@@ -1,0 +1,542 @@
+/*
+@font-face {
+    font-family: 'gan';
+    src: url("gan/ganclm_bold-webfont.eot");
+    src: url("gan/ganclm_bold-webfont.eot?#iefix") format("embedded-opentype"), url("gan/ganclm_bold-webfont.woff") format("woff"), url("gan/ganclm_bold-webfont.ttf") format("truetype"), url("gan/ganclm_bold-webfont.svg#gan_clmbold") format("svg");
+    font-weight: normal;
+    font-style: normal;
+}
+*/
+
+html {
+    overflow: hidden;
+    margin-top: 32px;
+}
+
+body {
+/*    font-family: gan;*/
+    background: #eee;
+}
+
+.main-img {
+    position: relative;
+    z-index: 100;
+    top: 53px;
+    max-width: 1024px;
+}
+
+header {
+    position: absolute;
+    right: 300px;
+    top: 80px;
+}
+
+h1 {
+    color: #A7659C;
+    font-size: 3em;
+}
+
+h2 {
+    color: #DB87BD;
+    font-size: 1.5em;
+    text-align: center;
+    margin-top: 20px;
+}
+
+.date-input {
+    position: absolute;
+    top: 44%;
+    z-index: 200;
+    font-size: 1em;
+    max-width: 600px;
+}
+
+.date-input .col-sm-8, .date-input .col-sm-4,.date-input .col-xs-8, .date-input .col-xs-4 {
+    padding: 0;
+}
+
+.calender {
+    margin-top: 80px;
+}
+
+.btn-success {
+    background-color: #A387B6 !important;
+    border-color: #FCF4FF;
+    width: 227px;
+}
+
+.btn-success:hover {
+    background-color: #3E2B4B;
+    border-color: #FCF4FF;
+}
+
+input[type="text"] {
+    color: #a975b5;
+    width: 190px;
+    font-size: 1em;
+}
+
+.form-control::-webkit-input-placeholder {
+    color: #a975b5;
+}
+
+.form-control:-moz-placeholder {
+    /* FF 4-18 */
+    color: #a975b5;
+}
+
+.form-control::-moz-placeholder {
+    /* FF 19+ */
+    color: #a975b5;
+}
+
+.form-control:-ms-input-placeholder {
+    /* IE 10+ */
+    color: #a975b5;
+}
+
+.note {
+    position: absolute;
+    top: 83%;
+    font-weight: bold;
+    color: #9F5EBD;
+    font-style: italic;
+    font-family: sans-serif;
+    font-size: 12px;
+}
+
+.one {
+    width: 47px;
+    left: 37.5%;
+    top: 63%;
+}
+
+.two {
+    width: 50px;
+    left: 42%;
+}
+
+.three {
+    width: 58px;
+    left: 237px;
+    top: 83%;
+}
+
+.four {
+    width: 58px;
+    left: 16.5%;
+    top: 63%;
+}
+
+.five {
+    width: 58px;
+    left: 30%;
+    top: 42.5%;
+}
+
+.six {
+    left: 29%;
+    width: 61px;
+    top: 62%;
+}
+
+.hide {
+    display: none !important;
+}
+
+.show {
+    display: block !important;
+}
+
+@media (max-width: 767px) {
+    .main-img img {
+        height: 100%;
+    }
+}
+
+@media all and (min-width: 1280px) {
+    .main-img {
+        right: 11%;
+    }
+}
+
+/* iphone 5 */
+
+@media (max-width: 767px) {
+    .main-img img {
+        width: 365px;
+    }
+    header {
+        position: absolute;
+        right: 47%;
+        top: 0;
+        width: 40%;
+    }
+    h1 {
+        font-size: 1em;
+    }
+    h2 {
+        font-size: 0.7em;
+        margin-top: -5px;
+    }
+    #datepicker {
+        height: 16px;
+        font-size: 5px;
+        padding: 4px;
+    }
+    #datepicker {
+        width: 60px;
+    }
+    .btn-success {
+        width: 227px;
+    }
+    .note {
+        font-size: 4px;
+    }
+    .one {
+        width: 16px;
+        top: 52%;
+    }
+    .two {
+        width: 1px;
+        top: 81%;
+        left: 41%;
+    }
+    .three {
+        width: 21px;
+        top: 81%;
+        left: 16%;
+    }
+    .four {
+        width: 18px;
+    }
+    .five {
+        width: 18px;
+    }
+    .six {
+        left: 29%;
+        width: 61px;
+        top: 62%;
+    }
+    .date-input {
+        top: 44%;
+    }
+}
+
+@media all and (max-width: 959px) and (min-width: 804px) {
+    header {
+        position: absolute;
+        right: 47%;
+        top: 48px;
+        width: 47%;
+    }
+    h2 {
+        margin-top: -5px;
+    }
+    .note {
+        font-size: 9px;
+    }
+    .one {
+        width: 39px;
+        top: 54%;
+    }
+    .two {
+        width: 1px;
+        top: 82%;
+        left: 41%;
+    }
+    .three {
+        width: 53px;
+        top: 64%;
+        left: 29%;
+    }
+    .four {
+        width: 38px;
+    }
+    .five {
+        width: 43px;
+        left: 29.5%;
+        top: 44%;
+    }
+    .six {
+        left: 22%;
+        width: 53px;
+        top: 82%;
+    }
+    .date-input {
+        top: 44%;
+    }
+    .btn-success {
+        width: 227px;
+    }
+}
+
+@media all and (max-width: 805px) and (min-width: 600px) {
+    header {
+        position: absolute;
+        right: 47%;
+        top: 46px;
+        width: 50%;
+    }
+    h2 {
+        margin-top: -5px;
+    }
+    #datepicker, input[type="button"] {
+        width: 150px;
+        height: 28px;
+        font-size: 9px;
+    }
+    .note {
+        font-size: 9px;
+    }
+    .one {
+        width: 39px;
+        top: 82%;
+        left: 24%;
+    }
+    .two {
+        width: 1px;
+        top: 82%;
+        left: 41%;
+    }
+    .three {
+        width: 53px;
+        top: 62%;
+        left: 28.8%;
+    }
+    .four {
+        width: 0px;
+        left: 22%;
+        top: 62%;
+    }
+    .five {
+        width: 42px;
+        top: 43%;
+    }
+    .six {
+        left: 36%;
+        width: 41px;
+        top: 53%;
+    }
+    .date-input {
+        top: 44%;
+    }
+    .btn-success {
+        width: 170px;
+        height: 30px;
+        font-size: 12px;
+        padding-bottom: 20px;
+    }
+}
+
+@media all and (max-width: 603px) and (min-width: 500px) {
+    .main-img {
+        top: 110px;
+    }
+    .main-img img {
+        width: 100%;
+    }
+    header {
+        position: absolute;
+        right: 47%;
+        top: 46px;
+        width: 50%;
+    }
+    h1 {
+        font-size: 2em;
+    }
+    h2 {
+        margin-top: -5px;
+        margin-left: 72px;
+        font-size: 1em;
+    }
+    #datepicker {
+        width: 112px;
+        height: 19px;
+        font-size: 9px;
+    }
+    input[type="button"] {
+        width: 140px;
+        height: 28px;
+        font-size: 9px;
+    }
+    .note {
+        font-size: 7px;
+    }
+    .one {
+        width: 29px;
+        top: 53%;
+    }
+    .two {
+        width: 0px;
+        top: 81%;
+        left: 41%;
+    }
+    .three {
+        width: 32px;
+        top: 63%;
+        left: 30%;
+    }
+    .four {
+        width: 38px;
+        left: 16%;
+        top: 73%;
+    }
+    .five {
+        width: 33px;
+        top: 43%;
+    }
+    .six {
+        left: 23%;
+        width: 34px;
+        top: 81%;
+    }
+    .date-input {
+        top: 44%;
+    }
+    .btn-success {
+        width: 126px;
+        font-size: 9px;
+        padding: 7px;
+        height: 25px;
+    }
+}
+
+@media all and (max-width: 360px) and (min-width: 321px) {
+    .main-img {
+        top: 110px;
+    }
+    .main-img img {
+        width: 100%;
+    }
+    header {
+        position: absolute;
+        right: 47%;
+        top: 4px;
+        width: 54%;
+    }
+    h1 {
+        font-size: 1em;
+    }
+    h2 {
+        margin-top: -5px;
+        margin-left: 72px;
+        font-size: 1em;
+    }
+    #datepicker {
+        width: 112px;
+        height: 19px;
+        font-size: 9px;
+    }
+    .note {
+        font-size: 5px;
+    }
+    .one {
+        width: 29px;
+        top: 53%;
+        left: 21%;
+    }
+    .two {
+        width: 0px;
+        top: 82%;
+        left: 41%;
+    }
+    .three {
+        width: 20px;
+        top: 63%;
+        left: 30%;
+    }
+    .four {
+        width: 23px;
+        left: 16%;
+        top: 73%;
+    }
+    .five {
+        width: 18px;
+        top: 42.7%;
+    }
+    .six {
+        left: 23%;
+        width: 20px;
+        top: 81%;
+    }
+    .date-input {
+        top: 44%;
+    }
+    .btn-success {
+        width: 126px;
+        font-size: 9px;
+        padding: 7px;
+        height: 25px;
+    }
+}
+
+@media all and (max-width: 320px) {
+    .main-img {
+        top: 110px;
+    }
+    .main-img img {
+        width: 100%;
+    }
+    header {
+        position: absolute;
+        right: 47%;
+        top: -2px;
+        width: 61%;
+    }
+    h1 {
+        font-size: 1em;
+    }
+    h2 {
+        margin-top: -5px;
+        margin-left: 72px;
+        font-size: 1em;
+    }
+    #datepicker {
+        width: 112px;
+        height: 19px;
+        font-size: 9px;
+    }
+    .note {
+        font-size: 4px;
+    }
+    .one {
+        width: 26px;
+        top: 54%;
+        left: 21%;
+    }
+    .two {
+        width: 0px;
+        top: 82%;
+        left: 41%;
+    }
+    .three {
+        width: 20px;
+        top: 63%;
+        left: 30%;
+    }
+    .four {
+        width: 23px;
+        left: 16%;
+        top: 73%;
+    }
+    .five {
+        width: 18px;
+        top: 42.7%;
+    }
+    .six {
+        left: 22%;
+        width: 20px;
+        top: 81%;
+    }
+    .date-input {
+        top: 44%;
+        right: 6%;
+    }
+    .btn-success {
+        width: 126px;
+        font-size: 9px;
+        padding: 7px;
+        height: 25px;
+    }
+}

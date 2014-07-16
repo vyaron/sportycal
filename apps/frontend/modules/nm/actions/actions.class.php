@@ -784,31 +784,32 @@ class nmActions extends sfActions{
 		$calId 	= $request->getParameter('calId');
 		$ctgId 	= $request->getParameter('ctgId');
 		$ref 	= $request->getParameter('ref');
+        $lp	    = $request->getParameter('lp');
 		
 		if ($calId)  $cal = Doctrine::getTable('Cal')->find($calId);
 		elseif ($ctgId) $ctg = Doctrine::getTable('Category')->find($ctgId);
 		
-		if (!$cal && !$ctg) $this->forward404();
-		
-		$name = $cal ? $cal->getName() : $ctg->getName();
+		if (!$cal && !$ctg && !$lp) $this->forward404();
+
+        $partner = null;
+        $name = "Just a calendar";
+        if ($ctg)                   {$name = $ctg->getName(); $partner = $ctg->getPartner();}
+        elseif ($cal)               {$name = $cal->getName(); $partner = $cal->getPartner();}
+        elseif ($lp)                $name = 'Pregnancy Calendar';
+
+
+
 		$name = Utils::slugify($name);
 
 		// if ($partnerId) $partner = Doctrine::getTable('Partner')->find(array($partnerId));
 
-		
-		$partner = $cal ? $cal->getPartner() : $ctg->getPartner();
-		
-		if (Utils::clientIsMobile()) {
-			$url = '/cal/sub' . ($calId ? '/id/' . $calId : '') . ($ctgId ? '/ctgId/' . $ctgId : '') . '/ct/' . Cal::TYPE_MOBILE . ($ref ? '/ref/' . $ref : '') .'/' . $name . '.ics';
-			$this->redirect($url);
-		}
-		
-		if ($partner && $partner->getId() == 2047) $this->redirect('/mega-demo/index.php?' . ($ctgId ? 'ctgId=' . $ctgId : 'calId=' . $calId));
-		else {
-			$url = '/cal/sub' . ($calId ? '/id/' . $calId : '') . ($ctgId ? '/ctgId/' . $ctgId : '') . '/ct/' . Cal::TYPE_GOOGLE . ($ref ? '/ref/' . $ref : '') .'/' . $name . '.ics';
-			$this->redirect($url);
-		}
-		
+        $ct = Cal::TYPE_GOOGLE;
+        if (Utils::clientIsMobile()) $ct = Cal::TYPE_MOBILE;
+        $url = '/cal/sub' . ($calId ? '/id/' . $calId : '') . ($ctgId ? '/ctgId/' . $ctgId : '') . '/ct/' . $ct . ($ref ? '/ref/' . $ref : '') .  ($lp ? '/lp/' . $lp : '') .  "/$name" . '.ics';
+        $this->redirect($url);
+
+//		if ($partner && $partner->getId() == 2047) $this->redirect('/mega-demo/index.php?' . ($ctgId ? 'ctgId=' . $ctgId : 'calId=' . $calId));
+
 		$this->calId = $calId;
 		$this->ctgId = $ctgId;
 		$this->ref   = $ref;
