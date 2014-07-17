@@ -1,19 +1,3 @@
-jQuery(document).ready(function(){
-/*
-    jQuery('#teams').bind('change', function(){
-        var btnEl = jQuery('#download-calendar');
-        if (this.value == 0) {
-            btnEl.attr('disabled', 'disabled');
-            btnEl.removeAttr('href');
-        } else {
-            btnEl.removeAttr('disabled');
-            btnEl.attr('href', btnEl.attr('data-href') + this.value);
-        }
-    });
-    
-    */
-});
-
 $(function($) {
     $("#datepicker").datepicker();
     $.datepicker.regional['he'] = {
@@ -31,8 +15,7 @@ $(function($) {
         dayNamesShort: ['א\'', 'ב\'', 'ג\'', 'ד\'', 'ה\'', 'ו\'', 'שבת'],
         dayNamesMin: ['א\'', 'ב\'', 'ג\'', 'ד\'', 'ה\'', 'ו\'', 'שבת'],
         weekHeader: 'Wk',
-        //dateFormat: 'dd/mm/yy',
-        dateFormat: 'yy-mm-dd',
+        dateFormat: 'dd/mm/yy',
         firstDay: 0,
         isRTL: true,
         showMonthAfterYear: false,
@@ -46,29 +29,60 @@ $(function($) {
             'border-color': '#fff'
         })
     });
-
-
-//$('#bg').on('load', function() {
-    $('h1').addClass('flipInX').attr('data-wow-duration', '1.5s');
-    $('h2').addClass('pulse').attr('data-wow-duration', '1.5s');
-    $('.one').addClass('bounceIn');
-    $('.two').addClass('bounceIn').css('-webkit-animation-delay', '2s');
-    $('.three').addClass('bounceIn').css('-webkit-animation-delay', '3s');
-    $('.four').addClass('bounceIn').css('-webkit-animation-delay', '4s');
-    $('.five').addClass('bounceIn').css('-webkit-animation-delay', '5s');
-    $('.six').addClass('bounceIn').css('-webkit-animation-delay', '6s');
-//})
-
-
+    
     $('#btnCreateCal').click(function(){
         var lpDate = $("#datepicker").val();
         if (!lpDate) {
             alert('נא הזיני תאריך');
             return;
         }
-        alert(lpDate);
+        //alert(lpDate);
         window.location = 'http://inevermiss.net/nm/addToCalendar/?lp=' + lpDate;
     });
+    
+});
+
+
+$('#bg').on('load', function() {
+
+    $('.one').addClass('bounceIn');
+    $('.two').addClass('bounceIn').css({
+        '-webkit-animation-delay': '2s',
+        '-moz-animation-delay': '2s',
+        '-ms-animation-delay': '2s',
+        '-o-animation-delay': '2s',
+        'animation-delay': '2s'
+    });
+    $('.three').addClass('bounceIn').css({
+        '-webkit-animation-delay': '3s',
+        '-moz-animation-delay': '3s',
+        '-ms-animation-delay': '3s',
+        '-o-animation-delay': '3s',
+        'animation-delay': '3s'
+    });
+    $('.four').addClass('bounceIn').css({
+        '-webkit-animation-delay': '4s',
+        '-moz-animation-delay': '4s',
+        '-ms-animation-delay': '4s',
+        '-o-animation-delay': '4s',
+        'animation-delay': '4s'
+    });
+    $('.five').addClass('bounceIn').css({
+        '-webkit-animation-delay': '5s',
+        '-moz-animation-delay': '5s',
+        '-ms-animation-delay': '5s',
+        '-o-animation-delay': '5s',
+        'animation-delay': '5s'
+    });
+    $('.six').addClass('bounceIn').css({
+        '-webkit-animation-delay': '6s',
+        '-moz-animation-delay': '6s',
+        '-ms-animation-delay': '6s',
+        '-o-animation-delay': '6s',
+        'animation-delay': '6s'
+    });
+
+
 
 });
 

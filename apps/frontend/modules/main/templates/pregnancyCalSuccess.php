@@ -16,19 +16,22 @@ else $RTL = false;
     <div class="main-img">
         <div class="col-sm-8 col-sm-push-2">
             <header>
-                <h1 class="wow">קלנדר הריון</h1>
-                <h2 class="wow">כדי שלא תפספסי שום שלב חשוב</h2>
+                <h1 class="animated bounceIn">קלנדר הריון</h1>
+                <h2 class="animated fadeInRight">כדי שלא תפספסי שום שלב חשוב</h2>
             </header>
         </div>
         <div class="col-xs-8 col-xs-push-2 date-input">
             <div class="col-xs-12">
-                <input id="datepicker" type="text" class="form-control input-lg wow slideInLeft" placeholder="תאריך ווסת אחרון" data-wow-duration="2s">
-                <button id="btnCreateCal" class="btn btn-success btn-lg wow slideInRight btn-cal" data-wow-duration="2s"><i class="fa fa-calendar"></i>
+                <input id="datepicker" type="text" class="form-control input-lg animated slideInLeft" placeholder="תאריך ווסת אחרון" >
+                
+                <button id="btnCreateCal" class="btn btn-success btn-lg animated slideInRight btn-cal"><i class="fa fa-calendar"></i>
                     צור לוח שנה
                 </button>
+                
+                
             </div>
-        </div>
-        <img id="bg" src="/images/calender-bg2.png" class="img-responsive" alt="calender">
+       </div>
+        <img id="bg" src="/images/calender-bg2.png" alt="calender">
         <div class="note one animated">
             אולטרסאונד ראשון
         </div>
@@ -42,10 +45,10 @@ else $RTL = false;
             קורס הכנה ללידה
         </div>
         <div class="note five animated">
-            בדיקת העמסת סוכר
+           בדיקת העמסת סוכר
         </div>
-        <div class="note six animated">
-            סקירת מערכות מורחבת
+         <div class="note six animated">
+           סקירת מערכות מורחבת
         </div>
 
     </div>
