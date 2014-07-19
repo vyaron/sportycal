@@ -15,7 +15,7 @@ $(function($) {
         dayNamesShort: ['א\'', 'ב\'', 'ג\'', 'ד\'', 'ה\'', 'ו\'', 'שבת'],
         dayNamesMin: ['א\'', 'ב\'', 'ג\'', 'ד\'', 'ה\'', 'ו\'', 'שבת'],
         weekHeader: 'Wk',
-        dateFormat: 'dd/mm/yy',
+        dateFormat: 'yy-mm-dd',
         firstDay: 0,
         isRTL: true,
         showMonthAfterYear: false,
@@ -36,7 +36,7 @@ $(function($) {
             alert('נא הזיני תאריך');
             return;
         }
-        //alert(lpDate);
+        //console.log(lpDate);
         window.location = 'http://inevermiss.net/nm/addToCalendar/?lp=' + lpDate;
     });
     

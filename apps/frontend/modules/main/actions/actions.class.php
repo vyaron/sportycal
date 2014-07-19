@@ -940,7 +940,7 @@ class mainActions extends sfActions
     public function executePregnancyCal(sfWebRequest $request){
         $calId = 12139;
         //if ($request->getParameter("lang") == 'he') $calId = 'xxx';
-        $this->setLayout('cleanLayout');
+        $this->setLayout('cleanLayout_bs3');
 
     }
 
