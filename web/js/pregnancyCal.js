@@ -19,7 +19,11 @@ $(function($) {
         firstDay: 0,
         isRTL: true,
         showMonthAfterYear: false,
-        yearSuffix: ''
+        yearSuffix: '',
+        changeMonth: true,
+        changeYear: true,
+        minDate: "-2Y", maxDate: "+1Y" 
+
     };
     $.datepicker.setDefaults($.datepicker.regional['he']);
 
