@@ -5,6 +5,7 @@ slot('title', 'קלנדר הריון');
 slot('keywords', 'קלנדר הריון' );
 
 
+
 $userSession = sfContext::getInstance()->getUser();
 $culture = $userSession->getCulture();
 if ($culture === 'he_IL' || $culture === 'he') $RTL = true;
