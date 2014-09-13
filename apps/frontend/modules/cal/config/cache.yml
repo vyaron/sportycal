@@ -1,5 +1,7 @@
+# Yaron: disabled the caching as it is per user caching anyway which does not make sense as updated every x hours
+
 getIcs:
-  enabled:    true
+  enabled:    false
 
 all:
   with_layout: false

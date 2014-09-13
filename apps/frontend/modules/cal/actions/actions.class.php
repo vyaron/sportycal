@@ -409,6 +409,21 @@ class calActions extends sfActions
   	
   	CalRequestTable::newReq($userCal->getCalId(), $userCal->getCalType(), $userCal->getId(), $userCal->getPartner(), $userCal->getCategoryId(), $userCal->getCalId());
 
+
+      // TODO: handle caching invalidation using: "Validation with the Last-Modified Header" (http://symfony.com/doc/current/book/http_cache.html)
+//      $calId      	= $request->getParameter('id');
+//      if ($calId) {
+//          $cal = Doctrine::getTable('Cal')->find($calId);
+//      }
+//      $response = $this->getResponse();
+//
+//      $calDate = new \DateTime($cal->getUpdatedAt());
+//      $response->setLastModified($calDate);
+//      if ($response->isNotModified($request)) {
+//          return $response;
+//      }
+
+
     //Utils::pp($url);
 
   	$this->redirect($url);
