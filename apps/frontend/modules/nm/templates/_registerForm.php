@@ -19,8 +19,11 @@ $legend = Utils::iff($legend, false);
 			<?php echo $form['full_name']->render(array('placeholder' => 'Full name', 'required'=>'required', 'minlength'=>'3', 'class' => 'block'));?>
 			<?php echo $form['email']->render(array('placeholder' => 'Email Address', 'required'=>'required', 'type'=>'email', 'class' => 'block'));?>
 			<?php echo $form['password']->render(array('placeholder' => 'Password', 'required'=>'required', 'minlength'=>'7', 'class' => 'block'));?>
-			<?php echo $form['website']->render(array('placeholder' => 'website: http://www.site.com', 'class' => 'block'));?>
-			
+
+			<?php if (!$clientIsFromWix):?>
+				<?php echo $form['website']->render(array('placeholder' => 'website: http://www.site.com', 'class' => 'block'));?>
+			<?endif;?>
+
 			<p class="help-block">
 				Already a member? <a class="toggle-login-register" href="<?php echo url_for('/partner/login');?>">Log in</a><br/>
 				By signing up, you agree to our <a href="<?php echo url_for('/nm/terms/?nlo=1');?>" target="_blank">Terms of Use</a>

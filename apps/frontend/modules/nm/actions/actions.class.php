@@ -667,6 +667,7 @@ class nmActions extends sfActions{
 		$this->registerForm = new NmRegisterForm();
 		$this->loginForm = new LoginForm();
 		$this->isShowLogin = false;
+		$this->clientIsFromWix = Utils::clientIsFromWix();
 		
 		if (!$user && $request->isMethod('post') && $registerData = $request->getParameter('register')) {
 			
