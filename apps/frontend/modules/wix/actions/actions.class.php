@@ -1,6 +1,8 @@
 <?php
 class wixActions extends sfActions{
 	private function init(sfWebRequest $request, $needInstance = false){
+		UserUtils::setClientIsFromWix(true);
+
 		if ($needInstance){
             //get wix instance form URL or from session
 			$instance = $request->getParameter('instance', UserUtils::getWixInstance());

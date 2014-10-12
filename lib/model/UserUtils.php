@@ -32,7 +32,7 @@ class UserUtils {
 	
 	const KEY_REFERER_URL			= 'refererUrl';
     const KEY_WIX_INSTANCE			= 'wixInstance';
-    const KEY_WIX       			= 'wix';
+    const KEY_CLIENT_IS_FROM_WIX       = 'clientIsFromWix';
 	
 	private static $cachedPartner = null;
 
@@ -79,6 +79,21 @@ class UserUtils {
     public static function getWixInstance(){
         return self::getFromSession(self::KEY_WIX_INSTANCE);
     }
+
+	public static function setClientIsFromWix($isFromWix){
+		$userSession = sfContext::getInstance()->getUser();
+
+		if ($isFromWix){
+			$userSession[self::KEY_CLIENT_IS_FROM_WIX] = $isFromWix;
+		} else {
+			unset($userSession[self::KEY_WIX_INSTANCE]);
+		}
+	}
+
+
+	public static function getClientIsFromWix(){
+		return self::getFromSession(self::KEY_CLIENT_IS_FROM_WIX);
+	}
   
   public static function setRefererUrl($url){
   	$userSession = sfContext::getInstance()->getUser();
@@ -368,16 +383,7 @@ class UserUtils {
     	
     	return $userCalId;
     }
-/*
-    public static function setWix($wix){
-        $userSession = sfContext::getInstance()->getUser();
-        $userSession[self::KEY_WIX] = $wix;
-    }
 
-    public static function getWix(){
-            return self::getFromSession(self::KEY_WIX);
-    }
-*/
     public static function sendRegisterEmail($user){
         if (!sfConfig::get('app_domain_isNeverMiss')) return;
 

@@ -939,13 +939,6 @@ class Utils {
 		return $deviceType;
 	}
 
-	public static function clientIsFromWix(){
-		$wixInstance = UserUtils::getWixInstance();
-		return $wixInstance ? true : false;
-//		$userAgent = $_SERVER['HTTP_REFERER'];
-//        return (stripos($userAgent,'wix') !== false);
-	}
-
 	public static function useMobileViewIfNeeded($controller, $viewName) {
 		$fullSite = $controller->getUser()->getAttribute('fullSite');
 
