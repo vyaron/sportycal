@@ -172,6 +172,7 @@ class partnerActions extends sfActions
   		$this->registerForm = new NmRegisterForm();
   		$this->loginForm = $this->form;
   		$this->isShowLogin = true;
+		$this->clientIsFromWix = UserUtils::getClientIsFromWix();
 
   		$this->setTemplate('loginAndRegister', 'nm');
   	}
