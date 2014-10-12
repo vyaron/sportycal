@@ -704,6 +704,7 @@ class nmActions extends sfActions{
 			$this->registerForm = new NmRegisterForm();
 			$this->loginForm = new LoginForm();
 			$this->isShowLogin = false;
+			$this->clientIsFromWix = UserUtils::getClientIsFromWix();
 		} else {
 			$this->redirect('/nm/widget/?calId=' . $this->calId);
 		}
