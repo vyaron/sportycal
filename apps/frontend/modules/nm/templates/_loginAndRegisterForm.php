@@ -6,7 +6,7 @@ $legend = Utils::iff($legend, false);
 	<?php include_partial('nm/loginForm', array('form' => $loginForm, 'backUrl' => $backUrl)); ?>
 </div>
 <div id="register-form-wrapper" <?php echo $isShowLogin ? 'class="hide"' : '';?>>
-	<?php include_partial('nm/registerForm', array('form' => $registerForm, 'backUrl' => $backUrl, 'legend' => $legend)); ?>
+	<?php include_partial('nm/registerForm', array('form' => $registerForm, 'backUrl' => $backUrl, 'legend' => $legend, 'clientIsFromWix' => $clientIsFromWix)); ?>
 </div>
 
 <?php
