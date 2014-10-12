@@ -15,7 +15,9 @@
   	<meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <meta name="keywords" content="calendar, google calendar, outlook calendar, event, events, calendar wizard, calendar widget" />
-    <meta name="description" content="Create follow calendar"/>
+    <meta name="description" content="Display your events and allow users to subscribe using their personal calendars!"/>
+
+	<meta name="og:image" content="<?php echo sfConfig::get('app_domain_fullNeverMiss');?>/images/wix/wix_icon.png"/>
     
     <title><?php echo sfConfig::get('app_domain_name');?> - Share Events with Clients - The Easy Way</title>
     

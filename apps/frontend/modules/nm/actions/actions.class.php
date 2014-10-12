@@ -806,6 +806,13 @@ class nmActions extends sfActions{
         elseif ($lp)                $name = 'Pregnancy Calendar';
 
 
+		if (strpos($_SERVER['HTTP_USER_AGENT'], 'facebookexternalhit') !== false){
+			$html = '<!DOCTYPE html><html><head><meta charset="UTF-8"><title>' . $name . '</title><meta name="description" content="Subscribe to my calendar and don\'t miss anything!"/><meta name="og:image" content="' . sfConfig::get('app_domain_fullNeverMiss') . '/images/wix/wix_icon.png"/></head><body>Content of the document......</body></html>';
+			echo $html;
+
+			return sfView::NONE;
+		}
+
 
 		$name = Utils::slugify($name);
 
