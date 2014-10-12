@@ -31,8 +31,13 @@ jQuery(document).ready(function(){
 			type : 'POST',
 			dataType : 'json'
 		}).done(function(res){
-			jQuery('#cal_' + calId).addClass('cal-is-deleted').removeClass('cal-is-active');
-			setGlobalAlert(res);
+			location.reload();
+			//if (jQuery('#licence-error').length){
+			//	location.reload();
+			//} else {
+			//	jQuery('#cal_' + calId).addClass('cal-is-deleted').removeClass('cal-is-active');
+			//	setGlobalAlert(res);
+			//}
 		}).fail(setGlobalAlert).always(function(){
 			jQuery('#delete-cal-modal').modal('hide');
 		});
@@ -50,8 +55,9 @@ jQuery(document).ready(function(){
 			type : 'POST',
 			dataType : 'json'
 		}).done(function(res){
-			if (res && res.success) jQuery('#cal_' + calId).removeClass('cal-is-deleted').addClass('cal-is-active');
-			setGlobalAlert(res);
+			location.reload();
+			//if (res && res.success) jQuery('#cal_' + calId).removeClass('cal-is-deleted').addClass('cal-is-active');
+			//setGlobalAlert(res);
 		}).fail(setGlobalAlert);
 	});
 });

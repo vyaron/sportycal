@@ -74,7 +74,7 @@ $partner = Utils::iff($partner, null);
 
 <div id="container">
 	<h1><?php echo ($title ? $title : __('MY EVENTS'));?></h1>
-	
+
 	<ul id="events" style="height: 100px;">
 		<?php foreach ($events as $event):?>
 		<li>
@@ -97,6 +97,9 @@ $partner = Utils::iff($partner, null);
 			<?php endif;?>
 		</li>
 		<?php endforeach;?>
+		<?php if(!count($events)):?>
+			<li id="no-events">No upcomming events yet, subscribe and you'll get them to your calendar when published.</li>
+		<?php endif;?>
 	</ul>
 
 	<div id="footer">

@@ -49,12 +49,30 @@ class CalTable extends Doctrine_Table
     	else $total = 0;
     	
     	$q->select('c.id, c.name, c.updated_at, c.deleted_at, COUNT(e.id) event_count')
-    		->leftJoin('c.Event e ON e.cal_id = c.id AND (e.starts_at > NOW() OR (e.starts_at <= NOW() AND e.ends_at > NOW()))')
-    		->groupBy('c.id')
-    		->offset($offset * $limit)
-    		->limit($limit);
-    	
-    	$cals = $q->fetchArray();
+			->leftJoin('c.Event e ON e.cal_id = c.id AND (e.starts_at > NOW() OR (e.starts_at <= NOW() AND e.ends_at > NOW()))')
+			->groupBy('c.id')
+			->offset($offset * $limit)
+			->limit($limit);
+
+		$cals = $q->fetchArray();
+
+
+		$q = Doctrine_Query::create()
+			->from('Cal c')
+			->where('c.by_user_id = ?', $userId)
+			->orderBy('c.deleted_at ASC, c.updated_at DESC');
+
+		$q->select('c.id, c.name, c.updated_at, c.deleted_at, COUNT(e.id) total_event_count')
+			->leftJoin('c.Event e ON e.cal_id = c.id')
+			->groupBy('c.id')
+			->offset($offset * $limit)
+			->limit($limit);
+
+		$calIdsToTotalEvents = array();
+		$calsTotalEvents = $q->fetchArray();
+		foreach($calsTotalEvents as $calsTotalEvent){
+			$calIdsToTotalEvents[$calsTotalEvent['id']] = $calsTotalEvent['total_event_count'];
+		}
 
     	$calId2CalIndex = array();
     	foreach ($cals as $i => $cal){
@@ -81,7 +99,12 @@ class CalTable extends Doctrine_Table
     	
     	foreach ($cals as &$cal){
     		if (!key_exists('cal_request_count', $cal)) $cal['cal_request_count'] = 0;
+
+			$cal['total_events_count'] = ($calIdsToTotalEvents[$cal['id']] && $calIdsToTotalEvents[$cal['id']]['total_event_count']) ? $calIdsToTotalEvents[$cal['id']] : 0;
+
     	}
+
+//		Utils::pp($cals);
     	
     	$calList = array(
     		'offset' => $offset,

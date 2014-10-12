@@ -12,7 +12,7 @@
 .cal-is-deleted .cal-deleted, .cal-is-active .cal-active{display: block;}
 
 .cal-boxes{margin-left: 20px;}
-.cal-box{float: left; margin-right: 20px; margin-bottom:20px; border: 1px solid #c1c1c1; box-shadow:1px 1px 2px #000; width: 207px; min-height: 260px;}
+.cal-box{float: left; margin-right: 20px; margin-bottom:20px; border: 1px solid #c1c1c1; box-shadow:1px 1px 2px #000; width: 207px; min-height: 297px;}
 .cal-box h3{background-color: #fbbb2c; color: #fff; font-size: 22px; font-weight: normal; height: 38px; line-height: 38px; margin: 0; padding: 0 15px; overflow: hidden; white-space: nowrap; text-transform: capitalize; font-family: SignikaRegular;}
 .cal-box .content{margin: 15px; margin-top: 30px; margin-bottom: 5px;}
 .cal-box .content ul{list-style: none; padding: 0; margin: 0;}

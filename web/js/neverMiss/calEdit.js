@@ -392,7 +392,7 @@ jQuery(document).ready(function(){
 	$('#desc-info').tooltip({
 		title : 'This description will be added to all the events in your calendar',
 		trigger : 'click hover',
-		placement : 'right'
+		placement : 'left'
 	});
 
 	

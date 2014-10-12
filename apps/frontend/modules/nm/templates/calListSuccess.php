@@ -18,6 +18,7 @@
 				<div class="content">
 					<ul>
 						<li class="clearfix"><span class="prop">Last Modified</span> <span class="value"><?php echo date('d M Y', strtotime($cal['updated_at']));?></span></li>
+						<li class="clearfix"><span class="prop">Total Events</span> <span class="value"><?php echo $cal['total_events_count'];?></span></li>
 						<li class="clearfix"><span class="prop">Upcoming Events</span> <span class="value"><?php echo $cal['event_count'];?></span></li>
 						<li class="clearfix"><span class="prop">Subscribers</span> <span class="value"><?php echo $cal['cal_request_count'];?></span></li>
 					</ul>
@@ -49,7 +50,7 @@
 				<h3><a href="<?php echo url_for('nm/calCreate')?>" class="add-ico">Add New</a></h3>
 					<?php if (!$calList['total']):?>
 					<div class="content">
-						<p>create your first calendar</p>
+						<a href="<?php echo url_for('nm/calCreate')?>">create your first calendar</a>
 					</div>
 					<?php endif;?>
 				<?php endif;?>
@@ -65,7 +66,7 @@
 			
 			<div class="upgrade-warning clearfix">
 				<?php if (count($licenceError)):?>
-				<p class="pull-right"><strong class="color-y">CONGRATULATIONS!</strong> <?php echo $licenceError;?></p>
+				<p id="licence-error" class="pull-right"><strong class="color-y">CONGRATULATIONS!</strong> <?php echo $licenceError;?></p>
 				<?php endif;?>
 				
 				<div class="cb"></div>

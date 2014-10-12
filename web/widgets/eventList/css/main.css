@@ -52,3 +52,7 @@ h1{font-weight: 400; font-size: 22px; line-height:22px; padding-top:17px; paddin
 .mCustomScrollBox > .mCSB_scrollTools{right: 2px;}
 .mCSB_scrollTools .mCSB_draggerRail{background: #e5e5e5;}
 .mCSB_scrollTools .mCSB_dragger .mCSB_dragger_bar, .mCSB_scrollTools .mCSB_dragger:hover .mCSB_dragger_bar{background: #ffc229;}
+
+#events #no-events{
+    border:none;
+}

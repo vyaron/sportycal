@@ -28,16 +28,18 @@ use_stylesheet('/css/neverMiss/calEdit.css');
 				<input id="cal-id" type="hidden" name="id" value="<?php echo $cal->getId();?>">
 				<table>
 					<tr>
-						<td><?php echo $form['name']->render(array('placeholder' => 'Enter calendar name here', 'required'=>'required', 'minlength'=>'3', 'autofocus' => "autofocus"));?></td>
-						<td class="clearfix">
+						<td>
+							<?php echo $form['name']->render(array('placeholder' => 'Enter calendar name here', 'required'=>'required', 'minlength'=>'3', 'autofocus' => "autofocus"));?>
+							<?php echo $form['tz']->render();?>
+						</td>
+						<td id="description-wrapper">
 							<?php echo $form['description']->render(array('placeholder' => 'Optional description'));?>
-<!-- 							<input id="cal_description" type="text" name="cal[description]" placeholder="OPTIONAL DESCRIPTION"/> -->
+							<!-- 							<input id="cal_description" type="text" name="cal[description]" placeholder="OPTIONAL DESCRIPTION"/> -->
 							<i id="desc-info" class="icon-question-sign"></i>
 						</td>
-						<td><?php echo $form['tz']->render();?></td>
 						<td class="pl0">
 							<div class="visible-popup">
-								<a id="save-btn" class="pull-right continue-btn btn btn-success ml15" href="#" style="visibility:hidden;"><span>Save</span></a>
+								<a id="save-btn" class="continue-btn btn btn-success ml15" href="#" style="visibility:hidden;"><span>Save</span></a>
 							</div>
 						</td>
 					</tr>
@@ -45,9 +47,7 @@ use_stylesheet('/css/neverMiss/calEdit.css');
 			</form>
 			
 			<hr class="visible-popup"/>
-			
 
-			<h4 class="hidden-phone clearfix">Add events to your calendar by clicking on a day / import from other calenders <a id="cal-import-btn" class="btn btn-mini pull-right" href="#">Import</a></h4>
 		</td>
 		<td class="right-col hidden-popup">&nbsp;</td>
 	</tr>
@@ -75,6 +75,12 @@ use_stylesheet('/css/neverMiss/calEdit.css');
 
 				<a id="clear-events" href="#clear-events-modal" role="button" data-toggle="modal">Clear all Events</a>
 			</div>
+
+			<hr/>
+
+			<h4 class="hidden-phone clearfix">Add events to your calendar by clicking on a day / import from other calenders <a id="cal-import-btn" class="btn btn-mini pull-right" href="#">Import</a></h4>
+
+
 		</td>
 		<td class="right-col hidden-popup">
 			<div id="events-wrapper">

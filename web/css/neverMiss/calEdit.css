@@ -13,16 +13,23 @@ h4{margin-top: 0;}
 
 #cal-form{margin-bottom: 0px; min-height: 40px;}
 #cal-form table{border-collapse: collapse; width: 100%;}
-#cal-form table td{padding-left: 17px; width: 33.333%;}
+#cal-form table td{padding-left: 17px; width: 50%;}
 #cal-form table td:first-child{padding-left: 0;}
 #cal-form table td input, #cal-form table td select{width: 100%; -webkit-box-sizing: border-box; -moz-box-sizing: border-box; box-sizing: border-box; height: 25px; line-height: 25px; display: block; font-size: 12px; font-family: SignikaRegular;}
 #cal-form table td input{padding:0 6px;}
 
 #cal_name{text-transform: capitalize;}
 
-#cal-form table td #cal_description{float: left; max-width: 217px;}
-.is-popup #cal-form table td #cal_description{max-width: 235px;}
-#desc-info{float: left; margin-top: 5px; margin-left: 5px; cursor: pointer;}
+#description-wrapper{
+	padding-right: 30px;
+	position: relative;
+}
+#cal-form table td #cal_description{width: 100%; box-sizing: border-box; height:55px; resize: none;}
+/*.is-popup #cal-form table td #cal_description{max-width: 235px;}*/
+#desc-info{cursor: pointer; position: absolute; top: 5px; right: 5px;}
+#desc-info + .tooltip{
+	margin-right: 20px;
+}
 
 #events-wrapper{min-height: 530px;}
 #events-wrapper h3{border-bottom: 5px solid #ffc229; font-size: 22px; font-weight: normal; text-transform: uppercase;}
@@ -151,13 +158,13 @@ h2 .btn.btn-success{margin-top: 6px; font-weight: normal;}
 /*CSS Queries - NOT WORKING ON IE < 9!
 ****************************************/
 @media (max-width: 979px) {
-	#cal-form table td #cal_description{width: calc(100% - 30px);}
+	/*#cal-form table td #cal_description{width: calc(100% - 30px);}*/
 }
 
 @media (min-width: 768px) and (max-width: 979px) {
-	#cal-form table td #cal_description{max-width: 158px;}
+	/*#cal-form table td #cal_description{max-width: 158px;}*/
 }
 
 @media (max-width: 767px) {
-	#cal-edit-wrapper .right-col{display: none;}
+	/*#cal-edit-wrapper .right-col{display: none;}*/
 }
