@@ -731,6 +731,8 @@ class nmActions extends sfActions{
 		$this->code = NeverMissWidget::getWidgetCode($cal, $this->language, $this->btnStyle, $this->btnSize, $this->color);
 
 		$this->user = $user;
+
+		$this->promoteLink = sfConfig::get('app_domain_fullNeverMiss') . '/nm/addToCalendar?calId=' . $this->calId;
 	}
 	
 	public function executeSubscribeByMail(sfWebRequest $request){
@@ -785,7 +787,11 @@ class nmActions extends sfActions{
 	public function executeAddToCalendar(sfWebRequest $request){
 		$calId 	= $request->getParameter('calId');
 		$ctgId 	= $request->getParameter('ctgId');
+
+		//Partner ID for enabling partner users to generic cal
 		$ref 	= $request->getParameter('ref');
+
+		//Last period - pregnancy cal.
         $lp	    = $request->getParameter('lp');
 		
 		if ($calId)  $cal = Doctrine::getTable('Cal')->find($calId);

@@ -81,4 +81,8 @@ jQuery(document).ready(function(){
 	jQuery('#copy-js-code').focus(function(){
 		jQuery(this).select();
 	});
+
+	jQuery('#promote-link input').click(function(){
+		this.select();
+	});
 });

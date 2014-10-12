@@ -152,6 +152,20 @@ use_stylesheet('/css/neverMiss/widget.css');
 	
 	<hr/>
 
+	<div id="promote-link" class="clearfix">
+		<div class="col-left">
+			<h2><span class="color-y">Promote</span> this link</h2>
+			<p>Send this link anyway you like (e-mail, SMS, Facebook, Twitter, etc.):</p>
+		</div>
+		<div class="col-right">
+			<div class="content">
+				<input type="text" value="<?php echo $promoteLink;?>"/>
+			</div>
+		</div>
+	</div>
+
+	<hr/>
+
 
 	<?php if (false):?>
 	<div class="row">
