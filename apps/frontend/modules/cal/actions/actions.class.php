@@ -318,6 +318,8 @@ class calActions extends sfActions
         //$label       	= $request->getParameter('label');
         $remider       	= $request->getParameter('remider');
 
+//        die('$calId: ' . $calId . ' $ctgId:' . $ctgId . ' $calType:' . $calType . ' $remider:' . $remider);
+
         $tags = SportyCalAPI::getTags($request);
         //Utils::pp($tags);
         //$tags = null;
@@ -425,15 +427,32 @@ class calActions extends sfActions
 
 
         //Utils::pp($url);
+//        $getIcsWithoutRedirect = (sfConfig::get('sf_environment') == 'dev') ? true : false;
         $getIcsWithoutRedirect = true;
         if ($getIcsWithoutRedirect){
-            $filePath = sfConfig::get('app_domain_full') . $url;
+            //Set req params
+            if ($userCal->getCalId()) $request->setParameter('id', $userCal->getCalId());
+            else if ($userCal->getCategoryId()) $request->setParameter('ctgId', $userCal->getCategoryId());
+
+            if ($userCal->getCalType()) $request->setParameter('ct', $userCal->getCalType());
+            else $request->setParameter('ct', Cal::TYPE_ANY);
+
+            //TODO:: set req reminder
+            //$remider       	= $request->getParameter('remider');
+
+            return $this->forward('cal', 'getIcs');
+//            $filePath = sfConfig::get('app_domain_full') . $url;
+
+//            $cache = $this->getContext()->getViewCacheManager();
+//            var_dump($cache->has($url));
 
             //TODO:: read and write with stream buffer - file_get_contents reads all the file's content throw the memory
-            $file = file_get_contents($filePath);
+//            $file = file_get_contents($filePath);
 
             //headers
             $this->getResponse()->setContentType('text/calendar');
+            $this->getResponse()->setHttpHeader('attachment', 'filename=cal.ics');
+
             header('attachment: filename=cal.ics');
             echo $file;
             return sfView::NONE;
