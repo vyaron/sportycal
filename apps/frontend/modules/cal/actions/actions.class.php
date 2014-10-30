@@ -408,9 +408,9 @@ class calActions extends sfActions
         //Log reqs - Test Google's calendar subscribe
         $env = sfConfig::get('sf_environment');
         if ($env == 'ec2') {
-            $this->getResponse()->clearHttpheaders();
-            $this->getResponse()->setContentType('text/calendar');
-            $this->getResponse()->sendHttpHeaders();
+//            $this->getResponse()->clearHttpheaders();
+//            $this->getResponse()->setContentType('text/calendar');
+//            $this->getResponse()->sendHttpHeaders();
 
             //$length = strlen($this->ics);
 //            $this->getResponse()->setHttpHeader('Content-Length', $length);
@@ -424,9 +424,9 @@ class calActions extends sfActions
             fwrite($fh, $stringData);
             fclose($fh);
 
-
-            $this->renderText($this->ics);
-            return sfView::NONE;
+//
+//            $this->renderText($this->ics);
+//            return sfView::NONE;
         }
 
 
