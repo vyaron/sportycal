@@ -408,6 +408,7 @@ class calActions extends sfActions
         //Log reqs - Test Google's calendar subscribe
         $env = sfConfig::get('sf_environment');
         if ($env == 'ec2') {
+            $this->getResponse()->addCacheControlHttpHeader('max_age=300');
 //            $this->getResponse()->clearHttpheaders();
 //            $this->getResponse()->setContentType('text/calendar');
 //            $this->getResponse()->sendHttpHeaders();

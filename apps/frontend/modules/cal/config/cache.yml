@@ -2,7 +2,7 @@
 
 getIcs:
   enabled:    false
-  client_lifetime: 300
+#  client_lifetime: 300
 
 all:
   with_layout: false
