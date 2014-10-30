@@ -46,7 +46,7 @@ class UserCal extends BaseUserCal
 	public function getIcalUrl($fileName = 'calendar'){
 		//TODO: support BC
 		$id = $this->getId();
-		$fileName = Utils::slugify($fileName);
+		$fileName = Utils::camelCase($fileName);
 		if (!$fileName) $fileName = 'calendar';
 		
 		$url = sfConfig::get('app_domain_full') . "/cal/get/h/$id/$fileName.ics";
@@ -55,6 +55,7 @@ class UserCal extends BaseUserCal
 		else if ($this->getCalType() == Cal::TYPE_MOBILE && Utils::clientIsAndroid()) $url = "/nm/getAndroidCal/h/$id/fn/$fileName/?isPopup=1";
 		else if ($this->getCalType() == Cal::TYPE_OUTLOOK || $this->getCalType() == Cal::TYPE_MOBILE) $url = str_replace('http://', 'webcal://', $url);
 
+        Utils::pp($url);
 		return $url;
 	}
 }
