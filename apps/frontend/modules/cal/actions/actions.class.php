@@ -14,8 +14,8 @@ class calActions extends sfActions
         $env = sfConfig::get('sf_environment');
 
         if ($env == 'prod') $ics = file_get_contents('/var/www/espnCal.ics');
-        else if ($env == 'ec2') $ics = "/sportycal/web/espnCal.ics";
-        else $ics = "D:/WS/PHP/sportycal/web/espnCal.ics";
+        else if ($env == 'ec2') $ics = file_get_contents("/sportycal/web/espnCal.ics");
+        else $ics = file_get_contents("D:/WS/PHP/sportycal/web/espnCal.ics");
 
         $length = strlen($ics);
         $this->getResponse()->setContentType('text/calendar; charset=iso-8859-1');
