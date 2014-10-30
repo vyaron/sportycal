@@ -18,10 +18,10 @@ class calActions extends sfActions
         else $ics = file_get_contents("D:/WS/PHP/sportycal/web/espnCal.ics");
 
         $length = strlen($ics);
-        $this->getResponse()->setContentType('text/calendar; charset=iso-8859-1');
-        $this->getResponse()->setContentType('text/calendar; charset=utf-8');
+//        $this->getResponse()->setContentType('text/calendar; charset=iso-8859-1');
+        $this->getResponse()->setContentType('text/calendar');
 //        $this->getResponse()->setHttpHeader('Content-Length', $length); // original is 2919
-        $this->getResponse()->setHttpHeader('P3P', 'CP="CAO DSP COR CURa ADMa DEVa TAIa PSAa PSDa IVAi IVDi CONi OUR SAMo OTRo BUS PHY ONL UNI PUR COM NAV INT DEM CNT STA PRE"');
+//        $this->getResponse()->setHttpHeader('P3P', 'CP="CAO DSP COR CURa ADMa DEVa TAIa PSAa PSDa IVAi IVDi CONi OUR SAMo OTRo BUS PHY ONL UNI PUR COM NAV INT DEM CNT STA PRE"');
 
 
         //Log

@@ -4,6 +4,9 @@ AddType video/ogg .ogv
 AddType video/mp4 .mp4
 AddType video/webm .webm
 
+SetOutputFilter DEFLATE
+AddOutputFilterByType DEFLATE text/html text/css text/plain text/xml application/x-javascript application/x-httpd-php text/calendar
+
 <IfModule mod_rewrite.c>
   RewriteEngine On
 

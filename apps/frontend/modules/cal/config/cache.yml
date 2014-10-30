@@ -2,6 +2,7 @@
 
 getIcs:
   enabled:    false
+  client_lifetime: 0
 
 all:
   with_layout: false
