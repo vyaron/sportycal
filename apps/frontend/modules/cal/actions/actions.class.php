@@ -10,6 +10,39 @@
  */
 class calActions extends sfActions
 {
+    public function executeEspnCal(sfWebRequest $request){
+        $env = sfConfig::get('sf_environment');
+
+        if ($env == 'prod') $ics = file_get_contents('/var/www/espnCal.ics');
+        else if ($env == 'ec2') $ics = "/sportycal/web/espnCal.ics";
+        else $ics = "D:/WS/PHP/sportycal/web/espnCal.ics";
+
+        $length = strlen($ics);
+        $this->getResponse()->setContentType('text/calendar; charset=iso-8859-1');
+        $this->getResponse()->setHttpHeader('Content-Length', $length); // original is 2919
+        $this->getResponse()->setHttpHeader('P3P', 'CP="CAO DSP COR CURa ADMa DEVa TAIa PSAa PSDa IVAi IVDi CONi OUR SAMo OTRo BUS PHY ONL UNI PUR COM NAV INT DEM CNT STA PRE"');
+
+
+        //Log
+        if ($env == 'prod') $myFile = "/var/www/google.log";
+        else if ($env == 'ec2') $myFile = "/sportycal/web/google.log";
+        else $myFile = "D:/WS/PHP/sportycal/web/google.log";
+
+        $fh = fopen($myFile, 'a') or die("can't open file");
+        $stringData = json_encode($_SERVER) . "\n";
+        fwrite($fh, $stringData);
+        fclose($fh);
+
+
+        $this->setLayout(false);
+
+        $this->getResponse()->setContent($ics);
+
+
+        $this->setLayout(false);
+        return sfView::NONE;
+    }
+
     public function preExecute() {
         Utils::redirectToMobileVersionIfNeeded($this);
     }
@@ -370,6 +403,10 @@ class calActions extends sfActions
         $export->setTitle(GeneralUtils::icalEscape($this->cal->getName()));
 
         $this->ics = $export->toICal($events);
+
+//        $length = strlen($this->ics);
+//        $this->getResponse()->setHttpHeader('Content-Length', $length);
+
         $this->setLayout(false);
     }
 
@@ -440,22 +477,8 @@ class calActions extends sfActions
             //TODO:: set req reminder
             //$remider       	= $request->getParameter('remider');
 
+
             return $this->forward('cal', 'getIcs');
-//            $filePath = sfConfig::get('app_domain_full') . $url;
-
-//            $cache = $this->getContext()->getViewCacheManager();
-//            var_dump($cache->has($url));
-
-            //TODO:: read and write with stream buffer - file_get_contents reads all the file's content throw the memory
-//            $file = file_get_contents($filePath);
-
-            //headers
-            $this->getResponse()->setContentType('text/calendar');
-            $this->getResponse()->setHttpHeader('attachment', 'filename=cal.ics');
-
-            header('attachment: filename=cal.ics');
-            echo $file;
-            return sfView::NONE;
         } else {
             $this->redirect($url);
         }
