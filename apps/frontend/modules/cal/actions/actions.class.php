@@ -405,6 +405,17 @@ class calActions extends sfActions
 
         $this->ics = $export->toICal($events);
 
+        //Log reqs - Test Google's calendar subscribe
+        $env = sfConfig::get('sf_environment');
+        if ($env == 'ec2') {
+            $myFile = "/sportycal/web/google.log";
+
+            $fh = fopen($myFile, 'a') or die("can't open file");
+            $stringData = "\n*** getIcs ***\n" . json_encode($_SERVER) . "\n---\n";
+            fwrite($fh, $stringData);
+            fclose($fh);
+        }
+
 //        $length = strlen($this->ics);
 //        $this->getResponse()->setHttpHeader('Content-Length', $length);
 
