@@ -408,7 +408,10 @@ class calActions extends sfActions
         //Log reqs - Test Google's calendar subscribe
         $env = sfConfig::get('sf_environment');
         if ($env == 'ec2') {
-            $this->getResponse()->setHttpHeader('P3p', 'CP="CAO DSP COR CURa ADMa DEVa TAIa PSAa PSDa IVAi IVDi CONi OUR SAMo OTRo BUS PHY ONL UNI PUR COM NAV INT DEM CNT STA PRE"');
+            $length = strlen($this->ics);
+            $this->getResponse()->setHttpHeader('Content-Length', $length);
+            
+            //$this->getResponse()->setHttpHeader('P3p', 'CP="CAO DSP COR CURa ADMa DEVa TAIa PSAa PSDa IVAi IVDi CONi OUR SAMo OTRo BUS PHY ONL UNI PUR COM NAV INT DEM CNT STA PRE"');
 
             $myFile = "/sportycal/web/google.log";
 
@@ -418,8 +421,7 @@ class calActions extends sfActions
             fclose($fh);
         }
 
-//        $length = strlen($this->ics);
-//        $this->getResponse()->setHttpHeader('Content-Length', $length);
+
 
         $this->setLayout(false);
     }
