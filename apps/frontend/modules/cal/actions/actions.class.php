@@ -511,10 +511,7 @@ class calActions extends sfActions
     }
 
     public function executeGet(sfWebRequest $request){
-
-        //TODO: merge with old code
-        if (sfConfig::get('app_domain_isNeverMiss')){
-            $h = $request->getParameter('h');
+             $h = $request->getParameter('h');
 
             if ($h) $userCal = Doctrine::getTable('UserCal')->find($h);
             else $userCal = null;
