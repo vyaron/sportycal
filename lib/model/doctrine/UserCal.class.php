@@ -48,8 +48,10 @@ class UserCal extends BaseUserCal
 		$id = $this->getId();
 		$fileName = Utils::camelCase($fileName);
 		if (!$fileName) $fileName = 'calendar';
-		
-		$url = sfConfig::get('app_domain_full') . "/cal/get/h/$id/$fileName.ics";
+
+        $env = sfConfig::get('sf_environment');
+        $domain = ($env == 'prod') ? sfConfig::get('app_domain_full') : 'http://cal4u.biz';
+		$url = $domain . "/cal/get/h/$id/$fileName.ics";
 		
 		if ($this->getCalType() == Cal::TYPE_GOOGLE) $url = Cal::GOOGLE_IMPORT_URL .  urlencode($url);
 		else if ($this->getCalType() == Cal::TYPE_MOBILE && Utils::clientIsAndroid()) $url = "/nm/getAndroidCal/h/$id/fn/$fileName/?isPopup=1";

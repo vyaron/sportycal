@@ -26,7 +26,7 @@ class frontendConfiguration extends sfApplicationConfiguration
   	//TODO: need investigate
   	if ($this->isDebug()) sfConfig::set('sf_web_debug', true);
   	
-  	if ((strpos(strtolower($_SERVER['HTTP_HOST']), 'inevermiss.') !== false) || $isNevermissTest) sfConfig::set('app_domain_isNeverMiss', true);
+  	if ((strpos(strtolower($_SERVER['HTTP_HOST']), 'inevermiss.') !== false) || (strpos(strtolower($_SERVER['HTTP_HOST']), 'cal4u.') !== false) || $isNevermissTest) sfConfig::set('app_domain_isNeverMiss', true);
   	
   	if (sfConfig::get('app_domain_isNeverMiss')){
   		sfConfig::set('app_domain_name', 'iNeverMiss');
