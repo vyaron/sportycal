@@ -46,11 +46,12 @@ class UserCal extends BaseUserCal
 	public function getIcalUrl($fileName = 'calendar'){
 		//TODO: support BC
 		$id = $this->getId();
-		$fileName = Utils::camelCase($fileName);
+//		$fileName = Utils::camelCase($fileName);
+        $fileName = Utils::slugify($fileName);
 		if (!$fileName) $fileName = 'calendar';
 
         $env = sfConfig::get('sf_environment');
-        $domain = ($env == 'prod') ? sfConfig::get('app_domain_full') : 'http://cal4u.biz';
+        $domain = ($env == 'prod') ? 'http://cal4u.biz' : sfConfig::get('app_domain_full');
 		$url = $domain . "/cal/get/h/$id/$fileName.ics";
 		
 		if ($this->getCalType() == Cal::TYPE_GOOGLE) $url = Cal::GOOGLE_IMPORT_URL .  urlencode($url);
