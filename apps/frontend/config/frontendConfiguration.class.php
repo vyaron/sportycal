@@ -13,7 +13,7 @@ class frontendConfiguration extends sfApplicationConfiguration
   	$host = strtolower($_SERVER['HTTP_HOST']);
   	$hostParts = explode('.', $host, 3);
   	
-  	if ($pos >= 0) $ext = $hostParts[count($hostParts) -1];
+  	if ($hostParts >= 0) $ext = $hostParts[count($hostParts) -1];
 
   	return $ext;
   }
