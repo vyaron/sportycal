@@ -10,39 +10,39 @@
  */
 class calActions extends sfActions
 {
-    public function executeEspnCal(sfWebRequest $request){
-        $env = sfConfig::get('sf_environment');
-
-        if ($env == 'prod') $ics = file_get_contents('/var/www/espnCal.ics');
-        else if ($env == 'ec2') $ics = file_get_contents("/sportycal/web/espnCal.ics");
-        else $ics = file_get_contents("D:/WS/PHP/sportycal/web/espnCal.ics");
-
-        $length = strlen($ics);
-//        $this->getResponse()->setContentType('text/calendar; charset=iso-8859-1');
-        $this->getResponse()->setContentType('text/calendar');
-//        $this->getResponse()->setHttpHeader('Content-Length', $length); // original is 2919
-//        $this->getResponse()->setHttpHeader('P3P', 'CP="CAO DSP COR CURa ADMa DEVa TAIa PSAa PSDa IVAi IVDi CONi OUR SAMo OTRo BUS PHY ONL UNI PUR COM NAV INT DEM CNT STA PRE"');
-
-
-        //Log
-        if ($env == 'prod') $myFile = "/var/www/google.log";
-        else if ($env == 'ec2') $myFile = "/sportycal/web/google.log";
-        else $myFile = "D:/WS/PHP/sportycal/web/google.log";
-
-        $fh = fopen($myFile, 'a') or die("can't open file");
-        $stringData = json_encode($_SERVER) . "\n";
-        fwrite($fh, $stringData);
-        fclose($fh);
-
-
-        $this->setLayout(false);
-
-        $this->getResponse()->setContent($ics);
-
-
-        $this->setLayout(false);
-        return sfView::NONE;
-    }
+//    public function executeEspnCal(sfWebRequest $request){
+//        $env = sfConfig::get('sf_environment');
+//
+//        if ($env == 'prod') $ics = file_get_contents('/var/www/espnCal.ics');
+//        else if ($env == 'ec2') $ics = file_get_contents("/sportycal/web/espnCal.ics");
+//        else $ics = file_get_contents("D:/WS/PHP/sportycal/web/espnCal.ics");
+//
+//        $length = strlen($ics);
+////        $this->getResponse()->setContentType('text/calendar; charset=iso-8859-1');
+//        $this->getResponse()->setContentType('text/calendar');
+////        $this->getResponse()->setHttpHeader('Content-Length', $length); // original is 2919
+////        $this->getResponse()->setHttpHeader('P3P', 'CP="CAO DSP COR CURa ADMa DEVa TAIa PSAa PSDa IVAi IVDi CONi OUR SAMo OTRo BUS PHY ONL UNI PUR COM NAV INT DEM CNT STA PRE"');
+//
+//
+//        //Log
+//        if ($env == 'prod') $myFile = "/tmp/google.log";
+//        else if ($env == 'ec2') $myFile = "/sportycal/web/google.log";
+//        else $myFile = "D:/WS/PHP/sportycal/web/google.log";
+//
+//        $fh = fopen($myFile, 'a') or die("can't open file");
+//        $stringData = json_encode($_SERVER) . "\n";
+//        fwrite($fh, $stringData);
+//        fclose($fh);
+//
+//
+//        $this->setLayout(false);
+//
+//        $this->getResponse()->setContent($ics);
+//
+//
+//        $this->setLayout(false);
+//        return sfView::NONE;
+//    }
 
     public function preExecute() {
         Utils::redirectToMobileVersionIfNeeded($this);
@@ -407,31 +407,16 @@ class calActions extends sfActions
 
         //Log reqs - Test Google's calendar subscribe
         $env = sfConfig::get('sf_environment');
-        if ($env == 'ec2') {
-            $this->getResponse()->addCacheControlHttpHeader('max_age=300');
-//            $this->getResponse()->clearHttpheaders();
-//            $this->getResponse()->setContentType('text/calendar');
-//            $this->getResponse()->sendHttpHeaders();
-
-            //$length = strlen($this->ics);
-//            $this->getResponse()->setHttpHeader('Content-Length', $length);
-
-            //$this->getResponse()->setHttpHeader('P3p', 'CP="CAO DSP COR CURa ADMa DEVa TAIa PSAa PSDa IVAi IVDi CONi OUR SAMo OTRo BUS PHY ONL UNI PUR COM NAV INT DEM CNT STA PRE"');
-
-            $myFile = "/sportycal/web/google.log";
+        if ($env == 'prod') {
+//            $this->getResponse()->addCacheControlHttpHeader('max_age=300');
+            $today = date("Y-m-d H:i:s");
+            $myFile = "/tmp/getIcs.log";
 
             $fh = fopen($myFile, 'a') or die("can't open file");
-            $stringData = "\n*** getIcs ***\n" . json_encode($_SERVER) . "\n---\n";
+            $stringData = $today . ',' . json_encode($_SERVER) . "\n";
             fwrite($fh, $stringData);
             fclose($fh);
-
-//
-//            $this->renderText($this->ics);
-//            return sfView::NONE;
         }
-
-
-
 
         $this->setLayout(false);
     }
@@ -511,6 +496,7 @@ class calActions extends sfActions
     }
 
     public function executeGet(sfWebRequest $request){
+        if (sfConfig::get('app_domain_isNeverMiss')){
              $h = $request->getParameter('h');
 
             if ($h) $userCal = Doctrine::getTable('UserCal')->find($h);
