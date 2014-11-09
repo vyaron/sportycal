@@ -459,13 +459,14 @@ class Cal extends BaseCal
 
 		$partnerPart = '';
 		if ($partner) $partnerPart = "/ref/{$partner->getHash()}";
-		
+
 		if ($calType == Cal::TYPE_HARDCOPY) {
 			$url = "/cal/hardcopy/" . $calSpecification;
 		} else if ($calType == Cal::TYPE_GOOGLE || ($calType == Cal::TYPE_MOBILE && Utils::clientIsAndroid())) {
-			$url = self::GOOGLE_IMPORT_URL .
-			        urlencode(sfConfig::get('app_domain_full') . '/cal/get/'.$calSpecification."/hash/USERCAL/ct/$intelCalType".$partnerPart);
-			
+            $env = sfConfig::get('sf_environment');
+            $domain = ($env == 'prod') ? 'http://cal4u.biz' : sfConfig::get('app_domain_full');
+
+			$url = self::GOOGLE_IMPORT_URL . urlencode($domain . '/cal/get/'.$calSpecification."/hash/USERCAL/ct/$intelCalType".$partnerPart);
 		} else if($calType == Cal::TYPE_ANY){
 			$url = "http://".sfConfig::get('app_domain_short') . 
 				   "/cal/get/".$calSpecification. "/hash/USERCAL/ct/$intelCalType$partnerPart/sportycal.ics";
